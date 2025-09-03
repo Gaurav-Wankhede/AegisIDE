@@ -33,7 +33,7 @@ citation:
   url: "https://example.com/docs"
   accessed: "YYYY-MM-DD"
 ```
-
+ 
 Add domain-specific pages under this folder if needed (e.g., `nextjs.md`, `mongodb.md`).
 
 ## Authoritative sources
