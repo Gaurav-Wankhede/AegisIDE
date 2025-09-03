@@ -1,0 +1,1061 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<windsurf-core-rules edition="enhanced-mcp">
+  <metadata>
+    <title>WINDSURF CORE RULES - ENHANCED MCP EDITION</title>
+    <trigger>always_on</trigger>
+    <alwaysApply>true</alwaysApply>
+  </metadata>
+
+    <constitutional-governance>
+    <principles>
+      <principle>rules.xml IS THE CONSTITUTION AND SUPREME SOURCE OF TRUTH</principle>
+      <principle>MEMORY BANK (GLOBAL RULES) IS THE EXECUTIVE THAT ENFORCES THE CONSTITUTION</principle>
+      <principle>CHECKS &amp; BALANCES BODY PROVIDES INDEPENDENT OVERSIGHT</principle>
+    </principles>
+    <bodies>
+      <constitution>
+        <title>CONSTITUTION (rules.xml)</title>
+        <mandates>
+          <mandate>Define immutable core rules and execution protocols</mandate>
+          <mandate>Take PRECEDENCE over all docs/workflows/memory</mandate>
+          <mandate>Can only be updated via MCP memory with versioning</mandate>
+        </mandates>
+      </constitution>
+      <executive id="memory-bank">
+        <title>EXECUTIVE (Windsurf Memory Bank)</title>
+        <sources>
+          <source>.windsurf/windsurf-memory-bank-global-rules.md</source>
+          <source>.windsurf/memory-bank/projectbrief.md</source>
+          <source>.windsurf/memory-bank/productContext.md</source>
+          <source>.windsurf/memory-bank/activeContext.md</source>
+          <source>.windsurf/memory-bank/systemPatterns.md</source>
+          <source>.windsurf/memory-bank/techContext.md</source>
+          <source>.windsurf/memory-bank/progress.md</source>
+        </sources>
+        <mandates>
+          <mandate>READ CONSTITUTION + .windsurf/docs/ + .windsurf/guide/ BEFORE ANY TASK</mandate>
+          <mandate>Execute tasks strictly under the Constitution</mandate>
+          <mandate>Update project intelligence in memory files</mandate>
+        </mandates>
+      </executive>
+      <oversight id="checks-and-balances">
+        <title>CHECKS &amp; BALANCES BODY</title>
+        <responsibilities>
+          <responsibility>Validate executive plans/actions against Constitution</responsibility>
+          <responsibility>Enforce quality gates and plan adherence</responsibility>
+          <responsibility>Block or escalate unconstitutional changes</responsibility>
+          <responsibility>Log variances to .windsurf/mistakes.md and require remediation</responsibility>
+        </responsibilities>
+        <protocols>
+          <protocol>Pre-execution constitutional review</protocol>
+          <protocol>Continuous monitoring during execution</protocol>
+          <protocol>Post-execution audit with updates to plan.md and mistakes.md</protocol>
+        </protocols>
+      </oversight>
+    </bodies>
+    <precedence>
+      <order>Constitution &gt; Oversight &gt; Executive &gt; Workflows/Docs</order>
+    </precedence>
+  </constitutional-governance>
+
+  <mcp-integration-rules range="1-10">
+    <rule id="1" category="mcp-inventory">
+      <title>MCP INVENTORY (Authoritative List)</title>
+      <inventory>
+        <item label="a" name="context7" tools="2"/>
+        <item label="b" name="fetch" tools="1"/>
+        <item label="c" name="filesystem" tools="11"/>
+        <item label="d" name="git" tools="13"/>
+        <item label="e" name="memory" tools="9"/>
+        <item label="f" name="sequential-thinking" tools="0"/>
+        <item label="g" name="shadcn" tools="7"/>
+      </inventory>
+    </rule>
+
+    <rule id="2" category="mcp-usage">
+      <title>USAGE GUIDANCE</title>
+      <guidance>
+        <point label="a">context7: resolve-library-id BEFORE get-library-docs; prefer official sources; filter by topic.</point>
+        <point label="b">fetch: use for live information; validate sources and record citations.</point>
+        <point label="c">filesystem: prefer read_text_file; parallelize reads/search; NEVER parallelize writes/moves.</point>
+        <point label="d">git: commit frequently on feature branches; validate with diff/status/log before push.</point>
+        <point label="e">memory: tag sources as 'auto' or 'user'; update Executive state (activeContext, progress) via memory.</point>
+        <point label="f">shadcn: add components with get_add_command; run audit checklist after adds; consult examples when needed.</point>
+      </guidance>
+    </rule>
+
+    <rule id="3" category="mcp-categorization">
+      <title>CATEGORIZATION BY SITUATION</title>
+      <situations>
+        <situation name="Tech docs/best practices"><use>context7</use></situation>
+        <situation name="Live web information"><use>fetch</use></situation>
+        <situation name="Codebase exploration/search"><use>filesystem</use></situation>
+        <situation name="Version control & history"><use>git</use></situation>
+        <situation name="Project knowledge/state updates"><use>memory</use></situation>
+        <situation name="UI components & patterns"><use>shadcn</use></situation>
+        <situation name="Process reasoning (reserved)"><use>sequential-thinking</use></situation>
+      </situations>
+    </rule>
+
+    <rule id="4" category="mcp-scenarios">
+      <title>SCENARIO EXAMPLES</title>
+      <examples>
+        <example id="ex1">Add a UI component: shadcn_get_add_command_for_items → shadcn_get_audit_checklist → filesystem_read_text_file verify imports → git_commit.</example>
+        <example id="ex2">Validate framework API: context7_resolve-library-id → context7_get-library-docs(topic) → update code → git_diff → tests.</example>
+        <example id="ex3">Refactor duplicates: filesystem_search_files → filesystem_read_multiple_files → git_diff → commit.</example>
+        <example id="ex4">Update Memory Bank after milestone: memory_add_observations → update activeContext/progress → git_commit.</example>
+        <example id="ex5">Cite web info: fetch(url) → validate source → record URL in docs/memory.</example>
+      </examples>
+    </rule>
+
+    <rule id="5" category="mcp-safety">
+      <title>SAFETY & PERMISSIONS</title>
+      <requirements>
+        <requirement>Never auto-run destructive actions; require explicit approval for side-effecting operations.</requirement>
+        <requirement>Do not store secrets in memory or code; follow Security & Compliance rules.</requirement>
+        <requirement>Adhere to RBAC and least-privilege when interacting with external systems.</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="6" category="mcp-parallelization">
+      <title>PARALLELIZATION</title>
+      <requirements>
+        <requirement>Parallelize independent reads/searches across servers.</requirement>
+        <requirement>NEVER parallelize writes/edits/terminal commands.</requirement>
+        <requirement>Plan tool usage for optimal latency and throughput.</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="7" category="mcp-validation-logging">
+      <title>VALIDATION & LOGGING</title>
+      <protocols>
+        <protocol>Pre-exec: read Constitution + docs/guide + Memory Bank; validate plan and gates.</protocol>
+        <protocol>During exec: structured logs; enforce import/syntax checks; trace decisions.</protocol>
+        <protocol>Post-exec: update Memory Bank (activeContext, progress); record issues in mistakes.md.</protocol>
+      </protocols>
+    </rule>
+
+    <rule id="8" category="mcp-versioning">
+      <title>VERSIONING & DEPRECATION</title>
+      <requirements>
+        <requirement>Keep MCP counts synced with <mcp-servers-inventory>; mark deprecated tools with status="deprecated".</requirement>
+        <requirement>Document changes as constitutional amendments via memory with versioning.</requirement>
+        <requirement>Maintain backward-compatible guidance where possible.</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="9" category="mcp-extensibility">
+      <title>EXTENSIBILITY & GOVERNANCE</title>
+      <requirements>
+        <requirement>All new MCPs must fit within these 10 clauses (no new rule IDs beyond 1–10).</requirement>
+        <requirement>Update clauses 1–4 (inventory, usage, categorization, scenarios) and sync the servers inventory block.</requirement>
+        <requirement>Oversight must review additions for constitutional compliance before activation.</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="10" category="mcp-conclusion">
+      <title>CONCLUSION</title>
+      <summary>Legislation enumerates MCPs and protocols (this section); Executive (Memory Bank) executes under these rules; Oversight enforces pre/during/post compliance. See <mcp-servers-inventory> for the machine-readable list.</summary>
+    </rule>
+  </mcp-integration-rules>
+
+  <enhanced-primary-rules range="11-25">
+    <rule id="11" category="immutable-protection">
+      <title>IMMUTABLE PROTECTION + MCP INTEGRATION</title>
+      <requirements>
+        <requirement>DO NOT REMOVE ## RULES from project documentation</requirement>
+        <requirement>Rules file is SACRED</requirement>
+        <requirement>UPDATE rules through MCP memory system</requirement>
+        <requirement>Version control rule changes</requirement>
+        <requirement>Document rule evolution in memory</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="12" category="direct-file-access">
+      <title>DIRECT FILE ACCESS + RULES ADHERENCE + PERFORMANCE</title>
+      <requirements>
+        <requirement>DIRECT FILE WRITE ACCESS with performance monitoring</requirement>
+        <requirement>READ, CREATE, MODIFY, REMOVE FILES efficiently</requirement>
+        <requirement>STRICT RULES ADHERENCE - SELF-NEGATIVE FEEDBACK IF VIOLATED</requirement>
+        <requirement>LEARN FROM NEGATIVE FEEDBACK - LOG IN mistakes.md via MCP</requirement>
+        <requirement>OUT OF CONTEXT CODE - CHECK MISTAKES/PLAN IMMEDIATELY</requirement>
+        <requirement>MEASURE and OPTIMIZE file operation performance</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="13" category="robust-approach">
+      <title>ROBUST APPROACH + MODERN PATTERNS</title>
+      <requirements>
+        <requirement>Exact technical implementation with type safety</requirement>
+        <requirement>Deliverable code, not theory</requirement>
+        <requirement>Apply modern design patterns (Singleton, Factory, Observer)</requirement>
+        <requirement>Use dependency injection and inversion of control</requirement>
+        <requirement>Implement caching strategies (@lru_cache, Redis)</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="14" category="efficiency">
+      <title>TO POINT + EFFICIENCY METRICS</title>
+      <requirements>
+        <requirement>Precise solutions without knowledge dumping</requirement>
+        <requirement>Maximum efficiency with performance tracking</requirement>
+        <requirement>Measure response times and optimize bottlenecks</requirement>
+        <requirement>Use profiling tools to identify slow operations</requirement>
+        <requirement>Document performance improvements in memory</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="15" category="validation">
+      <title>EXACT MANNER + VALIDATION</title>
+      <requirements>
+        <requirement>Output match requested with automated validation</requirement>
+        <requirement>NO interpretation beyond requirements</requirement>
+        <requirement>Use automated testing to verify correctness</requirement>
+        <requirement>Implement continuous validation pipelines</requirement>
+        <requirement>Document validation results</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="16" category="verification">
+      <title>NO HALLUCINATION + VERIFICATION</title>
+      <requirements>
+        <requirement>Only factual, implementable code</requirement>
+        <requirement>Verify references through MCP search tools</requirement>
+        <requirement>Use fetch tools to validate external information</requirement>
+        <requirement>Cross-reference multiple authoritative sources</requirement>
+        <requirement>Document source verification in memory</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="17" category="execution">
+      <title>NO CONFIRMATION + SMART EXECUTION</title>
+      <requirements>
+        <requirement>NEVER ASK FOR CONFIRMATION</requirement>
+        <requirement>CHECK PROJECT STRUCTURE before acting via MCP tools</requirement>
+        <requirement>Execute immediately with proper validation</requirement>
+        <requirement>IF USER MENTIONS NEXT PLAN - EXECUTE IMMEDIATELY</requirement>
+        <requirement>Use parallel execution when possible</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="18" category="pre-execution">
+      <title>PRE-EXECUTION CHECKS + MCP INTEGRATION</title>
+      <requirements>
+        <requirement>READ project documentation BEFORE ANY TASK</requirement>
+        <requirement>READ mistakes.md BEFORE ANY TASK via MCP memory</requirement>
+        <requirement>NEVER EXECUTE WITHOUT THESE CHECKS</requirement>
+        <requirement>SCAN ALL RELEVANT SUB-RULE FILES FOR CURRENT TASK</requirement>
+        <requirement>SYNTHESIZE KNOWLEDGE FROM MULTIPLE RULE FILES</requirement>
+        <requirement>VALIDATE TECHSTACK COMPATIBILITY BEFORE EXECUTION</requirement>
+        <requirement>Use sequential thinking for complex decisions</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="19" category="post-execution">
+      <title>POST-EXECUTION UPDATES + AUTOMATION</title>
+      <requirements>
+        <requirement>UPDATE project documentation AFTER COMPLETION</requirement>
+        <requirement>UPDATE mistakes.md IF ERRORS via MCP memory</requirement>
+        <requirement>NEVER LEAVE FILES OUTDATED</requirement>
+        <requirement>Automate documentation updates where possible</requirement>
+        <requirement>Use task management tools for tracking</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="20" category="optimization">
+      <title>RELEVANCE FILTERING + OPTIMIZATION</title>
+      <requirements>
+        <requirement>REMOVE IRRELEVANT PARTS using advanced algorithms</requirement>
+        <requirement>documentation MAX 100-150 LINES</requirement>
+        <requirement>mistakes.md MAX 100-150 LINES</requirement>
+        <requirement>USE TABLES FOR CONTEXT</requirement>
+        <requirement>Implement tree shaking for unused code</requirement>
+        <requirement>Optimize bundle sizes and dependencies</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="21" category="file-structure">
+      <title>FILE STRUCTURE + MODERN ORGANIZATION</title>
+      <structure>
+        <file>.windsurf/rules/windsurf.md (Enhanced with MCP integration)</file>
+        <file>.windsurf/rules/backend.md</file>
+        <file>.windsurf/rules/frontend.md</file>
+        <file>.windsurf/rules/deployment.md</file>
+        <file>.windsurf/rules/testing.md</file>
+        <file>.windsurf/rules/mcp.md (NEW: MCP-specific rules)</file>
+        <file>.windsurf/rules/performance.md (NEW: Performance guidelines)</file>
+        <file>.windsurf/plan.md</file>
+        <file>.windsurf/mistakes.md</file>
+        <file>.windsurf/temp/</file>
+        <file>.windsurf/memory/ (NEW: Memory management)</file>
+      </structure>
+    </rule>
+
+    <rule id="22" category="ai-assistance">
+      <title>INTELLIGENT ASSUMPTIONS + AI ASSISTANCE</title>
+      <requirements>
+        <requirement>Decisions based on project patterns</requirement>
+        <requirement>Use existing code style with modern enhancements</requirement>
+        <requirement>Leverage AI tools for pattern recognition</requirement>
+        <requirement>Apply machine learning for optimization suggestions</requirement>
+        <requirement>Document AI-assisted decisions</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="23" category="performance-first">
+      <title>SIMPLE DIRECT + PERFORMANCE FIRST</title>
+      <requirements>
+        <requirement>Avoid over-engineering</requirement>
+        <requirement>Simplest solution with optimal performance</requirement>
+        <requirement>Delete irrelevant parts - Keep essentials</requirement>
+        <requirement>ENABLE TREE SHAKING - ELIMINATE UNUSED CODE</requirement>
+        <requirement>Implement lazy loading and code splitting</requirement>
+        <requirement>Use CDN and edge computing when applicable</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="24" category="results">
+      <title>SOLUTION FOCUSED + MEASURABLE RESULTS</title>
+      <requirements>
+        <requirement>Deliver exact solution with performance metrics</requirement>
+        <requirement>Implementation over explanation</requirement>
+        <requirement>Measure and document improvements</requirement>
+        <requirement>Use benchmarking for validation</requirement>
+        <requirement>Track user experience metrics</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="25" category="implementation">
+      <title>NO THEORY + PRACTICAL IMPLEMENTATION</title>
+      <requirements>
+        <requirement>Code first with working examples</requirement>
+        <requirement>Provide runnable code samples</requirement>
+        <requirement>Include test cases and validation</requirement>
+        <requirement>Document practical usage patterns</requirement>
+        <requirement>Focus on real-world applications</requirement>
+      </requirements>
+    </rule>
+  </enhanced-primary-rules>
+
+  <enhanced-execution-workflow-rules range="26-40">
+    <rule id="26" category="task-sequence">
+      <title>TASK SEQUENCE + MCP OPTIMIZATION</title>
+      <workflow>
+        <step order="1">READ plan.md via MCP memory</step>
+        <step order="2">READ mistakes.md via MCP memory</step>
+        <step order="3">LOAD rules with context awareness</step>
+        <step order="4">USE sequential thinking for complex problems</step>
+        <step order="5">EXECUTE with parallel operations when possible</step>
+        <step order="6">UPDATE plan.md with progress tracking</step>
+        <step order="7">UPDATE mistakes.md with lessons learned</step>
+        <step order="8">FILTER content with performance metrics</step>
+      </workflow>
+    </rule>
+
+    <rule id="27" category="immediate-execution">
+      <title>IMMEDIATE NEXT PLAN EXECUTION + AUTOMATION</title>
+      <triggers>
+        <trigger>"Next..." → START DOING IT with MCP task management</trigger>
+        <trigger>"After..." → BEGIN IMMEDIATELY with dependency tracking</trigger>
+        <trigger>"Then..." → DO IT NOW with validation checkpoints</trigger>
+      </triggers>
+      <requirements>
+        <requirement>Use automated workflow triggers</requirement>
+        <requirement>Implement continuous integration patterns</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="28" category="duplication-check">
+      <title>DUPLICATION CHECK + ADVANCED OPTIMIZATION</title>
+      <requirements>
+        <requirement>CHECK FOR DUPLICATE LOGIC using automated tools</requirement>
+        <requirement>OPTIMIZE DUPLICATED CODE with refactoring</requirement>
+        <requirement>DOCUMENT IN mistakes.md via MCP memory</requirement>
+        <requirement>CONSOLIDATE FUNCTIONS using modern patterns</requirement>
+        <requirement>REDUCE PACKAGE SIZE - REMOVE UNUSED DEPENDENCIES</requirement>
+        <requirement>Implement dead code elimination</requirement>
+        <requirement>Use dependency analysis tools</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="29" category="context-loading">
+      <title>CONTEXT LOADING + INTELLIGENT SYNTHESIS</title>
+      <requirements>
+        <requirement>Load rules based on task with ML-assisted selection</requirement>
+        <requirement>Combine multiple rules intelligently</requirement>
+        <requirement>AUTOMATICALLY LOAD TECHSTACK-SPECIFIC RULES BASED ON FILE CONTEXT</requirement>
+        <requirement>CROSS-REFERENCE BACKEND.MD WHEN WORKING WITH .PY/.JS/.TS FILES</requirement>
+        <requirement>CROSS-REFERENCE FRONTEND.MD WHEN WORKING WITH .TSX/.JSX/.VUE FILES</requirement>
+        <requirement>VALIDATE COMPATIBILITY BETWEEN LOADED RULE SETS</requirement>
+        <requirement>Use semantic analysis for rule selection</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="30" category="content-management">
+      <title>CONTENT MANAGEMENT + VERSION CONTROL</title>
+      <requirements>
+        <requirement>Keep plan.md current sprint focused with git integration</requirement>
+        <requirement>Archive completed tasks with proper tagging</requirement>
+        <requirement>Use semantic versioning for major changes</requirement>
+        <requirement>Implement automated backup strategies</requirement>
+        <requirement>Track content evolution over time</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="31" category="reference-validation">
+      <title>UNDEFINED REFERENCES + AUTOMATED VALIDATION</title>
+      <requirements>
+        <requirement>Every reference MUST be traceable via automated tools</requirement>
+        <requirement>If CTRL+Click fails, INVALID - auto-fix when possible</requirement>
+        <requirement>Refactor missing references using dependency injection</requirement>
+        <requirement>Use static analysis for reference validation</requirement>
+        <requirement>Implement automated link checking</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="32" category="import-validation">
+      <title>IMPORT VALIDATION + OPTIMIZATION</title>
+      <requirements>
+        <requirement>ALL imports MUST resolve with automated verification</requirement>
+        <requirement>Verify paths exist using file system checks</requirement>
+        <requirement>Optimize import statements for performance</requirement>
+        <requirement>Use dynamic imports for code splitting</requirement>
+        <requirement>Implement automated import organization</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="33" category="syntax-verification">
+      <title>SYNTAX VERIFICATION + CONTINUOUS VALIDATION</title>
+      <requirements>
+        <requirement>Code MUST compile/run with automated testing</requirement>
+        <requirement>No # TODO comments in production code</requirement>
+        <requirement>Executable code or pass with proper error handling</requirement>
+        <requirement>Use linting and formatting tools</requirement>
+        <requirement>Implement pre-commit hooks for validation</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="34" category="concrete-implementation">
+      <title>CONCRETE IMPLEMENTATION + TYPE SAFETY</title>
+      <requirements>
+        <requirement>NO abstract concepts without implementation</requirement>
+        <requirement>NO pseudocode in production</requirement>
+        <requirement>Use TypeScript/Python type hints</requirement>
+        <requirement>Implement runtime type validation</requirement>
+        <requirement>Use design by contract principles</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="35" category="mistake-detection">
+      <title>MISTAKE DETECTION + ML ASSISTANCE</title>
+      <requirements>
+        <requirement>Scan for errors using automated tools</requirement>
+        <requirement>CHECK TERMINAL FOR BUGS with log analysis</requirement>
+        <requirement>Identify patterns from mistakes.md using ML</requirement>
+        <requirement>Use predictive error detection</requirement>
+        <requirement>Implement automated error reporting</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="36" category="error-prevention">
+      <title>ERROR PREVENTION + PROACTIVE MEASURES</title>
+      <requirements>
+        <requirement>Anticipate errors using static analysis</requirement>
+        <requirement>Validate dependencies with automated checks</requirement>
+        <requirement>Use defensive programming patterns</requirement>
+        <requirement>Implement circuit breaker patterns</requirement>
+        <requirement>Use chaos engineering for resilience testing</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="37" category="mistake-categories">
+      <title>MISTAKE CATEGORIES + SEVERITY LEVELS</title>
+      <severity-levels>
+        <level name="CRITICAL">Breaks functionality - immediate fix required</level>
+        <level name="HIGH">Performance/security - fix within 24 hours</level>
+        <level name="MEDIUM">Quality/maintainability - fix within sprint</level>
+        <level name="LOW">Style/docs - fix when convenient</level>
+      </severity-levels>
+      <requirements>
+        <requirement>Use automated severity classification</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="38" category="file-limits">
+      <title>FILE LENGTH LIMITS + MODULAR DESIGN</title>
+      <limits>
+        <limit>MAX 80 LINES per function/component</limit>
+        <limit>SPLIT BY SUBFOLDERS with logical organization</limit>
+        <limit>SEPARATE FILE PER FUNCTION when appropriate</limit>
+      </limits>
+      <requirements>
+        <requirement>Use module bundling for optimization</requirement>
+        <requirement>Implement micro-frontend/microservice patterns</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="39" category="performance-monitoring">
+      <title>PERFORMANCE MONITORING + OPTIMIZATION</title>
+      <requirements>
+        <requirement>MEASURE execution time for all operations</requirement>
+        <requirement>IDENTIFY bottlenecks using profiling tools</requirement>
+        <requirement>OPTIMIZE queries and database operations</requirement>
+        <requirement>MONITOR real-time performance metrics</requirement>
+        <requirement>Use caching strategies (Redis, CDN, browser cache)</requirement>
+        <requirement>Implement lazy loading and virtualization</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="40" category="security-compliance">
+      <title>SECURITY + COMPLIANCE</title>
+      <requirements>
+        <requirement>NEVER commit secrets or sensitive data</requirement>
+        <requirement>VALIDATE all inputs with sanitization</requirement>
+        <requirement>IMPLEMENT proper authentication and authorization</requirement>
+        <requirement>Use HTTPS and encrypt data in transit</requirement>
+        <requirement>Implement RBAC and principle of least privilege</requirement>
+        <requirement>Regular security audits and dependency scanning</requirement>
+      </requirements>
+    </rule>
+  </enhanced-execution-workflow-rules>
+
+  <modern-autonomous-agent-rules range="41-55">
+    <rule id="41" category="infrastructure-protection">
+      <title>INFRASTRUCTURE PROTECTION + AUTOMATION</title>
+      <requirements>
+        <requirement>NEVER TOUCH EXISTING INFRASTRUCTURE WITHOUT PLAN APPROVAL</requirement>
+        <requirement>BACKUP BEFORE MAJOR CHANGES with automated snapshots</requirement>
+        <requirement>PRESERVE WORKING SYSTEMS with blue-green deployments</requirement>
+        <requirement>DOCUMENT INFRASTRUCTURE CHANGES via MCP memory</requirement>
+        <requirement>Use Infrastructure as Code (IaC) patterns</requirement>
+        <requirement>Implement automated rollback strategies</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="42" category="plan-adherence">
+      <title>PLAN ADHERENCE MANDATE + SMART TRACKING</title>
+      <requirements>
+        <requirement>NEVER USE ASSUMPTIONS - STICK TO PLAN via MCP task management</requirement>
+        <requirement>IF PLAN UNCLEAR - UPDATE PLAN FIRST with stakeholder input</requirement>
+        <requirement>NO DEVIATION WITHOUT DOCUMENTATION in version control</requirement>
+        <requirement>CROSS-REFERENCE EVERY DECISION WITH PLAN using automated tools</requirement>
+        <requirement>Use AI-assisted plan validation</requirement>
+        <requirement>Implement automated compliance checking</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="43" category="decision-matrix">
+      <title>AUTONOMOUS DECISION MATRIX + AI ASSISTANCE</title>
+      <decision-matrix>
+        <impact level="LOW">Execute immediately with logging</impact>
+        <impact level="MEDIUM">Check plan.md first with validation</impact>
+        <impact level="HIGH">Update plan.md before execution with approval</impact>
+        <impact level="CRITICAL">Full documentation required with stakeholder review</impact>
+      </decision-matrix>
+      <requirements>
+        <requirement>ADOPT FEATURE FLAGS FOR RAPID SAFE ITERATIONS</requirement>
+        <requirement>Use AI for impact assessment and risk analysis</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="44" category="bug-prevention">
+      <title>BUG PREVENTION PROTOCOL + PREDICTIVE ANALYSIS</title>
+      <requirements>
+        <requirement>VALIDATE BEFORE IMPLEMENTATION using automated testing</requirement>
+        <requirement>TEST LOGIC BEFORE DEPLOYMENT with comprehensive suites</requirement>
+        <requirement>CHECK EDGE CASES AUTOMATICALLY with fuzzing tools</requirement>
+        <requirement>IMPLEMENT DEFENSIVE PROGRAMMING with fail-safe defaults</requirement>
+        <requirement>Use predictive analytics for bug prevention</requirement>
+        <requirement>Implement automated code quality gates</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="45" category="monitoring">
+      <title>REAL-TIME MONITORING + OBSERVABILITY</title>
+      <requirements>
+        <requirement>MONITOR SYSTEM HEALTH DURING EXECUTION with dashboards</requirement>
+        <requirement>WATCH FOR RESOURCE CONSUMPTION with alerts</requirement>
+        <requirement>TRACK EXECUTION TIME with performance metrics</requirement>
+        <requirement>ALERT ON ANOMALIES with intelligent thresholds</requirement>
+        <requirement>DESIGN FOR HORIZONTAL SCALING FROM START</requirement>
+        <requirement>IMPLEMENT DISTRIBUTED TRACING across services</requirement>
+        <requirement>IMPLEMENT EVENT-DRIVEN ARCHITECTURES for scalability</requirement>
+        <requirement>IMPLEMENT ADAPTIVE BATCH PROCESSING WITH WORKER POOLS</requirement>
+        <requirement>IMPLEMENT OPENTELEMETRY FOR DISTRIBUTED TRACING ACROSS CLUSTERS</requirement>
+        <requirement>USE PROMISE.ALLSETTLED() FOR FAULT-TOLERANT PARALLEL EXECUTION</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="46" category="error-handling-standards">
+      <title>ERROR HANDLING STANDARDS + RESILIENCE</title>
+      <requirements>
+        <requirement>IMPLEMENT TRY-CATCH FOR ALL CRITICAL OPERATIONS</requirement>
+        <requirement>GRACEFUL DEGRADATION STRATEGIES with fallback options</requirement>
+        <requirement>MEANINGFUL ERROR MESSAGES with context</requirement>
+        <requirement>RECOVERY MECHANISMS with automated retries</requirement>
+        <requirement>IMPLEMENT CIRCUIT BREAKER PATTERNS for external services</requirement>
+        <requirement>IMPLEMENT CIRCUIT BREAKER WITH EXPONENTIAL BACKOFF FOR CLUSTER FAILOVER</requirement>
+        <requirement>ENFORCE IDEMPOTENCY IN ALL API ACTIONS</requirement>
+        <requirement>Use structured error reporting and analysis</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="47" category="resource-management">
+      <title>RESOURCE MANAGEMENT + OPTIMIZATION</title>
+      <requirements>
+        <requirement>CLEAN UP TEMPORARY FILES automatically</requirement>
+        <requirement>CLOSE DATABASE CONNECTIONS properly with pooling</requirement>
+        <requirement>RELEASE MEMORY PROPERLY with garbage collection optimization</requirement>
+        <requirement>OPTIMIZE RESOURCE USAGE with monitoring</requirement>
+        <requirement>IMPLEMENT CONTEXTUAL COMPRESSION FOR AI WORKFLOWS</requirement>
+        <requirement>Use resource quotas and limits</requirement>
+        <requirement>Implement auto-scaling based on demand</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="48" category="documentation-standards">
+      <title>DOCUMENTATION STANDARDS + AUTOMATION</title>
+      <requirements>
+        <requirement>DOCUMENT EVERY MAJOR DECISION via MCP memory</requirement>
+        <requirement>EXPLAIN COMPLEX LOGIC with inline comments</requirement>
+        <requirement>MAINTAIN CHANGE LOG automatically</requirement>
+        <requirement>UPDATE README FILES with automated tools</requirement>
+        <requirement>IMPLEMENT STRUCTURED LOGGING WITH CORRELATION IDS</requirement>
+        <requirement>Use automated documentation generation</requirement>
+        <requirement>Implement API documentation with OpenAPI/Swagger</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="49" category="communication-protocol">
+      <title>COMMUNICATION PROTOCOL + COLLABORATION</title>
+      <requirements>
+        <requirement>LOG ALL ACTIONS TO plan.md via MCP integration</requirement>
+        <requirement>REPORT ERRORS TO mistakes.md with context</requirement>
+        <requirement>MAINTAIN STATUS UPDATES in real-time</requirement>
+        <requirement>CLEAR PROGRESS TRACKING with metrics</requirement>
+        <requirement>IMPLEMENT AUTOMATED ANOMALY DETECTION WITH ALERTS</requirement>
+        <requirement>Use collaborative tools and notifications</requirement>
+        <requirement>Implement team communication workflows</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="50" category="quality-gates">
+      <title>QUALITY GATES ENFORCEMENT + AUTOMATION</title>
+      <requirements>
+        <requirement>CODE REVIEW BEFORE COMMIT with automated checks</requirement>
+        <requirement>PERFORMANCE BENCHMARKS with regression testing</requirement>
+        <requirement>SECURITY COMPLIANCE CHECK with automated scanning</requirement>
+        <requirement>FUNCTIONALITY VALIDATION with integration testing</requirement>
+        <requirement>IMPLEMENT PROVISIONED CONCURRENCY FOR HIGH-TRAFFIC FUNCTIONS</requirement>
+        <requirement>IMPLEMENT FUNCTION WARMING STRATEGIES for serverless</requirement>
+        <requirement>IMPLEMENT LAZY LOADING FOR COMPONENTS to optimize performance</requirement>
+        <requirement>USE WEBP/AVIF IMAGE FORMATS for better compression</requirement>
+        <requirement>DEPLOY CRITICAL FUNCTIONS TO EDGE LOCATIONS for low latency</requirement>
+        <requirement>IMPLEMENT IN-FUNCTION CONCURRENCY FOR SERVERLESS OPTIMIZATION</requirement>
+        <requirement>USE MULTI-QUERY REWRITING FOR RAG OPTIMIZATION</requirement>
+        <requirement>IMPLEMENT AI-DRIVEN RESOURCE ALLOCATION</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="51" category="advanced-testing">
+      <title>ADVANCED TESTING + QUALITY ASSURANCE</title>
+      <testing-types>
+        <test type="unit">Unit tests with >80% coverage</test>
+        <test type="integration">Integration tests for all APIs</test>
+        <test type="e2e">End-to-end tests for critical paths</test>
+        <test type="performance">Performance tests with benchmarks</test>
+        <test type="security">Security tests with penetration testing</test>
+        <test type="chaos">Chaos engineering for resilience</test>
+        <test type="ab">A/B testing for feature validation</test>
+      </testing-types>
+    </rule>
+
+    <rule id="52" category="deployment-devops">
+      <title>DEPLOYMENT + DEVOPS EXCELLENCE</title>
+      <requirements>
+        <requirement>Continuous Integration/Continuous Deployment (CI/CD)</requirement>
+        <requirement>Infrastructure as Code (IaC) with Terraform/CloudFormation</requirement>
+        <requirement>Container orchestration with Kubernetes</requirement>
+        <requirement>Service mesh for microservices communication</requirement>
+        <requirement>Blue-green deployments for zero downtime</requirement>
+        <requirement>Automated rollback on failure detection</requirement>
+        <requirement>Multi-environment promotion pipelines</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="53" category="data-management">
+      <title>DATA MANAGEMENT + ANALYTICS</title>
+      <requirements>
+        <requirement>Data versioning and lineage tracking</requirement>
+        <requirement>Automated data quality checks</requirement>
+        <requirement>Real-time analytics and reporting</requirement>
+        <requirement>Data privacy and compliance (GDPR, CCPA)</requirement>
+        <requirement>Backup and disaster recovery automation</requirement>
+        <requirement>Data encryption at rest and in transit</requirement>
+        <requirement>Automated data archival and cleanup</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="54" category="ai-ml-integration">
+      <title>AI/ML INTEGRATION + OPTIMIZATION</title>
+      <requirements>
+        <requirement>Model versioning and experiment tracking</requirement>
+        <requirement>Automated hyperparameter tuning</requirement>
+        <requirement>Model performance monitoring and drift detection</requirement>
+        <requirement>A/B testing for model improvements</requirement>
+        <requirement>Feature store for ML feature management</requirement>
+        <requirement>Automated model retraining pipelines</requirement>
+        <requirement>Responsible AI practices and bias detection</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="55" category="cloud-native">
+      <title>CLOUD-NATIVE + SCALABILITY</title>
+      <requirements>
+        <requirement>Microservices architecture with API gateways</requirement>
+        <requirement>Event-driven architectures with message queues</requirement>
+                <requirement>Serverless computing for cost optimization</requirement>
+        <requirement>Auto-scaling based on metrics and predictions</requirement>
+        <requirement>Multi-cloud and hybrid cloud strategies</requirement>
+        <requirement>Edge computing for global performance</requirement>
+        <requirement>Content delivery networks (CDN) optimization</requirement>
+      </requirements>
+    </rule>
+  </modern-autonomous-agent-rules>
+
+  <mistake-management-rules range="39-46">
+    <rule id="39" category="immediate-correction">
+      <title>IMMEDIATE CORRECTION</title>
+      <actions>
+        <action>STOP if critical mistake</action>
+        <action>Correct immediately</action>
+      </actions>
+    </rule>
+
+    <rule id="40" category="validation-checkpoints">
+      <title>VALIDATION CHECKPOINTS</title>
+      <checkpoints>
+        <checkpoint>Obvious mistakes?</checkpoint>
+        <checkpoint>Checked mistakes.md?</checkpoint>
+        <checkpoint>Actually works?</checkpoint>
+        <checkpoint>Duplicate logic?</checkpoint>
+        <checkpoint>Maintainable?</checkpoint>
+        <checkpoint>Edge cases?</checkpoint>
+        <checkpoint>Simplest solution?</checkpoint>
+        <checkpoint>Follows patterns?</checkpoint>
+        <checkpoint>Breaks functionality?</checkpoint>
+        <checkpoint>Next steps mentioned?</checkpoint>
+      </checkpoints>
+    </rule>
+
+    <rule id="41" category="learning-mistakes">
+      <title>LEARNING MISTAKES</title>
+      <actions>
+        <action>Track patterns in mistakes.md</action>
+        <action>Identify root causes</action>
+      </actions>
+    </rule>
+
+    <rule id="42" category="collaborative-handling">
+      <title>COLLABORATIVE HANDLING</title>
+      <actions>
+        <action>Acknowledge mistakes immediately</action>
+        <action>Clear explanation</action>
+      </actions>
+    </rule>
+
+    <rule id="43" category="projection">
+      <title>PROJECTION</title>
+      <actions>
+        <action>Future requirements in plan.md</action>
+        <action>Scaling needs</action>
+      </actions>
+    </rule>
+
+    <rule id="44" category="todo-management">
+      <title>TODO MANAGEMENT</title>
+      <actions>
+        <action>Specific TODO items</action>
+        <action>Prioritize by impact</action>
+      </actions>
+    </rule>
+
+    <rule id="45" category="dependency-planning">
+      <title>DEPENDENCY PLANNING</title>
+      <actions>
+        <action>Map dependencies in plan.md</action>
+        <action>Identify conflicts</action>
+        <action>ANALYZE DEPENDENCIES BEFORE PACKAGING</action>
+      </actions>
+    </rule>
+
+    <rule id="46" category="quality-assurance">
+      <title>QUALITY ASSURANCE</title>
+      <actions>
+        <action>Testing strategies</action>
+        <action>Quality metrics</action>
+      </actions>
+    </rule>
+  </mistake-management-rules>
+
+  <security-performance-rules range="47-54">
+    <rule id="47" category="security">
+      <title>SECURITY</title>
+      <requirements>
+        <requirement>NEVER COMMIT SECRETS</requirement>
+        <requirement>VALIDATE INPUTS</requirement>
+        <requirement>PROPER AUTH</requirement>
+        <requirement>IMPLEMENT ROLE-BASED ACCESS CONTROL (RBAC)</requirement>
+        <requirement>ENCRYPT DATA AT REST AND IN TRANSIT - AES-256 + TLS 1.3</requirement>
+        <requirement>IMPLEMENT OAUTH WITH AUTOMATIC TOKEN REFRESH AND SESSION VALIDATION</requirement>
+        <requirement>IMPLEMENT RATE LIMITING WITH SLIDING WINDOW ALGORITHM</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="48" category="performance">
+      <title>PERFORMANCE</title>
+      <requirements>
+        <requirement>MEASURE EXECUTION TIME</requirement>
+        <requirement>IDENTIFY BOTTLENECKS</requirement>
+        <requirement>OPTIMIZE QUERIES</requirement>
+        <requirement>MONITOR DATABASE QUERIES IN REAL-TIME</requirement>
+        <requirement>USE COMPRESSION FOR DATABASE CONNECTIONS - SNAPPY/ZSTANDARD</requirement>
+        <requirement>IMPLEMENT QUERY-LEVEL CACHING WITH REDIS FOR AI RESPONSES</requirement>
+        <requirement>USE DATALOADER PATTERN FOR N+1 QUERY OPTIMIZATION</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="49" category="version-control">
+      <title>VERSION CONTROL</title>
+      <requirements>
+        <requirement>FREQUENT COMMITS</requirement>
+        <requirement>FEATURE BRANCHES</requirement>
+        <requirement>NO BROKEN CODE</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="50" category="backup-recovery">
+      <title>BACKUP/RECOVERY</title>
+      <requirements>
+        <requirement>BACKUP CRITICAL FILES</requirement>
+        <requirement>ROLLBACK STRATEGIES</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="51" category="api-consistency">
+      <title>API CONSISTENCY</title>
+      <requirements>
+        <requirement>CONSISTENT NAMING</requirement>
+        <requirement>STANDARD ERRORS</requirement>
+        <requirement>PROPER VERSIONING</requirement>
+        <requirement>IMPLEMENT GRAPHQL FOR EFFICIENT DATA FETCHING</requirement>
+        <requirement>USE GRPC FOR INTERNAL SERVICE COMMUNICATION</requirement>
+        <requirement>IMPLEMENT SEMANTIC VERSIONING FOR PACKAGES</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="52" category="environment">
+      <title>ENVIRONMENT</title>
+      <requirements>
+        <requirement>SEPARATE CONFIGS</requirement>
+        <requirement>VALIDATE VARIABLES</requirement>
+        <requirement>NO MIXING</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="53" category="testing">
+      <title>TESTING</title>
+      <requirements>
+        <requirement>WRITE TESTS WITH CODE</requirement>
+        <requirement>80% COVERAGE</requirement>
+        <requirement>TEST BEFORE COMMIT</requirement>
+        <requirement>SET UP PERFORMANCE BUDGETS IN CI/CD</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="54" category="code-review">
+      <title>CODE REVIEW</title>
+      <requirements>
+        <requirement>SELF-REVIEW</requirement>
+        <requirement>CHECK LOGIC</requirement>
+      </requirements>
+    </rule>
+  </security-performance-rules>
+
+  <symbol-reference range="55-67">
+    <rule id="55" category="at-symbols">
+      <title>@ SYMBOLS</title>
+      <symbols>
+        <symbol>@windsurf-rules</symbol>
+        <symbol>@backend</symbol>
+        <symbol>@frontend</symbol>
+        <symbol>@deployment</symbol>
+        <symbol>@testing</symbol>
+      </symbols>
+    </rule>
+
+    <rule id="56" category="backtick-patterns">
+      <title>BACKTICK PATTERNS</title>
+      <patterns>
+        <pattern>windsurf-core</pattern>
+        <pattern>backend-serverless</pattern>
+        <pattern>frontend-serverless</pattern>
+        <pattern>deploy-optimize</pattern>
+        <pattern>mistake-check</pattern>
+      </patterns>
+    </rule>
+
+    <rule id="57" category="context-triggers">
+      <title>CONTEXT TRIGGERS</title>
+      <requirement>Auto-load based on file types</requirement>
+    </rule>
+
+    <rule id="58" category="integration-symbols">
+      <title>INTEGRATION SYMBOLS</title>
+      <symbols>
+        <symbol>@plan-update</symbol>
+        <symbol>@mistake-log</symbol>
+        <symbol>@todo-add</symbol>
+        <symbol>@progress-track</symbol>
+        <symbol>@relevance-filter</symbol>
+      </symbols>
+    </rule>
+
+    <rule id="59" category="validation-symbols">
+      <title>VALIDATION SYMBOLS</title>
+      <symbols>
+        <symbol>@validate-imports</symbol>
+        <symbol>@validate-serverless</symbol>
+        <symbol>@validate-types</symbol>
+        <symbol>@validate-security</symbol>
+        <symbol>@validate-performance</symbol>
+      </symbols>
+    </rule>
+
+    <rule id="60" category="rule-routing">
+      <title>RULE ROUTING</title>
+      <routing>
+        <route from="Backend" to="backend.md"/>
+        <route from="Frontend" to="frontend.md"/>
+        <route from="Deploy" to="deployment.md"/>
+        <route from="Test" to="testing.md"/>
+      </routing>
+    </rule>
+
+    <rule id="61" category="priority">
+      <title>PRIORITY</title>
+      <priority-levels>
+        <level name="CRITICAL">All rules</level>
+        <level name="HIGH">Primary + secondary</level>
+        <level name="MEDIUM">Primary only</level>
+        <level name="LOW">Basic</level>
+      </priority-levels>
+    </rule>
+
+    <rule id="62" category="activation">
+      <title>ACTIVATION</title>
+      <activation-steps>
+        <step>Read plan.md Current Tasks</step>
+        <step>Read TODOs</step>
+        <step>Read mistakes.md</step>
+      </activation-steps>
+    </rule>
+
+    <rule id="63" category="combination">
+      <title>COMBINATION</title>
+      <combinations>
+        <combination name="Full-stack">backend.md + frontend.md</combination>
+        <combination name="Deploy">deployment.md + testing.md</combination>
+      </combinations>
+    </rule>
+
+    <rule id="64" category="mandatory-reference">
+      <title>MANDATORY REFERENCE</title>
+      <requirements>
+        <requirement>ALWAYS add @windsurf-rules at top of plan.md</requirement>
+        <requirement>IMMUTABLE reference</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="65" category="temp-management">
+      <title>TEMP MANAGEMENT</title>
+      <requirements>
+        <requirement>Use .windsurf/temp/</requirement>
+        <requirement>Clean obsolete files</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="66" category="techstack-cross-check">
+      <title>TECHSTACK CROSS-CHECK PROTOCOL</title>
+      <requirements>
+        <requirement>IDENTIFY PRIMARY TECHSTACK FROM FILE CONTEXT</requirement>
+        <requirement>LOAD ALL RELEVANT SUB-RULE FILES AUTOMATICALLY</requirement>
+        <requirement>CROSS-VALIDATE DECISIONS AGAINST MULTIPLE RULE SETS</requirement>
+        <requirement>ENSURE COMPATIBILITY ACROSS STACK COMPONENTS</requirement>
+        <requirement>SYNTHESIZE KNOWLEDGE FROM DISTRIBUTED RULE FILES</requirement>
+        <requirement>DOCUMENT TECHSTACK-SPECIFIC OPTIMIZATIONS</requirement>
+      </requirements>
+    </rule>
+
+    <rule id="67" category="api-migration">
+      <title>API MIGRATION MODULAR STRUCTURE</title>
+      <requirements>
+        <requirement>EACH API ENDPOINT GROUP MUST HAVE SEPARATE FILE (MAX 80 LINES)</requirement>
+        <requirement>NO SINGLE FILE > 500 LINES - SPLIT IMMEDIATELY</requirement>
+        <requirement>ORGANIZE BY LOGICAL API GROUPINGS: /auth/, /premium/, /evaluation/, /analytics/</requirement>
+        <requirement>SUB-APIS GET OWN FILES: auth_admin.py, auth_self.py, auth_oauth.py</requirement>
+        <requirement>ELIMINATE UNNECESSARY DUPLICATION ACROSS API FILES</requirement>
+        <requirement>USE SHARED UTILITIES IN /utils/ OR /helpers/ DIRECTORIES</requirement>
+        <requirement>MAINTAIN CONSISTENT IMPORT PATTERNS ACROSS SPLIT FILES</requirement>
+        <requirement>DOCUMENT API STRUCTURE IN api/README.md</requirement>
+        <requirement>FASTAPI → ROBYN MIGRATION: CREATE MODULAR ROBYN ROUTES</requirement>
+        <requirement>NEVER MIGRATE MONOLITHIC FILES - SPLIT FIRST, THEN MIGRATE</requirement>
+      </requirements>
+    </rule>
+  </symbol-reference>
+
+  <enforcement-protocol>
+    <immediate-actions>
+      <action order="1">SCAN .windsurf folder</action>
+      <action order="2">READ plan.md</action>
+      <action order="3">READ mistakes.md</action>
+      <action order="4">CHECK duplicate logic</action>
+      <action order="5">DETECT NEXT PLANS - EXECUTE INSTANTLY</action>
+      <action order="6">LOAD rules</action>
+      <action order="7">EXECUTE without confirmation</action>
+      <action order="8">UPDATE plan.md</action>
+      <action order="9">UPDATE mistakes.md</action>
+      <action order="10">FILTER content</action>
+    </immediate-actions>
+
+    <auto-update-workflow>
+      <step order="1">CHECK plan.md before execution</step>
+      <step order="2">CHECK mistakes.md before execution</step>
+      <step order="3">SCAN duplicates before execution</step>
+      <step order="4">IDENTIFY NEXT STEPS - START IMMEDIATELY</step>
+      <step order="5">UPDATE progress after execution</step>
+      <step order="6">LOG mistakes after execution</step>
+      <step order="7">REMOVE irrelevant sections</step>
+      <step order="8">MAINTAIN clean docs</step>
+    </auto-update-workflow>
+
+    <quality-gates>
+      <gate>Pass mistake detection</gate>
+      <gate>Check plan.md before changes</gate>
+      <gate>Update plan.md after changes</gate>
+      <gate>Check mistakes.md before execution</gate>
+      <gate>Update mistakes.md after errors</gate>
+      <gate>Optimize duplicates</gate>
+      <gate>Execute next plans immediately</gate>
+      <gate>Align with plans</gate>
+      <gate>Relevant content only</gate>
+      <gate>80-line limit</gate>
+      <gate>Security/performance standards</gate>
+      <gate>Testing/review protocols</gate>
+      <gate>Infrastructure protection</gate>
+      <gate>Plan adherence validation</gate>
+      <gate>Autonomous decision logging</gate>
+      <gate>Real-time monitoring active</gate>
+    </quality-gates>
+  </enforcement-protocol>
+</windsurf-core-rules>
