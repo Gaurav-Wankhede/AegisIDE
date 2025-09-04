@@ -123,10 +123,16 @@ flowchart TD
 ## Command Cheatsheet (Autonomous Workflow)
 - "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank.
 - "Plan Mode: <your goal>" — generate a plan grounded in rules and docs.
-- "run oversight checks-and-balances" — pre-exec constitutional review.
+- "run pre-oversight" — constitutional review before execution (legislative compliance check).
 - "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps.
+- "next task" — execute the next immediate task from current plans.
+- "what next" — provide next planned steps and strategic direction based on current project state.
+- "solve lint" — identify and fix linting issues in the codebase.
+- "solve error" — identify and resolve compilation/runtime errors.
+- "fix issues" — comprehensive scan and resolution of all code issues.
 - "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`).
-- "run oversight checks-and-balances" — post-exec audit to minimize hallucinations.
+- "check memory bank status" — provide summary of all memory bank files and their current state.
+- "run post-oversight" — execution audit after completion (checks & balances validation).
 
 ## Documentation Updates
 

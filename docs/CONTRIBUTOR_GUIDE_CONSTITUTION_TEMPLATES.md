@@ -22,9 +22,9 @@ This repository includes constitution templates to accommodate environments wher
 3. Update references in your Memory Bank docs accordingly.
 
 ## Oversight Workflow Checks
-- Pre-execution: Read Constitution + `guide/` + `docs/` + ALL Memory Bank files
+- Pre-execution ("run pre-oversight"): Read Constitution + `guide/` + `docs/` + ALL Memory Bank files
 - During execution: Validate imports, paths, and security
-- Post-execution: Update Memory Bank (`activeContext.md`, `progress.md`), and document changes
+- Post-execution ("run post-oversight"): Update Memory Bank (`activeContext.md`, `progress.md`), and document changes
 
 ## Notes
 - Treat the Constitution as the supreme source of truth.
