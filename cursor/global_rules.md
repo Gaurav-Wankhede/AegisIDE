@@ -116,19 +116,35 @@
      Execute --> Document[Document Changes]
 ```
 
+## MCP Server Configuration
+
+### Current Active MCPs
+- **context7** (2/2) — Library documentation
+- **fetch** (1/1) — Internet content retrieval
+- **github** (26/26) — Repository operations
+- **playwright** (21/21) — Browser automation
+- **sequential-thinking** (1/1) — Complex problem solving
+
+### Configuration Options
+1. **Development**: github + context7 + sequential-thinking
+2. **Research**: context7 + fetch + sequential-thinking  
+3. **Full-Stack**: All MCPs active
+4. **Minimal**: context7 + sequential-thinking
+5. **Custom**: User-defined selection
+
 ## Command Cheatsheet (Autonomous Workflow)
-- "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank.
-- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs.
-- "run pre-oversight" — constitutional review before execution (legislative compliance check).
-- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps.
-- "next task" — execute the next immediate task from current plans.
-- "what next" — provide next planned steps and strategic direction based on current project state.
-- "solve lint" — identify and fix linting issues in the codebase.
-- "solve error" — identify and resolve compilation/runtime errors.
-- "fix issues" — comprehensive scan and resolution of all code issues.
-- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`).
-- "check memory bank status" — provide summary of all memory bank files and their current state.
-- "run post-oversight" — execution audit after completion (checks & balances validation).
+- "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank
+- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs [sequential-thinking]
+- "run pre-oversight" — constitutional review before execution [sequential-thinking]
+- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps
+- "next task" — execute the next immediate task from current plans
+- "what next" — provide next planned steps and strategic direction [sequential-thinking]
+- "solve lint" — identify and fix linting issues in the codebase [context7 for docs]
+- "solve error" — identify and resolve compilation/runtime errors [context7 + sequential-thinking]
+- "fix issues" — comprehensive scan and resolution of all code issues [context7 + sequential-thinking]
+- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`)
+- "check memory bank status" — provide summary of all memory bank files and their current state
+- "run post-oversight" — execution audit after completion [sequential-thinking]
 
 ## Documentation Updates
  
