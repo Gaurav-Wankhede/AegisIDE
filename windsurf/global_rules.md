@@ -132,18 +132,23 @@ flowchart TD
 5. **Custom**: User-defined selection
 
 ## Command Cheatsheet (Autonomous Workflow)
-- "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank
-- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs [sequential-thinking]
-- "run pre-oversight" — constitutional review before execution [sequential-thinking]
-- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps
-- "next task" — execute the next immediate task from current plans
-- "what next" — provide next planned steps and strategic direction [sequential-thinking]
-- "solve lint" — identify and fix linting issues in the codebase [context7 for docs]
-- "solve error" — identify and resolve compilation/runtime errors [context7 + sequential-thinking]
-- "fix issues" — comprehensive scan and resolution of all code issues [context7 + sequential-thinking]
-- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`)
-- "check memory bank status" — provide summary of all memory bank files and their current state
-- "run post-oversight" — execution audit after completion [sequential-thinking]
+- "follow your custom instructions" — load Constitution + Memory Bank [context7 for docs when needed]
+- "Plan Mode: <your goal>" — generate comprehensive plan grounded in rules and documentation [sequential-thinking + context7]
+- "run pre-oversight" — constitutional review and validation before execution [sequential-thinking]
+- "review" — check and balance the Legislation and Execution of the RULEs present inside `/rules/constitution.md` and `/rules/rules.xml` file [sequential-thinking + context7 + github]
+- "Act Mode: execute step 1" — perform the first step with full context; repeat for subsequent steps [github + context7]
+- "implement next task" — execute the next immediate task from current plans (executes immediately; I will proceed to make changes, run tools/commands as needed, and report progress) [github + context7 + sequential-thinking]
+- "what next" — provide the next planned steps and strategic direction (non-executing; plan-only; I will not take any actions beyond planning unless you issue "next task" or an explicit execution command) [sequential-thinking]
+- "solve lint" — identify and fix linting issues in the codebase [context7 + github]
+- "solve error" — identify and resolve compilation/runtime errors [context7 + sequential-thinking + github]
+- "fix issues" — comprehensive scan and resolution of all code issues [context7 + sequential-thinking + github]
+- "research <topic>" — gather external information and documentation [fetch + context7 + sequential-thinking]
+- "test workflow" — validate application behavior through browser automation [playwright + github]
+- "update memory bank" — review and update ALL Memory Bank files (`projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `mistakes.md`) with current state and decisions [github]
+- "check memory bank status" — provide summary of all Memory Bank files and their current state [github + context7]
+- "sync docs to memory bank" — review `.windsurf/docs/` and `.windsurf/guide/index.md` folders and update Memory Bank files with relevant information [github + context7]
+- "update docs and guide" — review and update documentation in `.windsurf/docs/` and `.windsurf/guide/` folders [github + context7]
+- "run post-oversight" — execution audit and lessons learned after completion [sequential-thinking + github]
 
 ## Documentation Updates
 
