@@ -32,7 +32,7 @@ This folder adapts the Constitutional Framework for Agentic IDE to Cline.
 
 ## How to use
 1) Copy `./.clinerules/` into your project root.
-2) Tailor the constitution template under `.clinerules/constitution/`.
+2) Review and tailor `rules/constitution.md`.
 3) Curate official links under `guide/index.md`.
 
 ## Citations and Context7

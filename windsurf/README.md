@@ -8,7 +8,7 @@
 This folder adapts the Constitutional Framework for Agentic IDE to Windsurf.
 
 ## What it is
-- Constitution: `.windsurf/rules/rules.xml` defines immutable rules and MCP usage.
+- Constitution: `.windsurf/rules/constitution.md` defines immutable rules and MCP usage.
 - Executive: `global_rules.md` + `guide/` + `docs/` drive context and decisions.
 - Oversight: `workflows/oversight-checks-and-balances.md` enforces checks.
 
@@ -36,7 +36,7 @@ This folder adapts the Constitutional Framework for Agentic IDE to Windsurf.
 
 ## How to use
 1) Copy `./.windsurf/` into your project root.
-2) Review and tailor `rules/rules.xml`.
+2) Review and tailor `rules/constitution.md`.
 3) Add official links under `guide/index.md` and project info under `docs/`.
 4) Run the Oversight workflow during Pre/During/Post execution.
 

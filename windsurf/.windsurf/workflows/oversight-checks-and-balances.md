@@ -4,13 +4,13 @@ description: Oversight checks-and-balances workflow for Windsurf (pre/during/pos
 
 # Windsurf Oversight — Checks & Balances
 
-Follow for every task to enforce the Constitution (rules.xml), Executive (Memory Bank), and safety gates.
+Follow for every task to enforce the Constitution (constitution.md), Executive (Memory Bank), and safety gates.
 
 ## Pre-execution
-- [ ] Read `.windsurf/rules/rules.xml` (or use `.windsurf/constitution/constitution-template.xml` if unavailable)
+- [ ] Read `.windsurf/rules/constitution.md`
 - [ ] Read all present files under `.windsurf/docs/` and `.windsurf/guide/`
 - [ ] Verify plan aligns with Constitution precedence: Constitution > Oversight > Executive > Docs/Workflows
-- [ ] Select MCPs per rules (context7, fetch, filesystem, git, memory, shadcn)
+- [ ] Select MCPs per rules (context7, fetch, filesystem, git, github, memory, sequential-thinking)
 
 ## During execution
 - [ ] Parallelize independent reads/searches only

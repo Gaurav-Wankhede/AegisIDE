@@ -5,10 +5,10 @@ description: Oversight checks-and-balances workflow for Cline
 # Cline Oversight — Checks & Balances
 
 ## Pre-execution
-- [ ] Read `.clinerules/rules/rules.xml` (or use `.clinerules/constitution/constitution-template.md` if unavailable)
+- [ ] Read `.clinerules/rules/constitution.md`
 - [ ] Read all present files under `.clinerules/docs/` and `.clinerules/guide/`
 - [ ] Verify plan aligns with Constitution precedence: Constitution > Oversight > Executive > Docs/Workflows
-- [ ] Select MCPs per rules (context7, fetch, filesystem, git, memory)
+- [ ] Select MCPs per rules (context7, fetch, filesystem, git, github, memory, sequential-thinking)
 
 ## During execution
 - [ ] Parallelize independent reads/searches only

@@ -36,7 +36,7 @@ This folder adapts the Constitutional Framework for Agentic IDE to Cursor.
 
 ## How to use
 1) Copy `./.cursor/` into your project root.
-2) Tailor the constitution template under `.cursor/constitution/` to your rules format.
+2) Review and tailor `rules/constitution.md`.
 3) Curate official links under `guide/index.md` and project info under `docs/`.
 4) Run the Oversight workflow during Pre/During/Post execution.
 

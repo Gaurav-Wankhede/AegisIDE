@@ -3,7 +3,7 @@
 Thank you for your interest in contributing! This project defines a constitutional framework for agentic IDEs, inspired by and enhancing the Cline Memory Bank model.
 
 ## Governance Model (Separation of Powers)
-- Constitution: `<ide hidden>/rules/rules.xml` is the supreme source of truth.
+- Constitution: `<ide hidden>/rules/constitution.md` is the supreme source of truth.
 - Oversight: Checks & Balances workflows enforce pre/during/post execution audits.
 - Executive: Memory Bank (global rules + memory-bank files) operates under the Constitution.
 - Precedence: Constitution > Oversight > Executive > Workflows/Docs.

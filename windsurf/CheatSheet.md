@@ -11,7 +11,7 @@ Quick commands you can paste into the chat to drive autonomous workflows. Platfo
 
 ## Oversight & Review
 - "run pre-oversight" — constitutional review and validation before execution [sequential-thinking]
-- "review" — check and balance RULEs in `/rules/constitution.md` and `/rules/rules.xml` [sequential-thinking + context7 + github]
+- "review" — check and balance RULEs in `/rules/constitution.md` [sequential-thinking + context7 + github]
 - "run post-oversight" — execution audit and lessons learned [sequential-thinking + github]
 
 ## Debugging & Fixing

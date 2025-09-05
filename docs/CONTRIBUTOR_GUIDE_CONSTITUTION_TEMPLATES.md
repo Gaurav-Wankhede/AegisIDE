@@ -1,24 +1,18 @@
 # Contributor Guide: Constitution Templates & Environment Restrictions
 
-This repository includes constitution templates to accommodate environments where direct access to live `rules.xml` is restricted.
+This repository previously included constitution templates to accommodate environments where direct access to live `constitution.md` is restricted. Templates are optional and may be removed in projects that standardize on Markdown.
 
 ## When to Use Templates
-- When the IDE cannot read from or write to `<ide hidden>/rules/rules.xml`
+- When the IDE cannot read from or write to `<ide hidden>/rules/constitution.md`
 - When bootstrapping a new project to define constitutional rules before the IDE creates live files
-
-## Template Locations (per IDE)
-- Windsurf: `windsurf/.windsurf/constitution/constitution-template.xml`
-- Cursor: `cursor/.cursor/constitution/constitution-template.md`
-- Cline: `cline/.clinerules/constitution/constitution-template.md`
-- Qoder: `qoder/.qoder/constitution/constitution-template.md`
 
 ## How to Apply
 1. Copy the template into your project root's hidden IDE folder.
 2. Rename or adopt it as the live Constitution at:
-   - `.windsurf/rules/rules.xml`
-   - `.cursor/rules/rules.xml`
-   - `.clinerules/rules/rules.xml`
-   - `.qoder/rules/rules.xml`
+   - `.windsurf/rules/constitution.md`
+   - `.cursor/rules/constitution.md`
+   - `.clinerules/rules/constitution.md`
+   - `.qoder/rules/constitution.md`
 3. Update references in your Memory Bank docs accordingly.
 
 ## Oversight Workflow Checks
@@ -28,5 +22,5 @@ This repository includes constitution templates to accommodate environments wher
 
 ## Notes
 - Treat the Constitution as the supreme source of truth.
-- Use templates as authoritative references only when the live `rules.xml` is unavailable.
+- Use templates as authoritative references only when the live `constitution.md` is unavailable.
 - Keep citations to official docs in each IDE’s `guide/index.md`.

@@ -32,7 +32,7 @@ This folder adapts the Constitutional Framework for Agentic IDE to Qoder.
 
 ## How to use
 1) Copy `./.qoder/` into your project.
-2) Customize the constitution template under `.qoder/constitution/`.
+2) Review and tailor `rules/constitution.md`.
 3) Curate official links under `guide/index.md`.
 
 ## Citations and Context7
