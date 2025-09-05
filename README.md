@@ -1,5 +1,25 @@
 # Constitutional Framework for Agentic IDE
  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](docs/)
+> Getting Started: [Windsurf CheatSheet](windsurf/CheatSheet.md) • [Cursor CheatSheet](cursor/CheatSheet.md) • [Cline CheatSheet](cline/CheatSheet.md) • [Qoder CheatSheet](qoder/CheatSheet.md)
+
+## Table of Contents
+- [Why this framework](#why-this-framework)
+- [Benefits](#benefits)
+- [How It Works](#how-it-works)
+- [Autonomous Workflow: Commands](#autonomous-workflow-commands)
+- [How to Use](#how-to-use)
+- [Cheat Sheets](#cheat-sheets)
+- [Repository Structure](#repository-structure)
+- [Citations and Context7](#citations-and-context7)
+- [Acknowledgments & Heritage](#acknowledgments--heritage)
+- [Best Practices](#best-practices)
+- [Key Commands](#key-commands)
+- [Documentation Flow](#documentation-flow)
+- [Contributing & Security](#contributing--security)
+- [Branding](#branding)
+- [Maintainer](#maintainer)
+- [License](#license)
+
 This is an open-source, IDE-agnostic constitutional framework that governs AI agent behavior inside developer tools. It codifies a separation of powers:
 
 - Constitution (immutable rules and protocols)
@@ -131,21 +151,7 @@ flowchart TD
   end
 ```
 
-## How to Use (Quickstart)
-1) Choose your IDE: `windsurf/`, `cursor/`, `cline/`, or `qoder/`.
-2) Copy the hidden config folder (e.g., `windsurf/.windsurf/`) into your target project root.
-3) Read the IDE‑specific `README.md` and `global_rules.md` in this repo to understand expectations.
-4) In your IDE chat, paste: "follow your custom instructions" → then "Plan Mode: <your goal>" → then "Act Mode: execute step 1".
-5) Use Oversight: run "run pre-oversight" before major work and "run post-oversight" after completion.
-6) Keep the Memory Bank up to date with "update memory bank" (updates `activeContext.md`/`progress.md` and more).
-7) Add official documentation links under your IDE config's `guide/index.md` to power Context7/fetch operations.
-8) Use the per‑IDE Cheat Sheets for quick commands (links below).
-
-## Cheat Sheets
-- Windsurf: [windsurf/CheatSheet.md](windsurf/CheatSheet.md)
-- Cursor: [cursor/CheatSheet.md](cursor/CheatSheet.md)
-- Cline: [cline/CheatSheet.md](cline/CheatSheet.md)
-- Qoder: [qoder/CheatSheet.md](qoder/CheatSheet.md)
+ 
 
 ## Citations and Context7
 - Use official sources and include URLs in `guide/index.md`.

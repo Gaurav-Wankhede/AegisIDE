@@ -1,8 +1,10 @@
 # Constitutional Framework for Agentic IDE — Qoder
  
  
- [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.qoder/guide/index.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.qoder/guide/index.md)
  
+> Cheat Sheet: [CheatSheet.md](CheatSheet.md)
+
 This folder adapts the Constitutional Framework for Agentic IDE to Qoder.
 
 ## What it is

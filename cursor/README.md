@@ -1,7 +1,8 @@
 # Constitutional Framework for Agentic IDE — Cursor
  
  
- [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.cursor/guide/index.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.cursor/guide/index.md)
+ > Cheat Sheet: [CheatSheet.md](CheatSheet.md)
  
 This folder adapts the Constitutional Framework for Agentic IDE to Cursor.
 
