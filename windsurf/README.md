@@ -1,4 +1,4 @@
-# Constitutional Framework for Agentic IDE — Windsurf
+# AegisIDE — Windsurf
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md)
  

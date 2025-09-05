@@ -1,4 +1,5 @@
-# Constitutional Framework for Agentic IDE
+# AegisIDE
+> AegisIDE — The Constitutional Workflow for Agentic IDEs
  [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](docs/)
 > Getting Started: [Windsurf CheatSheet](windsurf/CheatSheet.md) • [Cursor CheatSheet](cursor/CheatSheet.md) • [Cline CheatSheet](cline/CheatSheet.md) • [Qoder CheatSheet](qoder/CheatSheet.md)
 
@@ -20,7 +21,7 @@
 - [Maintainer](#maintainer)
 - [License](#license)
 
-This is an open-source, IDE-agnostic constitutional framework that governs AI agent behavior inside developer tools. It codifies a separation of powers:
+AegisIDE is an open-source, IDE-agnostic constitutional framework that governs AI agent behavior inside developer tools. It codifies a separation of powers:
 
 - Constitution (immutable rules and protocols)
 - Executive (Memory Bank: global rules, active context, progress)
@@ -100,7 +101,7 @@ flowchart TD
 ## Repository Structure
 
 ```
-Constitutional_framework_for_Agentic_IDE/
+AegisIDE/
   README.md
   windsurf/
     README.md
@@ -184,7 +185,9 @@ References:
 See `CONTRIBUTING.md` for workflow and PR checklist, `CODE_OF_CONDUCT.md` for behavior standards, and `SECURITY.md` for reporting guidelines. For constitution template usage and environment restrictions, see `docs/CONTRIBUTOR_GUIDE_CONSTITUTION_TEMPLATES.md`.
 
 ## Branding
-Official brand: Constitutional Framework for Agentic IDE
+Official brand: AegisIDE
+
+Repository: https://github.com/Gaurav-Wankhede/AegisIDE
 
 ## Maintainer
 - Portfolio: https://gaurav-wankhede.vercel.app
