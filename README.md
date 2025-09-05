@@ -14,6 +14,14 @@ This structure reduces hallucinations, enforces repeatability, and boosts effici
 - Scales across IDEs with a common template
 - Encourages transparent decision-making and citations
 
+## Benefits
+- Governance-first workflows reduce hallucinations and scope drift
+- Repeatable execution via Plan → Act → Oversight lifecycle
+- Cross‑IDE portability (Windsurf, Cursor, Cline, Qoder) using per‑IDE rules and Memory Bank
+- Safer tool usage with clear guardrails and validation steps
+- Faster onboarding with ready‑to‑use templates and cheat sheets
+- Documentation discipline: Global Rules + Memory Bank keep context durable across sessions
+
 ## How It Works
 - Plan Mode: Load Constitution + docs/guide + Memory Bank → develop a plan
 - Act Mode: Execute with MCP tools → validate → update Memory Bank
@@ -31,20 +39,43 @@ flowchart TD
 ```
 
 ## Autonomous Workflow: Commands
-- Copy the IDE config folder into your project root (e.g., `windsurf/.windsurf/`, `cursor/.cursor/`, `cline/.clinerules/`, `qoder/.qoder/`).
-- In your IDE chat, issue these prompts:
-  - "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank.
-  - "Plan Mode: <your goal>" — generate a plan grounded in rules and docs.
-  - "run pre-oversight" — constitutional review before execution (legislative compliance check).
-  - "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps.
-  - "next task" — execute the next immediate task from current plans.
-  - "what next" — provide next planned steps and strategic direction based on current project state.
-  - "solve lint" — identify and fix linting issues in the codebase.
-  - "solve error" — identify and resolve compilation/runtime errors.
-  - "fix issues" — comprehensive scan and resolution of all code issues.
-  - "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`).
-  - "check memory bank status" — provide summary of all memory bank files and their current state.
-  - "run post-oversight" — execution audit after completion (checks & balances validation).
+- Copy the IDE config folder into your project root (e.g., `windsurf/.windsurf/`, `cursor/.cursor/`, `cline/.clinerules/`, `qoder/.qoder/`). Then use these prompts:
+- "follow your custom instructions" — load Constitution + Memory Bank [context7 for docs when needed]
+- "Plan Mode: <your goal>" — generate comprehensive plan grounded in rules and documentation [sequential-thinking + context7]
+- "run pre-oversight" — constitutional review and validation before execution [sequential-thinking]
+- "review" — check and balance RULEs in `/rules/constitution.md` and `/rules/rules.xml` [sequential-thinking + context7 + github]
+- "Act Mode: execute step 1" — perform the first step with full context; repeat for subsequent steps [github + context7]
+- "implement next task" — execute the next immediate task (executes immediately; will proceed to make changes and run tools) [github + context7 + sequential-thinking]
+- "what next" — non‑executing next steps and strategy (planning only) [sequential-thinking]
+- "solve lint" — identify and fix linting issues [context7 + github]
+- "solve error" — resolve compilation/runtime errors [context7 + sequential-thinking + github]
+- "fix issues" — comprehensive scan and resolution of code issues [context7 + sequential-thinking + github]
+- "research <topic>" — gather external information [fetch + context7 + sequential-thinking]
+- "test workflow" — validate behavior via browser automation [playwright + github]
+- "update memory bank" — update ALL Memory Bank files (`projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `mistakes.md`) [github]
+- "check memory bank status" — summarize memory bank state [github + context7]
+- "sync docs to memory bank" — review docs and guide folders for your IDE config and update Memory Bank [github + context7]
+- "update docs and guide" — update documentation in your IDE config's docs/ and guide/ [github + context7]
+- "run post-oversight" — execution audit and lessons learned after completion [sequential-thinking + github]
+
+## How to Use
+1) Choose your IDE: `windsurf/`, `cursor/`, `cline/`, or `qoder/`.
+2) Copy the hidden config folder (e.g., `windsurf/.windsurf/`) into your target project root.
+3) Read the IDE‑specific `README.md` and `global_rules.md` in this repo to understand expectations.
+4) In your IDE chat, paste: "follow your custom instructions" → then "Plan Mode: <your goal>" → then "Act Mode: execute step 1".
+5) Use Oversight: run "run pre-oversight" before major work and "run post-oversight" after completion.
+6) Keep the Memory Bank up to date with "update memory bank" (updates `activeContext.md`/`progress.md` and more).
+7) Add official documentation links under your IDE config's `guide/index.md` to power Context7/fetch operations.
+8) Use the per‑IDE Cheat Sheets for quick commands (links below).
+
+## Cheat Sheets
+- Windsurf: [windsurf/CheatSheet.md](windsurf/CheatSheet.md)
+- Cursor: [cursor/CheatSheet.md](cursor/CheatSheet.md)
+- Cline: [cline/CheatSheet.md](cline/CheatSheet.md)
+- Qoder: [qoder/CheatSheet.md](qoder/CheatSheet.md)
+
+## Key Commands
+See the authoritative list under "Autonomous Workflow: Commands" above and the per‑IDE Cheat Sheets for copy‑paste friendly prompts.
 
 ## Repository Structure
 
@@ -100,12 +131,21 @@ flowchart TD
   end
 ```
 
-## Quickstart
-1) Pick your IDE folder (e.g., `windsurf/`).
-2) Copy the hidden config folder (e.g., `windsurf/.windsurf/`) into your project root.
-3) Read the IDE-specific `README.md` and `global_rules.md`.
-4) Use the Oversight workflow in `workflows/oversight-checks-and-balances.md`.
-5) Add citations in `guide/` so Context7 and fetch can leverage official docs.
+## How to Use (Quickstart)
+1) Choose your IDE: `windsurf/`, `cursor/`, `cline/`, or `qoder/`.
+2) Copy the hidden config folder (e.g., `windsurf/.windsurf/`) into your target project root.
+3) Read the IDE‑specific `README.md` and `global_rules.md` in this repo to understand expectations.
+4) In your IDE chat, paste: "follow your custom instructions" → then "Plan Mode: <your goal>" → then "Act Mode: execute step 1".
+5) Use Oversight: run "run pre-oversight" before major work and "run post-oversight" after completion.
+6) Keep the Memory Bank up to date with "update memory bank" (updates `activeContext.md`/`progress.md` and more).
+7) Add official documentation links under your IDE config's `guide/index.md` to power Context7/fetch operations.
+8) Use the per‑IDE Cheat Sheets for quick commands (links below).
+
+## Cheat Sheets
+- Windsurf: [windsurf/CheatSheet.md](windsurf/CheatSheet.md)
+- Cursor: [cursor/CheatSheet.md](cursor/CheatSheet.md)
+- Cline: [cline/CheatSheet.md](cline/CheatSheet.md)
+- Qoder: [qoder/CheatSheet.md](qoder/CheatSheet.md)
 
 ## Citations and Context7
 - Use official sources and include URLs in `guide/index.md`.
@@ -128,18 +168,7 @@ References:
 - Use the Oversight workflow for pre/during/post execution checks
 
 ## Key Commands (assistant prompts)
-- "follow your custom instructions" — load Constitution + docs/guide + Memory Bank
-- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs
-- "run pre-oversight" — constitutional review before execution (legislative compliance check)
-- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps
-- "next task" — execute the next immediate task from current plans
-- "what next" — provide next planned steps and strategic direction based on current project state
-- "solve lint" — identify and fix linting issues in the codebase
-- "solve error" — identify and resolve compilation/runtime errors
-- "fix issues" — comprehensive scan and resolution of all code issues
-- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`)
-- "check memory bank status" — provide summary of all memory bank files and their current state
-- "run post-oversight" — execution audit after completion (checks & balances validation)
+See the authoritative list under "Autonomous Workflow: Commands" above and the per‑IDE Cheat Sheets for copy‑paste friendly prompts.
 
 ## Documentation Flow
 - `projectbrief.md` — foundation and scope
