@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.qoder/guide/index.md)
  
 > Cheat Sheet: [CheatSheet.md](CheatSheet.md)
+ > Project Intelligence: [global_rules.md](global_rules.md)
 
 This folder adapts the Constitutional Framework for Agentic IDE to Qoder.
 
@@ -13,18 +14,21 @@ This folder adapts the Constitutional Framework for Agentic IDE to Qoder.
 - Oversight workflow for checks & balances
 
 ## Autonomous Workflow: Commands
-- "follow your custom instructions" — load Constitution + `guide/` + `docs/` + Memory Bank.
-- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs.
-- "run pre-oversight" — constitutional review before execution (legislative compliance check).
-- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps.
-- "next task" — execute the next immediate task from current plans.
-- "what next" — provide next planned steps and strategic direction based on current project state.
-- "solve lint" — identify and fix linting issues in the codebase.
-- "solve error" — identify and resolve compilation/runtime errors.
-- "fix issues" — comprehensive scan and resolution of all code issues.
-- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`).
-- "check memory bank status" — provide summary of all memory bank files and their current state.
-- "run post-oversight" — execution audit after completion (checks & balances validation).
+
+| Command | What it does |
+|---|---|
+| "follow your custom instructions" | Load Constitution + `guide/` + `docs/` + Memory Bank |
+| "Plan Mode: <your goal>" | Generate a plan grounded in rules and docs |
+| "run pre-oversight" | Constitutional review before execution (legislative compliance check) |
+| "Act Mode: execute step 1" | Perform the first step; repeat for subsequent steps |
+| "next task" | Execute the next immediate task from current plans |
+| "what next" | Provide next planned steps and strategic direction based on current project state |
+| "solve lint" | Identify and fix linting issues in the codebase |
+| "solve error" | Identify and resolve compilation/runtime errors |
+| "fix issues" | Comprehensive scan and resolution of all code issues |
+| "update memory bank" | Write back decisions and changes (`activeContext.md`, `progress.md`) |
+| "check memory bank status" | Provide summary of all memory bank files and their current state |
+| "run post-oversight" | Execution audit after completion (checks & balances validation) |
 
 ## How to use
 1) Copy `./.qoder/` into your project.
@@ -43,19 +47,10 @@ This folder adapts the Constitutional Framework for Agentic IDE to Qoder.
 - Cite official sources in `guide/index.md` for Context7/fetch
 - Use the Oversight workflow for pre/during/post execution checks
 
-## Key Commands (assistant prompts)
-- "follow your custom instructions" — load Constitution + docs/guide + Memory Bank
-- "Plan Mode: <your goal>" — generate a plan grounded in rules and docs
-- "run pre-oversight" — constitutional review before execution (legislative compliance check)
-- "Act Mode: execute step 1" — perform the first step; repeat for subsequent steps
-- "next task" — execute the next immediate task from current plans
-- "what next" — provide next planned steps and strategic direction based on current project state
-- "solve lint" — identify and fix linting issues in the codebase
-- "solve error" — identify and resolve compilation/runtime errors
-- "fix issues" — comprehensive scan and resolution of all code issues
-- "update memory bank" — write back decisions and changes (`activeContext.md`, `progress.md`)
-- "check memory bank status" — provide summary of all memory bank files and their current state
-- "run post-oversight" — execution audit after completion (checks & balances validation)
+## Tips: Using CheatSheet + Project Intelligence
+- CheatSheet.md: Quick, copy-paste commands to drive Plan/Act/Oversight. Use during day‑to‑day execution.
+- global_rules.md: Governance and context. Read to understand rules, Memory Bank flow, and Qoder‑specific paths.
+- Suggested flow: Open CheatSheet → "follow your custom instructions" → "Plan Mode" → execute → update Memory Bank per global_rules.md.
 
 ## Documentation Flow
 - `projectbrief.md` — foundation and scope

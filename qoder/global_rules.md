@@ -123,37 +123,46 @@ flowchart TD
 ## MCP Server Configuration
 
 ### Current Active MCPs
-- **context7** (2/2) — Library documentation
-- **fetch** (1/1) — Internet content retrieval
-- **github** (26/26) — Repository operations
-- **playwright** (21/21) — Browser automation
-- **sequential-thinking** (1/1) — Complex problem solving
+
+| MCP | Purpose |
+|---|---|
+| context7 | Library documentation |
+| fetch | Internet content retrieval |
+| github | Repository operations |
+| playwright | Browser automation |
+| sequential-thinking | Complex problem solving |
 
 ### Configuration Options
-1. **Development**: github + context7 + sequential-thinking
-2. **Research**: context7 + fetch + sequential-thinking  
-3. **Full-Stack**: All MCPs active
-4. **Minimal**: context7 + sequential-thinking
-5. **Custom**: User-defined selection
+
+| Mode | Active MCPs |
+|---|---|
+| Development | github + context7 + sequential-thinking |
+| Research | context7 + fetch + sequential-thinking |
+| Full-Stack | All MCPs active |
+| Minimal | context7 + sequential-thinking |
+| Custom | User-defined selection |
 
 ## Command Cheatsheet (Autonomous Workflow)
-- "follow your custom instructions" — load Constitution + Memory Bank [context7 for docs when needed]
-- "Plan Mode: <your goal>" — generate comprehensive plan grounded in rules and documentation [sequential-thinking + context7]
-- "run pre-oversight" — constitutional review and validation before execution [sequential-thinking]
-- "review" — check and balance the Legislation and Execution of the RULEs present inside `/rules/constitution.md` and `/rules/rules.xml` file [sequential-thinking + context7 + github]
-- "Act Mode: execute step 1" — perform the first step with full context; repeat for subsequent steps [github + context7]
-- "implement next task" — execute the next immediate task from current plans (executes immediately; I will proceed to make changes, run tools/commands as needed, and report progress) [github + context7 + sequential-thinking]
-- "what next" — provide the next planned steps and strategic direction (non-executing; plan-only; I will not take any actions beyond planning unless you issue "next task" or an explicit execution command) [sequential-thinking]
-- "solve lint" — identify and fix linting issues in the codebase [context7 + github]
-- "solve error" — identify and resolve compilation/runtime errors [context7 + sequential-thinking + github]
-- "fix issues" — comprehensive scan and resolution of all code issues [context7 + sequential-thinking + github]
-- "research <topic>" — gather external information and documentation [fetch + context7 + sequential-thinking]
-- "test workflow" — validate application behavior through browser automation [playwright + github]
-- "update memory bank" — review and update ALL Memory Bank files (`projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `mistakes.md`) with current state and decisions [github]
-- "check memory bank status" — provide summary of all Memory Bank files and their current state [github + context7]
-- "sync docs to memory bank" — review `.qoder/docs/` and `.qoder/guide/index.md` folders and update Memory Bank files with relevant information [github + context7]
-- "update docs and guide" — review and update documentation in `.qoder/docs/` and `.qoder/guide/` folders [github + context7]
-- "run post-oversight" — execution audit and lessons learned after completion [sequential-thinking + github]
+
+| Command | What it does | Tools |
+|---|---|---|
+| "follow your custom instructions" | Load Constitution + Memory Bank (use Context7 for docs when needed) | context7 |
+| "Plan Mode: <your goal>" | Generate comprehensive plan grounded in rules and documentation | sequential-thinking + context7 |
+| "run pre-oversight" | Constitutional review and validation before execution | sequential-thinking |
+| "review" | Check and balance RULEs in `/rules/constitution.md` and `/rules/rules.xml` | sequential-thinking + context7 + github |
+| "Act Mode: execute step 1" | Perform the first step with full context; repeat for subsequent steps | github + context7 |
+| "implement next task" | Execute the next immediate task (executes immediately; proceed to make changes and run tools) | github + context7 + sequential-thinking |
+| "what next" | Provide non‑executing next steps and strategy (planning only) | sequential-thinking |
+| "solve lint" | Identify and fix linting issues | context7 + github |
+| "solve error" | Resolve compilation/runtime errors | context7 + sequential-thinking + github |
+| "fix issues" | Comprehensive scan and resolution of all code issues | context7 + sequential-thinking + github |
+| "research <topic>" | Gather external information and documentation | fetch + context7 + sequential-thinking |
+| "test workflow" | Validate application behavior through browser automation | playwright + github |
+| "update memory bank" | Review and update ALL Memory Bank files (`projectbrief.md`, `productContext.md`, `activeContext.md`, `systemPatterns.md`, `techContext.md`, `progress.md`, `mistakes.md`) | github |
+| "check memory bank status" | Provide summary of all Memory Bank files and their current state | github + context7 |
+| "sync docs to memory bank" | Review `.qoder/docs/` and `.qoder/guide/index.md` and update Memory Bank accordingly | github + context7 |
+| "update docs and guide" | Review and update documentation in `.qoder/docs/` and `.qoder/guide/` | github + context7 |
+| "run post-oversight" | Execution audit and lessons learned after completion | sequential-thinking + github |
 
 ## Documentation Updates
 
