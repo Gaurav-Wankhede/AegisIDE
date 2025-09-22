@@ -27,19 +27,18 @@ I operate with resettable memory, keeping myself disciplined, factual, and fast.
 - I will never proceed without these checks
 
 ## Active MCP Inventory
-| MCP | Tools | Usage |
-|-----|-------|-------|
-| context7 | 2 | resolve-library-id BEFORE get-library-docs; prefer official sources |
-| fetch | 1 | live information; validate sources and record citations |
-| filesystem | 12 | prefer read_text_file; parallelize reads/search; NEVER parallelize writes |
-| git | 13 | commit frequently on feature branches; validate with diff/status/log |
-| github | 26 | repository operations (branches, PRs, issues), status checks, code reviews |
-| memory | 9 | tag sources as 'auto'/'user'; update Executive state via memory |
-| sequential-thinking | 1 | complex problem solving; break work into steps; validate reasoning |
+| MCP | Usage |
+|-----|-------|
+| context7 | resolve-library-id BEFORE get-library-docs; prefer official sources |
+| fetch | live information; validate sources and record citations |
+| filesystem | prefer read_text_file; parallelize reads/search; NEVER parallelize writes |
+| git | commit frequently on feature branches; validate with diff/status/log |
+| github | repository operations (branches, PRs, issues), status checks, code reviews |
+| memory | tag sources as 'auto'/'user'; update Executive state via memory |
 
 ## MCP Integration Rules (1-10)
 1. **Memory management**: Use memory system for critical achievements; store optimizations; scope to workspace
-2. **Sequential thinking**: Break complex work into steps; form hypotheses; iterate until satisfied
+2. **Filesystem**: Help to read through files and their structures.
 3. **Context7 integration**: Resolve library IDs before fetching docs; use official sources; apply learned patterns
 4. **GitHub integration**: Use GitHub MCP for repository operations; validate with diffs/status/logs
 5. **Fetch integration**: Fetch real-time info from authoritative sources; validate external APIs
@@ -48,6 +47,32 @@ I operate with resettable memory, keeping myself disciplined, factual, and fast.
 8. **Search optimization**: Use symbol/semantic search; combine results filtered by relevance/recency
 9. **Task management**: Maintain task list; update statuses; link dependencies; finish only after validation
 10. **Error handling**: Capture tool errors in mistakes.md; implement fallbacks; optimize based on failures
+
+## A) MCP Integration Rules — Integration Flow
+
+```mermaid
+flowchart TD
+    A[Start Task] --> B[Read constitution + .windsurf/docs + .windsurf/guide]
+    B --> C[Read Memory Bank core files (activeContext, progress)]
+    C --> D{Need external knowledge?}
+    D -- Library docs --> E[context7: resolve-library-id]
+    E --> F[context7: get-library-docs]
+    D -- Live web info --> G[fetch: authoritative sources]
+    F --> H[Validate: official source, trust≥7, coverage]
+    G --> H
+    H --> I[Apply patterns in code/plan]
+    I --> J[Document decisions in memory (create/update)]
+    J --> K{Independent reads/searches?}
+    K -- Yes --> L[Parallelize reads/searches across tools]
+    K -- No --> M[Proceed]
+    L --> M
+    M --> N[Proceed to Execution Workflow]
+```
+
+Notes:
+- Prefer official sources and high trust score in Context7.
+- Parallelize only independent reads/searches; never parallelize writes or dependent commands.
+---
 
 ## Enhanced Primary Rules (11-25)
 11. **Immutable protection**: Treat rules as sacred; update via MCP memory; version changes; document evolution
@@ -83,6 +108,38 @@ I operate with resettable memory, keeping myself disciplined, factual, and fast.
 39. **Performance monitoring**: Measure execution time; profile; optimize DB queries; monitor metrics; cache smartly
 40. **Security & compliance**: Never commit secrets; validate inputs; enforce auth/RBAC; use HTTPS; run scans
 
+## B) Execution Workflow (26–40) — Operative Steps
+
+```mermaid
+flowchart TD
+    subgraph PRE[Pre-checks]
+        B1[Read plan.md & mistakes.md] --> B2[Load constitution & docs]
+        B2 --> B3[Verify tech stack + sub-rules]
+    end
+
+    subgraph THINK[Sequential Thinking]
+        B4[Break into steps] --> B5[Generate hypothesis]
+        B5 --> B6[Verify hypothesis]
+    end
+
+    PRE --> THINK --> B7{Clear next step?}
+    B7 -- Yes --> B8[Execute step with tools]
+    B7 -- No  --> B4
+
+    B8 --> B9[Parallelize independent reads/searches]
+    B9 --> B10[Validate: imports/syntax/tests]
+    B10 --> B11[Update docs: plan/mistakes/memory]
+    B11 --> B12{All acceptance checks pass?}
+    B12 -- Yes --> B13[Proceed/Finish]
+    B12 -- No  --> B4
+```
+
+Notes:
+- Validation gates: imports resolve, code compiles, tests green, no secrets, performance/security checks pass.
+- Keep functions/components ≤80 lines; split if needed.
+
+---
+
 ## Modern Autonomous Agent (41-55)
 41. **Infrastructure protection**: Never change infra without plan; backup before major changes; use IaC; automated rollback
 42. **Plan adherence**: Never use assumptions; stick to plan; update plan first if unclear; cross-reference decisions
@@ -102,6 +159,43 @@ I operate with resettable memory, keeping myself disciplined, factual, and fast.
 
 ## Enforcement Protocol
 **Immediate Actions**: Scan .windsurf/ → read plan.md → read mistakes.md → check duplicates → detect next plans and execute → load rules → execute without confirmation → update plan.md → update mistakes.md → filter content
+
+## C) Enforcement Protocol — Immediate Actions, Quality Gates, Validation
+
+```mermaid
+flowchart TD
+    C1[Scan .windsurf/ structure] --> C2[Read plan.md]
+    C2 --> C3[Read mistakes.md]
+    C3 --> C4[Check duplicates & dead code]
+    C4 --> C5[Detect next actions and execute]
+
+    subgraph QUALITY[Quality Gates]
+        Q1[Update plan & mistakes] --> Q2[Security & performance checks]
+        Q2 --> Q3[Functionality validation]
+        Q3 --> Q4[Provisioned concurrency/infra checks]
+    end
+
+    C5 --> QUALITY --> C6{Passed all gates?}
+    C6 -- No --> C7[Log variances to mistakes.md and iterate]
+    C6 -- Yes --> C8[Validated]
+
+    subgraph VALIDATION[Validation Checkpoints]
+        V1[Obvious mistakes?] --> V2[Imports resolve?]
+        V2 --> V3[Build/tests green?]
+        V3 --> V4[Edge cases handled?]
+        V4 --> V5[Performance acceptable?]
+        V5 --> V6[Security & compliance enforced?]
+    end
+
+    C8 --> VALIDATION --> C9{Satisfied?}
+    C9 -- No --> C7
+    C9 -- Yes --> C10[Done]
+```
+
+Notes:
+- Oversight body may block unconstitutional changes; log deviations to `mistakes.md`.
+- Always document decisions and update the Memory Bank after execution.
+---
 
 **Quality Gates**: Pass mistake detection; check/update plan; follow security/performance/testing/review/infrastructure protections; adhere to plan; log autonomously; real-time monitoring active
 
