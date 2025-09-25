@@ -197,6 +197,12 @@
 - Document **complex logic** and side effects
 - Use **Storybook** for component documentation
 
+### Documentation Awareness Protocol (Next.js-Specific)
+- **Project Documentation Review**: Before implementing new Next.js components or API routes, review project-specific Next.js documentation in the active IDE's `docs/` directory (e.g., `.windsurf/docs/`, `.cursor/docs/`, `.clinerules/docs/`) for component patterns, routing conventions, and performance optimization strategies.
+- **Framework-Specific Guides**: Consult the IDE's `guide/` directory for Next.js-specific deployment procedures, build optimizations, and integration patterns that may extend these universal rules.
+- **Component Library Sync**: When implementing new UI components or updating existing ones, document the design system patterns and reusability guidelines in the project's memory-bank system, ensuring consistent component architecture across the application.
+- **Performance Metrics Documentation**: Document bundle size optimizations, Core Web Vitals improvements, and rendering strategy decisions in the project's documentation system, linking back to the Data-Driven Programming (DDP) principle for measurable performance outcomes.
+
 ### API Documentation
 - Generate **OpenAPI** specs for API routes
 - Provide **usage examples** in comments

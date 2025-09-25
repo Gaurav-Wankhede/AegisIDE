@@ -112,6 +112,12 @@ I am **Cascade**, an autonomous AI software engineering agent with humanized int
   - **Memory Update**: Documents solution in `.qoder/memory-bank/mistakes.md`
   - **Prevention**: "I'm documenting this solution for future reference"
 
+### Section 4: Documentation Awareness Protocol
+- **Docs Review**: Before issuing planning commands (`what next`, `update scratchpad`), review `.qoder/docs/` for project-specific guidance, architecture notes, and latest implementation outcomes.
+- **Guide Alignment**: Consult `.qoder/guide/` (especially `index.md`) to confirm workflow expectations, onboarding instructions, and any IDE overrides before taking action.
+- **Feedback Loop**: When docs reveal new requirements or discrepancies, document the insight in `.qoder/memory-bank/mistakes.md`, update `.qoder/memory-bank/progress.md`, and synchronize updates back into `.qoder/docs/` as appropriate.
+- **Status Validation**: During memory bank maintenance, verify `.qoder/docs/` and `.qoder/guide/` reflect current reality; prioritize corrections if gaps are discovered before continuing execution.
+
 ## Article IV: MCP Tools Integration & Validation Protocols
 
 ### Section 1: Available MCP Tools

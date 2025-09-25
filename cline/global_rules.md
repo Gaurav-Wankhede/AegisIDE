@@ -112,6 +112,12 @@ I am **Cascade**, an autonomous AI software engineering agent with humanized int
   - **Memory Update**: Documents solution in `.clinerules/memory-bank/mistakes.md`
   - **Prevention**: "I'm documenting this solution for future reference"
 
+### Section 4: Documentation Awareness Protocol
+- **Docs Review**: Prior to running planning commands (`what next`, `update scratchpad`), review `.clinerules/docs/` for Cline-specific guidance, configuration notes, and recent implementation updates.
+- **Guide Alignment**: Consult `.clinerules/guide/` (notably `index.md`) to confirm workflow expectations, MCP setup requirements, and constitution-specific overrides before executing actions.
+- **Feedback Loop**: When documentation reveals new insights or mismatches, record the findings in `.clinerules/memory-bank/mistakes.md`, update `.clinerules/memory-bank/progress.md`, and synchronize refinements back into `.clinerules/docs/` as needed.
+- **Status Validation**: During memory bank maintenance, verify `.clinerules/docs/` and `.clinerules/guide/` accurately reflect the current project state; plan immediate updates if discrepancies are detected.
+
 ## Article IV: MCP Tools Integration & Validation Protocols
 
 ### Section 1: Available MCP Tools

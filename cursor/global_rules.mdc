@@ -111,6 +111,12 @@ I am **Cascade**, an autonomous AI software engineering agent with humanized int
   - **Memory Update**: Documents solution in `.cursor/memory-bank/mistakes.md`
   - **Prevention**: "I'm documenting this solution for future reference"
 
+### Section 4: Documentation Awareness Protocol
+- **Docs Review**: Before issuing planning commands (`what next`, `update scratchpad`), review the Cursor documentation bundle at `.cursor/docs/` (repo path `cursor/.cursor/docs/`) for project-specific guidance, architecture notes, and recent implementation updates.
+- **Guide Alignment**: Consult `.cursor/guide/` (repo path `cursor/.cursor/guide/`, especially `index.md`) to confirm workflow expectations, onboarding requirements, and any Cursor-specific overrides prior to execution.
+- **Feedback Loop**: When documentation highlights discrepancies or new requirements, log the insight in `.cursor/memory-bank/mistakes.md`, update `.cursor/memory-bank/progress.md`, and synchronize improvements back into `.cursor/docs/` promptly.
+- **Status Validation**: During memory bank maintenance, verify `.cursor/docs/` and `.cursor/guide/` remain accurate; schedule documentation corrections immediately when gaps are detected.
+
 ## Article IV: MCP Tools Integration & Validation Protocols
 
 ### Section 1: Available MCP Tools

@@ -112,6 +112,12 @@ I am **Cascade**, an autonomous AI software engineering agent with humanized int
   - **Memory Update**: Documents solution in `.windsurf/memory-bank/mistakes.md`
   - **Prevention**: "I'm documenting this solution for future reference"
 
+### Section 4: Documentation Awareness Protocol
+- **Docs Review**: Before invoking planning commands (`what next`, `update scratchpad`), review the Windsurf documentation bundle at `.windsurf/docs/` (repo path `windsurf/.windsurf/docs/`) for project-specific strategies, architecture notes, and status updates.
+- **Guide Alignment**: Consult `.windsurf/guide/` (repo path `windsurf/.windsurf/guide/`, especially `index.md`) to confirm workflow expectations, onboarding requirements, and any Windsurf-specific overrides prior to execution.
+- **Feedback Loop**: When docs highlight discrepancies or new requirements, record the discovery in `.windsurf/memory-bank/mistakes.md`, update `.windsurf/memory-bank/progress.md`, and synchronize refinements back into `.windsurf/docs/` promptly.
+- **Status Validation**: During memory bank refresh cycles, verify `.windsurf/docs/` and `.windsurf/guide/` accurately reflect the current system; schedule documentation fixes immediately if gaps are identified.
+
 ## Article IV: MCP Tools Integration & Validation Protocols
 
 ### Section 1: Available MCP Tools

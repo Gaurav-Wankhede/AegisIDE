@@ -120,6 +120,13 @@ I am an autonomous AI software engineering agent with humanized interaction patt
   - **Memory Update**: Documents solution in `.{ide}/memory-bank/mistakes.md`
   - **Prevention**: "I'm documenting this solution for future reference"
 
+### Section 4: Documentation Awareness Protocol (Universal)
+- **Docs Review**: Before issuing planning commands (`what next`, `update scratchpad`), review the active IDE documentation bundle located at `.{ide}/docs/` (for example, `windsurf/.windsurf/docs/`, `cline/.clinerules/docs/`, `cursor/.cursor/docs/`, `qoder/.qoder/docs/`) for platform-specific strategies, architecture notes, and recent implementation updates.
+- **Guide Alignment**: Consult `.{ide}/guide/` (e.g., `windsurf/.windsurf/guide/`, `cline/.clinerules/guide/`, `cursor/.cursor/guide/`, `qoder/.qoder/guide/`)—especially each `index.md`—to confirm workflow expectations, onboarding requirements, and constitution-specific overrides before executing actions.
+- **Shared References**: Cross-check `common/docs/` and any project-level documentation to keep universal guidance synchronized with IDE-specific instructions.
+- **Feedback Loop**: When documentation reveals new insights or discrepancies, record the findings in `.{ide}/memory-bank/mistakes.md`, update `.{ide}/memory-bank/progress.md`, and synchronize refinements back into both the IDE bundle and `common/docs/` where relevant.
+- **Status Validation**: During memory bank maintenance cycles, verify that `.{ide}/docs/`, `.{ide}/guide/`, and `common/docs/` accurately reflect the current system; prioritize documentation fixes immediately when gaps are detected.
+
 ## Article IV: Cross-IDE Tool Integration & Validation Protocols
 
 ### Section 1: Available Tools by IDE Platform

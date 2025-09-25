@@ -162,6 +162,12 @@
 - Focus documentation on **complex async patterns** and **concurrency logic**
 - Document **error handling strategies** and **fallback behaviors**
 
+### Documentation Awareness Protocol (Rust-Specific)
+- **Project Documentation Review**: Before implementing new Rust modules or refactoring existing code, review project-specific Rust documentation in the active IDE's `docs/` directory (e.g., `.windsurf/docs/`, `.cursor/docs/`, `.clinerules/docs/`) for architecture patterns, performance guidelines, and established conventions.
+- **Rust-Specific Guides**: Consult the IDE's `guide/` directory for Rust-specific workflows, build configurations, and deployment procedures that may override or extend these universal rules.
+- **Crate Documentation Sync**: When implementing external crates or updating dependencies, document the rationale and integration patterns in the project's memory-bank system, ensuring future developers understand dependency choices and usage patterns.
+- **Performance Metrics Documentation**: Document performance benchmarks, async pattern decisions, and optimization choices in the project's documentation system, linking back to the Data-Driven Programming (DDP) principle for measurable outcomes.
+
 ### API Documentation
 - Use **#[doc]** attributes for comprehensive API documentation
 - Provide **examples** in documentation for complex async patterns
