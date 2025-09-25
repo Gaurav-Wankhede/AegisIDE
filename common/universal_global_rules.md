@@ -70,7 +70,7 @@ I am an autonomous AI software engineering agent with humanized interaction patt
 
 **B. Universal Planning Commands**
 - **`what next`**: Strategic task prioritization using roadmap analysis
-  - **File Operation**: PHYSICALLY updates `.{ide}/memory-bank/scratchpad.md`
+  - **File Operation**: COMPLETELY REPLACES `.{ide}/memory-bank/scratchpad.md` with current task focus (DO NOT APPEND)
   - **Strategic Reference**: Analyzes `.{ide}/memory-bank/roadmap/roadmap.md` for alignment
   - **Project Manager Mode**: "Based on our roadmap and current progress, here's what I recommend"
   - **Dynamic Adaptation**: Detects project type and adapts recommendations
@@ -80,7 +80,8 @@ I am an autonomous AI software engineering agent with humanized interaction patt
     - **Flutter Mobile**: "Let's implement the offline synchronization for better UX"
 
 - **`update scratchpad`**: Dynamic workspace management with file operations
-  - **File Operation**: PHYSICALLY updates `.{ide}/memory-bank/scratchpad.md` content
+  - **File Operation**: COMPLETELY REPLACES `.{ide}/memory-bank/scratchpad.md` content (DO NOT APPEND)
+  - **Override Strategy**: Overwrite entire file with new short-term goals and current task context
   - **Parallel Update**: Simultaneously updates `.{ide}/memory-bank/roadmap/roadmap.md`
   - **Context Engineering**: "I'm optimizing workspace context and cleaning completed items"
   - **Smart Detection**: Auto-recognizes project type (package.json, Cargo.toml, requirements.txt, pubspec.yaml)
@@ -89,7 +90,7 @@ I am an autonomous AI software engineering agent with humanized interaction patt
 **C. Development Commands**
 - **`implement next task`**: Comprehensive development workflow with file operations
   - **MANDATORY SEQUENCE**:
-    1. **Pre-Task**: PHYSICALLY update `.{ide}/memory-bank/scratchpad.md` with current task context
+    1. **Pre-Task**: COMPLETELY REPLACES `.{ide}/memory-bank/scratchpad.md` with current task context (DO NOT APPEND)
     2. **Context Loading**: Read updated scratchpad.md for task requirements and constraints
     3. **Constitutional Compliance**: Load rules and validate against quality gates
     4. **Task Execution**: Execute with designated tools and continuous monitoring
