@@ -104,6 +104,17 @@ solve error
 
 ## Advanced Features
 
+## Related Resources & References
+
+- **Universal Constitution**: [`common/universal_constitution.md`](../universal_constitution.md)
+- **Universal Global Rules**: [`common/universal_global_rules.md`](../universal_global_rules.md)
+- **Cline IDE Package**: [`cline/`](../../cline/) (cheat sheets, global rules, constitution)
+- **Roo Code Package**: [`cline/`](../../cline/) (shared with Cline configuration)
+- **Kilo Code Marketplace Docs**: [`common/vscode/`](./)
+- **Security Policy**: [`SECURITY.md`](../../SECURITY.md)
+- **Code of Conduct**: [`CODE_OF_CONDUCT.md`](../../CODE_OF_CONDUCT.md)
+- **Contribution Guidelines**: [`CONTRIBUTING.md`](../../CONTRIBUTING.md)
+
 ### MCP Integration (Kilo Code)
 ```json
 // .vscode/mcp-config.json

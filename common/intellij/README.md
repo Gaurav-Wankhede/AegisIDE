@@ -163,6 +163,16 @@ class PyCharmConstitutional:
 
 ## Advanced Features
 
+## Related Resources & References
+
+- **Universal Constitution**: [`common/universal_constitution.md`](../universal_constitution.md)
+- **Universal Global Rules**: [`common/universal_global_rules.md`](../universal_global_rules.md)
+- **JetBrains IDE Package**: [`cline/.clinerules/`](../../cline/.clinerules/) (global rules, constitution)
+- **Cursor & Qoder Packages**: [`cursor/`](../../cursor/), [`qoder/`](../../qoder/)
+- **Security Policy**: [`SECURITY.md`](../../SECURITY.md)
+- **Code of Conduct**: [`CODE_OF_CONDUCT.md`](../../CODE_OF_CONDUCT.md)
+- **Contribution Guidelines**: [`CONTRIBUTING.md`](../../CONTRIBUTING.md)
+
 ### Live Template Integration
 ```xml
 <!-- .idea/templates/AegisIDE.xml -->
