@@ -1,8 +1,10 @@
-# VS Code AI Extensions - Constitutional Framework
+# VS Code AI Extensions - Universal Constitutional Framework
 
 **Compatible Extensions**: Cline, Roo Code, Kilo Code, GitHub Copilot, Amazon Q Developer  
-**Framework Version**: 2.0.0 (2025 Enhanced)  
-**Memory Bank Location**: `.vscode/memory-bank/` or workspace `.aegis/memory-bank/`
+**Framework Version**: 2.0.0 (2025 Enhanced with Always-Check Operations)  
+**Memory Bank Location**: `.ide/memory-bank/` (Universal) or `.vscode/memory-bank/` (VS Code specific)
+**Always-Check Operations**: Automatic validation for 8+ programming languages
+**Centralized Config Validation**: MANDATORY pre-task scanning prevents duplication
 
 ## Quick Setup
 
@@ -18,13 +20,16 @@
 
 ### 2. Initialize Constitutional Framework
 ```bash
-# Create memory bank structure
-mkdir -p .vscode/memory-bank/roadmap
-mkdir -p .aegis/memory-bank/roadmap  # Alternative location
+# Create universal IDE memory bank structure
+mkdir -p .ide/memory-bank/roadmap/templates
+mkdir -p .vscode/memory-bank/roadmap  # VS Code specific backup
 
-# Copy universal constitution
-cp common/universal_constitution.md .vscode/constitution.md
-cp common/universal_global_rules.md .vscode/global_rules.md
+# Copy universal constitution with always-check operations
+cp common/universal_constitution.md .ide/constitution.md
+cp common/universal_global_rules.md .ide/global_rules.md
+
+# Create language-specific rules folder
+mkdir -p .ide/rules
 ```
 
 ### 3. Extension-Specific Configuration
@@ -34,10 +39,15 @@ cp common/universal_global_rules.md .vscode/global_rules.md
 // .vscode/settings.json
 {
   "kilocode.constitutionalFramework": true,
-  "kilocode.memoryBankPath": ".vscode/memory-bank",
+  "kilocode.memoryBankPath": ".ide/memory-bank",
   "kilocode.mcpIntegration": true,
   "kilocode.maxFileLines": 80,
-  "kilocode.autoUpdateScratchpad": true
+  "kilocode.autoUpdateScratchpad": true,
+  "kilocode.alwaysCheckOperations": true,
+  "kilocode.centralizedConfigValidation": true,
+  "kilocode.multiLanguageSupport": [
+    "rust", "typescript", "python", "go", "java", "swift", "php", "ruby"
+  ]
 }
 ```
 
@@ -91,15 +101,16 @@ implement next task
 solve error
 ```
 
-## Extension Comparison (2025)
+## Extension Comparison (2025 Enhanced)
 
 | Feature | Kilo Code | Cline | Roo Code | GitHub Copilot |
 |---------|-----------|-------|----------|----------------|
 | **Cost** | Free + $29/month teams | Free (Open Source) | Free (Open Source) | $10-39/month |
-| **MCP Support** | ✅ Marketplace | ✅ Built-in | ✅ Built-in | ❌ Limited |
-| **Constitutional Framework** | ✅ Native | ✅ Compatible | ✅ Compatible | ✅ Via settings |
-| **Memory Bank** | ✅ Auto-managed | ✅ Manual setup | ✅ Manual setup | ✅ Via workspace |
-| **Multi-Model** | ✅ All providers | ✅ Claude focus | ✅ Multiple | ✅ GPT focus |
+| **Always-Check Operations** | ✅ 8+ languages | ✅ Compatible | ✅ Compatible | ✅ Via workspace |
+| **Centralized Config Validation** | ✅ Native | ✅ Manual setup | ✅ Manual setup | ✅ Via rules |
+| **Constitutional Framework** | ✅ Native + Auto | ✅ Compatible | ✅ Compatible | ✅ Via settings |
+| **Universal IDE Support** | ✅ .ide/ folder | ✅ .ide/ folder | ✅ .ide/ folder | ✅ .ide/ folder |
+| **Multi-Language Auto-Detection** | ✅ All 8 languages | ✅ All 8 languages | ✅ All 8 languages | ✅ Limited |
 | **Enterprise** | ✅ $299/month | ❌ Community | ❌ Community | ✅ Full support |
 
 ## Advanced Features
