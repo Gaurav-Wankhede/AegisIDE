@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# AegisIDE Universal Setup Script
-# Version: 2.0.0 (2025 Enhanced)
-# Supports: VS Code, Windsurf, Cursor, JetBrains IDEs
+# AegisIDE Universal Setup Script (2025 Enhanced)
+# Version: 2.1.0 - Democratic Parliamentary Governance for AI Agents
+# Supports: Windsurf (99%), JetBrains (97%), Cursor (96%), VS Code/Cline (95%)
 
 set -e
 
@@ -11,19 +11,26 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
 # Configuration
-VERSION="2.0.0"
-SUPPORTED_IDES=("vscode" "windsurf" "cursor" "intellij" "jetbrains")
+VERSION="2.1.0"
+SUPPORTED_IDES=("windsurf" "vscode" "cline" "cursor" "intellij" "jetbrains")
+AUTONOMY_LEVELS=("windsurf:99" "intellij:97" "jetbrains:97" "cursor:96" "vscode:95" "cline:95")
 
 print_banner() {
-    echo -e "${BLUE}"
-    echo "╔══════════════════════════════════════════════════════════════════╗"
-    echo "║                    AegisIDE Universal Setup                      ║"
-    echo "║              Constitutional Framework for AI IDEs               ║"
-    echo "║                        Version $VERSION                            ║"
-    echo "╚══════════════════════════════════════════════════════════════════╝"
+    echo -e "${PURPLE}"
+    echo "╔═══════════════════════════════════════════════════════════════════════════╗"
+    echo "║                        AegisIDE 2.1 Universal Setup                      ║"
+    echo "║           Constitutional Framework for AI Agents (2025 Enhanced)         ║"
+    echo "║              Democratic Parliamentary Governance - Version $VERSION              ║"
+    echo "╚═══════════════════════════════════════════════════════════════════════════╝"
+    echo -e "${CYAN}"
+    echo "🏛️  Democratic AI Development with 99% Autonomous Capability"
+    echo "⚖️  Parliamentary Governance: Government • Opposition • Judiciary"
+    echo "⚡ Always-Check Operations across 8+ Programming Languages"
     echo -e "${NC}"
 }
 
@@ -31,18 +38,27 @@ print_usage() {
     echo -e "${YELLOW}Usage:${NC}"
     echo "  ./setup.sh --ide=<IDE_NAME> [options]"
     echo ""
-    echo -e "${YELLOW}Supported IDEs:${NC}"
-    echo "  vscode     - VS Code with AI extensions (Cline, Roo, Kilo)"
-    echo "  windsurf   - Windsurf AI-first IDE"
-    echo "  cursor     - Cursor AI IDE"
-    echo "  intellij   - JetBrains IDEs (IntelliJ, WebStorm, PyCharm, etc.)"
-    echo "  jetbrains  - Alias for intellij"
+    echo -e "${YELLOW}🏛️ Supported IDEs (Constitutional Framework):${NC}"
+    echo -e "  ${GREEN}windsurf${NC}   - Windsurf AI-first IDE (${PURPLE}99% Autonomy${NC}) [RECOMMENDED]"
+    echo -e "  ${GREEN}intellij${NC}   - JetBrains IDEs: IntelliJ, WebStorm, PyCharm (${PURPLE}97% Autonomy${NC})"
+    echo -e "  ${GREEN}cursor${NC}     - Cursor AI IDE with built-in AI (${PURPLE}96% Autonomy${NC})"
+    echo -e "  ${GREEN}vscode${NC}     - VS Code with AI extensions (${PURPLE}95% Autonomy${NC})"
+    echo -e "  ${GREEN}cline${NC}      - Cline-specific constitutional templates (${PURPLE}95% Autonomy${NC})"
+    echo -e "  ${GREEN}jetbrains${NC}  - Alias for intellij"
     echo ""
-    echo -e "${YELLOW}Options:${NC}"
-    echo "  --project-dir=<path>    Project directory (default: current)"
-    echo "  --memory-size=<lines>   Memory bank file limit (default: 200)"
-    echo "  --file-limit=<lines>    EMD file line limit (default: 80)"
-    echo "  --help, -h              Show this help message"
+    echo -e "${YELLOW}🔧 Constitutional Options:${NC}"
+    echo "  --project-dir=<path>      Project directory (default: current)"
+    echo "  --memory-limit=<lines>    Memory bank file limit (default: 100)"
+    echo "  --roadmap-limit=<chars>   Roadmap character limit (default: 12000)"
+    echo "  --file-limit=<lines>      EMD file line limit (default: 80)"
+    echo "  --consensus-threshold=<%> Democratic consensus threshold (default: 95)"
+    echo "  --help, -h                Show this help message"
+    echo ""
+    echo -e "${CYAN}🏆 Why Windsurf is Recommended:${NC}"
+    echo "  • Native parliamentary integration with Global Rules panel"
+    echo "  • Real-time constitutional compliance monitoring"
+    echo "  • Always-check operations for 8+ programming languages"
+    echo "  • Memory bank sync with project context"
 }
 
 log_info() {
@@ -61,13 +77,26 @@ log_error() {
     echo -e "${RED}❌${NC} $1"
 }
 
+get_autonomy_level() {
+    local ide="$1"
+    for level in "${AUTONOMY_LEVELS[@]}"; do
+        if [[ "$level" == "$ide:"* ]]; then
+            echo "${level#*:}"
+            return
+        fi
+    done
+    echo "95" # Default autonomy level
+}
+
 detect_ide() {
-    log_info "Auto-detecting IDE environment..."
+    log_info "Auto-detecting IDE environment with constitutional framework..."
     
-    if [ -d ".vscode" ]; then
-        echo "vscode"
-    elif [ -d ".windsurf" ]; then
+    if [ -d ".windsurf" ]; then
         echo "windsurf"  
+    elif [ -d ".clinerules" ]; then
+        echo "cline"
+    elif [ -d ".vscode" ]; then
+        echo "vscode"
     elif [ -d ".cursor" ]; then
         echo "cursor"
     elif [ -d ".idea" ]; then
@@ -75,6 +104,20 @@ detect_ide() {
     else
         echo "unknown"
     fi
+}
+
+print_constitutional_info() {
+    local ide="$1"
+    local autonomy=$(get_autonomy_level "$ide")
+    
+    echo -e "${CYAN}"
+    echo "🏛️ Constitutional Framework Information:"
+    echo "   IDE: $ide (${autonomy}% Autonomy)"
+    echo "   Government: PM, Dev Minister, Tech Minister"
+    echo "   Opposition: Quality Shadow, Innovation Shadow, Analytics Shadow"
+    echo "   Judiciary: Chief Justice (Constitutional Review)"
+    echo "   Process: Proposal→Opposition→Debate→Consensus→Judicial Review→Implementation"
+    echo -e "${NC}"
 }
 
 setup_vscode() {

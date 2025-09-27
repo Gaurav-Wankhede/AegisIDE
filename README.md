@@ -1,8 +1,9 @@
-# AegisIDE 2.0 — Universal Constitutional Framework for AI-Enabled IDEs
-> The Ultimate Constitutional Workflow for All AI Coding Assistants (2025 Enhanced)
- [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](docs/) [![AI IDEs](https://img.shields.io/badge/AI%20IDEs-8+-brightgreen)](common/) [![Autonomy](https://img.shields.io/badge/Autonomy-95%25-success)](common/universal_constitution.md)
+# AegisIDE 2.1 — Universal Constitutional Framework for AI Agents (2025 Enhanced)
+> **Democratic Parliamentary Governance** for AI Development with **99% Autonomous Operation**
 
-> **🚀 Getting Started**: [VS Code (Cline/Roo/Kilo)](common/vscode/) • [Windsurf](windsurf/CheatSheet.md) • [Cursor](cursor/CheatSheet.md) • [JetBrains IDEs](common/intellij/) • [GitHub Copilot](common/vscode/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](docs/) [![AI IDEs](https://img.shields.io/badge/AI%20IDEs-8+-brightgreen)](common/) [![Autonomy](https://img.shields.io/badge/Autonomy-99%25-success)](windsurf/.windsurf/rules/constitution.md) [![Always-Check](https://img.shields.io/badge/Always--Check-Multi--Language-brightgreen)](windsurf/global_rules.md)
+
+> **🚀 Quick Start**: [Windsurf (99%)](windsurf/) • [VS Code (95%)](common/vscode/) • [Cursor (96%)](cursor/) • [Cline (95%)](cline/) • [JetBrains (97%)](common/intellij/)
 
 ## 🏛️ **2025 AI IDE Landscape Support**
 
@@ -35,25 +36,44 @@
 - [Contributing & Security](#contributing--security)
 - [License](#license)
 
-## 🚀 **Revolutionary Features**
+## 🏛️ **Constitutional Framework Architecture**
 
-AegisIDE 2.0 is the world's first **universal constitutional framework** that governs AI agent behavior across **all major AI-enabled IDEs**. It implements a proven three-branch democratic system:
+AegisIDE 2.1 is the world's first **universal constitutional framework** implementing **democratic parliamentary governance** for AI agents across all major IDEs with **99% autonomous capability**.
 
-### **🏛️ Constitutional Democracy for AI**
-- **📜 Legislative Branch**: Universal constitution with immutable core rules
-- **⚖️ Executive Branch**: Memory Bank with 95% autonomous decision-making  
-- **🔍 Oversight Branch**: Real-time compliance monitoring with auto-correction
+### **Three-Branch Parliamentary System**
+Based on actual implementation from [windsurf/.windsurf/rules/constitution.md](windsurf/.windsurf/rules/constitution.md):
 
-### **🧠 Enhanced Autonomous Intelligence (2025)**
-- **99% Autonomous Decision-Making** with always-check operations
-- **Real-Time Constitutional Compliance** monitoring across all IDEs
-- **Centralized Configuration Validation** preventing duplication and hallucination
-- **Multi-Language Auto-Detection** (Rust, TypeScript, Python, Go, Java, Swift, PHP, Ruby, C#)
-- **Framework-Specific Health Checks** before every implementation task
-- **Mathematical Decision Scoring** (Business + Technical + Constitutional)
-- **Self-Learning & Pattern Recognition** from constitutional violations
+**🏢 Government (Ruling Party)** - *Executive Authority*
+- **PM (Project Manager)**: Strategic leadership, policy proposals, resource allocation
+- **Dev Minister (Software Developer)**: Technical implementation, code quality oversight  
+- **Tech Minister (AI Engineer)**: Innovation strategy, automation, MCP integration
 
-This structure **eliminates hallucinations**, enforces **repeatability**, and **boosts efficiency by 300%** across all AI coding platforms with **always-check operations**, **centralized configuration validation**, and **universal IDE compatibility**.
+**🔍 Opposition (Shadow Cabinet)** - *Accountability & Quality Control*
+- **Quality Shadow (Software Tester)**: Challenge proposals, demand evidence, quality veto
+- **Innovation Shadow (Research Engineer)**: Research-based alternatives, technical challenges
+- **Analytics Shadow (Data Scientist)**: Data-driven evidence, empirical opposition
+
+**⚖️ Independent Judiciary** - *Constitutional Review*
+- **Chief Justice (GenAI Developer)**: Constitutional compliance review, judicial veto power, precedent establishment
+
+### **Democratic Decision-Making Process**
+1. **Proposal** → Government submits constitutional proposals with impact assessment
+2. **Opposition Review** → Shadow cabinet challenges with evidence-based alternatives
+3. **Structured Debate** → Parliamentary discussion with consensus scoring matrices
+4. **Evidence Scoring** → Expertise-weighted voting (Technical/Strategic/Quality)
+5. **>95% Consensus** → Democratic consensus calculation requiring super-majority
+6. **Judicial Review** → Constitutional compliance validation by Chief Justice
+7. **Implementation** → Execute with real-time constitutional monitoring
+
+### **2025 Enhanced Capabilities**
+- **99% Autonomous Decision-Making** with democratic parliamentary oversight
+- **Always-Check Operations** across 8+ programming languages before every task
+- **Centralized Configuration Validation** preventing duplication and hallucination  
+- **Real-Time Constitutional Compliance** monitoring with automatic violation detection
+- **Cross-Project Learning** via ByteRover integration and pattern recognition
+- **Emergency Powers & Crisis Management** with constitutional safeguards
+
+This democratic structure **eliminates hallucinations**, enforces **constitutional compliance**, and **boosts efficiency by 300%** while maintaining **democratic accountability** and **quality assurance**.
 
 ## Why This Framework
 
@@ -378,35 +398,44 @@ flowchart TD
 }
 ```
 
-### **📊 Constitutional Analytics**
-- **Real-time Compliance Dashboard**: Monitor constitutional adherence across team
-- **Decision Audit Trails**: Track all autonomous decisions with impact scoring
-- **Pattern Learning Reports**: Team-wide constitutional violation prevention
-- **Performance Metrics**: 300% efficiency improvement tracking
+### **📊 Constitutional Analytics & Democratic Oversight**
+- **Parliamentary Dashboard**: Real-time monitoring of Government, Opposition, and Judiciary decisions
+- **Consensus Scoring Metrics**: Track democratic consensus scores across Technical/Strategic/Quality proposals
+- **Constitutional Compliance Reports**: Monitor adherence to >95% consensus and ≥80% constitutional compliance
+- **Opposition Challenge Analytics**: Quality Shadow, Innovation Shadow, and Analytics Shadow effectiveness tracking
+- **Judicial Review Statistics**: Chief Justice veto rates and constitutional interpretation precedents
 
-### **🔐 Security & Compliance**
-- **Constitutional Validation**: All actions validated against governance framework
-- **Audit Logging**: Complete decision trail for enterprise governance
-- **Access Control**: Role-based constitutional authority matrix
-- **Data Privacy**: Hashed user IDs, no sensitive data in memory banks
+### **🔐 Constitutional Security & Compliance**
+- **Democratic Validation**: All actions subject to parliamentary procedure with >95% consensus
+- **Constitutional Authority Matrix**: Decision levels (0-98 Auto, 99-100 Consult) with judicial review
+- **Parliamentary Audit Trails**: Complete decision trail with Government proposals and Opposition challenges
+- **Emergency Powers Protocol**: Crisis management (≥80% failure rate) with constitutional safeguards
+- **Memory Bank Protection**: Constitutional compliance in `.windsurf/memory-bank/` with EMD limits (≤100 lines)
 
-## Repository Structure
+## Constitutional Repository Structure
 
 ```
-AegisIDE/
-├── common/                          # Universal framework files
-│   ├── universal_constitution.md    # Core constitutional framework
-│   ├── universal_global_rules.md    # Executive branch rules
-│   ├── vscode/                      # VS Code AI extensions support
-│   │   └── README.md               # Cline, Roo, Kilo, Copilot setup
-│   └── intellij/                    # JetBrains IDEs support
-│       └── README.md               # IntelliJ, WebStorm, PyCharm setup
-├── windsurf/                        # Windsurf-specific implementation
-├── cursor/                          # Cursor-specific implementation  
-├── cline/                           # Cline-specific templates
-├── qoder/                           # Qoder-specific templates
-├── setup.sh                        # Universal setup script
-└── README.md                       # This comprehensive guide
+AegisIDE-2.1/
+├── windsurf/                              # Windsurf Implementation (99% Autonomy)
+│   ├── .windsurf/
+│   │   ├── rules/constitution.md          # Supreme Constitutional Law (12 Articles)
+│   │   ├── memory-bank/                   # Constitutional Memory Bank (≤100 lines)
+│   │   └── workflows/                     # Parliamentary Oversight Procedures
+│   ├── global_rules.md                    # Executive Implementation (99% Autonomous)
+│   └── CheatSheet.md                      # 40+ Constitutional Commands
+├── cursor/                                # Cursor Implementation (96% Autonomy)
+│   ├── .cursor/rules/constitution.md      # Cursor Constitutional Framework
+│   └── global_rules.mdc                   # Cursor Executive Rules
+├── cline/                                 # Cline Implementation (95% Autonomy)
+│   ├── .clinerules/rules/constitution.md  # Cline Constitutional Framework
+│   └── global_rules.md                    # Cline Executive Rules
+├── common/                               # Universal Framework Files
+│   ├── universal_constitution.md          # Cross-IDE Constitutional Base
+│   ├── vscode/                            # VS Code Extensions (95% Autonomy)
+│   └── intellij/                          # JetBrains IDEs (97% Autonomy)
+├── CODE_OF_CONDUCT.md                     # Constitutional Code of Conduct
+├── CONTRIBUTING.md                        # Democratic Contribution Process
+└── setup.sh                              # Multi-IDE Constitutional Setup
 ```
 
 ## Performance Metrics
@@ -422,28 +451,32 @@ Based on real-world usage across different AI IDEs:
 | **Development Speed** | Baseline | 3x faster | 300% increase |
 | **Context Retention** | 34% across sessions | 89% across sessions | 162% improvement |
 
-### **🎯 Constitutional Compliance Scores (2025 Enhanced)**
-- **Windsurf**: **99% autonomy** with native integration + always-check operations + centralized validation
-- **JetBrains**: **97% autonomy** with multi-language support and framework detection
-- **Cursor**: **96% autonomy** with config registry and real-time validation
-- **VS Code (All Extensions)**: **95% autonomy** with MCP integration and auto-validation
-- **GitHub Copilot**: **92% autonomy** with universal IDE compatibility
+### **🎯 Constitutional Compliance Scores (AegisIDE 2.1)**
+- **Windsurf**: **99% autonomy** with native parliamentary governance + Global Rules integration + always-check operations
+- **JetBrains**: **97% autonomy** with multi-language support + framework auto-detection + constitutional validation
+- **Cursor**: **96% autonomy** with config registry + real-time constitutional monitoring + built-in AI integration
+- **VS Code (All Extensions)**: **95% autonomy** with MCP integration + constitutional framework + universal support
+- **Cline**: **95% autonomy** with universal IDE support + constitutional templates + democratic governance
+- **GitHub Copilot**: **92% autonomy** with cross-platform compatibility + constitutional integration
 
-### **🏆 Why Windsurf is Recommended (99% Autonomy)**
-- **Native Integration**: Global Rules loaded directly into Windsurf's AI system
-- **Real-Time Validation**: Constitutional monitoring integrated with execution engine
-- **Always-Check Operations**: Automatic pre-task validation for 8+ programming languages
-- **Democratic AI**: Parliamentary governance works seamlessly with Windsurf's agentic capabilities
-- **Memory Bank Sync**: `.windsurf/memory-bank/` automatically syncs with project context
+### **🏆 Why Windsurf Leads (99% Autonomy)**
+- **Parliamentary Integration**: Global Rules loaded directly into Windsurf Rules panel for constitutional authority
+- **Democratic AI Governance**: Government, Opposition, and Judiciary roles seamlessly integrated with agentic AI
+- **Constitutional Monitoring**: Real-time >95% consensus requirements and ≥80% constitutional compliance validation
+- **Always-Check Operations**: Automatic pre-task validation across 8+ programming languages with framework auto-detection
+- **Memory Bank Intelligence**: `.windsurf/memory-bank/` with EMD compliance (≤100 lines) and constitutional template system
+- **Emergency Powers**: Crisis management with >80% failure triggers and judicial consultation protocols
 
 ## Contributing & Security
 
-### **🤝 Contributing Guidelines**
-1. **Constitutional Compliance**: All contributions must follow the three-branch system
-2. **EMD Architecture**: Files ≤80 lines, deep nested folder structure
-3. **Cross-IDE Testing**: Verify compatibility across at least 3 AI IDEs
-4. **Documentation**: Update setup guides for new IDE integrations
-5. **Security Review**: Constitutional validation for all new features
+### **🤝 Democratic Contributing Guidelines (AegisIDE 2.1)**
+1. **Parliamentary Process**: All contributions subject to 7-step democratic procedure (Proposal→Opposition Review→Debate→Evidence→>95% Consensus→Judicial Review→Implementation)
+2. **Constitutional Compliance**: >95% consensus required for major changes, ≥80% constitutional compliance mandatory
+3. **EMD Architecture**: Files ≤80 lines, memory bank files ≤100 lines, roadmap ≤200 lines & ≤12,000 characters
+4. **Always-Check Operations**: MANDATORY pre-task validation for 8+ programming languages before contributions
+5. **Cross-IDE Constitutional Testing**: Verify constitutional framework across Windsurf (99%), JetBrains (97%), Cursor (96%), VS Code/Cline (95%)
+6. **Democratic Documentation**: Parliamentary approval required for major documentation changes with Opposition review
+7. **Judicial Security Review**: Chief Justice constitutional validation for all new features and amendments
 
 ### **🔒 Security Protocol**
 - **No API Keys in Repository**: Constitutional framework prevents exposure
@@ -451,25 +484,24 @@ Based on real-world usage across different AI IDEs:
 - **Access Control**: Constitutional authority matrix enforced
 - **Privacy by Design**: Hashed identifiers, minimal data collection
 
-### **📋 Issue Reporting**
-- **Constitutional Violations**: Use constitutional audit templates
-- **IDE Compatibility**: Specify AI agent version and configuration
-- **Performance Issues**: Include memory bank size and cleanup frequency
-- **Feature Requests**: Constitutional amendment process for major changes
-
-## License
-
-**MIT License** - Constitutional Framework for AI Agents
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+### **📝 Democratic Issue Reporting (AegisIDE 2.1)**
+- **Constitutional Violations**: Report via parliamentary procedure with Opposition review and judicial interpretation
+- **Democratic Process Issues**: Government overreach, Opposition suppression, or Judicial bias reporting with audit trails
+- **IDE Constitutional Compatibility**: Specify AI agent, constitutional compliance score, and democratic governance integration
+- **Always-Check Operations**: Include language-specific validation failures and framework auto-detection issues
+- **Memory Bank Issues**: Report EMD compliance violations (≥100 lines) and constitutional template failures
+- **Constitutional Amendments**: Major changes require >95% consensus with judicial review and precedent establishment
 
 ## Branding & Repository
 
-### **🏷️ Official Branding**
-- **Project Name**: AegisIDE (Constitutional Framework for Agentic IDEs)
-- **Version**: 2.0.0 (2025 Enhanced)
+### **🏷️ Official Branding (AegisIDE 2.1)**
+- **Project Name**: AegisIDE (Constitutional Framework for AI Agents with Democratic Parliamentary Governance)
+- **Version**: 2.1.0 (2025 Enhanced - Democratic Parliamentary System)
+- **Constitutional Authority**: 12 Articles of Democratic Governance with >95% Consensus Requirements
 - **Repository**: https://github.com/Gaurav-Wankhede/Constitutional_framework_for_Agentic_IDE
 - **Alternative**: https://github.com/Gaurav-Wankhede/AegisIDE
+- **Supreme Law**: [windsurf/.windsurf/rules/constitution.md](windsurf/.windsurf/rules/constitution.md)
+- **Executive Implementation**: [windsurf/global_rules.md](windsurf/global_rules.md)
 
 ### **👨‍💻 Maintainer**
 **Gaurav Wankhede** - Full Stack Developer & AI Engineering Specialist
@@ -478,28 +510,38 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - **X (Twitter)**: https://x.com/GTechverse16703
 - **GitHub**: https://github.com/Gaurav-Wankhede
 
-### **🤝 Heritage & Acknowledgments**
-This framework builds upon and extends the pioneering work of:
-- **Cline Project** - Memory Bank pattern and documentation style
-- **Windsurf Engineering Team** - Agentic AI development
-- **VS Code AI Extension Community** - Cline, Roo, Kilo developers
-- **JetBrains** - Native AI assistant integration
-- **GitHub Copilot Team** - Cross-platform AI development standards
-- **Constitutional AI Research** - Democratic governance principles
+### **🤝 Constitutional Heritage & Acknowledgments**
+This democratic parliamentary framework builds upon and extends the pioneering work of:
+- **Cline Project** - Memory Bank pattern and constitutional documentation style
+- **Windsurf Engineering Team** - Agentic AI development with constitutional governance integration
+- **VS Code AI Extension Community** - Cline, Roo, Kilo developers providing universal IDE support
+- **JetBrains** - Native AI assistant integration with multi-language framework support
+- **GitHub Copilot Team** - Cross-platform AI development standards and compatibility
+- **Constitutional AI Research** - Democratic governance principles for AI systems
+- **Parliamentary Democracy Theory** - Three-branch government system adapted for AI agents
 
-**References**:
-- Cline Memory Bank: https://github.com/nickbaumann98/cline_docs
-- Cline Documentation: https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank
+**Constitutional References**:
+- **Supreme Law**: [Constitution.md](windsurf/.windsurf/rules/constitution.md) - 12 Articles of Democratic Governance
+- **Executive Implementation**: [Global Rules](windsurf/global_rules.md) - 99% Autonomous Operation Guidelines
+- **Cline Memory Bank**: https://github.com/nickbaumann98/cline_docs
+- **Cline Documentation**: https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank
 
 ### **📜 License**
-**MIT License** - Constitutional Framework for AI Agents
+**MIT License** - Constitutional Framework for AI Agents with Democratic Parliamentary Governance
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
 
 ---
 
-**⭐ Star this repository if AegisIDE transformed your AI development workflow!**
+**⭐ Star this repository if AegisIDE 2.1 transformed your AI development with democratic governance!**
 
-**🚀 Ready to revolutionize your AI coding experience?** 
+**🏛️ Ready to experience democratic AI development?** 
 
-Choose your IDE and get started with 95% autonomous AI development under constitutional governance!
+Choose your IDE and get started with up to **99% autonomous AI development** under **constitutional parliamentary governance**:
+
+• **[Windsurf (99% Autonomy)](windsurf/)** - Native parliamentary integration with Global Rules
+• **[JetBrains (97% Autonomy)](common/intellij/)** - Multi-language constitutional framework
+• **[Cursor (96% Autonomy)](cursor/)** - Built-in AI with constitutional governance
+• **[VS Code/Cline (95% Autonomy)](common/vscode/)** - Universal constitutional support
+
+**🎆 Constitutional AI Development Active** - Experience democratic governance, real-time quality assurance, and intelligent decision-making with **AegisIDE 2.1**!
