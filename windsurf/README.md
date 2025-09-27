@@ -82,23 +82,68 @@
 | "validate-configs" | Config Validation | MANDATORY pre-task scan of centralized configurations |
 | "check-duplicates" | Anti-Duplication | Prevent recreation of existing centralized components |
 
-## 🔧 **Enhanced Constitutional Setup & Usage**
-1) **Universal Structure**: Copy `./.windsurf/` OR use universal `.ide/` structure for cross-IDE compatibility
-2) **Constitution Setup**: Review and customize `rules/constitution.md` with 12 articles including always-check operations
-3) **Democratic Configuration**: Configure parliamentary roles and consensus scoring matrix (99% autonomy)
-4) **Centralized Config Registry**: Set up mandatory pre-task validation and anti-duplication protocols
-5) **Multi-Language Support**: Enable framework auto-detection for 8+ programming languages
-6) **Memory Bank Initialization**: Constitutional compliance tracking with universal `.ide/` compatibility
-7) **Always-Check Validation**: Activate automatic quality checks before every implementation task
-8) **Parliamentary Oversight**: Run enhanced workflow with real-time constitutional compliance
+## 🔧 **Windsurf IDE Setup Instructions (2025 Enhanced)**
 
-## Democratic Best Practices
-- **Constitutional Supremacy**: Always read Constitution + `guide/` + `docs/` + Memory Bank before any action
+### **Step 1: Copy Global Rules to Windsurf IDE**
+1. **Open Windsurf IDE** → Navigate to **Customizations** → **Rules** tab
+2. **Click "+ Workspace"** to add a new rule
+3. **Copy the entire content** from `windsurf/global_rules.md` 
+4. **Paste into "Global Rules"** section (as shown in Windsurf Rules panel)
+5. **Set Rule Name**: "Global Rules: How We Work Together **Constitutional Authority**"
+6. **Save the rule** - This enables 99% autonomous operation with always-check operations
+
+### **Step 2: Copy .windsurf Folder to Your Project**
+```bash
+# Navigate to your project root
+cd /path/to/your/project
+
+# Copy the entire .windsurf folder structure
+cp -r /path/to/Constitutional_framework_for_Agentic_IDE/windsurf/.windsurf ./
+
+# Verify the structure is copied correctly
+ls -la .windsurf/
+# You should see: docs/, guide/, memory-bank/, rules/, workflows/
+```
+
+### **Step 3: Initialize Constitutional Framework**
+```bash
+# In Windsurf IDE chat, run the initialization command
+initialize memory bank
+
+# Then provide your project context when prompted:
+I want to build the project having [your features]
+tech stack: [your technologies]
+```
+
+### **Step 4: Activate Constitutional Commands**
+Now you can use all constitutional commands in Windsurf chat:
+- **`clean memory bank`** - Clean completed tasks and context pollution
+- **`what next`** - Strategic task prioritization with mermaid diagrams
+- **`update scratchpad`** - Refresh context for immediate tasks
+- **`implement next task`** - Execute with 7 MCPs activation and constitutional compliance
+
+### **Step 5: Verify Setup**
+```bash
+# Check memory bank structure
+check memory status
+
+# Verify constitutional compliance
+run pre-oversight
+
+# Test always-check operations (language-specific)
+cargo check          # For Rust projects
+npm run lint         # For JavaScript/TypeScript
+pytest --collect-only # For Python projects
+```
+
+## 🎯 **Windsurf-Specific Best Practices**
+- **Global Rules First**: Always ensure Global Rules are loaded in Windsurf Rules panel before starting any project
+- **Memory Bank Sync**: Use `.windsurf/memory-bank/` structure for automatic Windsurf integration
+- **Constitutional Commands**: All commands work directly in Windsurf chat with constitutional compliance ≥80%
+- **Always-Check Operations**: Automatic language detection and validation before every task execution
 - **Parliamentary Process**: Follow Proposal→Opposition Review→Debate→>95% Consensus→Judicial Review→Implementation
-- **Quality Assurance**: Opposition challenges every proposal with evidence-based alternatives
-- **Judicial Review**: Chief Justice validates constitutional compliance for all major decisions
-- **Consensus Requirements**: Technical(Dev 25%, Test 25%), Strategic(PM 30%), Quality(Test 30%) weighted voting
-- **MCP Tool Usage**: Parallelize reads/search only; never parallelize writes; maintain constitutional compliance
+- **MCP Integration**: Complete 7 MCP sequence runs automatically for every constitutional command
+- **Real-Time Compliance**: Windsurf monitors constitutional violations and triggers democratic oversight
 
 ## Consensus Scoring Matrix
 **Technical Proposals**: Dev(25%), Test(25%), AI(20%), Research(15%), Data(10%), PM(5%)
@@ -120,15 +165,26 @@
 - `systemPatterns.md` — Architecture consistency with centralized config registry
 - `techContext.md` — Technology stack with framework auto-detection capabilities
 
-## 💡 **Enhanced Democratic Development Flow (2025)**
-- **CheatSheet.md**: Quick democratic commands + always-check operations for parliamentary workflows
-- **global_rules.md**: 99% autonomous implementation with centralized config validation protocols
-- **Always-Check Flow**: Pre-task validation → Language detection → Framework health checks → Config registry scan
-- **Enhanced Parliamentary Flow**: Constitutional scan → Always-check validation → Propose → Opposition review → Debate → Consensus → Judicial review → Implementation → Accountability audit → Pattern learning
+## 💡 **Windsurf Constitutional Workflow (2025)**
+1. **Load Global Rules**: Ensure constitutional authority is active in Windsurf Rules panel
+2. **Initialize Project**: `initialize memory bank` → provide project context → auto-setup complete
+3. **Strategic Planning**: `what next` → generates scratchpad.md with mermaid diagrams
+4. **Constitutional Execution**: `implement next task` → 7 MCPs → always-check validation → execute
+5. **Quality Enforcement**: Opposition auto-challenges code violations → `resolve-quality-violations`
+6. **Democratic Oversight**: `run post-oversight` → accountability audit → pattern learning
 
-## 📊 **Performance Improvements (Windsurf Specific)**
-- **99% Autonomy**: Enhanced from 96% with always-check operations and centralized validation
-- **91% Hallucination Reduction**: Through mandatory pre-task configuration scanning
-- **Multi-Language Excellence**: Auto-detection and validation across 8+ programming languages
-- **Real-Time Compliance**: Continuous constitutional monitoring with config registry
-- **Universal Compatibility**: `.windsurf/` structure + universal `.ide/` folder support
+## 🚀 **Windsurf-Specific Advantages**
+- **Native Integration**: Global Rules loaded directly into Windsurf's AI system
+- **99% Autonomy**: Enhanced from 96% with Windsurf's agentic AI + constitutional framework
+- **Real-Time Validation**: Continuous constitutional monitoring integrated with Windsurf's execution engine
+- **Always-Check Operations**: Automatic pre-task validation for 8+ programming languages
+- **Democratic AI**: Parliamentary governance system works seamlessly with Windsurf's native AI capabilities
+- **Memory Bank Sync**: `.windsurf/memory-bank/` automatically syncs with Windsurf's project context
+
+## 📝 **Quick Start Summary**
+1. **Copy Global Rules** → Windsurf IDE Rules panel
+2. **Copy .windsurf folder** → Your project root  
+3. **Run `initialize memory bank`** → Provide project context
+4. **Start using constitutional commands** → 99% autonomous development ready!
+
+**🎉 You're now ready for constitutional AI development with Windsurf's 99% autonomous capability!**
