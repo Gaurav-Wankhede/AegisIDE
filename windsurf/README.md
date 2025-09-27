@@ -1,67 +1,98 @@
-# AegisIDE — Windsurf
+# AegisIDE — Windsurf Constitutional Framework
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md)
  
 > Cheat Sheet: [CheatSheet.md](CheatSheet.md)
 > Project Intelligence: [global_rules.md](global_rules.md)
 
-This folder adapts the Constitutional Framework for Agentic IDE to Windsurf.
+This folder adapts the Constitutional Framework for Agentic IDE to Windsurf with **democratic parliamentary governance** and **96% autonomous capability**.
 
-## What it is
-- Constitution: `.windsurf/rules/constitution.md` defines immutable rules and MCP usage.
-- Executive: `global_rules.md` + `guide/` + `docs/` drive context and decisions.
-- Oversight: `workflows/oversight-checks-and-balances.md` enforces checks.
+## Democratic Architecture
+- **Constitution**: `.windsurf/rules/constitution.md` - Supreme law with 11 articles defining democratic parliamentary structure
+- **Executive**: `global_rules.md` - Operational implementation under constitutional authority  
+- **Memory Bank**: Intelligence management with constitutional compliance tracking
+- **Oversight**: `workflows/oversight-checks-and-balances.md` - Parliamentary checks and balances
 
-## How it works
-- Always read the Constitution + `guide/` + `docs/` before any task.
-- Use MCP tools per rules: context7 for docs, fetch for live info, filesystem/git/memory for code & state.
-- Update Memory Bank artifacts after execution.
+## Parliamentary Structure
+**Government (Ruling Party)**:
+- PM(Project Manager) - Strategic leadership, policy proposals
+- Dev Minister(Software Developer) - Technical implementations  
+- Tech Minister(AI Engineer) - Innovation strategy, automation
 
-## Autonomous Workflow: Commands
+**Opposition (Shadow Cabinet)**:
+- Quality Shadow(Software Tester) - Quality challenges, testing validation
+- Innovation Shadow(Research Engineer) - Research-based alternatives
+- Analytics Shadow(Data Scientist) - Data-driven evidence, empirical opposition
+
+**Independent Judiciary**:
+- Chief Justice(GenAI Developer) - Constitutional compliance review, democratic process enforcement
+
+## How Democratic Governance Works
+- **Parliamentary Procedure**: Proposal→Opposition Review→Debate→Evidence Scoring→>95% Consensus→Judicial Review→Implementation
+- **Constitutional Compliance**: Never proceed without constitutional compliance ≥80 AND democratic consensus ≥95%
+- **Decision Matrix**: 0-30(Auto), 31-60(Document), 61-80(Validate), 81-100(Consult)
+- **MCP Integration**: context7(docs), fetch(info), git(control), memory(persistence), byterover(knowledge) with constitutional validation
+
+## Democratic Workflow Commands
  
-| Command | What it does |
-|---|---|
-| "follow your custom instructions" | Load Constitution + `guide/` + `docs/` + Memory Bank |
-| "Plan Mode: <your goal>" | Generate a plan grounded in rules and docs |
-| "run pre-oversight" | Constitutional review before execution (legislative compliance check) |
-| "Act Mode: execute step 1" | Perform the first step; repeat for subsequent steps |
-| "next task" | Execute the next immediate task from current plans |
-| "what next" | Provide next planned steps and strategic direction based on current project state |
-| "solve lint" | Identify and fix linting issues in the codebase |
-| "solve error" | Identify and resolve compilation/runtime errors |
-| "fix issues" | Comprehensive scan and resolution of all code issues |
-| "update memory bank" | Write back decisions and changes (`activeContext.md`, `progress.md`) |
-| "check memory bank status" | Provide summary of all memory bank files and their current state |
-| "run post-oversight" | Execution audit after completion (checks & balances validation) |
+| Command | Role | What it does |
+|---|---|---|
+| "propose-change <proposal>" | Government | Submit proposal for parliamentary review |
+| "challenge-proposal <proposal>" | Opposition | Evidence-based challenges and alternatives |
+| "conduct-debate <topic>" | Parliament | Structured debate with evidence scoring |
+| "calculate-consensus <proposal>" | Parliament | Expertise-weighted voting (Technical/Strategic/Quality) |
+| "judicial-review <decision>" | Chief Justice | Constitutional compliance review |
+| "judicial-veto <action>" | Chief Justice | Constitutional veto for non-compliant actions |
+| "opposition-challenge <action>" | Shadow Cabinet | Quality challenges with alternative solutions |
+| "constitutional-appeal <issue>" | Any Member | Appeal to Chief Justice for interpretation |
+| "run pre-oversight" | Parliament | Constitutional scan + democratic impact assessment |
+| "run post-oversight" | Parliament | Execution audit with accountability review |
 
-## How to use
-1) Copy `./.windsurf/` into your project root.
-2) Review and tailor `rules/constitution.md`.
-3) Add official links under `guide/index.md` and project info under `docs/`.
-4) Run the Oversight workflow during Pre/During/Post execution.
+## Autonomous Capabilities Commands
 
-## Citations and Context7
-- Use official sources and include URLs in `guide/index.md`.
-- For Context7, prefer library IDs when available (e.g., `/vercel/next.js`).
+| Command | Capability | Democratic Oversight |
+|---|---|---|
+| "auto-recover <issue>" | Error Recovery | Democratic approval for system-level changes |
+| "optimize-performance" | Performance | Self-monitoring with parliamentary reporting |
+| "scan-security" | Security | Independent validation with judicial review |
+| "learn-patterns" | Learning | Cross-party learning via ByteRover with consensus |
+| "diagnose-health" | Health | Independent scoring (0-100%) with judicial oversight |
 
-## Best Practices
-- Use Plan Mode for strategy; Act Mode for implementation
-- Always read Constitution + `guide/` + `docs/` + Memory Bank before acting
-- Parallelize reads/search only; never parallelize writes
-- Keep `activeContext.md` and `progress.md` up to date
-- Cite official sources in `guide/index.md` for Context7/fetch
-- Use the Oversight workflow for pre/during/post execution checks
+## Constitutional Setup & Usage
+1) Copy `./.windsurf/` into your project root
+2) Review and customize `rules/constitution.md` for your parliamentary structure
+3) Configure democratic roles and consensus scoring matrix
+4) Add official sources under `guide/index.md` and project documentation under `docs/`
+5) Initialize Memory Bank with constitutional compliance tracking
+6) Run parliamentary oversight workflow during Pre/During/Post execution
 
-## Tips: Using CheatSheet + Project Intelligence
-- CheatSheet.md: Quick, copy-paste commands to drive Plan/Act/Oversight. Use during day-to-day execution.
-- global_rules.md: Governance and context. Read to understand rules, Memory Bank flow, and platform‑specific paths.
-- Suggested flow: Open CheatSheet → "follow your custom instructions" → "Plan Mode" → execute → update Memory Bank per global_rules.md.
+## Democratic Best Practices
+- **Constitutional Supremacy**: Always read Constitution + `guide/` + `docs/` + Memory Bank before any action
+- **Parliamentary Process**: Follow Proposal→Opposition Review→Debate→>95% Consensus→Judicial Review→Implementation
+- **Quality Assurance**: Opposition challenges every proposal with evidence-based alternatives
+- **Judicial Review**: Chief Justice validates constitutional compliance for all major decisions
+- **Consensus Requirements**: Technical(Dev 25%, Test 25%), Strategic(PM 30%), Quality(Test 30%) weighted voting
+- **MCP Tool Usage**: Parallelize reads/search only; never parallelize writes; maintain constitutional compliance
 
-## Documentation Flow
-- `projectbrief.md` — foundation and scope
-- `productContext.md` — problem, goals, UX expectations
-- `systemPatterns.md` — architecture, decisions, patterns
-- `techContext.md` — stack, dependencies, constraints
-- `activeContext.md` — current focus, recent changes, next steps
-- `progress.md` — what works, milestones, status
-- `*/global_rules.md` — per‑IDE Project Intelligence (learning journal)
+## Consensus Scoring Matrix
+**Technical Proposals**: Dev(25%), Test(25%), AI(20%), Research(15%), Data(10%), PM(5%)
+**Strategic Proposals**: PM(30%), AI(20%), Research(20%), Data(15%), Dev(10%), Test(5%)  
+**Quality Proposals**: Test(30%), Dev(25%), Research(20%), Data(15%), AI(5%), PM(5%)
+
+## Emergency Powers & Crisis Management
+- **Crisis Triggers**: System failure >80%, security breach, constitutional violation cascade
+- **Emergency Protocol**: Immediate judicial consultation, temporary executive authority, accelerated thresholds (50% reduction)
+- **Safeguards**: Mandatory post-crisis review, false declaration censure, accountability review
+
+## Memory Bank with Constitutional Compliance
+- `constitution.md` — Supreme law with 11 articles (≤11,500 characters)
+- `global_rules.md` — Operational implementation under constitutional authority
+- `activeContext.md` — Current focus with constitutional compliance status
+- `progress.md` — Milestones with democratic process validation
+- `mistakes.md` — Constitutional violations and learning patterns
+- `roadmap.md` — Strategic objectives with parliamentary approval
+
+## Tips: Democratic Development Flow
+- **CheatSheet.md**: Quick democratic commands for parliamentary workflows
+- **global_rules.md**: Constitutional implementation details and compliance protocols  
+- **Suggested Flow**: Constitutional scan → Propose → Opposition review → Debate → Consensus → Judicial review → Implementation → Accountability audit

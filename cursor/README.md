@@ -1,17 +1,16 @@
-# AegisIDE — Cursor
+# AegisIDE — Cursor Constitutional Framework
  
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./guide/index.md)
  
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.cursor/guide/index.md)
- > Cheat Sheet: [CheatSheet.md](CheatSheet.md)
- > Project Intelligence: [global_rules.md](global_rules.md)
- 
-This folder adapts the Constitutional Framework for Agentic IDE to Cursor.
+> Cheat Sheet: [CheatSheet.md](CheatSheet.md)
+> Project Intelligence: [global_rules.md](global_rules.md)
+
+This folder adapts the Constitutional Framework for Agentic IDE to Cursor with **democratic parliamentary governance** and **96% autonomous capability**.
 
 ## What it is
 - Constitution: governs agent behavior with immutable rules and protocols.
 - Executive: `global_rules.md` + `guide/` + `docs/` drive context and decisions.
 - Oversight: `workflows/oversight-checks-and-balances.md` enforces checks.
-
 ## How it works
 - Always read Constitution + `guide/` + `docs/` before any task.
 - Use Context7/fetch for authoritative docs; log citations.

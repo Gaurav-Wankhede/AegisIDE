@@ -1,18 +1,16 @@
-# AegisIDE — Cline
- 
+# AegisIDE — Cline Constitutional Framework
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.clinerules/guide/index.md)
  
 > Cheat Sheet: [CheatSheet.md](CheatSheet.md)
- > Project Intelligence: [global_rules.md](global_rules.md)
+> Project Intelligence: [global_rules.md](global_rules.md)
 
-This folder adapts the Constitutional Framework for Agentic IDE to Cline.
+This folder adapts the Constitutional Framework for Agentic IDE to Cline with **democratic parliamentary governance** and **96% autonomous capability**.
 
 ## What it is
 - Constitution governs agent behavior
 - Executive: `global_rules.md` + `guide/` + `docs/`
 - Oversight workflow ensures checks & balances
-
 ## Autonomous Workflow: Commands
 
 | Command | What it does |
