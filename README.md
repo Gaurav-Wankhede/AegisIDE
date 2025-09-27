@@ -252,29 +252,29 @@ Based on global_rules.md Article II, Section 2:
 flowchart TD
     Start[Task Initiated] --> Constitutional[Auto-scan Constitution + Global Rules]
     Constitutional --> Memory[Load Memory Bank + Templates]
-    Memory --> Proposal[Government Proposal<br/>PM + Dev Minister + Tech Minister]
+    Memory --> Proposal["Government Proposal<br/>PM + Dev Minister + Tech Minister"]
     
-    Proposal --> Opposition[Opposition Review<br/>Quality Shadow + Innovation Shadow + Analytics Shadow]
-    Opposition --> Debate[Structured Parliamentary Debate<br/>Evidence-Based Challenges]
-    Debate --> Evidence[Evidence Scoring Matrix<br/>Technical/Strategic/Quality Weighted Voting]
+    Proposal --> Opposition["Opposition Review<br/>Quality Shadow + Innovation Shadow + Analytics Shadow"]
+    Opposition --> Debate["Structured Parliamentary Debate<br/>Evidence-Based Challenges"]
+    Debate --> Evidence["Evidence Scoring Matrix<br/>Technical/Strategic/Quality Weighted Voting"]
     
-    Evidence --> Consensus{Democratic Consensus<br/>>95% Required}
-    Consensus -->|≥95%| Judicial[Judicial Review<br/>Chief Justice Constitutional Compliance]
-    Consensus -->|<95%| Opposition
+    Evidence --> Consensus{"Democratic Consensus<br/>>95% Required"}
+    Consensus -->|"≥95%"| Judicial["Judicial Review<br/>Chief Justice Constitutional Compliance"]
+    Consensus -->|"<95%"| Opposition
     
-    Judicial --> Compliance{Constitutional<br/>Compliance ≥80%}
-    Compliance -->|✅ Compliant| Authority{Decision Authority Level<br/>0-98: Auto | 99-100: Consult}
-    Compliance -->|❌ Violation| Constitutional
+    Judicial --> Compliance{"Constitutional<br/>Compliance ≥80%"}
+    Compliance -->|"✅ Compliant"| Authority{"Decision Authority Level<br/>0-98: Auto / 99-100: Consult"}
+    Compliance -->|"❌ Violation"| Constitutional
     
-    Authority -->|0-98| Execute[Execute with Always-Check Operations<br/>Multi-Language Validation]
-    Authority -->|99-100| Human[Human Consultation Required]
+    Authority -->|"0-98"| Execute["Execute with Always-Check Operations<br/>Multi-Language Validation"]
+    Authority -->|"99-100"| Human["Human Consultation Required"]
     
     Human --> Execute
-    Execute --> Monitor[Real-Time Constitutional Monitoring<br/>Parliamentary Oversight]
-    Monitor --> Quality[Quality Gates + EMD Compliance<br/>≤80 lines, ≤100 memory bank]
-    Quality --> Update[Update Memory Bank + ByteRover Sync<br/>Cross-Project Learning]
-    Update --> Precedent[Establish Constitutional Precedent<br/>Judicial Documentation]
-    Precedent --> Complete[Task Complete<br/>Democratic Accountability Audit]
+    Execute --> Monitor["Real-Time Constitutional Monitoring<br/>Parliamentary Oversight"]
+    Monitor --> Quality["Quality Gates + EMD Compliance<br/>≤80 lines, ≤100 memory bank"]
+    Quality --> Update["Update Memory Bank + ByteRover Sync<br/>Cross-Project Learning"]
+    Update --> Precedent["Establish Constitutional Precedent<br/>Judicial Documentation"]
+    Precedent --> Complete["Task Complete<br/>Democratic Accountability Audit"]
 ```
 
 ## Enterprise Integration
