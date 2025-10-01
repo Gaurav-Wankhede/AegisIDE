@@ -38,7 +38,7 @@
 5. **Duplication Detection & Data-Driven Styling**  
    Same DDO/DDS practices as the generic Tailwind rules (Stylelint + jscpd, tokens only in tailwind.config.js).
 
-***
+---
 
 ## Layout A “with src/” Directory
 
@@ -66,7 +66,7 @@ Key points for this layout:
 - Use absolute imports (`@/components/...`) enabled by `paths` in tsconfig.
 - Place all Tailwind plugin code under `src/styles/plugins/` (≤80 lines each) and import them in tailwind.config.ts.
 
-***
+---
 
 ## Layout B “root-level app/” (No src Folder)
 
@@ -91,7 +91,7 @@ Distinct rules:
 - Keep all code under `app/` except configuration files; no additional top-level `src/`.
 - Tailwind `content` paths in tailwind.config.ts must scan `./app/**/*.{ts,tsx}` and `./components/**/*.{ts,tsx}`.
 
-***
+---
 
 ## Tailwind-Specific Rules Inside Next.js
 

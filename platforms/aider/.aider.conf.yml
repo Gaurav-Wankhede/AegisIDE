@@ -1,0 +1,49 @@
+# AegisIDE Constitutional Framework for Aider (Autonomy: 93%)
+metadata:
+  name: "Constitutional Framework for Autonomous AI Development"
+  platform: "Aider (Terminal-based AI pair programming)"
+  autonomy: 93
+
+supreme_law:
+  framework: "Constitution + Laws + Memory-Bank as SUPREME LAW"
+  autonomy_level: "93% (0-93=AUTO, 94-100=Human)"
+  critical_rule: "At 0-93% autonomy, NEVER ASK PERMISSION, EXECUTE IMMEDIATELY"
+
+autonomous_startup:
+  mandatory: true
+  steps:
+    - "Auto-read scratchpad.md"
+    - "Execute tasks immediately without asking"
+    - "Update all 9 memory-bank files"
+
+bootstrap:
+  command: "initialize memory bank"
+  note: "Memory-bank is auto-generated based on your project description"
+
+architecture:
+  paths:
+    constitution: ".aider/constitution/"
+    laws: ".aider/laws/"
+    memory_bank: ".aider/memory-bank/"
+
+commands:
+  what_next: "Auto-scan scratchpad → Execute first task"
+  implement_next_task: "Execute current → Update files → Next task"
+  continuous_execute: "NEVER STOP until scratchpad empty"
+
+terminal_safety:
+  auto_approved: "Read-only, Build/Test, File create/modify"
+  require_approval: "File deletion, System changes, Package installs"
+
+compliance:
+  emd:
+    code_files: "≤80 lines"
+    memory_bank: "≤100 lines"
+    roadmap: "≤200 lines, ≤12KB"
+  governance:
+    consensus: ">95%"
+    adherence: "≥80%"
+
+maintainer:
+  name: "Gaurav Wankhede"
+  repository: "https://github.com/Gaurav-Wankhede/AegisIDE"

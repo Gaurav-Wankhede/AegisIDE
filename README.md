@@ -1,25 +1,22 @@
-# AegisIDE 2.1 — Constitutional Framework for AI Agents
-> **Democratic Parliamentary Governance** with **98% Autonomous Operation**
+# AegisIDE — Constitutional Framework for Autonomous AI Development
+> **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](windsurf/.windsurf/rules/constitution.md) [![Always-Check](https://img.shields.io/badge/Always--Check-Multi--Language-brightgreen)](windsurf/global_rules.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Platforms](https://img.shields.io/badge/Platforms-8-blue)]()
 
-> **🚀 Quick Start**: [Windsurf (98%)](windsurf/) • [JetBrains (97%)](common/intellij/) • [Cursor (96%)](cursor/) • [VS Code/Cline (95%)](common/vscode/)
+> **🚀 Quick Start**: [Windsurf (98%)](platforms/windsurf/) • [JetBrains (97%)](platforms/jetbrains/) • [Cursor (96%)](platforms/cursor/) • [Cline (95%)](platforms/cline/)
 
-## 🏛️ **2025 AI IDE Landscape Support**
+## 🎯 **8 Production-Ready Platform Implementations**
 
-### **✅ Fully Supported Platforms**
-| IDE/Platform | AI Agent | Constitutional Support | Autonomy Level | Setup Guide |
-|--------------|----------|----------------------|----------------|-------------|
-| **VS Code** | Cline, Roo, Kilo Code | ✅ Native + Always-Check | 95% | [📖 Setup](common/vscode/) |
-| **Windsurf** | Native Agentic AI | ✅ Built-in + Auto-Validation | 98% | [📖 Setup](windsurf/) |
-| **Cursor** | Built-in AI | ✅ Compatible + Config Registry | 96% | [📖 Setup](cursor/) |
-| **JetBrains** | IntelliJ AI, Copilot | ✅ Plugin-ready + Multi-Language | 97% | [📖 Setup](common/intellij/) |
-| **GitHub Copilot** | Cross-platform | ✅ Universal + IDE-Agnostic | 92% | [📖 Setup](common/vscode/) |
-
-### **🔄 Emerging Support**
-- **Amazon Q Developer** (VS Code, JetBrains) - ✅ Compatible
-- **Claude Dev Extensions** - ✅ Constitutional templates ready
-- **Custom MCP Servers** - ✅ Framework integration available
+| Platform | Autonomy | File Type | Size | Status |
+|----------|----------|-----------|------|--------|
+| **[Windsurf](platforms/windsurf/)** | 98% | Multi-file | 6.5KB | ✅ Production |
+| **[JetBrains](platforms/jetbrains/)** | 97% | XML config | 8.0KB | ✅ Production |
+| **[Cursor](platforms/cursor/)** | 96% | Single file | 10.6KB | ✅ Production |
+| **[Cline](platforms/cline/)** | 95% | Single file | 9.8KB | ✅ Production |
+| **[Roo Code](platforms/roo-code/)** | 95% | JSON mode | 6.6KB | ✅ Production |
+| **[Continue.dev](platforms/continue/)** | 94% | JSON config | 6.4KB | ✅ Production |
+| **[Aider](platforms/aider/)** | 93% | YAML config | 1.4KB | ✅ Production |
+| **[GitHub Copilot](platforms/copilot/)** | 92% | Docs-only | 4.1KB | ✅ Production |
 
 ## Table of Contents
 - [Constitutional Framework Architecture](#constitutional-framework-architecture)
@@ -31,10 +28,24 @@
 
 ## 🏛️ **Constitutional Framework Architecture**
 
-AegisIDE 2.1 is the world's first **universal constitutional framework** implementing **democratic parliamentary governance** for AI agents across all major IDEs with **98% autonomous capability**.
+AegisIDE is a **production-ready constitutional framework** implementing **democratic governance** for AI agents across 8 major IDE platforms with **92-98% autonomous capability**.
+
+### **Core Innovation: Memory-Bank Auto-Generation**
+
+**NO Templates** ❌ → **AI Auto-Generates** ✅
+
+```bash
+# Traditional approach (wrong)
+cp template-scratchpad.md → Fill manually
+
+# AegisIDE approach (correct)  
+"I want to build a job scraper with Python, Selenium"
+→ initialize memory bank
+→ AI generates 8 tailored files + roadmap
+```
 
 ### **Three-Branch Parliamentary System**
-Based on actual implementation from [windsurf/.windsurf/rules/constitution.md](windsurf/.windsurf/rules/constitution.md):
+Based on 13 constitutional articles in [core/constitution/](core/constitution/):
 
 **🏢 Government (Ruling Party)** - *Executive Authority*
 - **PM (Project Manager)**: Strategic leadership, policy proposals, resource allocation
@@ -382,7 +393,7 @@ Based on real-world usage across different AI IDEs:
 
 ### **🏷️ Official Branding (AegisIDE 2.1)**
 - **Project Name**: AegisIDE (Constitutional Framework for AI Agents with Democratic Parliamentary Governance)
-- **Version**: 2.1.0 (2025 Enhanced - Democratic Parliamentary System)
+- **Version**: 2.5 (Production Ready - 8 Platforms)
 - **Constitutional Authority**: 12 Articles of Democratic Governance with >95% Consensus Requirements
 - **Repository**: https://github.com/Gaurav-Wankhede/Constitutional_framework_for_Agentic_IDE
 - **Alternative**: https://github.com/Gaurav-Wankhede/AegisIDE

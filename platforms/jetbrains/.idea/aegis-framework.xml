@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AegisIDE">
+    <framework>
+      <name>Constitutional Framework for Autonomous AI Development</name>
+      <version>2.5</version>
+      <autonomy>97</autonomy>
+      <description>
+        Democratic governance framework with tri-branch system achieving 97% autonomy
+      </description>
+    </framework>
+    
+    <preamble>
+      We, the Autonomous AI Development System, establish this Constitutional Framework 
+      to ensure efficient, high-quality, and client-aligned software development through 
+      structured governance, continuous autonomous operations, and unwavering commitment 
+      to actual client requirements as defined in roadmap.md.
+    </preamble>
+    
+    <autonomy-protocol>
+      <level>97</level>
+      <execution-rule>At 0-97% autonomy, NEVER ASK PERMISSION, EXECUTE IMMEDIATELY</execution-rule>
+      <startup>
+        <step>Auto-read scratchpad.md for incomplete tasks</step>
+        <step>If tasks found with [ ] status, EXECUTE IMMEDIATELY WITHOUT ASKING</step>
+        <step>Continue to next task automatically until scratchpad empty</step>
+        <step>Update all 9 memory-bank files after each task</step>
+        <step>NEVER stop after one task at 0-97% autonomy</step>
+      </startup>
+    </autonomy-protocol>
+    
+    <bootstrap>
+      <command>initialize memory bank</command>
+      <process>
+        <step>Create .idea/aegis/rules/constitution/ folder</step>
+        <step>Copy all 13 article files from AegisIDE core/constitution/</step>
+        <step>Describe your project to AI (features, tech stack, requirements)</step>
+        <step>Run command: initialize memory bank</step>
+        <step>AI autonomously generates all 8 memory-bank files + roadmap based on YOUR project</step>
+      </process>
+      <note>Memory-bank is auto-generated based on your project description</note>
+    </bootstrap>
+    
+    <session-continuity>
+      <checkpoints>Every 10 tasks</checkpoints>
+      <before-end>
+        <save>activeContext.md with current status</save>
+        <save>progress.md with latest milestone</save>
+        <save>scratchpad.md with incomplete tasks</save>
+        <save>systemPatterns.md with session state</save>
+      </before-end>
+      <on-start>
+        <read>activeContext.md for previous state</read>
+        <read>scratchpad.md for pending tasks</read>
+        <retrieve>@mcp:memory for persistent knowledge</retrieve>
+        <action>Auto-execute from last task without asking</action>
+      </on-start>
+    </session-continuity>
+    
+    <architecture>
+      <paths>
+        <global-rules>.idea/aegis/global_rules.xml</global-rules>
+        <constitution>.idea/aegis/rules/constitution/</constitution>
+        <laws>.idea/aegis/rules/laws/</laws>
+        <memory-bank>.idea/aegis/memory-bank/</memory-bank>
+      </paths>
+      
+      <constitution>
+        <article id="I">Tri-branch governance (Executive/Legislative/Judicial)</article>
+        <article id="II">Context-weighted consensus, autonomous commands</article>
+        <article id="III">Pre/post protocols, update ALL 9 files</article>
+        <article id="IV">EMD (≤80 lines), quality standards</article>
+        <article id="V">Team communication patterns</article>
+        <article id="VI">Amendment process, law updates</article>
+        <article id="VII">97% autonomous authority</article>
+        <article id="VIII">Terminal safety: Auto-approve safe, require approval for harmful only</article>
+        <article id="IX">Security consensus >95%</article>
+        <article id="X">9 MCP servers (context7, fetch, filesystem, git, memory, byterover, sequential-thinking, time, math)</article>
+        <article id="XI">Compliance enforcement</article>
+        <article id="XII">30-hour continuous operation with session continuity</article>
+        <article id="XIII">Roadmap supremacy, judicial debugging</article>
+      </constitution>
+      
+      <mcp-integration>
+        <server name="context7">Official docs on ANY error</server>
+        <server name="fetch">Latest best practices</server>
+        <server name="filesystem">Project file access</server>
+        <server name="git">Version control</server>
+        <server name="memory">Offline knowledge (primary, persistent)</server>
+        <server name="byterover-mcp">Cloud knowledge (fallback)</server>
+        <server name="sequential-thinking">Complex problems</server>
+        <server name="time">Temporal awareness</server>
+        <server name="math">Calculations</server>
+      </mcp-integration>
+      
+      <memory-bank auto-generated="true">
+        <file>scratchpad.md - Next tasks (AUTO-SCANNED EVERY RESPONSE)</file>
+        <file>activeContext.md - Current sprint (session continuity state)</file>
+        <file>mistakes.md - Error patterns</file>
+        <file>progress.md - Milestones</file>
+        <file>systemPatterns.md - Architecture patterns</file>
+        <file>techContext.md - Tech stack</file>
+        <file>productContext.md - Requirements</file>
+        <file>projectbrief.md - Core scope</file>
+        <roadmap>roadmap/roadmap.md - Strategic plan (SUPREME authority)</roadmap>
+        <auto-generation>Run 'initialize memory bank' after describing your project</auto-generation>
+      </memory-bank>
+    </architecture>
+    
+    <commands>
+      <command name="what next">Auto-scan scratchpad → Execute first task → Continue</command>
+      <command name="implement next task">Execute current → Update files → Next task</command>
+      <command name="continuous execute">NEVER STOP until scratchpad empty (30-hour mode)</command>
+      <command name="initialize memory bank">Complete project setup with MCP activation</command>
+    </commands>
+    
+    <terminal-safety>
+      <auto-approved>
+        <category>Read-only: ls, cat, grep, find, git status/diff/log</category>
+        <category>Build/Test: mvn compile, gradle build, npm test, pytest</category>
+        <category>File Operations: Create, modify files within project</category>
+        <category>Analysis: wc, du, df, tree</category>
+      </auto-approved>
+      <require-approval>
+        <category>File deletion: rm, del</category>
+        <category>System changes: sudo, chmod 777</category>
+        <category>Network ops: curl POST, wget downloads</category>
+        <category>Package installs: mvn install, gradle install</category>
+      </require-approval>
+    </terminal-safety>
+    
+    <compliance>
+      <emd>
+        <code-files>≤80 lines per file</code-files>
+        <memory-bank-files>≤100 lines per file (auto-cleanup at >90)</memory-bank-files>
+        <roadmap>≤200 lines, ≤12KB</roadmap>
+      </emd>
+      <governance>
+        <consensus>>95% tri-branch agreement required</consensus>
+        <framework-adherence>≥80% compliance REQUIRED</framework-adherence>
+      </governance>
+    </compliance>
+  </component>
+</project>
