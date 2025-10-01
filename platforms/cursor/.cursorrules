@@ -51,9 +51,65 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ## Anti-Duplication Protocol (MANDATORY)
 
 **NEVER RECREATE**: ALWAYS scan existing centralized configurations BEFORE creating new ones
-```
 
-**Rule**: If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-96% autonomy.
+**Common Config Patterns** (scan these directories):
+- `core/config/`, `src/*/config/`, `lib/*/config/` - Shared configurations
+- `config/` - Root-level configuration directory
+- `shared/`, `common/` - Shared utilities and constants
+
+**Common Config Files** (check for duplicates):
+- **Delays/Timeouts**: `delays.*`, `timeouts.*`, `retry.*`
+- **API Settings**: `api_config.*`, `endpoints.*`, `client_config.*`
+- **Concurrency**: `concurrency.*`, `thread_pool.*`, `workers.*`
+- **Database**: `db_config.*`, `connection.*`, `pool.*`
+- **Models/Types**: Shared data structures, interfaces, schemas
+
+**HALT on Violation**: Detect duplicate → Reference existing → Document in mistakes.md → Rollback
+
+**Validation Commands** (multi-language):
+- **Python**: `find . -path '*/config/*.py' -o -name '*_config.py'`
+- **TypeScript**: `find . -path '*/config/*.ts' -o -name '*Config.ts'`
+- **Rust**: `find . -path '*/config/*.rs' -o -name '*_config.rs'`
+- **Go**: `find . -path '*/config/*.go' -o -name '*_config.go'`
+
+## File Editing Hierarchy (MANDATORY)
+
+**ALWAYS use this order** when editing files:
+
+**1. Direct Edit (PRIMARY)**: Use Cursor's native edit capabilities first
+- Fastest and most reliable
+- Execute immediately without asking
+
+**2. Filesystem Operations (FALLBACK)**: If direct edit unavailable
+- File read/write operations
+- Use only when direct edit fails
+
+**3. Terminal Edit (LAST RESORT)**: If both above fail
+- `sed -i` (Linux/macOS) or PowerShell (Windows)
+- Requires approval for system modifications
+
+**CRITICAL**: NEVER ask "Which method?" - Follow hierarchy at 0-96% autonomy
+
+## Multi-Language Validation (MANDATORY)
+
+**CRITICAL**: ALL errors/warnings MUST be resolved BEFORE next task. NO EXCEPTIONS.
+
+**Auto-Detection**: Scan for `requirements.txt`, `Cargo.toml`, `pnpm-lock.yaml`, etc.
+**HALT-FIX-VALIDATE Loop**: Error → HALT → Fix → Re-validate → Continue
+
+**Validation Commands**:
+- **Python**: `basedpyright .`
+- **Rust**: `cargo check --all-targets`
+- **TypeScript (PNPM)**: `pnpm typecheck`
+- **TypeScript (NPM)**: `npx tsc --noEmit`
+- **Go**: `go build ./...`
+- **Java (Maven)**: `mvn compile`
+- **Java (Gradle)**: `./gradlew compileJava`
+- **C#**: `dotnet build --no-restore`
+- **PHP**: `php -l`
+- **Ruby**: `ruby -c`
+
+**Checkpoints**: Pre-implementation, during, post-implementation, pre-commit
 
 ## Project Bootstrap Protocol
 
