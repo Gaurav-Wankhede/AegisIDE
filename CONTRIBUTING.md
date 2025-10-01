@@ -1,158 +1,115 @@
-# Contributing to AegisIDE Constitutional Framework
+# Contributing to AegisIDE
 
-**Democratic Parliamentary Governance for AI Development** - 98% Autonomous Operation
+**Democratic Parliamentary Governance** (98% autonomous operation, 13 constitutional articles)
 
-Thank you for contributing to the world's first **Constitutional Framework for AI Agents** with **democratic parliamentary governance**!
+## Democratic Contribution Workflow
 
-## 🏛️ **Constitutional Governance Model**
+```mermaid
+flowchart LR
+    PR[Pull Request] --> Exec[Executive Review<br/>PM + Ministers]
+    Exec --> Opp[Opposition Review<br/>Quality/Innovation/Analytics]
+    Opp --> Debate[Structured Debate<br/>Evidence Scoring]
+    Debate --> Consensus{>95%<br/>Consensus?}
+    Consensus -->|Yes| Judicial[Judicial Review<br/>Chief Justice]
+    Consensus -->|No| Revise[Revise & Resubmit]
+    Judicial --> Compliant{Constitutional<br/>Compliant?}
+    Compliant -->|Yes| Merge[Merge & Implement]
+    Compliant -->|No| Revise
+    Revise --> Exec
+    
+    style PR fill:#87CEEB
+    style Consensus fill:#FFD700
+    style Merge fill:#90EE90
+    style Revise fill:#FFB6C1
+```
 
-### **Three-Branch Parliamentary System**
-- **📜 Constitution**: [`.windsurf/rules/constitution.md`](windsurf/.windsurf/rules/constitution.md) - Supreme law with 13 articles, democratic parliamentary structure
-- **⚖️ Executive**: [Global Rules](windsurf/global_rules.md) - 98% autonomous implementation with centralized config validation
-- **🔍 Oversight**: Parliamentary checks & balances with judicial review and opposition challenges
-- **🎯 Precedence**: Constitution > Judicial Review > Parliamentary Consensus > Executive Implementation
+## Tri-Branch Parliamentary System
 
-### **Democratic Roles**
-**🏢 Government (Ruling Party)**:
-- **PM (Project Manager)**: Strategic leadership, policy proposals, resource allocation
-- **Dev Minister (Software Developer)**: Technical implementation, code quality oversight
-- **Tech Minister (AI Engineer)**: Innovation strategy, automation, MCP integration
+### Executive Branch (Government)
+- **Project Manager**: Strategic coordination, consensus building
+- **Development Minister**: Implementation, code quality
+- **Technology Minister**: Technical architecture, system design
 
-**🔍 Opposition (Shadow Cabinet)**:
-- **Quality Shadow (Software Tester)**: Challenge proposals, demand evidence, quality veto
-- **Innovation Shadow (Research Engineer)**: Research-based alternatives, technical challenges
-- **Analytics Shadow (Data Scientist)**: Data-driven evidence, empirical opposition
+### Legislative Branch (Opposition)
+- **Quality Shadow**: Testing, quality assurance, challenges
+- **Innovation Shadow**: Alternative approaches, research
+- **Analytics Shadow**: Data-driven validation, metrics
 
-**⚖️ Independent Judiciary**:
-- **Chief Justice (GenAI Developer)**: Constitutional compliance review, judicial veto power, precedent establishment
+### Judicial Branch
+- **Chief Justice**: Constitutional compliance, final review authority
 
-## 🤝 **Democratic Contribution Process**
+## 7-Step Democratic Process
 
-### **Parliamentary Procedure for Contributions**
-1. **Proposal** → Submit constitutional proposals with impact assessment (Issues/PRs)
-2. **Opposition Review** → Shadow cabinet challenges with evidence-based alternatives
-3. **Structured Debate** → Community discussion with consensus scoring matrices
-4. **Evidence Scoring** → Expertise-weighted voting (Technical/Strategic/Quality)
-5. **≥95% Consensus** → Democratic consensus calculation requiring super-majority
-6. **Judicial Review** → Constitutional compliance validation by maintainers
-7. **Implementation** → Merge with real-time constitutional monitoring
+1. **Proposal** → Submit PR with impact assessment
+2. **Opposition Review** → Shadows challenge with evidence
+3. **Structured Debate** → Evidence-based discussion
+4. **Evidence Scoring** → Weighted consensus calculation
+5. **>95% Consensus** → Democratic approval required
+6. **Judicial Review** → Constitutional compliance validation
+7. **Implementation** → Merge and execute with monitoring
 
-- **Issues**: Use democratic labels (proposal, challenge, judicial-review, constitutional-appeal)
-- **Pull Requests**: Include constitutional impact assessment and opposition review response
-- **Branching**: Use feature branches with constitutional compliance validation
-- **EMD Compliance**: All files ≤80 lines with deep nested folder structure
+## Contribution Guidelines
 
-## 🔄 **Constitutional Development Workflow**
+### Code Standards
+- **EMD Compliance**: ≤80 lines per file, deep nested structure
+- **Memory-Bank**: ≤100 lines per file
+- **Roadmap**: ≤200 lines, ≤12,000 characters
+- **Constitutional Compliance**: ≥80% framework adherence
 
-### **Always-Check Operations (MANDATORY)**
-Before every contribution, run appropriate validation:
-- **JavaScript/TypeScript**: `pnpm typecheck`, `npm run lint`, `next build --dry-run`
-- **Rust**: `cargo check`, `cargo clippy`, `cargo fmt --check`
-- **Python**: `python -m py_compile`, `pytest --collect-only`, `black --check`
-- **Go**: `go build`, `go test -run=^$`, `go vet`
-- **Multi-Language**: Framework auto-detection from package.json, Cargo.toml, etc.
+### Testing Requirements
+- Unit tests for new features
+- Integration tests for system changes
+- Constitutional compliance validation
+- Cross-platform compatibility (8 IDEs)
 
-### **Centralized Configuration Protocol**
-- **MANDATORY Pre-Task Scanning**: Validate `core/config/`, `models/`, `types/`, `database/config/`
-- **Anti-Duplication Protocol**: NEVER recreate existing centralized components
-- **Component Reuse Enforcement**: ALWAYS reference existing configurations
-- **Config Registry**: Active registry with validation checksums prevents hallucination
+### Documentation
+- Update relevant platform READMEs
+- Add entries to CHANGELOG.md
+- Update constitutional articles if needed
+- Include mermaid diagrams for workflows
 
-### **Memory Bank Management**
-- **Constitutional Compliance**: Read Constitution + `guide/` + `docs/` + ALL Memory Bank files
-- **Strategic Implementation**: Small steps with constitutional validation
-- **Democratic Documentation**: Update Memory Bank with parliamentary approval
-- **Pattern Learning**: Document solutions in `mistakes.md` for constitutional precedent
+## Pull Request Checklist
 
-### **MCP Integration**
-Contributions must support all 7 MCPs:
-- **byterover-mcp**: Knowledge storage and retrieval
-- **context7**: Official documentation integration
-- **fetch**: Real-time information gathering
-- **filesystem**: File operations with constitutional compliance
-- **git**: Version control with democratic oversight
-- **memory**: Persistent memory management
-- **sequential-thinking**: Structured reasoning and decision-making
+- [ ] Code follows EMD standards (≤80 lines/file)
+- [ ] Tests included and passing
+- [ ] Documentation updated
+- [ ] Constitutional compliance verified (≥80%)
+- [ ] Cross-platform tested (if applicable)
+- [ ] CHANGELOG.md updated
+- [ ] Tri-branch review completed
+- [ ] >95% consensus achieved
+- [ ] Judicial review passed
 
-## ✅ **Constitutional PR Checklist**
+## Getting Started
 
-### **Constitutional Compliance (MANDATORY)**
-- [ ] **Constitutional Review**: Read [Constitution.md](windsurf/.windsurf/rules/constitution.md) and [Global Rules](windsurf/global_rules.md)
-- [ ] **Centralized Config Validation**: Scan existing configurations before creating new ones
-- [ ] **EMD Compliance**: All files ≤80 lines with proper nested structure
-- [ ] **Democratic Impact Assessment**: Calculate business + technical + constitutional impact
+1. Fork repository
+2. Create feature branch
+3. Make changes following standards
+4. Run constitutional validation
+5. Submit PR with detailed description
+6. Engage in democratic review process
+7. Address feedback from all branches
+8. Achieve >95% consensus
+9. Pass judicial review
+10. Celebrate merge! 🎉
 
-### **Parliamentary Process**
-- [ ] **Opposition Review**: Address quality challenges and provide evidence-based responses
-- [ ] **Consensus Building**: Demonstrate ≥95% consensus support for major changes
-- [ ] **Judicial Compliance**: Ensure constitutional compliance ≥80%
-- [ ] **Parliamentary Documentation**: Update relevant Memory Bank files with democratic approval
+## Constitutional References
 
-### **Multi-IDE Compatibility**
-- [ ] **Windsurf Integration**: Test with Global Rules in Windsurf Rules panel
-- [ ] **VS Code Compatibility**: Verify with Cline, Roo, Kilo Code extensions
-- [ ] **Cursor Support**: Ensure framework compatibility
-- [ ] **JetBrains Integration**: Test with IntelliJ AI and native plugins
-- [ ] **Universal Structure**: Support both IDE-specific and universal `.ide/` folder structure
+- **Framework**: [core/constitution/](core/constitution/) - 13 Articles
+- **Global Rules**: [platforms/windsurf/global_rules.md](platforms/windsurf/global_rules.md)
+- **Platform Guides**: [platforms/](platforms/) - 8 implementations
 
-### **Quality Assurance**
-- [ ] **Real-Time Validation**: Test always-check operations for relevant programming languages
-- [ ] **Security Compliance**: No secrets committed, constitutional security validation
-- [ ] **Documentation Updates**: Update IDE-specific guides when behavior changes
-- [ ] **Pattern Learning**: Document new patterns in Memory Bank for cross-project intelligence
+## Community
 
-## 🎯 **Constitutional Development Standards**
+- **GitHub**: [AegisIDE Repository](https://github.com/Gaurav-Wankhede/AegisIDE)
+- **Issues**: Report bugs, request features
+- **Discussions**: Ask questions, share ideas
+- **Security**: See [SECURITY.md](SECURITY.md)
 
-### **EMD Architecture (Elegant Modular Design)**
-- **Core Principle**: All files ≤80 lines with deep nested folder structure
-- **Universal Structure**: `project/core/modules/feature/task_name/implementation.ext`
-- **Memory Bank Files**: ≤100 lines each (scratchpad, activeContext, progress, mistakes, etc.)
-- **Roadmap Management**: ≤200 lines & ≤12,000 characters for strategic planning
+## License
 
-### **Constitutional Code Quality**
-- **Modern Patterns**: Use constitutional validation and democratic decision-making
-- **Centralized Components**: Always reference existing configurations, never recreate
-- **Cross-Platform Solutions**: Support Linux permissions, NTFS mounts, WSL configs
-- **Framework Auto-Detection**: Smart detection from multiple package managers
-
-### **Democratic Documentation**
-- **Parliamentary Approval**: Major documentation changes require ≥95% consensus
-- **Opposition Review**: Shadow cabinet validates technical accuracy
-- **Judicial Review**: Constitutional compliance validation for all changes
-- **Precedent Establishment**: Document decisions for future consistency
-
-## 📜 **Constitutional Authority & License**
-
-### **Supreme Law**
-All contributions operate under the **Constitutional Framework for AI Agents**:
-- **Constitution**: [12 Articles of Democratic Governance](windsurf/.windsurf/rules/constitution.md)
-- **Global Rules**: [99% Autonomous Implementation](windsurf/global_rules.md)
-- **Parliamentary Procedure**: Proposal→Opposition→Debate→Consensus→Judicial Review→Implementation
-
-### **MIT License Compliance**
-By contributing, you agree that your contributions will be licensed under the MIT License. See [`LICENSE.md`](LICENSE.md).
-
-### **Constitutional Code of Conduct**
-Please read and follow our [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md). **Democratic participation**, **constitutional compliance**, and **parliamentary respect** are required.
+MIT License - See [LICENSE.md](LICENSE.md)
 
 ---
 
-## 🚀 **Quick Start for Contributors**
-
-### **For Windsurf Contributors (Recommended - 99% Autonomy)**
-1. **Load Global Rules** → Windsurf Rules panel → Constitutional authority active
-2. **Initialize Framework** → `initialize memory bank` → Provide contribution context
-3. **Follow Parliamentary Process** → Proposal → Opposition review → Consensus → Implementation
-4. **Constitutional Commands** → See [CheatSheet.md](windsurf/CheatSheet.md) for all 40+ commands
-
-### **For Other IDE Contributors**
-1. **Setup Constitutional Framework** → Copy appropriate `.ide/` structure
-2. **Run Always-Check Operations** → Language-specific validation commands
-3. **Follow EMD Compliance** → ≤80 lines per file, deep nested structure
-4. **Democratic Contribution** → Parliamentary procedure with constitutional validation
-
-**🎆 Constitutional AI Development Active** - Experience 99% autonomous capability with democratic governance!
-
----
-
-**Constitutional Compliance Active** | **Democratic Governance Enabled** | **Parliamentary Process Required** ✅
+**Thank you for contributing to democratic AI development!** 🏛️

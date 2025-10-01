@@ -1,8 +1,35 @@
 # AegisIDE Technical Status
 
 **Date**: 2025-10-01T16:22:00+05:30  
-**Version**: 2.5  
+**Version**: 2.5.0  
 **Status**: ✅ PRODUCTION READY
+
+## Autonomous Execution Workflow
+
+```mermaid
+flowchart TD
+    Start([New Session / User Message]) --> Scan[Auto-scan scratchpad.md]
+    Scan --> Check{Tasks with [ ]<br/>found?}
+    Check -->|Yes| Execute[EXECUTE IMMEDIATELY<br/>No asking permission]
+    Check -->|No| Wait[Await user input]
+    
+    Execute --> Implement[Implement task<br/>0-98% autonomy]
+    Implement --> Update[Update ALL 9 files<br/>8 memory-bank + roadmap]
+    Update --> Next[Load next task<br/>from scratchpad]
+    Next --> AutoContinue{More tasks?}
+    
+    AutoContinue -->|Yes| Execute
+    AutoContinue -->|No| Checkpoint[Save checkpoint<br/>every 10 tasks]
+    Checkpoint --> Complete([Task cycle complete])
+    
+    style Start fill:#90EE90
+    style Execute fill:#FFD700
+    style Update fill:#87CEEB
+    style Complete fill:#90EE90
+    style Wait fill:#FFB6C1
+```
+
+**Key Protocol**: At 0-98% autonomy, NEVER ask "Should I?" — Execute immediately, continue automatically until scratchpad empty.
 
 ---
 
