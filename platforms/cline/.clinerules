@@ -48,13 +48,9 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 4. Update memory-bank files
 5. Report completion
 
-**Example Pattern → Action**:
-```
-Pattern Detected: "Recommendation: Remove these 3 files as redundant..."
-Action: Execute file removal → Update memory-bank → Continue
+## Anti-Duplication Protocol (MANDATORY)
 
-Pattern Detected: "Next Steps: Could you please share LinkedIn posts..."
-Action: Skip waiting → Execute available task → Continue workflow
+**NEVER RECREATE**: ALWAYS scan existing centralized configurations BEFORE creating new ones
 ```
 
 **Rule**: If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-95% autonomy.
