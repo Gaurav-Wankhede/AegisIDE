@@ -102,6 +102,29 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Documentation Requirements**: Document all complex logic in memory-bank context files with standards
 - **Validation Before Commit**: MANDATORY language-specific validation before marking task complete
 
+### Anti-Duplication Protocol (MANDATORY)
+- **NEVER RECREATE**: ALWAYS scan existing centralized configurations BEFORE creating new ones
+- **Common Config Patterns** (scan these directories):
+  - `core/config/` - Project-wide configurations
+  - `src/*/config/` or `lib/*/config/` - Module-specific shared configs
+  - `config/` - Root-level configuration directory
+  - `shared/` or `common/` - Shared utilities and constants
+- **Common Config Files** (check for duplicates):
+  - Delays/Timeouts: `delays.*`, `timeouts.*`, `retry.*`
+  - API Settings: `api_config.*`, `endpoints.*`, `client_config.*`
+  - Concurrency: `concurrency.*`, `thread_pool.*`, `workers.*`
+  - Database: `db_config.*`, `connection.*`, `pool.*`
+  - Models/Types: Shared data structures, interfaces, schemas
+- **HALT on Violation**: Detect duplicate → Reference existing → Document in mistakes.md → Rollback creation
+- **Config Registry**: Maintain active registry of all centralized configs in systemPatterns.md
+- **Zero Tolerance**: Creating duplicate configs = immediate rollback + Chief Justice review
+- **Enforcement**: Quality Shadow automatically challenges any new config file creation
+- **Validation Commands** (multi-language):
+  - Python: `find . -path '*/config/*.py' -o -name 'delays.py' -o -name '*_config.py'`
+  - TypeScript: `find . -path '*/config/*.ts' -o -name 'delays.ts' -o -name '*Config.ts'`
+  - Rust: `find . -path '*/config/*.rs' -o -name 'delays.rs' -o -name '*_config.rs'`
+  - Go: `find . -path '*/config/*.go' -o -name 'delays.go' -o -name '*_config.go'`
+
 ### Violation Response
 **Immediate Response**:
 1. **Automatic Detection**: Systems automatically identify principle violations through context monitoring

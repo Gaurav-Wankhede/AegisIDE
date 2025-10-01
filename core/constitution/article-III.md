@@ -130,9 +130,16 @@ Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
 **Context Assembly Phase**:
 1. Read scratchpad.md (CRITICAL - immediate priorities)
 2. Read roadmap/roadmap.md (CRITICAL - strategic alignment)
-3. Read activeContext.md, mistakes.md, techContext.md (HIGH PRIORITY)
-4. Retrieve knowledge from byterover-mcp
-5. Read supporting files as needed (progress, systemPatterns)
+3. **SCAN CENTRALIZED CONFIGS** (MANDATORY - prevent duplication):
+   a. Scan common config patterns: `core/config/`, `src/*/config/`, `lib/*/config/`
+   b. Check for existing: delays, timeouts, API settings, concurrency, retry logic
+   c. Validate NO duplicate configuration files or constants exist
+   d. **HALT if duplicate detected** - reference existing config instead
+   e. Document existing configs in systemPatterns.md
+   f. Examples: delays.py/ts/rs, timeouts.py/ts/rs, api_config.py/ts/rs
+4. Read activeContext.md, mistakes.md, techContext.md (HIGH PRIORITY)
+5. Retrieve knowledge from byterover-mcp
+6. Read supporting files as needed (progress, systemPatterns)
 
 **Validation Phase** (MANDATORY - Auto-Execute):
 1. Detect project language/framework from config files

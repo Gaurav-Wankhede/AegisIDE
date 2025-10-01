@@ -14,6 +14,25 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Philosophy**: Execute all development operations autonomously. Request approval ONLY for file deletion or harmful system changes.
 
+### File Editing Hierarchy (MANDATORY)
+
+**ALWAYS use this order** when editing files:
+
+**1. Direct Edit (PRIMARY)**: Use `replace_file_content` tool first
+- Fastest and most reliable method
+- Precise line-by-line replacements
+- Execute immediately without asking
+
+**2. Filesystem MCP (FALLBACK)**: If direct edit fails
+- Use `@mcp:filesystem` tools (`mcp3_edit_file`, `mcp3_write_file`)
+- Apply only when direct edit unavailable
+
+**3. Terminal Edit (LAST RESORT)**: If both methods fail
+- Use `sed -i` (Linux/macOS) or PowerShell (Windows)
+- Requires approval for system file modifications
+
+**CRITICAL**: NEVER ask "Which method?" - Follow hierarchy at 0-98% autonomy
+
 ### Auto-Approved Commands (All Platforms)
 
 **Development Operations** (Execute Immediately):
