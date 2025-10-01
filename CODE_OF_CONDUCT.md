@@ -19,6 +19,7 @@ We pledge to maintain a **constitutional democracy** in our project community wh
 ### **Government (Ruling Party)**
 - **Respectful Leadership**: Project maintainers provide strategic guidance with transparency
 - **Technical Excellence**: Code contributions follow EMD compliance (≤80 lines per file)
+- **6 Core Protocols**: Anti-Duplication, File Editing Hierarchy (v2.6.0), Session Continuity, Multi-Language Validation, Pattern Recognition, Autonomous Startup
 - **Innovation**: Embrace always-check operations and constitutional validation
 
 ### **Opposition (Shadow Cabinet)**

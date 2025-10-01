@@ -1,7 +1,7 @@
 # AegisIDE — Constitutional Framework for Autonomous AI Development
 > **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.6.0-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.6.0-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
 
 ## 🎯 Platform Implementations
 
@@ -20,7 +20,14 @@
 
 **Core Innovation**: AI auto-generates project-specific memory-bank files (NO templates)
 
-### ✨ NEW: Multi-Language Validation Framework (v2.6.0)
+### ✨ NEW: File Editing Anti-Hallucination (v2.6.0)
+**CRITICAL FIX**: Prevents AI from trying to create files that already exist
+- Check file existence BEFORE choosing tool
+- Existing files → `replace_file_content` (Direct Edit)
+- New files → `write_to_file`
+- Eliminates hallucination errors in autonomous workflows
+
+### Multi-Language Validation Framework (v2.6.0)
 **HALT-FIX-VALIDATE Protocol** with zero-tolerance enforcement:
 - **10+ Languages**: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby, and more
 - **Auto-Detection**: Scans config files (requirements.txt, Cargo.toml, pnpm-lock.yaml, etc.)

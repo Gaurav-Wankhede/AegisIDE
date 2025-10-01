@@ -8,6 +8,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.6.0] - 2025-10-01
 
 ### Added
+- **File Editing Hierarchy Anti-Hallucination Fix**
+  - Added CRITICAL RULE: Check file existence before choosing tool
+  - Existing files MUST use `replace_file_content` (Direct Edit)
+  - New files use `write_to_file`
+  - NEVER use write_to_file on existing files (prevents hallucination error)
+  - Updated global_rules.md (11,993 chars) and Article VIII
+
 - **Multi-Language Validation Framework** with HALT-FIX-VALIDATE protocol
   - Autonomous error and warning detection across 10+ programming languages
   - Language-specific validation commands (basedpyright, cargo clippy, pnpm typecheck, etc.)

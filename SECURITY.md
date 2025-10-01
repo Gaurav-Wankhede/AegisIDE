@@ -1,6 +1,6 @@
 # Security Policy
 
-**AegisIDE v2.5.0** - Constitutional Framework Security
+**AegisIDE v2.6.0** - Constitutional Framework Security with File Editing Anti-Hallucination
 
 ## Reporting a Vulnerability
 
@@ -24,10 +24,10 @@ Please include:
 
 | Version | Supported | Status |
 |---------|-----------|--------|
-| 2.5.x   | ✅ Yes    | Current - Production Ready |
-| 2.1.x   | ✅ Yes    | Supported - Security fixes |
-| 2.0.x   | ⚠️ Limited | Critical fixes only |
-| < 2.0   | ❌ No     | Upgrade required |
+| 2.6.x   | ✅ Yes    | Current - File Editing Security Fix |
+| 2.5.x   | ✅ Yes    | Supported - Security fixes |
+| 2.1.x   | ⚠️ Limited | Critical fixes only |
+| < 2.1   | ❌ No     | Upgrade required |
 
 ## Security Features
 

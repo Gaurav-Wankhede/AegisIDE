@@ -48,6 +48,17 @@ flowchart LR
 6. **Judicial Review** → Constitutional compliance validation
 7. **Implementation** → Merge and execute with monitoring
 
+## 6 Core Protocols (MANDATORY)
+
+All contributions MUST implement these protocols:
+
+1. **Anti-Duplication Protocol**: NEVER recreate existing centralized configs
+2. **File Editing Hierarchy**: Direct Edit → Filesystem MCP → Terminal
+3. **Session Continuity**: Auto-checkpoint, auto-resume every 10 tasks
+4. **Multi-Language Validation**: HALT-FIX-VALIDATE loop (10+ languages)
+5. **Pattern Recognition**: Auto-execute recommendations without asking
+6. **Autonomous Startup**: 5-step protocol on every user message
+
 ## Contribution Guidelines
 
 ### Code Standards
@@ -55,6 +66,7 @@ flowchart LR
 - **Memory-Bank**: ≤100 lines per file
 - **Roadmap**: ≤200 lines, ≤12,000 characters
 - **Constitutional Compliance**: ≥80% framework adherence
+- **File Editing**: ALWAYS check existence, use `replace_file_content` for existing files
 
 ### Testing Requirements
 - Unit tests for new features

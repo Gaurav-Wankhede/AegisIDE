@@ -53,11 +53,13 @@
 **Indirect**: Traditional IDEs, Cloud IDEs, AI assistants
 
 **AegisIDE Advantages**:
-- ✅ 98% autonomy (highest in market)
-- ✅ Constitutional governance (unique)
-- ✅ User-controlled API keys
-- ✅ Cross-project intelligence
-- ✅ Universal IDE support (8 platforms)
+- ✅ 98% autonomy (Windsurf) - highest in market
+- ✅ 6 Core Protocols: Anti-Duplication, File Editing Hierarchy, Session Continuity, Multi-Language Validation, Pattern Recognition, Autonomous Startup
+- ✅ Constitutional governance (unique tri-branch system)
+- ✅ User-controlled API keys (no vendor lock-in)
+- ✅ Cross-project intelligence (ByteRover MCP)
+- ✅ Universal IDE support: Windsurf (98%), JetBrains (97%), Cursor (96%), Cline (95%), Roo Code (95%), Continue (94%), Aider (93%), Copilot (92%)
+- ✅ Multi-language validation (10+ languages with HALT-FIX-VALIDATE)
 
 ## 🚀 Go-to-Market Strategy
 

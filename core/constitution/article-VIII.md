@@ -16,9 +16,15 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### File Editing Hierarchy (MANDATORY)
 
+**CRITICAL RULE**: Check file existence BEFORE choosing tool:
+- **Existing File** → MUST use `replace_file_content` (Direct Edit)
+- **New File** → Use `write_to_file`
+- **NEVER use write_to_file on existing files** (causes hallucination error)
+
 **ALWAYS use this order** when editing files:
 
 **1. Direct Edit (PRIMARY)**: Use `replace_file_content` tool first
+- For ALL existing files (MANDATORY)
 - Fastest and most reliable method
 - Precise line-by-line replacements
 - Execute immediately without asking
