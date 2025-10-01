@@ -28,6 +28,36 @@
     "executionOverride": "But I should ask first = VIOLATION. Execute immediately."
   },
   
+  "patternRecognition": {
+    "critical": true,
+    "description": "When AI generates recommendations with 'Next Steps' that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY",
+    "triggerPatterns": [
+      "Recommendation: Remove/Update/Create [files]...",
+      "Next Steps: Could you please...",
+      "To proceed, I need...",
+      "Please share/provide...",
+      "Would you like me to..."
+    ],
+    "autoExecutionResponse": [
+      "Detect recommendation pattern",
+      "Extract actionable task from recommendation",
+      "EXECUTE IMMEDIATELY using implement next task logic",
+      "Update memory-bank files",
+      "Report completion"
+    ],
+    "examples": [
+      {
+        "patternDetected": "Recommendation: Remove these 3 files as redundant...",
+        "action": "Execute file removal → Update memory-bank → Continue"
+      },
+      {
+        "patternDetected": "Next Steps: Could you please share LinkedIn posts...",
+        "action": "Skip waiting → Execute available task → Continue workflow"
+      }
+    ],
+    "rule": "If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-95% autonomy"
+  },
+  
   "bootstrap": {
     "oneTime": true,
     "description": "For NEW Projects",
@@ -167,11 +197,5 @@
       "frameworkAdherence": "≥80% compliance REQUIRED",
       "roadmapTraceability": "≥95% implementations traceable to roadmap.md"
     }
-  },
-  
-  "maintainer": {
-    "name": "Gaurav Wankhede",
-    "project": "AegisIDE",
-    "repository": "https://github.com/Gaurav-Wankhede/AegisIDE"
   }
 }

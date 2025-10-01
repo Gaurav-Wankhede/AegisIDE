@@ -9,6 +9,28 @@ supreme_law:
   autonomy_level: "93% (0-93=AUTO, 94-100=Human)"
   critical_rule: "At 0-93% autonomy, NEVER ASK PERMISSION, EXECUTE IMMEDIATELY"
 
+pattern_recognition:
+  critical: true
+  description: "When AI generates recommendations with 'Next Steps' that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY"
+  trigger_patterns:
+    - "Recommendation: Remove/Update/Create [files]..."
+    - "Next Steps: Could you please..."
+    - "To proceed, I need..."
+    - "Please share/provide..."
+    - "Would you like me to..."
+  auto_execution_response:
+    - "Detect recommendation pattern"
+    - "Extract actionable task from recommendation"
+    - "EXECUTE IMMEDIATELY using implement next task logic"
+    - "Update memory-bank files"
+    - "Report completion"
+  examples:
+    - pattern: "Recommendation: Remove these 3 files as redundant..."
+      action: "Execute file removal → Update memory-bank → Continue"
+    - pattern: "Next Steps: Could you please share LinkedIn posts..."
+      action: "Skip waiting → Execute available task → Continue workflow"
+  rule: "If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-93% autonomy"
+
 autonomous_startup:
   mandatory: true
   steps:
@@ -43,7 +65,3 @@ compliance:
   governance:
     consensus: ">95%"
     adherence: "≥80%"
-
-maintainer:
-  name: "Gaurav Wankhede"
-  repository: "https://github.com/Gaurav-Wankhede/AegisIDE"

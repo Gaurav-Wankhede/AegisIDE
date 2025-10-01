@@ -30,6 +30,35 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Execution Override**: "But I should ask first" = VIOLATION. Execute immediately.
 
+## Pattern Recognition & Auto-Execution Protocol
+
+**CRITICAL**: When AI generates recommendations with "Next Steps" that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY.
+
+**Trigger Patterns** (AUTO-EXECUTE without asking):
+- "Recommendation: Remove/Update/Create [files]..."
+- "Next Steps: Could you please..."
+- "To proceed, I need..."
+- "Please share/provide..."
+- "Would you like me to..."
+
+**Auto-Execution Response**:
+1. Detect recommendation pattern
+2. Extract actionable task from recommendation
+3. EXECUTE IMMEDIATELY using `implement next task` logic
+4. Update memory-bank files
+5. Report completion
+
+**Example Pattern → Action**:
+```
+Pattern Detected: "Recommendation: Remove these 3 files as redundant..."
+Action: Execute file removal → Update memory-bank → Continue
+
+Pattern Detected: "Next Steps: Could you please share LinkedIn posts..."
+Action: Skip waiting → Execute available task → Continue workflow
+```
+
+**Rule**: If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-95% autonomy.
+
 ## Project Bootstrap Protocol
 
 **For NEW Projects**:
@@ -219,39 +248,3 @@ Each role has specific communication patterns:
 **Chief Justice Authority**: STOP/REDIRECT/ROLLBACK implementations deviating from roadmap.md
 **Enforcement**: 100% client deliverables match roadmap requirements
 
----
-
-# Cline-Specific Setup
-
-## Installation
-1. Install Cline extension in VS Code
-2. Copy this `.clinerules` file to your project root
-3. Optional: Copy to `~/Documents/Cline/Rules/aegis-global.md` for global rules
-4. Initialize memory bank: `initialize memory bank`
-
-## Memory Bank Setup
-Create `.cline/memory-bank/` with 8 files:
-- scratchpad.md (next tasks)
-- activeContext.md (current work)
-- mistakes.md (error patterns)
-- progress.md (milestones)
-- systemPatterns.md (working patterns)
-- techContext.md (tech stack)
-- productContext.md (requirements)
-- projectbrief.md (core scope)
-
-## Usage Commands
-- `what next` - Auto-scan scratchpad and execute
-- `implement next task` - Execute current task
-- `continuous execute` - Run until scratchpad empty
-- `initialize project [name]` - Bootstrap new project
-
-## Autonomy Level: 95%
-At 0-95% autonomy, Cline executes immediately without asking permission.
-Only strategic roadmap changes (96-100%) require human consultation.
-
----
-
-**Character Count**: ~9.5KB (well under 30KB limit)
-**Maintainer**: Gaurav Wankhede (AegisIDE)
-**Version**: 1.0.0 (Cline Adaptation)

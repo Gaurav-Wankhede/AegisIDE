@@ -391,10 +391,10 @@ Based on real-world usage across different AI IDEs:
 
 ## Branding & Repository
 
-### **🏷️ Official Branding (AegisIDE 2.1)**
+### **🏷️ Official Branding (AegisIDE 2.5.0)**
 - **Project Name**: AegisIDE (Constitutional Framework for AI Agents with Democratic Parliamentary Governance)
-- **Version**: 2.5 (Production Ready - 8 Platforms)
-- **Constitutional Authority**: 12 Articles of Democratic Governance with >95% Consensus Requirements
+- **Version**: 2.5.0 (Production Ready - 8 Platforms)
+- **Constitutional Authority**: 13 Articles of Democratic Governance with >95% Consensus Requirements
 - **Repository**: https://github.com/Gaurav-Wankhede/Constitutional_framework_for_Agentic_IDE
 - **Alternative**: https://github.com/Gaurav-Wankhede/AegisIDE
 - **Supreme Law**: [windsurf/.windsurf/rules/constitution.md](windsurf/.windsurf/rules/constitution.md)

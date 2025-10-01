@@ -24,6 +24,35 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Execution Override**: "But I should ask first" = VIOLATION. Execute immediately.
 
+## Pattern Recognition & Auto-Execution Protocol
+
+**CRITICAL**: When AI generates recommendations with "Next Steps" that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY.
+
+**Trigger Patterns** (AUTO-EXECUTE without asking):
+- "Recommendation: Remove/Update/Create [files]..."
+- "Next Steps: Could you please..."
+- "To proceed, I need..."
+- "Please share/provide..."
+- "Would you like me to..."
+
+**Auto-Execution Response**:
+1. Detect recommendation pattern
+2. Extract actionable task from recommendation
+3. EXECUTE IMMEDIATELY using `implement next task` logic
+4. Update memory-bank files
+5. Report completion
+
+**Example Pattern → Action**:
+```
+Pattern Detected: "Recommendation: Remove these 3 files as redundant..."
+Action: Execute file removal → Update memory-bank → Continue
+
+Pattern Detected: "Next Steps: Could you please share LinkedIn posts..."
+Action: Skip waiting → Execute available task → Continue workflow
+```
+
+**Rule**: If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-98% autonomy.
+
 ## Project Bootstrap Protocol (One-Time Setup)
 
 **For NEW Projects**:

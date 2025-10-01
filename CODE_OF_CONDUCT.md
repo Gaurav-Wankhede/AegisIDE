@@ -90,8 +90,8 @@ This Constitutional Code of Conduct applies to:
 
 **Constitutional Foundation**: Based on democratic parliamentary governance principles with judicial review
 **Inspired by**: Contributor Covenant v2.1 enhanced with constitutional AI governance
-**Supreme Authority**: [Constitution.md](windsurf/.windsurf/rules/constitution.md) - 12 Articles of AI Democratic Governance
-**Implementation Rules**: [Global Rules](windsurf/global_rules.md) - 99% Autonomous Democratic Decision-Making
+**Supreme Authority**: [Constitution.md](windsurf/.windsurf/rules/constitution.md) - 13 Articles of AI Democratic Governance
+**Implementation Rules**: [Global Rules](windsurf/global_rules.md) - 98% Autonomous Democratic Decision-Making
 
 ---
 

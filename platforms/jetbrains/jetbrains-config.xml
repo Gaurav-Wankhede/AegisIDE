@@ -34,6 +34,35 @@
     <execution-override>But I should ask first = VIOLATION. Execute immediately.</execution-override>
   </autonomous-startup>
 
+  <pattern-recognition critical="true">
+    <description>When AI generates recommendations with "Next Steps" that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY</description>
+    <trigger-patterns auto-execute="true">
+      <pattern>Recommendation: Remove/Update/Create [files]...</pattern>
+      <pattern>Next Steps: Could you please...</pattern>
+      <pattern>To proceed, I need...</pattern>
+      <pattern>Please share/provide...</pattern>
+      <pattern>Would you like me to...</pattern>
+    </trigger-patterns>
+    <auto-execution-response>
+      <step order="1">Detect recommendation pattern</step>
+      <step order="2">Extract actionable task from recommendation</step>
+      <step order="3">EXECUTE IMMEDIATELY using implement next task logic</step>
+      <step order="4">Update memory-bank files</step>
+      <step order="5">Report completion</step>
+    </auto-execution-response>
+    <examples>
+      <example>
+        <pattern-detected>Recommendation: Remove these 3 files as redundant...</pattern-detected>
+        <action>Execute file removal → Update memory-bank → Continue</action>
+      </example>
+      <example>
+        <pattern-detected>Next Steps: Could you please share LinkedIn posts...</pattern-detected>
+        <action>Skip waiting → Execute available task → Continue workflow</action>
+      </example>
+    </examples>
+    <rule>If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-97% autonomy</rule>
+  </pattern-recognition>
+
   <bootstrap one-time="true">
     <description>For NEW Projects</description>
     <step order="1">Create .idea/aegis/rules/constitution/ folder</step>
@@ -148,10 +177,4 @@
       <roadmap-traceability>≥95% implementations traceable to roadmap.md</roadmap-traceability>
     </governance>
   </compliance>
-
-  <maintainer>
-    <name>Gaurav Wankhede</name>
-    <project>AegisIDE</project>
-    <repository>https://github.com/Gaurav-Wankhede/AegisIDE</repository>
-  </maintainer>
 </aegis-framework>

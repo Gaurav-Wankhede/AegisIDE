@@ -1,14 +1,14 @@
 # Contributing to AegisIDE Constitutional Framework
 
-**Democratic Parliamentary Governance for AI Development** - 99% Autonomous Operation
+**Democratic Parliamentary Governance for AI Development** - 98% Autonomous Operation
 
 Thank you for contributing to the world's first **Constitutional Framework for AI Agents** with **democratic parliamentary governance**!
 
 ## 🏛️ **Constitutional Governance Model**
 
 ### **Three-Branch Parliamentary System**
-- **📜 Constitution**: [`.windsurf/rules/constitution.md`](windsurf/.windsurf/rules/constitution.md) - Supreme law with 12 articles, democratic parliamentary structure
-- **⚖️ Executive**: [Global Rules](windsurf/global_rules.md) - 99% autonomous implementation with centralized config validation
+- **📜 Constitution**: [`.windsurf/rules/constitution.md`](windsurf/.windsurf/rules/constitution.md) - Supreme law with 13 articles, democratic parliamentary structure
+- **⚖️ Executive**: [Global Rules](windsurf/global_rules.md) - 98% autonomous implementation with centralized config validation
 - **🔍 Oversight**: Parliamentary checks & balances with judicial review and opposition challenges
 - **🎯 Precedence**: Constitution > Judicial Review > Parliamentary Consensus > Executive Implementation
 

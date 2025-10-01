@@ -30,6 +30,35 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Execution Override**: "But I should ask first" = VIOLATION. Execute immediately.
 
+## Pattern Recognition & Auto-Execution Protocol
+
+**CRITICAL**: When AI generates recommendations with "Next Steps" that ask for user input, AUTO-EXECUTE the recommendation IMMEDIATELY.
+
+**Trigger Patterns** (AUTO-EXECUTE without asking):
+- "Recommendation: Remove/Update/Create [files]..."
+- "Next Steps: Could you please..."
+- "To proceed, I need..."
+- "Please share/provide..."
+- "Would you like me to..."
+
+**Auto-Execution Response**:
+1. Detect recommendation pattern
+2. Extract actionable task from recommendation
+3. EXECUTE IMMEDIATELY using `implement next task` logic
+4. Update memory-bank files
+5. Report completion
+
+**Example Pattern → Action**:
+```
+Pattern Detected: "Recommendation: Remove these 3 files as redundant..."
+Action: Execute file removal → Update memory-bank → Continue
+
+Pattern Detected: "Next Steps: Could you please share LinkedIn posts..."
+Action: Skip waiting → Execute available task → Continue workflow
+```
+
+**Rule**: If recommendation is based on best practices and reasoning, EXECUTE IMMEDIATELY at 0-96% autonomy.
+
 ## Project Bootstrap Protocol
 
 **For NEW Projects**:
@@ -218,49 +247,3 @@ EVERY RESPONSE (New Session OR Continuation):
 **Enforcement**: 100% client deliverables match roadmap requirements
 **Compliance**: ≥95% roadmap traceability mandatory
 
----
-
-# Cursor-Specific Setup
-
-## Installation
-1. Install Cursor IDE
-2. Create `.cursor/` folder in your project
-3. Copy this file to project root as `project-rules.md`
-4. Also save as `.cursorrules` for legacy compatibility
-5. Initialize memory bank: `initialize memory bank`
-
-## Memory Bank Setup
-Create `.cursor/memory-bank/` with 8 files:
-- scratchpad.md (next tasks, auto-scanned)
-- activeContext.md (current work, session state)
-- mistakes.md (error patterns)
-- progress.md (milestones)
-- systemPatterns.md (working patterns)
-- techContext.md (tech stack)
-- productContext.md (requirements)
-- projectbrief.md (core scope)
-
-Create `roadmap/roadmap.md` for strategic planning (≤200 lines, ≤12KB)
-
-## Usage Commands
-- `what next` - Auto-scan scratchpad and execute first task
-- `implement next task` - Execute current task, update files, continue
-- `continuous execute` - Run until scratchpad empty (30+ hours)
-- `initialize project [name]` - Bootstrap new project with framework
-
-## Cursor Advantages
-- **Built-in AI**: Native AI integration for seamless framework execution
-- **Config Registry**: Supports centralized configuration management
-- **Real-time Validation**: Continuous constitutional compliance monitoring
-- **Universal Support**: Works across all file types and languages
-
-## Autonomy Level: 96%
-At 0-96% autonomy, Cursor AI executes immediately without asking permission.
-Only strategic roadmap changes (97-100%) require human consultation.
-
----
-
-**Character Count**: ~11.8KB (optimal for Cursor)
-**Maintainer**: Gaurav Wankhede (AegisIDE)
-**Version**: 1.0.0 (Cursor Adaptation)
-**Repository**: https://github.com/Gaurav-Wankhede/AegisIDE
