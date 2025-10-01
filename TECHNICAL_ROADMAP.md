@@ -9,7 +9,7 @@
 ```mermaid
 flowchart TD
     Start([New Session / User Message]) --> Scan[Auto-scan scratchpad.md]
-    Scan --> Check{Tasks with [ ]<br/>found?}
+    Scan --> Check{Incomplete tasks<br/>found?}
     Check -->|Yes| Execute[EXECUTE IMMEDIATELY<br/>No asking permission]
     Check -->|No| Wait[Await user input]
     
