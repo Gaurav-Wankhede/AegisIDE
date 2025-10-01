@@ -17,10 +17,10 @@ flowchart LR
     Compliant -->|No| Revise
     Revise --> Exec
     
-    style PR fill:#87CEEB
-    style Consensus fill:#FFD700
-    style Merge fill:#90EE90
-    style Revise fill:#FFB6C1
+    style PR fill:#2196F3,stroke:#0D47A1,stroke-width:3px,color:#fff
+    style Consensus fill:#FF9800,stroke:#E65100,stroke-width:3px,color:#000
+    style Merge fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    style Revise fill:#E91E63,stroke:#AD1457,stroke-width:3px,color:#fff
 ```
 
 ## Tri-Branch Parliamentary System

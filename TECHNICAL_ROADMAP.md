@@ -22,11 +22,11 @@ flowchart TD
     AutoContinue -->|No| Checkpoint[Save checkpoint<br/>every 10 tasks]
     Checkpoint --> Complete([Task cycle complete])
     
-    style Start fill:#90EE90
-    style Execute fill:#FFD700
-    style Update fill:#87CEEB
-    style Complete fill:#90EE90
-    style Wait fill:#FFB6C1
+    style Start fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
+    style Execute fill:#FF9800,stroke:#E65100,stroke-width:3px,color:#000
+    style Update fill:#2196F3,stroke:#0D47A1,stroke-width:3px,color:#fff
+    style Complete fill:#66BB6A,stroke:#388E3C,stroke-width:3px,color:#fff
+    style Wait fill:#E91E63,stroke:#AD1457,stroke-width:3px,color:#fff
 ```
 
 **Key Protocol**: At 0-98% autonomy, NEVER ask "Should I?" — Execute immediately, continue automatically until scratchpad empty.
