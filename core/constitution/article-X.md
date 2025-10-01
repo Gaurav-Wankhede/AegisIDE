@@ -54,7 +54,7 @@ All 9 MCP servers auto-called WITHOUT user prompting based on task requirements
 - **JavaScript/TypeScript**: NPM/PNPM integration with auto-linting
 - **Python**: Pip/Poetry integration with pytest validation
 - **Go**: Go modules integration with build validation
-- **Framework Compliance**: All languages follow EMD ≤80 lines standard
+- **Framework Compliance**: All languages follow EMD ≤10,000 characters standard
 
 ### MCP Security & Reliability
 - All MCP calls logged in systemPatterns.md

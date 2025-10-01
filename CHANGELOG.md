@@ -5,6 +5,52 @@ All notable changes to AegisIDE - Constitutional Framework for Autonomous AI Dev
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0] - 2025-10-01
+
+### Added
+- **Multi-Language Validation Framework** with HALT-FIX-VALIDATE protocol
+  - Autonomous error and warning detection across 10+ programming languages
+  - Language-specific validation commands (basedpyright, cargo clippy, pnpm typecheck, etc.)
+  - Zero-tolerance enforcement: 100% validation pass required before next task
+  - Auto-detection of project language from config files (requirements.txt, Cargo.toml, pnpm-lock.yaml, etc.)
+  - HALT-FIX-VALIDATE loop: Error → HALT → @mcp:context7 → Fix → Re-validate → Continue
+  - Validation checkpoints at 4 stages: pre-implementation, during, post-implementation, pre-commit
+
+- **Enhanced Constitutional Articles**
+  - **Article XIII**: Multi-language debugging protocols with Chief Justice authority to HALT on errors/warnings
+  - **Article IV**: Language-specific quality standards with autonomous error resolution
+  - **Article III**: Mandatory validation checkpoints integrated into development workflow
+  - **Article II**: Validation-weighted consensus scoring (Chief Justice 35% for validation decisions)
+
+- **Language Support Matrix** (10+ Languages)
+  - **Python**: `basedpyright .` (primary), `python -m py_compile`, `pytest --collect-only`
+  - **Rust**: `cargo check --all-targets`, `cargo clippy -- -D warnings`
+  - **TypeScript (PNPM)**: `pnpm typecheck`, `pnpm lint`
+  - **TypeScript (NPM)**: `npx tsc --noEmit`, `npm run lint`
+  - **Go**: `go build ./...`, `go vet ./...`
+  - **Java (Maven)**: `mvn compile`, `mvn test-compile`
+  - **Java (Gradle)**: `./gradlew compileJava`
+  - **C#**: `dotnet build --no-restore`, `dotnet format --verify-no-changes`
+  - **PHP**: `php -l`, `composer validate --strict`, `phpstan analyse`
+  - **Ruby**: `ruby -c`, `bundle exec rubocop --dry-run`
+
+### Changed
+- **Global Rules** updated with multi-language validation section (10,869 chars, under 12K limit)
+- **Core Commands** enhanced with validation steps:
+  - `what next`: Added VALIDATE step in 10-step workflow
+  - `implement next task`: Added pre/post validation in 8-step workflow
+  - New commands: `validate project`, `fix errors` with autonomous loops
+- **Terminal Safety** updated to auto-approve validation commands (basedpyright, pnpm typecheck, etc.)
+- **Autonomy Matrix** enhanced with autonomous language detection and error fixing
+- **Compliance Requirements** updated: Zero errors/warnings tolerance added
+
+### Technical Implementation
+- Validation authority distributed across tri-branch system
+- Chief Justice override power to HALT any implementation with errors/warnings
+- Autonomous error resolution using @mcp:context7 official documentation
+- Post-implementation validation checkpoint blocks next task until 100% clean
+- Human escalation only after 3 failed auto-fix attempts
+
 ## [2.5.0] - 2025-10-01
 
 ### Added

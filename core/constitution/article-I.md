@@ -19,7 +19,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Technology Minister**: Manages technical architecture via techContext.md, designs system integration, optimizes automation
 
 **Legislative Branch (Opposition Review Authority)**:
-- **Quality Shadow**: Challenges implementation quality through structured opposition, validates EMD compliance (≤80 lines), ensures adherence, provides alternatives
+- **Quality Shadow**: Challenges implementation quality through structured opposition, validates EMD compliance (≤10,000 chars), ensures adherence, provides alternatives
 - **Innovation Shadow**: Explores alternative approaches through research, investigates new technologies via context7 MCP, provides innovation recommendations
 - **Analytics Shadow**: Validates decisions with metrics from progress.md, provides data-driven insights, measures performance, ensures roadmap alignment
 

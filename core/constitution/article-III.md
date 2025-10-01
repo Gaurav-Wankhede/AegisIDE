@@ -30,8 +30,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - Compress history in progress.md (keep last 3 milestones)
 - Delete stale information from all files
 
-### Memory-Bank Context System (MANDATORY - Auto-Generated)
-**8 Core Files** (≤100 lines each, created via `initialize memory bank`):
+### Memory-Bank Context System (MANDATORY)
+**8 Core Files** (≤100 lines each):
 - `activeContext.md` - Current implementation status and active tasks
 - `scratchpad.md` - Immediate priority tasks and error fixes
 - `mistakes.md` - Error patterns, lessons learned, instant lint tracking
@@ -41,13 +41,11 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - `productContext.md` - Business requirements and alignment
 - `projectbrief.md` - Core requirements and project overview
 
-**Initialization**: Describe project → Run `initialize memory bank` → AI generates all files
-
 **Strategic Files**:
 - `roadmap/roadmap.md` - Strategic roadmap (≤200 lines, ≤12,000 characters)
 - `templates/` - Implementation patterns aligned with scratchpad/roadmap
 
-**EMD Structure**: Files ≤80 lines, deep nested folders
+**EMD Structure**: Files ≤10,000 characters, deep nested folders
 
 ### Autonomous Memory-Bank Maintenance
 **Line Limit Enforcement**: Each memory-bank file MUST stay ≤100 lines for optimal context awareness
@@ -60,22 +58,49 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 5. Remove stale information no longer relevant
 
 ### Core Commands
-**`what next`**: Read memory-bank (8 files) + roadmap → update scratchpad → EXECUTE IMMEDIATELY WITHOUT ASKING
-**`implement next task`**: Read scratchpad → validate laws → implement → auto-update all files → CONTINUE
+**`what next`**: Read scratchpad → Update → Clean → EXECUTE → AUTO-CONTINUOUS (never wait for human)
+**`implement next task`**: Execute current → Update files → AUTO-CONTINUE to next (never wait for human)
 **`continuous execute`**: Enter 30-hour mode - NEVER STOP until scratchpad empty
 **`update memory bank`**: Manual refresh of all 8 memory-bank files
 **`update roadmap`**: Manual refresh of roadmap/roadmap.md
 **`session status`**: Report execution metrics without stopping workflow
 
+### "what next" Workflow (MANDATORY - AUTO-CONTINUOUS)
+```
+1. Read scratchpad.md (check all [ ] tasks)
+2. Update scratchpad with next priority task
+3. Clean completed tasks and older parts (keep ≤100 lines)
+4. EXECUTE next task immediately (no permission)
+5. Update all 9 memory-bank files
+6. AUTO-TRIGGER continuous execute (DO NOT WAIT for human)
+7. Continue until scratchpad empty
+```
+
+**CRITICAL**: "what next" ALWAYS enters continuous execute mode. NEVER ask to continue.
+
+### "implement next task" Workflow (MANDATORY - AUTO-CONTINUOUS)
+```
+1. Execute current task from scratchpad
+2. Update all 9 memory-bank files
+3. Load next [ ] task from scratchpad
+4. AUTO-EXECUTE next task (DO NOT WAIT for human)
+5. Repeat until scratchpad empty
+```
+
+**CRITICAL**: "implement next task" ALWAYS auto-continues. NEVER ask "Should I continue?"
+
 ### Workflow Loop (CONTINUOUS 30+ HOURS)
 ```
 Context Assembly (Priority Order) →
 Validation (Laws + EMD) →
+Language Detection →
+Pre-Implementation Validation →
 Executive Proposal →
 Legislative Opposition →
 Judicial Review →
 >95% Consensus →
 EXECUTE IMMEDIATELY →
+Post-Implementation Validation →
 Context Update (ALL 9 files) →
 Load Next Task →
 EXECUTE IMMEDIATELY →
@@ -92,7 +117,8 @@ REPEAT CONTINUOUSLY
 - **Autonomous MCP Integration**: Auto-call @mcp servers WITHOUT user prompting
 - **Performance Monitoring**: Continuous monitoring through structured memory-bank updates
 - **Security Validation**: Ongoing compliance with framework and cross-platform safety
-- **EMD Structural Standards**: Enforcement of ≤80 lines code, ≤100 lines memory-bank
+- **EMD Structural Standards**: Enforcement of ≤10,000 chars code, ≤100 lines memory-bank
+- **Multi-Language Validation**: Auto-detect language and run framework-specific checks
 
 ### Instant Error Resolution Protocol
 Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
@@ -108,19 +134,46 @@ Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
 4. Retrieve knowledge from byterover-mcp
 5. Read supporting files as needed (progress, systemPatterns)
 
-**Validation Phase**:
-- Verify task links to roadmap milestone
-- Check mistakes.md for similar past errors
-- Validate against project laws in `.windsurf/rules/laws/`
-- Confirm EMD compliance (≤80 lines)
+**Validation Phase** (MANDATORY - Auto-Execute):
+1. Detect project language/framework from config files
+2. Run language-specific validation commands
+3. HALT if errors/warnings detected
+4. Auto-fix using @mcp:context7 official documentation
+5. Re-validate until 100% clean
+6. Verify task links to roadmap milestone
+7. Check mistakes.md for similar past errors
+8. Validate against project laws in `.windsurf/rules/laws/`
+9. Confirm EMD compliance (≤10,000 characters)
+
+**Language Detection Matrix**:
+- Python: `requirements.txt`, `pyproject.toml`, `*.py` → Run `basedpyright .`
+- Rust: `Cargo.toml`, `*.rs` → Run `cargo check --all-targets`
+- TypeScript (PNPM): `pnpm-lock.yaml` → Run `pnpm typecheck`
+- TypeScript (NPM): `package-lock.json` → Run `npx tsc --noEmit`
+- Go: `go.mod`, `*.go` → Run `go build ./...`
+- Java (Maven): `pom.xml` → Run `mvn compile`
+- Java (Gradle): `build.gradle` → Run `./gradlew compileJava`
+- C#: `*.csproj`, `*.sln` → Run `dotnet build --no-restore`
+- PHP: `composer.json` → Run `php -l` + `composer validate`
+- Ruby: `Gemfile` → Run `ruby -c` + `bundle exec rubocop`
 
 ### Post-Implementation Protocol (MANDATORY)
+**Validation Checkpoint** (Execute BEFORE memory-bank updates):
+1. Run language-specific validation suite
+2. IF errors/warnings found:
+   - HALT immediately
+   - Log in mistakes.md
+   - Auto-call @mcp:context7 for fixes
+   - Implement corrections
+   - Re-validate until clean
+3. ONLY proceed after 100% validation pass
+
 **Update ALL 9 Files**:
 1. scratchpad.md (remove completed, add new priorities)
 2. activeContext.md (current status update)
-3. mistakes.md (if errors encountered)
+3. mistakes.md (if errors encountered during validation)
 4. progress.md (milestone completion)
-5. systemPatterns.md (successful patterns)
+5. systemPatterns.md (successful patterns and validation results)
 6. techContext.md (technical changes)
 7. productContext.md (feature updates)
 8. projectbrief.md (scope refinements)
@@ -129,4 +182,4 @@ Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
 **Store Knowledge**: Auto-call byterover-mcp to store patterns
 **Verify Compliance**: Check all files ≤100 lines, trigger auto-cleanup if needed
 
-**PENALTY**: If updates incomplete, next task BLOCKED until compliance verified
+**PENALTY**: If validation fails OR updates incomplete, next task BLOCKED until compliance verified

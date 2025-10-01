@@ -1,7 +1,7 @@
 # AegisIDE — Constitutional Framework for Autonomous AI Development
 > **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.5.0-blue)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.6.0-blue)]()
 
 ## 🎯 Platform Implementations
 
@@ -19,6 +19,14 @@
 ## 🏛️ Framework Architecture
 
 **Core Innovation**: AI auto-generates project-specific memory-bank files (NO templates)
+
+### ✨ NEW: Multi-Language Validation Framework (v2.6.0)
+**HALT-FIX-VALIDATE Protocol** with zero-tolerance enforcement:
+- **10+ Languages**: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby, and more
+- **Auto-Detection**: Scans config files (requirements.txt, Cargo.toml, pnpm-lock.yaml, etc.)
+- **Zero Tolerance**: 100% validation pass required before next task
+- **Autonomous**: Error → HALT → @mcp:context7 → Fix → Re-validate → Continue
+- **4 Checkpoints**: Pre-implementation, during, post-implementation, pre-commit
 
 ### Three-Branch Parliamentary System
 Based on 13 constitutional articles in [core/constitution/](core/constitution/):
@@ -81,6 +89,8 @@ See platform-specific setup guides in `platforms/*/README.md`
 
 | Command | Purpose |
 |---------|---------|
+| `validate project` | Run language-specific validation suite |
+| `fix errors` | Autonomous HALT-FIX-VALIDATE error resolution |
 | `what next` | Auto-scan scratchpad → Execute first task |
 | `implement next task` | Execute current → Update files → Continue |
 | `clean memory bank` | Remove completed tasks, prevent pollution |
