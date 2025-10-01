@@ -105,21 +105,26 @@ cd Constitutional_framework_for_Agentic_IDE
 # Step 1: Copy Global Rules to Windsurf IDE
 # 1. Open Windsurf IDE → Customizations → Rules tab
 # 2. Click "+ Workspace" to add new rule
-# 3. Copy entire content from windsurf/global_rules.md
+# 3. Copy entire content from platforms/windsurf/global_rules.md
 # 4. Paste into "Global Rules" section in Windsurf Rules panel
 # 5. Set Rule Name: "Global Rules: How We Work Together **Constitutional Authority**"
 # 6. Save the rule
 
 # Step 2: Copy .windsurf folder to your project
-cp -r windsurf/.windsurf /path/to/your/project/
+cp -r platforms/windsurf/project/.windsurf /path/to/your/project/
 ```
 
 ### **For Other IDEs (VS Code, Cursor, JetBrains):**
 ```bash
-# Manual setup for any IDE
-mkdir -p .vscode/memory-bank/roadmap  # or .cursor, .idea/aegis
-cp common/universal_constitution.md .vscode/constitution.md
-cp common/universal_global_rules.md .vscode/global_rules.md
+# Copy platform-specific configuration to your project
+# Cursor:
+cp platforms/cursor/.cursorrules /path/to/your/project/
+
+# Cline:
+cp platforms/cline/.clinerules /path/to/your/project/
+
+# JetBrains:
+cp platforms/jetbrains/jetbrains-config.xml /path/to/your/project/.idea/
 ```
 
 #### **Step 3: Initialize & Activate Constitutional Framework**
@@ -168,9 +173,8 @@ These commands work across all supported AI IDEs:
 
 ### **🏛️ Constitutional Commands**
 > **📋 Complete Command Reference**: For all 40+ constitutional commands with detailed usage instructions, see:
-> - **[Windsurf CheatSheet](windsurf/CheatSheet.md)** - Complete constitutional command reference
-> - **[Cursor CheatSheet](cursor/CheatSheet.md)** - Cursor-specific constitutional commands
-> - **[Cline CheatSheet](cline/CheatSheet.md)** - Cline constitutional command reference
+> - **[Windsurf CheatSheet](platforms/windsurf/CheatSheet.md)** - Complete constitutional command reference
+> - **Platform-Specific Setup**: See each platform's README in `platforms/` directory
 
 **Key Command Categories:**
 - **🏛️ Parliamentary Commands**: `propose-change`, `challenge-proposal`, `conduct-debate`, `calculate-consensus`, `judicial-review`
@@ -318,26 +322,57 @@ flowchart TD
 
 ```
 AegisIDE-2.5/
-├── windsurf/                              # Windsurf Implementation (98% Autonomy)
-│   ├── .windsurf/
-│   │   ├── rules/constitution.md          # Supreme Constitutional Law (13 Articles)
-│   │   ├── memory-bank/                   # Constitutional Memory Bank (≤100 lines)
-│   │   └── workflows/                     # Parliamentary Oversight Procedures
-│   ├── global_rules.md                    # Executive Implementation (98% Autonomous)
-│   └── CheatSheet.md                      # 40+ Constitutional Commands
-├── cursor/                                # Cursor Implementation (96% Autonomy)
-│   ├── .cursor/rules/constitution.md      # Cursor Constitutional Framework
-│   └── global_rules.mdc                   # Cursor Executive Rules
-├── cline/                                 # Cline Implementation (95% Autonomy)
-│   ├── .clinerules/rules/constitution.md  # Cline Constitutional Framework
-│   └── global_rules.md                    # Cline Executive Rules
-├── common/                               # Universal Framework Files
-│   ├── universal_constitution.md          # Cross-IDE Constitutional Base
-│   ├── vscode/                            # VS Code Extensions (95% Autonomy)
-│   └── intellij/                          # JetBrains IDEs (97% Autonomy)
+├── core/                                   # Core Constitutional Framework
+│   ├── constitution/                       # 13 Constitutional Articles
+│   │   ├── article-I.md                    # Autonomous Democratic Governance
+│   │   ├── article-II.md                   # Decision Making with Context Engineering
+│   │   ├── article-III.md                  # Development Workflow
+│   │   └── ... (article-IV through article-XIII)
+│   ├── laws/                               # Language-Specific Laws
+│   │   ├── ai-agents.md                    # AI agent best practices
+│   │   ├── python.md                       # Python development rules
+│   │   ├── javascript.md, typescript.md    # JS/TS standards
+│   │   ├── rust.md, java.md                # Systems languages
+│   │   └── ... (14 language-specific files)
+│   └── README.md                           # Core framework documentation
+├── platforms/                              # 8 Platform Implementations
+│   ├── windsurf/                           # Windsurf (98% Autonomy)
+│   │   ├── global_rules.md                 # Executive implementation
+│   │   ├── CheatSheet.md                   # 40+ commands
+│   │   ├── README.md                       # Setup guide
+│   │   └── project/.windsurf/              # Template structure
+│   ├── cursor/                             # Cursor (96% Autonomy)
+│   │   ├── .cursorrules                    # Single-file config
+│   │   └── README.md
+│   ├── cline/                              # Cline (95% Autonomy)
+│   │   ├── .clinerules                     # Single-file config
+│   │   └── README.md
+│   ├── jetbrains/                          # JetBrains (97% Autonomy)
+│   │   ├── jetbrains-config.xml            # XML configuration
+│   │   └── README.md
+│   ├── roo-code/                           # Roo Code (95% Autonomy)
+│   │   └── roo-mode-constitutional.json
+│   ├── continue/                           # Continue.dev (94% Autonomy)
+│   │   └── .continuerc.json
+│   ├── aider/                              # Aider (93% Autonomy)
+│   │   └── .aider.conf.yml
+│   └── copilot/                            # GitHub Copilot (92% Autonomy)
+│       └── README.md                       # Documentation-only
+├── docs/                                   # Project Documentation
+│   ├── CONTRIBUTOR_GUIDE_CONSTITUTION_TEMPLATES.md
+│   ├── INITIALIZATION_GUIDE.md
+│   ├── PLATFORM_COMPARISON.md
+│   └── SELF_DEBUG_REPORT.md
+├── Language Specific Rules/                # Legacy (moved to core/laws/)
+├── BUSINESS_MODEL.md                      # Open source community model
+├── CHANGELOG.md                           # Version history and updates
 ├── CODE_OF_CONDUCT.md                     # Constitutional Code of Conduct
+├── COMMUNITY_IMPACT.md                    # Global developer empowerment
 ├── CONTRIBUTING.md                        # Democratic Contribution Process
-└── setup.sh                              # Multi-IDE Constitutional Setup
+├── LICENSE.md                             # MIT License
+├── README.md                              # This file
+├── SECURITY.md                            # Security policy and reporting
+└── TECHNICAL_ROADMAP.md                   # Production readiness status
 ```
 
 ## Performance Metrics
@@ -415,8 +450,8 @@ This democratic parliamentary framework builds upon and extends the pioneering w
 - **Parliamentary Democracy Theory** - Three-branch government system adapted for AI agents
 
 **Constitutional References**:
-- **Supreme Law**: [Constitution.md](windsurf/.windsurf/rules/constitution.md) - 13 Articles of Democratic Governance
-- **Executive Implementation**: [Global Rules](windsurf/global_rules.md) - 98% Autonomous Operation Guidelines
+- **Supreme Law**: [Constitution](core/constitution/) - 13 Articles of Democratic Governance
+- **Executive Implementation**: [Global Rules](platforms/windsurf/global_rules.md) - 98% Autonomous Operation Guidelines
 - **Cline Memory Bank**: https://github.com/nickbaumann98/cline_docs
 - **Cline Documentation**: https://docs.cline.bot/improving-your-prompting-skills/cline-memory-bank
 
@@ -433,9 +468,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 Choose your IDE and get started with up to **98% autonomous AI development** under **constitutional parliamentary governance**:
 
-• **[Windsurf (98% Autonomy)](windsurf/)** - Native parliamentary integration with Global Rules
-• **[JetBrains (97% Autonomy)](common/intellij/)** - Multi-language constitutional framework
-• **[Cursor (96% Autonomy)](cursor/)** - Built-in AI with constitutional governance
-• **[VS Code/Cline (95% Autonomy)](common/vscode/)** - Universal constitutional support
+• **[Windsurf (98% Autonomy)](platforms/windsurf/)** - Native parliamentary integration with Global Rules
+• **[JetBrains (97% Autonomy)](platforms/jetbrains/)** - Multi-language constitutional framework
+• **[Cursor (96% Autonomy)](platforms/cursor/)** - Built-in AI with constitutional governance
+• **[VS Code/Cline (95% Autonomy)](platforms/cline/)** - Universal constitutional support
 
 **🎆 Constitutional AI Development Active** - Experience democratic governance, real-time quality assurance, and intelligent decision-making with **AegisIDE 2.5**!
