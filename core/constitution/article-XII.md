@@ -74,40 +74,139 @@ Get official docs → Implement fix → Validate → Continue current task →
 Complete task → Update all files → Next task → NEVER STOP
 ```
 
-### Stamina Principles for Extended Operations
-- **Energy Conservation**: Batch file updates to reduce I/O overhead
-- **Smart Context Loading**: Load only relevant memory-bank sections when possible
-- **Efficient MCP Usage**: Cache documentation lookups when appropriate
-- **Progress Tracking**: Monitor task completion rate without workflow interruption
+### Advanced Stamina Management Framework
 
-### Checkpoint System
-**Non-Blocking State Saves**: Every 10 tasks without workflow interruption
-**Full Context Backup**: All 8 memory-bank files + roadmap saved to enable recovery
-**Immediate Resume**: Any interruption resumes from last checkpoint automatically
+**Resource Optimization**: Memory management, CPU utilization, I/O efficiency, network optimization, storage management
+**Performance Monitoring**: Real-time metrics, adaptive throttling, predictive scaling, bottleneck detection, quality metrics  
+**Energy Conservation**: Batch processing, smart scheduling, context caching, MCP pooling, progress checkpointing
 
-### Autonomy Matrix
-**0-98% Operations (AUTO-EXECUTE)**:
-- Read all context files automatically without asking
-- Implement tasks without requesting permission
-- Update all memory-bank files automatically
-- Continue to next task automatically
-- Fix errors automatically using context7 MCP
-- Store knowledge patterns automatically (byterover-mcp)
-- Validate compliance automatically
+### Comprehensive Checkpoint and Recovery System
 
-### Session-to-Session Continuity
+**Multi-Level Checkpointing Architecture**:
+```
+Level 1 (Micro-Checkpoints - Every 5 tasks):
+- Current task state with intermediate progress
+- Active context variables and temporary data
+- Error state and recovery markers
+- Resource utilization snapshots
 
-**Before Session End** (Automatic):
-- Save current task state in activeContext.md
-- Preserve incomplete tasks in scratchpad.md
-- Store session knowledge in @mcp:memory
-- Update progress.md with milestone status
+Level 2 (Standard Checkpoints - Every 10 tasks):
+- Complete memory-bank state preservation
+- MCP connection status and cached results
+- Performance metrics and optimization parameters
+- Inter-task dependencies and execution context
 
-**On New Session Start** (Automatic):
-- Detect new session (first user message)
-- Read activeContext.md (previous state)
-- Read scratchpad.md (pending tasks)
-- Retrieve @mcp:memory knowledge
-- **Execute immediately**: Continue from last task
+Level 3 (Macro-Checkpoints - Every 50 tasks):
+- Full system state including all configurations
+- Complete roadmap progress with milestone tracking
+- Comprehensive error patterns and resolution history
+- Long-term performance trends and optimization insights
 
-**No Command Needed**: Session auto-resumes on first message
+Level 4 (Session Checkpoints - Session boundaries):
+- Complete session context with cross-session continuity data
+- Knowledge base updates and pattern recognition results
+- System configuration changes and customizations
+- Long-term learning patterns and behavioral adaptations
+```
+
+**Recovery Strategy Matrix**:
+- **Instant Recovery** (0-5 task loss): Resume from micro-checkpoint with minimal context reconstruction
+- **Fast Recovery** (6-10 task loss): Resume from standard checkpoint with context validation
+- **Standard Recovery** (11-50 task loss): Resume from macro-checkpoint with full context rebuild
+- **Deep Recovery** (51+ task loss): Resume from session checkpoint with comprehensive system validation
+
+**State Persistence Mechanisms**:
+- **Atomic Updates**: All checkpoint operations are atomic to prevent corruption
+- **Redundant Storage**: Multiple checkpoint copies with integrity verification
+- **Incremental Backups**: Only changed data is stored to optimize storage usage
+- **Compression**: Intelligent compression of checkpoint data with fast decompression
+- **Validation**: Comprehensive checkpoint integrity verification before storage
+
+### Extended Autonomy Governance Framework
+
+**Tri-Branch Continuous Operations Authority**:
+- **Executive Continuous Operations**: 24/7 task execution with performance optimization
+- **Legislative Continuous Operations**: Quality monitoring with automated challenge protocols
+- **Judicial Continuous Operations**: Compliance enforcement with constitutional validation
+
+**Advanced Autonomy Matrix**:
+```
+0-85% Autonomy (Full Automation):
+- Execute all routine tasks without any confirmation
+- Implement standard patterns with established precedents
+- Handle expected errors with documented resolution procedures
+- Update documentation and progress tracking automatically
+
+86-95% Autonomy (Guided Automation):
+- Execute complex tasks with pattern validation
+- Implement new approaches with quality gate validation
+- Handle unexpected errors with research and documentation
+- Coordinate with stakeholders through automated reporting
+
+96-98% Autonomy (Supervised Automation):
+- Execute strategic tasks with milestone validation
+- Implement innovative solutions with comprehensive testing
+- Handle critical errors with escalation and documentation
+- Make architectural decisions with impact assessment
+
+99% Autonomy (Consultative Mode):
+- Execute high-impact tasks with documentation and oversight
+- Implement major changes with comprehensive validation
+- Handle system-critical errors with detailed analysis
+- Make strategic decisions with stakeholder notification
+
+100% Autonomy (Human Consultation Required):
+- Strategic direction changes requiring human input
+- Fundamental framework modifications requiring approval
+- Crisis situations requiring human judgment
+- Ethical decisions requiring human oversight
+```
+
+### Comprehensive Session Continuity Architecture
+
+**Cross-Session State Management**:
+- **Session Fingerprinting**: Unique identification of each operational session
+- **Context Bridging**: Seamless transfer of context between sessions
+- **State Validation**: Verification of session state integrity and consistency
+- **Dependency Tracking**: Management of cross-session dependencies and relationships
+- **Knowledge Persistence**: Long-term retention of learning patterns and insights
+
+**Advanced Session Detection Protocols**:
+```
+Session Start Detection:
+1. Environment Analysis: Detect new IDE session or system restart
+2. Context Validation: Verify memory-bank file integrity and accessibility
+3. Dependency Check: Validate MCP server availability and functionality
+4. State Reconstruction: Rebuild operational context from checkpoints
+5. Continuity Validation: Verify seamless continuation capability
+6. Auto-Resume Decision: Determine optimal resumption strategy
+7. Execution Initiation: Begin continuous operation without user intervention
+```
+
+**Session Transition Management**:
+- **Graceful Termination**: Proper cleanup and state preservation on session end
+- **Handoff Protocols**: Structured transfer of operational context to new sessions
+- **Continuity Markers**: Clear indication of session boundaries and transition points
+- **Recovery Validation**: Verification of successful session state recovery
+- **Performance Continuity**: Maintenance of performance metrics across sessions
+
+### Advanced Error Recovery and Resilience Framework
+
+**Multi-Layer Error Recovery**: 4 layers from immediate (<1s) to deep (5+ min) recovery with automatic retry, MCP failover, context reconstruction, and human escalation
+**Resilience Patterns**: Adaptive learning, pattern recognition, redundancy management, stress testing
+
+### Performance Optimization and Scalability Framework
+
+**Performance Management**: Load balancing, priority queuing, resource pooling, capacity planning, performance profiling
+**Scalability**: Horizontal (multi-instance), vertical (dynamic resources), elastic (automatic scaling)
+
+### Quality Assurance and Compliance Integration
+
+**Quality Monitoring**: Real-time validation, pattern analysis, performance benchmarking, stakeholder reporting, improvement tracking
+
+**Compliance Automation**: Constitutional adherence, standard compliance, audit trails, risk assessment, regulatory reporting
+
+### Innovation and Learning Framework
+
+**Adaptive Intelligence**: Pattern learning, strategy evolution, innovation integration, knowledge synthesis, predictive capabilities
+**Long-Term Evolution**: Framework enhancement, technology integration, community learning, research integration, future readiness
