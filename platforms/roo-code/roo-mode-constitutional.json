@@ -116,7 +116,8 @@
         "X: 9 MCP servers integration",
         "XI: Compliance enforcement",
         "XII: 30-hour continuous operation",
-        "XIII: Roadmap supremacy, judicial debugging"
+        "XIII: Roadmap supremacy, judicial debugging",
+        "XIV: Blueprint & Autonomous Development (blueprint.json, userflow.json, kanban.json, bugfix.json)"
       ]
     },
     "mcpServers": {
@@ -157,9 +158,9 @@
   },
   
   "commands": {
-    "init": "Initialize OR restore project → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)",
+    "init": "Initialize OR restore project → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)",
     "next": "Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues",
-    "update": "Refresh ALL 13 files with latest context",
+    "update": "Refresh ALL 17 files with latest context",
     "validate": "Blueprint 6-pillar scoring + Language-specific tests",
     "fix": "HALT-FIX-VALIDATE loop for all errors/warnings until 100% clean",
     "status": "Complete progress report (tasks, bugs, metrics, consensus)",

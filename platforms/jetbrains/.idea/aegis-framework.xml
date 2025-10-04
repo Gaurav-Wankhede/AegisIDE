@@ -79,6 +79,7 @@
         <article id="XI">Compliance enforcement</article>
         <article id="XII">30-hour continuous operation with session continuity</article>
         <article id="XIII">Roadmap supremacy, judicial debugging</article>
+        <article id="XIV">Blueprint & Autonomous Development (blueprint.json, userflow.json, kanban.json, bugfix.json)</article>
       </constitution>
       
       <mcp-integration>
@@ -108,9 +109,9 @@
     </architecture>
     
     <commands>
-      <command name="init">Initialize OR restore project → Auto-generates ALL 13 files</command>
+      <command name="init">Initialize OR restore project → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)</command>
       <command name="next">Execute next task → Auto-detects scratchpad OR kanban → Auto-continues</command>
-      <command name="update">Refresh ALL 13 files with latest context</command>
+      <command name="update">Refresh ALL 17 files with latest context</command>
       <command name="validate">Blueprint 6-pillar scoring + Language-specific tests</command>
       <command name="fix">HALT-FIX-VALIDATE loop until 100% clean</command>
       <command name="status">Progress report (tasks, bugs, metrics, consensus)</command>

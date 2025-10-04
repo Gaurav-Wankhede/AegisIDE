@@ -9,7 +9,7 @@
     {
       "name": "init",
       "description": "Initialize OR restore project",
-      "prompt": "Initialize project (new OR existing) → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)"
+      "prompt": "Initialize project (new OR existing) → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint: blueprint.json, userflow.json, kanban.json, bugfix.json)"
     },
     {
       "name": "next",

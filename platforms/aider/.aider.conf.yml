@@ -117,9 +117,9 @@ architecture:
     memory_bank: ".aider/memory-bank/"
 
 commands:
-  init: "Initialize OR restore project → Auto-generates ALL 13 files"
+  init: "Initialize OR restore project → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)"
   next: "Execute next task → Auto-detects scratchpad OR kanban → Auto-continues"
-  update: "Refresh ALL 13 files with latest context"
+  update: "Refresh ALL 17 files with latest context"
   validate: "Blueprint 6-pillar scoring + Language-specific tests"
   fix: "HALT-FIX-VALIDATE loop until 100% clean"
   status: "Progress report (tasks, bugs, metrics, consensus)"

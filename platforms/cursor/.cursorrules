@@ -160,6 +160,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Article XI** - Compliance enforcement
 **Article XII** - 30-hour continuous operation with session continuity
 **Article XIII** - Roadmap supremacy, judicial debugging
+**Article XIV** - Blueprint & Autonomous Development (blueprint.json, userflow.json, kanban.json, bugfix.json)
 
 ### MCP Integration (9 Servers - Auto-Call)
 - **@mcp:context7**: Official docs on ANY error
@@ -196,7 +197,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Strategic**: roadmap/roadmap.md (SUPREME authority)
 
 ## Core Commands (v2.6.2 - Unified)
-**`init`**: Initialize project (new OR existing) → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)
+**`init`**: Initialize project (new OR existing) → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)
 **`next`**: Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues
 **`update`**: Refresh ALL 13 files with latest context
 **`validate`**: Blueprint 6-pillar scoring + Language-specific tests
@@ -215,7 +216,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 EVERY RESPONSE:
 1. Auto-scan scratchpad.md OR kanban.json for tasks
 2. If found → EXECUTE IMMEDIATELY (no asking)
-3. Update ALL 13 files (8 .md + 4 .json + roadmap)
+3. Update ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)
 4. Load next task automatically
 5. EXECUTE IMMEDIATELY (no asking)
 6. Repeat until tasks empty
