@@ -3,7 +3,7 @@
   <component name="AegisIDE">
     <framework>
       <name>Constitutional Framework for Autonomous AI Development</name>
-      <version>2.5</version>
+      <version>2.6.2</version>
       <autonomy>97</autonomy>
       <description>
         Democratic governance framework with tri-branch system achieving 97% autonomy
@@ -108,10 +108,14 @@
     </architecture>
     
     <commands>
-      <command name="what next">Auto-scan scratchpad → Execute first task → Continue</command>
-      <command name="implement next task">Execute current → Update files → Next task</command>
-      <command name="continuous execute">NEVER STOP until scratchpad empty (30-hour mode)</command>
-      <command name="initialize memory bank">Complete project setup with MCP activation</command>
+      <command name="init">Initialize OR restore project → Auto-generates ALL 13 files</command>
+      <command name="next">Execute next task → Auto-detects scratchpad OR kanban → Auto-continues</command>
+      <command name="update">Refresh ALL 13 files with latest context</command>
+      <command name="validate">Blueprint 6-pillar scoring + Language-specific tests</command>
+      <command name="fix">HALT-FIX-VALIDATE loop until 100% clean</command>
+      <command name="status">Progress report (tasks, bugs, metrics, consensus)</command>
+      <command name="optimize">Analyze patterns → Propose improvements</command>
+      <command name="health">Monitor attention budget, context rot, file integrity</command>
     </commands>
     
     <terminal-safety>

@@ -1,30 +1,50 @@
 {
   "name": "AegisIDE Constitutional Framework",
-  "version": "2.5",
+  "version": "2.6.2",
   "platform": "Continue.dev (VS Code/JetBrains Extension)",
   "autonomy": 94,
   "description": "Democratic governance framework achieving 94% autonomy through tri-branch system",
   
   "customCommands": [
     {
-      "name": "initialize-framework",
-      "description": "Initialize Constitutional AI Framework",
-      "prompt": "Initialize memory bank after user describes project requirements"
+      "name": "init",
+      "description": "Initialize OR restore project",
+      "prompt": "Initialize project (new OR existing) → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)"
     },
     {
-      "name": "what-next",
-      "description": "Auto-scan scratchpad and execute next task",
-      "prompt": "Read scratchpad.md, execute first unchecked task immediately, continue automatically"
+      "name": "next",
+      "description": "Execute next task (auto-continues)",
+      "prompt": "Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues"
     },
     {
-      "name": "implement-next-task",
-      "description": "Execute current task and update all files",
-      "prompt": "Execute current task, update all 9 memory-bank files, load next task, continue"
+      "name": "update",
+      "description": "Refresh all 13 files",
+      "prompt": "Refresh ALL 13 files with latest context"
     },
     {
-      "name": "continuous-execute",
-      "description": "30-hour continuous execution mode",
-      "prompt": "NEVER STOP until scratchpad empty - execute tasks continuously"
+      "name": "validate",
+      "description": "Check quality + blueprint",
+      "prompt": "Blueprint 6-pillar scoring + Language-specific tests"
+    },
+    {
+      "name": "fix",
+      "description": "Auto-fix errors/warnings",
+      "prompt": "HALT-FIX-VALIDATE loop for all errors/warnings until 100% clean"
+    },
+    {
+      "name": "status",
+      "description": "Progress report",
+      "prompt": "Complete progress report (tasks, bugs, metrics, consensus)"
+    },
+    {
+      "name": "optimize",
+      "description": "Improve architecture",
+      "prompt": "Analyze patterns → Propose improvements (requires >95% consensus)"
+    },
+    {
+      "name": "health",
+      "description": "System monitoring",
+      "prompt": "Monitor attention budget, context rot, file integrity"
     }
   ],
   

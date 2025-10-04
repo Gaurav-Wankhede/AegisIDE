@@ -1,6 +1,6 @@
-# AegisIDE Constitutional Framework for Cursor
+# AegisIDE Constitutional Framework for Cursor v2.6.2
 # Autonomous AI Development System - 96% Autonomy
-# Optimal Character Limit: 12KB
+# Session Resume + 8 Unified Commands + 9 MCP Servers
 
 ---
 
@@ -195,22 +195,31 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Strategic**: roadmap/roadmap.md (SUPREME authority)
 
-## Core Commands
-**`what next`**: Auto-scan scratchpad → Execute first task → Continue
-**`implement next task`**: Execute current → Update files → Next task
-**`continuous execute`**: NEVER STOP until scratchpad empty (30-hour mode)
-**`initialize project [name]`**: Bootstrap new project with framework
+## Core Commands (v2.6.2 - Unified)
+**`init`**: Initialize project (new OR existing) → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)
+**`next`**: Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues
+**`update`**: Refresh ALL 13 files with latest context
+**`validate`**: Blueprint 6-pillar scoring + Language-specific tests
+**`fix`**: HALT-FIX-VALIDATE loop for all errors/warnings
+**`status`**: Complete progress report (tasks, bugs, metrics, consensus)
+**`optimize`**: Analyze patterns → Propose improvements
+**`health`**: Monitor attention budget, context rot, file integrity
+
+## Session Resume Protocol (v2.6.2)
+**Existing Projects**: AI auto-scans `.windsurf/memory-bank/`, loads 13 files (8 .md + 4 .json + roadmap), resumes automatically. **Just type: `next`**
+
+**Zero Manual Input**: Existing projects with memory-bank just open IDE → Auto-resumes
 
 ## Continuous Execution Protocol (30+ Hours)
 ```
-EVERY RESPONSE (New Session OR Continuation):
-1. Auto-scan scratchpad.md for [ ] incomplete tasks
+EVERY RESPONSE:
+1. Auto-scan scratchpad.md OR kanban.json for tasks
 2. If found → EXECUTE IMMEDIATELY (no asking)
-3. Update ALL 9 files (8 memory-bank + roadmap)
-4. Load next task from scratchpad
+3. Update ALL 13 files (8 .md + 4 .json + roadmap)
+4. Load next task automatically
 5. EXECUTE IMMEDIATELY (no asking)
-6. Repeat until scratchpad empty
-7. Checkpoint every 10 tasks (session continuity)
+6. Repeat until tasks empty
+7. Checkpoint every 10 tasks
 ```
 
 **Session Recovery**: On new session → Read activeContext + scratchpad → Resume execution

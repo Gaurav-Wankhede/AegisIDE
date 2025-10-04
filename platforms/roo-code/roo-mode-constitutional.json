@@ -1,6 +1,6 @@
 {
   "name": "Constitutional Framework Mode",
-  "version": "2.5",
+  "version": "2.6.2",
   "platform": "Roo Code (VS Code Extension)",
   "autonomy": 95,
   "description": "Democratic governance framework achieving 95% autonomy through tri-branch system",
@@ -157,10 +157,14 @@
   },
   
   "commands": {
-    "whatNext": "Auto-scan scratchpad → Execute first task → Continue",
-    "implementNextTask": "Execute current → Update files → Next task",
-    "continuousExecute": "NEVER STOP until scratchpad empty (30-hour mode)",
-    "initializeMemoryBank": "Complete project setup with MCP activation"
+    "init": "Initialize OR restore project → Auto-generates ALL 13 files (8 .md + 4 .json + roadmap)",
+    "next": "Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues",
+    "update": "Refresh ALL 13 files with latest context",
+    "validate": "Blueprint 6-pillar scoring + Language-specific tests",
+    "fix": "HALT-FIX-VALIDATE loop for all errors/warnings until 100% clean",
+    "status": "Complete progress report (tasks, bugs, metrics, consensus)",
+    "optimize": "Analyze patterns → Propose improvements (requires >95% consensus)",
+    "health": "Monitor attention budget, context rot, file integrity"
   },
   
   "terminalSafety": {

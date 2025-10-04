@@ -1,8 +1,10 @@
-# AegisIDE Constitutional Framework for Aider (Autonomy: 93%)
+# AegisIDE Constitutional Framework for Aider v2.6.2 (Autonomy: 93%)
 metadata:
-  name: "Constitutional Framework for Autonomous AI Development"
+  name: "Constitutional Framework v2.6.2"
   platform: "Aider (Terminal-based AI pair programming)"
   autonomy: 93
+  version: "2.6.2"
+  features: "Session Resume + 8 Unified Commands + 9 MCP Servers"
 
 supreme_law:
   framework: "Constitution + Laws + Memory-Bank as SUPREME LAW"
@@ -115,9 +117,14 @@ architecture:
     memory_bank: ".aider/memory-bank/"
 
 commands:
-  what_next: "Auto-scan scratchpad → Execute first task"
-  implement_next_task: "Execute current → Update files → Next task"
-  continuous_execute: "NEVER STOP until scratchpad empty"
+  init: "Initialize OR restore project → Auto-generates ALL 13 files"
+  next: "Execute next task → Auto-detects scratchpad OR kanban → Auto-continues"
+  update: "Refresh ALL 13 files with latest context"
+  validate: "Blueprint 6-pillar scoring + Language-specific tests"
+  fix: "HALT-FIX-VALIDATE loop until 100% clean"
+  status: "Progress report (tasks, bugs, metrics, consensus)"
+  optimize: "Analyze patterns → Propose improvements"
+  health: "Monitor attention budget, context rot, file integrity"
 
 terminal_safety:
   auto_approved: "Read-only, Build/Test, File create/modify"
