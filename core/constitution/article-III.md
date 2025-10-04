@@ -22,15 +22,15 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Memory-Bank Context System (MANDATORY - Auto-Generated)
 
-**8 Core Files** (≤100 lines each, created via `initialize memory bank`):
-- `activeContext.md` - Current implementation status, event-driven task tracking
-- `scratchpad.md` - Immediate priority tasks with immutable event history
-- `mistakes.md` - Error patterns as event stream, instant lint tracking
-- `progress.md` - Development milestones with compressed historical context
-- `systemPatterns.md` - Architecture patterns, successful implementation events
-- `techContext.md` - Technical stack with MCP-enriched documentation links
-- `productContext.md` - Business requirements and alignment metrics
-- `projectbrief.md` - Core requirements and project scope
+**8 Core Files** (≤100 lines via `initialize memory bank`):
+- `activeContext.md` - Implementation status, task tracking
+- `scratchpad.md` - Priority tasks, immutable history
+- `mistakes.md` - Error patterns, lint tracking
+- `progress.md` - Milestones, compressed context
+- `systemPatterns.md` - Architecture patterns, events
+- `techContext.md` - Stack with MCP-enriched docs
+- `productContext.md` - Business requirements, metrics
+- `projectbrief.md` - Core requirements, scope
 
 **Initialization**: Describe project → Run `initialize memory bank` → AI generates all files
 
@@ -50,36 +50,36 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Core Commands
 
-**`init`**: Auto-detect project state → IF memory-bank exists: restore session → IF missing: generate ALL files (8 .md + 4 .json + roadmap) → For new: from description → For existing: 6-phase reverse-engineering → Enable autonomous workflow
+**`init`**: Auto-detect state → IF exists: restore → IF missing: generate ALL (8 .md + 4 .json + roadmap) → Enable workflow
 
-**`next`**: Read scratchpad OR kanban (auto-detect) → VALIDATE → Execute current task → VALIDATE → Update ALL files → AUTO-CONTINUE to next task → NEVER STOP until empty
+**`next`**: Read scratchpad/kanban → VALIDATE → Execute → Update ALL → AUTO-CONTINUE → NEVER STOP
 
-**`update`**: Refresh ALL files (8 .md + 4 .json + roadmap) with dynamic prioritization
+**`update`**: Refresh ALL files (8 .md + 4 .json + roadmap)
 
-**`validate`**: Re-score 6 pillars + Run tests (cargo check, pnpm typecheck, pytest) → Report compliance
+**`validate`**: Re-score 6 pillars + Run tests → Report compliance
 
-**`fix`**: HALT-FIX-VALIDATE loop → Auto-call @mcp:context7 → Update bugfix.json → 100% clean
+**`fix`**: HALT-FIX-VALIDATE → @mcp:context7 → Update bugfix.json → 100% clean
 
-**`status`**: Report tasks, bugs, progress %, blocked items, consensus, metrics - no workflow stop
+**`status`**: Report tasks, bugs, progress, blocked, consensus, metrics
 
-**`optimize`**: Analyze systemPatterns.md → Identify bottlenecks → Propose improvements (>95% consensus)
+**`optimize`**: Analyze systemPatterns → Identify bottlenecks → Propose (>95%)
 
-**`health`**: Monitor attention budget, context rot, signal-to-noise, JSON integrity, file sizes
+**`health`**: Monitor attention, context rot, signal-to-noise, JSON, file sizes
 
 ### "next" Workflow
 
 ```
-1. Calculate attention budget (0-100%)
-2. Auto-detect: Read scratchpad.md OR kanban.json
-3. Load blueprint.json for prioritization
-4. Dynamic context loading by task type
-5. Update task files with next priority
-6. Clean completed, maintain history (≤100 lines)
-7. VALIDATE → EXECUTE immediately
-8. Update ALL 13 files with attention optimization
-9. Create immutable snapshot
-10. AUTO-LOAD next task
-11. Continue until empty OR context rot
+1. Calculate attention budget
+2. Read scratchpad.md OR kanban.json
+3. Load blueprint.json
+4. Dynamic context loading
+5. Update task files
+6. Clean completed (≤100 lines)
+7. VALIDATE → EXECUTE
+8. Update ALL 13 files
+9. Create snapshot
+10. AUTO-LOAD next
+11. Continue until empty/rot
 ```
 
 **CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. Works with markdown OR JSON files automatically.
@@ -168,16 +168,16 @@ REPEAT CONTINUOUSLY
 
 ### Core Capabilities
 
-- **Attention Optimization**: Dynamic token allocation
-- **Context Rot Prevention**: n² monitoring, auto-compression
-- **Event-Driven Updates**: Immutable snapshots
-- **Tool-Context Feedback**: MCP auto-enriches files
-- **Signal-to-Noise**: Measurable efficiency
-- **Stateless Reducer**: Unified state
-- **Dynamic Priority**: Task-adaptive assembly
-- **Quality Gates**: Tri-branch validation
-- **Autonomous MCP**: Auto-call @mcp
-- **Multi-Language**: Auto-detect framework checks
+- Attention optimization: Dynamic tokens
+- Context rot prevention: n² monitoring
+- Event-driven updates: Immutable snapshots
+- Tool-context feedback: MCP enrichment
+- Signal-to-noise: Measurable efficiency
+- Stateless reducer: Unified state
+- Dynamic priority: Task-adaptive
+- Quality gates: Tri-branch validation
+- Autonomous MCP: Auto-call
+- Multi-language: Auto-detect checks
 
 ### Error Resolution Protocol
 
@@ -214,23 +214,23 @@ ONLY continue after 100% clean
 8. Read supporting files as needed (progress, systemPatterns - 18% attention)
 9. Skip reference files unless specifically needed (productContext, projectbrief - 7% attention)
 
-**Validation Phase** (MANDATORY - Auto-Execute):
-1. Detect project language/framework from config files
-2. Run language-specific validation commands
-3. HALT if errors/warnings detected (zero tolerance)
-4. Auto-fix using @mcp:context7 official documentation
-5. Re-validate until 100% clean
-6. Verify task links to roadmap milestone
-7. Check mistakes.md event stream for similar past errors
-8. Validate against project laws in `.windsurf/rules/laws/`
-9. Confirm EMD compliance (≤10,000 characters per file)
+**Validation**:
+1. Detect language/framework
+2. Run validation commands
+3. HALT on errors (zero tolerance)
+4. Auto-fix via @mcp:context7
+5. Re-validate to 100%
+6. Verify roadmap link
+7. Check mistakes.md
+8. Validate laws
+9. Confirm EMD ≤10K
 
 ### Post-Implementation Protocol
 
-**Validation Checkpoint** (Execute BEFORE context updates):
-1. Run language-specific validation suite
-2. IF errors/warnings found → HALT → Log → Auto-call @mcp:context7 → Fix → Re-validate
-3. ONLY proceed after 100% validation pass
+**Validation Checkpoint**:
+1. Run validation suite
+2. IF errors → HALT → @mcp:context7 → Fix → Re-validate
+3. Proceed only at 100%
 
 **Update ALL 9 Files**:
 1. scratchpad.md - Remove completed, add priorities
