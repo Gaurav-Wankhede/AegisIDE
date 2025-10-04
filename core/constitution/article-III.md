@@ -92,14 +92,21 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ```
 1. Scan .windsurf/memory-bank/ directory
-2. IF memory-bank EXISTS with 13 files:
-   a. Validate file integrity (schema compliance, file sizes)
-   b. Load all 13 files into context
-   c. Resume workflow: "Session restored from memory-bank"
+2. **MANDATORY**: Scan .windsurf/ for 4 blueprint JSON files (blueprint.json, userflow.json, kanban.json, bugfix.json)
+3. IF memory-bank EXISTS (8 .md files) AND all 4 blueprint JSON files exist:
+   a. Validate file integrity (schema compliance, file sizes, JSON structure)
+   b. Load all 17 files into context (8 .md + 4 blueprint .json + roadmap + 4 other .json)
+   c. Resume workflow: "Session restored: 17 files loaded (8 .md + 4 blueprint + roadmap)"
    d. Auto-trigger 'next' command
-   e. SKIP steps 3-16 (already initialized)
+   e. SKIP steps 4-20 (already initialized)
 
-3. IF memory-bank MISSING OR incomplete:
+4. **CRITICAL**: IF memory-bank EXISTS BUT ANY blueprint JSON missing (even 1 of 4):
+   a. **HALT session restore** - cannot proceed without blueprints
+   b. **MANDATORY blueprint generation** for existing project
+   c. Jump to step 12b (reverse-engineer all 4 blueprints)
+   d. **BLOCKING**: DO NOT auto-trigger 'next' until all 4 JSON files created
+
+5. IF memory-bank MISSING OR incomplete (<8 .md files):
    a. Scan project directory for existing code/config files
    b. Auto-detect: New project (empty) OR Existing project (has code)
 
@@ -114,19 +121,29 @@ IF NEW PROJECT:
 16a. Trigger parliamentary approval (>95% consensus)
 
 IF EXISTING PROJECT:
-9b. Scan codebase (framework, language, file sizes, complexity)
-10b. Run `fix` to detect existing errors → populate bugfix.json
-11b. Reverse-engineer blueprint.json from README + existing features (may be <70 score)
-12b. Extract userflow.json from routing/navigation code
-13b. Generate kanban.json from TODO comments + bugs + improvements
-14b. Generate 8 memory-bank .md files from current codebase state
-15b. Create roadmap/roadmap.md from incomplete features + TODOs
-16b. Generate improvement plan to reach minimum viable quality
+12b. **MANDATORY BLUEPRINT GENERATION** (NO EXCEPTIONS - BLOCKING STEP):
+   - Scan codebase: framework detection, language analysis, file structure, complexity assessment
+   - **Step 1/4**: Run `fix` command → detect all errors/warnings → **CREATE bugfix.json** with current issues (MANDATORY)
+   - **Step 2/4**: Reverse-engineer **blueprint.json**: analyze README, existing features, 6-pillar scoring (may score <70 for existing projects) (MANDATORY)
+   - **Step 3/4**: Extract **userflow.json**: parse routing, navigation patterns, user journey mapping (MANDATORY)
+   - **Step 4/4**: Generate **kanban.json**: extract TODO comments, parse bugfix.json, identify improvements (MANDATORY)
+   - **VERIFICATION CHECKPOINT**: Confirm all 4 JSON files exist with valid structure before proceeding
+13b. Generate 8 memory-bank .md files from current codebase analysis (if any missing)
+14b. Create roadmap/roadmap.md from incomplete features, TODOs, technical debt (if missing)
+15b. Generate quality improvement plan based on blueprint.json scoring + bugfix.json issues
+16b. **FINAL VERIFICATION - 17 FILES TOTAL**: 8 .md + 4 blueprint .json (blueprint, userflow, kanban, bugfix) + roadmap.md + 4 other .json
+17b. **ONLY THEN** enable autonomous workflow → Auto-trigger 'next' command
 
-17. Enable autonomous workflow → Auto-trigger "next" command
+18. **BLOCKING GATE**: Verify 17 files exist before enabling autonomous mode
+19. Enable autonomous workflow ONLY after blueprint verification passes
+20. Auto-trigger "next" command → begin execution from kanban.json or scratchpad.md
 ```
 
-**CRITICAL**: "init" handles BOTH new and existing projects automatically. Single command, zero duplication.
+**CRITICAL RULES**: 
+- "init" handles BOTH new and existing projects - single command, zero duplication
+- **EXISTING PROJECTS**: Blueprint JSON generation is MANDATORY and BLOCKING - cannot proceed without all 4 files
+- **SESSION RESTORE**: Only possible with complete 17-file structure (8 .md + 4 blueprint .json + roadmap + 4 other .json)
+- **VERIFICATION**: AI must explicitly confirm "17 files verified" before auto-triggering 'next' command
 
 
 ### Workflow Loop with MCP Integration (CONTINUOUS 30+ HOURS)
