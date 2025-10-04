@@ -215,7 +215,7 @@ AegisIDE-2.5/
 
 ## 🏷️ Project Information
 
-**Version**: 2.6.2 (Production Ready - October 2024)  
+**Version**: 2.6.2 (Production Ready - October 2025)  
 **License**: MIT  
 **Repository**: https://github.com/Gaurav-Wankhede/AegisIDE
 
