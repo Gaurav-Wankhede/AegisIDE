@@ -12,11 +12,11 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### 2025 Context Engineering Principles
 
-**Attention Budget**: Finite n² token capacity. Intelligent curation required.
-**Context Rot Prevention**: Model degrades as context grows. Maintain signal-to-noise via compression.
-**Event-Driven Context**: Immutable stream (Git-like). Snapshots for rollback.
-**Stateless Reducer**: Unified execution/business state. Single source of truth.
-**Tool-Context Feedback**: MCP auto-enriches files with structured insights.
+**Attention Budget**: Finite n² token capacity. Intelligent curation.
+**Context Rot Prevention**: Model degrades with growth. Maintain signal-to-noise.
+**Event-Driven**: Immutable stream. Snapshots for rollback.
+**Stateless Reducer**: Unified execution/business state.
+**Tool-Context Feedback**: MCP auto-enriches files.
 
 **Attention Allocation (100%)**: CRITICAL (45%): scratchpad 25%, activeContext 20% | HIGH (30%): mistakes 15%, roadmap 15% | SUPPORTING (18%): techContext 10%, progress 8% | REFERENCE (7%): systemPatterns 4%, productContext 2%, projectbrief 1% | Dynamic rebalancing by task type.
 
@@ -40,15 +40,15 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **EMD Structure**: Files ≤10,000 characters, deep nested folders
 
-### Autonomous Memory-Bank Maintenance with Context Rot Prevention
+### Autonomous Memory-Bank Maintenance
 
-**Line Limit Enforcement**: Each file MUST stay ≤100 lines for optimal attention budget preservation.
+**Line Limit**: Files ≤100 lines for attention budget.
 
-**Auto-Cleanup** (file >100 lines): Check count+density → Archive older → Keep 3-5 recent → Compress history → Remove stale → Snapshot for rollback
+**Auto-Cleanup** (>100 lines): Check density → Archive old → Keep 3-5 recent → Compress → Remove stale → Snapshot
 
-**Signal-to-Noise**: Measure relevance/token → Compress low-impact → Preserve high-signal → Delete irrelevant
+**Signal-to-Noise**: Measure relevance → Compress low-impact → Preserve high-signal → Delete irrelevant
 
-### Core Commands (Unified - No Duplication)
+### Core Commands
 
 **`init`**: Auto-detect project state → IF memory-bank exists: restore session → IF missing: generate ALL files (8 .md + 4 .json + roadmap) → For new: from description → For existing: 6-phase reverse-engineering → Enable autonomous workflow
 
@@ -66,7 +66,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **`health`**: Monitor attention budget, context rot, signal-to-noise, JSON integrity, file sizes
 
-### "next" Workflow (UNIFIED AUTO-CONTINUOUS)
+### "next" Workflow
 
 ```
 1. Calculate attention budget (0-100%)
@@ -142,7 +142,7 @@ IF EXISTING PROJECT:
 - **VERIFICATION**: AI must explicitly confirm "17 files verified" before auto-triggering 'next' command
 
 
-### Workflow Loop with MCP Integration (CONTINUOUS 30+ HOURS)
+### Workflow Loop
 
 ```
 Context Assembly (Attention-Prioritized) →
@@ -166,20 +166,20 @@ REPEAT CONTINUOUSLY
 
 **CRITICAL**: At 0-98% autonomy, agent NEVER stops after one task. Automatically continues until scratchpad.md empty or 100% decision encountered.
 
-### Core Capabilities with 2025 Context Engineering
+### Core Capabilities
 
-- **Attention Optimization**: Dynamic token allocation by task relevance
-- **Context Rot Prevention**: n² monitoring with auto-compression
-- **Event-Driven Updates**: Immutable snapshots preserving history
-- **Tool-Context Feedback**: MCP auto-enriches files with insights
-- **Signal-to-Noise**: Measurable efficiency with optimization
-- **Stateless Reducer**: Unified state in single context
-- **Dynamic Priority**: Task-adaptive assembly for optimal attention
-- **Quality Gates**: Tri-branch validation at every stage
-- **Autonomous MCP**: Auto-call @mcp without prompting
-- **Multi-Language**: Auto-detect and run framework checks
+- **Attention Optimization**: Dynamic token allocation
+- **Context Rot Prevention**: n² monitoring, auto-compression
+- **Event-Driven Updates**: Immutable snapshots
+- **Tool-Context Feedback**: MCP auto-enriches files
+- **Signal-to-Noise**: Measurable efficiency
+- **Stateless Reducer**: Unified state
+- **Dynamic Priority**: Task-adaptive assembly
+- **Quality Gates**: Tri-branch validation
+- **Autonomous MCP**: Auto-call @mcp
+- **Multi-Language**: Auto-detect framework checks
 
-### Instant Error Resolution with Context Integration
+### Error Resolution Protocol
 
 Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
 ```
@@ -194,7 +194,7 @@ Validation → Re-run checks →
 ONLY continue after 100% clean
 ```
 
-**Tool-Context Loop**: MCP auto-enriches files with reusable patterns for future reference.
+**Tool-Context Loop**: MCP auto-enriches files with reusable patterns.
 
 ### Pre-Implementation Protocol (MANDATORY - Context Optimized)
 
@@ -225,30 +225,30 @@ ONLY continue after 100% clean
 8. Validate against project laws in `.windsurf/rules/laws/`
 9. Confirm EMD compliance (≤10,000 characters per file)
 
-### Post-Implementation Protocol (MANDATORY - Event-Driven)
+### Post-Implementation Protocol
 
 **Validation Checkpoint** (Execute BEFORE context updates):
 1. Run language-specific validation suite
 2. IF errors/warnings found → HALT → Log → Auto-call @mcp:context7 → Fix → Re-validate
 3. ONLY proceed after 100% validation pass
 
-**Update ALL 9 Files as Event Stream**:
-1. scratchpad.md - Remove completed (preserve as event history), add new priorities
-2. activeContext.md - Current status update with event timestamp
-3. mistakes.md - Error events with MCP-enriched solution patterns
-4. progress.md - Milestone completion events with metrics
-5. systemPatterns.md - Successful patterns from MCP feedback loops
-6. techContext.md - Technical changes with auto-enriched documentation links
-7. productContext.md - Feature updates with business impact metrics
-8. projectbrief.md - Scope refinements as requirement events
-9. roadmap/roadmap.md - Strategic progress with milestone advancement
+**Update ALL 9 Files**:
+1. scratchpad.md - Remove completed, add priorities
+2. activeContext.md - Status with timestamp
+3. mistakes.md - Errors with MCP solutions
+4. progress.md - Milestones with metrics
+5. systemPatterns.md - Patterns from MCP feedback
+6. techContext.md - Changes with enriched docs
+7. productContext.md - Features with impact
+8. projectbrief.md - Scope refinements
+9. roadmap.md - Strategic progress
 
-**MCP Knowledge Storage**: Auto-call @mcp:byterover-mcp to store cross-project patterns (cloud backup), @mcp:memory for local unlimited storage (primary)
+**Storage**: @mcp:memory (local primary), @mcp:byterover-mcp (cloud backup)
 
-**Context Health Verification**:
-- Check all files ≤100 lines, trigger auto-cleanup if exceeded
-- Measure signal-to-noise ratio improvement post-update
-- Validate attention budget allocation efficiency
-- Detect context rot indicators (n² degradation patterns)
+**Health Check**:
+- Files ≤100 lines (auto-cleanup)
+- Signal-to-noise improvement
+- Attention budget efficiency
+- n² degradation detection
 
-**PENALTY**: If validation fails OR updates incomplete OR context rot detected, next task BLOCKED until compliance verified and context optimized.
+**PENALTY**: Validation fail/incomplete/rot → BLOCK until compliant
