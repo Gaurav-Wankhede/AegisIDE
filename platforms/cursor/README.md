@@ -1,4 +1,6 @@
-# Cursor Setup - AegisIDE v3.0
+# Cursor Setup - AegisIDE v2.6.2
+
+**Autonomy**: 96% | **Config**: Single file (.cursorrules) | **MCP**: 9 servers integrated
 
 ## Quick Start
 
@@ -7,31 +9,39 @@
    cp platforms/cursor/.cursorrules /path/to/your/project/
    ```
 
-2. **Create Memory Bank**:
-   ```bash
-   mkdir -p memory-bank/roadmap
-   cd memory-bank/
-   touch scratchpad.md activeContext.md mistakes.md progress.md
-   touch systemPatterns.md techContext.md productContext.md projectbrief.md
-   touch roadmap/roadmap.md
+2. **Start using** (AI auto-generates files):
+   ```
+   init
    ```
 
-3. **Initialize** in Cursor:
-   ```
-   initialize project [your_project_name]
-   ```
+## 🔄 Session Resume (v2.6.2)
+Existing projects: AI auto-scans `.windsurf/memory-bank/`, loads 13 files, resumes automatically. **Just type: `next`**
+
+## 🎯 Core Commands
+| Command | Purpose |
+|---------|----------|
+| `init` | Initialize OR restore project |
+| `next` | Execute tasks (auto-continues) |
+| `update` | Refresh all 13 files |
+| `validate` | Check quality + blueprint |
+| `fix` | Auto-fix errors/warnings |
+| `status` | Progress report |
+| `optimize` | Improve architecture |
+| `health` | System monitoring |
+
+## 🔧 MCP Integration (9 Servers)
+- **Documentation**: @mcp:context7 (auto-fix errors)
+- **Research**: @mcp:fetch, @mcp:time, @mcp:math
+- **Files**: @mcp:filesystem, @mcp:git
+- **Knowledge**: @mcp:memory, @mcp:byterover-mcp, @mcp:sequential-thinking
 
 ## Features
-
 - ✅ 96% Autonomous
-- ✅ Native AI Integration
-- ✅ Single File (3KB)
-- ✅ Session Continuity
+- ✅ Session auto-resume
+- ✅ 8 unified commands
+- ✅ Auto-generates: 13 files (8 .md + 4 .json + roadmap)
 
-## File Size
-
-- **.cursorrules**: 3KB (✅ under 100KB limit)
+**File Size**: .cursorrules (3KB, ✅ under 100KB)
 
 ---
-
-**AegisIDE v3.0** | Gaurav Wankhede
+**AegisIDE v2.6.2** | [GitHub](https://github.com/Gaurav-Wankhede/AegisIDE)

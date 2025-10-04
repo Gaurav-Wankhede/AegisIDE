@@ -1,4 +1,6 @@
-# Cline Setup - AegisIDE v3.0
+# Cline Setup - AegisIDE v2.6.2
+
+**Autonomy**: 95% | **Config**: Single file (.clinerules) | **MCP**: 9 servers integrated
 
 ## Quick Start
 
@@ -12,32 +14,40 @@
    cp platforms/cline/.clinerules /path/to/your/project/
    ```
 
-3. **Create Memory Bank**:
-   ```bash
-   mkdir -p memory-bank/roadmap
-   cd memory-bank/
-   touch scratchpad.md activeContext.md mistakes.md progress.md
-   touch systemPatterns.md techContext.md productContext.md projectbrief.md
-   touch roadmap/roadmap.md
+3. **Start using** (AI auto-generates files):
+   ```
+   init
    ```
 
-4. **Initialize**:
-   ```
-   initialize project [your_project_name]
-   ```
+## 🔄 Session Resume (v2.6.2)
+Existing projects: AI auto-scans `.windsurf/memory-bank/`, loads 13 files, resumes automatically. **Just type: `next`**
+
+## 🎯 Core Commands
+| Command | Purpose |
+|---------|----------|
+| `init` | Initialize OR restore project |
+| `next` | Execute tasks (auto-continues) |
+| `update` | Refresh all 13 files |
+| `validate` | Check quality + blueprint |
+| `fix` | Auto-fix errors/warnings |
+| `status` | Progress report |
+| `optimize` | Improve architecture |
+| `health` | System monitoring |
+
+## 🔧 MCP Integration (9 Servers)
+- **Documentation**: @mcp:context7 (auto-fix errors)
+- **Research**: @mcp:fetch, @mcp:time, @mcp:math
+- **Files**: @mcp:filesystem, @mcp:git
+- **Knowledge**: @mcp:memory, @mcp:byterover-mcp, @mcp:sequential-thinking
 
 ## Features
+- ✅ 95% Autonomous
+- ✅ Session auto-resume
+- ✅ 8 unified commands
+- ✅ Auto-generates: 13 files (8 .md + 4 .json + roadmap)
+- ✅ Democratic governance
 
-- ✅ 95% Autonomous Operation
-- ✅ Single File (6.4KB)
-- ✅ Session Continuity
-- ✅ Democratic Governance
-
-## File Size
-
-- **.clinerules**: 6.4KB (✅ under 50KB limit)
-- **Optimal**: All files < 20KB combined
+**File Size**: .clinerules (6.4KB, ✅ under 50KB)
 
 ---
-
-**AegisIDE v3.0** | Gaurav Wankhede
+**AegisIDE v2.6.2** | [GitHub](https://github.com/Gaurav-Wankhede/AegisIDE)

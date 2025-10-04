@@ -80,14 +80,18 @@ After implementation, update all relevant memory-bank files."
 - Single responsibility per file"
 ```
 
-## Commands (via Copilot Chat)
+## Commands (via Copilot Chat) - v2.6.2
 
 | Command | Copilot Prompt |
 |---------|----------------|
-| **Initialize** | "Initialize AegisIDE memory-bank for [project description]" |
-| **What Next** | "Read scratchpad.md and implement the first unchecked task" |
-| **Implement Task** | "Implement current task from scratchpad.md, update all memory-bank files" |
-| **Update Memory** | "Update activeContext.md, progress.md, scratchpad.md after completing [task]" |
+| **init** | "Initialize AegisIDE memory-bank for [project description]" |
+| **next** | "Read scratchpad.md OR kanban.json and implement next task" |
+| **update** | "Refresh all 13 files (8 .md + 4 .json + roadmap)" |
+| **validate** | "Run 6-pillar blueprint validation + language-specific tests" |
+| **fix** | "Auto-fix all errors/warnings until 100% clean" |
+| **status** | "Report tasks, bugs, progress %, metrics" |
+| **optimize** | "Analyze patterns and propose improvements" |
+| **health** | "Monitor context rot, file sizes, attention budget" |
 
 ## Limitations
 
@@ -107,20 +111,26 @@ While lower than IDE-specific implementations, Copilot achieves 92% autonomy thr
 - Explicit prompting strategies
 - Universal IDE compatibility
 
-## Example Workflow
+## 🔧 MCP Integration (9 Servers - Reference in Prompts)
+- **@mcp:context7**: Official documentation (mention for auto-fix)
+- **@mcp:fetch, @mcp:time, @mcp:math**: Research & calculations
+- **@mcp:filesystem, @mcp:git**: File operations & version control
+- **@mcp:memory, @mcp:byterover-mcp, @mcp:sequential-thinking**: Knowledge & reasoning
+
+## Example Workflow (v2.6.2)
 
 ```bash
 # 1. Initialize project
-"Initialize AegisIDE memory-bank for a Next.js app with TypeScript and Supabase"
+"init: Initialize AegisIDE for a Next.js app with TypeScript and Supabase"
 
 # 2. Start development
-"Read .github/aegis/memory-bank/scratchpad.md and implement first task"
+"next: Execute tasks from scratchpad.md OR kanban.json automatically"
 
-# 3. Continue tasks
-"Implement next task from scratchpad.md following EMD principles"
+# 3. Auto-fix errors
+"fix: Use @mcp:context7 to resolve all errors until 100% clean"
 
-# 4. Update context
-"Update activeContext.md and progress.md after completing authentication feature"
+# 4. Check progress
+"status: Report tasks, bugs, progress %, blocked items"
 ```
 
 ## Best Practices
