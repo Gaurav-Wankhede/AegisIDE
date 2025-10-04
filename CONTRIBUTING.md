@@ -72,10 +72,11 @@ All contributions MUST implement these protocols:
 ## Contribution Guidelines
 
 ### Code Standards
-- **EMD Compliance**: ≤80 lines per file, deep nested structure
-- **Memory-Bank**: ≤100 lines per file
-- **Roadmap**: ≤200 lines, ≤12,000 characters
-- **Constitutional Compliance**: ≥80% framework adherence
+- **EMD Compliance**: ≤80 lines per code file, deep nested structure
+- **Memory-Bank JSON Files**: ≤10KB each (16 JSON files for optimal parsing)
+- **Roadmap**: roadmap.json ≤20KB, roadmap.md ≤12,000 characters (human-readable)
+- **Schema Validation**: All JSON files validated against `core/schemas/` on read/write
+- **Constitutional Compliance**: ≥80% framework adherence with tri-branch oversight
 - **File Editing**: ALWAYS check existence, use `replace_file_content` for existing files
 
 ### Testing Requirements
@@ -93,11 +94,14 @@ All contributions MUST implement these protocols:
 ## Pull Request Checklist
 
 - [ ] Code follows EMD standards (≤80 lines/file)
-- [ ] Tests included and passing
-- [ ] Documentation updated
-- [ ] Constitutional compliance verified (≥80%)
-- [ ] Cross-platform tested (if applicable)
-- [ ] CHANGELOG.md updated
+- [ ] JSON files follow schema (≤10KB each with validation)
+- [ ] All 17 files updated if memory-bank changed (16 JSON + roadmap.md)
+- [ ] Tests included and passing with language-specific validation
+- [ ] Documentation updated with JSON-first references
+- [ ] Constitutional compliance verified (≥80% adherence)
+- [ ] Tri-branch consensus achieved (>95% weighted approval)
+- [ ] Cross-platform tested (if applicable, 8 IDEs supported)
+- [ ] CHANGELOG.md updated with version and date
 - [ ] Tri-branch review completed
 - [ ] >95% consensus achieved
 - [ ] Judicial review passed

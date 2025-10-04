@@ -21,6 +21,15 @@ core/
 │   ├── article-XII.md (30-hour operation)
 │   ├── article-XIII.md (Judicial debugging)
 │   └── article-XIV.md (Blueprint & Autonomous Development)
+├── schemas/ (JSON schema validation)
+│   ├── activeContext.schema.json
+│   ├── scratchpad.schema.json
+│   ├── progress.schema.json
+│   └── ... (16 total schemas)
+├── visualize/ (Real-time dashboard - NEW in 2.7.0)
+│   ├── dashboard.html (Single-file HTML dashboard)
+│   ├── README.md (Complete feature documentation)
+│   └── USAGE.md (Quick start guide)
 ├── blueprint.json (6-pillar validation schema)
 ├── userflow.json (User journey schema)
 ├── kanban.json (Task management schema)

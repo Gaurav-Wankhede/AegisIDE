@@ -49,7 +49,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 Error Level 1 (Compatibility Issues):
 - Disable problematic MCP server gracefully
 - Switch to alternative MCP server or fallback method
-- Document compatibility issues in mistakes.md
+- Document compatibility issues in mistakes.json
 - Continue operation with reduced but functional capability
 
 Error Level 2 (Connection Failures):
@@ -157,7 +157,7 @@ Error Level 4 (Security/Authentication Failures):
 
 **Integration Standards Enforcement**:
 - **EMD Compliance**: All integration code follows ≤10,000 character file limits
-- **Security Standards**: All integrations subject to security review and validation
+- **Documentation Standards**: All integrations documented in techContext.json review and validation
 - **Performance Standards**: Integration performance benchmarks with optimization requirements
 - **Documentation Requirements**: Comprehensive integration documentation with examples
 - **Version Control**: All integration changes tracked with approval workflows

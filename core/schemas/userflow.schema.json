@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/userflow.json",
+  "title": "User Flow Schema",
+  "description": "User journey tracking and flow management",
+  "type": "object",
+  "required": ["blueprint_id", "project_name", "flows"],
+  "properties": {
+    "blueprint_id": {"type": "string"},
+    "project_name": {"type": "string"},
+    "generated_from_blueprint": {"type": "boolean"},
+    "flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "flow_type", "priority", "steps"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "description": {"type": "string"},
+          "flow_type": {"type": "string", "enum": ["user_flow", "system_flow", "error_flow", "admin_flow"]},
+          "user_persona": {"type": "string"},
+          "priority": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "framework_specific": {"type": "boolean"},
+          "accessibility_validated": {"type": "boolean"},
+          "steps": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "page", "action", "status"],
+              "properties": {
+                "id": {"type": "string"},
+                "page": {"type": "string"},
+                "action": {"type": "string"},
+                "task_id": {"type": "string"},
+                "status": {"type": "string", "enum": ["pending", "in_progress", "completed", "blocked"]},
+                "emd_compliant": {"type": "boolean"},
+                "validation_required": {"type": "boolean"}
+              }
+            }
+          },
+          "connections": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["from", "to"],
+              "properties": {
+                "from": {"type": "string"},
+                "to": {"type": "string"},
+                "condition": {"type": "string"},
+                "edge_case_handling": {"type": "string"}
+              }
+            }
+          },
+          "completion_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+          "blocked": {"type": "boolean"},
+          "blocker_reason": {"type": "string"},
+          "parliamentary_approved": {"type": "boolean"},
+          "consensus_score": {"type": "number", "minimum": 0, "maximum": 100}
+        }
+      }
+    },
+    "total_flows": {"type": "number", "minimum": 0},
+    "completed_flows": {"type": "number", "minimum": 0},
+    "critical_path_identified": {"type": "boolean"},
+    "dependencies_mapped": {"type": "boolean"}
+  }
+}

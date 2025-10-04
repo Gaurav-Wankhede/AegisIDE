@@ -146,7 +146,7 @@ System operates independently through context engineering with minimal human int
 
 **Self-Correction Mechanisms**:
 - **Automatic Error Recovery**: Built-in responses to common failure scenarios
-- **Learning Integration**: Incorporate lessons from mistakes.md into future operations
+- **Learning Integration**: Incorporate lessons from mistakes.json into future operations
 - **Context7 MCP Utilization**: Immediate access to official documentation for corrections
 - **Validation Loop Execution**: Repeat validation until all errors resolved
 - **Precedent Storage**: Record successful correction strategies for future reference

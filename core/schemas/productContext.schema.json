@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/productContext.json",
+  "title": "Product Context Schema",
+  "description": "Business requirements with alignment metrics",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "business_requirements"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "business_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "priority", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "priority": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "status": {"type": "string", "enum": ["not_started", "in_progress", "completed", "blocked"]},
+          "acceptance_criteria": {"type": "array", "items": {"type": "string"}},
+          "business_value": {"type": "string"},
+          "success_metrics": {
+            "type": "object",
+            "properties": {
+              "target": {"type": "string"},
+              "current": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "alignment_metrics": {
+      "type": "object",
+      "properties": {
+        "requirements_coverage": {"type": "number", "minimum": 0, "maximum": 100},
+        "business_value_delivered": {"type": "number", "minimum": 0, "maximum": 100},
+        "user_satisfaction_score": {"type": "number", "minimum": 0, "maximum": 10},
+        "revenue_impact": {"type": "string"}
+      }
+    },
+    "stakeholder_feedback": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "stakeholder", "date", "feedback"],
+        "properties": {
+          "id": {"type": "string"},
+          "stakeholder": {"type": "string"},
+          "date": {"type": "string", "format": "date-time"},
+          "feedback": {"type": "string"},
+          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
+          "related_requirement": {"type": "string"},
+          "action_taken": {"type": "string"}
+        }
+      }
+    },
+    "market_context": {
+      "type": "object",
+      "properties": {
+        "competitor_analysis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "competitor": {"type": "string"},
+              "strength": {"type": "string"},
+              "our_advantage": {"type": "string"}
+            }
+          }
+        },
+        "industry_trends": {"type": "array", "items": {"type": "string"}},
+        "compliance_requirements": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

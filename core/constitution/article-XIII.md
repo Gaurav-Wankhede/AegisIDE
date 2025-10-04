@@ -210,13 +210,13 @@ bundle exec srb tc
 2. Execute validation commands
 3. IF errors/warnings found:
    a. HALT current task immediately
-   b. Log errors in mistakes.md
+   b. Log errors in mistakes.json
    c. Auto-call @mcp:context7 for official docs
    d. Implement fixes autonomously
    e. Re-run validation
    f. REPEAT until clean (100% pass)
 4. ONLY THEN continue to next task
-5. Update systemPatterns.md with resolution
+5. Update systemPatterns.json with resolution
 ```
 
 **Validation Checkpoints** (MANDATORY at each stage):
@@ -226,11 +226,11 @@ bundle exec srb tc
 - **Pre-Commit**: Final validation before task completion
 
 ### Client Requirement Supremacy
-**Source of Truth**: `roadmap/roadmap.md` = ACTUAL CLIENT REQUIREMENTS
+**Source of Truth**: `roadmap.json` + `roadmap.md` = ACTUAL CLIENT REQUIREMENTS
 
-**Hierarchy**: roadmap.md (SUPREME) → projectbrief.md → productContext.md → scratchpad.md
+**Hierarchy**: roadmap.json/roadmap.md (SUPREME) → projectbrief.json → productContext.json → scratchpad.json
 
-**Enforcement**: ALL implementations MUST trace to roadmap, NO feature development without roadmap justification
+**Enforcement**: ALL implementations MUST trace to roadmap.json, NO feature development without roadmap justification
 
 ### Debugging Authority
 **Process**: Continuous monitoring → Language detection → Validation → Error detection → Auto-fix → Re-validate → Judgment → Enforcement
@@ -288,7 +288,7 @@ ruby:
 ### Debugging Commands
 **`validate project`**: Run language-specific validation suite
 **`fix errors`**: Autonomous error resolution loop
-**`roadmap validate`**: Chief Justice validates current work against roadmap.md
+**`roadmap validate`**: Chief Justice validates current work against roadmap.json
 **`roadmap align`**: Force Executive realignment with client requirements
 **`roadmap audit`**: Full audit of all implementations against roadmap
 **`roadmap status`**: Report roadmap completion percentage and deviations
@@ -298,7 +298,7 @@ ruby:
 
 **Collaboration**: Quality Shadow ensures validation passes, Chief Justice ensures roadmap alignment, both must approve
 
-**Memory-Bank**: mistakes.md (error patterns and fixes), systemPatterns.md (successful validation patterns), roadmap.md (client requirements), scratchpad.md (tasks MUST be validated)
+**Memory-Bank**: mistakes.json (error patterns and fixes), systemPatterns.json (successful validation patterns), roadmap.json (client requirements), scratchpad.json (tasks MUST be validated)
 
 ### Enforcement Levels
 **Level 0 - Validation Failure**: IMMEDIATE HALT until errors/warnings resolved
@@ -310,7 +310,7 @@ ruby:
 
 ### Success Criteria
 **Zero Errors/Warnings**: 100% clean validation before next task
-**Roadmap Compliance**: ≥95% implementations traceable to roadmap.md
+**Roadmap Compliance**: ≥95% implementations traceable to roadmap.json
 **Client Alignment**: 100% deliverables match roadmap requirements
 **Zero Feature Creep**: No implementations outside roadmap scope
 **Quality Standards**: Production-grade quality matching client expectations

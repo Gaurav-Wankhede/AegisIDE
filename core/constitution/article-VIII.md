@@ -113,7 +113,7 @@ FORBIDDEN: ^(rm -rf /|format|systemctl stop|sudo su)
 2. **Platform Detection**: OS-specific validation
 3. **Parameter Inspection**: Flag danger detection
 4. **Path Validation**: Project boundary enforcement
-5. **Logging**: systemPatterns.md audit trail
+5. Logging: systemPatterns.json audit trail
 6. **Rollback**: Git tracking for recovery
 
 ### Enhanced Auto-Approved Command Categories

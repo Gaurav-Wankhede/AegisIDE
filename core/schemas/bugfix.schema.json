@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/bugfix.json",
+  "title": "Bugfix Schema",
+  "description": "Bug detection and fix queue management",
+  "type": "object",
+  "required": ["blueprint_id", "auto_detect", "detected_bugs", "priority_classification"],
+  "properties": {
+    "blueprint_id": {"type": "string"},
+    "auto_detect": {"type": "boolean"},
+    "scan_frequency": {"type": "string", "enum": ["on_checkpoint", "pre_commit", "continuous", "manual"]},
+    "last_scan": {"type": "string", "format": "date-time"},
+    "halt_on_p0_p1": {"type": "boolean"},
+    "detected_bugs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "detected_at", "priority", "type", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "detected_at": {"type": "string", "format": "date-time"},
+          "priority": {"type": "string", "enum": ["P0", "P1", "P2", "P3"]},
+          "type": {"type": "string", "enum": ["compilation", "type_error", "lint", "runtime", "logic", "security"]},
+          "language": {"type": "string"},
+          "framework_detected": {"type": "string"},
+          "file": {"type": "string"},
+          "line": {"type": "number", "minimum": 0},
+          "description": {"type": "string"},
+          "task_id": {"type": "string"},
+          "related_article": {"type": "string"},
+          "validation_checkpoint": {"type": "string"},
+          "status": {"type": "string", "enum": ["pending", "fixing", "fixed", "failed"]},
+          "auto_fix_attempted": {"type": "boolean"},
+          "mcp_context7_used": {"type": "boolean"}
+        }
+      }
+    },
+    "fix_queue": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bug_id", "queued_at"],
+        "properties": {
+          "bug_id": {"type": "string"},
+          "queued_at": {"type": "string", "format": "date-time"},
+          "fix_strategy": {"type": "string"},
+          "emd_compliant_fix": {"type": "boolean"},
+          "validation_required": {"type": "boolean"}
+        }
+      }
+    },
+    "priority_classification": {
+      "type": "object",
+      "required": ["P0_blocking", "P1_critical", "P2_major", "P3_minor"],
+      "properties": {
+        "P0_blocking": {"type": "number", "minimum": 0},
+        "P1_critical": {"type": "number", "minimum": 0},
+        "P2_major": {"type": "number", "minimum": 0},
+        "P3_minor": {"type": "number", "minimum": 0}
+      }
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total_detected": {"type": "number", "minimum": 0},
+        "total_fixed": {"type": "number", "minimum": 0},
+        "total_failed": {"type": "number", "minimum": 0},
+        "fix_success_rate": {"type": "number", "minimum": 0, "maximum": 100},
+        "avg_fix_time_minutes": {"type": "number", "minimum": 0}
+      }
+    },
+    "constitutional_compliance": {
+      "type": "object",
+      "properties": {
+        "halt_fix_validate_active": {"type": "boolean"},
+        "article_xiii_enforced": {"type": "boolean"},
+        "zero_tolerance_p0_p1": {"type": "boolean"}
+      }
+    }
+  }
+}

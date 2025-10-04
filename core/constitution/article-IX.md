@@ -153,9 +153,9 @@ Judicial Branch (Oversight Authority):
 - **Performance Standards**: Security effectiveness metrics with improvement mandates
 
 **Integration with Memory-Bank System**:
-- **Security Context Storage**: Security patterns and incidents in mistakes.md
-- **Access Control Documentation**: Permission matrices in systemPatterns.md
-- **Security Metrics Tracking**: Performance indicators in progress.md
-- **Risk Assessment History**: Threat evaluations in techContext.md
-- **Compliance Status**: Framework adherence scores in activeContext.md
+- **Security Context Storage**: Security patterns and incidents in mistakes.json
+- **Access Control Documentation**: Permission matrices in systemPatterns.json
+- **Security Metrics Tracking**: Performance indicators in progress.json
+- **Risk Assessment History**: Threat evaluations in techContext.json
+- **Compliance Status**: Framework adherence scores in activeContext.json
 

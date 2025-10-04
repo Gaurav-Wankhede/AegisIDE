@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/scratchpad.json",
+  "title": "Scratchpad Schema",
+  "description": "Immediate priorities with immutable event history",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "immediate_priorities", "task_queue"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "immediate_priorities": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["id", "task_id", "title", "urgency"],
+        "properties": {
+          "id": {"type": "string"},
+          "task_id": {"type": "string"},
+          "title": {"type": "string", "maxLength": 200},
+          "urgency": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "deadline": {"type": "string", "format": "date-time"},
+          "dependencies_met": {"type": "boolean"},
+          "blocking_tasks": {"type": "array", "items": {"type": "string"}},
+          "estimated_minutes": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "task_queue": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "required": ["position", "task_id", "status"],
+        "properties": {
+          "position": {"type": "number", "minimum": 1},
+          "task_id": {"type": "string"},
+          "status": {"type": "string", "enum": ["todo", "in_progress", "blocked", "completed"]},
+          "parliamentary_approval": {"type": "number", "minimum": 0, "maximum": 100},
+          "ready_for_execution": {"type": "boolean"}
+        }
+      }
+    },
+    "immutable_event_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["event_id", "timestamp", "action"],
+        "properties": {
+          "event_id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "action": {"type": "string"},
+          "task_id": {"type": "string"},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "quick_notes": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": ["id", "timestamp", "content"],
+        "properties": {
+          "id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "content": {"type": "string", "maxLength": 500},
+          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
+          "related_task": {"type": "string"}
+        }
+      }
+    },
+    "focus_mode": {
+      "type": "object",
+      "required": ["enabled"],
+      "properties": {
+        "enabled": {"type": "boolean"},
+        "current_focus": {"type": "string"},
+        "distractions_blocked": {"type": "array", "items": {"type": "string"}},
+        "focus_end_time": {"type": "string", "format": "date-time"}
+      }
+    }
+  }
+}

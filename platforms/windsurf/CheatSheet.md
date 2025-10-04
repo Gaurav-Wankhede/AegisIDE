@@ -16,27 +16,29 @@ Project/
 └── IDE Settings/               # Global rules in Windsurf Settings (NOT in project)
 ```
 
-## 🚀 **Primary Commands (Unified - Easy to Type)**
-- **`init`** — Initialize OR restore project → Auto-detects existing memory-bank → Resumes session OR generates 13 files [ALL MODELS]
+## 🚀 **Primary Autonomous Commands (Context-Engineered)**
+- **`init`** — Initialize OR restore project → Detects existing 17 files → **IF .md files found: AUTO-TRIGGER migrate-to-json** [ALL MODELS]
+- **`migrate-to-json`** — **FORCE MD→JSON** migration for legacy projects → Load schemas from `.windsurf/memory-bank/schemas/` → Backup to `backup_md/` → Convert ALL → DELETE .md files → Verify 17 JSON files [LEGACY PROJECTS]
 - **`next`** — Execute next task → Auto-continues forever → Updates everything → NEVER STOPS until tasks empty [ALL MODELS]
-- **`update`** — Refresh ALL 13 files (8 .md + 4 .json + roadmap) → Attention optimization → Context health [ALL MODELS]
+- **`update`** — Refresh ALL 17 files (16 JSON + roadmap.md) → Attention optimization → Schema validation → Context health [ALL MODELS]
 
 ## 🔄 **Session Resume (Existing Projects - ZERO MANUAL INPUT)**
 **When you open an existing project in new session**:
 ```
-1. AI auto-scans: .windsurf/memory-bank/ (13 files)
-2. IF found → Auto-loads ALL files into context
-3. AI says: "Session restored. Ready to continue."
+1. AI auto-scans: .windsurf/memory-bank/ (17 files: 16 JSON + roadmap.md)
+2. IF found → Auto-loads ALL files with schema validation
+3. AI says: "Session restored. 17 files loaded (16 JSON + roadmap.md)"
 4. Just type: next (or AI auto-triggers it)
 5. Workflow resumes from exactly where you left off
 ```
 
 **What AI reads automatically**:
-- scratchpad.md OR kanban.json (pending tasks)
-- activeContext.md (last session state)
-- blueprint.json (project requirements)
-- bugfix.json (known issues)
-- All 8 other memory-bank files
+- scratchpad.json OR kanban.json (pending tasks - JSON format)
+- activeContext.json (last session state - JSON format)
+- blueprint.json (project requirements - 6-pillar validation)
+- bugfix.json (known issues - auto-detection)
+- All 12 other JSON files (progress, mistakes, systemPatterns, techContext, productContext, projectbrief, userflow, deployment, monitoring, dependencies, roadmap)
+- roadmap.md (human-readable strategic overview)
 
 **You DON'T need to**:
 - ❌ Describe the project again
@@ -46,10 +48,10 @@ Project/
 
 ## 🔄 **Auto-Chain Workflow (Blueprint-Integrated)**
 **EVERY TASK COMPLETION AUTOMATICALLY TRIGGERS**:
-1. **Auto-update scratchpad.md + kanban.json** — Remove completed task, update task status (todo→in_progress→done→approved)
-2. **Auto-update roadmap.md + blueprint.json** — Mark milestone progress, recalculate priorities, update blueprint scores
-3. **Auto-update memory-bank files** — Refresh activeContext, progress, mistakes (all 8 files)
-4. **Auto-update JSON files** — Update userflow.json completion %, bugfix.json bug stats, kanban.json metrics
+1. **Auto-update scratchpad.json + kanban.json** — Remove completed task, update task status (todo→in_progress→done→approved)
+2. **Auto-update roadmap.json + roadmap.md** — Mark milestone progress, recalculate priorities, update blueprint scores
+3. **Auto-update ALL 17 files** — Refresh all 16 JSON files (activeContext, progress, mistakes, systemPatterns, techContext, productContext, projectbrief, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies, roadmap) + roadmap.md
+4. **Auto-update metrics** — Update userflow.json completion %, bugfix.json bug stats, kanban.json consensus rates
 5. **Auto-bug detection** — Scan for P0-P3 bugs, update bugfix.json, trigger auto-fix if needed
 6. **Auto-execute next task** — NO command needed, continue autonomously
 
@@ -120,22 +122,25 @@ Task Complete → Validate → Update Scratchpad + JSON Files → Bug Scan → L
 ## 📋 **Universal Execution Protocol (ALL AI MODELS)**
 
 ### **MANDATORY BEHAVIOR**
-1. **Read scratchpad.md** at start of every interaction
-2. **Execute task** from scratchpad without asking permission  
-3. **Update files** automatically after task completion
-4. **Load next task** from updated scratchpad
-5. **Continue execution** until scratchpad is empty
-6. **NEVER STOP** after completing just one task
+1. **Read scratchpad.json** at start of every interaction (25% attention allocation)
+2. **Execute task** from scratchpad without asking permission (0-98% autonomy)  
+3. **Update ALL 17 files** automatically after task completion (16 JSON + roadmap.md)
+4. **Load next task** from updated scratchpad.json or kanban.json
+5. **Continue execution** until scratchpad.json is empty
+6. **NEVER STOP** after completing just one task (constitutional mandate)
 
 ### **Task Completion Checklist (Blueprint-Integrated)**
-- [ ] Task implemented and tested
-- [ ] scratchpad.md + kanban.json updated (completed task removed/status updated, next task highlighted)
-- [ ] roadmap.md + blueprint.json updated (milestone progress marked, blueprint scores refreshed)
-- [ ] memory-bank files updated (all 8: activeContext, progress, mistakes, systemPatterns, techContext, productContext, projectbrief, roadmap)
-- [ ] JSON files updated (userflow completion %, bugfix bug stats, kanban metrics)
+- [ ] Task implemented and tested with language-specific validation
+- [ ] scratchpad.json + kanban.json updated (completed task removed/status updated, next task highlighted)
+- [ ] roadmap.json + roadmap.md updated (milestone progress marked, blueprint scores refreshed)
+- [ ] ALL 17 files updated:
+  - 8 core context JSON: activeContext, scratchpad, mistakes, progress, systemPatterns, techContext, productContext, projectbrief
+  - 8 automation JSON: roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies
+  - 1 human-readable: roadmap.md
 - [ ] Bug detection scan completed → bugfix.json updated if issues found
-- [ ] Next task identified from kanban.json OR scratchpad.md and execution started
-- [ ] Quality checks passed (linting, compilation, tests) → validation recorded in kanban task
+- [ ] Next task identified from kanban.json OR scratchpad.json and execution started automatically
+- [ ] Quality checks passed (linting, compilation, tests) → validation recorded in systemPatterns.json
+- [ ] MCP knowledge storage: Patterns stored in @mcp:memory (primary) + @mcp:byterover-mcp (backup)
 
 ### **Automation Levels**
 - **0-97**: Execute immediately, no confirmation needed
@@ -172,5 +177,19 @@ When starting fresh projects:
 3. Autonomous workflow activates immediately
 
 ---
+
+## 🧠 Memory Bank & Strategic Management (MCP-Integrated)
+- **`initialize memory bank`**: Generate 17 files (16 JSON + roadmap.md) with schema validation
+- **`update memory bank`**: **MCP-BASED** updates via @mcp:filesystem → mcp3_write_file → All 17 files
+- **`clean memory bank`**: Auto-archive via @mcp:filesystem → Prevent context pollution
+- **`check memory status`**: EMD compliance via @mcp:filesystem → mcp3_get_file_info
+- **`enforce EMD compliance`**: Auto-shrink via @mcp:filesystem operations
+
+## 📁 MCP-Based JSON Operations (Real-Time)
+- **`mcp3_read_text_file`**: Read current JSON state from memory-bank
+- **`mcp3_write_file`**: Atomic JSON writes with validation
+- **`mcp3_edit_file`**: Line-based JSON edits for precision updates
+- **`mcp3_get_file_info`**: Verify file size (≤10KB) and integrity
+- **Storage**: @mcp:memory (unlimited local) + @mcp:byterover-mcp (cloud backup)
 
 **Core Principle**: AI agents read this CheatSheet from project rules for quick command reference while global behavior is governed by IDE settings.

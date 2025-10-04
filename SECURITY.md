@@ -1,6 +1,6 @@
 # Security Policy
 
-**AegisIDE v2.6.0** - Constitutional Framework Security with File Editing Anti-Hallucination
+**AegisIDE v2.7.0** - Constitutional Framework Security with JSON-First Architecture
 
 ## Reporting a Vulnerability
 
@@ -24,10 +24,10 @@ Please include:
 
 | Version | Supported | Status |
 |---------|-----------|--------|
-| 2.6.x   | ✅ Yes    | Current - File Editing Security Fix |
-| 2.5.x   | ✅ Yes    | Supported - Security fixes |
-| 2.1.x   | ⚠️ Limited | Critical fixes only |
-| < 2.1   | ❌ No     | Upgrade required |
+| 2.7.x   | ✅ Yes    | Current - JSON Architecture + Schema Validation |
+| 2.6.x   | ✅ Yes    | Supported - Security fixes |
+| 2.5.x   | ⚠️ Limited | Critical fixes only |
+| < 2.5   | ❌ No     | Upgrade required |
 
 ## Security Features
 
@@ -35,13 +35,16 @@ Please include:
 - **Terminal Safety Protocol**: Auto-approved vs approval-required command classification
 - **Cross-Platform Safety**: Linux/macOS/Windows command validation
 - **Forbidden Operations**: Blocked destructive commands (rm -rf /, format, etc.)
-- **Audit Trails**: All operations logged in systemPatterns.md
+- **Audit Trails**: All operations logged in systemPatterns.json with schema validation
+- **JSON Schema Validation**: All 16 JSON files validated against core/schemas/ on every read/write
 
 ### Framework Security
 - **Tri-Branch Governance**: Democratic oversight with >95% consensus requirements
 - **Judicial Review**: Chief Justice authority for security-critical decisions
-- **Memory-Bank Isolation**: Project-specific context boundaries
-- **MCP Security**: Validated integration with 7 external MCP servers
+- **Memory-Bank Isolation**: Project-specific context boundaries with 17-file structure
+- **JSON Data Integrity**: Schema validation prevents corruption and injection attacks
+- **MCP Security**: Validated integration with 9 external MCP servers
+- **File Size Limits**: ≤10KB per JSON file prevents context overflow attacks
 
 ### Data Privacy
 - **User-Controlled API Keys**: No centralized key storage
@@ -75,4 +78,4 @@ We appreciate responsible disclosure and will:
 
 ---
 
-**Last Updated**: 2025-10-01 | **Version**: 2.5.0 | **Status**: Active Security Support ✅
+**Last Updated**: 2025-10-04 | **Version**: 2.7.0 | **Status**: Active Security Support ✅

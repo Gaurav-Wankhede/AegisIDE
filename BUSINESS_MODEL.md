@@ -12,7 +12,9 @@
 ### 100% Free & Open Source
 
 **Core Features** (Always Free):
-- ✅ 13 Constitutional Articles, 98% autonomy, 8 IDE platforms
+- ✅ 14 Constitutional Articles, 98% autonomy, 8 IDE platforms
+- ✅ JSON-First Architecture: 17-file system (16 JSON + roadmap.md) with schema validation
+- ✅ Performance: 2.6x faster parsing, 40% faster AI processing
 - ✅ Multi-provider API support, team governance, enterprise security
 - ✅ Cross-project learning, pattern recognition, complete documentation
 

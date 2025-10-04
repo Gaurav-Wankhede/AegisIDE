@@ -1,0 +1,81 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/roadmap.json",
+  "title": "Roadmap Schema",
+  "description": "Strategic planning with resource allocation",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "strategic_roadmap"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "strategic_roadmap": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["phase_id", "name", "status"],
+        "properties": {
+          "phase_id": {"type": "string"},
+          "name": {"type": "string"},
+          "status": {"type": "string", "enum": ["not_started", "in_progress", "completed", "blocked"]},
+          "start_date": {"type": "string", "format": "date-time"},
+          "end_date": {"type": "string", "format": "date-time"},
+          "completion_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+          "milestones": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "target_date", "status"],
+              "properties": {
+                "id": {"type": "string"},
+                "title": {"type": "string"},
+                "target_date": {"type": "string", "format": "date-time"},
+                "status": {"type": "string", "enum": ["not_started", "in_progress", "completed", "blocked"]},
+                "business_impact": {"type": "string", "enum": ["critical", "high", "medium", "low"]}
+              }
+            }
+          },
+          "dependencies": {"type": "array", "items": {"type": "string"}},
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "risk": {"type": "string"},
+                "probability": {"type": "number", "minimum": 0, "maximum": 1},
+                "impact": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+                "mitigation": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "long_term_vision": {
+      "type": "object",
+      "properties": {
+        "6_months": {"type": "string"},
+        "1_year": {"type": "string"},
+        "2_years": {"type": "string"}
+      }
+    },
+    "resource_allocation": {
+      "type": "object",
+      "properties": {
+        "current_sprint": {
+          "type": "object",
+          "properties": {
+            "dev_minister_allocation": {"type": "number", "minimum": 0, "maximum": 100},
+            "tech_minister_allocation": {"type": "number", "minimum": 0, "maximum": 100},
+            "quality_shadow_allocation": {"type": "number", "minimum": 0, "maximum": 100}
+          }
+        }
+      }
+    }
+  }
+}

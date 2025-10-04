@@ -110,7 +110,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 4. Auto-call @mcp:context7 for official documentation
 5. Implement fix following EMD standards (≤80 lines)
 6. Re-run full validation suite (Article XIII)
-7. Update mistakes.md with bug pattern and resolution
+7. Update mistakes.json with bug pattern and resolution
 8. Mark as fixed in bugfix.json
 9. Continue autonomous execution
 ```
@@ -139,7 +139,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **`blueprint apply`**:
 - Begin autonomous implementation from kanban.json
 - Execute tasks in priority order with validation checkpoints
-- Update progress.md with milestone completion
+- Update progress.json with milestone completion
 - Maintain continuous bug detection and auto-fix
 - Report metrics: tasks completed, bugs fixed, consensus achieved
 
@@ -151,7 +151,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - Identify blocked tasks and resolution strategies
 
 **`blueprint optimize`**:
-- Analyze implementation patterns from systemPatterns.md
+- Analyze implementation patterns from systemPatterns.json
 - Identify bottlenecks and optimization opportunities
 - Propose architectural improvements (requires parliamentary consensus)
 - Update tech stack recommendations based on performance data
@@ -160,10 +160,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Integration with Memory-Bank System
 
 **Blueprint ↔ Memory-Bank Synchronization**:
-- blueprint.json → roadmap.md: Strategic alignment validation
-- userflow.json → scratchpad.md: Task generation and prioritization
-- kanban.json → activeContext.md: Real-time implementation tracking
-- bugfix.json → mistakes.md: Error pattern learning and prevention
+- blueprint.json → roadmap.json: Strategic alignment validation
+- userflow.json → scratchpad.json: Task generation and prioritization
+- kanban.json → activeContext.json: Real-time implementation tracking
+- bugfix.json → mistakes.json: Error pattern learning and prevention
 
 **Attention Budget Optimization**:
 - Blueprint generation: <5% attention allocation (one-time)
@@ -223,13 +223,13 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 2. Development Minister focuses on bug resolution
 3. Quality Shadow provides testing and validation support
 4. Re-validation required before resuming implementation
-5. Mistakes.md updated with prevention strategies
+5. Mistakes.json updated with prevention strategies
 
 **Consensus Deadlock** (Score 93-94.9%):
 1. Chief Justice requests additional evidence from all branches
 2. Extended debate period (up to 3 rounds)
 3. If still deadlocked: escalate to human decision (100% autonomy)
-4. Document consensus failure patterns in systemPatterns.md
+4. Document consensus failure patterns in systemPatterns.json
 5. Refine voting matrices for future improvements
 
 ### Performance Metrics & Continuous Improvement
@@ -251,6 +251,6 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Continuous Learning Integration**:
 - Store successful blueprint patterns in @mcp:memory
 - Share cross-project insights via @mcp:byterover-mcp
-- Update systemPatterns.md with proven architectures
+- Update systemPatterns.json with proven architectures
 - Refine scoring algorithms based on implementation outcomes
 - Evolve tech stack recommendations with emerging technologies

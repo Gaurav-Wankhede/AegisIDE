@@ -1,4 +1,4 @@
-# AegisIDE — Windsurf Constitutional Framework (2025 Enhanced)
+# AegisIDE — Windsurf Constitutional Framework (v2.8.0 Enhanced)
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md) [![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](global_rules.md)
  
@@ -6,12 +6,13 @@
 
 **Windsurf Constitutional Framework** with **democratic parliamentary governance**, **98% autonomous capability**, **always-check operations**, and **centralized configuration validation**.
 
-## 🚀 **2025 Enhancements**
+## 🚀 **2025 Enhancements (v2.8.0)**
 - **⚡ Always-Check Operations**: Automatic `cargo check`, `pnpm typecheck`, `npm run lint`, `pytest`, `go test` before every task
 - **🏗️ Centralized Config Validation**: MANDATORY pre-task scan prevents duplication and configuration errors
 - **🌐 Multi-Language Support**: Auto-detection for Rust, TypeScript, Python, Go, Java, Swift, PHP, Ruby, C#
 - **🔧 Framework Auto-Detection**: Smart detection from package.json, Cargo.toml, requirements.txt, etc.
-- **📊 Real-Time Validation**: Continuous monitoring with config registry and validation checksums
+- **📊 Enhanced Dashboard UI/UX**: Professional interface with full content visibility and 5-minute refresh intervals
+- **🎨 Frontend Memory Bank Visualization**: Real-time monitoring of AI memory bank operations
 
 ## 🏛️ **Constitutional Framework**
 
@@ -58,79 +59,131 @@
 
 > 📋 **Full Documentation**: [Article-XIV.md](../../core/constitution/article-XIV.md)
 
-## 🔧 **Windsurf IDE Setup Instructions**
+## 🔧 **Setup (5 Minutes)**
 
-### **Quick Start**
+### **Method 1: Git Submodule** (Recommended)
 
-### 🔄 Session Resume (v2.6.2)
-
-**Existing projects**: AI auto-scans `.windsurf/memory-bank/`, loads all 13 files, resumes automatically. **Just type: `next`**
-
-**Zero manual input needed** - AI reads tasks, state, requirements automatically.
-
-### Setup (First Time Only)
-
-#### **Step 1: Load Global Rules into Windsurf**
-1. **Open Windsurf IDE** → **Customizations** → **Rules** tab
-2. **Click "+ Workspace"** to add a new constitutional rule
-3. **Copy entire content** from [`windsurf/global_rules.md`](global_rules.md)
-4. **Paste into "Global Rules"** section in Windsurf Rules panel
-5. **Set Name**: "Global Rules: How We Work Together **Constitutional Authority**"
-6. **Save** - This activates 98% autonomous operation with constitutional governance
-
-#### **Step 2: Copy Constitutional Framework to Project**
 ```bash
-# Navigate to your project root
-cd /path/to/your/project
+# 1. Add AegisIDE as submodule
+cd /path/to/your-project
+git submodule add https://github.com/Gaurav-Wankhede/AegisIDE.git .aegiside
+git submodule update --init --recursive
 
-# Copy the complete .windsurf constitutional structure
-cp -r /path/to/AegisIDE/windsurf/.windsurf ./
+# 2. Create config pointing to submodule schemas
+cat > .windsurf/config.json << 'EOF'
+{
+  "schemaPath": ".aegiside/core/schemas",
+  "memoryBankPath": ".windsurf/memory-bank",
+  "constitutionPath": ".aegiside/core/constitution",
+  "lawsPath": ".aegiside/core/laws"
+}
+EOF
 
-# Verify constitutional framework is active
-ls -la .windsurf/
-# Expected: docs/, guide/, memory-bank/, rules/, workflows/
+# 3. Initialize (AI generates 17 files)
+init
 ```
 
-#### **Step 3: Initialize Constitutional AI**
-```bash
-# In Windsurf chat, initialize the constitutional framework
-initialize memory bank
+### **Method 2: Manual Copy**
 
-# Provide project context in this format:
-# "I want to build the project having [your specific features]"
-# "tech stack: [your programming languages and frameworks]"
+```bash
+# 1. Copy schemas and rules
+mkdir -p .windsurf/memory-bank/schemas
+mkdir -p .windsurf/rules/constitution
+mkdir -p .windsurf/rules/laws
+
+cp /path/to/AegisIDE/core/schemas/* .windsurf/memory-bank/schemas/
+cp /path/to/AegisIDE/core/constitution/* .windsurf/rules/constitution/
+cp /path/to/AegisIDE/core/laws/* .windsurf/rules/laws/
+
+# 2. Create config
+cat > .windsurf/config.json << 'EOF'
+{
+  "schemaPath": ".windsurf/memory-bank/schemas",
+  "memoryBankPath": ".windsurf/memory-bank",
+  "constitutionPath": ".windsurf/rules/constitution",
+  "lawsPath": ".windsurf/rules/laws"
+}
+EOF
+
+# 3. Initialize
+init
 ```
 
-#### **Step 4: Begin Constitutional Development**
-- Framework is now active with **98% autonomy**
-- All constitutional commands available in Windsurf chat
-- Real-time constitutional compliance monitoring enabled
-- Always-check operations activated for your tech stack
+### **Result Structure**
 
-> 📊 **Verification**: Run `check memory status` to confirm setup completion
+```
+your-project/
+├── .aegiside/              ← Git submodule (Method 1)
+│   └── core/
+│       ├── schemas/
+│       ├── constitution/
+│       └── laws/
+└── .windsurf/
+    ├── config.json         ← Points to schemas
+    ├── memory-bank/
+    │   ├── schemas/        ← Manual copy (Method 2)
+    │   ├── scratchpad.json ← AI-generated
+    │   └── [16 more JSON files]
+    └── rules/              ← Manual copy (Method 2)
+        ├── constitution/
+        └── laws/
+```
+
+> **Note**: `global_rules.md` lives in Windsurf IDE's global location, NOT your project:
+> - **Linux/Mac**: `~/.codeium/windsurf-next/memories/global_rules.md`
+> - **Windows**: `%USERPROFILE%\.codeium\windsurf-next\memories\global_rules.md`
+
+### **🔄 Session Resume**
+
+**Existing projects**: AI auto-scans `.windsurf/memory-bank/`, loads all 17 files (16 JSON + roadmap.md). Just type: `next`
+
+### **🔁 Legacy System Migration**
+
+**If you have old .md files** in `.windsurf/memory-bank/`:
+
+```bash
+# Force migration to JSON
+migrate-to-json
+```
+
+**What happens**:
+1. ✅ Loads schemas from `.windsurf/memory-bank/schemas/`
+2. ✅ Creates backup in `backup_md/` with timestamp
+3. ✅ Converts ALL .md → .json (scratchpad.md→scratchpad.json, etc.)
+4. ✅ Validates each JSON against schema
+5. ✅ **DELETES** original .md files after validation
+6. ✅ Logs migration in mistakes.json
+7. ✅ Verifies 17 files exist (16 JSON + roadmap.md)
+
+**Result**: Upgraded to JSON-first architecture (2.6x faster parsing, zero ambiguity)
 
 ## 🎯 **Constitutional Development Best Practices**
 
-### **Windsurf-Specific Advantages**
+### **Windsurf-Specific Advantages (v2.8.0)**
 - **Native Integration**: Global Rules loaded directly into Windsurf's AI reasoning system
 - **Real-Time Monitoring**: Constitutional violations automatically trigger parliamentary oversight
+- **Enhanced Dashboard UI/UX**: Professional frontend with full content visibility and optimized refresh intervals
+- **Frontend Memory Bank Visualization**: Users can monitor AI memory bank operations in real-time
 - **Seamless Memory Sync**: `.windsurf/memory-bank/` structure integrates with Windsurf's project context
 - **Autonomous Quality**: 98% autonomous operation with always-check operations for 8+ languages
-- **MCP Integration**: All 7 MCPs (byterover-mcp, context7, fetch, filesystem, git, memory, sequential-thinking) run automatically
+- **MCP Integration**: All 9 MCPs (byterover-mcp, context7, fetch, filesystem, git, memory, sequential-thinking, math, time) run automatically
 
 ### **EMD Compliance (Elegant Modular Design)**
-- **Core Principle**: All files ≤80 lines with deep nested folder structure
+- **Core Principle**: All code files ≤80 lines with deep nested folder structure
 - **Universal Structure**: `project/core/modules/feature/task_name/implementation.ext`
-- **Memory Bank Files**: ≤100 lines each (scratchpad, activeContext, progress, mistakes, etc.)
-- **Roadmap Management**: ≤200 lines & ≤12,000 characters for strategic planning
+- **Memory Bank JSON Files**: ≤10KB each (optimal parsing performance)
+  - 16 JSON files: activeContext, scratchpad, mistakes, progress, systemPatterns, techContext, productContext, projectbrief, roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies
+  - 1 Human-readable: roadmap.md (≤20KB for strategic planning)
+- **Schema Validation**: All JSON files validated against `core/schemas/` on every read/write
 
 ### **Constitutional Workflow Integration**
 1. **Load Global Rules** in Windsurf Rules panel (enables constitutional authority)
-2. **Initialize Project** with `initialize memory bank` + project context
-3. **Strategic Planning** via `what next` (generates scratchpad.md with mermaid diagrams)
-4. **Constitutional Execution** via `implement next task` (7 MCPs → validation → execute)
-5. **Quality Assurance** via opposition auto-challenges and `resolve-quality-violations`
-6. **Democratic Oversight** via `run post-oversight` (accountability audit → pattern learning)
+2. **Initialize Project** with `init` command (auto-generates 17 files: 16 JSON + roadmap.md)
+3. **Strategic Planning** via `next` (reads scratchpad.json with 25% attention priority)
+4. **Constitutional Execution** via continuous autonomous workflow (9 MCPs → validation → execute)
+5. **Quality Assurance** via zero-tolerance validation (HALT-FIX-VALIDATE loop until 100% clean)
+6. **Democratic Oversight** via tri-branch consensus (>95% weighted approval required)
+7. **Knowledge Storage** via dual MCP strategy (@mcp:memory primary, @mcp:byterover-mcp backup)
 
 ## 🚨 **Emergency Powers & Crisis Management**
 

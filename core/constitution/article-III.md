@@ -22,37 +22,40 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Memory-Bank Context System (MANDATORY - Auto-Generated)
 
-**8 Core Files** (≤100 lines via `initialize memory bank`):
-- `activeContext.md` - Implementation status, task tracking
-- `scratchpad.md` - Priority tasks, immutable history
-- `mistakes.md` - Error patterns, lint tracking
-- `progress.md` - Milestones, compressed context
-- `systemPatterns.md` - Architecture patterns, events
-- `techContext.md` - Stack with MCP-enriched docs
-- `productContext.md` - Business requirements, metrics
-- `projectbrief.md` - Core requirements, scope
+**16 Core JSON Files**:
 
-**Init**: Describe project → `initialize memory bank` → AI generates files
+**Core Context (8)**: activeContext, scratchpad, mistakes, progress, systemPatterns, techContext, productContext, projectbrief
 
-**Strategic**: roadmap.md (≤200 lines, ≤12K chars), templates/ (patterns)
+**Automation (8)**: roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies
 
-**EMD**: ≤10K chars/file, deep nesting
+**Human Readability**:
+- `roadmap.md` - ONLY human-readable strategic overview
+- Auto-generated views (optional): `.windsurf/memory-bank/views/*.md`
+
+**Init**: Describe project → `initialize memory bank` → AI generates all JSON files
+
+**Data Structure**: JSON with schema validation from `.windsurf/memory-bank/schemas/`, ≤10KB/file
+**Performance**: 2.6x faster parsing, 40% faster AI processing
 
 ### Autonomous Memory-Bank Maintenance
 
-**Line Limit**: Files ≤100 lines for attention budget.
+**Size Limit**: JSON files ≤10KB for optimal parsing.
 
-**Auto-Cleanup** (>100 lines): Check density → Archive old → Keep 3-5 recent → Compress → Remove stale → Snapshot
+**Auto-Cleanup** (>10KB): Archive old → Keep recent → Compress → Remove stale → Snapshot
 
-**Signal-to-Noise**: Measure relevance → Compress low-impact → Preserve high-signal → Delete irrelevant
+**Signal-to-Noise**: Compress low-impact → Preserve high-signal → Delete irrelevant
+
+**Schema Validation**: Auto on read/write using `.windsurf/memory-bank/schemas/*.schema.json` → Data integrity → Zero ambiguity → Immediate error detection
 
 ### Core Commands
 
-**`init`**: Auto-detect state → IF exists: restore → IF missing: generate ALL (8 .md + 4 .json + roadmap) → Enable workflow
+**`init`**: Auto-detect state → IF exists: restore → **IF .md found: TRIGGER migrate-to-json** → IF missing: generate ALL 17 files (16 JSON + roadmap.md) → Enable workflow
 
-**`next`**: Read scratchpad/kanban → VALIDATE → Execute → Update ALL → AUTO-CONTINUE → NEVER STOP
+**`migrate-to-json`**: **FORCE MD→JSON** → Load schemas from `.windsurf/memory-bank/schemas/` → Backup .md to `backup_md/` → Convert ALL → DELETE originals → Log in mistakes.json → Verify 17 files
 
-**`update`**: Refresh ALL files (8 .md + 4 .json + roadmap)
+**`next`**: Read scratchpad.json/kanban.json → VALIDATE → Execute → Update ALL → AUTO-CONTINUE → NEVER STOP
+
+**`update`**: Refresh ALL files (16 .json + roadmap.md)
 
 **`validate`**: Re-score 6 pillars + Run tests → Report compliance
 
@@ -68,39 +71,40 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ```
 1. Calculate attention budget
-2. Read scratchpad.md OR kanban.json
-3. Load blueprint.json
-4. Dynamic context loading
-5. Update task files
-6. Clean completed (≤100 lines)
+2. Read scratchpad.json OR kanban.json (auto-detect)
+3. Load blueprint.json if exists
+4. Dynamic context loading (JSON parsing)
+5. Update task files (JSON updates)
+6. Clean completed (≤10KB files)
 7. VALIDATE → EXECUTE
-8. Update ALL 13 files
+8. Update ALL 17 files (16 .json + roadmap.md)
 9. Create snapshot
 10. AUTO-LOAD next
 11. Continue until empty/rot
 ```
 
-**CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. Works with markdown OR JSON.
+**CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. JSON-first with schema validation.
 
 ### "init" Workflow (UNIFIED PROJECT INITIALIZATION)
 
 ```
 1. Scan .windsurf/memory-bank/ directory
-2. **MANDATORY**: Scan .windsurf/ for 4 blueprint JSON files (blueprint.json, userflow.json, kanban.json, bugfix.json)
-3. IF memory-bank EXISTS (8 .md files) AND all 4 blueprint JSON files exist:
-   a. Validate file integrity (schema compliance, file sizes, JSON structure)
-   b. Load all 17 files into context (8 .md + 4 blueprint .json + roadmap + 4 other .json)
-   c. Resume workflow: "Session restored: 17 files loaded (8 .md + 4 blueprint + roadmap)"
+2. **LOAD SCHEMAS**: Load ALL schemas from `.windsurf/memory-bank/schemas/*.schema.json` (17 schemas total)
+3. **MANDATORY**: Scan .windsurf/ for 4 blueprint JSON files (blueprint.json, userflow.json, kanban.json, bugfix.json)
+4. IF memory-bank EXISTS (16 .json files) AND roadmap.md exists:
+   a. Validate JSON schema compliance using loaded schemas from `.windsurf/memory-bank/schemas/`
+   b. Load all 17 files into context (16 .json + roadmap.md)
+   c. Resume workflow: "Session restored: 17 files loaded (16 JSON + roadmap.md)"
    d. Auto-trigger 'next' command
-   e. SKIP steps 4-20 (already initialized)
+   e. SKIP steps 5-21 (already initialized)
 
-4. **CRITICAL**: IF memory-bank EXISTS BUT ANY blueprint JSON missing (even 1 of 4):
-   a. **HALT session restore** - cannot proceed without blueprints
-   b. **MANDATORY blueprint generation** for existing project
-   c. Jump to step 12b (reverse-engineer all 4 blueprints)
-   d. **BLOCKING**: DO NOT auto-trigger 'next' until all 4 JSON files created
+5. **CRITICAL**: IF memory-bank EXISTS BUT ANY JSON file missing:
+   a. **HALT session restore** - cannot proceed without complete structure
+   b. **MANDATORY regeneration** of missing JSON files using schemas from `.windsurf/memory-bank/schemas/`
+   c. Jump to blueprint generation step
+   d. **BLOCKING**: DO NOT auto-trigger 'next' until all 16 JSON files created
 
-5. IF memory-bank MISSING OR incomplete (<8 .md files):
+6. IF memory-bank MISSING OR incomplete (<16 .json files):
    a. Scan project directory for existing code/config files
    b. Auto-detect: New project (empty) OR Existing project (has code)
 
@@ -110,34 +114,53 @@ IF NEW PROJECT:
 11a. Create userflow.json from user personas
 12a. Populate kanban.json with tasks from blueprint
 13a. Initialize bugfix.json for monitoring
-14a. Generate 8 memory-bank .md files from project description
-15a. Create roadmap/roadmap.md with strategic milestones
+14a. Generate 8 core context JSON files from project description
+15a. Generate 4 automation JSON files (deployment, monitoring, dependencies, roadmap)
+15b. Create roadmap.md (human-readable strategic overview)
 16a. Trigger parliamentary approval (>95% consensus)
 
 IF EXISTING PROJECT:
-12b. **MANDATORY BLUEPRINT GENERATION** (NO EXCEPTIONS - BLOCKING STEP):
+12b. **CHECK FOR MARKDOWN FILES** (AUTOMATIC MIGRATION - BLOCKING):
+   - Scan `.windsurf/memory-bank/` for ANY `.md` files
+   - **IF FOUND**: **HALT AND MIGRATE - NO EXCEPTIONS**:
+     a. **STOP** session restore immediately
+     b. Display: "Legacy MD format detected. Migrating to JSON..."
+     c. Create backup: `.windsurf/memory-bank/backup_md/` with timestamp
+     d. Load schemas from `.windsurf/memory-bank/schemas/*.schema.json`
+     e. Convert EACH .md → .json: scratchpad.md→scratchpad.json, activeContext.md→activeContext.json, etc.
+     f. Validate each JSON against schema
+     g. **DELETE** original .md files after successful validation
+     h. Log in mistakes.json: "MD→JSON migration completed - 17 files verified"
+     i. Resume init workflow from step 4 (session restore with JSON)
+   - **IF NOT FOUND**: Skip to blueprint generation
+
+13b. **MANDATORY BLUEPRINT GENERATION** (NO EXCEPTIONS - BLOCKING STEP):
    - Scan codebase: framework detection, language analysis, file structure, complexity assessment
    - **Step 1/4**: Run `fix` command → detect all errors/warnings → **CREATE bugfix.json** with current issues (MANDATORY)
    - **Step 2/4**: Reverse-engineer **blueprint.json**: analyze README, existing features, 6-pillar scoring (may score <70 for existing projects) (MANDATORY)
    - **Step 3/4**: Extract **userflow.json**: parse routing, navigation patterns, user journey mapping (MANDATORY)
    - **Step 4/4**: Generate **kanban.json**: extract TODO comments, parse bugfix.json, identify improvements (MANDATORY)
    - **VERIFICATION CHECKPOINT**: Confirm all 4 JSON files exist with valid structure before proceeding
-13b. Generate 8 memory-bank .md files from current codebase analysis (if any missing)
-14b. Create roadmap/roadmap.md from incomplete features, TODOs, technical debt (if missing)
-15b. Generate quality improvement plan based on blueprint.json scoring + bugfix.json issues
-16b. **FINAL VERIFICATION - 17 FILES TOTAL**: 8 .md + 4 blueprint .json (blueprint, userflow, kanban, bugfix) + roadmap.md + 4 other .json
-17b. **ONLY THEN** enable autonomous workflow → Auto-trigger 'next' command
+
+14b. Generate 8 core context JSON files from current codebase analysis (if any missing)
+15b. Generate 4 automation JSON files (deployment, monitoring, dependencies, roadmap.json)
+15c. Create roadmap.md from incomplete features, TODOs, technical debt (if missing)
+16b. Generate quality improvement plan based on blueprint.json scoring + bugfix.json issues
+17b. **FINAL VERIFICATION - 17 FILES TOTAL**: 16 .json (8 core + 8 automation/strategy) + roadmap.md
+18b. **ONLY THEN** enable autonomous workflow → Auto-trigger 'next' command
 
 18. **BLOCKING GATE**: Verify 17 files exist before enabling autonomous mode
 19. Enable autonomous workflow ONLY after blueprint verification passes
-20. Auto-trigger "next" command → begin execution from kanban.json or scratchpad.md
+20. Auto-trigger "next" command → begin execution from kanban.json or scratchpad.json
 ```
 
 **CRITICAL RULES**: 
 - "init" handles BOTH new and existing projects - single command, zero duplication
-- **EXISTING PROJECTS**: Blueprint JSON generation is MANDATORY and BLOCKING - cannot proceed without all 4 files
-- **SESSION RESTORE**: Only possible with complete 17-file structure (8 .md + 4 blueprint .json + roadmap + 4 other .json)
-- **VERIFICATION**: AI must explicitly confirm "17 files verified" before auto-triggering 'next' command
+- **SCHEMA LOCATION**: ALWAYS use `.windsurf/memory-bank/schemas/*.schema.json` - NO OTHER LOCATIONS
+- **EXISTING PROJECTS**: JSON generation is MANDATORY and BLOCKING - cannot proceed without all 16 files
+- **SESSION RESTORE**: Only possible with complete 17-file structure (16 .json + roadmap.md)
+- **VERIFICATION**: AI must explicitly confirm "17 files verified (16 JSON + roadmap.md)" before auto-triggering 'next' command
+- **SCHEMA VALIDATION**: All JSON files validated against schemas in `.windsurf/memory-bank/schemas/` ONLY
 
 
 ### Workflow Loop
@@ -155,7 +178,7 @@ Judicial Review →
 EXECUTE IMMEDIATELY →
 Post-Implementation Validation →
 MCP Results → Auto-Enrich Context Files →
-Context Update (ALL 9 files as events) →
+Context Update (ALL 17 files: 16 JSON + roadmap.md) →
 Context Rot Detection →
 Load Next Task →
 EXECUTE IMMEDIATELY →
@@ -185,68 +208,24 @@ Error Detection →
 Auto-call @mcp:context7 resolve-library-id → get-library-docs →
 Official Documentation Retrieved →
 Auto-Resolution Implementation →
-mistakes.md event stream update (structured error pattern) →
-techContext.md auto-enrichment (solution pattern from MCP) →
-systemPatterns.md update (success pattern documentation) →
+mistakes.json event stream update (structured error pattern) →
+techContext.json auto-enrichment (solution pattern from MCP) →
+systemPatterns.json update (success pattern documentation) →
 Validation → Re-run checks →
 ONLY continue after 100% clean
 ```
 
 **Tool-Context Loop**: MCP auto-enriches files with reusable patterns.
 
-### Pre-Implementation Protocol (MANDATORY - Context Optimized)
+### Constitutional Integration
 
-**Context Assembly Phase** (Attention-Aware):
-1. Calculate current attention budget usage vs. capacity
-2. Read scratchpad.md (CRITICAL - 25% attention allocation)
-3. Read roadmap/roadmap.md (CRITICAL - strategic alignment, 15% attention)
-4. **SCAN CENTRALIZED CONFIGS** (MANDATORY - prevent duplication):
-   - Scan: `core/config/`, `src/*/config/`, `lib/*/config/`, `config/`, `shared/`
-   - Check existing: delays, timeouts, API settings, concurrency, retry logic
-   - Validate NO duplicate configuration files or constants exist
-   - **HALT if duplicate detected** - reference existing config instead
-   - Document existing configs in systemPatterns.md event stream
-5. Dynamic context loading based on task type (error = mistakes.md priority, feature = roadmap priority)
-6. Read activeContext.md, mistakes.md, techContext.md (HIGH PRIORITY - 30% total attention)
-7. Retrieve knowledge from @mcp:memory (unlimited local storage, primary)
-8. Read supporting files as needed (progress, systemPatterns - 18% attention)
-9. Skip reference files unless specifically needed (productContext, projectbrief - 7% attention)
+**Implementation Details**: See **Article III-A** for complete Pre-Implementation and Post-Implementation protocols including:
+- Context Assembly Phase with attention budget management
+- MCP-Based JSON Update procedures
+- Validation checkpoints and error handling
+- Real-time context enrichment via MCP tools
+- Schema validation and health monitoring
 
-**Validation**:
-1. Detect language/framework
-2. Run validation commands
-3. HALT on errors (zero tolerance)
-4. Auto-fix via @mcp:context7
-5. Re-validate to 100%
-6. Verify roadmap link
-7. Check mistakes.md
-8. Validate laws
-9. Confirm EMD ≤10K
+**Authority**: Article III establishes workflow foundation. Article III-A governs detailed execution protocols.
 
-### Post-Implementation Protocol
-
-**Validation Checkpoint**:
-1. Run validation suite
-2. IF errors → HALT → @mcp:context7 → Fix → Re-validate
-3. Proceed only at 100%
-
-**Update ALL 9 Files**:
-1. scratchpad.md - Remove completed, add priorities
-2. activeContext.md - Status with timestamp
-3. mistakes.md - Errors with MCP solutions
-4. progress.md - Milestones with metrics
-5. systemPatterns.md - Patterns from MCP feedback
-6. techContext.md - Changes with enriched docs
-7. productContext.md - Features with impact
-8. projectbrief.md - Scope refinements
-9. roadmap.md - Strategic progress
-
-**Storage**: @mcp:memory (local primary), @mcp:byterover-mcp (cloud backup)
-
-**Health Check**:
-- Files ≤100 lines (auto-cleanup)
-- Signal-to-noise improvement
-- Attention budget efficiency
-- n² degradation detection
-
-**PENALTY**: Validation fail/incomplete/rot → BLOCK until compliant
+**Compliance**: Both articles operate under unified constitutional authority with >95% consensus requirements.

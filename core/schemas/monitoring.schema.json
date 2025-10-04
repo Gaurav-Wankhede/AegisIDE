@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/monitoring.json",
+  "title": "Monitoring Schema",
+  "description": "Real-time performance tracking and metrics",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "performance_metrics"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "last_updated": {"type": "string", "format": "date-time"},
+    "performance_metrics": {
+      "type": "object",
+      "properties": {
+        "parsing_time_ms": {"type": "number", "minimum": 0},
+        "memory_usage_kb": {"type": "number", "minimum": 0},
+        "ai_processing_time_ms": {"type": "number", "minimum": 0},
+        "query_response_time_ms": {"type": "number", "minimum": 0},
+        "file_count": {"type": "number", "minimum": 0},
+        "total_size_kb": {"type": "number", "minimum": 0}
+      }
+    },
+    "health_status": {
+      "type": "object",
+      "properties": {
+        "overall_health": {"type": "number", "minimum": 0, "maximum": 100},
+        "memory_bank_health": {"type": "number", "minimum": 0, "maximum": 100},
+        "schema_validation_health": {"type": "number", "minimum": 0, "maximum": 100},
+        "last_health_check": {"type": "string", "format": "date-time"}
+      }
+    },
+    "alerts": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "required": ["id", "timestamp", "severity", "message"],
+        "properties": {
+          "id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "severity": {"type": "string", "enum": ["critical", "high", "medium", "low", "info"]},
+          "message": {"type": "string"},
+          "category": {"type": "string"},
+          "resolved": {"type": "boolean"}
+        }
+      }
+    },
+    "performance_trends": {
+      "type": "object",
+      "properties": {
+        "parsing_improvement": {"type": "number"},
+        "memory_optimization": {"type": "number"},
+        "error_reduction": {"type": "number"}
+      }
+    }
+  }
+}

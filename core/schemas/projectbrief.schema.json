@@ -1,0 +1,66 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/projectbrief.json",
+  "title": "Project Brief Schema",
+  "description": "Core project scope and constraints",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "project_overview"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_overview": {
+      "type": "object",
+      "required": ["name", "description", "version", "status"],
+      "properties": {
+        "name": {"type": "string"},
+        "description": {"type": "string"},
+        "version": {"type": "string"},
+        "status": {"type": "string", "enum": ["planning", "development", "testing", "deployment", "maintenance"]},
+        "started_date": {"type": "string", "format": "date-time"},
+        "target_completion": {"type": "string", "format": "date-time"}
+      }
+    },
+    "core_requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "requirement", "priority", "status"],
+        "properties": {
+          "id": {"type": "string"},
+          "requirement": {"type": "string"},
+          "priority": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "status": {"type": "string", "enum": ["not_started", "in_progress", "completed", "blocked"]},
+          "completion_percentage": {"type": "number", "minimum": 0, "maximum": 100}
+        }
+      }
+    },
+    "project_scope": {
+      "type": "object",
+      "properties": {
+        "included": {"type": "array", "items": {"type": "string"}},
+        "excluded": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "success_criteria": {
+      "type": "object",
+      "properties": {
+        "functional": {"type": "array", "items": {"type": "string"}},
+        "non_functional": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "constraints": {
+      "type": "object",
+      "properties": {
+        "technical": {"type": "array", "items": {"type": "string"}},
+        "business": {"type": "array", "items": {"type": "string"}},
+        "regulatory": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

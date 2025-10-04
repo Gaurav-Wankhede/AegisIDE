@@ -16,7 +16,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 3. **Achieve >95% Consensus**: Tri-branch agreement required
 4. **Chief Justice Validation**: Framework compliance check
 5. **Implementation**: Update files with context integration
-6. **Document Change**: Record in memory-bank
+6. **Documentation**: Record in memory-bank JSON files
 
 ### Law Amendment Protocol (Autonomous)
 **Real-Time Research Authority**: Laws auto-update with latest best practices
@@ -38,13 +38,13 @@ Identify Updated Best Practice →
 Tri-Branch Consensus (>95%) →
 Update Law File (≤12KB) →
 Validate Change →
-Document in mistakes.md
+Document in mistakes.json
 ```
 
 **Law Files** (`.windsurf/rules/laws/`):
-- python.md - Auto-updated with PEPs, security patches
-- ai-agents.md - Auto-updated with MCP advancements
-- web-scraping.md - Auto-updated with anti-detection techniques
+- Language-specific law files auto-updated with official standards (PEPs, security advisories)
+- ai-agents.md - MCP integration best practices
+- Platform-specific laws maintained as markdown for human readability
 
 ### Protected Elements (Require >98% Consensus)
 - Tri-branch structure (Executive, Legislative, Judicial)
@@ -69,7 +69,7 @@ All changes require >95% tri-branch consensus with memory-bank validation
 1. **Literal Text**: Primary meaning derived from explicit constitutional language
 2. **Contextual Analysis**: Interpretation within broader framework context and memory-bank alignment
 3. **Historical Intent**: Understanding based on original framework establishment purposes
-4. **Precedent Analysis**: Consideration of previous interpretations stored in mistakes.md
+4. **Precedent Analysis**: Consideration of previous interpretations stored in mistakes.json
 5. **Practical Implementation**: Real-world application effects on autonomous operations
 
 **Interpretation Authority**:
@@ -86,7 +86,7 @@ All changes require >95% tri-branch consensus with memory-bank validation
 4. **Evidence Analysis**: Evaluate historical context and implementation impact
 5. **Precedent Review**: Examine similar past interpretations and outcomes
 6. **Consensus Building**: Achieve >95% agreement on interpretation
-7. **Documentation**: Record interpretation and rationale in systemPatterns.md
+7. **Documentation**: Record interpretation and rationale in systemPatterns.json
 
 ### Emergency Amendment Procedures
 

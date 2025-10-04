@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/kanban.json",
+  "title": "Kanban Schema",
+  "description": "Task workflow management with parliamentary approval",
+  "type": "object",
+  "required": ["schema_version", "framework", "metadata", "columns", "tasks"],
+  "properties": {
+    "schema_version": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "framework": {"type": "string"},
+    "metadata": {
+      "type": "object",
+      "required": ["project_name", "governance_mode", "autonomy_level"],
+      "properties": {
+        "project_name": {"type": "string"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "last_updated": {"type": "string", "format": "date-time"},
+        "governance_mode": {"type": "string", "enum": ["parliamentary", "autonomous", "hybrid"]},
+        "autonomy_level": {"type": "number", "minimum": 0, "maximum": 100},
+        "blueprint_id": {"type": "string"}
+      }
+    },
+    "parliamentary_approval": {
+      "type": "object",
+      "properties": {
+        "required_consensus": {"type": "number", "minimum": 0, "maximum": 100},
+        "government_approval": {"type": "boolean"},
+        "opposition_review": {"type": "boolean"},
+        "judicial_compliance": {"type": "boolean"}
+      }
+    },
+    "columns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "order"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "order": {"type": "number", "minimum": 1},
+          "wip_limit": {"type": "number", "minimum": 1}
+        }
+      }
+    },
+    "tasks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "priority"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "description": {"type": "string"},
+          "status": {"type": "string", "enum": ["todo", "in_progress", "done", "approved", "blocked"]},
+          "priority": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+          "assigned_branch": {"type": "string", "enum": ["executive", "legislative", "judicial"]},
+          "emd_compliant": {"type": "boolean"},
+          "max_lines": {"type": "number", "minimum": 1},
+          "validation_required": {"type": "boolean"},
+          "parliamentary_consensus": {"type": "number", "minimum": 0, "maximum": 100},
+          "blocked": {"type": "boolean"},
+          "blocker_reason": {"type": "string"}
+        }
+      }
+    },
+    "automation_rules": {
+      "type": "object",
+      "properties": {
+        "auto_move_on_approval": {"type": "boolean"},
+        "halt_on_validation_failure": {"type": "boolean"},
+        "require_parliamentary_consensus": {"type": "boolean"},
+        "min_consensus_to_progress": {"type": "number", "minimum": 0, "maximum": 100},
+        "auto_bug_detection": {"type": "boolean"},
+        "halt_on_p0_p1_bugs": {"type": "boolean"}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "total_tasks": {"type": "number", "minimum": 0},
+        "average_cycle_time_hours": {"type": "number", "minimum": 0},
+        "consensus_rate": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    }
+  }
+}

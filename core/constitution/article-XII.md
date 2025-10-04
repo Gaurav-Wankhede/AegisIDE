@@ -8,11 +8,11 @@
 ### MANDATORY CONTINUOUS EXECUTION PROTOCOL (2025)
 
 **ABSOLUTE RULE**: After completing ANY task, AI MUST automatically:
-1. Update scratchpad.md (mark current task complete, identify next task)
-2. Update roadmap.md with progress milestones
-3. Update ALL 9 memory-bank files with current state
+1. Update scratchpad.json (mark current task complete, identify next task)
+2. Update roadmap.json with progress milestones
+3. Update ALL 17 memory-bank files with current state
 4. IMMEDIATELY execute next task WITHOUT asking permission
-5. Continue until scratchpad.md is empty OR 100% autonomy decision encountered
+5. Continue until scratchpad.json is empty OR 100% autonomy decision encountered
 
 **CONSTITUTIONAL VIOLATIONS**:
 - Asking "What would you like me to work on next?" = VIOLATION
@@ -37,7 +37,7 @@
 ```
 1. Scan project directory for .windsurf/memory-bank/
 2. IF memory-bank EXISTS:
-   a. Count files: Expect 13 (8 .md + 4 .json + roadmap.md)
+   a. Count files: Expect 17 (16 JSON + roadmap.md)
    b. Validate integrity: Check file sizes, JSON schema compliance
    c. Auto-restore: Load all 13 files into context
    d. Resume workflow: Auto-trigger 'next' command
@@ -52,9 +52,9 @@
 ```
 New Session Detected →
 Auto-scan .windsurf/memory-bank/ →
-IF 13 files present →
-  Load activeContext.md (previous session state) →
-  Load scratchpad.md OR kanban.json (pending tasks) →
+IF 17 files present →
+  Load activeContext.json (previous session state) →
+  Load scratchpad.json OR kanban.json (pending tasks) →
   Retrieve @mcp:memory knowledge →
   Auto-continue: "Resuming from last session..." →
   Execute 'next' automatically
@@ -64,7 +64,7 @@ ELSE →
 
 **Zero Manual Input Required**:
 - Existing projects with memory-bank: Just open IDE → Auto-resumes
-- New sessions: AI reads ALL 13 files automatically
+- New sessions: AI reads ALL 17 files automatically
 - User types: `next` (or AI auto-triggers it)
 - Workflow continues from exactly where you left off
 
@@ -85,15 +85,15 @@ ELSE →
 
 **New Session Detection**:
 1. First user message in new session detected
-2. Auto-read activeContext.md (previous session state)
-3. Auto-read scratchpad.md (pending tasks)
+2. Auto-read activeContext.json (previous session state)
+3. Auto-read scratchpad.json (pending tasks)
 4. Retrieve knowledge from @mcp:memory (persistent)
 5. **Auto-execute**: Resume from last task WITHOUT user command
 
 **Session State Preservation**:
-- activeContext.md stores current implementation status
-- scratchpad.md maintains task queue
-- progress.md tracks milestone completion
+- activeContext.json stores current implementation status
+- scratchpad.json maintains task queue
+- progress.json tracks milestone completion
 - @mcp:memory persists knowledge across sessions
 
 **Bootstrap for New Projects**:
@@ -105,28 +105,29 @@ ELSE →
 ### Guaranteed Execution Chain
 ```
 Task N Complete → 
-Auto-Update ALL 9 Memory-Bank Files → 
-Scan scratchpad.md for Task N+1 → 
+Auto-Update ALL 17 Memory-Bank Files → 
+Scan scratchpad.json for Task N+1 → 
 EXECUTE Task N+1 IMMEDIATELY → 
 Task N+1 Complete → 
-Auto-Update ALL 9 Memory-Bank Files → 
-Scan scratchpad.md for Task N+2 → 
+Auto-Update ALL 17 Memory-Bank Files → 
+Scan scratchpad.json for Task N+2 → 
 EXECUTE Task N+2 IMMEDIATELY → 
 [REPEAT CONTINUOUSLY FOR 30+ HOURS]
 ```
 
 ### Memory-Bank Update Protocol (MANDATORY)
 
-**9 Core Files** (MUST be updated after EVERY task completion):
-1. `activeContext.md` - Current implementation status, active priorities
-2. `scratchpad.md` - Task queue with completed tasks removed, new tasks added
-3. `mistakes.md` - Error patterns, resolution strategies, learning insights
-4. `progress.md` - Milestone tracking, completion metrics, velocity analysis
-5. `systemPatterns.md` - Successful implementation patterns, architectural decisions
-6. `techContext.md` - Technical stack changes, dependency updates, configuration decisions
-7. `productContext.md` - Feature completion, business impact, user value delivered
-8. `projectbrief.md` - Scope refinements, requirement evolution, stakeholder alignment
-9. `roadmap.md` - Strategic progress, milestone advancement, dependency management
+**17 Files** (MUST be updated after EVERY task completion):
+1. `activeContext.json` - Current implementation status, active priorities
+2. `scratchpad.json` - Task queue with completed tasks removed, new tasks added
+3. `mistakes.json` - Error patterns, resolution strategies, learning insights
+4. `progress.json` - Milestone tracking, completion metrics, velocity analysis
+5. `systemPatterns.json` - Successful implementation patterns, architectural decisions
+6. `techContext.json` - Technical stack changes, dependency updates, configuration decisions
+7. `productContext.json` - Feature completion, business impact, user value delivered
+8. `projectbrief.json` - Scope refinements, requirement evolution, stakeholder alignment
+9-16. Automation JSON files (roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies)
+17. `roadmap.md` - Human-readable strategic overview
 
 **Update Sequence**: Complete Task → Update ALL 9 Files → Scan Next Task → Execute Immediately
 
@@ -139,13 +140,13 @@ Error Detection → Instant Context7 MCP Call → Auto-Fix Implementation → Co
 **Recovery Guarantees**:
 1. **Any Error Triggers Auto-Recovery**: No error stops workflow permanently
 2. **MCP Integration Mandatory**: Auto-call @mcp:context7 for instant official documentation
-3. **Mistakes.md Update**: Log error pattern during recovery, not after
+3. **Mistakes.json Update**: Log error pattern during recovery, not after
 4. **Immediate Continuation**: Resume execution within same task cycle
 5. **No Human Escalation**: Only 100% autonomy decisions require human input
 
 **Recovery Chain Example**:
 ```
-Error Detected → mistakes.md instant update → Auto-call @mcp:context7 → 
+Error Detected → mistakes.json instant update → Auto-call @mcp:context7 → 
 Get official docs → Implement fix → Validate → Continue current task →
 Complete task → Update all files → Next task → NEVER STOP
 ```

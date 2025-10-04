@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/techContext.json",
+  "title": "Technical Context Schema",
+  "description": "Technical stack with MCP-enriched links",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "technical_stack"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "technical_stack": {
+      "type": "object",
+      "properties": {
+        "backend": {
+          "type": "object",
+          "properties": {
+            "runtime": {"type": "string"},
+            "framework": {"type": "string"},
+            "database": {"type": "string"},
+            "cache": {"type": "string"},
+            "testing": {"type": "string"}
+          }
+        },
+        "frontend": {
+          "type": "object",
+          "properties": {
+            "framework": {"type": "string"},
+            "bundler": {"type": "string"},
+            "styling": {"type": "string"},
+            "state": {"type": "string"}
+          }
+        },
+        "infrastructure": {
+          "type": "object",
+          "properties": {
+            "containerization": {"type": "string"},
+            "orchestration": {"type": "string"},
+            "ci_cd": {"type": "string"},
+            "monitoring": {"type": "string"}
+          }
+        }
+      }
+    },
+    "mcp_enriched_links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "url"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "url": {"type": "string", "format": "uri"},
+          "relevance_score": {"type": "number", "minimum": 0, "maximum": 1},
+          "last_accessed": {"type": "string", "format": "date-time"},
+          "context": {"type": "string"},
+          "key_insights": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "environment_config": {
+      "type": "object",
+      "properties": {
+        "development": {"type": "object"},
+        "staging": {"type": "object"},
+        "production": {"type": "object"}
+      }
+    },
+    "dependency_tracking": {
+      "type": "object",
+      "properties": {
+        "critical_dependencies": {"type": "array", "items": {"type": "string"}},
+        "last_security_scan": {"type": "string", "format": "date-time"},
+        "vulnerabilities": {"type": "number", "minimum": 0},
+        "outdated_packages": {"type": "number", "minimum": 0},
+        "update_strategy": {"type": "string"}
+      }
+    }
+  }
+}

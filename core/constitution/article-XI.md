@@ -31,10 +31,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Pre-Implementation Compliance Protocol** (MANDATORY):
 ```
 1. Context Assembly Phase:
-   - Read scratchpad.md (immediate priorities validation)
-   - Read roadmap/roadmap.md (strategic alignment verification)
+   - Read scratchpad.json (immediate priorities validation)
+   - Read roadmap.json + roadmap.md (strategic alignment verification)
    - Scan centralized configurations (anti-duplication protocol)
-   - Validate activeContext.md, mistakes.md, techContext.md
+   - Validate activeContext.json, mistakes.json, techContext.json
    - Retrieve knowledge from byterover-mcp for pattern matching
 
 2. Validation Phase:
@@ -46,7 +46,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 3. Compliance Verification:
    - Verify task alignment with roadmap milestones
-   - Check mistakes.md for similar past errors and lessons learned
+   - Check mistakes.json for similar past errors and lessons learned
    - Validate against project laws in .windsurf/rules/laws/
    - Confirm EMD compliance (≤10,000 characters per file)
    - Ensure memory-bank files remain ≤100 lines each
@@ -57,25 +57,26 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 1. Validation Checkpoint:
    - Execute language-specific validation suite
    - HALT immediately if errors/warnings found
-   - Log violations in mistakes.md with pattern analysis
+   - Log violations in mistakes.json with pattern analysis
    - Auto-call @mcp:context7 for official documentation fixes
    - Re-validate until 100% clean before proceeding
 
 2. Memory-Bank Update (ALL 9 FILES):
-   - scratchpad.md: Remove completed tasks, add new priorities
-   - activeContext.md: Update current implementation status
-   - mistakes.md: Document any errors encountered with solutions
-   - progress.md: Update milestone completion and metrics
-   - systemPatterns.md: Record successful patterns and validation results
-   - techContext.md: Document technical changes and decisions
-   - productContext.md: Update feature completion and business alignment
-   - projectbrief.md: Refine scope and requirements as needed
-   - roadmap/roadmap.md: Update strategic progress and dependencies
+   -1. scratchpad.json: Remove completed tasks, add new priorities
+   -2. activeContext.json: Update current implementation status
+   -3. mistakes.json: Document any errors encountered with solutions
+   -4. progress.json: Update milestone completion and metrics
+   -5. systemPatterns.json: Record successful patterns and validation results
+   -6. techContext.json: Document technical changes and decisions
+   -7. productContext.json: Update feature completion and business alignment
+   -8. projectbrief.json: Refine scope and requirements as needed
+   -9-16. Automation JSON files: Update roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies
+   -17. roadmap.md: Human-readable strategic overview
 
 3. Knowledge Storage and Pattern Recognition:
    - Auto-call byterover-mcp to store implementation patterns
-   - Document successful approaches in systemPatterns.md
-   - Update error resolution patterns in mistakes.md
+   - Document successful approaches in systemPatterns.json
+   - Update error resolution patterns in mistakes.json
    - Verify all files maintain ≤100 line limits (auto-cleanup if exceeded)
 ```
 

@@ -1,0 +1,252 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aegiside.org/schemas/mermaid.json",
+  "title": "Mermaid Visualization Schema",
+  "description": "Progress flow visualization and AI logic representation using Mermaid.js diagrams",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "progress_flow", "ai_logic_flow"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Semantic version of schema"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of last update"
+    },
+    "progress_flow": {
+      "type": "object",
+      "description": "Task progression and milestone visualization",
+      "required": ["diagram_type", "mermaid_code", "nodes", "edges"],
+      "properties": {
+        "diagram_type": {"type": "string", "enum": ["flowchart", "gantt", "timeline", "gitgraph"]},
+        "mermaid_code": {"type": "string", "description": "Complete Mermaid.js syntax"},
+        "nodes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "status", "type"],
+            "properties": {
+              "id": {"type": "string"},
+              "label": {"type": "string"},
+              "status": {"type": "string", "enum": ["pending", "in_progress", "completed", "blocked", "cancelled"]},
+              "type": {"type": "string", "enum": ["task", "milestone", "phase", "decision", "process"]},
+              "progress_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+              "priority": {"type": "string", "enum": ["low", "medium", "high", "critical"]},
+              "assigned_to": {"type": "string"},
+              "estimated_hours": {"type": "number", "minimum": 0}
+            }
+          }
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "relationship"],
+            "properties": {
+              "from": {"type": "string"},
+              "to": {"type": "string"},
+              "relationship": {"type": "string", "enum": ["depends_on", "blocks", "triggers", "parallel", "sequential"]},
+              "condition": {"type": "string", "description": "Optional condition for edge activation"}
+            }
+          }
+        },
+        "styling": {
+          "type": "object",
+          "properties": {
+            "theme": {"type": "string", "enum": ["default", "dark", "base", "forest", "neutral"]},
+            "color_scheme": {
+              "type": "object",
+              "properties": {
+                "pending": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+                "in_progress": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+                "completed": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"},
+                "blocked": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "ai_logic_flow": {
+      "type": "object",
+      "description": "AI decision-making and reasoning visualization",
+      "required": ["constitutional_flow", "decision_matrix", "mcp_integration"],
+      "properties": {
+        "constitutional_flow": {
+          "type": "object",
+          "required": ["branches", "consensus_process", "mermaid_representation"],
+          "properties": {
+            "branches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "role", "authority_level"],
+                "properties": {
+                  "name": {"type": "string"},
+                  "role": {"type": "string", "enum": ["executive", "legislative", "judicial"]},
+                  "authority_level": {"type": "number", "minimum": 0, "maximum": 100},
+                  "current_tasks": {"type": "array", "items": {"type": "string"}},
+                  "decision_weight": {"type": "number", "minimum": 0, "maximum": 1}
+                }
+              }
+            },
+            "consensus_process": {
+              "type": "object",
+              "required": ["threshold", "current_score", "voting_matrix"],
+              "properties": {
+                "threshold": {"type": "number", "minimum": 50, "maximum": 100},
+                "current_score": {"type": "number", "minimum": 0, "maximum": 100},
+                "voting_matrix": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["decision_type", "weights"],
+                    "properties": {
+                      "decision_type": {"type": "string", "enum": ["technical", "strategic", "quality", "validation"]},
+                      "weights": {"type": "object"}
+                    }
+                  }
+                }
+              }
+            },
+            "mermaid_representation": {"type": "string", "description": "Mermaid.js code for constitutional flow"}
+          }
+        },
+        "decision_matrix": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["decision_id", "context", "process_steps", "outcome"],
+            "properties": {
+              "decision_id": {"type": "string"},
+              "context": {"type": "string"},
+              "autonomy_level": {"type": "number", "minimum": 0, "maximum": 100},
+              "process_steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["step", "branch_involved", "action"],
+                  "properties": {
+                    "step": {"type": "string"},
+                    "branch_involved": {"type": "string"},
+                    "action": {"type": "string"},
+                    "timestamp": {"type": "string", "format": "date-time"},
+                    "mcp_tools_used": {"type": "array", "items": {"type": "string"}}
+                  }
+                }
+              },
+              "outcome": {
+                "type": "object",
+                "required": ["consensus_achieved", "implementation_status"],
+                "properties": {
+                  "consensus_achieved": {"type": "boolean"},
+                  "consensus_percentage": {"type": "number", "minimum": 0, "maximum": 100},
+                  "implementation_status": {"type": "string", "enum": ["pending", "executing", "completed", "blocked"]},
+                  "lessons_learned": {"type": "string"}
+                }
+              }
+            }
+          }
+        },
+        "mcp_integration": {
+          "type": "object",
+          "required": ["active_mcps", "tool_usage_flow", "integration_diagram"],
+          "properties": {
+            "active_mcps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "status", "usage_frequency"],
+                "properties": {
+                  "name": {"type": "string"},
+                  "status": {"type": "string", "enum": ["active", "inactive", "error", "fallback"]},
+                  "usage_frequency": {"type": "number", "minimum": 0},
+                  "last_used": {"type": "string", "format": "date-time"},
+                  "success_rate": {"type": "number", "minimum": 0, "maximum": 100}
+                }
+              }
+            },
+            "tool_usage_flow": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["sequence", "mcp_tool", "purpose", "trigger"],
+                "properties": {
+                  "sequence": {"type": "number"},
+                  "mcp_tool": {"type": "string"},
+                  "purpose": {"type": "string"},
+                  "trigger": {"type": "string"},
+                  "expected_output": {"type": "string"},
+                  "fallback_action": {"type": "string"}
+                }
+              }
+            },
+            "integration_diagram": {"type": "string", "description": "Mermaid.js code for MCP integration flow"}
+          }
+        }
+      }
+    },
+    "real_time_metrics": {
+      "type": "object",
+      "description": "Live performance and status metrics",
+      "properties": {
+        "task_velocity": {
+          "type": "object",
+          "properties": {
+            "tasks_per_hour": {"type": "number", "minimum": 0},
+            "completion_rate": {"type": "number", "minimum": 0, "maximum": 100},
+            "average_task_duration": {"type": "number", "minimum": 0},
+            "bottleneck_analysis": {"type": "string"}
+          }
+        },
+        "constitutional_compliance": {
+          "type": "object",
+          "properties": {
+            "adherence_score": {"type": "number", "minimum": 0, "maximum": 100},
+            "consensus_achievement_rate": {"type": "number", "minimum": 0, "maximum": 100},
+            "mcp_integration_health": {"type": "number", "minimum": 0, "maximum": 100},
+            "validation_success_rate": {"type": "number", "minimum": 0, "maximum": 100}
+          }
+        },
+        "memory_bank_health": {
+          "type": "object",
+          "properties": {
+            "file_sizes": {"type": "object"},
+            "update_frequency": {"type": "number"},
+            "schema_compliance": {"type": "number", "minimum": 0, "maximum": 100},
+            "corruption_incidents": {"type": "number", "minimum": 0}
+          }
+        }
+      }
+    },
+    "visualization_config": {
+      "type": "object",
+      "description": "Configuration for dashboard rendering",
+      "properties": {
+        "auto_refresh_interval": {"type": "number", "minimum": 1000, "description": "Milliseconds"},
+        "mermaid_config": {
+          "type": "object",
+          "properties": {
+            "theme": {"type": "string"},
+            "fontFamily": {"type": "string"},
+            "fontSize": {"type": "number"},
+            "primaryColor": {"type": "string"},
+            "primaryTextColor": {"type": "string"}
+          }
+        },
+        "layout_preferences": {
+          "type": "object",
+          "properties": {
+            "show_progress_flow": {"type": "boolean"},
+            "show_ai_logic": {"type": "boolean"},
+            "show_mcp_integration": {"type": "boolean"},
+            "compact_mode": {"type": "boolean"}
+          }
+        }
+      }
+    }
+  }
+}

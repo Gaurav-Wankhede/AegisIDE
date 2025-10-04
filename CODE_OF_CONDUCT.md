@@ -78,9 +78,10 @@ This Constitutional Code of Conduct applies to:
 ## Constitutional Framework Integration
 
 ### **Memory Bank Compliance**
-- All incident reports documented in `.windsurf/memory-bank/mistakes.md`
-- Constitutional violations trigger automatic pattern learning
-- Democratic process decisions stored for precedent establishment
+- All incident reports documented in `.windsurf/memory-bank/mistakes.json` (structured events)
+- Constitutional violations trigger automatic pattern learning with schema validation
+- Democratic process decisions stored in `systemPatterns.json` for precedent establishment
+- All 17 files updated: 16 JSON (≤10KB each) + roadmap.md (≤20KB)
 
 ### **Always-Check Operations**
 - Code of Conduct validation integrated with pre-task constitutional checks
@@ -91,8 +92,9 @@ This Constitutional Code of Conduct applies to:
 
 **Constitutional Foundation**: Based on democratic parliamentary governance principles with judicial review
 **Inspired by**: Contributor Covenant v2.1 enhanced with constitutional AI governance
-**Supreme Authority**: [Constitution.md](windsurf/.windsurf/rules/constitution.md) - 13 Articles of AI Democratic Governance
-**Implementation Rules**: [Global Rules](windsurf/global_rules.md) - 98% Autonomous Democratic Decision-Making
+**Supreme Authority**: [Constitution](core/constitution/) - 14 Articles of AI Democratic Governance
+**Implementation Rules**: [Global Rules](platforms/windsurf/global_rules.md) - 98% Autonomous Democratic Decision-Making
+**JSON Architecture**: 17-file system (16 JSON + roadmap.md) with schema validation
 
 ---
 
