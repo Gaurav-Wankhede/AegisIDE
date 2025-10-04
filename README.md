@@ -20,6 +20,23 @@
 
 **Core Innovation**: AI auto-generates project-specific memory-bank files (NO templates)
 
+## 🎯 Core Commands (v2.6.2)
+
+**8 Unified Commands** - Easy to type, easy to remember:
+
+| Command | Purpose | Auto-Continues |
+|---------|---------|----------------|
+| `init` | Initialize OR restore project | Detects existing memory-bank |
+| `next` | Execute next task | ✅ Forever until tasks empty |
+| `update` | Refresh all 13 files | Updates memory-bank + JSON |
+| `validate` | Check quality + blueprint | 6-pillar scoring + tests |
+| `fix` | Auto-fix errors/warnings | Until 100% clean |
+| `status` | Progress report | Tasks, bugs, metrics |
+| `optimize` | Improve architecture | Requires >95% consensus |
+| `health` | System monitoring | Context rot, file sizes |
+
+**Benefits**: 80% reduction from 40+ commands, zero duplication, works with both markdown AND JSON files automatically.
+
 ### ✨ NEW: File Editing Anti-Hallucination (v2.6.0)
 **CRITICAL FIX**: Prevents AI from trying to create files that already exist
 - Check file existence BEFORE choosing tool
