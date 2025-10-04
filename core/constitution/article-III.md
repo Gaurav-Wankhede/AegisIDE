@@ -10,27 +10,19 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ## Article III: Context-Engineered Development Workflow
 
-### 2025 Context Engineering Principles (Anthropic + Kubiya Research)
+### 2025 Context Engineering Principles
 
-**Attention Budget Management**: LLMs have finite attention capacity - every token in context creates n² pairwise relationships. Context is a finite resource with diminishing marginal returns requiring intelligent curation.
+**Attention Budget**: Finite capacity - n² token relationships. Intelligent curation required.
+**Context Rot Prevention**: Model accuracy degrades as context grows. Maintain signal-to-noise ratio via compression.
+**Event-Driven Context**: Immutable event stream (Git-like). Snapshots preserve history for rollback.
+**Stateless Reducer**: Unified execution/business state. Context window = single source of truth.
+**Tool-Context Feedback**: MCP results auto-enrich files with structured insights (self-improving system).
 
-**Context Rot Prevention**: As token count increases, model accuracy degrades. Studies show "context rot" - models lose focus as context grows. Maintain optimal signal-to-noise ratio through dynamic compression.
+### Attention Budget Allocation
 
-**Event-Driven Context**: Treat context window as immutable event stream (like Git commits). Each update creates snapshot while preserving historical patterns for rollback and analysis.
+**Total: 100%** - CRITICAL (45%): scratchpad (25%), activeContext (20%) | HIGH (30%): mistakes (15%), roadmap (15%) | SUPPORTING (18%): techContext (10%), progress (8%) | REFERENCE (7%): systemPatterns (4%), productContext (2%), projectbrief (1%)
 
-**Stateless Reducer Pattern**: Unified execution/business state in single context window. No separation between operational and strategic context. Context window = single source of truth.
-
-**Tool-Context Feedback Loops**: MCP server results automatically enrich relevant context files with structured insights, not raw outputs. Creates self-improving context system.
-
-### Attention Budget Allocation (Dynamic Prioritization)
-
-**Total Attention Budget: 100%**
-1. **CRITICAL** (45%): scratchpad.md (25%), activeContext.md (20%)
-2. **HIGH PRIORITY** (30%): mistakes.md (15%), roadmap/roadmap.md (15%)
-3. **SUPPORTING** (18%): techContext.md (10%), progress.md (8%)
-4. **REFERENCE** (7%): systemPatterns.md (4%), productContext.md (2%), projectbrief.md (1%)
-
-**Dynamic Rebalancing**: Task-adaptive priority adjustment based on current operation type (error resolution prioritizes mistakes.md, new features prioritize roadmap.md).
+**Dynamic Rebalancing**: Task-adaptive (error→mistakes.md, feature→roadmap.md).
 
 ### Memory-Bank Context System (MANDATORY - Auto-Generated)
 
@@ -56,61 +48,86 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Line Limit Enforcement**: Each file MUST stay ≤100 lines for optimal attention budget preservation.
 
-**Automatic Cleanup Protocol** (Execute WITHOUT asking when file >100 lines):
-1. Check line count AND token density before every update
-2. If >100 lines OR attention budget exceeded: Archive older content automatically
-3. Keep most recent 3-5 milestones/patterns/tasks (highest signal-to-noise)
-4. Compress history into "Previous Completed" event stream sections
-5. Remove stale information while preserving critical patterns
-6. Create immutable snapshot before cleanup for rollback capability
+**Auto-Cleanup** (file >100 lines): Check count+density → Archive older → Keep 3-5 recent → Compress history → Remove stale → Snapshot for rollback
 
-**Signal-to-Noise Optimization**:
-- Measure relevance per token for each file section
-- Auto-compress low-impact, high-token content
-- Preserve high-signal patterns even if old
-- Delete truly irrelevant information immediately
+**Signal-to-Noise**: Measure relevance/token → Compress low-impact → Preserve high-signal → Delete irrelevant
 
-### Core Commands with Attention Awareness
+### Core Commands (Unified - No Duplication)
 
-**`what next`**: Read scratchpad → Calculate attention budget → Update → Clean → VALIDATE → EXECUTE → AUTO-CONTINUOUS
-**`implement next task`**: VALIDATE → Execute current → VALIDATE → Update files → AUTO-CONTINUE
-**`continuous execute`**: Enter 30-hour mode - NEVER STOP until scratchpad empty
-**`update memory bank`**: Attention-aware refresh of all 8 memory-bank files with dynamic prioritization
-**`update roadmap`**: Strategic refresh of roadmap/roadmap.md with milestone validation
-**`session status`**: Report execution metrics without stopping workflow
-**`context health check`**: NEW - Monitor attention budget, context rot index, signal-to-noise ratios
+**`init`**: Auto-detect project state → IF memory-bank exists: restore session → IF missing: generate ALL files (8 .md + 4 .json + roadmap) → For new: from description → For existing: 6-phase reverse-engineering → Enable autonomous workflow
 
-### "what next" Workflow (ATTENTION-OPTIMIZED AUTO-CONTINUOUS)
+**`next`**: Read scratchpad OR kanban (auto-detect) → VALIDATE → Execute current task → VALIDATE → Update ALL files → AUTO-CONTINUE to next task → NEVER STOP until empty
+
+**`update`**: Refresh ALL files (8 memory-bank .md + 4 blueprint .json + roadmap.md) with dynamic prioritization and attention optimization
+
+**`validate`**: Re-score 6 blueprint pillars + Run language-specific tests (cargo check, pnpm typecheck, pytest, etc.) → Report compliance + viability score
+
+**`fix`**: HALT-FIX-VALIDATE loop for errors + warnings → Auto-call @mcp:context7 → Update bugfix.json → Repeat until 100% clean
+
+**`status`**: Report everything - tasks, bugs, progress %, blocked items, consensus rate, execution metrics - without stopping workflow
+
+**`optimize`**: Analyze patterns from systemPatterns.md → Identify bottlenecks → Propose improvements (requires >95% consensus)
+
+**`health`**: Monitor attention budget, context rot index, signal-to-noise ratios, JSON integrity, file size compliance
+
+### "next" Workflow (UNIFIED AUTO-CONTINUOUS)
 
 ```
-1. Calculate current attention budget utilization (0-100%)
-2. Read scratchpad.md with priority weighting (25% attention)
-3. Dynamic context loading based on task type (adaptive prioritization)
-4. Update scratchpad with next priority task (event-driven)
-5. Clean completed tasks maintaining event history (≤100 lines)
-6. EXECUTE next task immediately (no permission)
-7. Update all 9 memory-bank files with attention optimization
-8. Create immutable context snapshot (Git-like commit)
-9. AUTO-TRIGGER continuous execute (DO NOT WAIT for human)
-10. Continue until scratchpad empty OR context rot detected
+1. Calculate current attention budget (0-100%)
+2. Auto-detect files: Read scratchpad.md OR kanban.json (whichever exists/has tasks)
+3. Load blueprint.json if exists for pillar-aligned prioritization
+4. Dynamic context loading based on task type
+5. Update task files (scratchpad + kanban) with next priority
+6. Clean completed, maintain event history (≤100 lines)
+7. VALIDATE → EXECUTE immediately (no permission)
+8. Update ALL 13 files (8 .md + 4 .json + roadmap) with attention optimization
+9. Create immutable context snapshot
+10. AUTO-LOAD next task from same workflow
+11. Continue until ALL task files empty OR context rot detected
 ```
 
-**CRITICAL**: "what next" ALWAYS enters continuous execute mode. NEVER ask to continue.
+**CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. Works with markdown OR JSON files automatically.
 
-### "implement next task" Workflow (STATELESS REDUCER PATTERN)
+### "init" Workflow (UNIFIED PROJECT INITIALIZATION)
 
 ```
-1. Treat context window as unified execution/business state
-2. Load current task as immutable event from scratchpad stream
-3. Execute with full context awareness (no state separation)
-4. Update all 9 memory-bank files as event stream commits
-5. Validate attention budget usage post-execution
-6. Load next [ ] task from scratchpad event stream
-7. AUTO-EXECUTE next task (DO NOT WAIT for human)
-8. Repeat until scratchpad empty OR 100% decision encountered
+1. Scan .windsurf/memory-bank/ directory
+2. IF memory-bank EXISTS with 13 files:
+   a. Validate file integrity (schema compliance, file sizes)
+   b. Load all 13 files into context
+   c. Resume workflow: "Session restored from memory-bank"
+   d. Auto-trigger 'next' command
+   e. SKIP steps 3-16 (already initialized)
+
+3. IF memory-bank MISSING OR incomplete:
+   a. Scan project directory for existing code/config files
+   b. Auto-detect: New project (empty) OR Existing project (has code)
+
+IF NEW PROJECT:
+9a. Parse user description of project idea
+10a. Generate blueprint.json with 6-pillar validation (≥70 score required)
+11a. Create userflow.json from user personas
+12a. Populate kanban.json with tasks from blueprint
+13a. Initialize bugfix.json for monitoring
+14a. Generate 8 memory-bank .md files from project description
+15a. Create roadmap/roadmap.md with strategic milestones
+16a. Trigger parliamentary approval (>95% consensus)
+
+IF EXISTING PROJECT:
+9b. Scan codebase (framework, language, file sizes, complexity)
+10b. Run `fix` to detect existing errors → populate bugfix.json
+11b. Reverse-engineer blueprint.json from README + existing features (may be <70 score)
+12b. Extract userflow.json from routing/navigation code
+13b. Generate kanban.json from TODO comments + bugs + improvements
+14b. Generate 8 memory-bank .md files from current codebase state
+15b. Create roadmap/roadmap.md from incomplete features + TODOs
+16b. Generate improvement plan to reach minimum viable quality
+
+17. Enable autonomous workflow → Auto-trigger "next" command
 ```
 
-**CRITICAL**: "implement next task" ALWAYS auto-continues. NEVER ask "Should I continue?"
+**CRITICAL**: "init" handles BOTH new and existing projects automatically. Single command, zero duplication.
+
 
 ### Workflow Loop with MCP Integration (CONTINUOUS 30+ HOURS)
 

@@ -1,0 +1,104 @@
+{
+  "project_name": "",
+  "idea_description": "",
+  "created_at": "",
+  "updated_at": "",
+  "blueprint_id": "",
+  "validation": {
+    "pillar_1_problem": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["clarity", "target_audience", "pain_quantification", "validation"]
+    },
+    "pillar_2_solution": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["viability", "resources", "tech_appropriateness", "emd_compatible"]
+    },
+    "pillar_3_market": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["size", "competition", "timing", "demand"]
+    },
+    "pillar_4_feasibility": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["complexity", "stack_maturity", "timeline", "integrations"]
+    },
+    "pillar_5_scalability": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["growth_potential", "infrastructure", "performance", "resources"]
+    },
+    "pillar_6_monetization": {
+      "score": 0,
+      "feedback": "",
+      "criteria": ["revenue_model", "pricing", "cac_analysis", "sustainability"]
+    }
+  },
+  "overall_score": 0.0,
+  "approval_required": true,
+  "min_score_threshold": 70,
+  "improvements": [],
+  "tech_stack": {
+    "backend": [],
+    "frontend": [],
+    "database": [],
+    "infrastructure": [],
+    "tools": [],
+    "free_tier_optimized": true
+  },
+  "pricing_model": {
+    "tier_1_free": {
+      "name": "",
+      "features": [],
+      "sustainable_on_free_infra": true
+    },
+    "tier_2_premium": {
+      "name": "",
+      "features": [],
+      "price_monthly": 0
+    },
+    "tier_3_enterprise": {
+      "name": "",
+      "features": [],
+      "price_monthly": 0
+    }
+  },
+  "parliamentary_approval": {
+    "executive_score": 0,
+    "legislative_score": 0,
+    "judicial_score": 0,
+    "weighted_consensus": 0.0,
+    "approved": false,
+    "feedback": [],
+    "consensus_matrix": {
+      "project_manager": 0,
+      "innovation_shadow": 0,
+      "technology_minister": 0,
+      "analytics_shadow": 0,
+      "development_minister": 0,
+      "quality_shadow": 0
+    }
+  },
+  "risk_assessment": {
+    "technical_risks": [],
+    "business_risks": [],
+    "market_risks": [],
+    "mitigation_strategies": []
+  },
+  "revision_history": [
+    {
+      "version": "1.0",
+      "date": "",
+      "changes": [],
+      "score_improvements": {},
+      "approved": false
+    }
+  ],
+  "optimization_iterations": 0,
+  "last_optimized": "",
+  "generated_tasks": 0,
+  "generated_flows": 0,
+  "status": "draft"
+}

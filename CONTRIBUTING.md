@@ -30,6 +30,16 @@ flowchart LR
 - **Development Minister**: Implementation, code quality
 - **Technology Minister**: Technical architecture, system design
 
+### Development Workflow
+
+```bash
+# Initialize project (first time OR restore session)
+init
+
+# Execute autonomous tasks
+next
+```
+
 ### Legislative Branch (Opposition)
 - **Quality Shadow**: Testing, quality assurance, challenges
 - **Innovation Shadow**: Alternative approaches, research

@@ -1,0 +1,102 @@
+{
+  "schema_version": "2.7.0",
+  "framework": "AegisIDE Constitutional Kanban",
+  "metadata": {
+    "project_name": "",
+    "created_at": "",
+    "last_updated": "",
+    "governance_mode": "parliamentary",
+    "autonomy_level": 98,
+    "blueprint_id": ""
+  },
+  "parliamentary_approval": {
+    "required_consensus": 95,
+    "government_approval": true,
+    "opposition_review": true,
+    "judicial_compliance": true
+  },
+  "columns": [
+    {
+      "id": "todo",
+      "name": "TODO",
+      "order": 1
+    },
+    {
+      "id": "in_progress",
+      "name": "In Progress",
+      "order": 2,
+      "wip_limit": 5
+    },
+    {
+      "id": "done",
+      "name": "Done",
+      "order": 3
+    },
+    {
+      "id": "approved",
+      "name": "Approved",
+      "order": 4
+    }
+  ],
+  "tasks": [
+    {
+      "id": "",
+      "title": "",
+      "description": "",
+      "status": "todo",
+      "priority": "medium",
+      "assigned_branch": "executive",
+      "flow_id": "",
+      "blueprint_id": "",
+      "emd_compliant": true,
+      "max_lines": 80,
+      "validation_required": true,
+      "language": "",
+      "file_path": "",
+      "dependencies": [],
+      "estimated_complexity": "medium",
+      "estimated_hours": 0,
+      "actual_hours": 0,
+      "framework_validation_status": "pending",
+      "created_at": "",
+      "completed_at": "",
+      "blocked": false,
+      "blocker_reason": "",
+      "parliamentary_consensus": 0.0,
+      "bugs_detected": 0,
+      "bugs_fixed": 0
+    }
+  ],
+  "automation_rules": {
+    "auto_move_on_approval": true,
+    "halt_on_validation_failure": true,
+    "require_parliamentary_consensus": true,
+    "min_consensus_to_progress": 95,
+    "auto_bug_detection": true,
+    "auto_bug_fix": true,
+    "halt_on_p0_p1_bugs": true,
+    "auto_update_memory_bank": true,
+    "emd_enforcement": true,
+    "validation_checkpoints": ["pre_implementation", "during", "post_implementation", "pre_commit"]
+  },
+  "metrics": {
+    "total_tasks": 0,
+    "tasks_by_status": {
+      "todo": 0,
+      "in_progress": 0,
+      "done": 0,
+      "approved": 0
+    },
+    "from_blueprint": 0,
+    "average_cycle_time_hours": 0.0,
+    "blocked_tasks": 0,
+    "consensus_rate": 0.0,
+    "bug_detection_rate": 0.0,
+    "bug_fix_rate": 0.0,
+    "emd_compliance_rate": 0.0,
+    "validation_success_rate": 0.0,
+    "parliamentary_approval_rate": 0.0,
+    "average_bugs_per_task": 0.0,
+    "auto_fix_success_rate": 0.0
+  }
+}

@@ -5,6 +5,115 @@ All notable changes to AegisIDE - Constitutional Framework for Autonomous AI Dev
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.2] - 2025-10-04
+
+### Changed - MAJOR UX IMPROVEMENT
+- **Command Consolidation (Zero Duplication)**
+  - Reduced from 40+ commands to **8 unified commands**
+  - Single command handles BOTH JSON and markdown files automatically
+  - Easy to type, easy to remember - no need to check CheatSheet constantly
+
+- **New Unified Command Set**:
+  - `init` - Initialize any project (new OR existing) → Auto-generates all 13 files
+  - `next` - Execute next task → Auto-detects scratchpad OR kanban → Auto-continues forever
+  - `update` - Refresh ALL files (8 .md + 4 .json + roadmap)
+  - `validate` - Blueprint 6-pillar scoring + language-specific tests
+  - `fix` - Auto-fix all errors and warnings until 100% clean
+  - `status` - Complete progress report (tasks, bugs, metrics, consensus)
+  - `optimize` - Analyze patterns and propose improvements
+  - `health` - Monitor system health (attention budget, context rot, file integrity)
+
+- **Replaced Commands** (consolidated into above):
+  - ❌ `what next` → ✅ `next`
+  - ❌ `implement next task` → ✅ `next`
+  - ❌ `continuous execute` → ✅ `next` (auto-continues)
+  - ❌ `initialize memory bank` → ✅ `init`
+  - ❌ `adapt existing project` → ✅ `init` (auto-detects)
+  - ❌ `update memory bank` → ✅ `update`
+  - ❌ `fix issues` → ✅ `fix`
+  - ❌ `blueprint create` → ✅ `init` (auto-generates)
+  - ❌ `blueprint validate` → ✅ `validate`
+  - ❌ `blueprint apply` → ✅ `next`
+  - ❌ `blueprint optimize` → ✅ `optimize`
+  - ❌ `blueprint status` → ✅ `status`
+  - ❌ `context health check` → ✅ `health`
+  - ❌ `update roadmap` → ✅ `update`
+  - ❌ `session status` → ✅ `status`
+
+### Updated Files
+- **Article III** (`core/constitution/article-III.md`): Replaced all commands with 8 unified commands
+- **global_rules.md**: Updated core commands section with unified command set
+- **CheatSheet.md**: Complete restructure - 8 commands instead of 40+
+- **Main README.md**: Updated core commands table with 8 unified commands
+- **Windsurf README.md**: Updated command reference
+
+### Benefits
+- **80% Reduction** in commands to memorize (40+ → 8)
+- **Zero Duplication**: Single command for markdown AND JSON files
+- **Better UX**: Easy to type (`init`, `next`, `update`, `fix`, `status`, `validate`, `optimize`, `health`)
+- **Auto-Detection**: Commands automatically detect file types and project structure
+- **Cognitive Load**: Users don't need to remember separate blueprint vs memory-bank commands
+
+## [2.6.1] - 2025-10-04
+
+### Added
+- **Blueprint & Autonomous Development System**
+  - **6-Pillar Validation Framework**: Validates project ideas before implementation
+    - Problem Definition (0-100): Clarity, target audience, pain quantification
+    - Solution Feasibility (0-100): Viability, resources, tech stack, EMD compatibility
+    - Market Validation (0-100): Market size, competition, timing, demand
+    - Technical Feasibility (0-100): Complexity, stack maturity, timeline
+    - Scalability Assessment (0-100): Growth potential, infrastructure, performance
+    - Monetization Strategy (0-100): Revenue model, pricing, CAC, sustainability
+  - **Minimum Score**: ≥70/100 overall with no pillar <50 for parliamentary approval
+  - **Parliamentary Approval**: >95% tri-branch consensus required before implementation
+
+- **New JSON Files** (Auto-generated)
+  - `blueprint.json`: 6-pillar scores, tech stack, pricing model, risk assessment, revision history, consensus matrix
+  - `userflow.json`: User journeys, flow types, accessibility validation, framework-specific flags
+  - `kanban.json`: Tasks with dependencies, complexity estimates, parliamentary consensus, framework validation
+  - `bugfix.json`: P0-P3 bug classification, auto-fix tracking, MCP context7 usage, validation checkpoints
+
+- **Blueprint Commands**
+  - `blueprint create "<description>"`: Auto-generate all JSON files with 6-pillar validation
+  - `blueprint validate`: Re-score all pillars with latest market data and recommendations
+  - `blueprint apply`: Execute tasks from kanban with continuous bug detection
+  - `blueprint optimize`: Analyze patterns from systemPatterns.md, propose improvements (requires >95% consensus)
+  - `blueprint status`: Progress report with tasks, bugs, completion %, blocked items
+  - `adapt existing project`: 6-phase reverse-engineering for existing codebases
+
+- **Enhanced Constitutional Articles**
+  - **Article XIV**: Complete Blueprint & Autonomous Development Framework (257 lines)
+  - **Article III**: Added `adapt existing project` workflow (6 phases: Analysis, Quality Assessment, Reverse Engineering, Memory-Bank Population, JSON Generation, Validation)
+  - **Article III**: Added `blueprint validate` and `blueprint optimize` to core commands
+
+- **Adapt Existing Project Workflow** (6 Phases)
+  - Phase 1: Codebase analysis (framework detection, EMD compliance, complexity assessment)
+  - Phase 2: Quality assessment (run `fix issues`, populate bugfix.json, calculate technical debt)
+  - Phase 3: Blueprint reverse-engineering (extract from README, score 6 pillars, generate improvements)
+  - Phase 4: Memory-bank population (all 8 files + roadmap from existing code)
+  - Phase 5: JSON file generation (blueprint, userflow, kanban, bugfix from analysis)
+  - Phase 6: Validation & approval (parliamentary review, improvement roadmap, enable workflow)
+
+### Changed
+- **Article III** updated with blueprint integration in workflows
+  - `what next` now reads blueprint.json + kanban.json (12-step workflow)
+  - `implement next task` loads from kanban.json OR scratchpad.md (13-step workflow)
+  - Memory-bank updates now include all 4 JSON files
+- **Global Rules** updated with blueprint command references
+- **CheatSheet.md** expanded with comprehensive blueprint section
+- **Windsurf README.md** added blueprint system documentation
+- **Main README.md** added Blueprint & Autonomous Development System section (v2.7.0)
+- **JSON Schemas** enhanced with missing fields:
+  - blueprint.json: risk_assessment, revision_history, consensus_matrix
+  - userflow.json: flow_type, framework_specific, accessibility_validated
+  - kanban.json: dependencies, estimated_complexity, framework_validation_status
+  - bugfix.json: related_article, validation_checkpoint, framework_detected
+
+### Fixed
+- Blueprint commands now properly referenced across all documentation files
+- Article III character count optimized (11,910 chars, under 12K limit)
+
 ## [2.6.0] - 2025-10-01
 
 ### Added

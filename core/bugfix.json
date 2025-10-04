@@ -1,0 +1,55 @@
+{
+  "blueprint_id": "",
+  "auto_detect": true,
+  "scan_frequency": "on_checkpoint",
+  "last_scan": "",
+  "halt_on_p0_p1": true,
+  "detected_bugs": [
+    {
+      "id": "",
+      "detected_at": "",
+      "priority": "P0",
+      "type": "compilation",
+      "language": "",
+      "framework_detected": "",
+      "file": "",
+      "line": 0,
+      "description": "",
+      "task_id": "",
+      "related_article": "article-XIII",
+      "validation_checkpoint": "pre_implementation",
+      "status": "pending",
+      "auto_fix_attempted": false,
+      "mcp_context7_used": false
+    }
+  ],
+  "fix_queue": [
+    {
+      "bug_id": "",
+      "queued_at": "",
+      "fix_strategy": "",
+      "emd_compliant_fix": true,
+      "validation_required": true
+    }
+  ],
+  "priority_classification": {
+    "P0_blocking": 0,
+    "P1_critical": 0,
+    "P2_major": 0,
+    "P3_minor": 0
+  },
+  "stats": {
+    "total_detected": 0,
+    "total_fixed": 0,
+    "total_failed": 0,
+    "fix_success_rate": 0.0,
+    "avg_fix_time_minutes": 0,
+    "pattern_analysis_count": 0,
+    "mistakes_md_updated": 0
+  },
+  "constitutional_compliance": {
+    "halt_fix_validate_active": true,
+    "article_xiii_enforced": true,
+    "zero_tolerance_p0_p1": true
+  }
+}

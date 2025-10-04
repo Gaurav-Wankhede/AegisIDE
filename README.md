@@ -1,7 +1,7 @@
 # AegisIDE — Constitutional Framework for Autonomous AI Development
 > **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.6.0-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.6.2-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
 
 ## 🎯 Platform Implementations
 
@@ -27,6 +27,29 @@
 - New files → `write_to_file`
 - Eliminates hallucination errors in autonomous workflows
 
+### Session Resume & Auto-Detection (v2.6.2)
+**Zero Manual Input** for existing projects:
+- **Auto-Scans**: `.windsurf/memory-bank/` on session start
+- **Auto-Loads**: All 13 files (8 .md + 4 .json + roadmap) into context
+- **Auto-Resumes**: Continues from exactly where you left off
+- **Just Type**: `next` - no project description needed
+- **Smart Detection**: Recognizes project state, pending tasks, known issues
+
+**Benefits**: Resume work in seconds, zero context loss, seamless continuity
+
+### Command Consolidation (v2.6.2)
+**80% Reduction** - From 40+ commands to **8 unified commands**:
+- `init` - Initialize OR restore (auto-detects existing memory-bank)
+- `next` - Execute tasks (auto-continues forever)
+- `update` - Refresh all 13 files
+- `validate` - Check quality + blueprint
+- `fix` - Auto-fix errors/warnings
+- `status` - Progress report
+- `optimize` - Improve architecture
+- `health` - System monitoring
+
+**Benefits**: Easy to remember, zero duplication, intuitive workflow
+
 ### Multi-Language Validation Framework (v2.6.0)
 **HALT-FIX-VALIDATE Protocol** with zero-tolerance enforcement:
 - **10+ Languages**: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby, and more
@@ -34,6 +57,21 @@
 - **Zero Tolerance**: 100% validation pass required before next task
 - **Autonomous**: Error → HALT → @mcp:context7 → Fix → Re-validate → Continue
 - **4 Checkpoints**: Pre-implementation, during, post-implementation, pre-commit
+
+### Blueprint & Autonomous Development System (v2.6.1)
+**6-Pillar Project Validation** with parliamentary approval:
+- **Validation Pillars**: Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization (each 0-100)
+- **Minimum Score**: ≥70/100 overall with no pillar <50 for approval
+- **Auto-Generation**: `blueprint create "idea"` → blueprint.json + userflow.json + kanban.json + bugfix.json
+- **Reverse Engineering**: `adapt existing project` → scans codebase → generates all files → enables workflow
+- **Parliamentary Approval**: >95% tri-branch consensus required before implementation
+- **Continuous Monitoring**: Bug detection (P0-P3), auto-fix tracking, validation checkpoints
+
+**JSON Files**:
+- `blueprint.json` - 6-pillar scores, tech stack, pricing model, risk assessment, revision history
+- `userflow.json` - User journeys, flows, critical paths, accessibility validation
+- `kanban.json` - Tasks, dependencies, parliamentary consensus, framework validation status
+- `bugfix.json` - P0-P3 bugs, auto-fix attempts, MCP context7 usage, validation checkpoints
 
 ### Three-Branch Parliamentary System
 Based on 13 constitutional articles in [core/constitution/](core/constitution/):
@@ -92,19 +130,20 @@ cp platforms/jetbrains/jetbrains-config.xml /path/to/your/project/.idea/
 
 See platform-specific setup guides in `platforms/*/README.md`
 
-## 🤖 Core Commands
+## 🤖 Core Commands (8 Total - Easy to Type)
 
 | Command | Purpose |
-|---------|---------|
-| `validate project` | Run language-specific validation suite |
-| `fix errors` | Autonomous HALT-FIX-VALIDATE error resolution |
-| `what next` | Auto-scan scratchpad → Execute first task |
-| `implement next task` | Execute current → Update files → Continue |
-| `clean memory bank` | Remove completed tasks, prevent pollution |
-| `update scratchpad` | Refresh current task context |
-| `solve error` | Systematic debugging with pattern learning |
+|---------|---------|  
+| `init` | Initialize project (new OR existing) - generates all 13 files |
+| `next` | Execute next task - auto-continues forever, updates everything |
+| `update` | Refresh all files (8 .md + 4 .json + roadmap) |
+| `validate` | Blueprint 6-pillar scoring + language-specific tests |
+| `fix` | Auto-fix all errors and warnings until 100% clean |
+| `status` | Complete progress report (tasks, bugs, metrics, consensus) |
+| `optimize` | Analyze patterns and propose improvements |
+| `health` | Monitor system health (attention budget, context rot, file integrity) |
 
-**Full Command Reference**: [Windsurf CheatSheet](platforms/windsurf/CheatSheet.md) (40+ commands)
+**Full Command Reference**: [Windsurf CheatSheet](platforms/windsurf/CheatSheet.md) (8 unified commands)
 
 ## 📊 Performance Metrics
 

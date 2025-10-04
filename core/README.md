@@ -6,7 +6,7 @@ This folder contains the **universal constitutional framework** that serves as t
 
 ```
 core/
-├── constitution/ (13 articles - Universal governance)
+├── constitution/ (14 articles - Universal governance)
 │   ├── article-I.md (Tri-branch governance)
 │   ├── article-II.md (Decision-making)
 │   ├── article-III.md (Workflow)
@@ -19,7 +19,12 @@ core/
 │   ├── article-X.md (MCP integration)
 │   ├── article-XI.md (Compliance)
 │   ├── article-XII.md (30-hour operation)
-│   └── article-XIII.md (Judicial debugging)
+│   ├── article-XIII.md (Judicial debugging)
+│   └── article-XIV.md (Blueprint & Autonomous Development)
+├── blueprint.json (6-pillar validation schema)
+├── userflow.json (User journey schema)
+├── kanban.json (Task management schema)
+├── bugfix.json (Bug tracking schema)
 └── README.md (this file)
 ```
 
@@ -46,7 +51,8 @@ All 13 constitutional articles follow the **12KB optimal limit** for cross-platf
 | Article XI | ~1.2KB | ✅ Optimal |
 | Article XII | ~5.1KB | ✅ Optimal |
 | Article XIII | ~3.8KB | ✅ Optimal |
-| **Total** | **~40KB** | ✅ Production Ready |
+| Article XIV | ~6.8KB | ✅ Optimal |
+| **Total** | **~47KB** | ✅ Production Ready |
 
 ## Platform Adaptations
 
@@ -86,6 +92,49 @@ Each platform adapts this core framework based on their file size limits:
 8. **projectbrief.md** - Core scope & deliverables
 
 Plus: `roadmap/roadmap.md` (strategic planning, ≤200 lines, ≤12KB)
+
+### Blueprint JSON Files (4 files - Auto-Generated)
+
+**NEW in v2.7.0**: Blueprint & Autonomous Development System with 6-pillar validation
+
+1. **blueprint.json** - Project validation with parliamentary approval
+   - 6-pillar scoring (Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization)
+   - Tech stack recommendations with Free Tier First approach
+   - Pricing model tiers (free, premium, enterprise)
+   - Risk assessment (technical, business, market risks + mitigation strategies)
+   - Revision history and optimization tracking
+   - Parliamentary consensus matrix (PM, Tech Minister, Innovation Shadow, etc.)
+
+2. **userflow.json** - User journey mapping
+   - Complete user flows with persona mapping
+   - Flow types (user_flow, admin_flow, api_flow, background_task)
+   - Critical path identification
+   - Framework-specific validation flags
+   - Accessibility validation tracking
+   - Task linkage for implementation
+
+3. **kanban.json** - Task management with parliamentary governance
+   - Tasks organized by workflow columns (backlog, todo, in_progress, done, approved)
+   - Dependencies and complexity estimates
+   - Parliamentary consensus scores per task
+   - Framework validation status (pending, passed, failed)
+   - Bug detection and fix tracking
+   - Automation rules and WIP limits
+
+4. **bugfix.json** - Continuous bug monitoring
+   - P0-P3 bug classification (Critical → Low)
+   - Auto-fix attempt tracking
+   - MCP context7 usage documentation
+   - Validation checkpoints (pre_implementation, during, post_implementation)
+   - Related constitutional article references
+   - Framework detection for targeted fixes
+   - Fix queue with priority-based ordering
+
+**Generation Commands**:
+- `blueprint create "<project idea>"` - Auto-generates all 4 JSON files with validation
+- `adapt existing project` - Reverse-engineers blueprint from existing codebase
+
+**Integration**: All JSON files integrate with memory-bank for continuous autonomous workflow
 
 ### Example Workflow
 

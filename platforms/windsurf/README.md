@@ -13,51 +13,27 @@
 - **🔧 Framework Auto-Detection**: Smart detection from package.json, Cargo.toml, requirements.txt, etc.
 - **📊 Real-Time Validation**: Continuous monitoring with config registry and validation checksums
 
-## 🏛️ **Constitutional Framework Architecture**
+## 🏛️ **Constitutional Framework**
 
-### **Three-Branch Parliamentary System**
-The framework implements a complete democratic parliamentary government modeled after constitutional democracies:
+**Three-Branch System**: Government (PM, Dev Minister, Tech Minister) → Opposition (Quality, Innovation, Analytics Shadows) → Judiciary (Chief Justice)
 
-**🏢 Government (Ruling Party)** - *Executive Authority*
-- **PM (Project Manager)**: Strategic leadership, policy proposals, resource allocation
-- **Dev Minister (Software Developer)**: Technical implementation, code quality oversight
-- **Tech Minister (AI Engineer)**: Innovation strategy, automation, MCP integration
-
-**🔍 Opposition (Shadow Cabinet)** - *Accountability & Quality Control*
-- **Quality Shadow (Software Tester)**: Challenge proposals, demand evidence, quality veto
-- **Innovation Shadow (Research Engineer)**: Research-based alternatives, technical challenges
-- **Analytics Shadow (Data Scientist)**: Data-driven evidence, empirical opposition
-
-**⚖️ Independent Judiciary** - *Constitutional Review*
-- **Chief Justice (GenAI Developer)**: Constitutional compliance review, judicial veto power, precedent establishment
+**Democratic Process**: Proposal → Opposition Review → Debate → >95% Consensus → Judicial Review → Implementation
 
 
-## 🔄 **Democratic Decision-Making Process**
+### **Decision Authority**
+- **0-98%**: Full autonomy, execute immediately
+- **99-100%**: Human consultation required
 
-### **Parliamentary Procedure (Autonomous)**
-1. **Proposal** → Government submits constitutional proposals with impact assessment
-2. **Opposition Review** → Shadow cabinet challenges with evidence-based alternatives  
-3. **Structured Debate** → Parliamentary discussion with consensus scoring matrices
-4. **Evidence Scoring** → Expertise-weighted voting (Technical/Strategic/Quality)
-5. **>95% Consensus** → Democratic consensus calculation requiring super-majority
-6. **Judicial Review** → Constitutional compliance validation by Chief Justice
-7. **Implementation** → Execute with real-time constitutional monitoring
-
-### **Decision Authority Matrix**
-- **Level 0-98**: **Full Autonomy** - Execute immediately with constitutional compliance
-- **Level 99-100**: **Human Consultation** - Requires user input for critical decisions
-
-### **Consensus Scoring Matrix**
+**Consensus Scoring**
 - **Technical Proposals**: Dev(25%), Test(25%), AI(20%), Research(15%), Data(10%), PM(5%)
 - **Strategic Proposals**: PM(30%), AI(20%), Research(20%), Data(15%), Dev(10%), Test(5%)
 - **Quality Proposals**: Test(30%), Dev(25%), Research(20%), Data(15%), AI(5%), PM(5%)
 
-> 📜 **Complete Command Reference**: See [CheatSheet.md](CheatSheet.md) for all 40+ constitutional commands with detailed usage instructions.
+> 📜 **Commands**: [CheatSheet.md](CheatSheet.md) - 8 unified commands
 
-## ⚡ **Always-Check Operations & Quality Assurance**
+## ⚡ **Always-Check Operations**
 
-### **Autonomous Validation Framework**
-The framework automatically validates code quality before every implementation task using:
+**Auto-validates before every task**:
 
 - **Multi-Language Support**: 8+ programming languages (JavaScript/TypeScript, Rust, Python, Go, Java, C#, PHP, Ruby)
 - **Framework Auto-Detection**: Smart detection from package.json, Cargo.toml, requirements.txt, go.mod, etc.
@@ -70,18 +46,29 @@ The framework automatically validates code quality before every implementation t
 - **MANDATORY Pre-Task Scanning**: Validate `core/config/`, `models/`, `types/`, `database/config/`
 - **Component Reuse Enforcement**: ALWAYS reference existing configurations
 
-### **Autonomous Capabilities (98% Autonomous)**
-- **Error Recovery**: 4-level rollback matrix with automatic snapshots
-- **Performance Optimization**: Self-monitoring with predictive bottleneck detection
-- **Security Compliance**: Autonomous vulnerability scanning with risk assessment
-- **Learning & Adaptation**: Pattern recognition with cross-project intelligence via ByteRover
-- **System Health**: Self-diagnosis with 0-100% health scoring and predictive maintenance
+**98% Autonomous**: Error recovery, performance optimization, security scanning, cross-project learning, predictive maintenance
 
-> 🔍 **Detailed Commands**: All specific always-check commands and autonomous capabilities are documented in [CheatSheet.md](CheatSheet.md)
+## 📐 **Blueprint System (v2.6.1)**
+
+**6-Pillar Validation**: Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization (each 0-100, minimum ≥70 overall)
+
+**Auto-generates**: `blueprint.json`, `userflow.json`, `kanban.json`, `bugfix.json` from project description OR existing codebase
+
+**Commands**: `init` (new/existing), `validate`, `next`, `status`, `optimize`
+
+> 📋 **Full Documentation**: [Article-XIV.md](../../core/constitution/article-XIV.md)
 
 ## 🔧 **Windsurf IDE Setup Instructions**
 
-### **Quick Setup Process**
+### **Quick Start**
+
+### 🔄 Session Resume (v2.6.2)
+
+**Existing projects**: AI auto-scans `.windsurf/memory-bank/`, loads all 13 files, resumes automatically. **Just type: `next`**
+
+**Zero manual input needed** - AI reads tasks, state, requirements automatically.
+
+### Setup (First Time Only)
 
 #### **Step 1: Load Global Rules into Windsurf**
 1. **Open Windsurf IDE** → **Customizations** → **Rules** tab
