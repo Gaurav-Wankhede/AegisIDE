@@ -32,13 +32,11 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - `productContext.md` - Business requirements, metrics
 - `projectbrief.md` - Core requirements, scope
 
-**Initialization**: Describe project → Run `initialize memory bank` → AI generates all files
+**Init**: Describe project → `initialize memory bank` → AI generates files
 
-**Strategic Files**:
-- `roadmap/roadmap.md` - Strategic roadmap (≤200 lines, ≤12,000 characters)
-- `templates/` - Implementation patterns aligned with scratchpad/roadmap
+**Strategic**: roadmap.md (≤200 lines, ≤12K chars), templates/ (patterns)
 
-**EMD Structure**: Files ≤10,000 characters, deep nested folders
+**EMD**: ≤10K chars/file, deep nesting
 
 ### Autonomous Memory-Bank Maintenance
 
@@ -82,7 +80,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 11. Continue until empty/rot
 ```
 
-**CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. Works with markdown OR JSON files automatically.
+**CRITICAL**: "next" ALWAYS auto-continues. NEVER ask permission. Works with markdown OR JSON.
 
 ### "init" Workflow (UNIFIED PROJECT INITIALIZATION)
 
@@ -164,7 +162,7 @@ EXECUTE IMMEDIATELY →
 REPEAT CONTINUOUSLY
 ```
 
-**CRITICAL**: At 0-98% autonomy, agent NEVER stops after one task. Automatically continues until scratchpad.md empty or 100% decision encountered.
+**CRITICAL**: 0-98% autonomy NEVER stops after one task. Auto-continues until empty or 100% decision.
 
 ### Core Capabilities
 
