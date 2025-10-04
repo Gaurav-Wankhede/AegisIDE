@@ -207,7 +207,7 @@ AegisIDE-2.5/
 
 ## 📚 Documentation
 
-- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.5.0)
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.6.2)
 - **[BUSINESS_MODEL.md](BUSINESS_MODEL.md)** - Open source community model
 - **[TECHNICAL_ROADMAP.md](TECHNICAL_ROADMAP.md)** - Production readiness status
 - **[COMMUNITY_IMPACT.md](COMMUNITY_IMPACT.md)** - Global developer empowerment
@@ -215,7 +215,7 @@ AegisIDE-2.5/
 
 ## 🏷️ Project Information
 
-**Version**: 2.5.0 (Production Ready - October 2025)  
+**Version**: 2.6.2 (Production Ready - October 2024)  
 **License**: MIT  
 **Repository**: https://github.com/Gaurav-Wankhede/AegisIDE
 
