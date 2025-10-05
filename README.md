@@ -1,7 +1,7 @@
-# AegisIDE — Constitutional Framework for Autonomous AI Development
+# AegisIDE v2.8.2 🛡️Constitutional Framework for Autonomous AI Development
 > **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.8.0-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.8.2-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
 
 ## 🎯 Platform Implementations
 

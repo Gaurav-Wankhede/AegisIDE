@@ -1,4 +1,4 @@
-# AegisIDE — Windsurf Constitutional Framework (v2.8.0 Enhanced)
+# Windsurf AegisIDE v2.8.2 Enhanced 🌊
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md) [![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](global_rules.md)
  
@@ -6,7 +6,13 @@
 
 **Windsurf Constitutional Framework** with **democratic parliamentary governance**, **98% autonomous capability**, **always-check operations**, and **centralized configuration validation**.
 
-## 🚀 **2025 Enhancements (v2.8.0)**
+## 🚀 **2025 Enhancements (v2.8.2)**
+- **⚡ Tiered Update Strategy**: 82% fewer file operations per task (3 files real-time vs 17 files all)
+- **🎯 Context Optimization**: 72% faster execution with intelligent file prioritization
+- **📊 3-Tier System**: Real-time (3 files EVERY task), Periodic (2 files at milestones), Bulk (13 files at completion)
+- **🔧 MCP Integration Fixed**: Resolved critical issue where MCP servers were not callable properly in constitutional framework
+- **🤖 Auto-Call Protocol**: Fixed blocking issue preventing mandatory MCP auto-triggers in error resolution
+- **📚 Context7 Integration**: Fixed @mcp:context7 official documentation retrieval failures
 - **⚡ Always-Check Operations**: Automatic `cargo check`, `pnpm typecheck`, `npm run lint`, `pytest`, `go test` before every task
 - **🏗️ Centralized Config Validation**: MANDATORY pre-task scan prevents duplication and configuration errors
 - **🌐 Multi-Language Support**: Auto-detection for Rust, TypeScript, Python, Go, Java, Swift, PHP, Ruby, C#

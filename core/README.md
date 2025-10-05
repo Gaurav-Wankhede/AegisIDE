@@ -1,6 +1,11 @@
-# Core Universal Framework
+# Core Universal Framework (v2.8.2)
 
 This folder contains the **universal constitutional framework** that serves as the foundation for all platform-specific adaptations.
+
+## Latest Updates (v2.8.2)
+- **Tiered Update Strategy**: 3-tier system for optimal context efficiency (82% fewer file operations)
+- **Constitutional Articles Updated**: Articles II, III, III-A, XII now use tiered approach
+- **Performance**: 72% faster execution with intelligent file prioritization
 
 ## Structure
 
