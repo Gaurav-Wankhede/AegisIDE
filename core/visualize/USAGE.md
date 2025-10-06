@@ -11,14 +11,14 @@ cd .cursor/memory-bank  # for Cursor IDE
 
 ### Step 2: Start Local Server
 ```bash
-python3 -m http.server 8080
+python3 -m http.server 7777
 ```
 **Note**: Press **CTRL+C** to stop the server. Python's HTTP server handles the interrupt signal gracefully.
 
 ### Step 3: Open Dashboard
 Open browser and navigate to:
 ```
-http://localhost:8080/visualize/dashboard.html
+http://localhost:7777/visualize/dashboard.html
 ```
 **Important**: The dashboard file is located at `.windsurf/memory-bank/visualize/dashboard.html`
 
@@ -126,7 +126,7 @@ Update Tailwind classes in the HTML to change color schemes.
 
 **Dashboard shows "Failed to load"**:
 - Verify HTTP server is running: `ps aux | grep "python3 -m http.server"`
-- Check port 8080 is not in use by another service
+- Check port 7777 is not in use by another service
 - Ensure you're in the correct directory
 
 **JSON data not updating**:
@@ -172,7 +172,7 @@ The dashboard implements:
 1. **Keep dashboard open while coding** - Monitor AI agent progress in real-time
 2. **Use dual monitors** - Code on one, dashboard on the other
 3. **Enable auto-refresh during active development** - See changes immediately
-4. **Bookmark the URL** - Quick access: `http://localhost:8080/visualize/dashboard.html`
+4. **Bookmark the URL** - Quick access: `http://localhost:7777/visualize/dashboard.html`
 5. **Check events timeline** - Understand what AI is doing and why
 
 ## 🆘 Support

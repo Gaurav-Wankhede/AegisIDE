@@ -4,7 +4,7 @@
   "title": "Active Context Schema",
   "description": "Real-time execution state with event tracking",
   "type": "object",
-  "required": ["schema_version", "last_updated", "current_implementation", "ai_state"],
+  "required": ["schema_version", "last_updated", "current_implementation", "ai_state", "session_management", "mcp_integration"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -32,14 +32,23 @@
       "maxItems": 100,
       "items": {
         "type": "object",
-        "required": ["id", "timestamp", "type", "task_id"],
+        "required": ["id", "timestamp", "type", "task_id", "mcp_integration"],
         "properties": {
           "id": {"type": "string"},
           "timestamp": {"type": "string", "format": "date-time"},
           "type": {"type": "string"},
           "task_id": {"type": "string"},
           "description": {"type": "string"},
-          "context": {"type": "object"}
+          "context": {"type": "object"},
+          "mcp_integration": {
+            "type": "object",
+            "required": ["context7_active", "fetch_active", "memory_active"],
+            "properties": {
+              "context7_active": {"type": "boolean"},
+              "fetch_active": {"type": "boolean"},
+              "memory_active": {"type": "boolean"}
+            }
+          }
         }
       }
     },
@@ -67,6 +76,27 @@
         "active_shadows": {"type": "array", "items": {"type": "string"}},
         "checkpoint_status": {"type": "string"},
         "next_validation": {"type": "string", "format": "date-time"}
+      }
+    },
+    "session_management": {
+      "type": "object",
+      "required": ["session_id", "ide_type"],
+      "properties": {
+        "session_id": {"type": "string"},
+        "ide_type": {"type": "string", "enum": ["claude_desktop", "windsurf", "vscode", "cursor", "jetbrains"]},
+        "workspace_path": {"type": "string"},
+        "connected_at": {"type": "string", "format": "date-time"},
+        "last_sync": {"type": "string", "format": "date-time"}
+      }
+    },
+    "mcp_integration": {
+      "type": "object",
+      "required": ["mandatory_mcps_active"],
+      "properties": {
+        "mandatory_mcps_active": {"type": "array", "minItems": 9, "items": {"type": "string", "enum": ["context7", "fetch", "filesystem", "git", "memory", "byterover-mcp", "sequential-thinking", "time", "math"]}},
+        "last_context7_call": {"type": "string", "format": "date-time"},
+        "anti_hallucination_active": {"type": "boolean"},
+        "verified_sources_count": {"type": "number", "minimum": 0}
       }
     }
   }

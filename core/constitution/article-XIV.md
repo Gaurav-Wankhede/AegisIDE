@@ -58,41 +58,41 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Blueprint Lifecycle Management
 
-**Phase 1: Blueprint Creation** (Autonomous)
-1. Parse project idea description from user input
-2. Generate blueprint.json with 6-pillar validation scores
-3. Create tech stack recommendations aligned with Free Tier First Approach
-4. Generate pricing model tiers (tier_1: free, tier_2: premium, tier_3: enterprise)
-5. Produce improvement recommendations for scores <80
-6. Calculate overall viability score
+**Phase 1: Blueprint Creation with MANDATORY MCP** (Autonomous)
+1. **@mcp:context7** Parse project idea description + official documentation research
+2. **@mcp:math** Generate blueprint.json with 6-pillar validation scores + calculations
+3. **@mcp:fetch** Create tech stack recommendations with latest Free Tier research
+4. **@mcp:byterover-mcp** Generate pricing model tiers using cross-project patterns
+5. **@mcp:sequential-thinking** Produce improvement recommendations for scores <80
+6. **@mcp:memory** Calculate overall viability score + store successful patterns
 
-**Phase 2: User Flow Generation** (Autonomous)
-1. Analyze blueprint requirements and user personas
-2. Generate userflow.json with complete user journeys
-3. Map flows to implementation tasks in kanban.json
-4. Identify critical path and dependencies
-5. Estimate completion percentages for each flow
+**Phase 2: User Flow Generation with MCP Intelligence** (Autonomous)
+1. **@mcp:memory** Analyze blueprint requirements and user personas from stored patterns
+2. **@mcp:filesystem** Generate userflow.json with complete user journeys
+3. **@mcp:sequential-thinking** Map flows to implementation tasks in kanban.json
+4. **@mcp:math** Identify critical path and dependencies with optimization
+5. **@mcp:time** Estimate completion percentages for each flow with temporal analysis
 
-**Phase 3: Kanban Task Generation** (Autonomous)
-1. Decompose flows into atomic tasks (≤80 lines per implementation)
-2. Generate kanban.json with parliamentary approval metadata
-3. Assign tasks to constitutional branches (Executive/Legislative/Judicial)
-4. Set WIP limits and automation rules
-5. Link tasks to blueprint_id for traceability
+**Phase 3: Kanban Task Generation with MCP Decomposition** (Autonomous)
+1. **@mcp:sequential-thinking** Decompose flows into atomic tasks (≤80 lines per implementation)
+2. **@mcp:filesystem** Generate kanban.json with parliamentary approval metadata
+3. **@mcp:memory** Assign tasks to constitutional branches using historical effectiveness
+4. **@mcp:math** Set WIP limits and automation rules with optimization analysis
+5. **@mcp:git** Link tasks to blueprint_id for traceability with version control
 
-**Phase 4: Parliamentary Approval** (Democratic Consensus)
-1. Executive Branch reviews implementation feasibility
-2. Legislative Branch challenges assumptions and proposes alternatives
-3. Judicial Branch validates constitutional compliance
-4. Calculate weighted consensus (requires >95% approval)
-5. Upon approval, move to implementation phase
+**Phase 4: Parliamentary Approval with MCP Evidence** (Democratic Consensus)
+1. **@mcp:context7** Executive Branch reviews implementation feasibility with official docs
+2. **@mcp:fetch** Legislative Branch challenges assumptions with external research
+3. **@mcp:memory** Judicial Branch validates constitutional compliance using precedents
+4. **@mcp:math** Calculate weighted consensus (requires >95% approval)
+5. **@mcp:time** Upon approval, move to implementation phase with timestamping
 
-**Phase 5: Continuous Implementation** (Autonomous)
-1. Execute tasks from kanban in priority order
-2. Auto-detect bugs via bugfix.json monitoring
-3. Apply HALT-FIX-VALIDATE loop for all errors
-4. Update all memory-bank files after each task
-5. Track metrics: cycle time, consensus rate, bug detection/fix rates
+**Phase 5: Continuous Implementation with Full MCP** (Autonomous)
+1. **@mcp:filesystem** Execute tasks from kanban in priority order
+2. **@mcp:context7** Auto-detect bugs via bugfix.json monitoring + validation
+3. **@mcp:sequential-thinking** Apply HALT-FIX-VALIDATE loop for complex errors
+4. **@mcp:git** Update all memory-bank files after each task with version control
+5. **@mcp:math** Track metrics: cycle time, consensus rate, bug detection/fix rates
 
 ### Bug Detection & Auto-Fix Framework
 
@@ -102,17 +102,20 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Priority Classification**: P0 (blocking), P1 (critical), P2 (major), P3 (minor)
 - **Auto-Fix Authority**: 0-98% autonomy = immediate fix without approval
 
-**Bug Fix Protocol** (Constitutional Compliance):
+**Bug Fix Protocol with MANDATORY MCP Integration** (Constitutional Compliance):
 ```
-1. Detect bug via validation checkpoint
-2. Log in bugfix.json with timestamp and classification
-3. HALT current task if P0/P1 severity
-4. Auto-call @mcp:context7 for official documentation
-5. Implement fix following EMD standards (≤80 lines)
-6. Re-run full validation suite (Article XIII)
-7. Update mistakes.json with bug pattern and resolution
-8. Mark as fixed in bugfix.json
-9. Continue autonomous execution
+1. **@mcp:context7** Detect bug via validation checkpoint + official docs
+2. **@mcp:time** Log in bugfix.json with timestamp and classification
+3. **INSTANT HALT** current task if P0/P1 severity
+4. **@mcp:context7** MANDATORY AUTO-CALL for official documentation (NO ASKING)
+5. **@mcp:sequential-thinking** Complex problem decomposition if needed
+6. **@mcp:byterover-mcp** Check cross-project bug solutions
+7. **@mcp:git** Implement fix following EMD standards (≤80 lines)
+8. **@mcp:filesystem** Re-run full validation suite (Article XIII)
+9. **@mcp:memory** Update mistakes.json with bug pattern and resolution
+10. **@mcp:filesystem** Mark as fixed in bugfix.json
+11. **@mcp:math** Calculate fix effectiveness metrics
+12. Continue autonomous execution
 ```
 
 **Bug Metrics Tracking**:

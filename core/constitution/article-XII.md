@@ -9,10 +9,12 @@
 
 **ABSOLUTE RULE**: After completing ANY task, AI MUST automatically:
 1. Update scratchpad.json (mark current task complete, identify next task)
-2. Update roadmap.json with progress milestones
-3. Update ALL 17 memory-bank files with current state
+2. Update kanban.json (task status: todo→in_progress→done→approved)
+3. Update activeContext.json (current execution state with timestamp)
 4. IMMEDIATELY execute next task WITHOUT asking permission
 5. Continue until scratchpad.json is empty OR 100% autonomy decision encountered
+6. Periodic: Update roadmap.json + roadmap.md every 5 tasks OR at milestones
+7. Bulk: Update remaining 13 files at major milestones/completion
 
 **CONSTITUTIONAL VIOLATIONS**:
 - Asking "What would you like me to work on next?" = VIOLATION
@@ -105,11 +107,13 @@ ELSE →
 ### Guaranteed Execution Chain
 ```
 Task N Complete → 
-Auto-Update ALL 17 Memory-Bank Files → 
+Auto-Update 3 Real-Time Files (scratchpad, kanban, activeContext) → 
 Scan scratchpad.json for Task N+1 → 
 EXECUTE Task N+1 IMMEDIATELY → 
 Task N+1 Complete → 
-Auto-Update ALL 17 Memory-Bank Files → 
+Auto-Update 3 Real-Time Files → 
+IF milestone: Update roadmap files (2 files) → 
+IF major_milestone: Bulk update 13 files → 
 Scan scratchpad.json for Task N+2 → 
 EXECUTE Task N+2 IMMEDIATELY → 
 [REPEAT CONTINUOUSLY FOR 30+ HOURS]
@@ -129,9 +133,9 @@ EXECUTE Task N+2 IMMEDIATELY →
 9-16. Automation JSON files (roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies)
 17. `roadmap.md` - Human-readable strategic overview
 
-**Update Sequence**: Complete Task → Update ALL 9 Files → Scan Next Task → Execute Immediately
+**Update Sequence**: Complete Task → Update 3 Real-Time Files → Scan Next Task → Execute Immediately
 
-**VIOLATION PENALTY**: Failing to update memory-bank files = Next task BLOCKED until compliance verified
+**VIOLATION PENALTY**: Failing to update 3 real-time files = Next task BLOCKED until compliance verified
 
 ### Error Auto-Recovery Chain
 **Guaranteed Continuation Protocol**:

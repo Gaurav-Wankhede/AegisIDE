@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/roadmap.json",
   "title": "Roadmap Schema",
-  "description": "Strategic planning with resource allocation",
+  "description": "Strategic planning with AegisKG strategic knowledge graphs and anti-hallucination roadmap",
   "type": "object",
-  "required": ["schema_version", "last_updated", "strategic_roadmap"],
+  "required": ["schema_version", "last_updated", "strategic_objectives"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -14,7 +14,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "strategic_roadmap": {
+    "strategic_objectives": {
       "type": "array",
       "items": {
         "type": "object",
@@ -56,25 +56,37 @@
         }
       }
     },
-    "long_term_vision": {
-      "type": "object",
-      "properties": {
-        "6_months": {"type": "string"},
-        "1_year": {"type": "string"},
-        "2_years": {"type": "string"}
-      }
-    },
     "resource_allocation": {
       "type": "object",
       "properties": {
-        "current_sprint": {
+        "development_hours": {"type": "number", "minimum": 0},
+        "design_hours": {"type": "number", "minimum": 0},
+        "testing_hours": {"type": "number", "minimum": 0},
+        "documentation_hours": {"type": "number", "minimum": 0}
+      }
+    },
+    
+    "anti_hallucination_roadmap": {
+      "type": "object",
+      "properties": {
+        "context7_integration_milestones": {"type": "array", "items": {
+          "type": "object",
+          "required": ["milestone", "documentation_sources"],
+          "properties": {
+            "milestone": {"type": "string"},
+            "documentation_sources": {"type": "array", "items": {"type": "string", "format": "uri"}},
+            "accuracy_target": {"type": "number", "minimum": 0, "maximum": 1},
+            "completion_target": {"type": "string", "format": "date"}
+          }
+        }},
+        "link_storage_objectives": {"type": "array", "items": {
           "type": "object",
           "properties": {
-            "dev_minister_allocation": {"type": "number", "minimum": 0, "maximum": 100},
-            "tech_minister_allocation": {"type": "number", "minimum": 0, "maximum": 100},
-            "quality_shadow_allocation": {"type": "number", "minimum": 0, "maximum": 100}
+            "category": {"type": "string"},
+            "target_links_count": {"type": "number", "minimum": 0},
+            "verification_strategy": {"type": "string"}
           }
-        }
+        }}
       }
     }
   }

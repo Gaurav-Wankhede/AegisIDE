@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/scratchpad.json",
   "title": "Scratchpad Schema",
-  "description": "Immediate priorities with immutable event history",
+  "description": "Immediate priorities with MCP validation state and focus mode",
   "type": "object",
-  "required": ["schema_version", "last_updated", "immediate_priorities", "task_queue"],
+  "required": ["schema_version", "last_updated", "immediate_priorities", "mcp_validation_state", "task_queue"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -47,43 +47,40 @@
         }
       }
     },
-    "immutable_event_history": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["event_id", "timestamp", "action"],
-        "properties": {
-          "event_id": {"type": "string"},
-          "timestamp": {"type": "string", "format": "date-time"},
-          "action": {"type": "string"},
-          "task_id": {"type": "string"},
-          "reason": {"type": "string"}
-        }
-      }
-    },
-    "quick_notes": {
-      "type": "array",
-      "maxItems": 20,
-      "items": {
-        "type": "object",
-        "required": ["id", "timestamp", "content"],
-        "properties": {
-          "id": {"type": "string"},
-          "timestamp": {"type": "string", "format": "date-time"},
-          "content": {"type": "string", "maxLength": 500},
-          "priority": {"type": "string", "enum": ["high", "medium", "low"]},
-          "related_task": {"type": "string"}
-        }
+    "mcp_validation_state": {
+      "type": "object",
+      "required": ["context7_active", "fetch_active"],
+      "properties": {
+        "context7_active": {"type": "boolean"},
+        "fetch_active": {"type": "boolean"},
+        "last_validation_timestamp": {"type": "string", "format": "date-time"},
+        "mandatory_servers_status": {"type": "object", "properties": {
+          "filesystem": {"type": "boolean"},
+          "git": {"type": "boolean"},
+          "memory": {"type": "boolean"},
+          "sequential_thinking": {"type": "boolean"},
+          "time": {"type": "boolean"},
+          "math": {"type": "boolean"}
+        }},
+        "anti_hallucination_checks": {"type": "array", "items": {
+          "type": "object",
+          "required": ["task_id", "verified_sources"],
+          "properties": {
+            "task_id": {"type": "string"},
+            "verified_sources": {"type": "array", "items": {"type": "string", "format": "uri"}},
+            "context7_verification": {"type": "boolean"},
+            "fetch_cross_reference": {"type": "boolean"}
+          }
+        }}
       }
     },
     "focus_mode": {
       "type": "object",
-      "required": ["enabled"],
       "properties": {
         "enabled": {"type": "boolean"},
-        "current_focus": {"type": "string"},
-        "distractions_blocked": {"type": "array", "items": {"type": "string"}},
-        "focus_end_time": {"type": "string", "format": "date-time"}
+        "current_task": {"type": "string"},
+        "duration_minutes": {"type": "number", "minimum": 0},
+        "break_reminders": {"type": "boolean"}
       }
     }
   }

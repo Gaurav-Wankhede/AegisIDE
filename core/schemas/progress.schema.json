@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/progress.json",
   "title": "Progress Schema",
-  "description": "Development milestones with compressed history",
+  "description": "Development milestones with constitutional compliance metrics and anti-hallucination tracking",
   "type": "object",
-  "required": ["schema_version", "last_updated", "development_milestones"],
+  "required": ["schema_version", "last_updated", "milestone_tracking", "constitutional_metrics"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -14,7 +14,7 @@
       "type": "string",
       "format": "date-time"
     },
-    "development_milestones": {
+    "milestone_tracking": {
       "type": "array",
       "items": {
         "type": "object",
@@ -61,6 +61,35 @@
         "planned_points": {"type": "number", "minimum": 0},
         "completed_points": {"type": "number", "minimum": 0},
         "on_track": {"type": "boolean"}
+      }
+    },
+    "performance_analytics": {
+      "type": "object",
+      "properties": {
+        "velocity_trends": {"type": "array", "items": {"type": "number"}},
+        "quality_improvements": {"type": "number"},
+        "bottleneck_analysis": {"type": "string"},
+        "predictive_timeline": {"type": "string", "format": "date-time"}
+      }
+    },
+    "constitutional_metrics": {
+      "type": "object",
+      "required": ["compliance_score", "tri_branch_efficiency"],
+      "properties": {
+        "compliance_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "tri_branch_efficiency": {"type": "object", "properties": {
+          "consensus_achievement_rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "average_decision_time_minutes": {"type": "number", "minimum": 0},
+          "executive_approval_rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "legislative_challenge_rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "judicial_override_count": {"type": "number", "minimum": 0}
+        }},
+        "zero_tolerance_adherence": {"type": "number", "minimum": 0, "maximum": 100},
+        "anti_hallucination_effectiveness": {"type": "object", "properties": {
+          "context7_success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+          "fetch_verification_accuracy": {"type": "number", "minimum": 0, "maximum": 1},
+          "false_information_blocked": {"type": "number", "minimum": 0}
+        }}
       }
     },
     "achievements": {

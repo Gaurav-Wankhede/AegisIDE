@@ -5,6 +5,14 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.3] - 2025-10-06
+
+### Changed - Slash-Command Workflows & Scope Correction
+- Documentation updated to adopt slash-command workflows across files (e.g., `/init`, `/next`, `/fix`, `/validate`, `/update`, `/status`, `/optimize`, `/oversight-checks-and-balances`).
+- Root `README.md` rewritten to reflect current repository scope: workflows specifications only; runtime/server implementation not created yet.
+- Removed premature or hallucinated implementation claims from documentation.
+- Cross-referenced existing workflow specs under `core/workflow/`.
+
 ## [2.8.2] - 2025-10-05
 
 ### Added - TIERED UPDATE STRATEGY

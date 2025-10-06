@@ -1,29 +1,18 @@
 # AegisIDE JSON Schema Library
 
 ## Overview
-Complete JSON schema definitions for AegisIDE's 16-file memory-bank architecture, ensuring 100% data integrity and 2.6x faster AI processing.
+Optimized JSON schema definitions for AegisIDE's **7 essential memory-bank files** with AegisKG knowledge graph integration, ensuring 100% data integrity and 2.6x faster AI processing.
 
-## Schema Files (16 Total)
+## Schema Files (7 Essential)
 
-### Core Context Files (8)
-1. **activeContext.schema.json** - Real-time execution state with event tracking
-2. **scratchpad.schema.json** - Immediate priorities with immutable history
-3. **mistakes.schema.json** - Error patterns with predictive analytics
-4. **progress.schema.json** - Development milestones with compressed history
-5. **systemPatterns.schema.json** - Architecture patterns with success metrics
-6. **techContext.schema.json** - Technical stack with MCP-enriched links
-7. **productContext.schema.json** - Business requirements with alignment metrics
-8. **projectbrief.schema.json** - Core project scope and constraints
-
-### Strategic & Automation Files (8)
-9. **roadmap.schema.json** - Strategic planning with resource allocation
-10. **kanban.schema.json** - Task workflow management (already exists in Article XIV)
-11. **blueprint.schema.json** - Project blueprints (already exists in Article XIV)
-12. **userflow.schema.json** - User journey tracking (already exists in Article XIV)
-13. **bugfix.schema.json** - Bug detection queue (already exists in Article XIV)
-14. **deployment.schema.json** - CI/CD automation
-15. **monitoring.schema.json** - Real-time performance tracking
-16. **dependencies.schema.json** - Security and version management
+### AegisKG-Enhanced Memory Bank Files
+1. **activeContext.schema.json** - Real-time execution state with session management and MCP integration
+2. **scratchpad.schema.json** - Immediate priorities with MCP validation state and focus mode
+3. **kanban.schema.json** - Task workflow management with parliamentary approval tracking
+4. **mistakes.schema.json** - Error patterns with Context7 source prioritization and AegisKG error knowledge graphs
+5. **systemPatterns.schema.json** - Architecture patterns with MCP enriched links and AegisKG pattern networks
+6. **progress.schema.json** - Development milestones with constitutional metrics and AegisKG progress correlation
+7. **roadmap.schema.json** - Strategic planning with AegisKG strategic knowledge graphs
 
 ## Schema Validation
 
@@ -131,8 +120,9 @@ All schemas follow Constitutional Amendment III-A:
 
 ### File Size Limits
 - Individual files: ≤10KB (JSON binary)
-- Total memory-bank: ≤200KB
+- Total memory-bank: ≤70KB (7 files × 10KB)
 - Automatic cleanup at thresholds
+- 59% reduction from previous 17-file architecture
 
 ### Human Readability
 - **roadmap.md** - Human-readable strategic overview (only markdown file)
@@ -156,7 +146,7 @@ node scripts/migrate-memory-bank.js
 # Verify all schemas
 node scripts/validate-schemas.js
 
-# Expected output: ✅ All 16 schemas valid
+# Expected output: ✅ All 7 essential schemas valid
 ```
 
 ## Schema Updates
@@ -190,6 +180,8 @@ If JSON parsing seems slow:
 
 ---
 
+**AegisKG Integration**: Custom Archon-inspired local knowledge graph  
+**Archon Reference**: https://github.com/coleam00/Archon  
 **Constitutional Authority**: Article VI Amendment III-A  
-**Effective Date**: 2025-10-04T17:15:00+05:30  
-**Next Review**: 2025-11-04 (30-day evaluation)
+**Effective Date**: 2025-10-06T19:23:00+05:30  
+**Schema Consolidation**: Reduced from 17 to 7 essential files (59% optimization)

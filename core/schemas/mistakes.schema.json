@@ -4,7 +4,7 @@
   "title": "Mistakes Schema",
   "description": "Error patterns with predictive analytics",
   "type": "object",
-  "required": ["schema_version", "last_updated", "error_patterns"],
+  "required": ["schema_version", "last_updated", "error_patterns", "context7_source_priority"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -71,6 +71,35 @@
           "suggested_action": {"type": "string"},
           "related_task": {"type": "string"}
         }
+      }
+    },
+    "context7_source_priority": {
+      "type": "object",
+      "required": ["verified_sources"],
+      "properties": {
+        "verified_sources": {"type": "array", "items": {
+          "type": "object",
+          "required": ["source_url", "accuracy_score", "usage_count"],
+          "properties": {
+            "source_url": {"type": "string", "format": "uri"},
+            "accuracy_score": {"type": "number", "minimum": 0, "maximum": 1},
+            "usage_count": {"type": "number", "minimum": 0},
+            "last_verified": {"type": "string", "format": "date-time"},
+            "error_reduction_impact": {"type": "number"}
+          }
+        }},
+        "blacklisted_sources": {"type": "array", "items": {"type": "string", "format": "uri"}},
+        "priority_frameworks": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "anti_hallucination_metrics": {
+      "type": "object",
+      "properties": {
+        "context7_calls_total": {"type": "number", "minimum": 0},
+        "fetch_verifications": {"type": "number", "minimum": 0},
+        "accuracy_improvement": {"type": "number"},
+        "false_positive_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "documentation_coverage": {"type": "number", "minimum": 0, "maximum": 1}
       }
     }
   }

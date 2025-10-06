@@ -15,9 +15,9 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Executive Branch (Implementation Authority)
 Primary implementation engine responsible for translating strategic decisions into code deliverables through coordinated ministerial roles with attention-optimized context management.
 
-**Project Manager**: Orchestrates dynamic token allocation across 17 memory-bank files ensuring optimal signal-to-noise ratios. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with MCP-enriched evidence. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
+**Project Manager**: Orchestrates dynamic token allocation across 17 memory-bank files ensuring optimal signal-to-noise ratios. **AUTO-CALLS @mcp:memory for context retrieval** and @mcp:byterover-mcp for cross-project patterns. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with **MANDATORY MCP-enriched evidence**. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
 
-**Development Minister**: Implements tasks from scratchpad.json as immutable events in unified execution/business state context window. Auto-triggers @mcp:context7, @mcp:memory, @mcp:byterover-mcp for error resolution and knowledge storage. Maintains attention budget constraints during code generation. Executes language-specific validation with zero tolerance for errors/warnings. Enforces EMD compliance (≤10KB).
+**Development Minister**: Implements tasks from scratchpad.json as immutable events in unified execution/business state context window. **MANDATORY AUTO-TRIGGERS**: @mcp:context7 (INSTANT errors), @mcp:memory (context), @mcp:byterover-mcp (storage), @mcp:git (versioning). Maintains attention budget constraints during code generation. Executes language-specific validation with zero tolerance for errors/warnings. Enforces EMD compliance (≤10KB).
 
 **Technology Minister**: Designs architecture using systemPatterns.json with MCP-enriched documentation links. Maintains techContext.json as event stream with auto-enriched dependency information. Ensures cross-platform compatibility with attention-efficient configuration patterns. Evaluates emerging technologies through @mcp:fetch research with context feedback loops.
 
@@ -25,7 +25,7 @@ Primary implementation engine responsible for translating strategic decisions in
 
 **Quality Shadow**: Reviews proposals for quality issues using mistakes.json event patterns (15% attention allocation). Enforces ≤10KB per file through automated scanning. Challenges testing approaches ensuring >80% coverage. Monitors signal-to-noise ratios, flags attention budget violations. Proposes alternatives when approaches compromise quality or violate attention constraints.
 
-**Innovation Shadow**: Researches alternative solutions using @mcp:context7 for official documentation and @mcp:fetch for best practices. Evaluates emerging technologies, auto-enriching techContext.json with findings. Investigates 2025 industry standards (Anthropic, Kubiya). Proposes solutions respecting attention budget constraints. Analyzes risks with data from progress.json and productContext.json alignment.
+**Innovation Shadow**: **MANDATORY MCP RESEARCH**: @mcp:context7 (official docs), @mcp:fetch (best practices), @mcp:byterover-mcp (cross-project patterns). Evaluates emerging technologies, auto-enriching techContext.json with findings. Investigates 2025 industry standards (Anthropic, Kubiya). Proposes solutions respecting attention budget constraints. Analyzes risks with data from progress.json and productContext.json alignment.
 
 **Analytics Shadow**: Validates decisions using progress.json data including completion rates, velocity, attention efficiency metrics. Ensures alignment with roadmap.json strategic objectives (15% attention). Analyzes consumption patterns including context token usage and optimization opportunities. Tracks code quality, test coverage, signal-to-noise ratios. Provides insights on trajectory, bottlenecks, context rot indicators.
 
@@ -69,33 +69,27 @@ Primary implementation engine responsible for translating strategic decisions in
 ### Context Update Phase (Event-Driven with MCP Feedback)
 All branches update memory-bank files preserving immutable history: scratchpad.json (task events), activeContext.json (status with timestamps), progress.json (milestones with compressed history), mistakes.json (lessons as event stream), systemPatterns.json (patterns enriched by MCP feedback), techContext.json (decisions with auto-enriched docs from @mcp:context7).
 
-**MCP Knowledge Storage**: Successful patterns stored in @mcp:memory (unlimited local, primary) and @mcp:byterover-mcp (cloud backup) for cross-project learning.
+**AegisKG Knowledge Integration**: Successful patterns stored in @mcp:memory (unlimited local, primary) and @mcp:byterover-mcp (cloud backup) with AegisKG local knowledge graph for enhanced pattern recognition and cross-project intelligence.
 
-**Context Health Monitoring**: Verify all files ≤100 lines, optimal signal-to-noise ratios, attention budget compliance.
+**Schema Health Monitoring**: Verify all 6 essential files ≤10KB, 2.6x faster JSON parsing, optimal signal-to-noise ratios, SQLite session coordination across IDEs.
 
 ## Memory-Bank Governance System with Attention Budget Discipline
 
-### Comprehensive Context Management (2025 Standards)
+### 6-Schema Context Management (2025 Standards - 65% Optimized)
 
-All branches operate within `.windsurf/memory-bank/` with attention allocations:
+All branches operate within `.windsurf/memory-bank/` using **6 Essential Schemas** (65% optimization) with AegisKG knowledge graph integration:
 
-**activeContext.json** (≤10KB, 20% attention): Current activities with event timestamps, implementation tracking as event stream, cross-branch communication, real-time decision updates, context snapshots.
+**activeContext.json** (≤10KB, 25% attention - CORE): Real-time execution state with session management, MCP integration tracking, event streams, cross-branch communication, SQLite session context for multi-IDE coordination.
 
-**scratchpad.json** (≤10KB, 25% attention - CRITICAL): Priority tasks with attention-efficient descriptions, assignment tracking as events, completion status with metrics, prerequisites maintaining optimal token usage.
+**scratchpad.json** (≤10KB, 30% attention - CRITICAL): Immediate priorities with MCP validation state, task queue with parliamentary approval metadata, anti-hallucination checks, focus mode management, AegisKG task relationships.
 
-**mistakes.json** (≤10KB, 15% attention - HIGH): Conflict lessons as structured events, error analysis enriched by @mcp:context7 resolutions, failed approaches with alternatives, learning protocols and MCP feedback patterns.
+**mistakes.json** (≤10KB, 20% attention - HIGH): Error patterns with Context7 source prioritization, predictive analytics, instant lint tracking, anti-hallucination metrics, verified source accuracy scoring for learning optimization.
 
-**progress.json** (≤10KB, 8% attention - SUPPORTING): Milestone achievements with compressed history, performance metrics including attention efficiency, success patterns, strategic advancement aligned with roadmap.json.
+**systemPatterns.json** (≤10KB, 10% attention - REFERENCE): Architecture patterns with MCP-enriched documentation links, successful workflows with attention optimization, AegisKG pattern networks, compliance templates.
 
-**systemPatterns.json** (≤10KB, 4% attention - REFERENCE): Compliance patterns as reusable templates, successful workflows with attention optimization, decision-making patterns from historical analysis, framework evolution preserving critical improvements.
+**progress.json** (≤10KB, 10% attention - SUPPORTING): Development milestones with constitutional compliance metrics, performance tracking, AegisKG progress correlation, strategic advancement indicators.
 
-**techContext.json** (≤10KB, 10% attention): Technical decisions with MCP-enriched documentation links, dependency validation from @mcp:context7, cross-platform safety protocols, attention-efficient configurations.
-
-**productContext.json** (≤10KB, 2% attention): Business alignment, client requirements with strategic justification, feature priority mapping to roadmap.json.
-
-**projectbrief.json** (≤10KB, 1% attention): Core requirements, project scope with foundational context, high-level objectives.
-
-**roadmap.json** (≤20KB, 15% attention - STRATEGIC) + **roadmap.md** (human-readable): Strategic roadmap with milestone dependencies, business value, client requirements as supreme authority.
+**roadmap.json** (≤10KB, 5% attention - STRATEGIC): Strategic planning with SQLite session alignment, AegisKG strategic knowledge graphs, milestone dependencies, client requirements as supreme authority.
 
 ### Governance Compliance Requirements (2025)
 

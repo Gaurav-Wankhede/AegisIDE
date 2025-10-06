@@ -25,17 +25,18 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Code Quality Standards with MCP Tool-Context Integration
 
-**Instant Resolution**: Any error/warning → INSTANT @mcp:context7 MCP activation → official docs → auto-fix → context enrichment → compliance
+**MANDATORY MCP Resolution**: ANY error/warning → **INSTANT @mcp:context7 AUTO-CALL** → official docs → auto-fix → **ALL MCP enrichment** → compliance
 
-**Auto-Resolution Process with Context Feedback**:
-1. Error Detection: Identify error with language/framework context
-2. MCP Documentation: @mcp:context7 resolve-library-id → get-library-docs → official documentation
-3. Auto-Fix: Implement corrections maintaining EMD compliance and attention efficiency
-4. Context Enrichment: Auto-update mistakes.json with structured error event + solution pattern
-5. Technical Update: Auto-enrich techContext.json with MCP-provided solution insights (not raw output)
-6. Pattern Storage: Update systemPatterns.json with successful resolution as reusable event pattern
-7. Validation: Re-run language-specific checks until 100% clean
-8. Compliance Verification: Verify attention budget maintained, signal-to-noise optimal
+**Auto-Resolution Process with 6-Schema MCP Integration**:
+1. **@mcp:context7** Error Detection: Identify error with Context7 source prioritization for verified documentation
+2. **@mcp:context7** Documentation: resolve-library-id → get-library-docs → official documentation with accuracy scoring
+3. **@mcp:sequential-thinking** Auto-Fix: Complex problem decomposition maintaining EMD compliance
+4. **@mcp:memory** AegisKG Enrichment: Auto-update mistakes.json with predictive analytics and error patterns
+5. **@mcp:byterover-mcp** Cross-Project Intelligence: Pattern storage in AegisKG knowledge graph
+6. **@mcp:filesystem** Pattern Storage: Update systemPatterns.json with MCP-enriched documentation links
+7. **@mcp:git** Validation: Version control + Re-run language-specific checks until 100% clean
+8. **@mcp:math** Compliance Verification: Calculate attention budget with 65% schema optimization
+9. **@mcp:time** Timestamp: Record resolution timing in SQLite session context
 
 **Automatic Challenges**: Quality Shadow automatically challenges violations using evidence from memory-bank context event streams. Chief Justice triggers automated correction systems with MCP integration oversight. Prevention through templates/ directory and anti-duplication protocol.
 
@@ -59,15 +60,15 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Ruby**: `ruby -c` (syntax check) + `bundle exec rubocop`. Zero tolerance: No syntax errors, RuboCop clean, Sorbet type-checked. Standards: Ruby style guide, proper formatting, type safety. Auto-fix: Fix syntax, apply RuboCop fixes, add Sorbet types using @mcp:context7 Ruby documentation.
 
-### Development Standards with Attention Efficiency
+### Development Standards with 6-Schema Efficiency
 
 - **EMD Compliance**: All files ≤10,000 characters per file, deep nested structure (max 80 lines per file in production)
 - **Deep Nesting**: Use deep folder structures with domain-driven organization logic for optimal context assembly
 - **Centralized Configuration**: Reference existing configurations through core/config/ rather than recreating - SCAN before CREATE
-- **Component Reuse**: Always check existing components using anti-hallucination context scanning from systemPatterns.json
-- **Documentation Requirements**: Document complex logic in memory-bank as structured events with high signal-to-noise ratios
+- **Component Reuse**: Always check existing components using AegisKG pattern networks from systemPatterns.json
+- **Documentation Requirements**: Document complex logic in 6 essential schemas as structured JSON events with optimal signal-to-noise
 - **Validation Before Commit**: MANDATORY language-specific validation before marking task complete - zero tolerance enforcement
-- **Context Health**: Maintain ≤100 lines per memory-bank file, auto-compress when exceeding, preserve critical patterns
+- **Schema Health**: Maintain ≤10KB per essential schema, auto-compress when exceeding, preserve AegisKG critical patterns
 
 ### Anti-Duplication Protocol (MANDATORY - Context Integrity)
 

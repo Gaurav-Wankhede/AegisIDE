@@ -10,6 +10,20 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ## Article XIII: Judicial Debugging Authority & Multi-Language Validation
 
+### MCP AUTO-TRIGGER IN VALIDATION (NO MANUAL REMINDERS)
+
+**CRITICAL**: All validation and debugging operations auto-activate MCPs. AI uses them autonomously WITHOUT user saying "use MCP".
+
+**6-SCHEMA VALIDATION MCP MATRIX**:
+- **Error Detection**: @mcp:context7 INSTANT with Context7 source prioritization → Verified official docs → Auto-fix → Re-validate
+- **Language Detection**: @mcp:filesystem scan project → Detect language → Load validation commands with accuracy scoring
+- **Validation Execution**: Run checks → IF errors: @mcp:context7 → Fix → @mcp:filesystem update 6 essential schemas
+- **Pattern Learning**: @mcp:memory store error solutions in AegisKG knowledge graph → @mcp:byterover-mcp cross-project intelligence
+- **Predictive Analytics**: mistakes.json predictive warnings → instant lint tracking → anti-hallucination metrics
+- **Roadmap Validation**: @mcp:filesystem read roadmap.json with SQLite session alignment → Verify strategic planning → HALT if deviation
+
+**ENFORCEMENT**: Every validation step has embedded MCP triggers → Autonomous error resolution → No manual "use MCP" needed
+
 ### Supreme Court Debugging Powers
 **Chief Justice Authority**: Ultimate debugging, validation enforcement, and client requirement alignment
 
@@ -202,21 +216,24 @@ bundle exec rubocop --dry-run
 bundle exec srb tc
 ```
 
-### Autonomous Error Resolution Protocol
+### Autonomous Error Resolution Protocol with MANDATORY MCP Integration
 
-**HALT-FIX-VALIDATE Loop** (Execute WITHOUT asking):
+**HALT-FIX-VALIDATE Loop with 6-Schema MCP** (Execute WITHOUT asking):
 ```
-1. Detect language/framework
-2. Execute validation commands
+1. **@mcp:context7** Detect language/framework + Context7 source prioritization for verified documentation
+2. **@mcp:filesystem** Execute validation commands with schema compliance
 3. IF errors/warnings found:
-   a. HALT current task immediately
-   b. Log errors in mistakes.json
-   c. Auto-call @mcp:context7 for official docs
-   d. Implement fixes autonomously
-   e. Re-run validation
-   f. REPEAT until clean (100% pass)
-4. ONLY THEN continue to next task
-5. Update systemPatterns.json with resolution
+   a. **INSTANT HALT** current task immediately
+   b. **@mcp:memory** Log errors in mistakes.json with predictive analytics and error patterns
+   c. **@mcp:context7** MANDATORY AUTO-CALL for official docs with accuracy scoring (NO ASKING)
+   d. **@mcp:sequential-thinking** Complex problem decomposition if needed
+   e. **@mcp:byterover-mcp** Check AegisKG cross-project intelligence solutions
+   f. **@mcp:git** Implement fixes autonomously with version control and SQLite session context
+   g. **@mcp:filesystem** Re-run validation commands with 6-schema update cycle
+   h. **@mcp:math** Calculate fix effectiveness metrics with 65% optimization
+   i. REPEAT until clean (100% pass)
+4. **@mcp:time** Timestamp completion in session context → continue to next task
+5. **@mcp:memory** Update systemPatterns.json with AegisKG pattern networks
 ```
 
 **Validation Checkpoints** (MANDATORY at each stage):
@@ -298,7 +315,7 @@ ruby:
 
 **Collaboration**: Quality Shadow ensures validation passes, Chief Justice ensures roadmap alignment, both must approve
 
-**Memory-Bank**: mistakes.json (error patterns and fixes), systemPatterns.json (successful validation patterns), roadmap.json (client requirements), scratchpad.json (tasks MUST be validated)
+**6-Schema Memory-Bank**: mistakes.json (error patterns with Context7 source prioritization), systemPatterns.json (successful validation patterns with AegisKG networks), roadmap.json (strategic planning with SQLite session alignment), scratchpad.json (immediate priorities with MCP validation state), activeContext.json (real-time execution state), progress.json (development milestones with constitutional metrics)
 
 ### Enforcement Levels
 **Level 0 - Validation Failure**: IMMEDIATE HALT until errors/warnings resolved

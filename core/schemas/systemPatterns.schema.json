@@ -2,9 +2,9 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/systemPatterns.json",
   "title": "System Patterns Schema",
-  "description": "Architecture patterns with success metrics",
+  "description": "Architecture patterns with MCP-enriched documentation links and constitutional compliance",
   "type": "object",
-  "required": ["schema_version", "last_updated", "architecture_patterns"],
+  "required": ["schema_version", "last_updated", "architecture_patterns", "mcp_enriched_links"],
   "properties": {
     "schema_version": {
       "type": "string",
@@ -33,6 +33,15 @@
               "steps": {"type": "array", "items": {"type": "string"}},
               "estimated_hours": {"type": "number", "minimum": 0},
               "complexity_score": {"type": "number", "minimum": 0, "maximum": 10}
+            }
+          },
+          "quality_metrics": {
+            "type": "object",
+            "properties": {
+              "success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "performance_impact": {"type": "string"},
+              "maintenance_score": {"type": "number", "minimum": 0, "maximum": 10},
+              "adoption_rate": {"type": "number", "minimum": 0, "maximum": 1}
             }
           },
           "variations": {
@@ -89,6 +98,51 @@
           "impact": {"type": "string"},
           "confidence": {"type": "number", "minimum": 0, "maximum": 1}
         }
+      }
+    },
+    "mcp_enriched_links": {
+      "type": "object",
+      "required": ["documentation_links"],
+      "properties": {
+        "documentation_links": {"type": "array", "items": {
+          "type": "object",
+          "required": ["framework", "official_docs_url", "context7_verified"],
+          "properties": {
+            "framework": {"type": "string"},
+            "official_docs_url": {"type": "string", "format": "uri"},
+            "context7_verified": {"type": "boolean"},
+            "last_accessed": {"type": "string", "format": "date-time"},
+            "accuracy_score": {"type": "number", "minimum": 0, "maximum": 1},
+            "usage_frequency": {"type": "number", "minimum": 0}
+          }
+        }},
+        "link_storage_dashboard": {"type": "array", "items": {
+          "type": "object",
+          "required": ["category", "links"],
+          "properties": {
+            "category": {"type": "string"},
+            "links": {"type": "array", "items": {"type": "string", "format": "uri"}},
+            "priority_order": {"type": "number", "minimum": 1}
+          }
+        }}
+      }
+    },
+    "constitutional_compliance": {
+      "type": "object",
+      "properties": {
+        "tri_branch_approvals": {"type": "array", "items": {
+          "type": "object",
+          "required": ["pattern_id", "consensus_score"],
+          "properties": {
+            "pattern_id": {"type": "string"},
+            "consensus_score": {"type": "number", "minimum": 0, "maximum": 100},
+            "approved_by": {"type": "array", "items": {"type": "string"}},
+            "approval_date": {"type": "string", "format": "date-time"}
+          }
+        }},
+        "governance_validation_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "emf_compliance": {"type": "boolean"},
+        "zero_tolerance_adherence": {"type": "boolean"}
       }
     }
   }

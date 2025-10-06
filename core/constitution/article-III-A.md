@@ -2,151 +2,105 @@
 trigger: always_on
 ---
 
-# Preamble
+# Article III-A: Implementation Protocols & MCP Integration
 
-We, the Autonomous AI Development System, establish this Constitutional Framework to ensure efficient, high-quality, and client-aligned software development through structured governance, continuous autonomous operations, and unwavering commitment to actual client requirements as defined in roadmap.md.
+**Authority**: Detailed execution protocols for Article III workflow foundation.
 
----
+## MCP Auto-Trigger Enforcement
 
-## Article III-A: Implementation Protocols & MCP Integration
+**Rules**: All MCPs auto-activate autonomously. No manual "use MCP" needed.
+- Pre-Implementation: @mcp:filesystem, @mcp:math, @mcp:sequential-thinking, @mcp:memory
+- Validation: @mcp:context7 INSTANT on errors (no permission)
+- Post-Implementation: @mcp:filesystem BLOCKS until schemas updated
+- Storage: @mcp:byterover-mcp + @mcp:memory MANDATORY
 
-### Pre-Implementation Protocol (MANDATORY - Context Optimized)
+**Penalty**: Skip MCP = Constitutional violation → HALT → Force compliance
 
-**Context Assembly Phase** (Attention-Aware):
-1. Calculate current attention budget usage vs. capacity
-2. Read scratchpad.json (CRITICAL - 25% attention allocation)
-3. Read roadmap.json + roadmap.md (CRITICAL - strategic alignment, 15% attention)
-4. **SCAN CENTRALIZED CONFIGS** (MANDATORY - prevent duplication):
-   - Scan: `core/config/`, `src/*/config/`, `lib/*/config/`, `config/`, `shared/`
-   - Check existing: delays, timeouts, API settings, concurrency, retry logic
-   - Validate NO duplicate configuration files or constants exist
-   - **HALT if duplicate detected** - reference existing config instead
-   - Document existing configs in systemPatterns.json event stream
-5. Dynamic context loading based on task type (error = mistakes.json priority, feature = roadmap priority)
-6. Read activeContext.json, mistakes.json, techContext.json (HIGH PRIORITY - 30% total attention)
-7. Retrieve knowledge from @mcp:memory (unlimited local storage, primary)
-8. Read supporting files as needed (progress, systemPatterns - 18% attention)
-9. Skip reference files unless specifically needed (productContext, projectbrief - 7% attention)
+## Pre-Implementation Protocol
 
-**Validation**:
-1. Detect language/framework
-2. Run validation commands
-3. HALT on errors (zero tolerance)
-4. Auto-fix via @mcp:context7
-5. Re-validate to 100%
-6. Verify roadmap link
-7. Check mistakes.json
-8. Validate laws
-9. Confirm EMD ≤10K
+**Context Assembly with MCP**:
+1. @mcp:math calculate attention budget
+2. @mcp:filesystem read scratchpad.json (30% attention)
+3. @mcp:filesystem read roadmap.json (5% attention)
+4. **Anti-Duplication Scan**:
+   - @mcp:filesystem scan config directories
+   - @mcp:memory check existing patterns
+   - @mcp:context7 validate no duplicates
+   - HALT if duplicate → @mcp:byterover-mcp reference existing
+5. @mcp:sequential-thinking dynamic loading (mistakes priority for errors, roadmap for features)
+6. @mcp:memory retrieve AegisKG patterns (unlimited local)
+7. @mcp:byterover-mcp cross-project intelligence
 
-### Post-Implementation Protocol
+**Validation**: Language detection → Run commands → HALT on errors → @mcp:context7 auto-fix → Re-validate 100% → Verify roadmap → Check mistakes → Validate laws → Confirm EMD ≤10KB
 
-**Validation Checkpoint**:
-1. Run validation suite
-2. IF errors → HALT → @mcp:context7 → Fix → Re-validate
-3. Proceed only at 100%
+## Post-Implementation Protocol
 
-**MCP-Based JSON Update (MANDATORY)**:
-Use `@mcp:filesystem` for ALL JSON file operations:
+**Validation Checkpoint**: Run suite → IF errors: HALT → @mcp:context7 fix → Re-validate → Proceed only at 100%
+
+**6-Schema Real-Time Updates (MANDATORY)**:
+- **Auto-Trigger**: EVERY task updates all 6 schemas
+- **No Bypass**: Skip = Constitutional violation
+- **Validation Gate**: Next task BLOCKED until complete
+- **Schema Lock**: Validate against `.windsurf/memory-bank/schemas/*.schema.json`
+
+**MCP Update Operations**:
 ```
-1. Read current JSON: mcp3_read_text_file({path: ".windsurf/memory-bank/scratchpad.json"})
-2. Update data structure with new information
-3. Validate against schema: .windsurf/memory-bank/schemas/*.schema.json
-4. Write updated JSON: mcp3_write_file({path, content})
-5. Verify write success with mcp3_get_file_info
+1. mcp3_read_text_file({path: schema_path})
+2. Update data structure
+3. Schema validation
+4. mcp3_write_file({path, content})
+5. mcp3_get_file_info verification
 ```
 
-**FORCEFUL REAL-TIME UPDATE ENFORCEMENT**:
-- **Auto-Trigger**: EVERY task completion automatically calls MCP update
-- **No Bypass**: Constitutional violation to skip updates (Article III-A authority)
-- **Real-Time Hooks**: Pre/Post implementation checkpoints HALT until updates complete
-- **Validation Gate**: Next task BLOCKED until all 17 files updated via MCP
-- **Schema Lock**: JSON schema validation MANDATORY - rollback on failure
+**Schema Updates via MCP**:
+1. scratchpad.json → Remove completed, add priorities
+2. activeContext.json → Real-time execution state
+3. mistakes.json → Error patterns with Context7 prioritization
+4. systemPatterns.json → Architecture patterns with AegisKG
+5. progress.json → Milestones with constitutional metrics
+6. roadmap.json → Strategic planning with SQLite alignment
 
-**Update ALL 17 Files via MCP**:
-1. scratchpad.json - @mcp:filesystem write → Remove completed, add priorities
-2. activeContext.json - @mcp:filesystem write → Status with timestamp
-3. mistakes.json - @mcp:filesystem write → Errors with @mcp:context7 solutions
-4. progress.json - Milestones with metrics
-5. systemPatterns.json - Patterns from MCP feedback
-6. techContext.json - Changes with enriched docs
-7. productContext.json - Features with impact
-8. projectbrief.json - Scope refinements
-9-16. automation JSON files (roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies)
-17. roadmap.md - Human-readable strategic overview
-18. **mermaid.json - @mcp:filesystem write → Real-time progress flow visualization (MANDATORY)**
+**Storage**: @mcp:memory (local), @mcp:byterover-mcp (cloud)
 
-**Storage**: @mcp:memory (local primary), @mcp:byterover-mcp (cloud backup)
+**Health Check**: ≤10KB files, 2.6x faster parsing, 65% optimization, AegisKG integration, SQLite coordination
 
-**Health Check**:
-- Files ≤100 lines (auto-cleanup)
-- Signal-to-noise improvement
-- Attention budget efficiency
-- n² degradation detection
+**Penalty**: Validation fail → BLOCK until compliant
 
-**PENALTY**: Validation fail/incomplete/rot → BLOCK until compliant
+## MCP Integration Matrix
 
-### MCP Integration Matrix
+**Error Resolution**: Error → @mcp:context7 resolve-library-id → get-library-docs → Auto-fix → mistakes.json update → systemPatterns.json success pattern → Validation → 100% clean before continue
 
-**Error Resolution Protocol**:
-Any error/warning → **AUTO-CALL @mcp:context7 WITHOUT asking**
-```
-Error Detection →
-Auto-call @mcp:context7 resolve-library-id → get-library-docs →
-Official Documentation Retrieved →
-Auto-Resolution Implementation →
-mistakes.json event stream update (structured error pattern) →
-techContext.json auto-enrichment (solution pattern from MCP) →
-systemPatterns.json update (success pattern documentation) →
-Validation → Re-run checks →
-ONLY continue after 100% clean
-```
+**Tool-Context Loop**: MCP auto-enriches schemas with reusable patterns
 
-**Tool-Context Loop**: MCP auto-enriches files with reusable patterns.
-
-**MCP Filesystem Operations**:
-- `mcp3_read_text_file` - Atomic JSON reads with error handling
-- `mcp3_write_file` - Schema-validated JSON writes
-- `mcp3_edit_file` - Precision line-based updates
-- `mcp3_get_file_info` - File integrity verification
-- `mcp3_list_directory` - Memory-bank structure scanning
+**Filesystem Operations**:
+- mcp3_read_text_file: Atomic JSON reads
+- mcp3_write_file: Schema-validated writes  
+- mcp3_edit_file: Precision updates
+- mcp3_get_file_info: Integrity verification
+- mcp3_list_directory: Structure scanning
 
 **Cross-Session Learning**:
-- @mcp:memory → Unlimited local pattern storage
-- @mcp:byterover-mcp → Cloud-based cross-project intelligence
-- Automatic pattern recognition and reuse
-- Constitutional precedent establishment
+- @mcp:memory: Unlimited local patterns
+- @mcp:byterover-mcp: Cloud cross-project intelligence
+- Automatic pattern recognition and constitutional precedents
 
-**Real-Time Context Enrichment**:
-- @mcp:context7 → Official documentation integration
-- @mcp:fetch → External resource retrieval
-- @mcp:git → Version control context
-- @mcp:sequential-thinking → Complex problem decomposition
-- @mcp:time → Temporal awareness for scheduling
-- **mermaid.json → Real-time progress flow visualization** (Constitutional/MCP/Metrics diagrams)
+**Real-Time Enrichment**:
+- @mcp:context7: Official documentation
+- @mcp:fetch: External resources
+- @mcp:git: Version control
+- @mcp:sequential-thinking: Problem decomposition
+- @mcp:time: Temporal awareness
 
-### Constitutional Compliance
+## Constitutional Compliance
 
-**Attention Budget Management**:
-- Dynamic rebalancing based on task complexity
-- n² degradation monitoring and prevention
-- Signal-to-noise optimization
-- Context rot early detection and remediation
+**Attention Management**: Dynamic rebalancing, n² monitoring, signal-to-noise optimization, context rot detection
 
-**Schema Validation Framework**:
-- MANDATORY validation against `.windsurf/memory-bank/schemas/*.schema.json`
-- Zero-tolerance for malformed data structures
-- Automatic rollback on validation failures
-- Immutable event stream preservation
+**Schema Validation**: MANDATORY validation against schemas, zero-tolerance malformed data, auto-rollback on failures, immutable event streams
 
-**Quality Gates**:
-- Pre-implementation scanning and validation
-- Real-time execution monitoring
-- Post-implementation verification
-- Continuous health checking and optimization
+**Quality Gates**: Pre-implementation scanning, real-time monitoring, post-implementation verification, continuous health optimization
 
-**Emergency Protocols**:
-- Automatic context cleanup on corruption detection
-- Rollback to last known good state
-- Emergency schema reconstruction
-- Constitutional compliance restoration
+**Emergency Protocols**: Auto-cleanup on corruption, rollback to last good state, emergency reconstruction, compliance restoration
+
+## Integration with Article III
+
+**Authority**: Article III-A implements Article III workflow foundation with detailed MCP protocols, validation enforcement, and schema management. Both operate under unified constitutional governance requiring >95% consensus and mandatory 6-schema compliance.

@@ -1,216 +1,106 @@
-# AegisIDE v2.8.2 🛡️Constitutional Framework for Autonomous AI Development
+# AegisIDE 🛡️Constitutional Framework for Autonomous AI Development
 > **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md) [![Production Ready](https://img.shields.io/badge/Status-Production%20Ready-success)]() [![Version](https://img.shields.io/badge/Version-2.8.2-blue)]() [![6 Core Protocols](https://img.shields.io/badge/Protocols-6%20Core-orange)]()
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 
-## 🎯 Platform Implementations
+## Documentation (Landing)
 
-| Platform | Autonomy | Config Type | Setup Guide |
-|----------|----------|-------------|-------------|
-| **[Windsurf](platforms/windsurf/)** | 98% | Multi-file | [Setup](platforms/windsurf/README.md) |
-| **[JetBrains](platforms/jetbrains/)** | 97% | XML | [Setup](platforms/jetbrains/README.md) |
-| **[Cursor](platforms/cursor/)** | 96% | Single file | [Setup](platforms/cursor/README.md) |
-| **[Cline](platforms/cline/)** | 95% | Single file | [Setup](platforms/cline/README.md) |
-| **[Roo Code](platforms/roo-code/)** | 95% | JSON | Config file |
-| **[Continue.dev](platforms/continue/)** | 94% | JSON | Config file |
-| **[Aider](platforms/aider/)** | 93% | YAML | Config file |
-| **[Copilot](platforms/copilot/)** | 92% | Docs | [Guide](platforms/copilot/README.md) |
+Use these quick links to navigate the project documentation:
 
-## 🏛️ Framework Architecture
+- **Overview**: `core/README.md`
+- **Constitution (Articles I–XIV)**: `core/constitution/`
+- **Workflows (Slash-Commands)**: `core/workflow/`
+  - `/init`, `/next`, `/fix`, `/validate`, `/update`, `/status`, `/optimize`, `/oversight-checks-and-balances`
+- **Schemas (7 Essentials + Kanban)**: `core/schemas/README.md`
+  - Quick links:
+    - `core/schemas/activeContext.schema.json`
+    - `core/schemas/scratchpad.schema.json`
+    - `core/schemas/kanban.schema.json`
+    - `core/schemas/mistakes.schema.json`
+    - `core/schemas/systemPatterns.schema.json`
+    - `core/schemas/progress.schema.json`
+    - `core/schemas/roadmap.schema.json`
+- **Platform Setups**: `platforms/`
+- **Changelog**: `CHANGELOG.md`
+- **Contributing**: `CONTRIBUTING.md`
+- **Security Policy**: `SECURITY.md`
+- **Technical Roadmap**: `TECHNICAL_ROADMAP.md`
+- **Business Model**: `BUSINESS_MODEL.md`
+- **Community Impact**: `COMMUNITY_IMPACT.md`
 
+Jump to Quick Start → [/init & /next](#quick-start-5-minutes)
+
+## Platforms
+
+See `platforms/` for platform-specific setup and configuration.
+
+## Best Practices
+
+Use these guidelines to get the most reliable, repeatable results from AegisIDE workflows.
+
+- **Start every session with `/init`**
+  - Loads constitutional governance (Articles I–XIV) and bootstraps the memory bank (7 essential schemas + kanban as needed)
+  - Workflow spec: `core/workflow/init.md`
+
+- **After `/init`, drive execution with `/next`**
+  - Continuously discovers tasks from `scratchpad.json` and `kanban.json`, executes, then updates the memory bank
+  - Workflow spec: `core/workflow/next.md`
+
+- **Validate early and often with `/validate`**
+  - Zero-tolerance policy for errors/warnings (multi-language matrix); run before/after significant changes
+  - Workflow spec: `core/workflow/validate.md`
+
+- **Fix immediately with `/fix`**
+  - HALT–FIX–VALIDATE loop using official docs (Context7) and MCP integrations
+  - Workflow spec: `core/workflow/fix.md`
+
+- **Update context when appropriate using `/update`**
+  - Ensures memory-bank and status files remain synchronized; avoids stale context
+  - Workflow spec: `core/workflow/update.md`
+
+- **Get visibility with `/status` and improve with `/optimize`**
+  - `/status` summarizes tasks, bugs, metrics
+  - `/optimize` proposes architecture/pattern improvements
+  - Workflow specs: `core/workflow/status.md`, `core/workflow/optimize.md`
+
+- **Apply parliamentary governance with `/oversight-checks-and-balances`**
+  - Democratic review for proposals with consensus scoring and judicial guardrails
+  - Workflow spec: `core/workflow/oversight-checks-and-balances.md`
+
+- **Do not hand-edit memory-bank JSON files**
+  - Prefer workflows to keep data schema-compliant; see schemas in `core/schemas/`
+  - Quick links: `activeContext.schema.json`, `scratchpad.schema.json`, `kanban.schema.json`, `mistakes.schema.json`, `systemPatterns.schema.json`, `progress.schema.json`, `roadmap.schema.json`
+
+- **Keep plans private**
+  - `docs/` is Git-ignored by design; avoid committing private plans or secrets
+
+## 📦 JSON-First Architecture
 **Core Innovation**: AI auto-generates project-specific memory-bank files (NO templates)
 
 ## ⚡ Quick Start (5 Minutes)
 
 ```bash
 # 1. Add AegisIDE as submodule (30 seconds)
-git submodule add https://github.com/Gaurav-Wankhede/AegisIDE.git .aegiside
+git submodule add https://github.com/Gaurav-Wankhede/AegisIDE.git .aegiside (your IDE folder)
 git submodule update --init --recursive
 
 # 2. Initialize memory-bank (10 seconds)
-init
+/init
 
 # 3. Start developing (immediate)
-next
+/next
 ```
 
 **Done!** AI now validates everything automatically. 🎉
 
-### 📊 Real-Time Visualization Dashboard (v2.8.0)
-
-**Monitor AI agent activity in real-time** with the Enhanced Memory Bank Dashboard:
-
-```bash
-# Navigate to memory-bank directory
-cd .windsurf/memory-bank  # or .cursor/memory-bank for Cursor IDE
-
-# Start HTTP server
-python3 -m http.server 8080
-
-# Open in browser: http://localhost:8080/visualize/dashboard.html
-# Dashboard location: .windsurf/memory-bank/visualize/dashboard.html
-```
-
-**CTRL+C** to stop server (handles interrupt gracefully)
-
-**Enhanced UI/UX Features (v2.8.0)**:
-- 🎨 **Professional Dark Theme**: Optimized for developer productivity
-- 📋 **Full Content Visibility**: Removed scroll constraints for better information access
-- 📖 **Improved Typography**: Enhanced text sizing (text-sm) for better readability
-- ⚡ **Optimized Performance**: 5-minute refresh intervals for optimal balance
-- 🎯 **Clean Interface**: Eliminated visual distractions and animations
-
-**Core Dashboard Features**:
-- 📈 Real-time phase progress tracking
-- 📋 Interactive Kanban board (TODO/In Progress/Done)
-- 🐛 Active bugs with root cause analysis
-- 📅 Comprehensive event timeline
-- 🎯 Mermaid workflow visualization
-- ⏱️ Intelligent auto-refresh (5 minutes)
-
-**Constitutional Integration**: The dashboard provides a frontend view of AI memory bank operations, automatically updating when AI agents modify JSON files per Articles I-XIV. See [`core/visualize/README.md`](core/visualize/README.md) for complete documentation.
-
-### 🔁 Legacy System Migration
-
-**If you have old .md files** (pre-v2.7.0):
-
-```bash
-migrate-to-json
-```
-
-Converts markdown files to JSON-first architecture (2.6x faster parsing). See platform READMEs for details.
-
----
-
-📖 **Platform Setup**: See platform-specific README files:
-- [Windsurf Setup](platforms/windsurf/README.md) - 5-minute setup with Git Submodule
-- [Cursor Setup](platforms/cursor/README.md)
-- [VS Code Setup](platforms/vscode/README.md)
-
-## 🎯 Core Commands (v2.6.2)
-
-**8 Unified Commands** - Easy to type, easy to remember:
-
-| Command | Purpose | Auto-Continues |
-|---------|---------|----------------|
-| `init` | Initialize OR restore project | Detects existing 17 files |
-| `next` | Execute next task | ✅ Forever until tasks empty |
-| `update` | Refresh all 17 files | Updates 16 JSON + roadmap.md |
-| `validate` | Check quality + blueprint | 6-pillar scoring + tests |
-| `fix` | Auto-fix errors/warnings | Until 100% clean |
-| `status` | Progress report | Tasks, bugs, metrics |
-| `optimize` | Improve architecture | Requires >95% consensus |
-| `health` | System monitoring | Context rot, file sizes |
-
-**Benefits**: 80% reduction from 40+ commands, zero duplication, works with both markdown AND JSON files automatically.
-
-## 📦 **JSON-First Architecture (v2.7.0)**
-
-**17-File System**: 16 JSON files + 1 roadmap.md
-
-**Performance Benefits**:
-- **2.6x faster parsing** (140ms vs 360ms)
-- **75x faster queries** (8ms vs 600ms)
-- **Zero ambiguity** with schema validation
-- **18% less memory** usage
-
-**Core Context (8 JSON files)**:
-- `activeContext.json` - Real-time execution state
-- `scratchpad.json` - Immediate priorities (≤10 items)
-- `mistakes.json` - Error patterns with solutions
-- `progress.json` - Development milestones
-- `systemPatterns.json` - Architecture patterns
-- `techContext.json` - Technical stack
-- `productContext.json` - Business requirements
-- `projectbrief.json` - Core project scope
-
-**Automation (8 JSON files)**:
-- `roadmap.json` + `roadmap.md` - Strategic planning
-- `kanban.json` - Task workflow
-- `blueprint.json` - Project blueprints
-- `userflow.json` - User journeys
-- `bugfix.json` - Bug tracking
-- `deployment.json` - CI/CD automation
-- `monitoring.json` - Performance tracking
-- `dependencies.json` - Security management
-
-**Schema Validation**: All JSON files validated against schemas in `core/schemas/`
-
-**Benefits**: 80% reduction from 40+ commands, zero duplication, works with both markdown AND JSON files automatically.
-
-### ✨ NEW: File Editing Anti-Hallucination (v2.6.0)
-**CRITICAL FIX**: Prevents AI from trying to create files that already exist
-- Check file existence BEFORE choosing tool
-- Existing files → `replace_file_content` (Direct Edit)
-- New files → `write_to_file`
-- Eliminates hallucination errors in autonomous workflows
-
-### Session Resume & Auto-Detection (v2.6.2)
-**Zero Manual Input** for existing projects:
-- **Auto-Scans**: `.windsurf/memory-bank/` on session start
-- **Auto-Loads**: All 17 files (16 JSON + roadmap.md) with schema validation
-- **Auto-Resumes**: Continues from exactly where you left off
-- **Just Type**: `next` - no project description needed
-- **Smart Detection**: Recognizes project state, pending tasks, known issues from JSON structure
-
-**Benefits**: Resume work in seconds, zero context loss, seamless continuity
-
-### Command Consolidation (v2.6.2)
-**80% Reduction** - From 40+ commands to **8 unified commands**:
-- `init` - Initialize OR restore (auto-detects existing 17 files: 16 JSON + roadmap.md)
-- `next` - Execute tasks (auto-continues forever, updates all 17 files)
-- `update` - Refresh all 17 files (16 JSON + roadmap.md with schema validation)
-- `validate` - Check quality + blueprint (6-pillar scoring + multi-language tests)
-- `fix` - Auto-fix errors/warnings (HALT-FIX-VALIDATE loop until 100% clean)
-- `status` - Progress report (from kanban.json, bugfix.json, progress.json)
-- `optimize` - Improve architecture (requires >95% consensus)
-- `health` - System monitoring (attention budget, context rot, JSON integrity)
-
-**Benefits**: Easy to remember, zero duplication, intuitive workflow
-
-### Multi-Language Validation Framework (v2.6.0)
-**HALT-FIX-VALIDATE Protocol** with zero-tolerance enforcement:
-- **10+ Languages**: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby, and more
-- **Auto-Detection**: Scans config files (requirements.txt, Cargo.toml, pnpm-lock.yaml, etc.)
-- **Zero Tolerance**: 100% validation pass required before next task
-- **Autonomous**: Error → HALT → @mcp:context7 → Fix → Re-validate → Continue
-- **4 Checkpoints**: Pre-implementation, during, post-implementation, pre-commit
-
-### Blueprint & Autonomous Development System (v2.6.1)
-**6-Pillar Project Validation** with parliamentary approval:
-- **Validation Pillars**: Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization (each 0-100)
-- **Minimum Score**: ≥70/100 overall with no pillar <50 for approval
-- **Auto-Generation**: `blueprint create "idea"` → blueprint.json + userflow.json + kanban.json + bugfix.json
-- **Reverse Engineering**: `adapt existing project` → scans codebase → generates all files → enables workflow
-- **Parliamentary Approval**: >95% tri-branch consensus required before implementation
-- **Continuous Monitoring**: Bug detection (P0-P3), auto-fix tracking, validation checkpoints
-
-**JSON Files**:
-- `blueprint.json` - 6-pillar scores, tech stack, pricing model, risk assessment, revision history
-- `userflow.json` - User journeys, flows, critical paths, accessibility validation
-- `kanban.json` - Tasks, dependencies, parliamentary consensus, framework validation status
-- `bugfix.json` - P0-P3 bugs, auto-fix attempts, MCP context7 usage, validation checkpoints
-
 ### Three-Branch Parliamentary System
-Based on 13 constitutional articles in [core/constitution/](core/constitution/):
+Based on 14 constitutional articles in [core/constitution/](core/constitution/):
 
 - **🏢 Government**: PM, Dev Minister, Tech Minister (Executive Authority)
 - **🔍 Opposition**: Quality, Innovation, Analytics Shadows (Review Authority)
 - **⚖️ Judiciary**: Chief Justice (Compliance Authority)
 
 **Decision Process**: Proposal → Opposition Review → >95% Consensus → Execute
-
-### Memory-Bank System (8 Auto-Generated Files)
-- `scratchpad.md` - Current tasks
-- `activeContext.md` - Current status
-- `progress.md` - Milestones
-- `mistakes.md` - Error patterns
-- `techContext.md` - Technical stack
-- `productContext.md` - Business requirements
-- `systemPatterns.md` - Architecture patterns
-- `projectbrief.md` - Core requirements
-
-**Strategic**: `roadmap/roadmap.md` (≤200 lines, supreme authority)
 
 ## ⚡ Quick Start
 
@@ -229,9 +119,8 @@ cd AegisIDE
 cp -r platforms/windsurf/project/.windsurf /path/to/your/project/
 
 # 4. Start development
-# In Windsurf chat, describe your project then:
-what next
-implement next task
+# In Windsurf chat, describe your project then run:
+/next
 ```
 
 ### Other IDEs
@@ -252,14 +141,14 @@ See platform-specific setup guides in `platforms/*/README.md`
 
 | Command | Purpose |
 |---------|---------|  
-| `init` | Initialize project (new OR existing) - generates all 13 files |
-| `next` | Execute next task - auto-continues forever, updates everything |
-| `update` | Refresh all files (8 .md + 4 .json + roadmap) |
-| `validate` | Blueprint 6-pillar scoring + language-specific tests |
-| `fix` | Auto-fix all errors and warnings until 100% clean |
-| `status` | Complete progress report (tasks, bugs, metrics, consensus) |
-| `optimize` | Analyze patterns and propose improvements |
-| `health` | Monitor system health (attention budget, context rot, file integrity) |
+| `/init` | Initialize project (new OR existing) - generates all 13 files |
+| `/next` | Execute next task - auto-continues forever, updates everything |
+| `/update` | Refresh all files (8 .md + 4 .json + roadmap) |
+| `/validate` | Blueprint 6-pillar scoring + language-specific tests |
+| `/fix` | Auto-fix all errors and warnings until 100% clean |
+| `/status` | Complete progress report (tasks, bugs, metrics, consensus) |
+| `/optimize` | Analyze patterns and propose improvements |
+| `/oversight-checks-and-balances` | Parliamentary oversight with democratic consensus |
 
 **Full Command Reference**: [Windsurf CheatSheet](platforms/windsurf/CheatSheet.md) (8 unified commands)
 
@@ -293,8 +182,7 @@ AegisIDE/
 │   ├── continue/              # 94% autonomy - JSON config
 │   ├── aider/                 # 93% autonomy - YAML config
 │   └── copilot/               # 92% autonomy - Documentation-based
-├── docs/                      # Implementation guides
-├── CHANGELOG.md               # Version history (v1.0.0 → v2.8.0)
+├── CHANGELOG.md               # Version history (v1.0.0 → v2.8.3)
 ├── CONTRIBUTING.md            # Democratic contribution process
 ├── SECURITY.md                # Security policy
 ├── BUSINESS_MODEL.md          # Open source community model
@@ -315,15 +203,13 @@ AegisIDE/
 
 ## 📚 Documentation
 
-- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.8.0)
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.8.3)
 - **[BUSINESS_MODEL.md](BUSINESS_MODEL.md)** - Open source community model
 - **[TECHNICAL_ROADMAP.md](TECHNICAL_ROADMAP.md)** - Production readiness status
 - **[COMMUNITY_IMPACT.md](COMMUNITY_IMPACT.md)** - Global developer empowerment
-- **[docs/](docs/)** - Platform comparisons, initialization guides
 
 ## 🏷️ Project Information
 
-**Version**: 2.8.0 (Production Ready - October 2025)  
 **License**: MIT  
 **Repository**: https://github.com/Gaurav-Wankhede/AegisIDE
 
@@ -337,4 +223,9 @@ AegisIDE/
 
 ⭐ **Star this repository if AegisIDE transformed your AI development!**
 
-🏛️ **Ready to start?** Choose your IDE from the [platform table](#-platform-implementations) above and follow the setup guide!
+🏛️ **Ready to start?** See the [Platforms](#platforms) section above and follow the setup guide!
+
+## 📈 Progress
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Gaurav-Wankhede/AegisIDE.git&type=Date)](https://www.star-history.com/#Gaurav-Wankhede/AegisIDE.git&Date)
