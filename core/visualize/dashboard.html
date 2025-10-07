@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Memory Bank Dashboard - ServeUPSC</title>
+    <title>AegisIDE Memory Bank Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <!-- Minimal dashboard does not depend on mermaid or chart.js -->
 </head>
 <body class="bg-black text-gray-100">
     <header class="bg-gray-900 border-b border-gray-800 sticky top-0 z-50 backdrop-blur-sm bg-opacity-95">
@@ -14,7 +13,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">🧠 Memory Bank Dashboard</h1>
-                    <p class="text-sm text-gray-500 mt-1">Real-time visualization of 17 JSON context files</p>
+                    <p class="text-sm text-gray-500 mt-1">Real-time visualization of 7 JSON memory-bank files</p>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="loadAll()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition shadow-lg">🔄 Manual Refresh</button>
@@ -30,56 +29,23 @@
         <div class="text-center text-gray-400">⏳ Initializing components...</div>
     </div>
 
-    <!-- Load all component scripts FIRST -->
-    <script src="components/activecontext-component.js"></script>
-    <script src="components/scratchpad-component.js"></script>
-    <script src="components/progress-component.js"></script>
-    <script src="components/mistakes-component.js"></script>
-    <script src="components/projectbrief-component.js"></script>
-    <script src="components/systempatterns-component.js"></script>
-    <script src="components/techcontext-component.js"></script>
-    <script src="components/productcontext-component.js"></script>
-    <script src="components/roadmap-component.js"></script>
-    <script src="components/kanban-component.js"></script>
-    <script src="components/blueprint-component.js"></script>
-    <script src="components/bugfix-component.js"></script>
-    <script src="components/deployment-component.js"></script>
-    <script src="components/monitoring-component.js"></script>
-    <script src="components/dependencies-component.js"></script>
-    <script src="components/userflow-component.js"></script>
-    <script src="components/mermaid-component.js"></script>
+    <!-- Minimalized: no external component scripts -->
 
     <script>
-        // Global variables
+        // Global state
         let data = {};
-        let components = {};
         let autoRefresh = null;
-
-        // Initialize Mermaid
-        mermaid.initialize({
-            startOnLoad: false,
-            theme: 'dark',
-            themeVariables: {
-                darkMode: true,
-                background: '#0f172a',
-                primaryColor: '#3b82f6',
-                primaryTextColor: '#f1f5f9',
-                primaryBorderColor: '#1e40af',
-                lineColor: '#64748b',
-                secondaryColor: '#10b981',
-                tertiaryColor: '#f59e0b',
-                fontSize: '14px',
-                fontFamily: 'Inter, system-ui, sans-serif'
-            }
-        });
 
         // Load JSON data from parent directory
         async function loadData() {
             const jsonFiles = [
-                'activeContext.json', 'scratchpad.json', 'mistakes.json', 'progress.json',
-                'systemPatterns.json', 'techContext.json', 'productContext.json', 'projectbrief.json',
-                'roadmap.json', 'kanban.json', 'blueprint.json', 'bugfix.json',
-                'deployment.json', 'monitoring.json', 'dependencies.json', 'userflow.json', 'mermaid.json'
+                'activeContext.json',
+                'scratchpad.json',
+                'mistakes.json',
+                'progress.json',
+                'systemPatterns.json',
+                'roadmap.json',
+                'kanban.json'
             ];
 
             console.log('📡 Loading JSON files from parent directory...');
@@ -115,63 +81,26 @@
             return loadedData;
         }
 
-        // Initialize all component instances
-        function initializeComponents() {
-            try {
-                console.log('🔧 Initializing components...');
-                components = {
-                    activeContext: new ActiveContextComponent(),
-                    scratchpad: new ScratchpadComponent(),
-                    progress: new ProgressComponent(),
-                    mistakes: new MistakesComponent(),
-                    projectbrief: new ProjectBriefComponent(),
-                    systemPatterns: new SystemPatternsComponent(),
-                    techContext: new TechContextComponent(),
-                    productContext: new ProductContextComponent(),
-                    roadmap: new RoadmapComponent(),
-                    kanban: new KanbanComponent(),
-                    blueprint: new BlueprintComponent(),
-                    bugfix: new BugfixComponent(),
-                    deployment: new DeploymentComponent(),
-                    monitoring: new MonitoringComponent(),
-                    dependencies: new DependenciesComponent(),
-                    userflow: new UserflowComponent(),
-                    mermaid: new MermaidComponent()
-                };
-                console.log('✅ Components initialized:', Object.keys(components).length);
-                return true;
-            } catch (error) {
-                console.error('❌ Component initialization failed:', error);
-                return false;
-            }
-        }
-
         // Generate overview statistics from loaded data
         function generateOverviewStats() {
             const loadedCount = Object.keys(data).filter(key => data[key] !== null).length;
             const activeTasks = data['scratchpad.json']?.immediate_priorities?.length || 0;
-            const completedMilestones = data['progress.json']?.development_milestones?.filter(m => m.status === 'completed')?.length || 0;
+            const completedMilestones = data['progress.json']?.milestone_tracking?.filter(m => m.status === 'completed')?.length || 0;
             const totalIssues = data['mistakes.json']?.error_patterns?.length || 0;
             
             return [
                 { title: 'Active Tasks', value: activeTasks, color: 'blue' },
                 { title: 'Completed', value: completedMilestones, color: 'green' },
                 { title: 'Issues', value: totalIssues, color: 'red' },
-                { title: 'Schema Health', value: `${Math.round((loadedCount/17)*100)}%`, color: 'purple' }
+                { title: 'Schema Health', value: `${Math.round((loadedCount/7)*100)}%`, color: 'purple' }
             ];
         }
 
-        // Render complete dashboard using components
+        // Render minimal dashboard (7 schemas)
         function render() {
             const dashboardContainer = document.getElementById('dashboard');
             if (!dashboardContainer) {
                 console.error('❌ Dashboard container not found');
-                return;
-            }
-
-            if (!components || Object.keys(components).length === 0) {
-                console.error('❌ Components not initialized');
-                dashboardContainer.innerHTML = '<div class="text-red-400 text-center">❌ Components not loaded</div>';
                 return;
             }
 
@@ -191,114 +120,31 @@
                             `).join('')}
                         </div>
                     </section>
-
-                    <!-- Active Context & Scratchpad -->
+                    <!-- Minimal JSON Sections -->
                     <section>
                         <h2 class="text-2xl font-bold mb-4 text-cyan-400">🔄 Current Activity</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.activeContext.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.scratchpad.render(data)}
-                            </div>
-                        </div>
+                        ${renderJsonCard('activeContext.json', 'Active Context')}
+                        ${renderJsonCard('scratchpad.json', 'Scratchpad')}
                     </section>
 
-                    <!-- Kanban Board -->
                     <section>
                         <h2 class="text-2xl font-bold mb-4 text-yellow-400">📋 Task Management</h2>
-                        <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                            ${components.kanban.render(data)}
-                        </div>
+                        ${renderJsonCard('kanban.json', 'Kanban')}
                     </section>
 
-                    <!-- Progress & Roadmap -->
                     <section>
                         <h2 class="text-2xl font-bold mb-4 text-green-400">📈 Progress & Strategy</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.progress.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.roadmap.render(data)}
-                            </div>
+                          ${renderJsonCard('progress.json', 'Progress')}
+                          ${renderJsonCard('roadmap.json', 'Roadmap')}
                         </div>
                     </section>
 
-                    <!-- Issues & Learning -->
                     <section>
-                        <h2 class="text-2xl font-bold mb-4 text-red-400">🐛 Quality & Learning</h2>
+                        <h2 class="text-2xl font-bold mb-4 text-red-400">🐛 Quality & Patterns</h2>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-red-600/30">
-                                ${components.bugfix.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-orange-600/30">
-                                ${components.mistakes.render(data)}
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Architecture & Design -->
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4 text-cyan-400">🎨 Architecture</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.blueprint.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.userflow.render(data)}
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Technical Context -->
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4 text-indigo-400">🔧 Technical Stack</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.techContext.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.dependencies.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.systemPatterns.render(data)}
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Operations -->
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4 text-pink-400">🚀 Operations</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.deployment.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.monitoring.render(data)}
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Business Context -->
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4 text-amber-400">📦 Business Context</h2>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.productContext.render(data)}
-                            </div>
-                            <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl">
-                                ${components.projectbrief.render(data)}
-                            </div>
-                        </div>
-                    </section>
-
-                    <!-- Workflow Visualization -->
-                    <section>
-                        <h2 class="text-2xl font-bold mb-4 text-violet-400">🎯 Workflow Visualization</h2>
-                        <div class="bg-gray-900 rounded-xl p-6 shadow-xl border border-gray-800">
-                            ${components.mermaid.render(data)}
+                          ${renderJsonCard('mistakes.json', 'Mistakes')}
+                          ${renderJsonCard('systemPatterns.json', 'System Patterns')}
                         </div>
                     </section>
                 `;
@@ -310,16 +156,30 @@
             }
         }
 
+        // Helper to render JSON in a card
+        function renderJsonCard(key, title) {
+            const obj = data[key];
+            const body = obj ? `<pre class="text-xs whitespace-pre-wrap">${escapeHtml(JSON.stringify(obj, null, 2))}</pre>`
+                             : `<div class="text-gray-500">Not loaded</div>`;
+            return `
+              <div class="bg-gray-900 rounded-xl p-6 border border-gray-800 shadow-xl mb-4">
+                <h3 class="text-lg font-bold text-white mb-2">${title}</h3>
+                ${body}
+              </div>
+            `;
+        }
+
+        // Escape HTML for safe JSON rendering
+        function escapeHtml(str) {
+          return str
+            .replaceAll('&', '&amp;')
+            .replaceAll('<', '&lt;')
+            .replaceAll('>', '&gt;');
+        }
+
         // Main load function
         async function loadAll() {
             try {
-                document.getElementById('status').textContent = '⏳ Initializing components...';
-                
-                if (!initializeComponents()) {
-                    document.getElementById('status').textContent = '❌ Component initialization failed';
-                    return;
-                }
-                
                 document.getElementById('status').textContent = '⏳ Loading JSON data...';
                 data = await loadData();
                 
@@ -328,7 +188,7 @@
                 
                 const loadedCount = Object.keys(data).filter(key => data[key] !== null).length;
                 document.getElementById('status').textContent = 
-                    `✅ Updated: ${new Date().toLocaleTimeString()} - ${loadedCount}/17 files loaded`;
+                    `✅ Updated: ${new Date().toLocaleTimeString()} - ${loadedCount}/7 files loaded`;
                     
                 console.log('🎯 Dashboard loaded successfully');
             } catch (error) {
