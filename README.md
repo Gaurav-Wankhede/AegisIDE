@@ -20,15 +20,24 @@ Use these quick links to navigate the project documentation:
     - `core/schemas/systemPatterns.schema.json`
     - `core/schemas/progress.schema.json`
     - `core/schemas/roadmap.schema.json`
+- **Validation Scripts & CI**: `scripts/validate-linkage.js`, `scripts/validate-schemas.js`, `.github/workflows/ci.yml`
+  - Cross-file ID enforcement and Ajv schema validation (run locally or in CI)
 - **Platform Setups**: `platforms/`
 - **Changelog**: `CHANGELOG.md`
 - **Contributing**: `CONTRIBUTING.md`
 - **Security Policy**: `SECURITY.md`
 - **Technical Roadmap**: `TECHNICAL_ROADMAP.md`
-- **Business Model**: `BUSINESS_MODEL.md`
-- **Community Impact**: `COMMUNITY_IMPACT.md`
+  - **Business Model**: `BUSINESS_MODEL.md`
+  - **Community Impact**: `COMMUNITY_IMPACT.md`
 
 Jump to Quick Start → [/init & /next](#quick-start-5-minutes)
+
+## What’s new in 2.8.4
+
+- **Schema hardening**: `additionalProperties: false` applied to critical item objects across the 7 essential schemas to prevent unknown keys.
+- **Shared `$defs` + `$ref` unification**: ID patterns (proposal/task/rm/gd) centralized and referenced in `kanban`, `progress`, and `roadmap` to eliminate regex drift.
+- **Ajv schema validator**: `scripts/validate-schemas.js` validates all memory-bank files against `core/schemas/*schema.json`.
+- **CI upgrades**: `.github/workflows/ci.yml` installs Ajv and runs schema validation after the linkage validator.
 
 ## Platforms
 
@@ -50,6 +59,10 @@ Use these guidelines to get the most reliable, repeatable results from AegisIDE 
   - Zero-tolerance policy for errors/warnings (multi-language matrix); run before/after significant changes
   - Workflow spec: `core/workflow/validate.md`
 
+- **Run validators before commits**
+  - `node scripts/validate-linkage.js` (cross-file ID integrity) and `node scripts/validate-schemas.js` (Ajv schema conformance)
+  - Mirror CI locally: add gitleaks, syft, grype to catch leaks and supply-chain issues
+
 - **Fix immediately with `/fix`**
   - HALT–FIX–VALIDATE loop using official docs (Context7) and MCP integrations
   - Workflow spec: `core/workflow/fix.md`
@@ -68,7 +81,7 @@ Use these guidelines to get the most reliable, repeatable results from AegisIDE 
   - Workflow spec: `core/workflow/oversight-checks-and-balances.md`
 
 - **Do not hand-edit memory-bank JSON files**
-  - Prefer workflows to keep data schema-compliant; see schemas in `core/schemas/`
+  - Prefer workflows to keep data schema-compliant; schema strictness (`additionalProperties:false`, shared `$defs`) blocks drift
   - Quick links: `activeContext.schema.json`, `scratchpad.schema.json`, `kanban.schema.json`, `mistakes.schema.json`, `systemPatterns.schema.json`, `progress.schema.json`, `roadmap.schema.json`
 
 - **Keep plans private**

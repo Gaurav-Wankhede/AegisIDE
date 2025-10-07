@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/kanban.json",
   "title": "Kanban Schema",
+  "$defs": {
+    "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+    "kanban_task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
+    "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"},
+    "governance_decision_id": {"type": "string", "pattern": "^gd-[A-Za-z0-9_-]+$"}
+  },
   "description": "Task workflow management with parliamentary approval tracking",
   "type": "object",
   "required": ["schema_version", "last_updated", "columns", "tasks"],
@@ -43,7 +49,8 @@
           "properties": {
             "task_ids": {"type": "array", "items": {"type": "string"}}
           }
-        }
+        },
+        "additionalProperties": false
       }
     },
     "tasks": {
@@ -71,12 +78,16 @@
               "judicial_vote": {"type": "number", "minimum": 0, "maximum": 25}
             }
           },
+          "proposal_id": {"$ref": "#/$defs/proposal_id"},
+          "roadmap_milestone_id": {"$ref": "#/$defs/roadmap_milestone_id"},
+          "governance_decision_id": {"$ref": "#/$defs/governance_decision_id"},
           "dependencies": {"type": "array", "items": {"type": "string"}},
           "blocked_by": {"type": "array", "items": {"type": "string"}},
           "estimated_hours": {"type": "number", "minimum": 0},
           "actual_hours": {"type": "number", "minimum": 0},
           "tags": {"type": "array", "items": {"type": "string"}}
-        }
+        },
+        "additionalProperties": false
       }
     },
     "workflow_metrics": {

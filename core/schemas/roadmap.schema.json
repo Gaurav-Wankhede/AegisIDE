@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/roadmap.json",
   "title": "Roadmap Schema",
+  "$defs": {
+    "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+    "kanban_task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
+    "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"},
+    "governance_decision_id": {"type": "string", "pattern": "^gd-[A-Za-z0-9_-]+$"}
+  },
   "description": "Strategic planning with AegisKG strategic knowledge graphs and anti-hallucination roadmap",
   "type": "object",
   "required": ["schema_version", "last_updated", "strategic_objectives"],
@@ -36,8 +42,12 @@
                 "title": {"type": "string"},
                 "target_date": {"type": "string", "format": "date-time"},
                 "status": {"type": "string", "enum": ["not_started", "in_progress", "completed", "blocked"]},
-                "business_impact": {"type": "string", "enum": ["critical", "high", "medium", "low"]}
-              }
+                "business_impact": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+                "kanban_task_ids": {"type": "array", "items": {"$ref": "#/$defs/kanban_task_id"}},
+                "proposal_id": {"$ref": "#/$defs/proposal_id"},
+                "governance_decision_id": {"$ref": "#/$defs/governance_decision_id"}
+              },
+              "additionalProperties": false
             }
           },
           "dependencies": {"type": "array", "items": {"type": "string"}},

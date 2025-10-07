@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install security tools (syft/grype/gitleaks)
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          curl -sSL https://raw.githubusercontent.com/gitleaks/gitleaks/master/install.sh | bash -s -- -b /usr/local/bin
+
+      - name: Secrets scan (gitleaks)
+        run: |
+          gitleaks detect --no-git --redact || gitleaks detect
+
+      - name: SBOM (syft)
+        run: |
+          syft dir:. -o cyclonedx-json > sbom.json
+
+      - name: Vulnerability Scan (grype High/Critical)
+        run: |
+          grype sbom:sbom.json --fail-on High
+
+      - name: Linkage validator
+        run: |
+          node scripts/validate-linkage.js
+
+      - name: Install Ajv (schema validation dependency)
+        run: |
+          npm i -D ajv@8
+
+      - name: Schema validator (Ajv)
+        run: |
+          node scripts/validate-schemas.js
+
+      - name: Report done
+        run: echo "CI validation completed"

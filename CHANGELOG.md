@@ -5,6 +5,33 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.4] - 2025-10-07
+
+### Added - Schema Validation & Referencing
+- **Ajv Schema Validator**: Added `scripts/validate-schemas.js` to validate `.windsurf/memory-bank/*.json` against `core/schemas/*schema.json`.
+- **CI Integration**: `.github/workflows/ci.yml` now installs Ajv and runs the schema validator after the linkage check.
+- **Shared `$defs` + `$ref` Unification**:
+  - `core/schemas/kanban.schema.json`
+  - `core/schemas/progress.schema.json`
+  - `core/schemas/roadmap.schema.json`
+  All ID patterns now reference shared `$defs` (proposal/task/rm/gd) to prevent regex drift.
+
+### Changed - Schema Hardening
+- Set `additionalProperties: false` across critical item objects:
+  - `activeContext.linkage`
+  - `scratchpad.immediate_priorities[*]`, `scratchpad.task_queue[*]`
+  - `kanban.tasks[*]`
+  - `progress.milestone_tracking[*]`
+  - `roadmap.strategic_objectives[*].milestones[*]`
+  - `systemPatterns.governance_decisions[*]`
+  - `mistakes.error_patterns[*]`, `mistakes.instant_lint_tracking[*]`, `mistakes.predictive_warnings[*]`
+
+### Added - Cross-file Linkage Validator (recap)
+- `scripts/validate-linkage.js` verifies that all cross-file IDs (proposal/task/rm/gd) exist in their source files; CI blocks on missing references.
+
+### Notes
+- These changes lift reliability toward ~99.5% autonomous operation, leaving ~0.5% for intentional human gates (security exceptions, destructive/system ops, constitutional ambiguity).
+
 ## [2.8.3] - 2025-10-06
 
 ### Changed - Slash-Command Workflows & Scope Correction

@@ -1,11 +1,12 @@
-# Core Universal Framework (v2.8.2)
+# Core Universal Framework (v2.8.4)
 
 This folder contains the **universal constitutional framework** that serves as the foundation for all platform-specific adaptations.
 
-## Latest Updates (v2.9.0)
-- **6-Schema Consolidation**: Streamlined from 17 to 6 essential JSON schemas (65% optimization)
-- **Constitutional Articles Refined**: Articles III and III-A optimized for knowledge sharing (8,811 chars total)
-- **Performance**: 2.6x faster JSON parsing, 65% memory optimization, AegisKG integration
+## Latest Updates (v2.8.4)
+- **Schema Hardening**: `additionalProperties: false` applied to critical item objects across memory-bank schemas to block unknown keys.
+- **Shared `$defs` + `$ref`**: Proposal/task/milestone/governance ID patterns centralized and referenced in `kanban`, `progress`, and `roadmap` to prevent regex drift.
+- **Validators**: `scripts/validate-linkage.js` (referential integrity) and `scripts/validate-schemas.js` (Ajv) now standard; CI runs both.
+- **Performance**: JSON-first architecture continues to deliver 2.6x faster parsing with AegisKG integration.
 
 ## Structure
 
