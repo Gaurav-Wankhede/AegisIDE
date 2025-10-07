@@ -18,15 +18,19 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install security tools (syft/grype/gitleaks)
+      - name: Install security tools (syft/grype)
         run: |
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
           curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
-          curl -sSfL https://raw.githubusercontent.com/gitleaks/gitleaks/main/install.sh | bash -s -- -b /usr/local/bin
 
-      - name: Secrets scan (gitleaks)
-        run: |
-          gitleaks detect --no-git --redact || gitleaks detect
+      - name: Secrets scan (gitleaks action)
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          # fetch-depth 0 ensures full history; our use relies on working dir scan
+          # optional args: args: "detect --no-git --redact"
+          args: "detect --no-git --redact"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: SBOM (syft)
         run: |
