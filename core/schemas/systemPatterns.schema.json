@@ -127,6 +127,53 @@
         }}
       }
     },
+    "governance_decisions": {
+      "type": "array",
+      "description": "Persisted parliamentary oversight decisions with consensus scoring and rationale",
+      "items": {
+        "type": "object",
+        "required": [
+          "decision_id",
+          "consensus_score",
+          "approved",
+          "timestamp"
+        ],
+        "properties": {
+          "decision_id": {"type": "string", "pattern": "^gd-[A-Za-z0-9_-]+$"},
+          "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+          "proposal_type": {"type": "string", "enum": ["technical", "strategic", "quality"]},
+          "consensus_score": {"type": "number", "minimum": 0, "maximum": 100},
+          "votes": {
+            "type": "object",
+            "properties": {
+              "executive": {"type": "number", "minimum": 0, "maximum": 100},
+              "legislative": {"type": "number", "minimum": 0, "maximum": 100},
+              "judicial": {"type": "number", "minimum": 0, "maximum": 100}
+            }
+          },
+          "veto": {
+            "type": "object",
+            "properties": {
+              "applied": {"type": "boolean"},
+              "by": {"type": "string", "enum": ["chief_justice", "none"]},
+              "reason": {"type": "string"}
+            }
+          },
+          "rationale": {"type": "string"},
+          "links": {
+            "type": "object",
+            "properties": {
+              "evidence_patterns": {"type": "array", "items": {"type": "string"}},
+              "mistake_ids": {"type": "array", "items": {"type": "string"}},
+              "roadmap_items": {"type": "array", "items": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"}}
+            }
+          },
+          "approved": {"type": "boolean"},
+          "timestamp": {"type": "string", "format": "date-time"}
+        },
+        "additionalProperties": false
+      }
+    },
     "constitutional_compliance": {
       "type": "object",
       "properties": {

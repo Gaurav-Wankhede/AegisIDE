@@ -4,6 +4,8 @@ description: Opposition party challenges errors/warnings, debate happens, then r
 
 # /fix - Democratic Error Resolution Protocol
 
+_This workflow is defined canonically under `core/workflow/fix.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/fix.md`, so path references should be interpreted through that mount when executed inside the IDE._
+
 ## Purpose
 Opposition-led error resolution through democratic debate and tri-branch voting process, ensuring quality through parliamentary oversight.
 
@@ -189,8 +191,7 @@ Requirement: >95% approval needed
    @mcp:filesystem → Implement code changes
    @mcp:git → Track changes with version control
    
-3. Update 7 essential schemas (as applicable):
-   mistakes.json → Document error + resolution pattern with Context7 prioritization
+3. Validate-memory-bank: Verify 7 essential schemas compliant (`activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`) and validate automation files if present
    systemPatterns.json → Store successful fix pattern with AegisKG integration
    activeContext.json → Update execution state
    kanban.json → Reflect task status/progression if changed (todo → in_progress → done → approved)
@@ -353,3 +354,19 @@ After successful fix and Chief Justice approval:
 2. Monitor for error recurrence  
 3. Apply learned patterns proactively
 4. Maintain zero-tolerance vigilance
+
+## Article XII Autonomy Guard (Zero Interruption)
+
+```bash
+# Enforce continuous execution (0-98% autonomy):
+1) NEVER re-ask or wait for confirmation after fixes
+2) Immediately update 3 real-time files:
+   - scratchpad.json, kanban.json, activeContext.json
+3) Auto-trigger next task (continue /next) without pause
+
+# Prohibited phrases (at 0-98% autonomy):
+- "Should I continue?" / "What next?" / "Do you want me to..."
+
+# Schema validation:
+- Validate against .windsurf/memory-bank/schemas/*.schema.json
+```

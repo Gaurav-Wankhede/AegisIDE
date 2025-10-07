@@ -2,7 +2,9 @@
 description: Provides comprehensive summary of memory bank status, tasks, progress, and metrics
 ---
 
-# /status - 7-Schema Status Report
+# /status - Comprehensive System Status Report
+
+_This workflow is defined canonically under `core/workflow/status.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/status.md`, so path references should be interpreted through that mount when executed inside the IDE._
 
 ## Purpose
 Provide comprehensive overview of project status by analyzing all 7 essential schemas, tasks, progress, and constitutional compliance with AegisKG integration.
@@ -88,7 +90,7 @@ From roadmap.json:
 Constitutional adherence:
 - Framework compliance: ≥80% required
 - Democratic consensus: >95% achieved
-- Memory bank integrity: Valid/Invalid (6 essential schemas)
+  - Memory bank integrity: Valid/Invalid (7 essential schemas)
 - MCP integration: Operational/Degraded
 
 Code quality:
@@ -135,11 +137,11 @@ ELSE:
 ```bash
 # Analyze resource usage:
 
-Memory bank:
-- Total size: X KB / 70 KB target (7 files × ≤10KB)
+## Memory bank:
+- Total size: X KB / 70 KB target (7 essential schemas × ≤10KB)
 - Largest file: Y KB
 - Files needing compression: Z
-- Schema compliance: X%
+- Schema compliance (7 essential schemas): X%
 
 Git repository:
 - Total commits: X
@@ -203,9 +205,9 @@ Overall MCP health: X/9 operational
   • Zero Errors/Warnings: [YES/NO]
 
 💾 MEMORY BANK:
-  • Total Size: X KB / 170 KB
-  • Files: 18/18
-  • Schema Valid: Y/18
+  • Total Size: X KB / 70 KB target (7 essential schemas)
+  • Essential Schemas Valid: Y/7
+  • Automation Files Present: N (validated as needed)
   • Attention Budget: Z%
   • Context Rot: [NONE/DETECTED]
 

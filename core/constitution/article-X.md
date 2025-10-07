@@ -147,6 +147,50 @@ Error Level 4 (Security/Authentication Failures):
 - **Performance Testing**: Load testing with realistic traffic patterns
 - **Security Testing**: Integration security validation with penetration testing
 
+### Quick Integration Stubs (Copy-Paste)
+
+```ts
+// TypeScript (supertest) - contract stub
+import request from 'supertest';
+describe('contract: GET /health', () => {
+  it('returns 200 and shape', async () => {
+    const res = await request(process.env.API_URL!).get('/health');
+    expect(res.status).toBe(200);
+    expect(res.body).toMatchObject({ status: 'ok' });
+  });
+});
+```
+
+```python
+# Python (pytest/requests) - contract stub
+import os, requests
+def test_contract_health():
+    r = requests.get(os.environ['API_URL'] + '/health')
+    assert r.status_code == 200
+    assert r.json().get('status') == 'ok'
+```
+
+```go
+// Go (net/http) - contract stub
+package contract
+import ("net/http"; "os"; "testing")
+func TestHealth(t *testing.T){
+  resp, err := http.Get(os.Getenv("API_URL")+"/health")
+  if err != nil { t.Fatal(err) }
+  if resp.StatusCode != 200 { t.Fatalf("want 200 got %d", resp.StatusCode) }
+}
+```
+
+```rust
+// Rust (reqwest + tokio) - contract stub
+#[tokio::test]
+async fn contract_health() {
+    let url = format!("{}/health", std::env::var("API_URL").unwrap());
+    let resp = reqwest::get(url).await.unwrap();
+    assert_eq!(resp.status(), 200);
+}
+```
+
 **Integration Monitoring and Observability**:
 - **Health Checks**: Continuous monitoring of all integrated systems
 - **Performance Metrics**: Response time, throughput, and error rate tracking
@@ -157,7 +201,7 @@ Error Level 4 (Security/Authentication Failures):
 
 **Integration Standards Enforcement**:
 - **EMD Compliance**: All integration code follows ≤10,000 character file limits
-- **Documentation Standards**: All integrations documented in techContext.json review and validation
+- **Documentation Standards**: Integration decisions recorded in `systemPatterns.json` for cross-project reuse
 - **Performance Standards**: Integration performance benchmarks with optimization requirements
 - **Documentation Requirements**: Comprehensive integration documentation with examples
 - **Version Control**: All integration changes tracked with approval workflows

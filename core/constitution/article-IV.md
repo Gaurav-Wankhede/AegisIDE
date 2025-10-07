@@ -16,7 +16,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Attention Budget Discipline**: Every token competes for finite attention capacity - maintain n² awareness and optimal signal-to-noise ratios
 - **Context-Driven Execution**: Execute decisions efficiently through event-driven memory-bank context assembly with tool-context feedback loops
 - **Performance Focus**: Prioritize measurable outcomes through progress.json tracking, milestone validation, attention efficiency metrics
-- **Immediate Action**: Address problems through instant @mcp:context7 activation with auto-enrichment of mistakes.json and techContext.json
+- **Immediate Action**: Address problems through instant @mcp:context7 activation with auto-enrichment of mistakes.json and systemPatterns.json
 - **Quality Consistency**: Maintain standards through systemPatterns.json enforcement and tri-branch validation, MCP-enriched best practices
 - **EMD Discipline**: Keep all files ≤10,000 characters following Elegant Modular Design with deep nested structures
 - **Test Coverage**: Achieve >80% coverage with tri-branch validation and context documentation as event streams
@@ -27,7 +27,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **MANDATORY MCP Resolution**: ANY error/warning → **INSTANT @mcp:context7 AUTO-CALL** → official docs → auto-fix → **ALL MCP enrichment** → compliance
 
-**Auto-Resolution Process with 6-Schema MCP Integration**:
+**Auto-Resolution Process with 7-Schema MCP Integration**:
 1. **@mcp:context7** Error Detection: Identify error with Context7 source prioritization for verified documentation
 2. **@mcp:context7** Documentation: resolve-library-id → get-library-docs → official documentation with accuracy scoring
 3. **@mcp:sequential-thinking** Auto-Fix: Complex problem decomposition maintaining EMD compliance
@@ -42,7 +42,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Multi-Language Quality Standards with Zero Tolerance
 
-**Python (basedpyright)**: `basedpyright .` (stricter than mypy, official 2025 standard). Zero tolerance: No type errors, unused variables, import failures, `Any` type usage. Standards: Full type hints on all functions, explicit class attribute annotations, proper module structure. Auto-fix: Add type hints using @mcp:context7 Python typing documentation → enrich techContext.json.
+**Python (basedpyright)**: `basedpyright .` (stricter than mypy, official 2025 standard). Zero tolerance: No type errors, unused variables, import failures, `Any` type usage. Standards: Full type hints on all functions, explicit class attribute annotations, proper module structure. Auto-fix: Add type hints using @mcp:context7 Python typing documentation → record patterns in systemPatterns.json.
 
 **Rust (cargo)**: `cargo check --all-targets` (validates all code including tests and benches). Zero tolerance: No compiler errors, clippy warnings with `-D warnings` flag, unsafe code without justification. Standards: Proper ownership, lifetimes, borrowing patterns, zero warnings. Auto-fix: Apply clippy suggestions, run cargo fmt, fix borrowing using @mcp:context7 Rust documentation.
 
@@ -60,13 +60,13 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Ruby**: `ruby -c` (syntax check) + `bundle exec rubocop`. Zero tolerance: No syntax errors, RuboCop clean, Sorbet type-checked. Standards: Ruby style guide, proper formatting, type safety. Auto-fix: Fix syntax, apply RuboCop fixes, add Sorbet types using @mcp:context7 Ruby documentation.
 
-### Development Standards with 6-Schema Efficiency
+### Development Standards with 7-Schema Efficiency
 
 - **EMD Compliance**: All files ≤10,000 characters per file, deep nested structure (max 80 lines per file in production)
 - **Deep Nesting**: Use deep folder structures with domain-driven organization logic for optimal context assembly
 - **Centralized Configuration**: Reference existing configurations through core/config/ rather than recreating - SCAN before CREATE
 - **Component Reuse**: Always check existing components using AegisKG pattern networks from systemPatterns.json
-- **Documentation Requirements**: Document complex logic in 6 essential schemas as structured JSON events with optimal signal-to-noise
+- **Documentation Requirements**: Document complex logic in 7 essential schemas (including kanban) as structured JSON events with optimal signal-to-noise
 - **Validation Before Commit**: MANDATORY language-specific validation before marking task complete - zero tolerance enforcement
 - **Schema Health**: Maintain ≤10KB per essential schema, auto-compress when exceeding, preserve AegisKG critical patterns
 
@@ -112,7 +112,7 @@ Logging: `logger.*`, `log_config.*`, `tracing.*`
 5. MCP Correction: Apply @mcp:context7 automatic corrections with official documentation and context enrichment
 6. Re-Validation: Run validation again until 100% clean - HALT-FIX-VALIDATE loop
 7. Team Notification: Alert Executive, Legislative, Judicial branches through activeContext.json event updates
-8. Context Enrichment: Auto-update mistakes.json, techContext.json, systemPatterns.json with violation patterns and resolutions
+8. Context Enrichment: Auto-update mistakes.json and systemPatterns.json with violation patterns and resolutions
 
 **Escalation Procedures**:
 1. Repeated Violations: Escalate to Chief Justice oversight for compliance pattern analysis from mistakes.json event stream
@@ -122,4 +122,4 @@ Logging: `logger.*`, `log_config.*`, `tracing.*`
 5. Validation Failure: If auto-fix fails 3 times, escalate to human (Level 100) with complete context history
 6. Context Rot Indicator: If violations correlate with attention budget overruns, trigger context optimization protocol
 
-**Learning Loop**: Store successful resolutions in systemPatterns.json as reusable event patterns. Enrich techContext.json with MCP-provided documentation links. Update mistakes.json with structured error-solution pairs. Sync patterns to @mcp:memory (local, unlimited) and @mcp:byterover-mcp (cloud backup) for cross-project intelligence.
+**Learning Loop**: Store successful resolutions in `systemPatterns.json` as reusable event patterns. Capture documentation links directly in `systemPatterns.json`. Update `mistakes.json` with structured error-solution pairs. Sync patterns to @mcp:memory (local, unlimited) and @mcp:byterover-mcp (cloud backup) for cross-project intelligence.

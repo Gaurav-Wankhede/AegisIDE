@@ -28,8 +28,12 @@
           "deadline": {"type": "string", "format": "date-time"},
           "dependencies_met": {"type": "boolean"},
           "blocking_tasks": {"type": "array", "items": {"type": "string"}},
-          "estimated_minutes": {"type": "number", "minimum": 0}
-        }
+          "estimated_minutes": {"type": "number", "minimum": 0},
+          "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+          "kanban_task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
+          "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"}
+        },
+        "additionalProperties": false
       }
     },
     "task_queue": {
@@ -44,7 +48,8 @@
           "status": {"type": "string", "enum": ["todo", "in_progress", "blocked", "completed"]},
           "parliamentary_approval": {"type": "number", "minimum": 0, "maximum": 100},
           "ready_for_execution": {"type": "boolean"}
-        }
+        },
+        "additionalProperties": false
       }
     },
     "mcp_validation_state": {

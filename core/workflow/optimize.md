@@ -4,6 +4,8 @@ description: Find best algorithms and optimize code using @mcp:context7, @mcp:fe
 
 # /optimize - Algorithm & Code Optimization
 
+_This workflow is defined canonically under `core/workflow/optimize.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/optimize.md`, so path references should be interpreted through that mount when executed inside the IDE._
+
 ## Purpose
 Find optimal algorithms and best practices using comprehensive MCP research, then optimize code for performance, maintainability, and efficiency.
 
@@ -60,12 +62,12 @@ Find optimal algorithms and best practices using comprehensive MCP research, the
    - Check local optimization successes via knowledge graph
    - Retrieve proven performance patterns
    - Analyze cross-project intelligence from @mcp:byterover-mcp
-   - Extract 6-schema optimization strategies
+   - Extract 7-schema optimization strategies
    - Apply learned optimization techniques
 
 5. @mcp:byterover-mcp → Cross-project intelligence:
    - Find similar optimization challenges across projects
-   - Import successful 6-schema performance solutions
+   - Import successful 7-schema performance solutions
    - Share AegisKG optimization patterns globally
    - Validate Context7 source prioritization improvements
 ```
@@ -185,22 +187,20 @@ Java: JMH benchmarks
 ```bash
 # Document optimization patterns:
 
-systemPatterns.json → Store:
+`systemPatterns.json` → Store:
 - Successful optimization approaches
 - Algorithm selection criteria
 - Performance improvement metrics
 - Best practices applied
 
-techContext.json → Update:
-- Performance characteristics
-- Optimization decisions
-- Benchmarking results
-- MCP research findings
-
-progress.json → Record:
+`progress.json` → Record:
 - Performance improvements achieved
 - Optimization milestones
 - Efficiency gains
+
+`roadmap.json` → Align:
+- Strategic implications of optimizations
+- Follow-up priorities and dependencies
 
 @mcp:memory → Store locally
 @mcp:byterover-mcp → Sync to cloud

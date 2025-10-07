@@ -2,7 +2,9 @@
 description: Continuously execute tasks from scratchpad.json and kanban.json with real-time updates and parallel execution
 ---
 
-# /next - Continuous Autonomous Task Execution
+# /next - Continuous Task Execution
+
+_This workflow is defined canonically under `core/workflow/next.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/next.md`, so path references should be interpreted through that mount when executed inside the IDE._
 
 ## Purpose
 Read scratchpad.json and kanban.json in parallel, execute implementation tasks, and update status in real-time while maintaining constitutional compliance.
@@ -14,6 +16,27 @@ Read scratchpad.json and kanban.json in parallel, execute implementation tasks, 
 
 ## Workflow Sequence
 
+### Phase 0: Governance Approval Gate (BLOCKING)
+```bash
+# Ensure parliamentary approval before executing tasks tied to a proposal
+@mcp:filesystem → Read .windsurf/memory-bank/systemPatterns.json
+@mcp:filesystem → Read .windsurf/memory-bank/activeContext.json
+
+# Determine proposal_id (prefer explicit task metadata, fallback to activeContext.proposal_id)
+proposal_id := task.proposal_id || activeContext.proposal_id || null
+
+IF proposal_id != null:
+  latest := most recent governance_decisions where (proposal_id matches) ORDER BY timestamp DESC
+  IF latest is missing OR latest.approved != true:
+    → HALT
+    → Return to /oversight-checks-and-balances
+    → Message: "Proposal not approved (proposal_id=...)"
+ELSE:
+  # No proposal linkage → proceed (routine operations)
+
+# On approval: /next proceeds to Preflight Awareness and execution
+```
+
 ### Preflight Awareness (MANDATORY)
 ```bash
 # Constitutional awareness:
@@ -21,7 +44,7 @@ Read scratchpad.json and kanban.json in parallel, execute implementation tasks, 
 
 # JSON schema awareness (bootstrap if missing):
 @mcp:filesystem → Ensure .windsurf/memory-bank/ exists
-for FILE in [activeContext.json, scratchpad.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json] do
+for FILE in [activeContext.json, scratchpad.json, progress.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json] do
   IF missing → create minimal JSON {}
   → validate against .windsurf/memory-bank/schemas/* corresponding schema
 done
@@ -131,6 +154,23 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
 
 # Verify schema compliance for all 7 files (≤10KB each)
 # Create AegisKG snapshot via @mcp:git
+```
+
+#### MCP Update Discipline (No Hallucinations)
+```bash
+- ALL writes MUST use @mcp:filesystem with schema validation
+- DO NOT introduce unknown keys not present in schemas
+- Preserve types and required fields exactly as defined
+- Reject writes that fail validation and retry with corrected payload
+ - Apply SINGLE-WRITER LOCK during 7-schema update sequence
+   lock.acquire("memory-bank-7-core") → write+validate → lock.release()
+```
+
+#### Attention & Size Thresholds (Early Triggers)
+```bash
+- If any memory-bank file size ≥ 9.8KB → trigger compression before next write
+- If 7-core update time > 1500ms average over last 5 tasks → increase compression aggressiveness and reduce event payloads
+- If schema validation latency > 400ms → parallelize reads further; keep writes sequential
 ```
 
 ### Phase 6: Post-Implementation Validation

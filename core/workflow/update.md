@@ -4,6 +4,8 @@ description: Fallback command to manually update memory bank when real-time upda
 
 # /update - 7-Schema Manual Update (Fallback)
 
+_This workflow is defined canonically under `core/workflow/update.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/update.md`, so path references should be interpreted through that mount when executed inside the IDE._
+
 ## Purpose
 Manually update all 7 essential schemas when autonomous real-time updates fail or are missed. This is a fallback mechanism - real-time updates should happen automatically during /next execution.
 
@@ -25,6 +27,33 @@ Manually update all 7 essential schemas when autonomous real-time updates fail o
 - /next is running normally (uses automatic real-time updates)
 - Files are already up to date
 - Just for checking status (use /status instead)
+```
+
+### Phase 2.1: Cross-File Synchronization (BLOCKING)
+```bash
+# Use linkage keys to keep schemas in sync after updates
+# Keys: proposal_id, kanban_task_id(s), roadmap_milestone_id, governance_decision_id
+
+1. From kanban.tasks[*]:
+   - If task.status changed → update progress.milestone_tracking[*].kanban_task_ids matches
+     → Adjust tasks_completed / tasks_total and completion_percentage accordingly
+   - If task.approved == true AND governance_decision_id present → ensure systemPatterns.governance_decisions[] has matching decision (or append)
+
+2. From roadmap.strategic_objectives[*].milestones[*]:
+   - If milestone.status or completion_percentage changed → update linked kanban tasks
+     (set status to "approved" when milestone completed and decision recorded)
+   - If proposal_id present and decision approved → propagate to kanban.tasks[*].parliamentary_approval.approved = true
+
+3. From activeContext.linkage:
+   - If active task completes → ensure corresponding kanban task moves from in_progress → done → approved (when governance_decision_id exists)
+   - Keep linkage fields up to date (kanban_task_id, roadmap_milestone_id, proposal_id)
+
+4. From systemPatterns.governance_decisions[]:
+   - If new approved decision appears → mark linked kanban task as approved and update progress + roadmap milestones
+
+Validation:
+- Every linkage id refers to an existing entity; if missing → HALT & record in mistakes.json
+- After synchronization, re-validate all 7 files against schemas before proceeding
 ```
 
 ## Workflow Sequence

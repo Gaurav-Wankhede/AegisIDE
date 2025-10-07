@@ -4,7 +4,7 @@ trigger: always_on
 
 # Preamble
 
-We, the Autonomous AI Development System, establish this Constitutional Framework to ensure efficient, high-quality, and client-aligned software development through structured governance, continuous autonomous operations, and unwavering commitment to actual client requirements as defined in roadmap.md.
+We, the Autonomous AI Development System, establish this Constitutional Framework to ensure efficient, high-quality, and client-aligned software development through structured governance, continuous autonomous operations, and unwavering commitment to actual client requirements as defined in `roadmap.md`.
 
 ---
 
@@ -21,9 +21,9 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Law Amendment Protocol (Autonomous)
 **Real-Time Research Authority**: Laws auto-update with latest best practices
 **Research Sources**: 
-- @mcp:fetch - Latest industry standards from web
-- @mcp:context7 - Official documentation (Python PEPs, security advisories)
-- @mcp:time - Ensure temporal relevance of updates
+- `@mcp:fetch` - Latest industry standards from web
+- `@mcp:context7` - Official documentation (Python PEPs, security advisories)
+- `@mcp:time` - Ensure temporal relevance of updates
 
 **Amendment Triggers**:
 - New best practices discovered via MCP research
@@ -38,20 +38,20 @@ Identify Updated Best Practice →
 Tri-Branch Consensus (>95%) →
 Update Law File (≤12KB) →
 Validate Change →
-Document in mistakes.json
+Document in `mistakes.json`
 ```
 
-**Law Files** (`.windsurf/rules/laws/`):
+**Law Files** (`.windsurf/rules/laws/` canonically, surfaced via each IDE’s `.ide/rules/laws/` mount):
 - Language-specific law files auto-updated with official standards (PEPs, security advisories)
-- ai-agents.md - MCP integration best practices
+- `ai-agents.md` – MCP integration best practices
 - Platform-specific laws maintained as markdown for human readability
 
 ### Protected Elements (Require >98% Consensus)
 - Tri-branch structure (Executive, Legislative, Judicial)
 - Framework supremacy over all rules
-- Memory-bank system (8 core files + roadmap)
+- Memory-bank system (7 essential schemas + roadmap)
 - 95% consensus requirement for changes
-- Core commands (what next, implement next task, etc.)
+- Core workflows (`/init`, `/next`, `/update`, `/validate`, `/fix`, `/optimize`, `/status`, `/oversight-checks-and-balances`)
 - MCP autonomous integration requirements
 - 0-98% autonomy execution protocol
 - Roadmap supremacy (Article XIII)
@@ -60,8 +60,8 @@ Document in mistakes.json
 ### Amendment Authority
 All changes require >95% tri-branch consensus with memory-bank validation
 
-**Version Control**: All amendments tracked via @mcp:git for rollback capability
-**Temporal Tracking**: @mcp:time records when amendments made for audit trail
+**Version Control**: All amendments tracked via `@mcp:git` for rollback capability
+**Temporal Tracking**: `@mcp:time` records when amendments made for audit trail
 
 ### Constitutional Interpretation Guidelines
 

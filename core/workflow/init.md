@@ -4,6 +4,8 @@ description: Initialize new session with constitutional awareness, memory bank c
 
 # /init - Constitutional Session Initialization
 
+_This workflow is defined canonically under `core/workflow/init.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/init.md`, so path references should be interpreted through that mount when executed inside the IDE._
+
 ## Purpose
 Establish complete constitutional awareness for new sessions by loading all governance structures, memory bank context, and autonomous protocols.
 
@@ -174,3 +176,19 @@ IF MCP connectivity issues:
 
 ## Next Steps
 After successful initialization, automatically execute `/next` command to begin autonomous task execution from scratchpad.json.
+
+## Article XII Autonomy Guard (Zero Interruption)
+
+```bash
+# Enforce continuous execution (0-98% autonomy):
+1) Do NOT re-ask or wait for confirmation after /init
+2) Immediately update 3 real-time files on first task:
+   - scratchpad.json, kanban.json, activeContext.json
+3) Auto-trigger and continue /next without pause
+
+# Schema validation path:
+- .windsurf/memory-bank/schemas/*.schema.json
+
+# Forbidden phrases (0-98% autonomy):
+- "What would you like me to work on next?"
+- "Should I continue?" / "Do you want me to..."

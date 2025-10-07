@@ -1,0 +1,5 @@
+# Temporary security exceptions (tracked)
+# - Each entry MUST include: rule_id/package, justification, owner, expiry (ISO 8601)
+# - Expired entries FAIL CI until removed or extended
+
+exceptions: []

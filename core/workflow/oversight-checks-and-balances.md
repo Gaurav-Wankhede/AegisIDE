@@ -2,7 +2,9 @@
 description: Oversight checks-and-balances workflow for Windsurf (constitutional compliance & execution validation with ByteRover integration)
 ---
 
-# /oversight-checks-and-balances - Parliamentary Oversight Protocol
+# /oversight-checks-and-balances - Constitutional Compliance Workflow
+
+_This workflow is defined canonically under `core/workflow/oversight-checks-and-balances.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/oversight-checks-and-balances.md`, so path references should be interpreted through that mount when executed inside the IDE._ Oversight Protocol
 
 ## Purpose
 Comprehensive tri-branch oversight system ensuring constitutional compliance, democratic governance, and execution validation through parliamentary checks and balances.
@@ -51,7 +53,7 @@ Required threshold: >95% consensus
 
 ### Phase 2: Democratic Debate Process
 ```bash
-# Opposition Review Phase (6-Schema Evidence):
+# Opposition Review Phase (7-Schema Evidence):
 Quality Shadow challenges:
   → "Based on mistakes.json patterns with Context7 source prioritization, I challenge this approach"
   → @mcp:memory → Retrieve AegisKG error patterns
@@ -63,7 +65,7 @@ Innovation Shadow challenges:
   → @mcp:context7 → resolve-library-id → get-library-docs
   → @mcp:byterover-mcp → Cross-project intelligence patterns
   → Present industry best practices with AegisKG validation
-  → Challenge technical decisions using 6-schema analysis
+  → Challenge technical decisions using 7-schema analysis
 
 Analytics Shadow challenges:
   → "Progress.json metrics with constitutional compliance tracking indicate concerns:"
@@ -158,7 +160,9 @@ IF consensus ≥95%:
   → Execute immediately
   → Monitor implementation
   → Update memory bank
-  
+  → Persist governance decision artifact to systemPatterns.json
+  → Create git snapshot: oversight-approved-[decision_id]
+
 IF consensus 90-94%:
   → Extended debate round
   → Additional MCP research

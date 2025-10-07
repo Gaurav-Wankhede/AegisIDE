@@ -6,9 +6,9 @@ trigger: always_on
 
 **Authority**: Establishes workflow foundation. See Article III-A for detailed implementation protocols.
 
-## 6-Schema Context System (65% Optimized)
+## 7-Schema Context System (59% Optimized)
 
-**Core Schemas**: activeContext, scratchpad, mistakes, systemPatterns, progress, roadmap
+**Core Schemas**: activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap
 
 **Features**: AegisKG local knowledge graph, SQLite session context, Context7 source prioritization, MCP validation state
 
@@ -33,14 +33,14 @@ trigger: always_on
 
 ## Core Commands
 
-**`init`**: Auto-detect → restore OR generate 6 schemas → enable workflow
-**`next`**: Read scratchpad → VALIDATE → Execute → Update schemas → AUTO-CONTINUE
-**`update`**: Refresh 6 schemas with MCP integration
-**`validate`**: Run compliance checks → Report status
-**`fix`**: HALT-FIX-VALIDATE loop via @mcp:context7
-**`status`**: Report tasks, progress, consensus metrics
-**`optimize`**: Analyze patterns → propose improvements (>95% consensus)
-**`health`**: Monitor attention, context rot, schema integrity
+**`/init`**: Auto-detect → restore OR generate 7 schemas → enable workflow
+**`/next`**: Read scratchpad → VALIDATE → Execute → Update schemas → AUTO-CONTINUE
+**`/update`**: Refresh 7 schemas with MCP integration
+**`/validate`**: Run compliance checks → Report status
+**`/fix`**: HALT-FIX-VALIDATE loop via @mcp:context7
+**`/status`**: Report tasks, progress, consensus metrics
+**`/optimize`**: Analyze patterns → propose improvements (>95% consensus)
+**`/health`**: Monitor attention, context rot, schema integrity
 
 ## "next" Workflow
 
@@ -49,7 +49,7 @@ trigger: always_on
 2. Read scratchpad.json (primary) or kanban.json
 3. Dynamic context loading with AegisKG
 4. VALIDATE → EXECUTE
-5. Update 6 essential schemas via MCP
+5. Update 7 essential schemas via MCP
 6. Create AegisKG snapshot
 7. AUTO-LOAD next task
 8. Continue until completion
@@ -61,22 +61,22 @@ trigger: always_on
 
 ```
 1. Scan .windsurf/memory-bank/ + load schemas
-2. IF 6 schemas exist: Validate → Load with AegisKG → Resume → Auto-trigger 'next'
+2. IF 7 schemas exist: Validate → Load with AegisKG → Resume → Auto-trigger 'next'
 3. IF missing schemas: HALT → Regenerate → Validate → Continue
 4. IF no memory-bank: Auto-detect project type
    - New: Generate from description → Parliamentary approval
    - Existing: MD migration if needed → Codebase analysis → Schema generation
-5. VERIFICATION: Confirm 6 essential schemas → Enable autonomous workflow
+5. VERIFICATION: Confirm 7 essential schemas → Enable autonomous workflow
 ```
 
-**Rules**: Single command for both new/existing projects. Schema validation mandatory. Complete 6-schema structure required before enabling autonomous mode.
+**Rules**: Single command for both new/existing projects. Schema validation mandatory. Complete 7-schema structure required before enabling autonomous mode.
 
 
 ## Workflow Loop
 
 ```
 Context Assembly → MCP Enrichment → Validation → Tri-Branch Review → 
->95% Consensus → EXECUTE → Post-Validation → 6-Schema Update → 
+>95% Consensus → EXECUTE → Post-Validation → 7-Schema Update → 
 Context Rot Detection → Load Next → REPEAT CONTINUOUSLY
 ```
 
@@ -105,4 +105,4 @@ Context Rot Detection → Load Next → REPEAT CONTINUOUSLY
 
 **Implementation Details**: See Article III-A for complete protocols including context assembly, MCP-based updates, validation checkpoints, and schema health monitoring.
 
-**Compliance**: Unified constitutional authority with >95% consensus requirements and mandatory 6-schema validation.
+**Compliance**: Unified constitutional authority with >95% consensus requirements and mandatory 7-schema validation.

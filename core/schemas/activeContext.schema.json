@@ -2,6 +2,12 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://aegiside.org/schemas/activeContext.json",
   "title": "Active Context Schema",
+  "$defs": {
+    "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+    "kanban_task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
+    "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"},
+    "governance_decision_id": {"type": "string", "pattern": "^gd-[A-Za-z0-9_-]+$"}
+  },
   "description": "Real-time execution state with event tracking",
   "type": "object",
   "required": ["schema_version", "last_updated", "current_implementation", "ai_state", "session_management", "mcp_integration"],
@@ -88,6 +94,17 @@
         "connected_at": {"type": "string", "format": "date-time"},
         "last_sync": {"type": "string", "format": "date-time"}
       }
+    },
+    "linkage": {
+      "type": "object",
+      "description": "Cross-file identifiers linking active context to other memory-bank entities",
+      "properties": {
+        "proposal_id": {"type": "string", "pattern": "^proposal-[A-Za-z0-9_-]+$"},
+        "kanban_task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
+        "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"},
+        "governance_decision_id": {"type": "string", "pattern": "^gd-[A-Za-z0-9_-]+$"}
+      },
+      "additionalProperties": false
     },
     "mcp_integration": {
       "type": "object",

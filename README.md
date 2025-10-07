@@ -154,14 +154,14 @@ See platform-specific setup guides in `platforms/*/README.md`
 
 | Command | Purpose |
 |---------|---------|  
-| `/init` | Initialize project (new OR existing) - generates all 13 files |
-| `/next` | Execute next task - auto-continues forever, updates everything |
-| `/update` | Refresh all files (8 .md + 4 .json + roadmap) |
-| `/validate` | Blueprint 6-pillar scoring + language-specific tests |
-| `/fix` | Auto-fix all errors and warnings until 100% clean |
-| `/status` | Complete progress report (tasks, bugs, metrics, consensus) |
-| `/optimize` | Analyze patterns and propose improvements |
-| `/oversight-checks-and-balances` | Parliamentary oversight with democratic consensus |
+| `/init` | Initialize or repair the memory bank (7 essential schemas + kanban) before any work begins |
+| `/next` | Governance-gated task execution with tier-1 updates (scratchpad/kanban/activeContext) |
+| `/update` | Apply tier-2/3 refresh (roadmap, milestone JSONs/md) and resync dashboards |
+| `/validate` | Run language checks, linkage validator, and Ajv schema validation (zero-tolerance) |
+| `/fix` | HALT–FIX–VALIDATE loop (Context7 docs, linkage repair, schema recheck) until clean |
+| `/status` | 7-schema health, consensus metrics, and attention budget diagnostics |
+| `/optimize` | AegisKG-backed improvement proposals with consensus scoring |
+| `/oversight-checks-and-balances` | Democratic debate + vote (>95% consensus) with judicial guardrails |
 
 **Full Command Reference**: [Windsurf CheatSheet](platforms/windsurf/CheatSheet.md) (8 unified commands)
 

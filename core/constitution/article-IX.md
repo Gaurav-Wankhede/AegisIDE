@@ -153,9 +153,11 @@ Judicial Branch (Oversight Authority):
 - **Performance Standards**: Security effectiveness metrics with improvement mandates
 
 **Integration with Memory-Bank System**:
-- **Security Context Storage**: Security patterns and incidents in mistakes.json
-- **Access Control Documentation**: Permission matrices in systemPatterns.json
-- **Security Metrics Tracking**: Performance indicators in progress.json
-- **Risk Assessment History**: Threat evaluations in techContext.json
-- **Compliance Status**: Framework adherence scores in activeContext.json
+- **7 Essential Schemas**: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`
+- **Security Context Storage**: Security patterns and incidents in `mistakes.json`
+- **Access Control Documentation**: Permission matrices in `systemPatterns.json`
+- **Security Metrics Tracking**: Performance indicators in `progress.json`
+- **Operational Context**: Task workflow and approvals in `kanban.json`; priorities in `scratchpad.json`; strategic alignment in `roadmap.json`
+- **Risk Assessment History**: Threat evaluations captured in `systemPatterns.json`
+- **Compliance Status**: Framework adherence scores in `activeContext.json`
 

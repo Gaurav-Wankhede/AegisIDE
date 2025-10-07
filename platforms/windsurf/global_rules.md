@@ -32,53 +32,45 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 
 **3-Tier Update Approach** - Minimize context updates while maintaining awareness:
 
-**Tier 1: Real-Time (EVERY task)** - 6 essential schemas for immediate awareness:
-- activeContext.json → Real-time execution state with session management
-- scratchpad.json → Immediate priorities with MCP validation state
-- mistakes.json → Error patterns with Context7 source prioritization
-- systemPatterns.json → Architecture patterns with AegisKG networks
-- progress.json → Development milestones with constitutional metrics
-- roadmap.json → Strategic planning with SQLite session alignment
+**Tier 1: Core Execution Set (EVERY task)**
+- `activeContext.json` → Real-time execution state with session management
+- `scratchpad.json` → Immediate priorities with MCP validation state
+- `kanban.json` → Workflow orchestration, parliamentary approvals, WIP limits
+
+**Tier 2: Insight Loop (Iteration boundary or substantial change)**
+- `mistakes.json` → Error patterns with Context7 source prioritization
+- `systemPatterns.json` → Architecture patterns with AegisKG networks
+- `progress.json` → Development milestones with constitutional metrics
+
+**Tier 3: Strategic Alignment (Scheduled / milestone)**
+- `roadmap.json` → Strategic planning with SQLite session alignment
+- `roadmap/roadmap.md` → Human-readable strategy and client directives
 
 **Schema Validation**:
-- All 6 files validated against `.windsurf/memory-bank/schemas/*.schema.json`
-- 2.6x faster JSON parsing with structured data integrity
-- 65% memory optimization with AegisKG knowledge graph integration
+- Core schema definitions located at `.windsurf/memory-bank/schemas/`
+- Active schemas: `activeContext.schema.json`, `scratchpad.schema.json`, `mistakes.schema.json`, `systemPatterns.schema.json`, `progress.schema.json`, `roadmap.schema.json`, `kanban.schema.json`
+- Validation delivers 2.6x faster JSON parsing with structured data integrity and 65% memory optimization with AegisKG integration
 
-**Attention Efficiency**: 6 essential schemas (65% optimization) vs 17 files (legacy) = 65% fewer updates per task
+**Attention Efficiency**: Core schema set + workflow schema replaces legacy 17-file model, reducing per-task update surface while preserving governance fidelity
 
 ## PROJECT STRUCTURE (RELATIVE PATHS)
 
-### Memory-Bank Files (17 JSON + 1 MD):
+### Memory-Bank Files (Core Schema Set):
 
-**Real-Time Updates (EVERY task)** - Short-term awareness:
+**Core Execution Files (update EVERY task)**
 ```
-.windsurf/memory-bank/scratchpad.json     # Immediate task queue
-.windsurf/memory-bank/kanban.json         # Task workflow status
-.windsurf/memory-bank/activeContext.json  # Current execution state
-```
-
-**Periodic Updates** - Long-term tracking:
-```
-.windsurf/memory-bank/roadmap.json        # Strategic milestones
-.windsurf/memory-bank/roadmap/roadmap.md  # Human-readable strategy
+.windsurf/memory-bank/activeContext.json   # Current execution state and MCP activation trail
+.windsurf/memory-bank/scratchpad.json      # Immediate task queue + parliamentary metadata
+.windsurf/memory-bank/kanban.json          # Column workflow, approvals, WIP disciplines
 ```
 
-**Milestone/Bulk Updates** - When major tasks complete:
+**Insight & Strategy Files (update per iteration / milestone)**
 ```
-.windsurf/memory-bank/mistakes.json
-.windsurf/memory-bank/progress.json
-.windsurf/memory-bank/systemPatterns.json
-.windsurf/memory-bank/techContext.json
-.windsurf/memory-bank/productContext.json
-.windsurf/memory-bank/projectbrief.json
-.windsurf/memory-bank/blueprint.json
-.windsurf/memory-bank/userflow.json
-.windsurf/memory-bank/bugfix.json
-.windsurf/memory-bank/deployment.json
-.windsurf/memory-bank/monitoring.json
-.windsurf/memory-bank/dependencies.json
-.windsurf/memory-bank/mermaid.json
+.windsurf/memory-bank/mistakes.json        # Error intelligence and Context7 sourcing
+.windsurf/memory-bank/systemPatterns.json  # Architecture patterns + AegisKG bindings
+.windsurf/memory-bank/progress.json        # Milestones, velocity, constitutional metrics
+.windsurf/memory-bank/roadmap.json         # Strategic milestones + priority rebalancing
+.windsurf/memory-bank/roadmap/roadmap.md   # Human-readable strategic narrative
 ```
 
 ### Constitutional Articles (14):
@@ -100,9 +92,15 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 .windsurf/rules/constitution/article-XIV.md
 ```
 
-### JSON Schemas (17):
+### JSON Schemas (Current Set)
 ```
-.windsurf/memory-bank/schemas/*.schema.json (17 schemas)
+.windsurf/memory-bank/schemas/activeContext.schema.json
+.windsurf/memory-bank/schemas/scratchpad.schema.json
+.windsurf/memory-bank/schemas/mistakes.schema.json
+.windsurf/memory-bank/schemas/systemPatterns.schema.json
+.windsurf/memory-bank/schemas/progress.schema.json
+.windsurf/memory-bank/schemas/roadmap.schema.json
+.windsurf/memory-bank/schemas/kanban.schema.json
 .windsurf/memory-bank/schemas/README.md
 ```
 
@@ -115,8 +113,8 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 
 **Article I**: Tripartite Governance → Executive/Legislative/Judicial branches with MCP integration
 **Article II**: Autonomous Decision Making → 0-98% auto-execute, MCP-based consensus scoring
-**Article III**: 6-Schema Context Management → 65% optimized JSON structure with AegisKG integration
-**Article III-A**: Implementation Protocols → MCP integration with 6-schema real-time updates
+**Article III**: 7-Schema Context Management → optimized JSON structure with AegisKG integration
+**Article III-A**: Implementation Protocols → MCP integration with 7-schema real-time updates
 **Article IV**: Quality Standards → EMD compliance, anti-duplication, multi-language validation
 **Article V**: Team Communication → Inter-branch patterns, conflict resolution
 **Article VI**: Framework Evolution → Amendment process, law updates via MCP research
@@ -133,7 +131,7 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 
 ### Task Completion (MANDATORY):
 ```
-EVERY task → HALT → @mcp:filesystem update ALL 6 essential schemas → Schema validate → 
+EVERY task → HALT → @mcp:filesystem update ALL 7 essential schemas → Schema validate →
 @mcp:byterover-mcp store AegisKG patterns → @mcp:git commit → ONLY THEN continue
 ```
 
@@ -156,13 +154,28 @@ Language detection → @mcp:filesystem scan → Run validation →
 IF errors: @mcp:context7 → Fix → @mcp:filesystem update → Re-validate to 100%
 ```
 
+### Security Automation (BLOCKING)
+```
+# Secrets Scanning
+gitleaks detect --no-git --redact || gitleaks detect
+
+# SBOM Generation (CycloneDX)
+syft dir:. -o cyclonedx-json > sbom.json || syft . -o cyclonedx-json > sbom.json
+
+# Vulnerability Scan (fail on High/Critical)
+grype sbom:sbom.json --fail-on High || trivy fs --exit-code 1 --severity HIGH,CRITICAL .
+
+# Policy as Code (optional)
+conftest test config/ policies/ || true
+```
+
 ## CORE COMMANDS (BRIEF)
 
-**`init`**: Auto-detect → Restore OR generate 17 files → Enable workflow (Article III)
-**`next`**: Read scratchpad/kanban → Execute → Update ALL 17 → Auto-continue (Article III)
-**`update`**: @mcp:filesystem refresh ALL 17 files → Schema validate (Article III-A)
-**`validate`**: Run language-specific checks → HALT on errors (Article XIII)
-**`fix`**: @mcp:context7 → Auto-fix loop → Update bugfix.json (Article XIII)
+**`/init`**: Auto-detect → Restore OR generate 7 essential schemas (bootstrap memory-bank) → Enable workflow (Article III)
+**`/next`**: Read scratchpad/kanban → Execute → Update ALL 7 essential → Auto-continue (Article III)
+**`/update`**: @mcp:filesystem refresh 7 essential schemas (+ automation if present) → Schema validate (Article III-A)
+**`/validate`**: Run language-specific checks → HALT on errors (Article XIII)
+**`/fix`**: @mcp:context7 → Auto-fix loop → Update bugfix.json (Article XIII)
 
 ## COMPLIANCE THRESHOLDS
 

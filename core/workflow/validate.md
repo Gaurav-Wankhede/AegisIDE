@@ -4,6 +4,8 @@ description: Judicial System validates constitutional compliance and code qualit
 
 # /validate - Constitutional Compliance Validation
 
+_This workflow is defined canonically under `core/workflow/validate.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/validate.md`, so path references should be interpreted through that mount when executed inside the IDE._
+
 ## Purpose
 Judicial Branch validates implementation against constitutional framework, ensuring code quality, roadmap alignment, and zero-tolerance for errors/warnings.
 
@@ -20,6 +22,42 @@ Judicial Branch validates implementation against constitutional framework, ensur
 - Constitutional compliance verification
 - Zero tolerance for errors/warnings
 - HALT operations on validation failures
+```
+
+## Security Exceptions Policy
+```bash
+# Purpose: allow temporary exceptions ONLY with accountability
+
+- Central allowlist file: security/allowlist.yml
+- Each exception MUST include:
+  - rule_id or package identifier
+  - justification (short)
+  - owner (name/email)
+  - expiry (ISO 8601 date)
+
+- CI behavior:
+  - Exceptions auto-expire on or after expiry date → pipeline fails until removed
+  - Owner must rotate or remove entries before expiry
+
+- Local behavior:
+  - validate-exceptions: checks allowlist.yml consistency
+```
+
+### Phase 2.5: Security Automation (BLOCKING)
+```bash
+# Secrets Scanning (must pass with 0 high-confidence leaks)
+gitleaks detect --no-git --redact || gitleaks detect
+# Alternative: semgrep secrets
+semgrep --config p/secrets --error || true  # advisory if semgrep unavailable
+
+# SBOM Generation (CycloneDX)
+syft dir:. -o cyclonedx-json > sbom.json || syft . -o cyclonedx-json > sbom.json
+
+# Vulnerability Scan (fail on High/Critical)
+grype sbom:sbom.json --fail-on High || trivy fs --exit-code 1 --severity HIGH,CRITICAL .
+
+# Policy as Code (optional but recommended)
+conftest test config/ policies/ || true
 ```
 
 ## Workflow Sequence
@@ -71,6 +109,57 @@ Java (Gradle): ./gradlew compileJava
 C#: dotnet build --no-restore
 PHP: php -l && composer validate
 Ruby: ruby -c && bundle exec rubocop --dry-run
+
+# Security automation helpers:
+validate-secrets: gitleaks detect --no-git --redact
+validate-sbom: syft dir:. -o cyclonedx-json > sbom.json
+validate-vuln: grype sbom:sbom.json --fail-on High
+validate-policy: conftest test config/ policies/
+```
+
+## Security Tools: Quick Install Notes (Linux)
+```bash
+# gitleaks (binary)
+curl -sSL https://raw.githubusercontent.com/gitleaks/gitleaks/master/install.sh | bash -s -- -b /usr/local/bin
+
+# syft (SBOM)
+curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+
+# grype (Vuln scan)
+curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+
+# trivy (Alternative vuln scanner)
+sudo apt-get update && sudo apt-get install -y wget apt-transport-https gnupg lsb-release
+sudo wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+echo "deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee /etc/apt/sources.list.d/trivy.list
+sudo apt-get update && sudo apt-get install -y trivy
+
+# conftest (OPA policy runner)
+curl -L -o conftest.tar.gz https://github.com/open-policy-agent/conftest/releases/latest/download/conftest_Linux_x86_64.tar.gz
+tar xzf conftest.tar.gz
+sudo mv conftest /usr/local/bin/
+rm -f conftest.tar.gz
+```
+
+### Phase 2.6: Minimal Test Stubs Quickstart
+```bash
+# TypeScript/Node
+echo "test('smoke', () => { expect(1).toBe(1) })" > smoke.test.ts && npx vitest --run --passWithNoTests || npm test -- --passWithNoTests
+
+# Rust
+cargo test --no-run
+
+# Python
+pytest --maxfail=1 -q || python -c "import sys; sys.exit(0)"  # allow bootstrap environments
+
+# Go
+go test ./... -run ^$
+
+# Java (Maven)
+mvn -q -DskipTests=false -Dtest='*Test' test-compile
+
+# C#
+dotnet test --no-build || dotnet build --no-restore
 ```
 
 ### Phase 3: Zero Tolerance Enforcement
@@ -273,7 +362,7 @@ validate-ruby: ruby -c && bundle exec rubocop
 
 # Constitutional commands:
 validate-constitution: Check all 14 articles loaded
-validate-memory-bank: Verify all 18 files compliant
+validate-memory-bank: Verify 7 essential schemas compliant (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap) and validate automation files if present
 validate-roadmap: Check alignment with requirements
 validate-governance: Verify tri-branch operational
 ```

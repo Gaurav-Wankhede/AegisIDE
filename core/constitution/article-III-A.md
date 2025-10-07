@@ -37,8 +37,8 @@ trigger: always_on
 
 **Validation Checkpoint**: Run suite → IF errors: HALT → @mcp:context7 fix → Re-validate → Proceed only at 100%
 
-**6-Schema Real-Time Updates (MANDATORY)**:
-- **Auto-Trigger**: EVERY task updates all 6 schemas
+**7-Schema Real-Time Updates (MANDATORY)**:
+- **Auto-Trigger**: EVERY task updates all 7 schemas
 - **No Bypass**: Skip = Constitutional violation
 - **Validation Gate**: Next task BLOCKED until complete
 - **Schema Lock**: Validate against `.windsurf/memory-bank/schemas/*.schema.json`
@@ -55,10 +55,11 @@ trigger: always_on
 **Schema Updates via MCP**:
 1. scratchpad.json → Remove completed, add priorities
 2. activeContext.json → Real-time execution state
-3. mistakes.json → Error patterns with Context7 prioritization
-4. systemPatterns.json → Architecture patterns with AegisKG
-5. progress.json → Milestones with constitutional metrics
-6. roadmap.json → Strategic planning with SQLite alignment
+3. kanban.json → Workflow columns, WIP limits, parliamentary approval
+4. mistakes.json → Error patterns with Context7 prioritization
+5. systemPatterns.json → Architecture patterns with AegisKG
+6. progress.json → Milestones with constitutional metrics
+7. roadmap.json → Strategic planning alignment
 
 **Storage**: @mcp:memory (local), @mcp:byterover-mcp (cloud)
 
@@ -103,4 +104,4 @@ trigger: always_on
 
 ## Integration with Article III
 
-**Authority**: Article III-A implements Article III workflow foundation with detailed MCP protocols, validation enforcement, and schema management. Both operate under unified constitutional governance requiring >95% consensus and mandatory 6-schema compliance.
+**Authority**: Article III-A implements Article III workflow foundation with detailed MCP protocols, validation enforcement, and schema management. Both operate under unified constitutional governance requiring >95% consensus and mandatory 7-schema compliance.

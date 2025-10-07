@@ -11,6 +11,7 @@ Optimized JSON schema definitions for AegisIDE's **7 essential memory-bank files
 3. **kanban.schema.json** - Task workflow management with parliamentary approval tracking
 4. **mistakes.schema.json** - Error patterns with Context7 source prioritization and AegisKG error knowledge graphs
 5. **systemPatterns.schema.json** - Architecture patterns with MCP enriched links and AegisKG pattern networks
+   - Includes `governance_decisions[]` for persisted parliamentary decisions (consensus score, votes, veto, rationale, links, approved, timestamp)
 6. **progress.schema.json** - Development milestones with constitutional metrics and AegisKG progress correlation
 7. **roadmap.schema.json** - Strategic planning with AegisKG strategic knowledge graphs
 
@@ -161,6 +162,19 @@ All schemas use semantic versioning:
 - New required fields added with defaults
 - Deprecated fields marked but functional
 - Migration scripts for breaking changes
+
+## Linkage Keys (Cross-File Referencing)
+
+| Key | Pattern | Source Fields | Target File(s) | Purpose |
+|-----|---------|---------------|----------------|---------|
+| `proposal_id` | `^proposal-[A-Za-z0-9_-]+$` | `activeContext.linkage`, `scratchpad.immediate_priorities[*]`, `kanban.tasks[*]`, `progress.milestone_tracking[*]`, `roadmap.strategic_objectives[*].milestones[*]`, `mistakes.*` | `systemPatterns.governance_decisions[*].proposal_id` | Link work to a governance proposal and approval |
+| `kanban_task_id` | `^task-[A-Za-z0-9_-]+$` | `activeContext.linkage`, `scratchpad.immediate_priorities[*]`, `progress.milestone_tracking[*]`, `mistakes.*` | `kanban.tasks[*].id` | Bind active work and quality signals to a specific task |
+| `roadmap_milestone_id` | `^rm-[A-Za-z0-9_-]+$` | `activeContext.linkage`, `scratchpad.immediate_priorities[*]`, `kanban.tasks[*]`, `progress.milestone_tracking[*]`, `roadmap.strategic_objectives[*].milestones[*]`, `mistakes.*` | `roadmap.strategic_objectives[*].milestones[*].id` | Tie tactical tasks to strategic milestones |
+| `governance_decision_id` | `^gd-[A-Za-z0-9_-]+$` | `activeContext.linkage`, `kanban.tasks[*]`, `progress.milestone_tracking[*]` | `systemPatterns.governance_decisions[*].decision_id` | Reference the persisted oversight decision |
+
+Notes:
+- Linkage keys are optional but recommended for traceability and anti‑hallucination analytics.
+- Validation scripts should verify that all referenced IDs exist in their target files.
 
 ## Support
 
