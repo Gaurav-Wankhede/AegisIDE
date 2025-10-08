@@ -1,6 +1,6 @@
-# Quick Start Guide - AegisIDE Memory Bank Dashboard (v2.8.0)
+# Quick Start Guide - AegisIDE Memory Bank Dashboard (v2.8.5)
 
-## 🚀 5-Minute Setup
+## 5-Minute Setup
 
 ### Step 1: Navigate to Memory Bank
 ```bash
@@ -22,7 +22,7 @@ http://localhost:7777/visualize/dashboard.html
 ```
 **Important**: The dashboard file is located at `.windsurf/memory-bank/visualize/dashboard.html`
 
-## 📊 Dashboard Overview (Enhanced UI/UX)
+## Dashboard Overview (Minimal 8-Schema)
 
 ### Header Section
 - **Title**: Current project name and phase
@@ -42,27 +42,19 @@ http://localhost:7777/visualize/dashboard.html
 3. **Pending Tasks**: Count of TODO items
 4. **Completed**: Count of finished tasks
 
-### Kanban Board (3 Columns)
-- **TODO**: Pending tasks with priority badges
-- **In Progress**: Active tasks with start dates
-- **Done**: Recently completed tasks
+### Kanban Snapshot
+- Renders `kanban.json` content in a compact card (no heavy JS components)
 
-### Active Issues Section
-- Bug listings with severity badges
-- Root cause analysis
-- Proposed fixes
-- Affected components
+### Quality & Patterns
+- Renders `mistakes.json` and `systemPatterns.json` in JSON cards
 
-### Events Timeline
-- Recent 5 events with timestamps
-- Test results (passed/failed counts)
-- Event type indicators
+### Current Activity
+- `activeContext.json` and `scratchpad.json` in JSON cards
 
-### Workflow Visualization
-- Mermaid diagram showing task flow
-- Real-time task counts per stage
+### Strategy
+- `progress.json` and `roadmap.json` JSON cards
 
-## ⚙️ Controls
+## Controls
 
 ### Manual Refresh
 Click **🔄 Refresh** button to immediately reload all JSON files.
@@ -76,7 +68,7 @@ Click **🔄 Refresh** button to immediately reload all JSON files.
 - Click task cards to view details (future enhancement)
 - Hover over tasks for tooltips (future enhancement)
 
-## 🎯 Real-Time Usage
+## Real-Time Usage
 
 The dashboard automatically reflects changes when:
 - AI agents update JSON files
@@ -91,38 +83,24 @@ The dashboard automatically reflects changes when:
 3. **Bug detected** → `bugfix.json` updated → Appears in "Active Issues"
 4. **Fix implemented** → Bug removed from dashboard
 
-## 📁 Supported JSON Files
+## Supported JSON Files
 
-The dashboard visualizes all 16 memory-bank files:
-- activeContext.json, scratchpad.json, progress.json
-- mistakes.json, projectbrief.json, systemPatterns.json
-- techContext.json, productContext.json, roadmap.json
-- kanban.json, blueprint.json, bugfix.json
-- deployment.json, monitoring.json, dependencies.json
-- userflow.json
+The dashboard visualizes the 8 essential memory-bank JSON files:
+- activeContext.json, scratchpad.json, mistakes.json, progress.json, systemPatterns.json, roadmap.json, kanban.json, memory.json
 
-## 🔧 Advanced Usage
+## Advanced Usage
 
-### Custom Refresh Interval
-Edit `dashboard.html` line ~330:
-```javascript
-autoRefreshInterval = setInterval(loadAllFiles, 300000); // Change 300000 to desired ms (5 min default)
-```
+- To change the 5-minute auto-refresh, edit the `toggleAuto()`/`startAutoRefresh()` intervals in `dashboard.html`.
+- Tailwind classes in the HTML control color/themes.
 
-### Add Custom Sections
-Add new visualization sections in the HTML structure following existing patterns.
-
-### Modify Colors
-Update Tailwind classes in the HTML to change color schemes.
-
-## ⚡ Performance Tips
+## Performance Tips
 
 - **Keep JSON files ≤10KB**: Constitutional requirement, ensures fast loading
 - **Use auto-refresh wisely**: Disable when not actively monitoring
 - **Close unused browser tabs**: Reduces memory usage
 - **Use modern browser**: Chrome, Firefox, Edge for best performance
 
-## 🐛 Common Issues
+## Common Issues
 
 **Dashboard shows "Failed to load"**:
 - Verify HTTP server is running: `ps aux | grep "python3 -m http.server"`
@@ -135,39 +113,36 @@ Update Tailwind classes in the HTML to change color schemes.
 - Verify JSON files have valid syntax
 - Check browser console for errors
 
-**Mermaid diagrams not showing**:
-- Ensure internet connection (for CDN)
-- Check browser console for Mermaid.js errors
-- Verify diagram syntax is correct
+**External CDN blocked?**:
+- Tailwind CDN required for styling. If blocked, inline minimal CSS.
 
 **Performance is slow**:
 - Reduce refresh interval
 - Check JSON file sizes (should be ≤10KB each)
 - Close other resource-intensive applications
 
-## 🎓 Constitutional Framework Integration
+## Constitutional Framework Integration
 
-The dashboard implements:
-- **Article III**: Context-Engineered Development Workflow visualization
-- **Article VII**: 98% Autonomous Authority tracking
-- **Article XI**: Compliance monitoring and reporting
-- **Article XIII**: Multi-language validation status display
+The dashboard reflects:
+- **Article III**: 8-schema architecture and tiered updates
+- **Article VII**: Autonomous operations tracking
+- **Article XI**: Compliance indicators
 
-## 🔐 Security Notes
+## Security Notes
 
 - Dashboard runs locally only (no external data transmission)
 - Read-only access to JSON files
 - CORS-safe with local HTTP server
 - No authentication required (local development only)
 
-## 📚 Additional Resources
+## Additional Resources
 
 - Main README: `core/visualize/README.md`
 - Constitutional Framework: `core/constitution/`
 - Memory Bank Structure: `.windsurf/memory-bank/schemas/`
 - AegisIDE Documentation: `docs/`
 
-## 💡 Tips & Tricks
+## Tips & Tricks
 
 1. **Keep dashboard open while coding** - Monitor AI agent progress in real-time
 2. **Use dual monitors** - Code on one, dashboard on the other
@@ -175,7 +150,7 @@ The dashboard implements:
 4. **Bookmark the URL** - Quick access: `http://localhost:7777/visualize/dashboard.html`
 5. **Check events timeline** - Understand what AI is doing and why
 
-## 🆘 Support
+## Support
 
 For issues or questions:
 1. Check troubleshooting section in main README

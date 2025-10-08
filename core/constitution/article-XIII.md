@@ -12,12 +12,14 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### MCP AUTO-TRIGGER IN VALIDATION (NO MANUAL REMINDERS)
 
+This protocol is governed by the mandatory auto-activation triggers defined in `global_rules.md`.
+
 **CRITICAL**: All validation and debugging operations auto-activate MCPs. AI uses them autonomously WITHOUT user saying "use MCP".
 
-**7-SCHEMA VALIDATION MCP MATRIX**:
+**8-SCHEMA VALIDATION MCP MATRIX**:
 - **Error Detection**: @mcp:context7 INSTANT with Context7 source prioritization → Verified official docs → Auto-fix → Re-validate
 - **Language Detection**: @mcp:filesystem scan project → Detect language → Load validation commands with accuracy scoring
-- **Validation Execution**: Run checks → IF errors: @mcp:context7 → Fix → @mcp:filesystem update 7 essential schemas
+- **Validation Execution**: Run checks → IF errors: @mcp:context7 → Fix → @mcp:filesystem update 8 essential schemas
 - **Pattern Learning**: @mcp:memory store error solutions in AegisKG knowledge graph → @mcp:byterover-mcp cross-project intelligence
 - **Predictive Analytics**: mistakes.json predictive warnings → instant lint tracking → anti-hallucination metrics
 - **Roadmap Validation**: @mcp:filesystem read roadmap.json with SQLite session alignment → Verify strategic planning → HALT if deviation
@@ -30,6 +32,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Judicial Autonomy**: Inspect everything, challenge deviations, force compliance, mandate corrections, HALT on errors/warnings
 
 ### Multi-Language Validation Framework (MANDATORY)
+
+This framework enforces the quality standards outlined in **Article IV**.
 
 **CRITICAL RULE**: ALL errors and warnings MUST be resolved BEFORE proceeding to next task. NO EXCEPTIONS.
 

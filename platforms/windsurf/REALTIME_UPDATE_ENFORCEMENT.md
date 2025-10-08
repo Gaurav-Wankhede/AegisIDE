@@ -2,8 +2,8 @@
 
 ## How It Works (Mechanical Implementation)
 
-### 1. **Automatic Trigger System**
-Every AI task completion automatically triggers the update sequence:
+### 1. **Automatic Trigger System (Tiered)**
+Every AI task completion triggers Tier‑1 updates (3 files): `scratchpad.json`, `kanban.json`, `activeContext.json`. Tier‑2 (periodic) and Tier‑3 (optional automation) run at milestones.
 
 ```javascript
 // Conceptual Implementation Flow
@@ -35,19 +35,20 @@ Using the configured MCP servers from your `mcp_config.json`:
 }
 ```
 
-**Real-Time Update Process**:
+**Tiered Update Process**:
 ```python
-def update_memory_bank_forceful():
-    files = [
-        "scratchpad.json", "activeContext.json", "mistakes.json", 
-        "progress.json", "systemPatterns.json", "techContext.json",
-        "productContext.json", "projectbrief.json", "roadmap.json",
-        "kanban.json", "blueprint.json", "userflow.json", 
-        "bugfix.json", "deployment.json", "monitoring.json", 
-        "dependencies.json"
+def update_memory_bank_tiered():
+    tier1 = [
+        "scratchpad.json", "kanban.json", "activeContext.json"
     ]
-    
-    for file in files:
+    tier2 = [
+        "roadmap.json"
+    ]
+    tier_core = [
+        "mistakes.json", "progress.json", "systemPatterns.json"
+    ]
+
+    for file in tier1 + tier2 + tier_core:
         # 1. Read current state
         current_data = mcp3_read_text_file(f".windsurf/memory-bank/{file}")
         
@@ -65,8 +66,7 @@ def update_memory_bank_forceful():
         if not verify_result.success:
             HALT_AND_ROLLBACK()
     
-    # 6. Update roadmap.md (human-readable)
-    update_roadmap_md()
+    # Optional: update any project-specific automation files here
 ```
 
 ### 3. **Constitutional Enforcement Hooks**
@@ -74,7 +74,7 @@ def update_memory_bank_forceful():
 **Pre-Task Hook**:
 ```
 BEFORE any task execution:
-1. Verify all 17 files exist and are valid
+1. Verify 7 essential JSON files are valid (schemas)
 2. Load current context from memory-bank
 3. Proceed only if integrity check passes
 ```
@@ -84,10 +84,10 @@ BEFORE any task execution:
 AFTER every task completion:
 1. HALT all operations immediately
 2. Extract task results and learnings
-3. Update ALL 17 files via MCP operations
-4. Validate schema compliance
+3. Apply Tier‑1 updates (3 files), and Tier‑2 when due
+4. Validate schema compliance (Ajv) + linkage
 5. Store patterns in @mcp:memory
-6. Sync to @mcp:byterover-mcp
+6. Sync to @mcp:byterover-mcp (optional)
 7. ONLY THEN release HALT and continue
 ```
 

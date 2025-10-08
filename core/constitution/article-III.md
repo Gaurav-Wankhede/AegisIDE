@@ -6,9 +6,9 @@ trigger: always_on
 
 **Authority**: Establishes workflow foundation. See Article III-A for detailed implementation protocols.
 
-## 7-Schema Context System (59% Optimized)
+## 8-Schema Context System (59% Optimized)
 
-**Core Schemas**: activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap
+**Core Schemas**: activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory
 
 **Features**: AegisKG local knowledge graph, SQLite session context, Context7 source prioritization, MCP validation state
 
@@ -33,9 +33,9 @@ trigger: always_on
 
 ## Core Commands
 
-**`/init`**: Auto-detect → restore OR generate 7 schemas → enable workflow
+**`/init`**: Auto-detect → restore OR generate 8 schemas → enable workflow
 **`/next`**: Read scratchpad → VALIDATE → Execute → Update schemas → AUTO-CONTINUE
-**`/update`**: Refresh 7 schemas with MCP integration
+**`/update`**: Refresh 8 schemas with MCP integration
 **`/validate`**: Run compliance checks → Report status
 **`/fix`**: HALT-FIX-VALIDATE loop via @mcp:context7
 **`/status`**: Report tasks, progress, consensus metrics
@@ -49,7 +49,7 @@ trigger: always_on
 2. Read scratchpad.json (primary) or kanban.json
 3. Dynamic context loading with AegisKG
 4. VALIDATE → EXECUTE
-5. Update 7 essential schemas via MCP
+5. Update 8 essential schemas via MCP
 6. Create AegisKG snapshot
 7. AUTO-LOAD next task
 8. Continue until completion
@@ -61,12 +61,12 @@ trigger: always_on
 
 ```
 1. Scan .windsurf/memory-bank/ + load schemas
-2. IF 7 schemas exist: Validate → Load with AegisKG → Resume → Auto-trigger 'next'
+2. IF 8 schemas exist: Validate → Load with AegisKG → Resume → Auto-trigger 'next'
 3. IF missing schemas: HALT → Regenerate → Validate → Continue
 4. IF no memory-bank: Auto-detect project type
    - New: Generate from description → Parliamentary approval
    - Existing: MD migration if needed → Codebase analysis → Schema generation
-5. VERIFICATION: Confirm 7 essential schemas → Enable autonomous workflow
+5. VERIFICATION: Confirm 8 essential schemas → Enable autonomous workflow
 ```
 
 **Rules**: Single command for both new/existing projects. Schema validation mandatory. Complete 7-schema structure required before enabling autonomous mode.

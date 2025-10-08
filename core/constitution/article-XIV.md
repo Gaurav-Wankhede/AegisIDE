@@ -81,6 +81,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 5. **@mcp:git** Link tasks to blueprint_id for traceability with version control
 
 **Phase 4: Parliamentary Approval with MCP Evidence** (Democratic Consensus)
+
+This phase follows the consensus protocol defined in **Article II**.
 1. **@mcp:context7** Executive Branch reviews implementation feasibility with official docs
 2. **@mcp:fetch** Legislative Branch challenges assumptions with external research
 3. **@mcp:memory** Judicial Branch validates constitutional compliance using precedents
@@ -88,6 +90,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 5. **@mcp:time** Upon approval, move to implementation phase with timestamping
 
 **Phase 5: Continuous Implementation with Full MCP** (Autonomous)
+
+All implementation is subject to the validation standards in **Article XIII**.
 1. **@mcp:filesystem** Execute tasks from kanban in priority order
 2. **@mcp:context7** Auto-detect bugs via bugfix.json monitoring + validation
 3. **@mcp:sequential-thinking** Apply HALT-FIX-VALIDATE loop for complex errors

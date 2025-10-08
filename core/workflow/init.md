@@ -10,6 +10,7 @@ _This workflow is defined canonically under `core/workflow/init.md`. IDEs such a
 Establish complete constitutional awareness for new sessions by loading all governance structures, memory bank context, and autonomous protocols.
 
 ## Constitutional Authority
+
 - **Article II**: Autonomous Decision Making - Session initialization protocols
 - **Article III**: Context-Engineered Development Workflow - Memory bank loading
 - **Article VII**: Autonomous Operations - Self-management activation

@@ -5,6 +5,29 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.5] - 2025-10-08
+
+### Added - Knowledge Graph Memory System
+- **memory.json Schema**: New 8th essential schema added to memory-bank for persistent cross-session knowledge storage using entities, relations, and observations structure.
+- **Helper Schemas**: Added comprehensive helper schema system in `core/schemas/helpers/` directory:
+  - `tool-usage-patterns.json`: MCP-enhanced tool formats and usage patterns
+  - `common-mistakes.json`: Known LLM mistakes and error patterns
+  - `error-recovery.json`: Recovery strategies and remediation protocols
+- **Constitutional Integration**: All 16 articles now fully interlinked with markdown references for cohesive navigation.
+- **Workflow Interlinking**: All 10 workflow files now reference relevant constitutional articles.
+- **8-Schema System**: Upgraded from 7-schema to 8-schema memory-bank structure with memory.json as core component.
+
+### Changed - Schema Architecture Evolution
+- **Memory-Bank Structure**: Transitioned to 8-schema model (7 core + memory.json) throughout all documentation.
+- **Attention Allocation**: Updated attention budget to include memory.json integration with AegisKG knowledge graph.
+- **Article References**: Removed SQLite references, aligned all articles with JSON-only architecture.
+- **Global Rules**: Updated tiered update strategy to reflect 8-schema structure with memory.json in Tier 1.
+
+### Fixed - Constitutional Consistency
+- **Schema Count Standardization**: Corrected all references from 7-schema/17-schema to unified 8-schema model.
+- **Cross-References**: Fixed broken article references and added proper interlinking throughout constitutional framework.
+- **Workflow Authority**: Added Constitutional Authority sections to all workflow files with proper article citations.
+
 ## [2.8.4] - 2025-10-07
 
 ### Added - Schema Validation & Referencing

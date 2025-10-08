@@ -15,7 +15,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Executive Branch (Implementation Authority)
 Primary implementation engine responsible for translating strategic decisions into code deliverables through coordinated ministerial roles with attention-optimized context management.
 
-**Project Manager**: Orchestrates dynamic token allocation across 7 core schemas ensuring optimal signal-to-noise ratios. **AUTO-CALLS @mcp:memory for context retrieval** and @mcp:byterover-mcp for cross-project patterns. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with **MANDATORY MCP-enriched evidence**. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
+**Project Manager**: Orchestrates dynamic token allocation across 8 core schemas (7 core + memory.json) ensuring optimal signal-to-noise ratios. **AUTO-CALLS @mcp:memory for context retrieval** and @mcp:byterover-mcp for cross-project patterns. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with **MANDATORY MCP-enriched evidence**. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
 
 **Development Minister**: Implements tasks from scratchpad.json as immutable events in unified execution/business state context window. **MANDATORY AUTO-TRIGGERS**: @mcp:context7 (INSTANT errors), @mcp:memory (context), @mcp:byterover-mcp (storage), @mcp:git (versioning). Maintains attention budget constraints during code generation. Executes language-specific validation with zero tolerance for errors/warnings. Enforces EMD compliance (≤10KB).
 
@@ -71,15 +71,15 @@ All branches update memory-bank files preserving immutable history: scratchpad.j
 
 **AegisKG Knowledge Integration**: Successful patterns stored in @mcp:memory (unlimited local, primary) and @mcp:byterover-mcp (cloud backup) with AegisKG local knowledge graph for enhanced pattern recognition and cross-project intelligence.
 
-**Schema Health Monitoring**: Verify all 7 essential files ≤10KB, 2.6x faster JSON parsing, optimal signal-to-noise ratios, SQLite session coordination across IDEs.
+**Schema Health Monitoring**: Verify all 8 essential files (7 core + memory.json) ≤10KB, ensuring 2.6x faster JSON parsing, optimal signal-to-noise ratios, and optimized performance across IDEs.
 
 ## Memory-Bank Governance System with Attention Budget Discipline
 
-### 7-Schema Context Management (2025 Standards - 65% Optimized)
+### 8-Schema Context Management (2025 Standards - 65% Optimized)
 
-All branches operate within `.windsurf/memory-bank/` using **7 Core Schemas** (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap) with AegisKG knowledge graph integration:
+All branches operate within `.windsurf/memory-bank/` using **8 Core Schemas** (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, and memory) with AegisKG knowledge graph integration:
 
-**activeContext.json** (≤10KB, 25% attention - CORE): Real-time execution state with session management, MCP integration tracking, event streams, cross-branch communication, SQLite session context for multi-IDE coordination.
+**activeContext.json** (≤10KB, 25% attention - CORE): Real-time execution state with session management, MCP integration tracking, event streams, cross-branch communication, session context for multi-IDE coordination.
 
 **scratchpad.json** (≤10KB, 30% attention - CRITICAL): Immediate priorities with MCP validation state, task queue with parliamentary approval metadata, anti-hallucination checks, focus mode management, AegisKG task relationships.
 
@@ -89,7 +89,7 @@ All branches operate within `.windsurf/memory-bank/` using **7 Core Schemas** (a
 
 **progress.json** (≤10KB, 10% attention - SUPPORTING): Development milestones with constitutional compliance metrics, performance tracking, AegisKG progress correlation, strategic advancement indicators.
 
-**roadmap.json** (≤10KB, 5% attention - STRATEGIC): Strategic planning with SQLite session alignment, AegisKG strategic knowledge graphs, milestone dependencies, client requirements as supreme authority.
+**roadmap.json** (≤10KB, 5% attention - STRATEGIC): Strategic planning with strategic alignment, AegisKG strategic knowledge graphs, milestone dependencies, client requirements as supreme authority.
  
 **kanban.json** (≤10KB, attention integrated with workflow governance): Parliamentary workflow, WIP limits, task status, and approvals.
 

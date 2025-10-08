@@ -63,11 +63,13 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Inter-Branch Communication Protocols
 
+The roles and responsibilities of each branch are defined in **Article I**.
+
 **Formal Proposal Process**:
 1. **Proposal Initiation**: Executive branch submits proposal with context analysis
 2. **Opposition Challenge**: Legislative branch reviews with evidence-based opposition
 3. **Judicial Review**: Chief Justice validates constitutional compliance
-4. **Consensus Building**: Tri-branch discussion to achieve >95% agreement
+4. **Consensus Building**: Tri-branch discussion to achieve >95% agreement, as mandated by the consensus protocol in **Article II**.
 5. **Implementation Authorization**: Formal approval and execution oversight
 
 **Emergency Communication Protocol**:

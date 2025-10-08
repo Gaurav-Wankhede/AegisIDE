@@ -1,26 +1,20 @@
-# Windsurf AegisIDE v2.8.2 Enhanced 🌊
+# Windsurf AegisIDE v2.8.5
  
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md) [![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](global_rules.md)
  
-> **🚀 Quick Start**: [CheatSheet.md](CheatSheet.md) | **🧠 Intelligence**: [global_rules.md](global_rules.md) | **⚡ Always-Check**: Multi-language validation
+> **Quick Start**: [CheatSheet.md](CheatSheet.md) | **Intelligence**: [global_rules.md](global_rules.md) | **Always-Check**: Multi-language validation
 
 **Windsurf Constitutional Framework** with **democratic parliamentary governance**, **98% autonomous capability**, **always-check operations**, and **centralized configuration validation**.
 
-## 🚀 **2025 Enhancements (v2.8.2)**
-- **⚡ Tiered Update Strategy**: 82% fewer file operations per task (3 files real-time vs 17 files all)
-- **🎯 Context Optimization**: 72% faster execution with intelligent file prioritization
-- **📊 3-Tier System**: Real-time (3 files EVERY task), Periodic (2 files at milestones), Bulk (13 files at completion)
-- **🔧 MCP Integration Fixed**: Resolved critical issue where MCP servers were not callable properly in constitutional framework
-- **🤖 Auto-Call Protocol**: Fixed blocking issue preventing mandatory MCP auto-triggers in error resolution
-- **📚 Context7 Integration**: Fixed @mcp:context7 official documentation retrieval failures
-- **⚡ Always-Check Operations**: Automatic `cargo check`, `pnpm typecheck`, `npm run lint`, `pytest`, `go test` before every task
-- **🏗️ Centralized Config Validation**: MANDATORY pre-task scan prevents duplication and configuration errors
-- **🌐 Multi-Language Support**: Auto-detection for Rust, TypeScript, Python, Go, Java, Swift, PHP, Ruby, C#
-- **🔧 Framework Auto-Detection**: Smart detection from package.json, Cargo.toml, requirements.txt, etc.
-- **📊 Enhanced Dashboard UI/UX**: Professional interface with full content visibility and 5-minute refresh intervals
-- **🎨 Frontend Memory Bank Visualization**: Real-time monitoring of AI memory bank operations
+## 2025 Enhancements (v2.8.5)
+- **8-Schema System**: Upgraded to 8-schema memory-bank structure with memory.json as 8th essential schema.
+- **Knowledge Graph**: Added memory.json schema for persistent cross-session knowledge storage.
+- **Helper Schemas**: Added `tool-usage-patterns.json`, `common-mistakes.json`, and `error-recovery.json` in `core/schemas/helpers`.
+- **Constitutional Integration**: All 16 articles fully interlinked with markdown references for cohesive navigation.
+- **Workflow Interlinking**: All 10 workflow files now reference relevant constitutional articles.
+- **Architecture Consistency**: Removed SQLite references, aligned all documentation with JSON-only architecture.
 
-## 🏛️ **Constitutional Framework**
+## Constitutional Framework
 
 **Three-Branch System**: Government (PM, Dev Minister, Tech Minister) → Opposition (Quality, Innovation, Analytics Shadows) → Judiciary (Chief Justice)
 
@@ -36,9 +30,9 @@
 - **Strategic Proposals**: PM(30%), AI(20%), Research(20%), Data(15%), Dev(10%), Test(5%)
 - **Quality Proposals**: Test(30%), Dev(25%), Research(20%), Data(15%), AI(5%), PM(5%)
 
-> 📜 **Commands**: [CheatSheet.md](CheatSheet.md) - 8 unified commands
+> **Commands**: [CheatSheet.md](CheatSheet.md) - 8 unified commands
 
-## ⚡ **Always-Check Operations**
+## Always-Check Operations
 
 **Auto-validates before every task**:
 
@@ -55,17 +49,9 @@
 
 **98% Autonomous**: Error recovery, performance optimization, security scanning, cross-project learning, predictive maintenance
 
-## 📐 **Blueprint System (v2.6.1)**
+> Note: The system now standardizes on 8 essential memory-bank JSON files (see schemas).
 
-**6-Pillar Validation**: Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization (each 0-100, minimum ≥70 overall)
-
-**Auto-generates**: `blueprint.json`, `userflow.json`, `kanban.json`, `bugfix.json` from project description OR existing codebase
-
-**Commands**: `init` (new/existing), `validate`, `next`, `status`, `optimize`
-
-> 📋 **Full Documentation**: [Article-XIV.md](../../core/constitution/article-XIV.md)
-
-## 🔧 **Setup (5 Minutes)**
+## Setup (5 Minutes)
 
 ### **Method 1: Git Submodule** (Recommended)
 
@@ -85,7 +71,7 @@ cat > .windsurf/config.json << 'EOF'
 }
 EOF
 
-# 3. Initialize (AI generates 17 files)
+# 3. Initialize (AI generates 8 essential JSON files)
 init
 ```
 
@@ -129,7 +115,13 @@ your-project/
     ├── memory-bank/
     │   ├── schemas/        ← Manual copy (Method 2)
     │   ├── scratchpad.json ← AI-generated
-    │   └── [16 more JSON files]
+    │   ├── activeContext.json
+    │   ├── mistakes.json
+    │   ├── systemPatterns.json
+    │   ├── progress.json
+    │   ├── roadmap.json
+    │   ├── kanban.json
+    │   └── memory.json
     └── rules/              ← Manual copy (Method 2)
         ├── constitution/
         └── laws/
@@ -139,11 +131,11 @@ your-project/
 > - **Linux/Mac**: `~/.codeium/windsurf-next/memories/global_rules.md`
 > - **Windows**: `%USERPROFILE%\.codeium\windsurf-next\memories\global_rules.md`
 
-### **🔄 Session Resume**
+### Session Resume
 
-**Existing projects**: AI auto-scans `.windsurf/memory-bank/`, loads all 17 files (16 JSON + roadmap.md). Just type: `next`
+**Existing projects**: AI auto-scans `.windsurf/memory-bank/`, loads the 8 essential JSON files. Just type: `next`
 
-### **🔁 Legacy System Migration**
+### Legacy System Migration
 
 **If you have old .md files** in `.windsurf/memory-bank/`:
 
@@ -163,9 +155,9 @@ migrate-to-json
 
 **Result**: Upgraded to JSON-first architecture (2.6x faster parsing, zero ambiguity)
 
-## 🎯 **Constitutional Development Best Practices**
+## Constitutional Development Best Practices
 
-### **Windsurf-Specific Advantages (v2.8.0)**
+### Windsurf-Specific Advantages (v2.8.5)
 - **Native Integration**: Global Rules loaded directly into Windsurf's AI reasoning system
 - **Real-Time Monitoring**: Constitutional violations automatically trigger parliamentary oversight
 - **Enhanced Dashboard UI/UX**: Professional frontend with full content visibility and optimized refresh intervals
@@ -178,20 +170,19 @@ migrate-to-json
 - **Core Principle**: All code files ≤80 lines with deep nested folder structure
 - **Universal Structure**: `project/core/modules/feature/task_name/implementation.ext`
 - **Memory Bank JSON Files**: ≤10KB each (optimal parsing performance)
-  - 16 JSON files: activeContext, scratchpad, mistakes, progress, systemPatterns, techContext, productContext, projectbrief, roadmap, kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies
-  - 1 Human-readable: roadmap.md (≤20KB for strategic planning)
+  - 8 JSON files: activeContext, scratchpad, mistakes, progress, systemPatterns, roadmap, kanban, memory
 - **Schema Validation**: All JSON files validated against `core/schemas/` on every read/write
 
 ### **Constitutional Workflow Integration**
 1. **Load Global Rules** in Windsurf Rules panel (enables constitutional authority)
-2. **Initialize Project** with `init` command (auto-generates 17 files: 16 JSON + roadmap.md)
+2. **Initialize Project** with `init` command (auto-generates 8 essential JSON files)
 3. **Strategic Planning** via `next` (reads scratchpad.json with 25% attention priority)
 4. **Constitutional Execution** via continuous autonomous workflow (9 MCPs → validation → execute)
 5. **Quality Assurance** via zero-tolerance validation (HALT-FIX-VALIDATE loop until 100% clean)
 6. **Democratic Oversight** via tri-branch consensus (>95% weighted approval required)
 7. **Knowledge Storage** via dual MCP strategy (@mcp:memory primary, @mcp:byterover-mcp backup)
 
-## 🚨 **Emergency Powers & Crisis Management**
+## Emergency Powers & Crisis Management
 
 ### **Crisis Triggers (Automatic Detection)**
 - **System Failure**: >80% failure rate triggers emergency protocols
@@ -211,7 +202,7 @@ migrate-to-json
 - **Judicial Oversight**: Constitutional compliance maintained even during crisis
 - **Transparency Requirements**: All emergency decisions logged and reviewable
 
-## 📊 **Proven Performance Results**
+## Proven Performance Results
 
 ### **Autonomy & Intelligence**
 - **98% Autonomous Operation**: Highest autonomy level among all AI development frameworks
@@ -231,7 +222,7 @@ migrate-to-json
 - **Memory Management**: Intelligent cleanup and template generation prevents context pollution
 - **Democratic Quality Assurance**: Opposition challenges ensure code quality before implementation
 
-## 🚀 **Constitutional Framework Summary**
+## Constitutional Framework Summary
 
 ### **What You Get with AegisIDE + Windsurf**
 - **98% Autonomous AI Development** with democratic parliamentary governance
@@ -241,7 +232,7 @@ migrate-to-json
 - **Cross-Project Learning** via ByteRover integration and pattern recognition
 - **Emergency Management** with constitutional safeguards and crisis protocols
 
-### **🏆 Quick Start**
+### Quick Start
 1. **Load Global Rules** → Windsurf Rules panel (constitutional authority active)
 2. **Copy `.windsurf/` structure** → Your project root (framework integration)
 3. **Initialize with context** → `initialize memory bank` + project details
@@ -252,11 +243,11 @@ migrate-to-json
 - **[global_rules.md](global_rules.md)**: Executive implementation rules (copy to Windsurf Rules)
 - **[.windsurf/rules/constitution.md](.windsurf/rules/constitution.md)**: Supreme constitutional law (12 articles)
 
-**🎆 Constitutional AI Development Active** - Experience 98% autonomous capability with democratic governance, real-time quality assurance, and intelligent decision-making!
+Constitutional AI Development Active - Experience 98% autonomous capability with democratic governance, real-time quality assurance, and intelligent decision-making!
 
 ---
 
-## 📚 **Additional Resources**
+## Additional Resources
 
 ### **Framework Documentation**
 - **[Universal README](../README.md)**: Complete AegisIDE framework overview

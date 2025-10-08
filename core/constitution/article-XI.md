@@ -23,10 +23,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Mandatory Compliance Standards**:
 - **Constitutional Adherence**: ≥80% framework adherence mandatory across all operations
-- **Memory-Bank Integration**: 7 essential schemas (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap) must be maintained and updated consistently; automation files updated as needed
+- **Memory-Bank Integration**: All 8 essential schemas, as defined in **Article III**, must be maintained and updated consistently; automation files updated as needed
 - **MCP Integration**: Proper usage of all 9 MCP servers with fallback protocols
 - **EMD Compliance**: All files must follow ≤10,000 character limits with structured organization
-- **Multi-Language Support**: Cross-platform validation commands must be executed properly
+- **Multi-Language Support**: Cross-platform validation commands, as specified in **Article XIII**, must be executed properly.
 
 **Pre-Implementation Compliance Protocol** (MANDATORY):
 ```

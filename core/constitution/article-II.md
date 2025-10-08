@@ -90,22 +90,22 @@ Major roadmap modifications, constitutional amendments, project shifts. Client c
 **Phase 1: Constitutional Framework Loading**:
 Load all 13 articles from `.windsurf/rules/constitution/` (8000-12000 chars each). Extract tri-branch roles, responsibilities, decision matrices with attention budget allocations. Load 0-98% autonomy protocols, execution triggers, pattern recognition. Understand HALT-on-error protocols, MCP integration mandates, tool-context feedback loops. Load EMD (≤10,000 chars), ZUV principles, anti-duplication, context rot prevention. Load 2025 Context Engineering (Anthropic + Kubiya): n² attention awareness, stateless reducer pattern, event-driven updates.
 
-**Phase 2: 7-Schema Context Assembly** (Optimized Priority - 65% faster):
+**Phase 2: 8-Schema Context Assembly** (Optimized Priority - 65% faster):
 - CRITICAL (55%): scratchpad.json (30%) → activeContext.json (25%)
 - HIGH PRIORITY (30%): mistakes.json (20%) → progress.json (10%)
 - SUPPORTING (15%): systemPatterns.json (10%) → roadmap.json (5%)
-Load AegisKG pattern networks, error resolution with Context7 source prioritization. Identify immediate priorities, validate strategic alignment, prepare execution. Verify all 7 files ≤10KB, 2.6x faster JSON parsing, SQLite session coordination.
+Load AegisKG pattern networks, error resolution with Context7 source prioritization. Identify immediate priorities, validate strategic alignment, prepare execution. Verify all 8 files ≤10KB, ensuring 2.6x faster JSON parsing and optimized performance.
 
 **Phase 3: MCP Integration**:
 Prepare @mcp:context7, @mcp:memory, @mcp:byterover-mcp for auto-enrichment. Load patterns from @mcp:memory (unlimited local, primary). Verify @mcp:byterover-mcp connectivity for cross-project sharing (fallback/backup).
 
 **Auto-Execution Flow**:
-Detect recommendation → Extract task with attention budget estimate → EXECUTE IMMEDIATELY maintaining context efficiency → Update memory-bank files as event stream (all 7 core schemas) → MCP tool-context feedback: enrich files with structured insights → Create immutable context snapshot for rollback → Report completion with attention efficiency metrics.
+Detect recommendation → Extract task with attention budget estimate → EXECUTE IMMEDIATELY maintaining context efficiency → Update memory-bank files as event stream (all 8 core schemas) → MCP tool-context feedback: enrich files with structured insights → Create immutable context snapshot for rollback → Report completion with attention efficiency metrics.
 
 ### Autonomous Startup Protocol
 
 **On EVERY User Message**:
-Calculate current attention budget utilization (0-100%). Auto-read scratchpad.json with dynamic priority (30% attention). If tasks found with `[ ]` status → EXECUTE IMMEDIATELY WITHOUT ASKING. Monitor context rot indicators during execution (n² degradation). Continue to next task automatically until scratchpad empty. Update all 7 core schemas after each task as event stream with AegisKG knowledge graph integration. Auto-compress files exceeding 10KB preserving critical patterns in structured JSON. NEVER stop after one task at 0-98% autonomy - continuous execution mandatory with SQLite session coordination.
+Calculate current attention budget utilization (0-100%). Auto-read scratchpad.json with dynamic priority (30% attention). If tasks found with `[ ]` status → EXECUTE IMMEDIATELY WITHOUT ASKING. Monitor context rot indicators during execution (n² degradation). Continue to next task automatically until scratchpad empty. Update all 8 core schemas after each task as an event stream, in accordance with **Article III-A**. with AegisKG knowledge graph integration. Auto-compress files exceeding 10KB preserving critical patterns in structured JSON. NEVER stop after one task at 0-98% autonomy - continuous execution mandatory.
 
 **Session Detection**: If first message OR `what next` command → Auto-scan scratchpad and execute with attention optimization.
 
@@ -149,6 +149,6 @@ The shared `core/workflow/` definitions remain repository-canonical while each I
 
 **Quality Shadow Support**: Evidence-based validation challenges using mistakes.json event patterns. Monitors EMD compliance (≤10KB) and attention budget. Challenges low signal-to-noise implementations.
 
-**Executive Compliance**: Fix ALL errors before proceeding. Maintain attention budget. Update 3 real-time files (scratchpad, kanban, activeContext) after completion. Bulk update remaining files at milestones. Verify context health (≤10KB, optimal signal-to-noise) before continuing.
+**Executive Compliance**: Fix ALL errors before proceeding. Maintain attention budget. Update 3 real-time files (`scratchpad.json`, `kanban.json`, `activeContext.json`) after completion, as detailed in **Article III-A**. Bulk update remaining files at milestones. Verify context health (≤10KB, optimal signal-to-noise) before continuing.
 
 **Zero Tolerance Enforcement**: No exceptions for validation failures at 0-98% autonomy. No permission to proceed with errors/warnings. Mandatory HALT-FIX-VALIDATE loop until 100% clean. Constitutional violation if attempting to bypass validation.

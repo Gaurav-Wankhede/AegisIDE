@@ -10,6 +10,7 @@ _This workflow is defined canonically under `core/workflow/next.md`. IDEs such a
 Read scratchpad.json and kanban.json in parallel, execute implementation tasks, and update status in real-time while maintaining constitutional compliance.
 
 ## Constitutional Authority
+
 - **Article II**: Autonomous Decision Making - 0-98% autonomy execution
 - **Article III**: Context-Engineered Development Workflow - Continuous task chaining
 - **Article III-A**: Implementation Protocols - Real-time updates (Tier 1)

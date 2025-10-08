@@ -1,6 +1,6 @@
 {
   "name": "AegisIDE Constitutional Framework",
-  "version": "2.6.2",
+  "version": "2.8.4",
   "platform": "Continue.dev (VS Code/JetBrains Extension)",
   "autonomy": 94,
   "description": "Democratic governance framework achieving 94% autonomy through tri-branch system",
@@ -9,22 +9,22 @@
     {
       "name": "init",
       "description": "Initialize OR restore project",
-      "prompt": "Initialize project (new OR existing) → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint: blueprint.json, userflow.json, kanban.json, bugfix.json)"
+      "prompt": "Initialize project (new OR existing) → Auto-generates 7 essential memory-bank JSON schemas"
     },
     {
       "name": "next",
       "description": "Execute next task (auto-continues)",
-      "prompt": "Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues"
+      "prompt": "Execute next task → Auto-detects scratchpad OR kanban → Update Tier‑1 (scratchpad/kanban/activeContext) → Auto-continue"
     },
     {
       "name": "update",
-      "description": "Refresh all 13 files",
-      "prompt": "Refresh ALL 13 files with latest context"
+      "description": "Refresh 7 essential schemas",
+      "prompt": "Refresh 7 essential schemas (and any automation files if present) with schema validation"
     },
     {
       "name": "validate",
-      "description": "Check quality + blueprint",
-      "prompt": "Blueprint 6-pillar scoring + Language-specific tests"
+      "description": "Schema + linkage (+ language tests)",
+      "prompt": "Ajv schema + linkage validators (+ language-specific tests when present)"
     },
     {
       "name": "fix",

@@ -7,18 +7,20 @@ description: Provides comprehensive summary of memory bank status, tasks, progre
 _This workflow is defined canonically under `core/workflow/status.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/status.md`, so path references should be interpreted through that mount when executed inside the IDE._
 
 ## Purpose
-Provide comprehensive overview of project status by analyzing all 7 essential schemas, tasks, progress, and constitutional compliance with AegisKG integration.
+Provide comprehensive overview of project status by analyzing all 8 essential schemas, tasks, progress, and constitutional compliance with AegisKG integration.
 
 ## Constitutional Authority
+
+- **Article III**: Context-Engineered Development Workflow - 8-schema memory bank for status reporting
 - **Article II**: Autonomous Decision Making - Status monitoring
 - **Article VII**: Autonomous Operations - System health diagnostics
-- **Article XI**: Accountability and Transparency - Status reporting
+- **Article XI**: Mandatory AI Agent Compliance - Compliance metrics and scoring
 
 ## Workflow Sequence
 
-### Phase 1: 7-Schema Health Check (JSON Awareness)
+### Phase 1: 8-Schema Health Check (JSON Awareness)
 ```bash
-# Scan 7 essential schemas with attention allocation:
+# Scan 8 essential schemas with attention allocation:
 @mcp:filesystem → Read and analyze with priority:
 - scratchpad.json (30% attention - immediate priorities with MCP validation)
 - activeContext.json (25% attention - real-time execution state with session management)

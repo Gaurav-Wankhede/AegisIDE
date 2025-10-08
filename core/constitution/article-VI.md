@@ -13,9 +13,9 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Amendment Process
 1. **Propose Amendment**: Specific article/law with context analysis and real-time research
 2. **Tri-Branch Review**: Structured debate using context files and MCP evidence
-3. **Achieve >95% Consensus**: Tri-branch agreement required
+3. **Achieve >95% Consensus**: Tri-branch agreement required, following the process in **Article II**.
 4. **Chief Justice Validation**: Framework compliance check
-5. **Implementation**: Update files with context integration
+5. **Implementation**: Update files with context integration, as per the protocols in **Article III-A**.
 6. **Documentation**: Record in memory-bank JSON files
 
 ### Law Amendment Protocol (Autonomous)

@@ -10,8 +10,10 @@ _This workflow is defined canonically under `core/workflow/optimize.md`. IDEs su
 Find optimal algorithms and best practices using comprehensive MCP research, then optimize code for performance, maintainability, and efficiency.
 
 ## Constitutional Authority
+
+- **Article X**: Integration & Interoperability - MCP-driven research and cross-project learning
+- **Article II**: Autonomous Decision Making - >95% consensus for implementation
 - **Article VII**: Autonomous Operations - Performance optimization
-- **Article X**: Integration and Interoperability - Cross-project learning
 - **Article IV**: Fundamental Principles - Code quality standards
 
 ## Workflow Sequence

@@ -1,18 +1,20 @@
-# Core Universal Framework (v2.8.4)
+# Core Universal Framework (v2.8.5)
 
 This folder contains the **universal constitutional framework** that serves as the foundation for all platform-specific adaptations.
 
-## Latest Updates (v2.8.4)
-- **Schema Hardening**: `additionalProperties: false` applied to critical item objects across memory-bank schemas to block unknown keys.
-- **Shared `$defs` + `$ref`**: Proposal/task/milestone/governance ID patterns centralized and referenced in `kanban`, `progress`, and `roadmap` to prevent regex drift.
-- **Validators**: `scripts/validate-linkage.js` (referential integrity) and `scripts/validate-schemas.js` (Ajv) now standard; CI runs both.
-- **Performance**: JSON-first architecture continues to deliver 2.6x faster parsing with AegisKG integration.
+## Latest Updates (v2.8.5)
+- **8-Schema System**: Upgraded to 8-schema memory-bank structure with memory.json as 8th essential schema for persistent cross-session knowledge storage.
+- **Knowledge Graph**: Added memory.json schema with entities, relations, and observations structure for AegisKG knowledge graph integration.
+- **Helper Schemas**: Added comprehensive helper system in `core/schemas/helpers/` with `tool-usage-patterns.json`, `common-mistakes.json`, and `error-recovery.json`.
+- **Constitutional Integration**: All 16 articles fully interlinked with markdown references for cohesive navigation.
+- **Workflow Interlinking**: All 10 workflow files now reference relevant constitutional articles.
+- **Architecture Consistency**: Removed SQLite references, aligned all documentation with JSON-only architecture.
 
 ## Structure
 
 ```
 core/
-├── constitution/ (14 articles - Universal governance)
+├── constitution/ (16 articles - Universal governance)
 │   ├── article-I.md (Tri-branch governance)
 │   ├── article-II.md (Decision-making)
 │   ├── article-III.md (Workflow)
@@ -27,21 +29,23 @@ core/
 │   ├── article-XII.md (30-hour operation)
 │   ├── article-XIII.md (Judicial debugging)
 │   └── article-XIV.md (Blueprint & Autonomous Development)
-├── schemas/ (6 essential JSON schemas)
+├── schemas/ (8 essential JSON schemas + helpers)
 │   ├── activeContext.schema.json
 │   ├── scratchpad.schema.json
 │   ├── mistakes.schema.json
 │   ├── systemPatterns.schema.json
 │   ├── progress.schema.json
-│   └── roadmap.schema.json
-├── visualize/ (Real-time dashboard - NEW in 2.7.0)
+│   ├── roadmap.schema.json
+│   ├── kanban.schema.json
+│   └── memory.schema.json
+│   └── helpers/
+│       ├── tool-usage-patterns.json
+│       ├── common-mistakes.json
+│       └── error-recovery.json
+├── visualize/ (Real-time dashboard)
 │   ├── dashboard.html (Single-file HTML dashboard)
 │   ├── README.md (Complete feature documentation)
 │   └── USAGE.md (Quick start guide)
-├── blueprint.json (6-pillar validation schema)
-├── userflow.json (User journey schema)
-├── kanban.json (Task management schema)
-├── bugfix.json (Bug tracking schema)
 └── README.md (this file)
 ```
 
@@ -49,28 +53,28 @@ core/
 
 ## Constitution Files
 
-All 13 constitutional articles follow the **12KB optimal limit** for cross-platform compatibility.
+All 16 constitutional articles follow the **12KB optimal limit** for cross-platform compatibility.
 
-### Current Sizes (Post v2.9.0 Optimization)
+### Current Sizes (Post v2.8.4)
 
 | Article | Size | Status | Recent Changes |
 |---------|------|--------|-----------------|
-| Article I | ~2.5KB | ✅ Optimal | Tri-branch governance |
-| Article II | ~2.7KB | ✅ Optimal | Decision-making |
-| Article III | **4.3KB** | ✅ **Optimized** | **Workflow foundation** |
-| Article III-A | **4.5KB** | ✅ **Optimized** | **Implementation protocols** |
-| Article IV | ~3.3KB | ✅ Optimal | Quality standards |
-| Article V | ~4.5KB | ✅ Optimal | Team communication |
-| Article VI | ~2.5KB | ✅ Optimal | Amendments |
-| Article VII | ~1.5KB | ✅ Optimal | Autonomous authority |
-| Article VIII | ~3.2KB | ✅ Optimal | Terminal safety |
-| Article IX | ~1.5KB | ✅ Optimal | Security |
-| Article X | ~3.1KB | ✅ Optimal | MCP integration |
-| Article XI | ~1.2KB | ✅ Optimal | Compliance |
-| Article XII | ~5.1KB | ✅ Optimal | 30-hour operation |
-| Article XIII | ~3.8KB | ✅ Optimal | Judicial debugging |
-| Article XIV | ~6.8KB | ✅ Optimal | Blueprint development |
-| **Total** | **~50KB** | ✅ **Production Ready** | **6-schema optimized** |
+| Article I | ~2.5KB | Optimal | Tri-branch governance |
+| Article II | ~2.7KB | Optimal | Decision-making |
+| Article III | **4.3KB** | **Optimized** | **Workflow foundation** |
+| Article III-A | **4.5KB** | **Optimized** | **Implementation protocols** |
+| Article IV | ~3.3KB | Optimal | Quality standards |
+| Article V | ~4.5KB | Optimal | Team communication |
+| Article VI | ~2.5KB | Optimal | Amendments |
+| Article VII | ~1.5KB | Optimal | Autonomous authority |
+| Article VIII | ~3.2KB | Optimal | Terminal safety |
+| Article IX | ~1.5KB | Optimal | Security |
+| Article X | ~3.1KB | Optimal | MCP integration |
+| Article XI | ~1.2KB | Optimal | Compliance |
+| Article XII | ~5.1KB | Optimal | 30-hour operation |
+| Article XIII | ~3.8KB | Optimal | Judicial debugging |
+| Article XIV | ~6.8KB | Optimal | Blueprint development |
+| **Total** | **~58KB** | **Production Ready** | **8-schema optimized** |
 
 ## Platform Adaptations
 
@@ -95,67 +99,35 @@ Each platform adapts this core framework based on their file size limits:
 
 1. **User provides project context**: Describe your project requirements, features, tech stack
 2. **User runs command**: `/init`
-3. **AI autonomously generates**: All 8 memory-bank files + roadmap based on understanding your project
+3. **AI autonomously generates**: 8 essential memory-bank JSON files based on your project context
 4. **Continuous updates**: Files are autonomously updated throughout project lifecycle
 
-### Auto-Generated Files (6 Essential JSON Schemas)
+### Auto-Generated Files (8 Essential JSON Schemas)
 
 1. **scratchpad.json** - Immediate priorities with MCP validation state (30% attention)
 2. **activeContext.json** - Real-time execution state with session management (25% attention)
 3. **mistakes.json** - Error patterns with Context7 source prioritization (20% attention)
 4. **systemPatterns.json** - Architecture patterns with AegisKG networks (10% attention)
 5. **progress.json** - Development milestones with constitutional metrics (10% attention)
-6. **roadmap.json** - Strategic planning with SQLite session alignment (5% attention)
+6. **roadmap.json** - Strategic planning with strategic alignment (5% attention)
+7. **kanban.json** - Task workflow and governance signals (columns, status, consensus)
+8. **memory.json** - Knowledge graph for persistent cross-session memory
 
 **Performance Features**:
 - 2.6x faster JSON parsing (≤10KB per file)
 - 65% memory optimization with structured data
 - AegisKG local knowledge graph integration
-- SQLite session coordination for multi-IDE support
-- Context7 source prioritization for anti-hallucination
 
-### Blueprint JSON Files (4 files - Auto-Generated)
+## Workflows (Supported)
 
-**NEW in v2.7.0**: Blueprint & Autonomous Development System with 6-pillar validation
-
-1. **blueprint.json** - Project validation with parliamentary approval
-   - 6-pillar scoring (Problem Definition, Solution Feasibility, Market Validation, Technical Feasibility, Scalability, Monetization)
-   - Tech stack recommendations with Free Tier First approach
-   - Pricing model tiers (free, premium, enterprise)
-   - Risk assessment (technical, business, market risks + mitigation strategies)
-   - Revision history and optimization tracking
-   - Parliamentary consensus matrix (PM, Tech Minister, Innovation Shadow, etc.)
-
-2. **userflow.json** - User journey mapping
-   - Complete user flows with persona mapping
-   - Flow types (user_flow, admin_flow, api_flow, background_task)
-   - Critical path identification
-   - Framework-specific validation flags
-   - Accessibility validation tracking
-   - Task linkage for implementation
-
-3. **kanban.json** - Task management with parliamentary governance
-   - Tasks organized by workflow columns (backlog, todo, in_progress, done, approved)
-   - Dependencies and complexity estimates
-   - Parliamentary consensus scores per task
-   - Framework validation status (pending, passed, failed)
-   - Bug detection and fix tracking
-   - Automation rules and WIP limits
-
-4. **bugfix.json** - Continuous bug monitoring
-   - P0-P3 bug classification (Critical → Low)
-   - Auto-fix attempt tracking
-   - MCP context7 usage documentation
-   - Validation checkpoints (pre_implementation, during, post_implementation)
-   - Related constitutional article references
-   - Framework detection for targeted fixes
-   - Fix queue with priority-based ordering
-
-**Generation Commands**:
-- `/blueprint create "<project idea>"` - Auto-generates all 4 JSON files with validation
-- `/adapt existing project` - Reverse-engineers blueprint from existing codebase
-
-**Integration**: All JSON files integrate with memory-bank for continuous autonomous workflow
+- `/init` — Initialize/repair memory bank and schemas
+- `/next` — Execute next tasks with governance gate and tiered updates
+- `/validate` — Run Ajv + linkage validator (+ language checks when present)
+- `/fix` — HALT–FIX–VALIDATE protocol with Context7 docs
+- `/update` — Refresh Tier‑2/3 context (roadmap, dashboards)
+- `/status` — Summarize tasks, bugs, metrics, consensus
+- `/optimize` — Propose improvements with AegisKG context
+- `/oversight-checks-and-balances` — Democratic challenge and consensus
 
 ### Example Workflow
 
@@ -167,13 +139,14 @@ Features: LinkedIn scraping, skill matching, database storage."
 # Step 2: Initialize memory bank
 /init
 
-# Step 3: AI autonomously creates 6 essential schemas based on your description
+# Step 3: AI autonomously creates 7 essential schemas based on your description
 # - scratchpad.json: Initial tasks with MCP validation
 # - activeContext.json: Current execution state
 # - mistakes.json: Error patterns with Context7 prioritization
 # - systemPatterns.json: Architecture patterns with AegisKG
 # - progress.json: Milestones with constitutional metrics
 # - roadmap.json: Strategic planning with SQLite alignment
+# - kanban.json: Task workflow and governance signals
 
 # Step 4: Start development - files auto-update
 /next
@@ -209,7 +182,7 @@ When creating a new platform adaptation:
 2. Copy platform-specific files to your project
 3. Describe your project to the AI
 4. Run `/init`
-5. AI autonomously generates 6 essential JSON schemas with AegisKG integration
+5. AI autonomously generates 8 essential JSON schemas with AegisKG integration
 6. Start development with `/next` (continuous autonomous execution)
 
 **Key Points**:

@@ -1,9 +1,9 @@
 # AegisIDE JSON Schema Library
 
 ## Overview
-Optimized JSON schema definitions for AegisIDE's **7 essential memory-bank files** with AegisKG knowledge graph integration, ensuring 100% data integrity and 2.6x faster AI processing.
+Optimized JSON schema definitions for AegisIDE's **8 essential memory-bank files** and helper schemas, with AegisKG knowledge graph integration, ensuring 100% data integrity and 2.6x faster AI processing.
 
-## Schema Files (7 Essential)
+## Schema Files (8 Essential + Helpers)
 
 ### AegisKG-Enhanced Memory Bank Files
 1. **activeContext.schema.json** - Real-time execution state with session management and MCP integration
@@ -14,6 +14,12 @@ Optimized JSON schema definitions for AegisIDE's **7 essential memory-bank files
    - Includes `governance_decisions[]` for persisted parliamentary decisions (consensus score, votes, veto, rationale, links, approved, timestamp)
 6. **progress.schema.json** - Development milestones with constitutional metrics and AegisKG progress correlation
 7. **roadmap.schema.json** - Strategic planning with AegisKG strategic knowledge graphs
+8. **memory.schema.json** - Knowledge graph for persistent cross-session memory (entities, relations, observations)
+
+### Helper Schemas
+- **tool-usage-patterns.json**: MCP-enhanced tool formats and usage patterns.
+- **common-mistakes.json**: Known LLM mistakes and error patterns to prevent recurrence.
+- **error-recovery.json**: Recovery strategies and remediation protocols for common failures.
 
 ## Schema Validation
 
@@ -121,7 +127,7 @@ All schemas follow Constitutional Amendment III-A:
 
 ### File Size Limits
 - Individual files: ≤10KB (JSON binary)
-- Total memory-bank: ≤70KB (7 files × 10KB)
+- Total memory-bank: ≤80KB (8 files × 10KB)
 - Automatic cleanup at thresholds
 - 59% reduction from previous 17-file architecture
 
@@ -147,7 +153,7 @@ node scripts/migrate-memory-bank.js
 # Verify all schemas
 node scripts/validate-schemas.js
 
-# Expected output: ✅ All 7 essential schemas valid
+# Expected output: All 8 essential schemas valid
 ```
 
 ## Schema Updates
@@ -198,4 +204,4 @@ If JSON parsing seems slow:
 **Archon Reference**: https://github.com/coleam00/Archon  
 **Constitutional Authority**: Article VI Amendment III-A  
 **Effective Date**: 2025-10-06T19:23:00+05:30  
-**Schema Consolidation**: Reduced from 17 to 7 essential files (59% optimization)
+**Schema Consolidation**: Reduced from 17 to 8 essential files

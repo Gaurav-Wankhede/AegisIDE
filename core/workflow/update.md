@@ -2,17 +2,19 @@
 description: Fallback command to manually update memory bank when real-time updates fail
 ---
 
-# /update - 7-Schema Manual Update (Fallback)
+# /update - 8-Schema Manual Update (Fallback)
 
 _This workflow is defined canonically under `core/workflow/update.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/update.md`, so path references should be interpreted through that mount when executed inside the IDE._
 
 ## Purpose
-Manually update all 7 essential schemas when autonomous real-time updates fail or are missed. This is a fallback mechanism - real-time updates should happen automatically during /next execution.
+Manually update all 8 essential schemas when autonomous real-time updates fail or are missed. This is a fallback mechanism - real-time updates should happen automatically during /next execution.
 
 ## Constitutional Authority
+
 - **Article III-A**: Implementation Protocols - Real-time update enforcement
 - **Article VII**: Autonomous Operations - Self-management and recovery
 - **Article II**: Autonomous Decision Making - Context maintenance
+- **Article XV**: Tool Usage & Error Prevention - Helper schema integration
 
 ## When to Use
 ```bash

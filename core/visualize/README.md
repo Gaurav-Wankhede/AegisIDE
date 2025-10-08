@@ -5,12 +5,12 @@
 ```bash
 # From project root
 cd .windsurf/memory-bank  # or .cursor/memory-bank for Cursor IDE
-python3 -m http.server 8080
+python3 -m http.server 7777
 
-# Open: http://localhost:8080/visualize/dashboard.html
+# Open: http://localhost:7777/visualize/dashboard.html
 ```
 
-## Dashboard Features (v2.8.0)
+## Dashboard Features (v2.8.5)
 
 ### Real-Time AI Memory Bank Frontend
 
@@ -32,34 +32,23 @@ python3 -m http.server 8080
 - Constitutional compliance monitoring
 - Zero-interruption AI agent tracking
 
-### Visualized JSON Files (16 Total)
+### Visualized JSON Files (8 Total)
 
-**Core Context**:
 - `activeContext.json` - Current implementation status
 - `scratchpad.json` - Priority task queue
 - `mistakes.json` - Error patterns and resolutions
 - `progress.json` - Milestone tracking
-- `projectbrief.json` - Project scope
 - `systemPatterns.json` - Architecture patterns
-- `techContext.json` - Technical decisions
-- `productContext.json` - Business alignment
-
-**Automation**:
 - `roadmap.json` - Strategic planning
 - `kanban.json` - Task workflow
-- `blueprint.json` - Project validation
-- `userflow.json` - User journeys
-- `bugfix.json` - Bug tracking
-- `deployment.json` - Deploy history
-- `monitoring.json` - System health
-- `dependencies.json` - Dependency management
+- `memory.json` - Knowledge Graph
 
 ## Constitutional Compliance
 
 Per Articles I-XIV of the AegisIDE Constitutional Framework (max 12,000 characters each):
 
 **Article III - Context-Engineered Development**:
-- Post-task JSON updates (all 16 files)
+- 8-schema architecture with tiered updates
 - Event-driven context management
 - Real-time dashboard synchronization
 
@@ -78,34 +67,13 @@ Per Articles I-XIV of the AegisIDE Constitutional Framework (max 12,000 characte
 - Integration test results tracking
 - Validation status visualization
 
-## Dashboard Components
+## Dashboard Sections (Minimal)
 
-### 1. Phase Overview Cards
-- Current phase and completion percentage
-- Pending and completed task counters
-- Progress bar with real-time updates
-
-### 2. Kanban Board
-- **TODO**: 4 tasks with priority badges (HIGH: Redis mock, env config)
-- **In Progress**: Empty (ready for next task)
-- **Done**: 5 completed tasks with timestamps
-
-### 3. Active Issues
-- Redis connection bug (MEDIUM severity)
-- Root cause: Test environment lacks Redis instance
-- Proposed fix: MockRedisStore implementation
-- Estimated effort: 8 hours
-
-### 4. Events Timeline
-- Integration tests completed (2/4 passed)
-- Rate limiting middleware operational
-- Gemini API client implemented
-- AI integration layer functional
-
-### 5. Mermaid Workflow
-- Visual task flow diagram
-- Real-time task counts per stage
-- Color-coded progress stages
+- **Overview Cards**: quick stats (Active Tasks, Completed, Issues, Schema Health)
+- **Current Activity**: `activeContext.json`, `scratchpad.json`
+- **Task Management**: `kanban.json`
+- **Progress & Strategy**: `progress.json`, `roadmap.json`
+- **Quality & Patterns**: `mistakes.json`, `systemPatterns.json`
 
 ## Real-Time Synchronization
 
@@ -116,21 +84,17 @@ The dashboard automatically detects JSON file changes via:
 4. **State preservation** - Maintains user interactions and view state
 
 **AI Agent Integration**:
-- When AI completes a task → `kanban.json` updated → Dashboard shows in "Done"
-- When bug detected → `bugfix.json` updated → Appears in "Active Issues"
-- When tests run → `activeContext.json` updated → Event timeline refreshed
-- When progress made → `progress.json` updated → Phase cards recalculated
+- When AI completes a task → `kanban.json` updated → Dashboard shows in Task Management
+- When progress made → `progress.json`/`roadmap.json` updated → Overview recalculated
 
 ## Technical Stack
 
 - **Tailwind CSS** (CDN) - Utility-first styling
-- **Mermaid.js v10** (CDN) - Workflow diagrams
-- **Chart.js v4.4** (CDN) - Data visualization
 - **Vanilla JavaScript** - Zero dependencies
 
 ## Performance
 
-- Load time: <300ms for all 16 JSON files (optimized)
+- Load time: <250ms for all 8 JSON files (optimized)
 - Memory usage: <40MB browser memory (reduced)
 - Refresh rate: 5 minutes (performance optimized)
 - File size limit: ≤10KB per JSON (constitutional requirement)
@@ -164,24 +128,7 @@ Edit `dashboard.html` to:
 
 ## Project-Specific Insights
 
-### Phase 13 Status (as of 2025-10-04 19:36:00+05:30)
-- **Progress**: 95% complete
-- **Priority**: MEDIUM (Redis mock implementation)
-- **Timeline**: Oct 3-10, 2025
-- **Team Focus**: 70% AI integration, 20% testing, 10% maintenance
-
-### Completed Milestones
-1. ✅ Gemini API Client (30s timeout, error handling)
-2. ✅ AI Integration Layer (MermaidAIIntegration)
-3. ✅ Fallback Strategy (graceful degradation)
-4. ✅ Rate Limiting Middleware (Redis-backed)
-5. ✅ Integration Tests (2/4 passing)
-
-### Next Steps
-1. 🔴 Redis Mock Implementation (HIGH - 8h)
-2. 🔴 Environment Configuration Docs (HIGH - 4h)
-3. 🟡 Production Validation (MEDIUM - 6h)
-4. 🟢 Enhanced Monitoring (LOW - 8h)
+> Project-specific examples removed to keep docs generic and minimal.
 
 ## Integration with Development Workflow
 
@@ -195,9 +142,7 @@ Edit `dashboard.html` to:
 **Constitutional Framework Alignment**:
 - Real-time visibility into autonomous operations
 - Transparent tri-branch decision tracking
-- Immediate error detection and resolution
 - Continuous progress monitoring
-- Quality assurance validation status
 
 ## License
 

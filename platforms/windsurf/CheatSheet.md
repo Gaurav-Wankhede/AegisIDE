@@ -18,7 +18,7 @@
   Note: If extended automation files exist (e.g., deployment/monitoring/dependencies), `update` also refreshes them, but the 7 essential schemas remain the canonical core.
 
 **Quality**:
-- **`validate`** → Blueprint 6-pillar + Language tests → Report compliance
+- **`validate`** → Ajv schema + linkage validators (+ language tests when present) → Report compliance
 - **`fix`** → HALT-FIX-VALIDATE loop → Auto-fix errors → Update bugfix.json
 
 **Monitoring**:

@@ -81,6 +81,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Command Validation Protocol
 
+This protocol is subject to the compliance standards in **Article XI** and the validation requirements in **Article XIII**.
+
 **Execution Flow**:
 1. Classify command: safe-auto / approval-needed / forbidden
 2. If safe-auto → EXECUTE IMMEDIATELY (no asking)

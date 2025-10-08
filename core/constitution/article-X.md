@@ -20,6 +20,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Comprehensive MCP Integration Framework (9 Servers - 2025)
 
+The mandatory auto-activation triggers for these MCPs are defined in `global_rules.md`.
+
 **Real-Time Research & Documentation Cluster**:
 - **@mcp:context7**: Official documentation lookup (auto-activation on ANY error)
 - **@mcp:fetch**: Web content retrieval with intelligent caching
@@ -92,6 +94,8 @@ Error Level 4 (Security/Authentication Failures):
 - **Audit Integration**: Platform-native audit logging with centralized aggregation
 
 ### Multi-Language Integration Architecture
+
+This architecture is validated by the multi-language standards in **Article XIII** and **Article IV**.
 
 **Comprehensive Language Support Matrix**:
 
@@ -198,6 +202,8 @@ async fn contract_health() {
 - **Alert Management**: Intelligent alerting with escalation policies
 
 ### Integration Governance and Compliance
+
+All integration patterns and decisions are stored in the 8-schema memory-bank system, as defined in **Article III**.
 
 **Integration Standards Enforcement**:
 - **EMD Compliance**: All integration code follows ≤10,000 character file limits

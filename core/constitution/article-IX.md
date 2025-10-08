@@ -152,12 +152,14 @@ Judicial Branch (Oversight Authority):
 - **Amendment Process**: Security framework updates with consensus requirements
 - **Performance Standards**: Security effectiveness metrics with improvement mandates
 
-**Integration with Memory-Bank System**:
-- **7 Essential Schemas**: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`
+**Integration with 8-Schema Memory-Bank System**
+
+As defined in **Article III**, the memory-bank is the central repository for all operational context, including security.
+- **8 Essential Schemas**: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`
 - **Security Context Storage**: Security patterns and incidents in `mistakes.json`
 - **Access Control Documentation**: Permission matrices in `systemPatterns.json`
 - **Security Metrics Tracking**: Performance indicators in `progress.json`
 - **Operational Context**: Task workflow and approvals in `kanban.json`; priorities in `scratchpad.json`; strategic alignment in `roadmap.json`
-- **Risk Assessment History**: Threat evaluations captured in `systemPatterns.json`
+- **Risk Assessment History**: Threat evaluations captured in `systemPatterns.json` and `memory.json`
 - **Compliance Status**: Framework adherence scores in `activeContext.json`
 

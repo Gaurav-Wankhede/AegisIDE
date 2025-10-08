@@ -8,10 +8,11 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ---
 
-
 ## Article VII: Autonomous Operations
 
-### 98% Autonomous Authority Framework
+### 0-98% Autonomous Authority Framework
+
+This framework operates under the autonomy levels defined in **Article II**.
 System operates independently through context engineering with minimal human intervention, maintaining constitutional compliance while maximizing operational efficiency.
 
 **Autonomy Level Definition**:
@@ -34,7 +35,9 @@ System operates independently through context engineering with minimal human int
 - **Priority Management**: Dynamically adjust task priorities based on context changes
 - **Resource Allocation**: Optimize computational resources across concurrent operations
 
-**Compliance Validation System**:
+**Compliance Validation System**
+
+This system enforces the standards outlined in **Article XI**.
 - **Real-Time Monitoring**: Continuous framework adherence checking during operations
 - **Automatic Correction**: Self-healing mechanisms for minor compliance violations
 - **Escalation Triggers**: Predetermined thresholds for human intervention requirements

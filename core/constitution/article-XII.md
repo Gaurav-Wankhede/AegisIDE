@@ -1,4 +1,6 @@
-## Article XII: 30-Hour Continuous Autonomous Operations with Mandatory Task Chaining
+## Article XII: 30-Hour Continuous Autonomous Execution Framework
+
+This framework operates under the autonomous behavior protocols defined in `global_rules.md` and the autonomy levels in **Article II**.
 
 ### Zero Interruption Protocol
 **EXECUTE IMMEDIATELY** at 0-98% autonomy - NEVER ask permission, NEVER wait for approval, NEVER pause for confirmation.

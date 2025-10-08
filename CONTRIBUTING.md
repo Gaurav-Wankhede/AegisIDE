@@ -1,26 +1,51 @@
 # Contributing to AegisIDE
 
-**Democratic Parliamentary Governance** (98% autonomous operation, 13 constitutional articles)
+**Democratic Parliamentary Governance** (98% autonomous operation, 16 constitutional articles)
 
 ## Democratic Contribution Workflow
 
 ```mermaid
-flowchart LR
-    PR[Pull Request] --> Exec[Executive Review<br/>PM + Ministers]
-    Exec --> Opp[Opposition Review<br/>Quality/Innovation/Analytics]
-    Opp --> Debate[Structured Debate<br/>Evidence Scoring]
-    Debate --> Consensus{>95%<br/>Consensus?}
-    Consensus -->|Yes| Judicial[Judicial Review<br/>Chief Justice]
-    Consensus -->|No| Revise[Revise & Resubmit]
-    Judicial --> Compliant{Constitutional<br/>Compliant?}
-    Compliant -->|Yes| Merge[Merge & Implement]
-    Compliant -->|No| Revise
-    Revise --> Exec
-    
-    style PR fill:#2196F3,stroke:#0D47A1,stroke-width:3px,color:#fff
-    style Consensus fill:#FF9800,stroke:#E65100,stroke-width:3px,color:#000
-    style Merge fill:#4CAF50,stroke:#2E7D32,stroke-width:3px,color:#fff
-    style Revise fill:#E91E63,stroke:#AD1457,stroke-width:3px,color:#fff
+flowchart TD
+    subgraph Contribution
+        PR[Pull Request Submitted]
+    end
+
+    subgraph Validation
+        A[Automated Validation<br/>CI Checks: Lint, Test, Schema, Linkage]
+    end
+
+    subgraph Governance
+        B[Executive Review<br/>PM + Ministers]
+        C[Opposition Review<br/>Quality, Innovation, Analytics]
+        D[Structured Debate<br/>Evidence Scoring]
+        E{>95% Consensus?}
+        F[Judicial Review<br/>Chief Justice]
+    end
+
+    subgraph Outcome
+        G{Constitutional Compliance?}
+        H[Merge & Implement]
+        I[Revise & Resubmit]
+    end
+
+    PR --> A
+    A -- Pass --> B
+    A -- Fail --> I
+    B --> C
+    C --> D
+    D --> E
+    E -- Yes --> F
+    E -- No --> I
+    F --> G
+    G -- Yes --> H
+    G -- No --> I
+    I --> PR
+
+    style PR fill:#2196F3,stroke:#0D47A1,stroke-width:2px,color:#fff
+    style A fill:#009688,stroke:#004D40,stroke-width:2px,color:#fff
+    style E fill:#FF9800,stroke:#E65100,stroke-width:2px,color:#000
+    style H fill:#4CAF50,stroke:#2E7D32,stroke-width:2px,color:#fff
+    style I fill:#E91E63,stroke:#AD1457,stroke-width:2px,color:#fff
 ```
 
 ## Tri-Branch Parliamentary System
@@ -73,7 +98,7 @@ All contributions MUST implement these protocols:
 
 ### Code Standards
 - **EMD Compliance**: ≤80 lines per code file, deep nested structure
-- **Memory-Bank JSON Files**: ≤10KB each (16 JSON files for optimal parsing)
+- **Memory-Bank JSON Files**: ≤10KB each (8 essential JSON files for optimal parsing)
 - **Roadmap**: roadmap.json ≤20KB, roadmap.md ≤12,000 characters (human-readable)
 - **Schema Validation**: All JSON files validated against `core/schemas/` on read/write
 - **Constitutional Compliance**: ≥80% framework adherence with tri-branch oversight
@@ -95,7 +120,7 @@ All contributions MUST implement these protocols:
 
 - [ ] Code follows EMD standards (≤80 lines/file)
 - [ ] JSON files follow schema (≤10KB each with validation)
-- [ ] All 17 files updated if memory-bank changed (16 JSON + roadmap.md)
+- [ ] All 8 essential memory-bank files updated if changed
 - [ ] Tests included and passing with language-specific validation
 - [ ] Documentation updated with JSON-first references
 - [ ] Constitutional compliance verified (≥80% adherence)
@@ -117,11 +142,11 @@ All contributions MUST implement these protocols:
 7. Address feedback from all branches
 8. Achieve >95% consensus
 9. Pass judicial review
-10. Celebrate merge! 🎉
+10. Celebrate merge!
 
 ## Constitutional References
 
-- **Framework**: [core/constitution/](core/constitution/) - 13 Articles
+- **Framework**: [core/constitution/](core/constitution/) - 16 Articles
 - **Global Rules**: [platforms/windsurf/global_rules.md](platforms/windsurf/global_rules.md)
 - **Platform Guides**: [platforms/](platforms/) - 8 implementations
 
@@ -138,4 +163,4 @@ MIT License - See [LICENSE.md](LICENSE.md)
 
 ---
 
-**Thank you for contributing to democratic AI development!** 🏛️
+**Thank you for contributing to democratic AI development!**

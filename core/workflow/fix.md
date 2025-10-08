@@ -10,6 +10,7 @@ _This workflow is defined canonically under `core/workflow/fix.md`. IDEs such as
 Opposition-led error resolution through democratic debate and tri-branch voting process, ensuring quality through parliamentary oversight.
 
 ## Constitutional Authority
+
 - **Article V**: Team Communication - Opposition challenge protocols
 - **Article XIII**: Judicial Debugging Authority - Zero tolerance enforcement
 - **Article II**: Autonomous Decision Making - Consensus scoring

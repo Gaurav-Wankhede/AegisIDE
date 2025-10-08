@@ -1,6 +1,6 @@
 # Security Policy
 
-**AegisIDE v2.7.0** - Constitutional Framework Security with JSON-First Architecture
+**AegisIDE v2.8.5** - Constitutional Framework Security with Knowledge Graph Integration
 
 ## Reporting a Vulnerability
 
@@ -24,10 +24,9 @@ Please include:
 
 | Version | Supported | Status |
 |---------|-----------|--------|
-| 2.7.x   | ✅ Yes    | Current - JSON Architecture + Schema Validation |
-| 2.6.x   | ✅ Yes    | Supported - Security fixes |
-| 2.5.x   | ⚠️ Limited | Critical fixes only |
-| < 2.5   | ❌ No     | Upgrade required |
+| 2.8.x   | Yes    | Current - Knowledge Graph Integration |
+| 2.7.x   | Yes    | Supported - Security fixes |
+| < 2.7   | No     | Upgrade required |
 
 ## Security Features
 
@@ -36,12 +35,12 @@ Please include:
 - **Cross-Platform Safety**: Linux/macOS/Windows command validation
 - **Forbidden Operations**: Blocked destructive commands (rm -rf /, format, etc.)
 - **Audit Trails**: All operations logged in systemPatterns.json with schema validation
-- **JSON Schema Validation**: All 16 JSON files validated against core/schemas/ on every read/write
+- **JSON Schema Validation**: All 8 essential JSON files validated against core/schemas/ on every read/write
 
 ### Framework Security
 - **Tri-Branch Governance**: Democratic oversight with >95% consensus requirements
 - **Judicial Review**: Chief Justice authority for security-critical decisions
-- **Memory-Bank Isolation**: Project-specific context boundaries with 17-file structure
+- **Memory-Bank Isolation**: Project-specific context boundaries with 8-file structure
 - **JSON Data Integrity**: Schema validation prevents corruption and injection attacks
 - **MCP Security**: Validated integration with 9 external MCP servers
 - **File Size Limits**: ≤10KB per JSON file prevents context overflow attacks
@@ -78,4 +77,4 @@ We appreciate responsible disclosure and will:
 
 ---
 
-**Last Updated**: 2025-10-04 | **Version**: 2.7.0 | **Status**: Active Security Support ✅
+**Last Updated**: 2025-10-08 | **Version**: 2.8.5 | **Status**: Active Security Support

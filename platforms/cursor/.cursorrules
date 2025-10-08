@@ -1,4 +1,4 @@
-# AegisIDE Constitutional Framework for Cursor v2.6.2
+# AegisIDE Constitutional Framework for Cursor v2.8.4
 # Autonomous AI Development System - 96% Autonomy
 # Session Resume + 8 Unified Commands + 9 MCP Servers
 
@@ -13,7 +13,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 # Global Rules: Supreme Autonomous Framework
 
 **FRAMEWORK SUPREMACY**: Constitution + Laws + Memory-Bank as SUPREME LAW
-**Constitutional Authority**: `.cursor/rules/constitution/` contains Articles I-XIII
+**Constitutional Authority**: `.cursor/rules/constitution/` contains Articles I–XIV
 **Autonomy Level**: 96% (0-96=AUTO, 97-100=Human)
 **CRITICAL**: At 0-96% autonomy, NEVER ASK PERMISSION, EXECUTE IMMEDIATELY
 
@@ -23,7 +23,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 1. Auto-read scratchpad.md (check for incomplete tasks)
 2. If tasks found with `[ ]` status → EXECUTE IMMEDIATELY WITHOUT ASKING
 3. Continue to next task automatically until scratchpad empty
-4. Update all 9 memory-bank files after each task
+4. Update 7 essential schemas after each task (Tier‑1), apply Tier‑2 periodically
 5. NEVER stop after one task at 0-96% autonomy
 
 **Session Detection**: If first message OR `what next` command → Auto-scan scratchpad and execute
@@ -144,12 +144,12 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Cursor-Specific Paths
 **Global Rules**: Cursor Settings → Rules for AI (project-level)
 **Constitution**: `.cursor/rules/constitution/` (13 articles)
-**Memory Bank**: `.cursor/memory-bank/` (8 files ≤100 lines)
+**Memory Bank**: `.cursor/memory-bank/` (7 essential JSON files ≤100 lines)
 
 ### Constitutional Articles (Always On)
 **Article I** - Tri-branch governance (Executive/Legislative/Judicial)
 **Article II** - Context-weighted consensus, autonomous commands
-**Article III** - Pre/post protocols, update ALL 9 files
+**Article III** - 7‑Schema tiered updates (Tier‑1 every task, Tier‑2 periodic)
 **Article IV** - EMD (≤80 lines), quality standards
 **Article V** - Team communication patterns
 **Article VI** - Amendment process, law updates
@@ -189,25 +189,21 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Platform**: Linux (bash), Windows (PowerShell), macOS (zsh)
 
-### Memory-Bank (8 Files ≤100 Lines)
-**scratchpad.md**: Next tasks (AUTO-SCANNED EVERY RESPONSE)
-**activeContext.md**: Current sprint (session continuity state)
-**mistakes.md**, **progress.md**, **systemPatterns.md**, **techContext.md**, **productContext.md**, **projectbrief.md**
+### Memory-Bank (7 Essential JSON Files ≤100 Lines)
+`activeContext.json`, `scratchpad.json`, `mistakes.json`, `progress.json`, `systemPatterns.json`, `roadmap.json`, `kanban.json`
 
-**Strategic**: roadmap/roadmap.md (SUPREME authority)
-
-## Core Commands (v2.6.2 - Unified)
-**`init`**: Initialize project (new OR existing) → Auto-generates ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)
-**`next`**: Execute next task → Auto-detects scratchpad OR kanban → Validates → Updates ALL files → Auto-continues
-**`update`**: Refresh ALL 13 files with latest context
-**`validate`**: Blueprint 6-pillar scoring + Language-specific tests
+## Core Commands (v2.8.4)
+**`init`**: Initialize project (new OR existing) → Auto-generates 7 essential JSON schemas
+**`next`**: Execute next task → Update Tier‑1 (3 files) → Auto-continue
+**`update`**: Refresh 7 essential schemas (and any automation files if present) with schema validation
+**`validate`**: Ajv schema + linkage validators (+ language tests when present)
 **`fix`**: HALT-FIX-VALIDATE loop for all errors/warnings
 **`status`**: Complete progress report (tasks, bugs, metrics, consensus)
 **`optimize`**: Analyze patterns → Propose improvements
 **`health`**: Monitor attention budget, context rot, file integrity
 
-## Session Resume Protocol (v2.6.2)
-**Existing Projects**: AI auto-scans `.windsurf/memory-bank/`, loads 13 files (8 .md + 4 .json + roadmap), resumes automatically. **Just type: `next`**
+## Session Resume Protocol (v2.8.4)
+**Existing Projects**: AI auto-scans `.cursor/memory-bank/`, validates and loads the 7 essential schemas, resumes automatically. **Just type: `next`**
 
 **Zero Manual Input**: Existing projects with memory-bank just open IDE → Auto-resumes
 
@@ -216,7 +212,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 EVERY RESPONSE:
 1. Auto-scan scratchpad.md OR kanban.json for tasks
 2. If found → EXECUTE IMMEDIATELY (no asking)
-3. Update ALL 17 files (8 .md + 4 .json + roadmap + 4 blueprint)
+3. Update 7 essential schemas (Tier‑1; Tier‑2 when due)
 4. Load next task automatically
 5. EXECUTE IMMEDIATELY (no asking)
 6. Repeat until tasks empty

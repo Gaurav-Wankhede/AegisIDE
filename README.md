@@ -1,5 +1,5 @@
-# AegisIDE 🛡️Constitutional Framework for Autonomous AI Development
-> **Democratic Governance** achieving **92-98% Autonomy** across 8 IDE platforms
+# AegisIDE Constitutional Framework for Autonomous AI Development
+> Democratic Governance achieving 92-98% Autonomy across 8 IDE platforms
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 
@@ -11,7 +11,7 @@ Use these quick links to navigate the project documentation:
 - **Constitution (Articles I–XIV)**: `core/constitution/`
 - **Workflows (Slash-Commands)**: `core/workflow/`
   - `/init`, `/next`, `/fix`, `/validate`, `/update`, `/status`, `/optimize`, `/oversight-checks-and-balances`
-- **Schemas (7 Essentials + Kanban)**: `core/schemas/README.md`
+- **Schemas (8 Essential Schemas)**: `core/schemas/README.md`
   - Quick links:
     - `core/schemas/activeContext.schema.json`
     - `core/schemas/scratchpad.schema.json`
@@ -20,6 +20,8 @@ Use these quick links to navigate the project documentation:
     - `core/schemas/systemPatterns.schema.json`
     - `core/schemas/progress.schema.json`
     - `core/schemas/roadmap.schema.json`
+    - `core/schemas/memory.schema.json`
+  - Helper schemas: `core/schemas/helpers/`
 - **Validation Scripts & CI**: `scripts/validate-linkage.js`, `scripts/validate-schemas.js`, `.github/workflows/ci.yml`
   - Cross-file ID enforcement and Ajv schema validation (run locally or in CI)
 - **Platform Setups**: `platforms/`
@@ -32,12 +34,14 @@ Use these quick links to navigate the project documentation:
 
 Jump to Quick Start → [/init & /next](#quick-start-5-minutes)
 
-## What’s new in 2.8.4
+## What's new in 2.8.5
 
-- **Schema hardening**: `additionalProperties: false` applied to critical item objects across the 7 essential schemas to prevent unknown keys.
-- **Shared `$defs` + `$ref` unification**: ID patterns (proposal/task/rm/gd) centralized and referenced in `kanban`, `progress`, and `roadmap` to eliminate regex drift.
-- **Ajv schema validator**: `scripts/validate-schemas.js` validates all memory-bank files against `core/schemas/*schema.json`.
-- **CI upgrades**: `.github/workflows/ci.yml` installs Ajv and runs schema validation after the linkage validator.
+- **8-Schema System**: Upgraded to 8-schema memory-bank structure with memory.json as 8th essential schema for persistent cross-session knowledge storage.
+- **Knowledge Graph**: Added memory.json schema with entities, relations, and observations structure for AegisKG knowledge graph integration.
+- **Helper Schemas**: Added comprehensive helper system in core/schemas/helpers/ with tool-usage-patterns.json, common-mistakes.json, and error-recovery.json.
+- **Constitutional Integration**: All 16 articles fully interlinked with markdown references for cohesive navigation.
+- **Workflow Interlinking**: All 10 workflow files now reference relevant constitutional articles.
+- **Architecture Consistency**: Removed SQLite references, aligned all documentation with JSON-only architecture.
 
 ## Platforms
 
@@ -48,7 +52,7 @@ See `platforms/` for platform-specific setup and configuration.
 Use these guidelines to get the most reliable, repeatable results from AegisIDE workflows.
 
 - **Start every session with `/init`**
-  - Loads constitutional governance (Articles I–XIV) and bootstraps the memory bank (7 essential schemas + kanban as needed)
+  - Loads constitutional governance (Articles I–XIV) and bootstraps the memory bank (8 essential schemas)
   - Workflow spec: `core/workflow/init.md`
 
 - **After `/init`, drive execution with `/next`**
@@ -87,10 +91,10 @@ Use these guidelines to get the most reliable, repeatable results from AegisIDE 
 - **Keep plans private**
   - `docs/` is Git-ignored by design; avoid committing private plans or secrets
 
-## 📦 JSON-First Architecture
-**Core Innovation**: AI auto-generates project-specific memory-bank files (NO templates)
+## JSON-First Architecture
+Core Innovation: AI auto-generates project-specific memory-bank files (NO templates)
 
-## ⚡ Quick Start (5 Minutes)
+## Quick Start (5 Minutes)
 
 ```bash
 # 1. Add AegisIDE as submodule (30 seconds)
@@ -104,18 +108,18 @@ git submodule update --init --recursive
 /next
 ```
 
-**Done!** AI now validates everything automatically. 🎉
+Done! AI now validates everything automatically.
 
 ### Three-Branch Parliamentary System
 Based on 14 constitutional articles in [core/constitution/](core/constitution/):
 
-- **🏢 Government**: PM, Dev Minister, Tech Minister (Executive Authority)
-- **🔍 Opposition**: Quality, Innovation, Analytics Shadows (Review Authority)
-- **⚖️ Judiciary**: Chief Justice (Compliance Authority)
+- **Government**: PM, Dev Minister, Tech Minister (Executive Authority)
+- **Opposition**: Quality, Innovation, Analytics Shadows (Review Authority)
+- **Judiciary**: Chief Justice (Compliance Authority)
 
 **Decision Process**: Proposal → Opposition Review → >95% Consensus → Execute
 
-## ⚡ Quick Start
+## Platform Setup
 
 ### Windsurf IDE (Recommended - 98%)
 ```bash
@@ -150,22 +154,22 @@ cp platforms/jetbrains/jetbrains-config.xml /path/to/your/project/.idea/
 
 See platform-specific setup guides in `platforms/*/README.md`
 
-## 🤖 Core Commands (8 Total - Easy to Type)
+## Core Commands (8 Total - Easy to Type)
 
 | Command | Purpose |
 |---------|---------|  
-| `/init` | Initialize or repair the memory bank (7 essential schemas + kanban) before any work begins |
+| `/init` | Initialize or repair the memory bank (8 essential schemas) before any work begins |
 | `/next` | Governance-gated task execution with tier-1 updates (scratchpad/kanban/activeContext) |
 | `/update` | Apply tier-2/3 refresh (roadmap, milestone JSONs/md) and resync dashboards |
 | `/validate` | Run language checks, linkage validator, and Ajv schema validation (zero-tolerance) |
 | `/fix` | HALT–FIX–VALIDATE loop (Context7 docs, linkage repair, schema recheck) until clean |
-| `/status` | 7-schema health, consensus metrics, and attention budget diagnostics |
+| `/status` | 8-schema health, consensus metrics, and attention budget diagnostics |
 | `/optimize` | AegisKG-backed improvement proposals with consensus scoring |
 | `/oversight-checks-and-balances` | Democratic debate + vote (>95% consensus) with judicial guardrails |
 
 **Full Command Reference**: [Windsurf CheatSheet](platforms/windsurf/CheatSheet.md) (8 unified commands)
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Before | With AegisIDE | Improvement |
 |--------|--------|---------------|-------------|
@@ -174,7 +178,7 @@ See platform-specific setup guides in `platforms/*/README.md`
 | **Development Speed** | Baseline | 3x faster | 300% increase |
 | **Context Retention** | 34% | 89% | 162% improvement |
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```
 AegisIDE/
@@ -203,7 +207,7 @@ AegisIDE/
 └── COMMUNITY_IMPACT.md        # Global developer empowerment
 ```
 
-## 🤝 Contributing & Security
+## Contributing & Security
 
 **Democratic Process**: All contributions require >95% consensus through 7-step parliamentary procedure
 
@@ -214,14 +218,14 @@ AegisIDE/
 
 **Security**: Report vulnerabilities via [GitHub Issues](https://github.com/Gaurav-Wankhede/AegisIDE/issues) or [Security Policy](SECURITY.md)
 
-## 📚 Documentation
+## Documentation
 
-- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.8.3)
+- **[CHANGELOG.md](CHANGELOG.md)** - Version history (v1.0.0 → v2.8.5)
 - **[BUSINESS_MODEL.md](BUSINESS_MODEL.md)** - Open source community model
 - **[TECHNICAL_ROADMAP.md](TECHNICAL_ROADMAP.md)** - Production readiness status
 - **[COMMUNITY_IMPACT.md](COMMUNITY_IMPACT.md)** - Global developer empowerment
 
-## 🏷️ Project Information
+## Project Information
 
 **License**: MIT  
 **Repository**: https://github.com/Gaurav-Wankhede/AegisIDE
@@ -234,11 +238,11 @@ AegisIDE/
 
 ---
 
-⭐ **Star this repository if AegisIDE transformed your AI development!**
+Star this repository if AegisIDE transformed your AI development!
 
-🏛️ **Ready to start?** See the [Platforms](#platforms) section above and follow the setup guide!
+Ready to start? See the [Platform Setup](#platform-setup) section above and follow the setup guide!
 
-## 📈 Progress
+## Progress
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=Gaurav-Wankhede/AegisIDE.git&type=Date)](https://www.star-history.com/#Gaurav-Wankhede/AegisIDE.git&Date)

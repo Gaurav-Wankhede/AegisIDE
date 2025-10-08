@@ -1,7 +1,7 @@
 # Global Rules: Constitutional Framework Reference (2025)
 
 **FRAMEWORK SUPREMACY**: Constitution + Laws + Memory-Bank as SUPREME LAW  
-**Constitutional Authority**: `.windsurf/rules/constitution/` Articles I-XIV (Always Active)  
+**Constitutional Authority**: `.windsurf/rules/constitution/` Articles I-XVI (Always Active)  
 **Autonomy Level**: 98% (0-98=AUTO, 99=Doc+Execute, 100=Human)
 
 ## FORCED MCP AUTOMATION (NO MANUAL REMINDERS)
@@ -36,6 +36,7 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 - `activeContext.json` → Real-time execution state with session management
 - `scratchpad.json` → Immediate priorities with MCP validation state
 - `kanban.json` → Workflow orchestration, parliamentary approvals, WIP limits
+- `memory.json` → Knowledge graph (entities, relations, observations) for user personalization
 
 **Tier 2: Insight Loop (Iteration boundary or substantial change)**
 - `mistakes.json` → Error patterns with Context7 source prioritization
@@ -43,15 +44,15 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 - `progress.json` → Development milestones with constitutional metrics
 
 **Tier 3: Strategic Alignment (Scheduled / milestone)**
-- `roadmap.json` → Strategic planning with SQLite session alignment
+- `roadmap.json` → Strategic planning and milestone alignment
 - `roadmap/roadmap.md` → Human-readable strategy and client directives
 
 **Schema Validation**:
 - Core schema definitions located at `.windsurf/memory-bank/schemas/`
-- Active schemas: `activeContext.schema.json`, `scratchpad.schema.json`, `mistakes.schema.json`, `systemPatterns.schema.json`, `progress.schema.json`, `roadmap.schema.json`, `kanban.schema.json`
+- Active schemas: `activeContext.schema.json`, `scratchpad.schema.json`, `mistakes.schema.json`, `systemPatterns.schema.json`, `progress.schema.json`, `roadmap.schema.json`, `kanban.schema.json`, `memory.schema.json`
 - Validation delivers 2.6x faster JSON parsing with structured data integrity and 65% memory optimization with AegisKG integration
 
-**Attention Efficiency**: Core schema set + workflow schema replaces legacy 17-file model, reducing per-task update surface while preserving governance fidelity
+**Attention Efficiency**: 8 core schemas (7 core + memory.json) + workflow integration replaces the legacy 17-file model, reducing per-task update surface while preserving governance fidelity and enabling unlimited knowledge graph storage.
 
 ## PROJECT STRUCTURE (RELATIVE PATHS)
 
@@ -62,6 +63,7 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 .windsurf/memory-bank/activeContext.json   # Current execution state and MCP activation trail
 .windsurf/memory-bank/scratchpad.json      # Immediate task queue + parliamentary metadata
 .windsurf/memory-bank/kanban.json          # Column workflow, approvals, WIP disciplines
+.windsurf/memory-bank/memory.json          # Knowledge graph for persistent cross-session memory
 ```
 
 **Insight & Strategy Files (update per iteration / milestone)**
@@ -73,7 +75,7 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 .windsurf/memory-bank/roadmap/roadmap.md   # Human-readable strategic narrative
 ```
 
-### Constitutional Articles (14):
+### Constitutional Articles (16):
 ```
 .windsurf/rules/constitution/article-I.md
 .windsurf/rules/constitution/article-II.md
@@ -90,6 +92,8 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 .windsurf/rules/constitution/article-XII.md
 .windsurf/rules/constitution/article-XIII.md
 .windsurf/rules/constitution/article-XIV.md
+.windsurf/rules/constitution/article-XV.md
+.windsurf/rules/constitution/article-XVI.md
 ```
 
 ### JSON Schemas (Current Set)
@@ -101,8 +105,20 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 .windsurf/memory-bank/schemas/progress.schema.json
 .windsurf/memory-bank/schemas/roadmap.schema.json
 .windsurf/memory-bank/schemas/kanban.schema.json
+.windsurf/memory-bank/schemas/memory.schema.json
 .windsurf/memory-bank/schemas/README.md
 ```
+
+### Helper Schemas (Tool Usage & Error Prevention)
+```
+.windsurf/memory-bank/schemas/helpers/tool-usage-patterns.json  # MCP-enhanced tool formats
+.windsurf/memory-bank/schemas/helpers/common-mistakes.json       # Known LLM mistakes
+.windsurf/memory-bank/schemas/helpers/error-recovery.json        # Recovery strategies
+```
+
+**Auto-Load**: @mcp:filesystem reads ALL helpers during `/init` (parallel with core schemas)
+**Storage**: @mcp:memory stores patterns in `.windsurf/memory-bank/aegis-knowledge-graph`
+**Migration**: Replacing byterover-mcp with unlimited local @mcp:memory storage
 
 ### Laws (Project-Specific):
 ```
@@ -113,8 +129,8 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 
 **Article I**: Tripartite Governance → Executive/Legislative/Judicial branches with MCP integration
 **Article II**: Autonomous Decision Making → 0-98% auto-execute, MCP-based consensus scoring
-**Article III**: 7-Schema Context Management → optimized JSON structure with AegisKG integration
-**Article III-A**: Implementation Protocols → MCP integration with 7-schema real-time updates
+**Article III**: 8-Schema Context Management → optimized JSON structure with AegisKG + `memory.json`
+**Article III-A**: Implementation Protocols → MCP integration with 8-schema real-time updates
 **Article IV**: Quality Standards → EMD compliance, anti-duplication, multi-language validation
 **Article V**: Team Communication → Inter-branch patterns, conflict resolution
 **Article VI**: Framework Evolution → Amendment process, law updates via MCP research
@@ -126,13 +142,15 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 **Article XII**: Continuous Operations → 30-hour execution, zero interruption, session continuity
 **Article XIII**: Validation & Debugging → Multi-language zero tolerance, MCP auto-fix
 **Article XIV**: Blueprint & Development → 6-pillar validation, auto-generation pipeline
+**Article XV**: Tool Usage & Error Prevention → Helper schemas, MCP validation, zero tool errors
+**Article XVI**: Knowledge Graph Memory → Persistent memory, user personalization, unlimited local storage
 
 ## FORCED AUTOMATION TRIGGERS
 
 ### Task Completion (MANDATORY):
 ```
-EVERY task → HALT → @mcp:filesystem update ALL 7 essential schemas → Schema validate →
-@mcp:byterover-mcp store AegisKG patterns → @mcp:git commit → ONLY THEN continue
+EVERY task → HALT → @mcp:filesystem update ALL 8 core schemas → Schema validate →
+@mcp:memory update knowledge graph → @mcp:git commit → ONLY THEN continue
 ```
 
 ### Error Detection (INSTANT):
@@ -171,11 +189,13 @@ conftest test config/ policies/ || true
 
 ## CORE COMMANDS (BRIEF)
 
-**`/init`**: Auto-detect → Restore OR generate 7 essential schemas (bootstrap memory-bank) → Enable workflow (Article III)
-**`/next`**: Read scratchpad/kanban → Execute → Update ALL 7 essential → Auto-continue (Article III)
-**`/update`**: @mcp:filesystem refresh 7 essential schemas (+ automation if present) → Schema validate (Article III-A)
+**`/init`**: Auto-detect → Restore OR generate 8 core schemas + 3 helper schemas → Enable workflow (Article III, XV, XVI)
+**`/next`**: Read scratchpad/kanban → Execute → Update ALL 8 core schemas → @mcp:memory update → Auto-continue (Article III, XVI)
+**`/update`**: @mcp:filesystem refresh 8 core + 3 helper schemas → Schema validate (Article III-A, XV, XVI)
 **`/validate`**: Run language-specific checks → HALT on errors (Article XIII)
-**`/fix`**: @mcp:context7 → Auto-fix loop → Update bugfix.json (Article XIII)
+**`/fix`**: @mcp:context7 → Auto-fix loop → Update bugfix.json (Article XIII, XV)
+**`/memory-status`**: @mcp:filesystem → Read memory.json → @mcp:math → Report health (Article XVI)
+**`/bootstrap`**: @mcp:filesystem → Scan memory-bank → Create missing schemas (Article III)
 
 ## COMPLIANCE THRESHOLDS
 

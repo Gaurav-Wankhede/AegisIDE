@@ -10,9 +10,10 @@ _This workflow is defined canonically under `core/workflow/oversight-checks-and-
 Comprehensive tri-branch oversight system ensuring constitutional compliance, democratic governance, and execution validation through parliamentary checks and balances.
 
 ## Constitutional Authority
-- **Article I**: Autonomous Democratic Governance - Tri-branch structure
-- **Article V**: Team Communication - Inter-branch protocols  
-- **Article XI**: Accountability and Transparency - Oversight framework
+
+- **Article I**: Autonomous Democratic Governance - Tri-branch oversight structure
+- **Article V**: Team Communication - Inter-branch protocols
+- **Article XI**: Mandatory AI Agent Compliance - Enforcement mechanisms
 
 ## Parliamentary Structure
 ```bash

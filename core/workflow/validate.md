@@ -10,6 +10,7 @@ _This workflow is defined canonically under `core/workflow/validate.md`. IDEs su
 Judicial Branch validates implementation against constitutional framework, ensuring code quality, roadmap alignment, and zero-tolerance for errors/warnings.
 
 ## Constitutional Authority
+
 - **Article XIII**: Judicial Debugging Authority & Multi-Language Validation
 - **Article IV**: Fundamental Principles - Code quality standards
 - **Article II**: Autonomous Decision Making - Validation authority

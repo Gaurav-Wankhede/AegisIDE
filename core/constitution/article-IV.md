@@ -20,7 +20,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Quality Consistency**: Maintain standards through systemPatterns.json enforcement and tri-branch validation, MCP-enriched best practices
 - **EMD Discipline**: Keep all files ≤10,000 characters following Elegant Modular Design with deep nested structures
 - **Test Coverage**: Achieve >80% coverage with tri-branch validation and context documentation as event streams
-- **Zero Tolerance**: No errors/warnings before task completion - HALT-FIX-VALIDATE mandatory loop
+- **Zero Tolerance**: No errors/warnings before task completion - HALT-FIX-VALIDATE mandatory loop, as defined in **Article XIII**.
 - **Context Rot Prevention**: Auto-compress when signal-to-noise degrades, preserve high-impact patterns, archive low-relevance data
 
 ### Code Quality Standards with MCP Tool-Context Integration
@@ -62,7 +62,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ### Development Standards with 7-Schema Efficiency
 
-- **EMD Compliance**: All files ≤10,000 characters per file, deep nested structure (max 80 lines per file in production)
+- **EMD Compliance**: All files ≤10,000 characters per file, deep nested structure (max 80 lines per file in production), in accordance with **Article III**.
 - **Deep Nesting**: Use deep folder structures with domain-driven organization logic for optimal context assembly
 - **Centralized Configuration**: Reference existing configurations through core/config/ rather than recreating - SCAN before CREATE
 - **Component Reuse**: Always check existing components using AegisKG pattern networks from systemPatterns.json
@@ -71,6 +71,8 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Schema Health**: Maintain ≤10KB per essential schema, auto-compress when exceeding, preserve AegisKG critical patterns
 
 ### Anti-Duplication Protocol (MANDATORY - Context Integrity)
+
+This protocol is enforced by the pre-implementation validation detailed in the `global_rules.md`.
 
 **NEVER RECREATE - SCAN First**: ALWAYS scan existing centralized configurations BEFORE creating new ones - violation = immediate rollback + Chief Justice review.
 
