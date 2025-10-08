@@ -16,10 +16,10 @@ core/schemas/helpers/
 
 ### Auto-Loading Protocol
 - **Initialization**: @mcp:filesystem reads ALL helper schemas during `/init` workflow
-- **Parallel Loading**: Loaded simultaneously with 7 core memory-bank schemas
+- **Parallel Loading**: Loaded simultaneously with 8 core memory-bank schemas
 - **Validation**: @mcp:sequential-thinking validates helper schema integrity
 - **Storage**: @mcp:memory stores helper patterns in `.windsurf/memory-bank/aegis-knowledge-graph`
-- **Migration**: Gradually replacing byterover-mcp with local @mcp:memory storage
+- **Primary Storage**: @mcp:memory provides unlimited local storage.
 
 ## Mandatory Tool Usage Patterns
 
@@ -159,10 +159,8 @@ Step 4: @mcp:memory → Store successful pattern OR failure for learning
 - **Schema Evolution**: Update helper JSONs with learned patterns
 - **Version Control**: @mcp:git tracks all helper schema changes
 
-### Knowledge Migration Strategy
-- **Phase 1**: Establish @mcp:memory as primary storage (current)
-- **Phase 2**: Migrate byterover-mcp patterns to local memory graph
-- **Phase 3**: Deprecate byterover-mcp once @mcp:memory proven stable
+### Knowledge Storage
+- **Primary Storage**: @mcp:memory is the primary and sole storage for the local knowledge graph.
 - **Location**: `.windsurf/memory-bank/aegis-knowledge-graph` for unlimited local storage
 
 ## Success Criteria

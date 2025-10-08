@@ -88,7 +88,7 @@ This protocol is subject to the compliance standards in **Article XI** and the v
 2. If safe-auto → EXECUTE IMMEDIATELY (no asking)
 3. If approval-needed → Request user confirmation
 4. If forbidden → BLOCK with error message
-5. Log all executions in systemPatterns.md
+5. Log all executions in systemPatterns.json
 
 **Pattern Matching**:
 ```regex

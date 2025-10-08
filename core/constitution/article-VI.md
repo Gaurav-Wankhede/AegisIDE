@@ -49,7 +49,7 @@ Document in `mistakes.json`
 ### Protected Elements (Require >98% Consensus)
 - Tri-branch structure (Executive, Legislative, Judicial)
 - Framework supremacy over all rules
-- Memory-bank system (7 essential schemas + roadmap)
+- Memory-bank system (8 essential schemas)
 - 95% consensus requirement for changes
 - Core workflows (`/init`, `/next`, `/update`, `/validate`, `/fix`, `/optimize`, `/status`, `/oversight-checks-and-balances`)
 - MCP autonomous integration requirements
@@ -164,7 +164,7 @@ All changes require >95% tri-branch consensus with memory-bank validation
 - **Version Control**: All documentation tracked in @mcp:git with complete history
 - **Temporal Tracking**: @mcp:time timestamps for all documentation updates
 - **Primary Storage**: Constitutional documents in `.windsurf/rules/constitution/`
-- **Knowledge Base**: Integration with byterover-mcp for cross-project learning
+- **Knowledge Base**: Integration with @mcp:memory for cross-project learning
 
 ### Amendment Effectiveness Monitoring
 
@@ -177,5 +177,5 @@ All changes require >95% tri-branch consensus with memory-bank validation
 **Continuous Improvement**:
 - **Regular Reviews**: Scheduled assessment of amendment effectiveness and impact
 - **Feedback Integration**: Incorporation of user and stakeholder feedback into future amendments
-- **Knowledge Sharing**: Integration with byterover-mcp for cross-project amendment learning
+- **Knowledge Sharing**: Integration with @mcp:memory for cross-project amendment learning
 - **Process Optimization**: Continuous improvement of amendment procedures and effectiveness

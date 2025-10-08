@@ -12,7 +12,7 @@
 ```
 @mcp:filesystem → ALL JSON updates (BLOCKS next task until complete)
 @mcp:context7 → ANY error/warning (INSTANT - no permission needed)
-@mcp:byterover-mcp → Knowledge storage after EVERY task (MANDATORY)
+@mcp:memory → Knowledge storage after EVERY task (MANDATORY)
 @mcp:sequential-thinking → Complex problems >3 steps (AUTO)
 @mcp:memory → Pattern storage (BACKGROUND)
 @mcp:git → Version control operations (AUTO)
@@ -25,7 +25,7 @@
 ```
 IF task_complete AND NOT @mcp:filesystem_used THEN BLOCK_next_task
 IF error_detected AND NOT @mcp:context7_used THEN HALT_execution
-IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
+IF knowledge_gained AND NOT @mcp:memory_used THEN INCOMPLETE_task
 ```
 
 ## TIERED UPDATE STRATEGY (Context Optimized)
@@ -118,7 +118,7 @@ IF knowledge_gained AND NOT @mcp:byterover-mcp_used THEN INCOMPLETE_task
 
 **Auto-Load**: @mcp:filesystem reads ALL helpers during `/init` (parallel with core schemas)
 **Storage**: @mcp:memory stores patterns in `.windsurf/memory-bank/aegis-knowledge-graph`
-**Migration**: Replacing byterover-mcp with unlimited local @mcp:memory storage
+**Primary Storage**: @mcp:memory provides unlimited local knowledge graph storage.
 
 ### Laws (Project-Specific):
 ```

@@ -41,9 +41,9 @@ This framework operates under the autonomous behavior protocols defined in `glob
 ```
 1. Scan project directory for .windsurf/memory-bank/
 2. IF memory-bank EXISTS:
-   a. Expect 7 essential schemas present:
+   a. Expect 8 essential schemas present:
       - activeContext.json, scratchpad.json, kanban.json, mistakes.json,
-        systemPatterns.json, progress.json, roadmap.json
+        systemPatterns.json, progress.json, roadmap.json, memory.json
    b. Validate integrity: File sizes ≤10KB, JSON schema compliance against
       `.windsurf/memory-bank/schemas/*.schema.json`
    c. Auto-restore: Load essential schemas (and any automation files if present)
@@ -59,7 +59,7 @@ This framework operates under the autonomous behavior protocols defined in `glob
 ```
 New Session Detected →
 Auto-scan .windsurf/memory-bank/ →
-IF 7 essential schemas present →
+IF 8 essential schemas present →
   Load activeContext.json (previous session state) →
   Load scratchpad.json OR kanban.json (pending tasks) →
   Retrieve @mcp:memory knowledge →
@@ -74,6 +74,7 @@ ELSE →
 - New sessions: AI reads the 7 essential schemas automatically (automation files if present)
 - User types: `/next` (or AI auto-triggers it)
 - Workflow continues from exactly where you left off
+- AI reads the 8 essential schemas automatically (automation files if present)
 
 ### Session Continuity Framework
 **30-Hour Operation Authority**:
@@ -126,7 +127,7 @@ EXECUTE Task N+2 IMMEDIATELY →
 
 ### Memory-Bank Update Protocol (MANDATORY)
 
-**7 Essential Schemas + Automation Files** (Update after EVERY task completion):
+**8 Essential Schemas + Automation Files** (Update after EVERY task completion):
 1. `activeContext.json` - Current implementation status, active priorities
 2. `scratchpad.json` - Task queue with completed tasks removed, new tasks added
 3. `kanban.json` - Parliamentary workflow status (todo/in_progress/done/approved)
@@ -134,7 +135,8 @@ EXECUTE Task N+2 IMMEDIATELY →
 5. `systemPatterns.json` - Successful implementation patterns, architectural decisions
 6. `progress.json` - Milestone tracking, completion metrics, velocity analysis
 7. `roadmap.json` - Strategic planning alignment and milestone updates
-Automation files (as needed): supplemental context documents stored alongside the seven core schemas within `.windsurf/memory-bank/`, including `roadmap.md` for the human-readable strategic overview
+8. `memory.json` - Knowledge graph updates
+   Automation files (as needed): supplemental context documents stored alongside the eight core schemas within `.windsurf/memory-bank/`, including `roadmap.md` for the human-readable strategic overview
 
 **Update Sequence**: Complete Task → Update 3 Real-Time Files → Scan Next Task → Execute Immediately
 

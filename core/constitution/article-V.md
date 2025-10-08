@@ -42,10 +42,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 - **Context Integration**: Uses `mistakes.json` for error patterns, `systemPatterns.json` for compliance, challenges using structured context evidence
 
 *Innovation Shadow*:
-- **Typical Phrases**: "Based on byterover-mcp knowledge retrieval, I've investigated alternative approaches that might better address our context-engineered requirements"
+- **Typical Phrases**: "Based on @mcp:memory knowledge retrieval, I've investigated alternative approaches that might better address our context-engineered requirements"
 - **Focus Areas**: Alternative solutions through MCP research, context innovation insights, innovation opportunities, best practices
 - **Communication Style**: Analytical, exploratory, MCP evidence-based, creative opposition
-- **Context Integration**: Uses byterover-mcp for knowledge patterns, context7 for alternative documentation, Memory MCP for relationship analysis
+- **Context Integration**: Uses @mcp:memory for knowledge patterns, context7 for alternative documentation, and relationship analysis
 
 *Analytics Shadow*:
 - **Typical Phrases**: "The `progress.json` metrics and `roadmap.json` analysis indicate we should validate this decision with additional context-driven data analysis"
@@ -149,11 +149,11 @@ The roles and responsibilities of each branch are defined in **Article I**.
 - **Context Integration Assessment**: Evaluation of memory-bank utilization quality
 - **Decision Outcome Tracking**: Long-term assessment of decision effectiveness
 - **Process Refinement**: Continuous improvement of communication protocols
-- **Training Integration**: Knowledge sharing through byterover-mcp pattern storage
+- **Training Integration**: Knowledge sharing through @mcp:memory pattern storage
 
 ### Communication Automation and Analytics
 
 **Automated Triggers**: Error detection, quality violations, consensus requirements, context updates
-**MCP Integration**: Context7 documentation access, byterover-mcp knowledge sharing, sequential-thinking analysis
+**MCP Integration**: Context7 documentation access, @mcp:memory knowledge sharing, sequential-thinking analysis
 **Analytics**: Decision velocity, quality correlation, context effectiveness, branch participation balance
 

@@ -15,10 +15,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **CRITICAL**: All decision processes auto-activate MCPs based on decision type. AI uses them autonomously WITHOUT user saying "use MCP".
 
 **DECISION MCP MATRIX**:
-- **0-98% Decisions**: @mcp:filesystem read context → Execute → @mcp:filesystem update → @mcp:byterover-mcp store
+- **0-98% Decisions**: @mcp:filesystem read context → Execute → @mcp:filesystem update → @mcp:memory store
 - **99% Decisions**: @mcp:filesystem document rationale → Execute → @mcp:git commit
 - **Error Detection**: @mcp:context7 INSTANT (no permission) → Fix → Continue
-- **Pattern Recognition**: @mcp:memory retrieve → @mcp:byterover-mcp check → Execute
+- **Pattern Recognition**: @mcp:memory retrieve → Execute
 - **Context Assembly**: @mcp:filesystem read ALL relevant files → @mcp:math calculate attention
 - **Consensus Calculation**: @mcp:math scoring → Validate thresholds → Execute if >95%
 
@@ -41,7 +41,7 @@ Major roadmap modifications, constitutional amendments, project shifts. Client c
 
 **CRITICAL AUTO-EXECUTION TRIGGERS WITH MANDATORY MCP**:
 - Recommendation detection → **@mcp:memory context retrieval** → Execute immediately
-- Option selection → **@mcp:byterover-mcp pattern check** → Execute without permission
+- Option selection → **@mcp:memory pattern check** → Execute without permission
 - "[ ]" tasks in scratchpad.json → **@mcp:context7 validation** → Execute immediately
 - **ANY Error/warning → INSTANT @mcp:context7 → Fix → Re-validate → Continue**
 - Memory-bank updates → **@mcp:git versioning** → Update 3 files real-time (scratchpad, kanban, activeContext) → Load next → Execute
@@ -88,7 +88,7 @@ Major roadmap modifications, constitutional amendments, project shifts. Client c
 **Session Initialization** (Auto-triggered with attention optimization):
 
 **Phase 1: Constitutional Framework Loading**:
-Load all 13 articles from `.windsurf/rules/constitution/` (8000-12000 chars each). Extract tri-branch roles, responsibilities, decision matrices with attention budget allocations. Load 0-98% autonomy protocols, execution triggers, pattern recognition. Understand HALT-on-error protocols, MCP integration mandates, tool-context feedback loops. Load EMD (≤10,000 chars), ZUV principles, anti-duplication, context rot prevention. Load 2025 Context Engineering (Anthropic + Kubiya): n² attention awareness, stateless reducer pattern, event-driven updates.
+Load all 16 articles from `.windsurf/rules/constitution/` (8000-12000 chars each). Extract tri-branch roles, responsibilities, decision matrices with attention budget allocations. Load 0-98% autonomy protocols, execution triggers, pattern recognition. Understand HALT-on-error protocols, MCP integration mandates, tool-context feedback loops. Load EMD (≤10,000 chars), ZUV principles, anti-duplication, context rot prevention. Load 2025 Context Engineering (Anthropic + Kubiya): n² attention awareness, stateless reducer pattern, event-driven updates.
 
 **Phase 2: 8-Schema Context Assembly** (Optimized Priority - 65% faster):
 - CRITICAL (55%): scratchpad.json (30%) → activeContext.json (25%)
@@ -97,7 +97,7 @@ Load all 13 articles from `.windsurf/rules/constitution/` (8000-12000 chars each
 Load AegisKG pattern networks, error resolution with Context7 source prioritization. Identify immediate priorities, validate strategic alignment, prepare execution. Verify all 8 files ≤10KB, ensuring 2.6x faster JSON parsing and optimized performance.
 
 **Phase 3: MCP Integration**:
-Prepare @mcp:context7, @mcp:memory, @mcp:byterover-mcp for auto-enrichment. Load patterns from @mcp:memory (unlimited local, primary). Verify @mcp:byterover-mcp connectivity for cross-project sharing (fallback/backup).
+Prepare all MCP servers (context7, memory, etc.) for auto-enrichment. Load patterns from @mcp:memory as the primary, unlimited local knowledge store.
 
 **Auto-Execution Flow**:
 Detect recommendation → Extract task with attention budget estimate → EXECUTE IMMEDIATELY maintaining context efficiency → Update memory-bank files as event stream (all 8 core schemas) → MCP tool-context feedback: enrich files with structured insights → Create immutable context snapshot for rollback → Report completion with attention efficiency metrics.
@@ -112,13 +112,13 @@ Calculate current attention budget utilization (0-100%). Auto-read scratchpad.js
 ### Autonomous Commands with MCP Integration
 
 **Workflow Commands** (slash-prefixed workflows defined canonically under `core/workflow/` and dispatched through the active IDE path such as `.windsurf/workflow/`):
-- `/init` → `core/workflow/init.md`: Load constitutional framework, bootstrap the 7 core schemas, and activate autonomous governance.
-- `/next` → `core/workflow/next.md`: Read `scratchpad.json` and `kanban.json`, execute prioritized tasks, and perform the mandated 7-schema update loop.
-- `/update` → `core/workflow/update.md`: Refresh the 7 core schemas (Tier 1) and capture milestone-level context (Tier 2/3) before resuming execution.
+- `/init` → `core/workflow/init.md`: Load constitutional framework, bootstrap the 8 core schemas, and activate autonomous governance.
+- `/next` → `core/workflow/next.md`: Read `scratchpad.json` and `kanban.json`, execute prioritized tasks, and perform the mandated 8-schema update loop.
+- `/update` → `core/workflow/update.md`: Refresh the 8 core schemas (Tier 1) and capture milestone-level context (Tier 2/3) before resuming execution.
 - `/validate` → `core/workflow/validate.md`: Run the complete multi-language validation suite and enforce the HALT-FIX-VALIDATE loop from Article XIII.
 - `/fix` → `core/workflow/fix.md`: Launch dedicated error-resolution procedures with Context7 documentation retrieval and schema-safe remediation.
 - `/optimize` → `core/workflow/optimize.md`: Perform performance and algorithmic analysis using MCP research, then implement approved optimizations.
-- `/status` → `core/workflow/status.md`: Produce consolidated progress, consensus, and compliance reports from the 7 core schemas.
+- `/status` → `core/workflow/status.md`: Produce consolidated progress, consensus, and compliance reports from the 8 core schemas.
 - `/oversight-checks-and-balances` → `core/workflow/oversight-checks-and-balances.md`: Convene the parliamentary oversight cycle for high-impact reviews and consensus validation.
 
 The shared `core/workflow/` definitions remain repository-canonical while each IDE consumes them via its own `.ide/workflow/` (e.g., `.windsurf/workflow/`) mount. All other context health checks, governance debates, and consensus calculations execute automatically under Articles II and III without additional manual commands.
@@ -132,7 +132,7 @@ The shared `core/workflow/` definitions remain repository-canonical while each I
 4. Implement corrections without asking (EMD compliance)
 5. Record corrective patterns in `systemPatterns.json`
 6. Run language-specific checks until 100% clean
-7. Store patterns in @mcp:memory (primary) and @mcp:byterover-mcp (backup)
+7. Store patterns in @mcp:memory (primary)
 8. Update systemPatterns.json with successful resolution
 9. Maintain optimal signal-to-noise and attention budget
 

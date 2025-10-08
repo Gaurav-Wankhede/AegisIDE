@@ -12,7 +12,7 @@ trigger: always_on
 - Pre-Implementation: @mcp:filesystem, @mcp:math, @mcp:sequential-thinking, @mcp:memory
 - Validation: @mcp:context7 INSTANT on errors (no permission)
 - Post-Implementation: @mcp:filesystem BLOCKS until schemas updated
-- Storage: @mcp:byterover-mcp + @mcp:memory MANDATORY
+- Storage: @mcp:memory MANDATORY
 
 **Penalty**: Skip MCP = Constitutional violation → HALT → Force compliance
 
@@ -26,10 +26,10 @@ trigger: always_on
    - @mcp:filesystem scan config directories
    - @mcp:memory check existing patterns
    - @mcp:context7 validate no duplicates
-   - HALT if duplicate → @mcp:byterover-mcp reference existing
+   - HALT if duplicate → @mcp:memory reference existing
 5. @mcp:sequential-thinking dynamic loading (mistakes priority for errors, roadmap for features)
 6. @mcp:memory retrieve AegisKG patterns (unlimited local)
-7. @mcp:byterover-mcp cross-project intelligence
+7. @mcp:memory cross-project intelligence
 
 **Validation**: Language detection → Run commands → HALT on errors → @mcp:context7 auto-fix → Re-validate 100% → Verify roadmap → Check mistakes → Validate laws → Confirm EMD ≤10KB
 
@@ -62,9 +62,9 @@ trigger: always_on
 7. roadmap.json → Strategic planning alignment
 8. memory.json → Knowledge graph (entities, relations, observations)
 
-**Storage**: @mcp:memory (local), @mcp:byterover-mcp (cloud)
+**Storage**: @mcp:memory (local)
 
-**Health Check**: ≤10KB files, 2.6x faster parsing, 65% optimization, AegisKG integration, SQLite coordination
+**Health Check**: ≤10KB files, 2.6x faster parsing, 65% optimization, AegisKG integration
 
 **Penalty**: Validation fail → BLOCK until compliant
 
@@ -83,7 +83,7 @@ trigger: always_on
 
 **Cross-Session Learning**:
 - @mcp:memory: Unlimited local patterns
-- @mcp:byterover-mcp: Cloud cross-project intelligence
+- @mcp:memory: Cross-project intelligence
 - Automatic pattern recognition and constitutional precedents
 
 **Real-Time Enrichment**:

@@ -62,7 +62,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 1. **@mcp:context7** Parse project idea description + official documentation research
 2. **@mcp:math** Generate blueprint.json with 6-pillar validation scores + calculations
 3. **@mcp:fetch** Create tech stack recommendations with latest Free Tier research
-4. **@mcp:byterover-mcp** Generate pricing model tiers using cross-project patterns
+4. **@mcp:memory** Generate pricing model tiers using cross-project patterns
 5. **@mcp:sequential-thinking** Produce improvement recommendations for scores <80
 6. **@mcp:memory** Calculate overall viability score + store successful patterns
 
@@ -113,7 +113,7 @@ All implementation is subject to the validation standards in **Article XIII**.
 3. **INSTANT HALT** current task if P0/P1 severity
 4. **@mcp:context7** MANDATORY AUTO-CALL for official documentation (NO ASKING)
 5. **@mcp:sequential-thinking** Complex problem decomposition if needed
-6. **@mcp:byterover-mcp** Check cross-project bug solutions
+6. **@mcp:memory** Check cross-project bug solutions
 7. **@mcp:git** Implement fix following EMD standards (≤80 lines)
 8. **@mcp:filesystem** Re-run full validation suite (Article XIII)
 9. **@mcp:memory** Update mistakes.json with bug pattern and resolution
@@ -257,7 +257,7 @@ All implementation is subject to the validation standards in **Article XIII**.
 
 **Continuous Learning Integration**:
 - Store successful blueprint patterns in @mcp:memory
-- Share cross-project insights via @mcp:byterover-mcp
+- Share cross-project insights via @mcp:memory
 - Update systemPatterns.json with proven architectures
 - Refine scoring algorithms based on implementation outcomes
 - Evolve tech stack recommendations with emerging technologies

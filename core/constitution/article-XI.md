@@ -24,7 +24,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 **Mandatory Compliance Standards**:
 - **Constitutional Adherence**: ≥80% framework adherence mandatory across all operations
 - **Memory-Bank Integration**: All 8 essential schemas, as defined in **Article III**, must be maintained and updated consistently; automation files updated as needed
-- **MCP Integration**: Proper usage of all 9 MCP servers with fallback protocols
+- **MCP Integration**: Proper usage of all 8 MCP servers with fallback protocols
 - **EMD Compliance**: All files must follow ≤10,000 character limits with structured organization
 - **Multi-Language Support**: Cross-platform validation commands, as specified in **Article XIII**, must be executed properly.
 
@@ -35,7 +35,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
    - Read roadmap.json + roadmap.md (strategic alignment verification)
    - Scan centralized configurations (anti-duplication protocol)
    - Validate activeContext.json, mistakes.json, systemPatterns.json
-   - Retrieve knowledge from byterover-mcp for pattern matching
+   - Retrieve knowledge from @mcp:memory for pattern matching
 
 2. Validation Phase:
    - Detect project language/framework from configuration files
@@ -61,7 +61,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
    - Auto-call @mcp:context7 for official documentation fixes
    - Re-validate until 100% clean before proceeding
 
-2. Memory-Bank Update (7 Essential Schemas + Automation):
+2. Memory-Bank Update (8 Essential Schemas + Automation):
   1. scratchpad.json: Remove completed tasks, add new priorities
   2. activeContext.json: Update current implementation status
   3. kanban.json: Task workflow status and parliamentary approval
@@ -69,10 +69,10 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
   5. systemPatterns.json: Record successful patterns and validation results
   6. progress.json: Update milestone completion and metrics
   7. roadmap.json: Strategic planning alignment updates
-  Automation files (as needed): additional context documents stored alongside the 7 core schemas within `.windsurf/memory-bank/`
+  Automation files (as needed): additional context documents stored alongside the 8 core schemas within `.windsurf/memory-bank/`
 
 3. Knowledge Storage and Pattern Recognition:
-   - Auto-call byterover-mcp to store implementation patterns
+   - Auto-call @mcp:memory to store implementation patterns
    - Document successful approaches in systemPatterns.json
    - Update error resolution patterns in mistakes.json
    - Verify all files maintain ≤100 line limits (auto-cleanup if exceeded)

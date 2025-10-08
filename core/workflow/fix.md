@@ -60,11 +60,10 @@ Quality Shadow:
      - Constitutional compliance (Article IV)
      - Zero tolerance policy (Article XIII)  
      - EMD/ZUV principles"
-  → @mcp:memory → Retrieve similar error patterns
-  → @mcp:byterover-mcp → Check cross-project resolutions
+  → @mcp:memory → Retrieve similar error patterns and cross-project resolutions
 
 Innovation Shadow:
-  → "I've investigated alternatives via @mcp:context7:"
+  → "I have autonomously investigated alternatives via @mcp:context7:"
   → @mcp:context7 → resolve-library-id → get-library-docs
   → Present official documentation solutions
   → Recommend best practices from industry
@@ -112,12 +111,11 @@ _**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsur
    - Identify dependencies
    - Plan multi-step resolution
 
-3. @mcp:memory → Historical patterns:
+3. @mcp:memory → **MANDATORY**: Historical patterns:
    - Check local knowledge graph
    - Retrieve similar past fixes
    - Apply proven solutions
 
-4. @mcp:byterover-mcp → Cross-project intelligence:
    - Check cloud knowledge base
    - Find similar error resolutions
    - Import successful patterns
@@ -214,8 +212,7 @@ Requirement: >95% approval needed
    REPEAT until 100% clean
 
 5. Knowledge storage:
-   @mcp:memory → Store fix pattern locally
-   @mcp:byterover-mcp → Sync to cloud
+   @mcp:memory → Store fix pattern
 
 6. Git snapshot:
    @mcp:git → Commit with message

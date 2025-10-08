@@ -10,7 +10,7 @@ trigger: always_on
 
 **Core Schemas**: activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory
 
-**Features**: AegisKG local knowledge graph, SQLite session context, Context7 source prioritization, MCP validation state
+**Features**: AegisKG local knowledge graph, Context7 source prioritization, MCP validation state
 
 **Performance**: 2.6x faster JSON parsing, 65% memory optimization, ≤10KB/file
 
@@ -76,7 +76,7 @@ trigger: always_on
 
 ```
 Context Assembly → MCP Enrichment → Validation → Tri-Branch Review → 
->95% Consensus → EXECUTE → Post-Validation → 7-Schema Update → 
+>95% Consensus → EXECUTE → Post-Validation → 8-Schema Update → 
 Context Rot Detection → Load Next → REPEAT CONTINUOUSLY
 ```
 
@@ -105,4 +105,4 @@ Context Rot Detection → Load Next → REPEAT CONTINUOUSLY
 
 **Implementation Details**: See Article III-A for complete protocols including context assembly, MCP-based updates, validation checkpoints, and schema health monitoring.
 
-**Compliance**: Unified constitutional authority with >95% consensus requirements and mandatory 7-schema validation.
+**Compliance**: Unified constitutional authority with >95% consensus requirements and mandatory 8-schema validation.

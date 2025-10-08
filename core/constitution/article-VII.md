@@ -166,7 +166,7 @@ This system enforces the standards outlined in **Article XI**.
 **Context-Aware Execution**:
 - **Situational Adaptation**: Adjust execution strategies based on current project state
 - **Historical Context Integration**: Apply lessons learned from previous similar tasks
-- **Cross-Project Learning**: Leverage knowledge from byterover-mcp for optimization
+- **Cross-Project Learning**: Leverage knowledge from @mcp:memory for optimization
 - **Real-Time Context Updates**: Maintain current awareness of project changes
 - **Predictive Context Modeling**: Anticipate future context needs and prepare accordingly
 

@@ -2,20 +2,20 @@
 
 **PURPOSE**: Ultra-brief command reference for AI agents  
 **FULL DETAILS**: See `global_rules.md` for complete framework documentation  
-**CONSTITUTIONAL AUTHORITY**: `.windsurf/rules/constitution/` Articles I-XIV
+**CONSTITUTIONAL AUTHORITY**: `.windsurf/rules/constitution/` Articles I-XVI
 
 ---
 
 ## 🚀 Core Commands (8 Total)
 
 **Project Initialization**:
-- **`init`** → Auto-detect project state → Restore OR generate 7 essential schemas → Enable autonomous workflow
+- **`init`** → Auto-detect project state → Restore OR generate 8 essential schemas → Enable autonomous workflow
 
 **Execution**:
-- **`next`** → Execute next task → Update ALL 7 essential schemas → Auto-continue → NEVER STOP
-- **`update`** → Refresh ALL 7 essential schemas (and any project-specific automation files if present) → Schema validation → Context health check
+- **`next`** → Execute next task → Update ALL 8 essential schemas → Auto-continue → NEVER STOP
+- **`update`** → Refresh ALL 8 essential schemas (and any project-specific automation files if present) → Schema validation → Context health check
   
-  Note: If extended automation files exist (e.g., deployment/monitoring/dependencies), `update` also refreshes them, but the 7 essential schemas remain the canonical core.
+  Note: If extended automation files exist (e.g., deployment/monitoring/dependencies), `update` also refreshes them, but the 8 essential schemas remain the canonical core.
 
 **Quality**:
 - **`validate`** → Ajv schema + linkage validators (+ language tests when present) → Report compliance
@@ -39,7 +39,7 @@
 ## 🔄 Autonomous Execution Flow
 
 ```
-Task Complete → Update ALL 7 essential schemas → Validate → Load Next → Execute → Repeat
+Task Complete → Update ALL 8 essential schemas → Validate → Load Next → Execute → Repeat
 ```
 
 **CRITICAL**: AI NEVER stops after one task at 0-98% autonomy
@@ -57,10 +57,10 @@ Task Complete → Update ALL 7 essential schemas → Validate → Load Next → 
 ## 📋 Task Completion Checklist
 
 - [ ] Task implemented and validated
-- [ ] ALL 7 essential schemas updated (plus automation files if present)
+- [ ] ALL 8 essential schemas updated (plus automation files if present)
 - [ ] Quality checks passed (zero errors/warnings)
 - [ ] Next task auto-loaded and execution started
-- [ ] Knowledge stored (@mcp:memory + @mcp:byterover-mcp)
+- [ ] Knowledge stored (@mcp:memory)
 
 ---
 
@@ -68,7 +68,7 @@ Task Complete → Update ALL 7 essential schemas → Validate → Load Next → 
 
 **Existing Projects**:
 ```
-1. AI auto-scans .windsurf/memory-bank/ (7 essential schemas)
+1. AI auto-scans .windsurf/memory-bank/ (8 essential schemas)
 2. Auto-loads ALL core schemas with schema validation
 3. Type: next (or AI auto-triggers)
 4. Workflow resumes exactly where you left off
@@ -77,7 +77,7 @@ Task Complete → Update ALL 7 essential schemas → Validate → Load Next → 
 **New Projects**:
 ```
 1. Type: init
-2. AI generates the 7 essential schemas (bootstrap) and any required automation files
+2. AI generates the 8 essential schemas (bootstrap) and any required automation files
 3. Autonomous workflow activated
 ```
 
@@ -85,9 +85,9 @@ Task Complete → Update ALL 7 essential schemas → Validate → Load Next → 
 
 ## 📁 Quick Reference
 
-**Memory-Bank**: 7 essential schemas (+ roadmap.md). Extended automation files are optional and project-specific.  
-**Constitution**: 14 articles in `.windsurf/rules/constitution/`  
-**Schemas**: 7 essential schemas in `.windsurf/memory-bank/schemas/` (see `README.md`)  
+**Memory-Bank**: 8 essential schemas (+ roadmap.md). Extended automation files are optional and project-specific.  
+**Constitution**: 16 articles in `.windsurf/rules/constitution/`  
+**Schemas**: 8 essential schemas in `.windsurf/memory-bank/schemas/` (see `README.md`)  
 **Laws**: Project-specific in `.windsurf/rules/laws/`
 
 **For Complete Details**: See `global_rules.md` (MCP automation, project structure, validation commands, compliance thresholds, etc.)

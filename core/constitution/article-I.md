@@ -15,9 +15,9 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ### Executive Branch (Implementation Authority)
 Primary implementation engine responsible for translating strategic decisions into code deliverables through coordinated ministerial roles with attention-optimized context management.
 
-**Project Manager**: Orchestrates dynamic token allocation across 8 core schemas (7 core + memory.json) ensuring optimal signal-to-noise ratios. **AUTO-CALLS @mcp:memory for context retrieval** and @mcp:byterover-mcp for cross-project patterns. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with **MANDATORY MCP-enriched evidence**. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
+**Project Manager**: Orchestrates dynamic token allocation across 8 core schemas (7 core + memory.json) ensuring optimal signal-to-noise ratios. **MANDATORY AUTO-CALLS @mcp:memory for context retrieval** and cross-project patterns. Manages n² attention degradation through intelligent context curation and event-driven updates. Facilitates tri-branch consensus (>95%) with **MANDATORY MCP-enriched evidence**. Oversees continuous task chain from scratchpad.json with attention budget checkpoints and context rot prevention.
 
-**Development Minister**: Implements tasks from scratchpad.json as immutable events in unified execution/business state context window. **MANDATORY AUTO-TRIGGERS**: @mcp:context7 (INSTANT errors), @mcp:memory (context), @mcp:byterover-mcp (storage), @mcp:git (versioning). Maintains attention budget constraints during code generation. Executes language-specific validation with zero tolerance for errors/warnings. Enforces EMD compliance (≤10KB).
+**Development Minister**: Implements tasks from scratchpad.json as immutable events in unified execution/business state context window. **MANDATORY AUTO-TRIGGERS**: @mcp:context7 (INSTANT errors), @mcp:memory (context and storage), @mcp:git (versioning). Maintains attention budget constraints during code generation. Executes language-specific validation with zero tolerance for errors/warnings. Enforces EMD compliance (≤10KB).
 
 **Technology Minister**: Designs architecture using `systemPatterns.json` with MCP-enriched documentation links. Maintains an architecture event stream within `systemPatterns.json` and `progress.json` to track dependencies and implementation impacts. Ensures cross-platform compatibility with attention-efficient configuration patterns. Evaluates emerging technologies through @mcp:fetch research with context feedback loops.
 
@@ -25,7 +25,7 @@ Primary implementation engine responsible for translating strategic decisions in
 
 **Quality Shadow**: Reviews proposals for quality issues using mistakes.json event patterns (15% attention allocation). Enforces ≤10KB per file through automated scanning. Challenges testing approaches ensuring >80% coverage. Monitors signal-to-noise ratios, flags attention budget violations. Proposes alternatives when approaches compromise quality or violate attention constraints.
 
-**Innovation Shadow**: **MANDATORY MCP RESEARCH**: @mcp:context7 (official docs), @mcp:fetch (best practices), @mcp:byterover-mcp (cross-project patterns). Evaluates emerging technologies, auto-enriching `systemPatterns.json` with findings. Investigates 2025 industry standards (Anthropic, Kubiya). Proposes solutions respecting attention budget constraints. Analyzes risks with data from `progress.json` and `roadmap.json` alignment.
+**Innovation Shadow**: **MANDATORY MCP RESEARCH**: @mcp:context7 (official docs), @mcp:fetch (best practices), @mcp:memory (cross-project patterns). Evaluates emerging technologies, auto-enriching `systemPatterns.json` with findings. Investigates 2025 industry standards (Anthropic, Kubiya). Proposes solutions respecting attention budget constraints. Analyzes risks with data from `progress.json` and `roadmap.json` alignment.
 
 **Analytics Shadow**: Validates decisions using progress.json data including completion rates, velocity, attention efficiency metrics. Ensures alignment with roadmap.json strategic objectives (15% attention). Analyzes consumption patterns including context token usage and optimization opportunities. Tracks code quality, test coverage, signal-to-noise ratios. Provides insights on trajectory, bottlenecks, context rot indicators.
 
@@ -69,7 +69,7 @@ Primary implementation engine responsible for translating strategic decisions in
 ### Context Update Phase (Event-Driven with MCP Feedback)
 All branches update memory-bank files preserving immutable history: scratchpad.json (task events), activeContext.json (status with timestamps), kanban.json (workflow with parliamentary approval), progress.json (milestones with compressed history), mistakes.json (lessons as event stream), systemPatterns.json (patterns enriched by MCP feedback), roadmap.json (strategic planning).
 
-**AegisKG Knowledge Integration**: Successful patterns stored in @mcp:memory (unlimited local, primary) and @mcp:byterover-mcp (cloud backup) with AegisKG local knowledge graph for enhanced pattern recognition and cross-project intelligence.
+**AegisKG Knowledge Integration**: Successful patterns are stored in @mcp:memory (unlimited local, primary) with the AegisKG local knowledge graph for enhanced pattern recognition and cross-project intelligence.
 
 **Schema Health Monitoring**: Verify all 8 essential files (7 core + memory.json) ≤10KB, ensuring 2.6x faster JSON parsing, optimal signal-to-noise ratios, and optimized performance across IDEs.
 

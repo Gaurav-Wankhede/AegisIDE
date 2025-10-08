@@ -65,9 +65,9 @@ Quality Shadow challenges:
   → Demand testing coverage >80% with constitutional metrics
 
 Innovation Shadow challenges:
-  → "I've researched alternatives via @mcp:context7 with verified source prioritization:"
+  → "I have autonomously researched alternatives via @mcp:context7 with verified source prioritization:"
   → @mcp:context7 → resolve-library-id → get-library-docs
-  → @mcp:byterover-mcp → Cross-project intelligence patterns
+  → @mcp:memory → Cross-project intelligence patterns
   → Present industry best practices with AegisKG validation
   → Challenge technical decisions using 8-schema analysis
 

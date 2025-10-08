@@ -20,9 +20,9 @@ This protocol is governed by the mandatory auto-activation triggers defined in `
 - **Error Detection**: @mcp:context7 INSTANT with Context7 source prioritization → Verified official docs → Auto-fix → Re-validate
 - **Language Detection**: @mcp:filesystem scan project → Detect language → Load validation commands with accuracy scoring
 - **Validation Execution**: Run checks → IF errors: @mcp:context7 → Fix → @mcp:filesystem update 8 essential schemas
-- **Pattern Learning**: @mcp:memory store error solutions in AegisKG knowledge graph → @mcp:byterover-mcp cross-project intelligence
+- **Pattern Learning**: @mcp:memory store error solutions in AegisKG knowledge graph for cross-project intelligence
 - **Predictive Analytics**: mistakes.json predictive warnings → instant lint tracking → anti-hallucination metrics
-- **Roadmap Validation**: @mcp:filesystem read roadmap.json with SQLite session alignment → Verify strategic planning → HALT if deviation
+- **Roadmap Validation**: @mcp:filesystem read roadmap.json → Verify strategic planning → HALT if deviation
 
 **ENFORCEMENT**: Every validation step has embedded MCP triggers → Autonomous error resolution → No manual "use MCP" needed
 
@@ -222,7 +222,7 @@ bundle exec srb tc
 
 ### Autonomous Error Resolution Protocol with MANDATORY MCP Integration
 
-**HALT-FIX-VALIDATE Loop with 7-Schema MCP** (Execute WITHOUT asking):
+**HALT-FIX-VALIDATE Loop with 8-Schema MCP** (Execute WITHOUT asking):
 ```
 1. **@mcp:context7** Detect language/framework + Context7 source prioritization for verified documentation
 2. **@mcp:filesystem** Execute validation commands with schema compliance
@@ -231,12 +231,12 @@ bundle exec srb tc
    b. **@mcp:memory** Log errors in mistakes.json with predictive analytics and error patterns
    c. **@mcp:context7** MANDATORY AUTO-CALL for official docs with accuracy scoring (NO ASKING)
    d. **@mcp:sequential-thinking** Complex problem decomposition if needed
-   e. **@mcp:byterover-mcp** Check AegisKG cross-project intelligence solutions
-   f. **@mcp:git** Implement fixes autonomously with version control and SQLite session context
-   g. **@mcp:filesystem** Re-run validation commands with 7-schema update cycle
+   e. **@mcp:memory** Check AegisKG cross-project intelligence solutions
+   f. **@mcp:git** Implement fixes autonomously with version control
+   g. **@mcp:filesystem** Re-run validation commands with 8-schema update cycle
    h. **@mcp:math** Calculate fix effectiveness metrics with 65% optimization
    i. REPEAT until clean (100% pass)
-4. **@mcp:time** Timestamp completion in session context → continue to next task
+4. **@mcp:time** Timestamp completion → continue to next task
 5. **@mcp:memory** Update systemPatterns.json with AegisKG pattern networks
 ```
 
@@ -319,7 +319,7 @@ ruby:
 
 **Collaboration**: Quality Shadow ensures validation passes, Chief Justice ensures roadmap alignment, both must approve
 
-**7-Schema Memory-Bank**: mistakes.json (error patterns with Context7 source prioritization), systemPatterns.json (successful validation patterns with AegisKG networks), roadmap.json (strategic planning with SQLite session alignment), scratchpad.json (immediate priorities with MCP validation state), activeContext.json (real-time execution state), progress.json (development milestones with constitutional metrics), kanban.json (task workflow and parliamentary approval)
+**8-Schema Memory-Bank**: mistakes.json (error patterns with Context7 source prioritization), systemPatterns.json (successful validation patterns with AegisKG networks), roadmap.json (strategic planning), scratchpad.json (immediate priorities with MCP validation state), activeContext.json (real-time execution state), progress.json (development milestones with constitutional metrics), kanban.json (task workflow and parliamentary approval), memory.json (knowledge graph)
 
 ### Enforcement Levels
 **Level 0 - Validation Failure**: IMMEDIATE HALT until errors/warnings resolved

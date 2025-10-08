@@ -18,7 +18,7 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 **Integration Decision Requirements**: >95% tri-branch consensus for major system integrations, >85% consensus for routine integrations, >75% consensus for experimental integrations
 
-### Comprehensive MCP Integration Framework (9 Servers - 2025)
+### Comprehensive MCP Integration Framework (8 Servers - 2025)
 
 The mandatory auto-activation triggers for these MCPs are defined in `global_rules.md`.
 
@@ -34,7 +34,6 @@ The mandatory auto-activation triggers for these MCPs are defined in `global_rul
 
 **Knowledge & Reasoning Cluster**:
 - **@mcp:memory**: Offline knowledge graph with unlimited storage
-- **@mcp:byterover-mcp**: Cloud knowledge storage with cross-project sharing
 - **@mcp:sequential-thinking**: Multi-step problem decomposition with reasoning chains
 
 ### Advanced MCP Integration Protocols

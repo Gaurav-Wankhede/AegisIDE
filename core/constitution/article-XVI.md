@@ -143,17 +143,9 @@ END
 ### Storage Location
 ```
 Primary: .windsurf/memory-bank/memory.json (unlimited local storage)
-Backup: @mcp:memory MCP server (automatic persistence)
 Schema: .windsurf/memory-bank/schemas/memory.schema.json
 ```
 
-### Migration from Byterover-MCP
-```
-Phase 1 (Current): Dual storage (@mcp:memory + byterover-mcp)
-Phase 2: Migrate patterns from byterover-mcp to local memory.json
-Phase 3: Deprecate byterover-mcp, use @mcp:memory exclusively
-Location: .windsurf/memory-bank/aegis-knowledge-graph
-```
 
 ## MCP Integration Protocol
 
