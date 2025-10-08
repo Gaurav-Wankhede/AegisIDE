@@ -183,23 +183,30 @@ You'll need `Node.js` (which includes `npx`) and `uv` (for `uvx`).
     powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
     ```
 
-**Running the Servers:**
+**Running the Servers in Your IDE:**
 
-The `mcp_servers.json` file contains the commands to start each server. You will need to open a few terminal tabs and run the commands for the servers you want to use.
+The `mcp_servers.json` file provides the commands needed to start each MCP server. You should run these commands in a terminal. Most modern IDEs, including Windsurf and Cursor (which is built on VS Code), have an integrated terminal that you can use.
 
-For example, to start the `memory` server:
+1.  **Open the Integrated Terminal:** In your IDE, open a new terminal panel. You can usually find this in the "View" or "Terminal" menu.
+2.  **Run Each Server in a Separate Terminal:** For the best experience, it's recommended to run each MCP server in its own terminal tab. This keeps them running in the background without blocking your main workflow.
 
-```bash
-npx -y @modelcontextprotocol/server-memory
-```
+    *   Click the `+` icon in your terminal panel to open a new tab.
+    *   Copy a command from `mcp_servers.json` and paste it into the new terminal.
 
-And to start the `git` server:
+    **Example: Starting the `memory` server:**
+    ```bash
+    npx -y @modelcontextprotocol/server-memory
+    ```
 
-```bash
-uvx mcp-server-git
-```
+    **Example: Starting the `git` server:**
+    ```bash
+    uvx mcp-server-git
+    ```
+3.  **Keep Them Running:** Leave these terminal tabs open while you are working on your project. The AI will automatically connect to and use these servers as needed.
 
-You can run each command listed in `mcp_servers.json` in a separate terminal window to have all the capabilities active.
+**For Other IDEs:**
+
+If your IDE does not have an integrated terminal, you can use your computer's standard terminal application (like Terminal on macOS/Linux or PowerShell/CMD on Windows). Just make sure you navigate to your project's root directory before running the commands.
 
 ## Core Commands (8 Total - Easy to Type)
 
