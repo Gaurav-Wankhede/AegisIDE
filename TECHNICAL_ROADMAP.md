@@ -16,7 +16,7 @@ flowchart TD
     Oversight -- "Approved" --> PreValidation
     GovernanceGate -- No --> PreValidation
 
-    PreValidation[/validate<br/>Pre-Execution Validation] --> ValidationCheck{Validation Pass?}
+    PreValidation[/validate<br/>Pre-Execution Validation] --> ValidationCheck{"Validation Pass?"}
     ValidationCheck -- Yes --> Execute[/next<br/>Implement Task]
     ValidationCheck -- No --> ErrorHandling[/fix<br/>HALT-FIX-VALIDATE Loop]
     ErrorHandling --> PreValidation

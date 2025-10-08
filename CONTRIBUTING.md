@@ -18,12 +18,12 @@ flowchart TD
         B[Executive Review<br/>PM + Ministers]
         C[Opposition Review<br/>Quality, Innovation, Analytics]
         D[Structured Debate<br/>Evidence Scoring]
-        E{>95% Consensus?}
+        E{">95% Consensus?"}
         F[Judicial Review<br/>Chief Justice]
     end
 
     subgraph Outcome
-        G{Constitutional Compliance?}
+        G{"Constitutional Compliance?"}
         H[Merge & Implement]
         I[Revise & Resubmit]
     end
