@@ -13,7 +13,7 @@ flowchart TD
 
     TaskDiscovery --> GovernanceGate{Governance Gate<br/>Needs Approval?}
     GovernanceGate -- Yes --> Oversight[/oversight<br/>Debate → >95% Vote → Judicial Review]
-    Oversight -- Approved --> PreValidation
+        Oversight -- "Approved" --> PreValidation
     GovernanceGate -- No --> PreValidation
 
     PreValidation[/validate<br/>Pre-Execution Validation] --> ValidationCheck{Validation Pass?}
