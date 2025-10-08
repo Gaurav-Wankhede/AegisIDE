@@ -5,6 +5,30 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.6] - 2025-10-08
+
+### Changed - Documentation Refinement for Performance
+- **Beginner-Friendly Documentation**: Completely rewrote README.md as GitHub landing page with clear value propositions for developers and business stakeholders
+- **Simplified Language**: Removed jargon, added analogies, and created "Before/After" comparisons to show real impact
+- **Accurate File Counts**: Cross-verified all documentation with actual repository structure (17 articles, 37 laws, 12 workflows)
+- **Optimized Structure**: Consolidated technical details, improved visual hierarchy with emojis and clear sections
+- **Platform Guides**: Simplified platform-specific READMEs with 2-minute quick start guides
+- **Core Documentation**: Updated core/README.md with verified article titles and accurate framework statistics
+- **Workflow Integration**: Added actual command sequences to CONTRIBUTING.md and TECHNICAL_ROADMAP.md
+
+### Fixed - Documentation Accuracy
+- Corrected article count from 16 to 17 (added Articles XV & XVI)
+- Updated law count from 14 to 37 language-specific files
+- Fixed workflow count from 10 to 12 command specifications
+- Cross-verified all article titles with actual constitutional files
+- Aligned all documentation with current v2.8.5 architecture
+
+### Performance Impact
+- Faster onboarding for new users with clearer documentation
+- Reduced confusion with accurate file counts and structure
+- Improved developer experience with beginner-friendly explanations
+- Better stakeholder understanding with business-focused benefits
+
 ## [2.8.5] - 2025-10-08
 
 ### Added - Knowledge Graph Memory System

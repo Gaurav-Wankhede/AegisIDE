@@ -1,10 +1,24 @@
-# Windsurf AegisIDE v2.8.5
- 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../LICENSE.md) [![Docs](https://img.shields.io/badge/docs-read-blue)](./.windsurf/guide/index.md) [![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](global_rules.md)
- 
-> **Quick Start**: [CheatSheet.md](CheatSheet.md) | **Intelligence**: [global_rules.md](global_rules.md) | **Always-Check**: Multi-language validation
+# 🌊 Windsurf + AegisIDE - Maximum AI Autonomy
 
-**Windsurf Constitutional Framework** with **democratic parliamentary governance**, **98% autonomous capability**, **always-check operations**, and **centralized configuration validation**.
+> **Get 98% autonomous AI development** - The highest autonomy level of any platform
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](../../LICENSE.md) 
+[![Autonomy](https://img.shields.io/badge/Autonomy-98%25-success)](global_rules.md)
+[![Setup](https://img.shields.io/badge/Setup-2_min-blue)](CheatSheet.md)
+
+---
+
+## 🎯 Why Windsurf?
+
+**Windsurf** is the **#1 recommended platform** for AegisIDE because it offers:
+
+✅ **98% Autonomy** - Highest of all 8 platforms  
+✅ **Native Integration** - Built-in support for global rules  
+✅ **Real-Time Memory** - Direct access to AI's decision-making  
+✅ **2-Minute Setup** - Fastest configuration  
+✅ **Multi-Language** - Auto-detects 10+ programming languages
+
+---
 
 ## 2025 Enhancements (v2.8.5)
 - **8-Schema System**: Upgraded to 8-schema memory-bank structure with memory.json as 8th essential schema.

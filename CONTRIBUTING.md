@@ -1,6 +1,6 @@
 # Contributing to AegisIDE
 
-**Democratic Parliamentary Governance** (98% autonomous operation, 16 constitutional articles)
+**Democratic Parliamentary Governance** (98% autonomous operation, 17 constitutional articles)
 
 ## Democratic Contribution Workflow
 
@@ -55,14 +55,32 @@ flowchart TD
 - **Development Minister**: Implementation, code quality
 - **Technology Minister**: Technical architecture, system design
 
-### Development Workflow
+### Actual Development Workflow
 
 ```bash
-# Initialize project (first time OR restore session)
-init
+# Step 1: Initialize memory-bank (creates 8 JSON files)
+/init
 
-# Execute autonomous tasks
-next
+# Step 2: Execute tasks autonomously
+/next
+
+# Step 3: Validate code (multi-language)
+/validate
+
+# Step 4: Fix errors if found
+/fix
+
+# Step 5: Update context when needed
+/update
+
+# Step 6: Check progress
+/status
+
+# Step 7: Optimize patterns
+/optimize
+
+# Step 8: Parliamentary review (for major decisions)
+/oversight-checks-and-balances
 ```
 
 ### Legislative Branch (Opposition)
@@ -146,7 +164,7 @@ All contributions MUST implement these protocols:
 
 ## Constitutional References
 
-- **Framework**: [core/constitution/](core/constitution/) - 16 Articles
+- **Framework**: [core/constitution/](core/constitution/) - 17 Articles
 - **Global Rules**: [platforms/windsurf/global_rules.md](platforms/windsurf/global_rules.md)
 - **Platform Guides**: [platforms/](platforms/) - 8 implementations
 
