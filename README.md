@@ -154,6 +154,53 @@ cp platforms/jetbrains/jetbrains-config.xml /path/to/your/project/.idea/
 
 See platform-specific setup guides in `platforms/*/README.md`
 
+## MCP Server Setup (Optional, but Recommended)
+
+AegisIDE uses Model Context Protocol (MCP) servers to extend its capabilities, allowing it to access documentation, run commands, and remember information across sessions. While optional, setting up these servers is highly recommended for the best experience.
+
+### What are MCP Servers?
+
+Think of MCP servers as specialized tools that give the AI superpowers. For example:
+-   `context7`: Fetches up-to-date documentation for any library.
+-   `filesystem`: Allows the AI to read and write files in your project.
+-   `memory`: Gives the AI a persistent memory to remember important context.
+
+### Quick Setup Guide
+
+We've made it easy to get started with the `mcp_servers.json` file in the root of this repository.
+
+**Prerequisites:**
+
+You'll need `Node.js` (which includes `npx`) and `uv` (for `uvx`).
+
+1.  **Install Node.js:** If you don't have it, download and install it from [nodejs.org](https://nodejs.org/). This will give you the `npx` command.
+2.  **Install uv:** `uv` is a fast Python package installer. You can install it with:
+    ```bash
+    # macOS / Linux
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+    # Windows
+    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+    ```
+
+**Running the Servers:**
+
+The `mcp_servers.json` file contains the commands to start each server. You will need to open a few terminal tabs and run the commands for the servers you want to use.
+
+For example, to start the `memory` server:
+
+```bash
+npx -y @modelcontextprotocol/server-memory
+```
+
+And to start the `git` server:
+
+```bash
+uvx mcp-server-git
+```
+
+You can run each command listed in `mcp_servers.json` in a separate terminal window to have all the capabilities active.
+
 ## Core Commands (8 Total - Easy to Type)
 
 | Command | Purpose |
