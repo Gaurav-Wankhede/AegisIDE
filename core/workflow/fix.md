@@ -96,6 +96,9 @@ Project Manager:
 ```
 
 ### Phase 3: MCP-Enriched Fix Research
+
+_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+
 ```bash
 # Comprehensive error research:
 

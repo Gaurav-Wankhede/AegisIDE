@@ -87,6 +87,9 @@ done
 ```
 
 ### Phase 5: MCP Integration Preparation
+
+_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+
 ```bash
 # Prepare all 9 MCP servers for auto-enrichment:
 @mcp:context7 → Ready for instant error resolution

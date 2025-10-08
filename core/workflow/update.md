@@ -155,6 +155,9 @@ IF any file >10KB:
 ```
 
 ### Phase 8: Knowledge Sync
+
+_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+
 ```bash
 # Sync with knowledge systems:
 @mcp:byterover-mcp → Store updated patterns

@@ -53,6 +53,9 @@ Required threshold: >95% consensus
 ```
 
 ### Phase 2: Democratic Debate Process (8-Schema Evidence)
+
+_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+
 ```bash
 # Opposition Review Phase (8-Schema Evidence):
 Quality Shadow challenges:

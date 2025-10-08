@@ -67,6 +67,9 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
 ```
 
 ### Phase 2: Context Assembly for Execution (8-Schema System)
+
+_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+
 ```bash
 # Dynamic context loading with attention allocation:
 @mcp:math → Calculate attention budget usage
