@@ -63,15 +63,15 @@ conftest test config/ policies/ || true
 
 ## Workflow Sequence
 
-### Phase 1: Constitutional Framework Validation (7-Schema)
+### Phase 1: Constitutional Framework Validation (8-Schema)
 ```bash
 # Verify constitutional compliance:
-@mcp:filesystem → Read all 14 constitutional articles
+@mcp:filesystem → Read all 16 constitutional articles
 
 # Check compliance areas:
 1. Tri-branch governance active
 2. Democratic consensus achieved (>95%)
-3. 7-Schema integrity (all essential schemas ≤10KB)
+3. 8-Schema integrity (all essential schemas ≤10KB)
 4. MCP integration operational with AegisKG
 5. Attention budget optimized (65% efficiency)
 6. EMD compliance (≤80 lines per file)
@@ -91,11 +91,6 @@ conftest test config/ policies/ || true
 - go.mod (Go)
 - pom.xml, build.gradle (Java)
 - *.csproj, *.sln (C#/.NET)
-- composer.json (PHP)
-- Gemfile (Ruby)
-- go.mod (Go)
-- pom.xml, build.gradle (Java)
-- *.csproj, *.sln (C#)
 - composer.json (PHP)
 - Gemfile (Ruby)
 
@@ -216,7 +211,7 @@ IF validation passes (100% clean):
 ### Phase 6: Memory Bank Validation
 ```bash
 # Verify memory bank health:
-@mcp:filesystem → Check all 7 essential schemas
+@mcp:filesystem → Check all 8 essential schemas
 
 1. File size validation (≤10KB each)
 2. Schema compliance against .windsurf/memory-bank/schemas/ (100%)
@@ -254,8 +249,8 @@ IF validation passes (100% clean):
 ✓ Zero errors/warnings in code
 ✓ Constitutional compliance ≥80%
 ✓ Roadmap alignment ≥95%
-✓ Memory bank schema valid (7 schemas)
-✓ All 7 schemas ≤10KB
+✓ Memory bank schema valid (8 schemas)
+✓ All 8 schemas ≤10KB
 
 # High Priority Validations:
 ✓ EMD compliance (≤80 lines)
@@ -362,8 +357,8 @@ validate-php: php -l && composer validate
 validate-ruby: ruby -c && bundle exec rubocop
 
 # Constitutional commands:
-validate-constitution: Check all 14 articles loaded
-validate-memory-bank: Verify 7 essential schemas compliant (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap) and validate automation files if present
+validate-constitution: Check all 16 articles loaded
+validate-memory-bank: Verify 8 essential schemas compliant (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory) and validate automation files if present
 validate-roadmap: Check alignment with requirements
 validate-governance: Verify tri-branch operational
 ```

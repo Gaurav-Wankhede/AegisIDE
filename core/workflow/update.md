@@ -55,15 +55,15 @@ Manually update all 8 essential schemas when autonomous real-time updates fail o
 
 Validation:
 - Every linkage id refers to an existing entity; if missing → HALT & record in mistakes.json
-- After synchronization, re-validate all 7 files against schemas before proceeding
+- After synchronization, re-validate all 8 files against schemas before proceeding
 ```
 
 ## Workflow Sequence
 
-### Phase 1: 7-Schema Health Check (JSON Awareness)
+### Phase 1: 8-Schema Health Check (JSON Awareness)
 ```bash
-# Assess current state of 7 essential schemas:
-@mcp:filesystem → Read scratchpad.json, activeContext.json, kanban.json, mistakes.json, systemPatterns.json, progress.json, roadmap.json
+# Assess current state of 8 essential schemas:
+@mcp:filesystem → Read scratchpad.json, activeContext.json, kanban.json, mistakes.json, systemPatterns.json, progress.json, roadmap.json, memory.json
 @mcp:math → Calculate file sizes and attention allocation (30%, 25%, 15%, 15%, 7%, 5%, 3%)
 
 # Identify issues:
@@ -74,65 +74,23 @@ Validation:
 - Attention budget degradation
 ```
 
-### Phase 2: 7-Schema Real-Time Update (MANDATORY)
+### Phase 2: 8-Schema Real-Time Update (MANDATORY)
 ```bash
-# Update ALL 7 essential schemas immediately:
+# Update ALL 8 essential schemas immediately:
 
-1. @mcp:filesystem → Update scratchpad.json (30% attention):
-   - Scan project for pending tasks
-   - Remove completed items
-   - Add MCP validation state
-   - Validate against schema
-
-2. @mcp:filesystem → Update activeContext.json (25% attention):
-   - Real-time execution state with session management
-   - Recent changes summary
-   - Attention budget status
-
-3. @mcp:filesystem → Update mistakes.json (20% attention):
-   - Error patterns with Context7 source prioritization
-   - Predictive analytics for error prevention
-   - Anti-hallucination metrics
-
-4. @mcp:filesystem → Update systemPatterns.json (10% attention):
-   - Architecture patterns with AegisKG networks
-   - MCP-enriched documentation links
-   - Success pattern storage
-
-5. @mcp:filesystem → Update progress.json (10% attention):
-   - Development milestones with constitutional metrics
-   - AegisKG progress correlation
-   - Performance tracking
-
-3. @mcp:filesystem → Update kanban.json (15% attention):
-   - Task workflow columns (todo/in_progress/done/approved)
-   - Parliamentary approval tracking
-   - WIP limits and metrics
-
-4. @mcp:filesystem → Update mistakes.json (15% attention):
-   - Error patterns with Context7 source prioritization
-   - Predictive analytics for error prevention
-   - Anti-hallucination metrics
-
-5. @mcp:filesystem → Update systemPatterns.json (7% attention):
-   - Architecture patterns with AegisKG networks
-   - MCP-enriched documentation links
-   - Success pattern storage
-
-6. @mcp:filesystem → Update progress.json (5% attention):
-   - Development milestones with constitutional metrics
-   - AegisKG progress correlation
-   - Performance tracking
-
-7. @mcp:filesystem → Update roadmap.json (3% attention):
-   - Strategic planning alignment
-   - Milestone dependencies
-   - Client requirements validation
+1.  **scratchpad.json**: Scan project for pending tasks, remove completed items, and update MCP validation state.
+2.  **activeContext.json**: Update real-time execution state, session management, and attention budget status.
+3.  **kanban.json**: Refresh task workflow columns, parliamentary approval tracking, and WIP limits.
+4.  **mistakes.json**: Log error patterns with Context7 source prioritization and anti-hallucination metrics.
+5.  **systemPatterns.json**: Update architecture patterns, MCP-enriched links, and success patterns.
+6.  **progress.json**: Update development milestones, constitutional metrics, and performance tracking.
+7.  **roadmap.json**: Align strategic planning, milestone dependencies, and client requirements.
+8.  **memory.json**: Update the knowledge graph with new entities, relations, and observations.
 ```
 
 ### Phase 3: Schema Validation & Health Verification
 ```bash
-# Validate all 7 schemas:
+# Validate all 8 schemas:
 @mcp:filesystem → Validate each schema against `.windsurf/memory-bank/schemas/*.schema.json`
 @mcp:math → Verify file sizes ≤10KB each
 @mcp:git → Create AegisKG snapshot
@@ -145,8 +103,8 @@ Validation:
 
 ### Phase 4: Bootstrap Missing Schemas (If Needed)
 ```bash
-# Ensure the 7 essential files exist (create minimal JSON if missing):
-for FILE in [activeContext.json, scratchpad.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json] do
+# Ensure the 8 essential files exist (create minimal JSON if missing):
+for FILE in [activeContext.json, scratchpad.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json, progress.json, memory.json] do
   IF missing → create minimal {}
   → validate against corresponding schema
 done
@@ -241,7 +199,7 @@ Judicial → Ensures constitutional compliance
 ```
 
 ## Success Criteria
-- ✅ All 7 essential schemas updated and validated
+- ✅ All 8 essential schemas updated and validated
 - ✅ Schema compliance verified (100%)
 - ✅ File sizes ≤10KB each
 - ✅ Attention budget balanced

@@ -29,6 +29,7 @@ Provide comprehensive overview of project status by analyzing all 8 essential sc
 - systemPatterns.json (7% attention - architecture patterns with AegisKG networks)
 - progress.json (5% attention - milestones with constitutional metrics)
 - roadmap.json (3% attention - strategic planning)
+- memory.json (for knowledge graph analysis)
 
 # Calculate health metrics with 59% optimization:
 @mcp:math → Analyze:
@@ -40,7 +41,7 @@ Provide comprehensive overview of project status by analyzing all 8 essential sc
 - Attention budget efficiency (59% optimization achieved)
 ```
 
-### Phase 2: Task Status Analysis (7-Schema)
+### Phase 2: Task Status Analysis (8-Schema)
 ```bash
 # Analyze task states from scratchpad.json:
 - Total pending tasks with MCP validation state
@@ -92,7 +93,7 @@ From roadmap.json:
 Constitutional adherence:
 - Framework compliance: ≥80% required
 - Democratic consensus: >95% achieved
-  - Memory bank integrity: Valid/Invalid (7 essential schemas)
+  - Memory bank integrity: Valid/Invalid (8 essential schemas)
 - MCP integration: Operational/Degraded
 
 Code quality:
@@ -140,10 +141,10 @@ ELSE:
 # Analyze resource usage:
 
 ## Memory bank:
-- Total size: X KB / 70 KB target (7 essential schemas × ≤10KB)
+- Total size: X KB / 80 KB target (8 essential schemas × ≤10KB)
 - Largest file: Y KB
 - Files needing compression: Z
-- Schema compliance (7 essential schemas): X%
+- Schema compliance (8 essential schemas): X%
 
 Git repository:
 - Total commits: X
@@ -207,8 +208,8 @@ Overall MCP health: X/9 operational
   • Zero Errors/Warnings: [YES/NO]
 
 💾 MEMORY BANK:
-  • Total Size: X KB / 70 KB target (7 essential schemas)
-  • Essential Schemas Valid: Y/7
+  • Total Size: X KB / 80 KB target (8 essential schemas)
+  • Essential Schemas Valid: Y/8
   • Automation Files Present: N (validated as needed)
   • Attention Budget: Z%
   • Context Rot: [NONE/DETECTED]
@@ -228,7 +229,7 @@ HEALTHY:
   ✓ Constitutional compliance ≥80%
   ✓ Roadmap alignment ≥95%
   ✓ All MCPs operational
-  ✓ Memory bank valid (7 essential schemas)
+  ✓ Memory bank valid (8 essential schemas)
   → Action: Continue /next
 
 WARNING:

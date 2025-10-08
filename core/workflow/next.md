@@ -45,7 +45,7 @@ ELSE:
 
 # JSON schema awareness (bootstrap if missing):
 @mcp:filesystem → Ensure .windsurf/memory-bank/ exists
-for FILE in [activeContext.json, scratchpad.json, progress.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json] do
+for FILE in [activeContext.json, scratchpad.json, progress.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json, memory.json] do
   IF missing → create minimal JSON {}
   → validate against .windsurf/memory-bank/schemas/* corresponding schema
 done
@@ -66,17 +66,18 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
 - Dependency resolution: Check prerequisites completed
 ```
 
-### Phase 2: Context Assembly for Execution (7-Schema System)
+### Phase 2: Context Assembly for Execution (8-Schema System)
 ```bash
 # Dynamic context loading with attention allocation:
 @mcp:math → Calculate attention budget usage
 @mcp:filesystem → Read scratchpad.json (30% attention - CORE)
 @mcp:filesystem → Read activeContext.json (25% attention - CORE)
-@mcp:filesystem → Read kanban.json (15% attention - HIGH)
-@mcp:filesystem → Read mistakes.json (15% attention - HIGH)
-@mcp:filesystem → Read systemPatterns.json (7% attention - REFERENCE)
-@mcp:filesystem → Read progress.json (5% attention - SUPPORTING)
-@mcp:filesystem → Read roadmap.json (3% attention - STRATEGIC)
+@mcp:filesystem → Read mistakes.json (20% attention - HIGH)
+@mcp:filesystem → Read systemPatterns.json (10% attention - REFERENCE)
+@mcp:filesystem → Read progress.json (10% attention - SUPPORTING)
+@mcp:filesystem → Read roadmap.json (5% attention - STRATEGIC)
+@mcp:filesystem → Read kanban.json
+@mcp:filesystem → Read memory.json
 @mcp:memory → Retrieve AegisKG patterns for task type
 
 # Task-specific prioritization:
@@ -119,10 +120,10 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
 - Follow project-specific laws
 ```
 
-### Phase 5: 7-Schema Real-Time Updates (MANDATORY - BLOCKING)
+### Phase 5: 8-Schema Real-Time Updates (MANDATORY - BLOCKING)
 ```bash
-# Update ALL 7 essential schemas IMMEDIATELY after task completion:
-# BLOCKS next task until complete 7-schema cycle finished
+# Update ALL 8 essential schemas IMMEDIATELY after task completion:
+# BLOCKS next task until complete 8-schema cycle finished
 
 1. @mcp:filesystem → Update scratchpad.json:
    - Remove completed task
@@ -153,7 +154,10 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
    - Milestone dependencies
    - Client requirements validation
 
-# Verify schema compliance for all 7 files (≤10KB each)
+7. @mcp:filesystem → Update memory.json:
+   - Update knowledge graph with new entities, relations, and observations.
+
+# Verify schema compliance for all 8 files (≤10KB each)
 # Create AegisKG snapshot via @mcp:git
 ```
 
@@ -163,14 +167,14 @@ Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-m
 - DO NOT introduce unknown keys not present in schemas
 - Preserve types and required fields exactly as defined
 - Reject writes that fail validation and retry with corrected payload
- - Apply SINGLE-WRITER LOCK during 7-schema update sequence
-   lock.acquire("memory-bank-7-core") → write+validate → lock.release()
+ - Apply SINGLE-WRITER LOCK during 8-schema update sequence
+   lock.acquire("memory-bank-8-core") → write+validate → lock.release()
 ```
 
 #### Attention & Size Thresholds (Early Triggers)
 ```bash
 - If any memory-bank file size ≥ 9.8KB → trigger compression before next write
-- If 7-core update time > 1500ms average over last 5 tasks → increase compression aggressiveness and reduce event payloads
+- If 8-core update time > 1500ms average over last 5 tasks → increase compression aggressiveness and reduce event payloads
 - If schema validation latency > 400ms → parallelize reads further; keep writes sequential
 ```
 
@@ -232,10 +236,10 @@ IF no pending tasks:
 Validate all updates complete before next task
 ```
 
-## 7-Schema Update Protocol (59% Optimized)
+## 8-Schema Update Protocol
 ```bash
 # Real-Time (EVERY task - MANDATORY):
-All 7 essential schemas updated per Article III-A:
+All 8 essential schemas updated per Article III-A:
 1. scratchpad.json → Task priorities with MCP validation
 2. activeContext.json → Execution state with session management
 3. kanban.json → Task workflow and parliamentary approval
@@ -243,6 +247,7 @@ All 7 essential schemas updated per Article III-A:
 5. systemPatterns.json → Architecture with AegisKG networks
 6. progress.json → Milestones with constitutional metrics
 7. roadmap.json → Strategic planning alignment
+8. memory.json → Knowledge graph updates
 
 # Performance Benefits:
 - 2.6x faster JSON parsing
@@ -270,7 +275,7 @@ Judicial → Validates constitutional compliance
 
 ## Success Criteria
 - ✅ Task completed with 100% validation pass
-- ✅ All 7 essential schemas updated (≤10KB each)
+- ✅ All 8 essential schemas updated (≤10KB each)
 - ✅ AegisKG knowledge patterns stored via @mcp:memory
 - ✅ Cross-project intelligence via @mcp:byterover-mcp
 - ✅ Schema compliance verified against `.windsurf/memory-bank/schemas/`

@@ -52,9 +52,9 @@ Comprehensive tri-branch oversight system ensuring constitutional compliance, de
 Required threshold: >95% consensus
 ```
 
-### Phase 2: Democratic Debate Process
+### Phase 2: Democratic Debate Process (8-Schema Evidence)
 ```bash
-# Opposition Review Phase (7-Schema Evidence):
+# Opposition Review Phase (8-Schema Evidence):
 Quality Shadow challenges:
   → "Based on mistakes.json patterns with Context7 source prioritization, I challenge this approach"
   → @mcp:memory → Retrieve AegisKG error patterns
@@ -66,7 +66,7 @@ Innovation Shadow challenges:
   → @mcp:context7 → resolve-library-id → get-library-docs
   → @mcp:byterover-mcp → Cross-project intelligence patterns
   → Present industry best practices with AegisKG validation
-  → Challenge technical decisions using 7-schema analysis
+  → Challenge technical decisions using 8-schema analysis
 
 Analytics Shadow challenges:
   → "Progress.json metrics with constitutional compliance tracking indicate concerns:"
@@ -133,7 +133,7 @@ Quality Assurance (100%):
    - Ensure >95% consensus achieved
 
 2. Memory Bank Validation:
-   - 7 essential schemas maintained (≤10KB each)
+   - 8 essential schemas maintained (≤10KB each)
    - Schema compliance verified
    - Attention budget optimized
    - MCP integration operational

@@ -192,12 +192,16 @@ Requirement: >95% approval needed
    @mcp:filesystem → Implement code changes
    @mcp:git → Track changes with version control
    
-3. Validate-memory-bank: Verify 7 essential schemas compliant (`activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`) and validate automation files if present
-   systemPatterns.json → Store successful fix pattern with AegisKG integration
-   activeContext.json → Update execution state
-   kanban.json → Reflect task status/progression if changed (todo → in_progress → done → approved)
-   progress.json → Update milestone metrics if impacted
-   roadmap.json → Ensure strategic alignment unchanged
+3. Validate-memory-bank: Verify 8 essential schemas compliant (`activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`) and validate automation files if present
+   Update all 8 essential schemas:
+   mistakes.json → Document the error and its resolution.
+   systemPatterns.json → Store successful fix pattern.
+   activeContext.json → Update execution state.
+   kanban.json → Reflect task status.
+   progress.json → Update milestone metrics if impacted.
+   scratchpad.json → Update or remove related tasks.
+   roadmap.json → Ensure strategic alignment is maintained.
+   memory.json → Update knowledge graph with learnings.
 
 4. Validation loop:
    Run language-specific validation
@@ -317,12 +321,16 @@ P3 (Minor):
 
 ## Learning Integration
 ```bash
-# Store fix patterns for future (7-Schema System):
+# Store fix patterns for future (8-Schema System):
 
 mistakes.json → Error pattern + resolution with Context7 source prioritization
 systemPatterns.json → Successful fix approach with AegisKG pattern networks
 activeContext.json → Real-time execution state with session management
 kanban.json → Updated workflow state
+progress.json → Milestone and metric updates
+roadmap.json → Strategic alignment check
+scratchpad.json → Task status updates
+memory.json → Knowledge graph update
 
 @mcp:memory → Local knowledge graph update
 @mcp:byterover-mcp → Cross-project intelligence

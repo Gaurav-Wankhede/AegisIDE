@@ -31,7 +31,7 @@ Establish complete constitutional awareness for new sessions by loading all gove
 - MCP integration mandates
 ```
 
-### Phase 2: Memory Bank Bootstrap (7 Essential Schemas)
+### Phase 2: Memory Bank Bootstrap (8 Essential Schemas)
 ```bash
 # Ensure memory-bank folder exists and create missing files:
 @mcp:filesystem → Ensure .windsurf/memory-bank/ exists
@@ -44,7 +44,8 @@ for FILE in [
   "kanban.json",
   "systemPatterns.json",
   "mistakes.json",
-  "roadmap.json"
+  "roadmap.json",
+  "memory.json"
 ] do
   IF FILE missing:
     → @mcp:filesystem → Write minimal structure {}
@@ -52,20 +53,26 @@ for FILE in [
 done
 ```
 
-### Phase 3: 7-Schema Context Assembly (59% Optimized)
+### Phase 3: 8-Schema Context Assembly
 ```bash
-# Load 7 essential schemas with attention allocation:
+# Load 8 essential schemas with attention allocation:
 @mcp:filesystem → Read scratchpad.json (30% attention - CORE)
 @mcp:filesystem → Read activeContext.json (25% attention - CORE)  
-@mcp:filesystem → Read kanban.json (15% attention - HIGH)
-@mcp:filesystem → Read mistakes.json (15% attention - HIGH)
-@mcp:filesystem → Read systemPatterns.json (7% attention - REFERENCE)
-@mcp:filesystem → Read progress.json (5% attention - SUPPORTING)
-@mcp:filesystem → Read roadmap.json (3% attention - STRATEGIC)
+@mcp:filesystem → Read mistakes.json (20% attention - HIGH)
+@mcp:filesystem → Read systemPatterns.json (10% attention - REFERENCE)
+@mcp:filesystem → Read progress.json (10% attention - SUPPORTING)
+@mcp:filesystem → Read roadmap.json (5% attention - STRATEGIC)
+@mcp:filesystem → Read kanban.json
+@mcp:filesystem → Read memory.json
+
+# Load helper schemas
+@mcp:filesystem → Read core/schemas/helpers/tool-usage-patterns.json
+@mcp:filesystem → Read core/schemas/helpers/common-mistakes.json
+@mcp:filesystem → Read core/schemas/helpers/error-recovery.json
 
 # Load AegisKG patterns, Context7 verified sources, MCP validation states
 # Identify pending tasks, validate strategic roadmap alignment
-# Verify all 7 schemas ≤10KB and attention budget optimal
+# Verify all 8 schemas ≤10KB and attention budget optimal
 ```
 
 ### Phase 4: Technology Laws Loading

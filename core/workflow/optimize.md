@@ -18,7 +18,7 @@ Find optimal algorithms and best practices using comprehensive MCP research, the
 
 ## Workflow Sequence
 
-### Phase 1: Performance Analysis (7-Schema Optimized)
+### Phase 1: Performance Analysis (8-Schema Optimized)
 ```bash
 # Identify optimization targets:
 @mcp:filesystem → Scan codebase for:
@@ -28,7 +28,7 @@ Find optimal algorithms and best practices using comprehensive MCP research, the
 - Redundant computations
 - Suboptimal data structures
 
-# Analyze 7-schema performance metrics:
+# Analyze 8-schema performance metrics:
 @mcp:math → Calculate:
 - JSON parsing efficiency (target: 2.6x faster)
 - Schema size compliance (≤10KB each)
@@ -64,12 +64,12 @@ Find optimal algorithms and best practices using comprehensive MCP research, the
    - Check local optimization successes via knowledge graph
    - Retrieve proven performance patterns
    - Analyze cross-project intelligence from @mcp:byterover-mcp
-   - Extract 7-schema optimization strategies
+   - Extract 8-schema optimization strategies
    - Apply learned optimization techniques
 
 5. @mcp:byterover-mcp → Cross-project intelligence:
    - Find similar optimization challenges across projects
-   - Import successful 7-schema performance solutions
+   - Import successful 8-schema performance solutions
    - Share AegisKG optimization patterns globally
    - Validate Context7 source prioritization improvements
 ```
@@ -194,6 +194,9 @@ Java: JMH benchmarks
 - Algorithm selection criteria
 - Performance improvement metrics
 - Best practices applied
+
+`memory.json` → Store:
+- Learned optimization patterns and heuristics in the knowledge graph.
 
 `progress.json` → Record:
 - Performance improvements achieved
