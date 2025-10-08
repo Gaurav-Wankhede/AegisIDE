@@ -15,6 +15,16 @@ Judicial Branch validates implementation against constitutional framework, ensur
 - **Article IV**: Fundamental Principles - Code quality standards
 - **Article II**: Autonomous Decision Making - Validation authority
 
+## MCP Role Map
+- `@mcp:context7` – Load constitutional mandates, validation rules, and official language documentation before every review.
+- `@mcp:fetch` – Retrieve external advisories (e.g., CVE bulletins, framework announcements) influencing validation requirements.
+- `@mcp:filesystem` – Inspect constitutional articles, roadmap assets, and source code while executing validation commands.
+- `@mcp:git` – Persist validation outcomes, security scan artifacts, and audit snapshots.
+- `@mcp:memory` – Recall past validation patterns and store new judicial rulings in the knowledge graph.
+- `@mcp:sequential-thinking` – Coordinate multi-phase validation steps and propose remediation sequences when failures occur.
+- `@mcp:time` – Timestamp each validation phase, security scan, and final verdict for accountability.
+- `@mcp:math` – Calculate compliance percentages, alignment scores, and consensus metrics.
+
 ## Judicial Authority
 ```bash
 # Chief Justice Powers:
@@ -31,22 +41,17 @@ Judicial Branch validates implementation against constitutional framework, ensur
 
 - Central allowlist file: security/allowlist.yml
 - Each exception MUST include:
-  - rule_id or package identifier
-  - justification (short)
-  - owner (name/email)
-  - expiry (ISO 8601 date)
 
-- CI behavior:
-  - Exceptions auto-expire on or after expiry date → pipeline fails until removed
-  - Owner must rotate or remove entries before expiry
-
-- Local behavior:
-  - validate-exceptions: checks allowlist.yml consistency
+# Execute security scans
+gitleaks detect --no-git --redact
+syft dir:. -o cyclonedx-json > sbom.json
+grype sbom:sbom.json --fail-on High
 ```
 
 ### Phase 2.5: Security Automation (BLOCKING)
 ```bash
 # Secrets Scanning (must pass with 0 high-confidence leaks)
+@mcp:fetch → Retrieve latest CVE advisories or security guidance
 gitleaks detect --no-git --redact || gitleaks detect
 # Alternative: semgrep secrets
 semgrep --config p/secrets --error || true  # advisory if semgrep unavailable
@@ -61,57 +66,6 @@ grype sbom:sbom.json --fail-on High || trivy fs --exit-code 1 --severity HIGH,CR
 conftest test config/ policies/ || true
 ```
 
-## Workflow Sequence
-
-### Phase 1: Constitutional Framework Validation (8-Schema)
-```bash
-# Verify constitutional compliance:
-@mcp:filesystem → Read all 16 constitutional articles
-
-# Check compliance areas:
-1. Tri-branch governance active
-2. Democratic consensus achieved (>95%)
-3. 8-Schema integrity (all essential schemas ≤10KB)
-4. MCP integration operational with AegisKG
-5. Attention budget optimized (65% efficiency)
-6. EMD compliance (≤80 lines per file)
-7. Context7 source prioritization functional
-
-# Calculate compliance score:
-@mcp:math → Compliance percentage (≥80% required)
-```
-
-### Phase 2: Multi-Language Validation
-```bash
-# Auto-detect project language/framework:
-@mcp:filesystem → Scan for:
-- package.json, pnpm-lock.yaml (TypeScript/JavaScript)
-- Cargo.toml (Rust)
-- requirements.txt, pyproject.toml (Python)
-- go.mod (Go)
-- pom.xml, build.gradle (Java)
-- *.csproj, *.sln (C#/.NET)
-- composer.json (PHP)
-- Gemfile (Ruby)
-
-# Execute language-specific validation:
-Rust: cargo check --all-targets
-TypeScript (PNPM): pnpm typecheck
-TypeScript (NPM): npx tsc --noEmit
-Python: basedpyright .
-Go: go build ./...
-Java (Maven): mvn compile
-Java (Gradle): ./gradlew compileJava
-C#: dotnet build --no-restore
-PHP: php -l && composer validate
-Ruby: ruby -c && bundle exec rubocop --dry-run
-
-# Security automation helpers:
-validate-secrets: gitleaks detect --no-git --redact
-validate-sbom: syft dir:. -o cyclonedx-json > sbom.json
-validate-vuln: grype sbom:sbom.json --fail-on High
-validate-policy: conftest test config/ policies/
-```
 
 ## Security Tools: Quick Install Notes (Linux)
 ```bash
@@ -166,11 +120,15 @@ IF ANY errors OR warnings detected:
   → Report to Chief Justice
   → Trigger /fix workflow
   → Block all operations until 100% clean
+  → @mcp:sequential-thinking → Generate remediation plan
+  → @mcp:time → Timestamp halt event for audit
 
 IF validation passes (100% clean):
   → Document in systemPatterns.json
   → Update progress.json with validation success
   → Continue operations
+  → @mcp:memory → Store clean validation pattern
+  → @mcp:time → Record validation completion timestamp
 ```
 
 ### Phase 4: Roadmap Alignment Verification
@@ -187,6 +145,7 @@ IF validation passes (100% clean):
 
 # Roadmap compliance score:
 @mcp:math → Calculate alignment percentage (≥95% required)
+@mcp:sequential-thinking → Recommend corrective actions if alignment <95%
 ```
 
 ### Phase 5: Code Quality Standards
@@ -212,6 +171,7 @@ IF validation passes (100% clean):
 ```bash
 # Verify memory bank health:
 @mcp:filesystem → Check all 8 essential schemas
+@mcp:time → Timestamp memory-bank inspection
 
 1. File size validation (≤10KB each)
 2. Schema compliance against .windsurf/memory-bank/schemas/ (100%)
@@ -241,6 +201,8 @@ IF validation passes (100% clean):
 # Store report:
 @mcp:filesystem → Update progress.json
 @mcp:git → Commit validation results
+@mcp:memory → Persist judicial verdict summary
+@mcp:time → Log report completion timestamp
 ```
 
 ## Validation Matrix

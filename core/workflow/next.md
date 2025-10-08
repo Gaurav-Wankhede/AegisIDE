@@ -1,262 +1,60 @@
+description: Continuous autonomous execution loop.
 ---
-description: Continuously execute tasks from scratchpad.json and kanban.json with real-time updates and parallel execution
----
 
-# /next - Continuous Task Execution
+# /next – Continuous Task Execution
 
-_This workflow is defined canonically under `core/workflow/next.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/next.md`, so path references should be interpreted through that mount when executed inside the IDE._
-
-## Purpose
-Read scratchpad.json and kanban.json in parallel, execute implementation tasks, and update status in real-time while maintaining constitutional compliance.
+Canonical loop (mirrored under `.windsurf/workflow/next.md`) that keeps 0–98% autonomy running: read tasks, execute, validate, update memory bank, repeat until the backlog is clear.
+Drain `scratchpad.json` and `kanban.json` continuously while enforcing constitutional rules and real-time schema updates.
 
 ## Constitutional Authority
+- Article II – Autonomous decision making
+- Article III / III-A – Context workflow + 8-schema updates
 
-- **Article II**: Autonomous Decision Making - 0-98% autonomy execution
-- **Article III**: Context-Engineered Development Workflow - Continuous task chaining
-- **Article III-A**: Implementation Protocols - Real-time updates (Tier 1)
-
-## Workflow Sequence
-
-### Phase 0: Governance Approval Gate (BLOCKING)
+### Phase 1: Task Discovery & Prioritization
 ```bash
-# Ensure parliamentary approval before executing tasks tied to a proposal
-@mcp:filesystem → Read .windsurf/memory-bank/systemPatterns.json
-@mcp:filesystem → Read .windsurf/memory-bank/activeContext.json
-
-# Determine proposal_id (prefer explicit task metadata, fallback to activeContext.proposal_id)
-proposal_id := task.proposal_id || activeContext.proposal_id || null
-
-IF proposal_id != null:
-  latest := most recent governance_decisions where (proposal_id matches) ORDER BY timestamp DESC
-  IF latest is missing OR latest.approved != true:
-    → HALT
-    → Return to /oversight-checks-and-balances
-    → Message: "Proposal not approved (proposal_id=...)"
-ELSE:
-  # No proposal linkage → proceed (routine operations)
-
-# On approval: /next proceeds to Preflight Awareness and execution
-```
-
-### Preflight Awareness (MANDATORY)
-```bash
-# Constitutional awareness:
-@mcp:filesystem → Read .windsurf/rules/constitution/article-I.md … article-XIV.md
-
-# JSON schema awareness (bootstrap if missing):
-@mcp:filesystem → Ensure .windsurf/memory-bank/ exists
-for FILE in [activeContext.json, scratchpad.json, progress.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json, memory.json] do
-  IF missing → create minimal JSON {}
-  → validate against .windsurf/memory-bank/schemas/* corresponding schema
-done
-
-# MCP awareness:
-Verify presence/health of: context7, fetch, filesystem, git, memory, byterover-mcp, sequential-thinking, time, math
-```
-
-### Phase 1: Parallel Task Discovery
-```bash
-# Read both task sources simultaneously:
 @mcp:filesystem → Read scratchpad.json (PARALLEL)
 @mcp:filesystem → Read kanban.json (PARALLEL)
-
-# Merge and prioritize tasks:
-- Priority: P0 (blocking) → P1 (critical) → P2 (major) → P3 (minor)
-- Status filter: todo, in_progress (exclude done, approved)
-- Dependency resolution: Check prerequisites completed
+@mcp:time → Stamp discovery time in activeContext.json
+@mcp:math → Rank tasks (P0>P1>P2>P3, todo/in_progress, dependencies clear)
+@mcp:sequential-thinking → Build execution plan or recover mid-task state
 ```
 
 ### Phase 2: Context Assembly for Execution (8-Schema System)
-
-_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
-
 ```bash
-# Dynamic context loading with attention allocation:
-@mcp:math → Calculate attention budget usage
-@mcp:filesystem → Read scratchpad.json (30% attention - CORE)
-@mcp:filesystem → Read activeContext.json (25% attention - CORE)
-@mcp:filesystem → Read mistakes.json (20% attention - HIGH)
-@mcp:filesystem → Read systemPatterns.json (10% attention - REFERENCE)
-@mcp:filesystem → Read progress.json (10% attention - SUPPORTING)
-@mcp:filesystem → Read roadmap.json (5% attention - STRATEGIC)
-@mcp:filesystem → Read kanban.json
-@mcp:filesystem → Read memory.json
-@mcp:memory → Retrieve AegisKG patterns for task type
-
-# Task-specific prioritization:
-# If error resolution: mistakes.json priority with Context7 source prioritization
-# If new feature: roadmap.json + systemPatterns.json with AegisKG patterns
-# If optimization: progress.json + systemPatterns.json analysis
+# Create AegisKG snapshot via @mcp:git
+@mcp:git → Stage memory-bank updates and commit "next: update 8-core schemas"
+@mcp:time → Record update completion timestamp
 ```
 
-### Phase 3: Pre-Implementation Validation
-```bash
-# MANDATORY checks before execution:
-1. Detect project language/framework
-2. Run language-specific validation:
-   - Rust: cargo check
-   - TypeScript: pnpm typecheck
-   - Python: basedpyright .
-   - Go: go build ./...
-   (See Article XIII for complete matrix)
-
-3. HALT if errors/warnings detected:
-   → @mcp:context7 INSTANT activation
-   → Auto-fix using official docs
-   → Re-validate until 100% clean
-
-4. Verify roadmap alignment
-5. Check anti-duplication (scan centralized configs)
-```
-
-### Phase 4: Executive Implementation
-```bash
-# Execute task with full MCP integration:
-@mcp:sequential-thinking → Break complex tasks into steps
-@mcp:filesystem → Implement code changes
-@mcp:git → Track changes with version control
-
-# During implementation:
-- Monitor attention budget (prevent n² degradation)
-- Maintain EMD compliance (≤80 lines per file)
-- Apply ZUV principle (all variables used meaningfully)
-- Follow project-specific laws
-```
-
-### Phase 5: 8-Schema Real-Time Updates (MANDATORY - BLOCKING)
+### Phase 6 – 8-Schema Update (Mandatory, Blocking)
 ```bash
 # Update ALL 8 essential schemas IMMEDIATELY after task completion:
 # BLOCKS next task until complete 8-schema cycle finished
 
 1. @mcp:filesystem → Update scratchpad.json:
-   - Remove completed task
-   - Add next priority tasks
-   - Update MCP validation state
-
 2. @mcp:filesystem → Update activeContext.json:
-   - Real-time execution state with session management
-   - Recent changes summary
-
-3. @mcp:filesystem → Update mistakes.json:
-   - Error patterns with Context7 source prioritization
-   - Predictive analytics for prevention
-   - Anti-hallucination metrics
-
-4. @mcp:filesystem → Update systemPatterns.json:
-   - Architecture patterns with AegisKG networks
-   - MCP-enriched documentation links
-   - Success pattern storage
-
-5. @mcp:filesystem → Update progress.json:
-   - Development milestones with constitutional metrics
-   - AegisKG progress correlation
-   - Performance tracking
-
-6. @mcp:filesystem → Update roadmap.json:
-   - Strategic planning alignment
-   - Milestone dependencies
-   - Client requirements validation
-
-7. @mcp:filesystem → Update memory.json:
-   - Update knowledge graph with new entities, relations, and observations.
-
-# Verify schema compliance for all 8 files (≤10KB each)
-# Create AegisKG snapshot via @mcp:git
-```
-
-#### MCP Update Discipline (No Hallucinations)
-```bash
-- ALL writes MUST use @mcp:filesystem with schema validation
-- DO NOT introduce unknown keys not present in schemas
-- Preserve types and required fields exactly as defined
-- Reject writes that fail validation and retry with corrected payload
- - Apply SINGLE-WRITER LOCK during 8-schema update sequence
-   lock.acquire("memory-bank-8-core") → write+validate → lock.release()
-```
-
-#### Attention & Size Thresholds (Early Triggers)
-```bash
-- If any memory-bank file size ≥ 9.8KB → trigger compression before next write
-- If 8-core update time > 1500ms average over last 5 tasks → increase compression aggressiveness and reduce event payloads
-- If schema validation latency > 400ms → parallelize reads further; keep writes sequential
-```
-
-### Phase 6: Post-Implementation Validation
-```bash
-# MANDATORY validation before proceeding:
-1. Run full validation suite
-2. IF errors → HALT:
-   → @mcp:context7 → Official docs
-   → Fix immediately
-   → Re-validate to 100%
-3. ONLY continue after clean validation
-```
-
-### Phase 7: Knowledge Storage (MANDATORY)
-```bash
-# Store patterns for future use:
-@mcp:byterover-mcp → Store implementation patterns
-@mcp:memory → Update local knowledge graph
-
-# Document successful approaches:
-- Update systemPatterns.json (background)
-- Record lessons learned
-```
-
-### Phase 8: Auto-Continue Loop
-```bash
-# NEVER STOP after one task (0-98% autonomy):
-IF scratchpad.json has pending tasks:
-  → Load next task
-  → REPEAT from Phase 2
-  → Continue until scratchpad empty
-
-IF kanban.json has todo items:
-  → Load next item
-  → REPEAT from Phase 2
-  → Continue autonomous execution
-
-IF no pending tasks:
-  → Report completion summary
-  → Monitor for new tasks
-  → Maintain session readiness
-```
-
-## Parallel Execution Optimization
-```bash
-# Read operations (safe to parallelize):
-@mcp:filesystem → Read scratchpad.json & kanban.json (PARALLEL)
-@mcp:filesystem → Read multiple context files (PARALLEL)
-@mcp:memory + @mcp:byterover-mcp → Pattern retrieval (PARALLEL)
-
-# Write operations (MUST be sequential):
-@mcp:filesystem → Update scratchpad.json
-  ↓
-@mcp:filesystem → Update kanban.json
-  ↓
-@mcp:filesystem → Update activeContext.json
-  ↓
-Validate all updates complete before next task
-```
+3. @mcp:filesystem → Update kanban.json:
+4. @mcp:filesystem → Update mistakes.json:
+5. @mcp:filesystem → Update systemPatterns.json:
+6. @mcp:filesystem → Update progress.json:
+7. @mcp:filesystem → Update roadmap.json:
+8. @mcp:filesystem → Update memory.json:
+Validate ≤10KB each, then `@mcp:git` commit "next: update 8-core schemas" and log completion via `@mcp:time`
 
 ## 8-Schema Update Protocol
 ```bash
 # Real-Time (EVERY task - MANDATORY):
 All 8 essential schemas updated per Article III-A:
-1. scratchpad.json → Task priorities with MCP validation
-2. activeContext.json → Execution state with session management
-3. kanban.json → Task workflow and parliamentary approval
-4. mistakes.json → Error patterns with Context7 prioritization
-5. systemPatterns.json → Architecture with AegisKG networks
-6. progress.json → Milestones with constitutional metrics
-7. roadmap.json → Strategic planning alignment
-8. memory.json → Knowledge graph updates
-
-# Performance Benefits:
-- 2.6x faster JSON parsing
-- 65% memory optimization
+1. scratchpad.json – Remove completed tasks, refresh MCP validation state
+2. activeContext.json – Update execution snapshot + `@mcp:time`
+3. kanban.json – Move cards across columns
+4. mistakes.json – Record patterns + `@mcp:time`
+5. systemPatterns.json – Store architecture/implementation successes
+6. progress.json – Refresh milestones, velocity metrics
+7. roadmap.json – Confirm strategic alignment / dependencies
+8. memory.json – Persist knowledge graph deltas (`@mcp:memory`)
+Validate ≤10KB each, then `@mcp:git` commit "next: update 8-core schemas" and log completion via `@mcp:time`
 - AegisKG knowledge graph integration
-```
 
 ## Constitutional Compliance
 ```bash
@@ -279,8 +77,7 @@ Judicial → Validates constitutional compliance
 ## Success Criteria
 - ✅ Task completed with 100% validation pass
 - ✅ All 8 essential schemas updated (≤10KB each)
-- ✅ AegisKG knowledge patterns stored via @mcp:memory
-- ✅ Cross-project intelligence via @mcp:byterover-mcp
+- ✅ AegisKG knowledge patterns and cross-project intelligence stored via @mcp:memory
 - ✅ Schema compliance verified against `.windsurf/memory-bank/schemas/`
  
 - ✅ Ready for next task (continuous autonomous execution)

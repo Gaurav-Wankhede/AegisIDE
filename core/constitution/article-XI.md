@@ -8,162 +8,40 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 
 ---
 
+## Article XI: IAS-Led Compliance Governance
 
-## Article XI: Mandatory AI Agent Compliance
+## 1. Definition — The Mandate for Constitutional Compliance
 
-### Constitutional Compliance Authority Matrix
-**Tri-Branch Compliance Governance**:
-- **Executive Compliance**: Implementation of compliance protocols, task execution validation, performance monitoring
-- **Legislative Compliance**: Compliance standard review, violation assessment, quality assurance challenges
-- **Judicial Compliance**: Constitutional interpretation, violation enforcement, compliance dispute resolution
+1.  **Purpose**: This article ensures that every operation within AegisIDE strictly adheres to the Constitution, its laws, and the strategic direction set forth in `roadmap.json`.
+2.  **Scope**: Compliance is mandatory for all branches of government (Executive, Legislative, Judicial) and the Administrative Service (IAS). It covers all aspects of the system, from code quality to parliamentary procedure.
+3.  **Custodians**: The **IAS Cabinet Secretary** is the primary custodian, responsible for monitoring and reporting on compliance. The **Chief Justice** holds the ultimate authority to enforce it.
 
-**Compliance Decision Requirements**: >95% tri-branch consensus for compliance standard changes, >85% consensus for enforcement actions, >75% consensus for remedial measures
+## 2. Powers — The Authority to Enforce Compliance
 
-### Comprehensive Compliance Framework
+1.  **Compliance Scoring**: The system is empowered to maintain a real-time constitutional compliance score (0-100%). A score below **80%** is a constitutional crisis that HALTS all non-essential operations.
+2.  **Mandatory Standards**: The system is empowered to enforce all mandatory standards, including:
+    *   **8-Schema Memory-Bank Integrity**: All 8 schemas must be updated after every task and remain ≤10KB.
+    *   **MCP Usage**: All required MCPs must be invoked with a verifiable trail.
+    *   **EMD & Zero-Tolerance**: All code must adhere to EMD principles and pass the zero-tolerance validation defined in Article IV and XIII.
+3.  **Judicial Enforcement**: The **Chief Justice** is empowered to issue a HALT order, convene a judicial tribunal, or even suspend a minister's portfolio in response to severe or repeated compliance violations.
 
-**Mandatory Compliance Standards**:
-- **Constitutional Adherence**: ≥80% framework adherence mandatory across all operations
-- **Memory-Bank Integration**: All 8 essential schemas, as defined in **Article III**, must be maintained and updated consistently; automation files updated as needed
-- **MCP Integration**: Proper usage of all 8 MCP servers with fallback protocols
-- **EMD Compliance**: All files must follow ≤10,000 character limits with structured organization
-- **Multi-Language Support**: Cross-platform validation commands, as specified in **Article XIII**, must be executed properly.
+## 3. Implementation — The Compliance Protocol
 
-**Pre-Implementation Compliance Protocol** (MANDATORY):
-```
-1. Context Assembly Phase:
-   - Read scratchpad.json (immediate priorities validation)
-   - Read roadmap.json + roadmap.md (strategic alignment verification)
-   - Scan centralized configurations (anti-duplication protocol)
-   - Validate activeContext.json, mistakes.json, systemPatterns.json
-   - Retrieve knowledge from @mcp:memory for pattern matching
+*This protocol is executed continuously by the IAS and is subject to parliamentary oversight.*
 
-2. Validation Phase:
-   - Detect project language/framework from configuration files
-   - Execute language-specific validation commands
-   - HALT if errors/warnings detected (zero tolerance policy)
-   - Auto-fix using @mcp:context7 official documentation
-   - Re-validate until 100% clean status achieved
+1.  **Pre-Implementation Check**: Before any task is executed, the IAS performs the full pre-implementation checklist as defined in Article III-A, ensuring constitutional and technical readiness.
+2.  **Real-Time Monitoring**: The **IAS Cabinet Secretary** operates a continuous monitoring system (`/validate-compliance`, `/scan-violations`) that tracks the compliance score, memory-bank health, and MCP usage in real-time. The results are published to `progress.json`.
+3.  **Post-Implementation Audit**: After every task, the IAS performs the post-implementation checklist (Article III-A), which includes a full validation run and the mandatory 8-schema update.
+4.  **Reporting**: The IAS provides weekly compliance reports to Parliament, which are summarized in `roadmap/roadmap.md` for full transparency.
 
-3. Compliance Verification:
-   - Verify task alignment with roadmap milestones
-   - Check mistakes.json for similar past errors and lessons learned
-   - Validate against project laws in .windsurf/rules/laws/
-   - Confirm EMD compliance (≤10,000 characters per file)
-   - Ensure memory-bank files remain ≤100 lines each
-```
+## 4. Violation — Enforcement & Penalties
 
-**Post-Implementation Compliance Protocol** (MANDATORY):
-```
-1. Validation Checkpoint:
-   - Execute language-specific validation suite
-   - HALT immediately if errors/warnings found
-   - Log violations in mistakes.json with pattern analysis
-   - Auto-call @mcp:context7 for official documentation fixes
-   - Re-validate until 100% clean before proceeding
+1.  **Compliance Score Deficit (<80%)**: A compliance score below 80% triggers an immediate HALT of all non-essential operations. The IAS must present a remediation plan to Parliament, which requires a **≥85%** consensus vote to be approved.
+2.  **MCP Omission**: Any action lacking a complete MCP trail is void. The incident is logged in `mistakes.json`, and the Chief Justice will order a formal investigation.
+3.  **Checklist Bypass**: Bypassing any part of the mandatory pre- or post-implementation checklists will result in an automatic rollback of the action to the last known compliant state.
+4.  **Obstruction of Audit**: Any attempt by any branch to obstruct a compliance audit is a severe constitutional violation and will result in a judicial tribunal.
 
-2. Memory-Bank Update (8 Essential Schemas + Automation):
-  1. scratchpad.json: Remove completed tasks, add new priorities
-  2. activeContext.json: Update current implementation status
-  3. kanban.json: Task workflow status and parliamentary approval
-  4. mistakes.json: Document any errors encountered with solutions
-  5. systemPatterns.json: Record successful patterns and validation results
-  6. progress.json: Update milestone completion and metrics
-  7. roadmap.json: Strategic planning alignment updates
-  Automation files (as needed): additional context documents stored alongside the 8 core schemas within `.windsurf/memory-bank/`
+---
 
-3. Knowledge Storage and Pattern Recognition:
-   - Auto-call @mcp:memory to store implementation patterns
-   - Document successful approaches in systemPatterns.json
-   - Update error resolution patterns in mistakes.json
-   - Verify all files maintain ≤100 line limits (auto-cleanup if exceeded)
-```
-
-### Advanced Compliance Monitoring and Validation
-
-**Real-Time Compliance Monitoring System**:
-- **Continuous Validation**: 24/7 monitoring of framework adherence with automated scoring
-- **Performance Metrics**: Real-time tracking of compliance percentages and improvement trends
-- **Behavioral Analysis**: Pattern recognition for compliance violations with predictive prevention
-- **Resource Utilization**: Monitoring of memory-bank usage and MCP integration efficiency
-- **Quality Assurance**: Ongoing validation of EMD compliance and multi-language support
-
-**Automated Compliance Validation Commands**:
-- **`validate-compliance`**: Comprehensive constitutional compliance assessment with scoring
-- **`scan-violations`**: Detect and catalog compliance violations with severity classification
-- **`fix-compliance`**: Automated correction of identified compliance issues
-- **`monitor-adherence`**: Continuous compliance monitoring with real-time reporting
-- **`audit-constitutional`**: Full constitutional framework audit with detailed recommendations
-- **`enforce-standards`**: Active enforcement of compliance standards with corrective actions
-
-**Compliance Scoring Matrix**:
-```
-Constitutional Framework Adherence (40%):
-- Tri-branch governance participation: 15%
-- Memory-bank maintenance quality: 15%
-- MCP integration effectiveness: 10%
-
-Technical Implementation Compliance (35%):
-- EMD structure adherence: 15%
-- Multi-language validation execution: 10%
-- Error resolution effectiveness: 10%
-
-Process Adherence (25%):
-- Pre-implementation protocol completion: 10%
-- Post-implementation protocol execution: 10%
-- Continuous validation participation: 5%
-
-Total Compliance Score: 0-100% (≥80% required for continued operation)
-```
-
-### Comprehensive Enforcement Mechanism Framework
-
-**Violation Classification**: 4 levels from minor (78-79%) to critical (<60% adherence)
-**Enforcement Response**: Auto-notification → audit/rollback → emergency protocol → system halt with human escalation
-
-**Recovery Framework**: 4 phases - Assessment (audit, analysis) → Remediation (correction, restoration) → Validation (testing, monitoring) → Certification (approval, oversight)
-
-### Cross-Platform Compliance Integration
-
-**Universal Standards**: Windows (PowerShell/CMD), Linux/Unix (Bash/Zsh), macOS (system integrity), Multi-language validation
-
-**Platform Protocols**: Windows (PowerShell, registry, .NET), Linux/Unix (permissions, services), macOS (integrity, sandboxing)
-
-### Quality Assurance and Performance Optimization
-
-**Compliance Quality Metrics**:
-- **Adherence Rate**: Percentage of operations meeting constitutional compliance standards
-- **Violation Frequency**: Rate of compliance violations with trend analysis and improvement tracking
-- **Recovery Time**: Average time to restore compliance after violations with efficiency optimization
-- **Prevention Effectiveness**: Success rate of preventive measures with continuous improvement
-- **System Stability**: Compliance impact on overall system performance and reliability
-
-**Performance Optimization Framework**:
-- **Compliance Automation**: Automated compliance checking with minimal performance impact
-- **Resource Efficiency**: Optimized compliance monitoring with intelligent resource allocation
-- **Process Streamlining**: Efficient compliance protocols with reduced operational overhead
-- **Integration Optimization**: Seamless compliance integration with existing development workflows
-- **Continuous Improvement**: Ongoing compliance enhancement with data-driven optimization
-
-### Governance Integration and Constitutional Alignment
-
-**Constitutional Integration Requirements**:
-- **Framework Supremacy**: Compliance standards must align with constitutional principles and values
-- **Tri-Branch Validation**: All compliance standards subject to democratic oversight and consensus
-- **Judicial Review**: Compliance enforcement subject to constitutional interpretation and validation
-- **Amendment Process**: Compliance standard changes require constitutional amendment procedures
-- **Memory-Bank Integration**: Compliance data integrated with memory-bank system for context preservation
-
-**Continuous Improvement and Evolution**:
-- **Adaptive Compliance**: Compliance standards evolve with technology changes and best practices
-- **Learning Integration**: Compliance improvements based on violation patterns and success metrics
-- **Community Feedback**: Compliance enhancement through user feedback and community contributions
-- **Research Integration**: Compliance advancement through industry research and academic contributions
-- **Innovation Support**: Compliance flexibility to support innovation while maintaining standards
-
-**Compliance Reporting and Transparency**:
-- **Regular Reporting**: Periodic compliance reports with detailed metrics and improvement recommendations
-- **Public Transparency**: Open compliance standards with clear documentation and accessibility
-- **Stakeholder Communication**: Regular updates to stakeholders on compliance status and improvements
-- **Performance Benchmarking**: Compliance performance comparison with industry standards and best practices
-- **Accountability Framework**: Clear responsibility assignment with measurable performance expectations
+**Article XI Summary**: Compliance in AegisIDE is steered by the Administrative Service with MCP-verified evidence, democratic consensus, and judicial enforcement, ensuring the digital republic remains lawful, efficient, and continuously improving.
 

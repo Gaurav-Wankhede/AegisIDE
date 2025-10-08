@@ -7,212 +7,65 @@ description: Find best algorithms and optimize code using @mcp:context7, @mcp:fe
 _This workflow is defined canonically under `core/workflow/optimize.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/optimize.md`, so path references should be interpreted through that mount when executed inside the IDE._
 
 ## Purpose
-Find optimal algorithms and best practices using comprehensive MCP research, then optimize code for performance, maintainability, and efficiency.
+Initiated by the **IAS Researcher** or the **Innovation Shadow**, this workflow follows a full parliamentary process to identify, approve, and implement performance and architectural optimizations. It ensures that all changes are backed by MCP-driven research, validated by benchmarks, and achieve >95% consensus before deployment.
 
 ## Constitutional Authority
+- **Article I**: Governs the roles of the IAS Researcher (finding efficient algorithms) and the Innovation Shadow (proposing better patterns).
+- **Article II**: Mandates the parliamentary consensus process for all strategic and technical proposals.
+- **Article IV**: Upholds the constitutional principles of performance focus and code quality.
+- **Article VIII**: Defines the framework for performance and resource optimization.
 
-- **Article X**: Integration & Interoperability - MCP-driven research and cross-project learning
-- **Article II**: Autonomous Decision Making - >95% consensus for implementation
-- **Article VII**: Autonomous Operations - Performance optimization
-- **Article IV**: Fundamental Principles - Code quality standards
+## MCP Role Map
+- `@mcp:context7`: Used by the **IAS Researcher** to retrieve official optimization guidance.
+- `@mcp:fetch`: Used by the **Innovation Shadow** to collect industry benchmarks and community solutions.
+- `@mcp:filesystem`: Used by the **Development Minister** to apply approved optimizations.
+- `@mcp:git`: Used by all parties to snapshot proposals, benchmarks, and final changes for the audit trail.
+- `@mcp:memory`: Used by the **IAS** to retrieve historical patterns and store new optimization strategies.
+- `@mcp:sequential-thinking`: Used by the **Prime Minister** to orchestrate the debate and by the **IAS** to plan the implementation.
+- `@mcp:time`: Used to timestamp all phases to measure efficiency gains.
+- `@mcp:math`: Used by the **Analytics Shadow** and **IAS** to calculate performance metrics and consensus scores.
 
 ## Workflow Sequence
 
-### Phase 1: Performance Analysis (8-Schema Optimized)
-```bash
-# Identify optimization targets:
-@mcp:filesystem → Scan codebase for:
-- Performance bottlenecks
-- Inefficient algorithms (O(n²) or worse)
-- Memory leaks or excessive allocations
-- Redundant computations
-- Suboptimal data structures
+### Phase 1: Identification & Proposal (IAS Researcher / Innovation Shadow)
+*An optimization opportunity is identified through performance analysis or research.*
+1.  **Performance Analysis**: The **IAS** scans the codebase and memory-bank metrics to identify bottlenecks, inefficient algorithms, or suboptimal data structures.
+2.  **MCP Research**: The **IAS Researcher** and **Innovation Shadow** conduct comprehensive research using `@mcp:context7`, `@mcp:fetch`, and `@mcp:memory` to find the best algorithms and practices.
+3.  **Proposal Formulation**: A formal optimization proposal is drafted, including:
+    *   Baseline performance benchmarks (`@mcp:math`, `@mcp:time`).
+    *   The proposed algorithm or architectural change.
+    *   Expected performance gains and impact analysis.
+    *   Supporting evidence from MCP research.
 
-# Analyze 8-schema performance metrics:
-@mcp:math → Calculate:
-- JSON parsing efficiency (target: 2.6x faster)
-- Schema size compliance (≤10KB each)
-- Attention budget utilization (59% optimization target)
-- AegisKG pattern matching speed
-- Memory-bank sync latency
-- Context7 source prioritization accuracy
-```
+### Phase 2: Parliamentary Review & Consensus
+*The proposal is submitted to Parliament for democratic review.*
+1.  **Opposition Challenge**:
+    *   **Quality Shadow**: Scrutinizes the proposal for potential regressions, maintainability issues, or violations of EMD/ZUV principles.
+    *   **Analytics Shadow**: Validates the projected performance metrics and ROI.
+2.  **Structured Debate**: The **Prime Minister** convenes a debate to discuss the trade-offs.
+3.  **Vote**: Parliament votes on the proposal. A weighted consensus score is calculated by `@mcp:math`, requiring **≥95% approval** to proceed.
 
-### Phase 2: MCP Research for Best Practices
+### Phase 3: Implementation (Development Minister)
+*Upon approval, the **Development Minister** executes the optimization.*
+1.  **Apply Optimizations**: The approved changes are implemented using `@mcp:filesystem`.
+2.  **Code Quality Validation**: The implementation is validated against all constitutional quality standards (EMD, ZUV, tests pass).
+3.  **Documentation**: The code is documented with the rationale for the changes.
 
-_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
+### Phase 4: Benchmarking & Validation (IAS & Quality Shadow)
+*The results are measured and validated by neutral parties.*
+1.  **Post-Optimization Benchmarking**: The **IAS** runs benchmarks to measure the actual performance improvement against the baseline.
+2.  **Quality Assurance**: The **Quality Shadow** confirms that all tests pass and no new quality issues were introduced.
 
-```bash
-# Comprehensive optimization research:
+### Phase 5: Judicial Review & Final Approval
+*The **Chief Justice** provides the final constitutional sign-off.*
+1.  The complete record (proposal, debate, benchmarks, and implementation) is submitted for judicial review.
+2.  The Chief Justice verifies that the process was constitutional and that the outcome aligns with the framework's principles.
+3.  Upon approval, the changes are committed via `@mcp:git`.
 
-1. @mcp:context7 → Official documentation:
-   - resolve-library-id for framework/language
-   - get-library-docs for optimization patterns
-   - Extract performance best practices
-   - Find built-in optimization features
-
-2. @mcp:fetch → Industry best practices:
-   - Search algorithm optimization techniques
-   - Find performance benchmarking studies
-   - Retrieve community-proven patterns
-   - Research latest optimization trends (2025)
-
-3. @mcp:sequential-thinking → Complex analysis:
-   - Break problem into optimization steps
-   - Identify algorithmic improvements
-   - Plan data structure changes
-   - Design caching strategies
-
-4. @mcp:memory → AegisKG pattern analysis:
-   - Check local optimization successes via knowledge graph
-   - Retrieve proven performance patterns
-   - Analyze cross-project intelligence from @mcp:byterover-mcp
-   - Extract 8-schema optimization strategies
-   - Apply learned optimization techniques
-
-5. @mcp:byterover-mcp → Cross-project intelligence:
-   - Find similar optimization challenges across projects
-   - Import successful 8-schema performance solutions
-   - Share AegisKG optimization patterns globally
-   - Validate Context7 source prioritization improvements
-```
-
-### Phase 3: Algorithm Selection
-```bash
-# Choose optimal algorithms:
-
-Sorting:
-- Small datasets (<50): Insertion Sort O(n²)
-- Medium datasets: Quick Sort O(n log n)
-- Large datasets: Merge Sort O(n log n) stable
-- Nearly sorted: Tim Sort O(n) best case
-
-Searching:
-- Unsorted: Linear Search O(n)
-- Sorted: Binary Search O(log n)
-- Hash-based: Hash Table O(1) average
-- Range queries: Binary Search Tree O(log n)
-
-Data Structures:
-- Fast access: HashMap/HashSet O(1)
-- Ordered data: BTreeMap/BTreeSet O(log n)
-- Queue operations: VecDeque O(1) both ends
-- Priority queue: BinaryHeap O(log n)
-
-String Operations:
-- Pattern matching: KMP Algorithm O(n+m)
-- Multiple patterns: Aho-Corasick O(n+m+z)
-- Fuzzy matching: Levenshtein Distance O(nm)
-```
-
-### Phase 4: Optimization Implementation
-```bash
-# Apply optimizations:
-
-1. Algorithm improvements:
-   @mcp:filesystem → Replace inefficient algorithms
-   - O(n²) → O(n log n) where possible
-   - O(n) → O(1) with caching
-   - Reduce nested loops
-   - Use early returns
-
-2. Data structure optimization:
-   - Replace Vec with HashMap for lookups
-   - Use BTreeMap for ordered iteration
-   - Apply lazy evaluation patterns
-   - Implement object pooling
-
-3. Memory optimization:
-   - Reduce allocations
-   - Reuse buffers
-   - Use stack over heap when possible
-   - Implement copy-on-write patterns
-
-4. Concurrency optimization:
-   - Parallelize independent operations
-   - Use async/await for I/O
-   - Implement work-stealing schedulers
-   - Apply lock-free data structures
-```
-
-### Phase 5: Benchmarking
-```bash
-# Measure improvements:
-
-Before optimization:
-@mcp:math → Record baseline metrics
-- Execution time
-- Memory usage
-- CPU utilization
-- Throughput
-
-After optimization:
-@mcp:math → Compare results
-- Performance gain (%)
-- Memory reduction (%)
-- Efficiency improvement
-- Scalability enhancement
-
-# Language-specific benchmarking:
-Rust: cargo bench
-TypeScript: npm run benchmark
-Python: pytest-benchmark
-Go: go test -bench
-Java: JMH benchmarks
-```
-
-### Phase 6: Code Quality Validation
-```bash
-# Ensure optimizations maintain quality:
-
-1. EMD compliance:
-   - Files still ≤80 lines
-   - Deep nested structure preserved
-   - Modular organization maintained
-
-2. ZUV principle:
-   - All variables used meaningfully
-   - No premature optimization
-   - Clear, maintainable code
-
-3. Testing:
-   - All tests still pass
-   - Performance tests added
-   - Edge cases covered
-   - Regression tests included
-
-4. Documentation:
-   - Algorithm choices explained
-   - Complexity analysis documented
-   - Trade-offs noted
-   - Benchmarks recorded
-```
-
-### Phase 7: Memory Bank Updates
-```bash
-# Document optimization patterns:
-
-`systemPatterns.json` → Store:
-- Successful optimization approaches
-- Algorithm selection criteria
-- Performance improvement metrics
-- Best practices applied
-
-`memory.json` → Store:
-- Learned optimization patterns and heuristics in the knowledge graph.
-
-`progress.json` → Record:
-- Performance improvements achieved
-- Optimization milestones
-- Efficiency gains
-
-`roadmap.json` → Align:
-- Strategic implications of optimizations
-- Follow-up priorities and dependencies
-
-@mcp:memory → Store locally
-@mcp:byterover-mcp → Sync to cloud
-```
+### Phase 6: Knowledge Storage (IAS Researcher)
+*The successful optimization pattern is integrated into the system's long-term memory.*
+1.  The **IAS Researcher** updates `systemPatterns.json` and the `memory.json` knowledge graph with the new optimization pattern, benchmarks, and decision rationale via `@mcp:memory`.
+2.  The performance gains are logged in `progress.json`.
 
 ## Optimization Patterns
 ```bash
@@ -294,7 +147,7 @@ Memory savings: 99% for large datasets
 □ Verify all tests pass
 □ Document changes and trade-offs
 □ Update memory bank with patterns
-□ Store knowledge in @mcp:byterover-mcp
+□ Store knowledge in @mcp:memory
 ```
 
 ## Next Steps
@@ -302,4 +155,4 @@ After successful optimization:
 1. Monitor performance in production
 2. Continue profiling for new bottlenecks
 3. Apply learned patterns to other code
-4. Share optimization knowledge via @mcp:byterover-mcp
+4. Share optimization knowledge via @mcp:memory

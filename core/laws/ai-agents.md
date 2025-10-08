@@ -100,9 +100,9 @@ globs: *.py,*.ts,*.js,langchain,crewai,requirements.txt,package.json,agents,work
 - Use **hybrid search** combining vector and keyword search
 
 ## Real-Time Knowledge (2024)
-**MCP Auto-Call**: @mcp:context7 + @mcp:fetch + @mcp:byterover-mcp WITHOUT asking
+**MCP Auto-Call**: @mcp:context7 + @mcp:fetch + @mcp:memory WITHOUT asking
 **Sequential**: @mcp:sequential-thinking for multi-step problems
-**Memory**: @mcp:memory for context persistence
+**Memory**: @mcp:memory for context persistence and cross-project intelligence
 
 ## 30-Hour Loop
 Research → Validate → Execute → Update → Store → Checkpoint → CONTINUE

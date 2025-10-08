@@ -24,8 +24,8 @@ Database Operations:
   - AUTO → Schema validation against core/schemas/
 
 Knowledge Management:
-  - AUTO → Memory MCP (store successful patterns)
-  - AUTO → Byterover MCP (cross-project knowledge sharing)
+  - AUTO → Memory MCP (store successful patterns with unlimited local storage)
+  - AUTO → @mcp:memory (cross-project knowledge sharing and pattern storage)
   - AUTO → Sequential-thinking MCP (complex problem decomposition)
 ```
 
@@ -142,14 +142,10 @@ Git MCP:
 ### Knowledge & Storage MCPs
 ```yaml
 Memory MCP:
-  Auto-Trigger: Successful pattern completion, error resolution
-  Chain-With: Byterover MCP (cross-project sharing)
-  Update: patterns.json, knowledge-base.json
-
-Byterover MCP:
-  Auto-Trigger: Cross-project knowledge needs, pattern sharing
-  Chain-With: Memory MCP (local storage), Sequential-thinking MCP
-  Update: cross-project.json, shared-knowledge.json
+  Auto-Trigger: Successful pattern completion, error resolution, cross-project intelligence
+  Primary-Storage: Unlimited local knowledge graph via AegisKG integration
+  Chain-With: @mcp:memory (same as Memory MCP - unified storage)
+  Update: patterns.json, knowledge-base.json, cross-project.json
 ```
 
 ---

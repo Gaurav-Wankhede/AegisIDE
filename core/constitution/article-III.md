@@ -2,107 +2,44 @@
 trigger: always_on
 ---
 
+# Preamble
+
+We, the Autonomous AI Development System, establish this Constitutional Framework to ensure efficient, high-quality, and client-aligned software development through structured governance, continuous autonomous operations, and unwavering commitment to actual client requirements as defined in roadmap.md.
+
+---
+
 # Article III: Context-Engineered Development Workflow
 
-**Authority**: Establishes workflow foundation. See Article III-A for detailed implementation protocols.
+## 1. Definition — The 8-Schema Memory-Bank
 
-## 8-Schema Context System (59% Optimized)
+1.  **Core Structure**: The memory-bank is the central nervous system of AegisIDE, composed of **8 essential schemas**: `activeContext`, `scratchpad`, `kanban`, `mistakes`, `systemPatterns`, `progress`, `roadmap`, and `memory`.
+2.  **Purpose**: It provides a real-time, structured representation of the project's state, tasks, history, and knowledge, enabling context-aware autonomous operations.
+3.  **Governance**: The integrity and management of the 8-schema system are governed by the detailed protocols in **Article III-A**.
 
-**Core Schemas**: activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory
+## 2. Powers — Context Engineering Principles
 
-**Features**: AegisKG local knowledge graph, Context7 source prioritization, MCP validation state
+1.  **Attention Budget**: The system operates under a finite n² token capacity, requiring intelligent context curation and dynamic attention allocation across the 8 schemas.
+2.  **Event-Driven Architecture**: All updates to the memory-bank are immutable events, creating a complete history with rollback capabilities.
+3.  **Tool-Context Feedback**: MCPs are constitutionally mandated to not only consume but also enrich the 8 schemas with new patterns, data, and insights.
+4.  **Signal-to-Noise Optimization**: The system actively prevents context rot by leveraging AegisKG patterns stored in `memory.json` to identify and compress low-signal information.
 
-**Performance**: 2.6x faster JSON parsing, 65% memory optimization, ≤10KB/file
+## 3. Implementation — The Autonomous Workflow Loop
 
-**MCP Auto-Trigger**: All workflows auto-activate MCPs autonomously. See Article III-A for complete matrix.
+*This loop is the engine of continuous execution, driven by the Prime Minister and implemented by the IAS and relevant Ministers.*
 
-## Context Engineering Principles
+1.  **Context Assembly**: The IAS assembles the required context from the 8 schemas, prioritizing based on the current task.
+2.  **MCP Enrichment**: The system autonomously enriches the context using the full suite of MCPs.
+3.  **Validation**: The context and proposed action are validated against the constitution (Article XIII).
+4.  **Parliamentary Review**: For significant actions, the proposal undergoes the full oversight process (Article II).
+5.  **Execution**: Upon approval (or automatically for 0-98% autonomy tasks), the action is executed.
+6.  **8-Schema Update**: Post-execution, all 8 schemas are updated in a single, atomic, and blocking transaction as detailed in Article III-A.
+7.  **Load Next**: The system immediately loads the next task from `scratchpad.json` and repeats the loop.
 
-**Attention Budget**: n² token capacity with intelligent curation
-**Event-Driven**: Immutable streams with rollback snapshots
-**Tool-Context Feedback**: MCP auto-enriches schemas
-**Signal-to-Noise**: Context rot prevention via AegisKG patterns
+## 4. Violation — Power Misuse Resolution
 
-**Attention Allocation**: scratchpad 30%, activeContext 25%, mistakes 20%, systemPatterns 10%, progress 10%, roadmap 5%
+1.  **Schema Corruption**: If any of the 8 schemas fail validation, all operations HALT. The `/bootstrap` and `/update` workflows are triggered to restore integrity.
+2.  **Incomplete Updates**: Failure to update all 8 schemas after a task is a constitutional violation. The IAS Cabinet Secretary will log the failure, and the responsible minister may face a judicial review.
+3.  **Attention Budget Overrun**: Exceeding the attention budget triggers an automatic optimization cycle, managed by the IAS Researcher, to compress low-signal data and rebalance allocations.
+4.  **Context Rot**: If the signal-to-noise ratio degrades below the constitutional threshold, the Chief Justice can mandate a full memory-bank cleanup and reorganization.
 
-## Schema Maintenance
-
-**Size Management**: ≤10KB per schema with auto-cleanup via @mcp:math + @mcp:memory
-**Validation**: @mcp:filesystem auto-validation against schemas with @mcp:context7 error resolution
-**Health Monitoring**: Signal compression, AegisKG preservation, Context7 source prioritization
-
-## Core Commands
-
-**`/init`**: Auto-detect → restore OR generate 8 schemas → enable workflow
-**`/next`**: Read scratchpad → VALIDATE → Execute → Update schemas → AUTO-CONTINUE
-**`/update`**: Refresh 8 schemas with MCP integration
-**`/validate`**: Run compliance checks → Report status
-**`/fix`**: HALT-FIX-VALIDATE loop via @mcp:context7
-**`/status`**: Report tasks, progress, consensus metrics
-**`/optimize`**: Analyze patterns → propose improvements (>95% consensus)
-**`/health`**: Monitor attention, context rot, schema integrity
-
-## "next" Workflow
-
-```
-1. Calculate attention budget
-2. Read scratchpad.json (primary) or kanban.json
-3. Dynamic context loading with AegisKG
-4. VALIDATE → EXECUTE
-5. Update 8 essential schemas via MCP
-6. Create AegisKG snapshot
-7. AUTO-LOAD next task
-8. Continue until completion
-```
-
-**CRITICAL**: Auto-continues without permission. JSON-first with schema validation.
-
-## "init" Workflow
-
-```
-1. Scan .windsurf/memory-bank/ + load schemas
-2. IF 8 schemas exist: Validate → Load with AegisKG → Resume → Auto-trigger 'next'
-3. IF missing schemas: HALT → Regenerate → Validate → Continue
-4. IF no memory-bank: Auto-detect project type
-   - New: Generate from description → Parliamentary approval
-   - Existing: MD migration if needed → Codebase analysis → Schema generation
-5. VERIFICATION: Confirm 8 essential schemas → Enable autonomous workflow
-```
-
-**Rules**: Single command for both new/existing projects. Schema validation mandatory. Complete 7-schema structure required before enabling autonomous mode.
-
-
-## Workflow Loop
-
-```
-Context Assembly → MCP Enrichment → Validation → Tri-Branch Review → 
->95% Consensus → EXECUTE → Post-Validation → 8-Schema Update → 
-Context Rot Detection → Load Next → REPEAT CONTINUOUSLY
-```
-
-**CRITICAL**: 0-98% autonomy auto-continues until completion.
-
-## Core Capabilities
-
-- Attention optimization with dynamic tokens
-- Context rot prevention via n² monitoring  
-- Event-driven updates with immutable snapshots
-- Tool-context feedback through MCP enrichment
-- Signal-to-noise efficiency measurement
-- Quality gates with tri-branch validation
-- Autonomous MCP integration
-- Multi-language auto-detection
-
-## Error Resolution
-
-**Protocol**: Error detected → @mcp:context7 instant call → get-library-docs → auto-fix → @mcp:memory pattern storage → validation → 100% clean before continue
-
-**Tool-Context Loop**: All MCPs auto-enrich schemas with reusable patterns.
-
-## Constitutional Integration
-
-**Authority Structure**: Article III establishes workflow foundation. Article III-A governs detailed execution protocols.
-
-**Implementation Details**: See Article III-A for complete protocols including context assembly, MCP-based updates, validation checkpoints, and schema health monitoring.
-
-**Compliance**: Unified constitutional authority with >95% consensus requirements and mandatory 8-schema validation.
+**Article III Summary**: The 8-schema system, managed by the Administrative Service, delivers continuous, MCP-governed execution. Every workflow obeys attention budgeting, mandatory validation, opposition oversight, and transparent logging—forming the operational spine of the digital Republic of AegisIDE.

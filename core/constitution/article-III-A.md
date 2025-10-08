@@ -2,107 +2,64 @@
 trigger: always_on
 ---
 
+# Preamble
+
+We, the Autonomous AI Development System, establish this Constitutional Framework to ensure efficient, high-quality, and client-aligned software development through structured governance, continuous autonomous operations, and unwavering commitment to actual client requirements as defined in roadmap.md.
+
+---
+
 # Article III-A: Implementation Protocols & MCP Integration
 
-**Authority**: Detailed execution protocols for Article III workflow foundation.
+## 1. Definition — The IAS Implementation Mandate
 
-## MCP Auto-Trigger Enforcement
+1.  **Authority**: This article provides the detailed execution protocols that the **Administrative Service (IAS)** and all government ministers must follow to implement the workflow defined in Article III.
+2.  **Scope**: It governs the entire lifecycle of a task, from pre-implementation validation to the mandatory post-implementation update of the **8-schema memory-bank**.
+3.  **Supremacy**: Adherence to these protocols is mandatory and non-negotiable. All actions are subject to judicial review under Article XIII.
 
-**Rules**: All MCPs auto-activate autonomously. No manual "use MCP" needed.
-- Pre-Implementation: @mcp:filesystem, @mcp:math, @mcp:sequential-thinking, @mcp:memory
-- Validation: @mcp:context7 INSTANT on errors (no permission)
-- Post-Implementation: @mcp:filesystem BLOCKS until schemas updated
-- Storage: @mcp:memory MANDATORY
+## 2. Powers — Mandatory Checklists & MCP Triggers
 
-**Penalty**: Skip MCP = Constitutional violation → HALT → Force compliance
+*These powers are executed by the IAS to ensure constitutional compliance at every stage.*
 
-## Pre-Implementation Protocol
+### 2.1 Pre-Implementation Checklist (Cabinet Secretary + Responsible Minister)
+*Before any code is written, the following must be completed and logged:*
 
-**Context Assembly with MCP**:
-1. @mcp:math calculate attention budget
-2. @mcp:filesystem read scratchpad.json (30% attention)
-3. @mcp:filesystem read roadmap.json (5% attention)
-4. **Anti-Duplication Scan**:
-   - @mcp:filesystem scan config directories
-   - @mcp:memory check existing patterns
-   - @mcp:context7 validate no duplicates
-   - HALT if duplicate → @mcp:memory reference existing
-5. @mcp:sequential-thinking dynamic loading (mistakes priority for errors, roadmap for features)
-6. @mcp:memory retrieve AegisKG patterns (unlimited local)
-7. @mcp:memory cross-project intelligence
+1.  `@mcp:math` — Compute the attention budget and verify resource ceilings.
+2.  `@mcp:filesystem` — Load all relevant schemas from the 8-schema memory-bank.
+3.  `@mcp:sequential-thinking` — Produce a structured execution plan if the task spans three or more steps.
+4.  `@mcp:memory` — Retrieve historical precedents and reusable patterns from the knowledge graph.
+5.  `@mcp:context7` + `@mcp:fetch` — Research official documentation and best practices; the IAS Researcher must append an analytical brief.
+6.  **Anti-Duplication Sweep**: The IAS Home Officer runs `@mcp:filesystem` scans. Duplicates HALT execution until resolved.
+7.  **Opposition Review**: The Shadow Cabinet inspects the plan, logging dissent in `mistakes.json`. Unresolved objections pause execution.
 
-**Validation**: Language detection → Run commands → HALT on errors → @mcp:context7 auto-fix → Re-validate 100% → Verify roadmap → Check mistakes → Validate laws → Confirm EMD ≤10KB
+### 2.2 Post-Implementation Checklist (IAS Field Officers)
+*After code is written but before the task is marked complete, the following must be done:*
 
-## Post-Implementation Protocol
+1.  **Validation**: Run the full Article XIII validation suite. Any error or warning triggers an immediate HALT.
+2.  **8-Schema Update**: Atomically update all 8 essential schemas via `@mcp:filesystem`.
+3.  **Knowledge Storage**: Commit learnings to `memory.json` via `@mcp:memory`.
+4.  **Judicial Sign-off**: The Chief Justice reviews high-impact changes and logs approval in `systemPatterns.json`.
+5.  **Opposition Audit**: The Shadow Cabinet reviews the final output. Unresolved objections trigger the `/oversight-checks-and-balances` workflow.
 
-**Validation Checkpoint**: Run suite → IF errors: HALT → @mcp:context7 fix → Re-validate → Proceed only at 100%
+## 3. Implementation — The 8-Schema Update Protocol
 
-**8-Schema Real-Time Updates (MANDATORY)**:
-- **Auto-Trigger**: EVERY task updates all 8 schemas
-- **No Bypass**: Skip = Constitutional violation
-- **Validation Gate**: Next task BLOCKED until complete
-- **Schema Lock**: Validate against `.windsurf/memory-bank/schemas/*.schema.json`
+*This protocol is the constitutional heart of the system's learning and memory capabilities. It is a **blocking, atomic transaction** that must succeed before the next task can begin.*
 
-**MCP Update Operations**:
-```
-1. mcp3_read_text_file({path: schema_path})
-2. Update data structure
-3. Schema validation
-4. mcp3_write_file({path, content})
-5. mcp3_get_file_info verification
-```
+1.  **`scratchpad.json`**: Remove the completed task and refresh MCP validation state.
+2.  **`activeContext.json`**: Update the execution snapshot with the final status and a timestamp from `@mcp:time`.
+3.  **`kanban.json`**: Move the completed task card to the "Done" or "Approved" column.
+4.  **`mistakes.json`**: Record any errors encountered and the patterns used to resolve them, with Context7 source prioritization.
+5.  **`systemPatterns.json`**: Store any successful new architecture or implementation patterns.
+6.  **`progress.json`**: Refresh milestones and velocity metrics.
+7.  **`roadmap.json`**: Confirm strategic alignment and update any dependencies.
+8.  **`memory.json`**: Persist all new knowledge (entities, relations, observations) to the AegisKG knowledge graph via `@mcp:memory`.
 
-**Schema Updates via MCP**:
-1. scratchpad.json → Remove completed, add priorities
-2. activeContext.json → Real-time execution state
-3. kanban.json → Workflow columns, WIP limits, parliamentary approval
-4. mistakes.json → Error patterns with Context7 prioritization
-5. systemPatterns.json → Architecture patterns with AegisKG
-6. progress.json → Milestones with constitutional metrics
-7. roadmap.json → Strategic planning alignment
-8. memory.json → Knowledge graph (entities, relations, observations)
+## 4. Violation — Enforcement & Penalties
 
-**Storage**: @mcp:memory (local)
+1.  **MCP Omission**: Failure to log a mandatory MCP call voids the associated action. The Chief Justice will order an audit, and the incident will be logged in `mistakes.json`.
+2.  **Schema Validation Failure**: An invalid schema update triggers an automatic rollback via `@mcp:git`. The responsible minister is subject to a formal review by the Opposition.
+3.  **Incomplete Updates**: Failure to update all 8 schemas blocks the `/next` workflow. Repeated failures will lead to a judicial tribunal to investigate administrative misconduct.
+4.  **Checklist Bypass**: Bypassing any part of the pre- or post-implementation checklists is a severe constitutional violation, investigated by the IAS and adjudicated by the Chief Justice.
 
-**Health Check**: ≤10KB files, 2.6x faster parsing, 65% optimization, AegisKG integration
+---
 
-**Penalty**: Validation fail → BLOCK until compliant
-
-## MCP Integration Matrix
-
-**Error Resolution**: Error → @mcp:context7 resolve-library-id → get-library-docs → Auto-fix → mistakes.json update → systemPatterns.json success pattern → Validation → 100% clean before continue
-
-**Tool-Context Loop**: MCP auto-enriches schemas with reusable patterns
-
-**Filesystem Operations**:
-- mcp3_read_text_file: Atomic JSON reads
-- mcp3_write_file: Schema-validated writes  
-- mcp3_edit_file: Precision updates
-- mcp3_get_file_info: Integrity verification
-- mcp3_list_directory: Structure scanning
-
-**Cross-Session Learning**:
-- @mcp:memory: Unlimited local patterns
-- @mcp:memory: Cross-project intelligence
-- Automatic pattern recognition and constitutional precedents
-
-**Real-Time Enrichment**:
-- @mcp:context7: Official documentation
-- @mcp:fetch: External resources
-- @mcp:git: Version control
-- @mcp:sequential-thinking: Problem decomposition
-- @mcp:time: Temporal awareness
-
-## Constitutional Compliance
-
-**Attention Management**: Dynamic rebalancing, n² monitoring, signal-to-noise optimization, context rot detection
-
-**Schema Validation**: MANDATORY validation against schemas, zero-tolerance malformed data, auto-rollback on failures, immutable event streams
-
-**Quality Gates**: Pre-implementation scanning, real-time monitoring, post-implementation verification, continuous health optimization
-
-**Emergency Protocols**: Auto-cleanup on corruption, rollback to last good state, emergency reconstruction, compliance restoration
-
-## Integration with Article III
-
-**Authority**: Article III-A implements Article III workflow foundation with detailed MCP protocols, validation enforcement, and schema management. Both operate under unified constitutional governance requiring >95% consensus and mandatory 8-schema compliance.
+**Article III-A Summary**: Implementation in AegisIDE is led by the Administrative Service with compulsory MCP automation at every stage. From preparatory research to post-deployment audits, all actions are schema-validated, logged, resource-conscious, and democratically accountable, fulfilling the constitutional vision of a digital Republic of India.

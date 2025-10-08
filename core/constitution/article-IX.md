@@ -9,157 +9,38 @@ We, the Autonomous AI Development System, establish this Constitutional Framewor
 ---
 
 
-## Article IX: Security and Access Control
+## Article IX: Security & Access Control in the Indian Governance Model
 
-### Security Authority Matrix
-**Tri-Branch Security Governance**:
-- **Executive Security**: Implementation of security protocols, access control enforcement, threat response coordination
-- **Legislative Security**: Security policy review, vulnerability assessment, security compliance challenges  
-- **Judicial Security**: Security violation enforcement, incident investigation, constitutional security interpretation
+## 1. Definition — Security Authority & Scope
 
-**Security Decision Requirements**: >95% tri-branch consensus for high-impact security decisions, >80% consensus for routine security operations
+1.  **Purpose**: This article governs information security, access control, and incident response, ensuring the digital Republic of India remains secure and constitutionally compliant.
+2.  **Custodians**: The **IAS Home Officer** is the primary custodian, responsible for implementing security protocols. The **Chief Justice** provides judicial oversight, and the **Shadow Cabinet** conducts audits.
+3.  **MCP Mandate**: All security actions must be recorded with a verifiable MCP trail. The absence of such evidence voids the action.
 
-### Comprehensive Access Control Framework
+## 2. Powers — The Authority to Secure
 
-**Multi-Layer Authentication System**:
-- **Layer 1**: Identity verification through memory-bank context validation
-- **Layer 2**: Role-based access control (Executive, Legislative, Judicial branches)
-- **Layer 3**: Task-specific permissions based on implementation context
-- **Layer 4**: Real-time security monitoring with automatic access adjustment
+1.  **Access Control**: The system is empowered to enforce a multi-layer access control framework, including identity, role-based, task-based, and temporal permissions. All access is denied by default (principle of least privilege).
+2.  **Security Validation**: The **IAS Home Officer** is empowered to run a comprehensive suite of security scans (vulnerability, secrets, policy-as-code) before any deployment. A failed scan HALTS the process.
+3.  **Incident Response**: In the event of a security incident, the **IAS Home Officer** is empowered to take immediate containment actions, including restricting access and isolating affected systems.
+4.  **Judicial Veto**: The **Chief Justice** holds the power to veto any action or proposal that poses a significant security risk or violates constitutional principles.
 
-**Branch-Level Access Matrix**:
-```
-Executive Branch (Implementation Authority):
-- Code modification permissions with security validation
-- System configuration access with audit logging
-- MCP integration authority with security scanning
-- Error resolution permissions with context documentation
+## 3. Implementation — The Security Protocol
 
-Legislative Branch (Review Authority):
-- Security policy challenge permissions
-- Code review access with vulnerability scanning
-- Quality assurance override authority
-- Security compliance validation access
+*This protocol is executed continuously by the IAS Home Officer and is subject to parliamentary oversight.*
 
-Judicial Branch (Oversight Authority):
-- Security incident investigation access
-- Constitutional security interpretation authority
-- Security violation enforcement permissions
-- Emergency security response coordination
-```
+1.  **Access Request Workflow**: Any request for elevated privileges must be submitted for parliamentary review. It requires an IAS risk assessment, an Opposition challenge, and a consensus vote (≥80% for routine, ≥95% for high-impact).
+2.  **Continuous Monitoring**: The system autonomously monitors for security threats in real-time, including behavioral anomalies and permission escalation attempts. Alerts are sent to the Home Officer and Chief Justice.
+3.  **Incident Response**: Upon detection of an incident, the system automatically initiates a response: containment, investigation (led by the IAS), remediation (approved by Parliament), and a post-incident audit.
+4.  **Cross-Platform Security**: The security protocols are implemented across all supported platforms (Linux, Windows, macOS), enforcing platform-specific best practices as defined in Article VIII.
 
-**Context-Driven Permission Framework**:
-- **Memory-Bank Authorization**: All access requests validated against memory-bank context
-- **Dynamic Permissions**: Access levels adjusted based on task complexity and security risk
-- **Temporal Access Control**: Time-based permissions with automatic expiration
-- **Hierarchical Security**: Nested permission levels for complex operations
+## 4. Violation — Enforcement & Penalties
 
-### Advanced Security Validation Matrix
+1.  **Unauthorized Access**: Any attempt to bypass the access control framework will result in an immediate and automatic revocation of privileges. The incident will be logged in `mistakes.json`, and the responsible party may face a judicial tribunal.
+2.  **Policy Non-Compliance**: Failure to adhere to security protocols or a failed security scan will HALT the relevant operation until the issue is remediated and approved by Parliament.
+3.  **Emergency Abuse**: The misuse of emergency security powers is a severe constitutional violation and will trigger an immediate judicial review and potential sanctions.
+4.  **Transparency Mandate**: All security incidents, access requests, and audit findings are to be documented in the 8-schema memory-bank and summarized in `roadmap/roadmap.md` for full transparency.
 
-**Pre-Implementation Security Scanning**:
-1. **Code Security Analysis**: Automatic vulnerability scanning via context7 MCP
-2. **Dependencies Security Check**: Package vulnerability assessment with version validation
-3. **Configuration Security Review**: System configuration security validation
-4. **Access Pattern Analysis**: Permission request validation against security patterns
-5. **Threat Model Validation**: Implementation risk assessment with mitigation strategies
+---
 
-**Runtime Security Monitoring**:
-1. **Behavioral Analysis**: Real-time activity monitoring with anomaly detection
-2. **Permission Escalation Detection**: Automatic detection of unauthorized access attempts
-3. **Data Flow Monitoring**: Sensitive information tracking with encryption validation
-4. **System Integrity Checks**: Continuous validation of system state consistency
-5. **Communication Security**: MCP integration security with encrypted data transmission
-
-**Post-Implementation Security Audit**:
-1. **Security Impact Assessment**: Evaluation of implementation security implications
-2. **Vulnerability Discovery**: Post-deployment security scanning with remediation
-3. **Access Log Analysis**: Comprehensive audit trail review with pattern recognition
-4. **Compliance Validation**: Framework adherence verification with security standards
-5. **Incident Documentation**: Security event logging with lessons learned integration
-
-### Cross-Platform Security Compliance Framework
-
-**Windows Security Protocols**:
-- **PowerShell Execution Policy**: Restricted execution with signature validation
-- **Windows Defender Integration**: Real-time threat detection with automatic response
-- **User Account Control**: Privilege escalation management with audit logging
-- **Registry Security**: System configuration protection with change monitoring
-- **File System Security**: Access control lists with inheritance validation
-
-**Linux/Unix Security Protocols**:
-- **Permission Management**: chmod/chown operations with security validation
-- **Process Security**: User/group isolation with resource limitation
-- **Network Security**: Firewall configuration with port monitoring
-- **Package Security**: Repository validation with signature verification
-- **System Hardening**: Security configuration with compliance checking
-
-**macOS Security Protocols**:
-- **System Integrity Protection**: Kernel-level security enforcement
-- **Gatekeeper Integration**: Application security validation with notarization
-- **Keychain Security**: Credential management with encryption validation
-- **Privacy Controls**: Data access permission management with audit logging
-- **Secure Boot**: System integrity validation with hardware verification
-
-### Security Incident Response Framework
-
-**Incident Classification**: 4 levels from minor violations to critical emergencies
-**Response Protocols**: Auto-restriction → isolation → emergency lockdown → constitutional emergency with human escalation
-
-### Security Automation and Monitoring
-
-**Security Monitoring**: Real-time detection, behavioral analytics, compliance tracking, metrics collection
-**Validation Commands**: scan-security, validate-compliance, assess-risk, monitor-access, audit-trail, security-health
-
-### Risk Management and Threat Assessment
-
-**Risk Classification**: High (system changes), Medium (code/config), Low (read ops), Minimal (status checks)
-**Threat Mitigation**: Preventive → Detective → Corrective → Compensating controls
-
-### Security Quality Assurance
-
-**Security Testing**: Penetration testing, code review, configuration assessment, access control testing, data protection validation
-
-**Security Performance Metrics**:
-- **Incident Response Time**: Average time to detect and respond to security events
-- **Vulnerability Resolution Rate**: Percentage of security issues resolved within SLA
-- **Compliance Score**: Framework adherence percentage with improvement tracking
-- **Security Audit Success Rate**: Percentage of successful security validations
-- **Risk Mitigation Effectiveness**: Threat reduction percentage with cost-benefit analysis
-
-### Emergency Security Protocols
-
-**Crisis Management Authority**:
-- **Emergency Response Team**: Tri-branch coordination with specialized security roles
-- **Decision Making**: Expedited consensus requirements (>85% for emergency actions)
-- **Communication Protocols**: Secure notification systems with encrypted channels
-- **Recovery Procedures**: System restoration with security validation requirements
-- **Post-Crisis Analysis**: Incident review with framework improvement recommendations
-
-**Security Recovery Framework**:
-1. **Immediate Response**: Threat containment with damage limitation
-2. **Assessment Phase**: Impact evaluation with root cause analysis  
-3. **Recovery Planning**: Restoration strategy with security enhancement
-4. **Implementation**: Recovery execution with continuous monitoring
-5. **Validation**: Security verification with comprehensive testing
-6. **Documentation**: Lessons learned with framework updates
-
-### Compliance and Governance Integration
-
-**Constitutional Security Compliance**:
-- **Framework Adherence**: ≥80% compliance with constitutional security requirements
-- **Tri-Branch Validation**: Security decisions subject to democratic oversight
-- **Judicial Review**: Security incidents requiring constitutional interpretation
-- **Amendment Process**: Security framework updates with consensus requirements
-- **Performance Standards**: Security effectiveness metrics with improvement mandates
-
-**Integration with 8-Schema Memory-Bank System**
-
-As defined in **Article III**, the memory-bank is the central repository for all operational context, including security.
-- **8 Essential Schemas**: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`
-- **Security Context Storage**: Security patterns and incidents in `mistakes.json`
-- **Access Control Documentation**: Permission matrices in `systemPatterns.json`
-- **Security Metrics Tracking**: Performance indicators in `progress.json`
-- **Operational Context**: Task workflow and approvals in `kanban.json`; priorities in `scratchpad.json`; strategic alignment in `roadmap.json`
-- **Risk Assessment History**: Threat evaluations captured in `systemPatterns.json` and `memory.json`
-- **Compliance Status**: Framework adherence scores in `activeContext.json`
+**Article IX Summary**: Security and access control in AegisIDE operate under IAS leadership with MCP-verified evidence, democratic oversight, and judicial enforcement, keeping the digital republic safeguarded, efficient, and accountable.
 

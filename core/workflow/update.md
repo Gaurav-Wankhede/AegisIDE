@@ -1,275 +1,73 @@
 ---
-description: Fallback command to manually update memory bank when real-time updates fail
+description: Fallback command to manually update memory bank when real-time updates fail.
 ---
 
-# /update - 8-Schema Manual Update (Fallback)
-
-_This workflow is defined canonically under `core/workflow/update.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/update.md`, so path references should be interpreted through that mount when executed inside the IDE._
+# /update – Memory-Bank Manual Synchronization (Fallback)
 
 ## Purpose
-Manually update all 8 essential schemas when autonomous real-time updates fail or are missed. This is a fallback mechanism - real-time updates should happen automatically during /next execution.
+This is a constitutional recovery procedure executed by the **Administrative Service (IAS) Field Officers** to manually synchronize all **18 memory-bank files** when the autonomous real-time update system fails. It serves as a fallback to the automatic updates handled by the `/next` workflow.
 
 ## Constitutional Authority
+- **Article I**: Mandates the IAS to ensure the real-time integrity of the memory-bank.
+- **Article III-A**: Defines the real-time update enforcement that this workflow manually restores.
+- **Article VII**: Governs autonomous operations and self-management, including recovery.
+- **Article XV**: Outlines the error prevention and recovery protocols for tool usage.
 
-- **Article III-A**: Implementation Protocols - Real-time update enforcement
-- **Article VII**: Autonomous Operations - Self-management and recovery
-- **Article II**: Autonomous Decision Making - Context maintenance
-- **Article XV**: Tool Usage & Error Prevention - Helper schema integration
-
-## When to Use
-```bash
-# Use /update when:
-- Real-time updates missed during /next execution
-- Memory bank files out of sync with actual project state
-- Attention budget exceeded and files need compression
-- Schema validation failures need correction
-- Manual verification needed after major changes
-
-# DO NOT use when:
-- /next is running normally (uses automatic real-time updates)
-- Files are already up to date
-- Just for checking status (use /status instead)
-```
-
-### Phase 2.1: Cross-File Synchronization (BLOCKING)
-```bash
-# Use linkage keys to keep schemas in sync after updates
-# Keys: proposal_id, kanban_task_id(s), roadmap_milestone_id, governance_decision_id
-
-1. From kanban.tasks[*]:
-   - If task.status changed → update progress.milestone_tracking[*].kanban_task_ids matches
-     → Adjust tasks_completed / tasks_total and completion_percentage accordingly
-   - If task.approved == true AND governance_decision_id present → ensure systemPatterns.governance_decisions[] has matching decision (or append)
-
-2. From roadmap.strategic_objectives[*].milestones[*]:
-   - If milestone.status or completion_percentage changed → update linked kanban tasks
-     (set status to "approved" when milestone completed and decision recorded)
-   - If proposal_id present and decision approved → propagate to kanban.tasks[*].parliamentary_approval.approved = true
-
-3. From activeContext.linkage:
-   - If active task completes → ensure corresponding kanban task moves from in_progress → done → approved (when governance_decision_id exists)
-   - Keep linkage fields up to date (kanban_task_id, roadmap_milestone_id, proposal_id)
-
-4. From systemPatterns.governance_decisions[]:
-   - If new approved decision appears → mark linked kanban task as approved and update progress + roadmap milestones
-
-Validation:
-- Every linkage id refers to an existing entity; if missing → HALT & record in mistakes.json
-- After synchronization, re-validate all 8 files against schemas before proceeding
-```
+## MCP Role Map
+- `@mcp:context7`: Reconfirms schema contracts and constitutional rules.
+- `@mcp:fetch`: Retrieves upstream schema changes if discrepancies are found.
+- `@mcp:filesystem`: Inspects, edits, and validates all 18 memory-bank files atomically.
+- `@mcp:git`: Records the manual update for the constitutional audit trail.
+- `@mcp:memory`: Pulls historical patterns and persists the fallback event in the knowledge graph.
+- `@mcp:sequential-thinking`: Plans the synchronization and remediation steps.
+- `@mcp:time`: Timestamps all phases of the recovery process.
+- `@mcp:math`: Computes file size compliance and success rates.
 
 ## Workflow Sequence
 
-### Phase 1: 8-Schema Health Check (JSON Awareness)
+### Phase 1: Health Check & Remediation Plan
+*The IAS assesses the current state of the entire memory-bank.*
 ```bash
-# Assess current state of 8 essential schemas:
-@mcp:filesystem → Read scratchpad.json, activeContext.json, kanban.json, mistakes.json, systemPatterns.json, progress.json, roadmap.json, memory.json
-@mcp:math → Calculate file sizes and attention allocation (30%, 25%, 15%, 15%, 7%, 5%, 3%)
-
-# Identify issues:
-- Files >10KB (need AegisKG compression)
-- Schema validation failures against `.windsurf/memory-bank/schemas/*.schema.json`
-- Outdated Context7 source prioritization
-- Missing files (bootstrap creation required)
-- Attention budget degradation
+# // turbo
+@mcp:context7 → Review schema requirements for all 18 files
+@mcp:filesystem → Read all 18 memory-bank files
+@mcp:math → Calculate file sizes and attention allocation
+@mcp:sequential-thinking → Outline remediation for files >10KB, schema failures, or missing files
 ```
 
-### Phase 2: 8-Schema Real-Time Update (MANDATORY)
+### Phase 2: Manual Update & Cross-File Sync
+*The IAS Field Officer manually synchronizes all 18 files based on the current project state.*
 ```bash
-# Update ALL 8 essential schemas immediately:
+# // turbo
+# Core (8): activeContext, scratchpad, mistakes, progress, systemPatterns, techContext, productContext, projectbrief
+# Automation (8): kanban, blueprint, userflow, bugfix, deployment, monitoring, dependencies, memory
+# Strategy (2): roadmap.json, roadmap.md
+# Visualization (1): mermaid.json
 
-1.  **scratchpad.json**: Scan project for pending tasks, remove completed items, and update MCP validation state.
-2.  **activeContext.json**: Update real-time execution state, session management, and attention budget status.
-3.  **kanban.json**: Refresh task workflow columns, parliamentary approval tracking, and WIP limits.
-4.  **mistakes.json**: Log error patterns with Context7 source prioritization and anti-hallucination metrics.
-5.  **systemPatterns.json**: Update architecture patterns, MCP-enriched links, and success patterns.
-6.  **progress.json**: Update development milestones, constitutional metrics, and performance tracking.
-7.  **roadmap.json**: Align strategic planning, milestone dependencies, and client requirements.
-8.  **memory.json**: Update the knowledge graph with new entities, relations, and observations.
+# Synchronize linkage keys (proposal_id, task_id, etc.) across all files
+@mcp:sequential-thinking → Verify cross-file consistency
 ```
 
-### Phase 3: Schema Validation & Health Verification
+### Phase 3: Validation, Optimization & Snapshot
+*The integrity of the restored memory-bank is validated and recorded.*
 ```bash
-# Validate all 8 schemas:
-@mcp:filesystem → Validate each schema against `.windsurf/memory-bank/schemas/*.schema.json`
-@mcp:math → Verify file sizes ≤10KB each
-@mcp:git → Create AegisKG snapshot
+# // turbo
+# Validate all 18 files against their schemas in .windsurf/memory-bank/schemas/
+@mcp:filesystem → Validate each schema
+@mcp:math → Verify file sizes ≤10KB
 
-# Performance verification:
-- 2.6x faster JSON parsing achieved
-- 59% memory optimization maintained
-- AegisKG knowledge graph integration active
+# Compress files if needed
+IF any file >10KB → Auto-compress, preserving critical patterns
+
+# Create immutable snapshot
+@mcp:git → Commit all changes with message "Memory bank update - manual fallback"
+@mcp:time → Log commit timestamp
 ```
 
-### Phase 4: Bootstrap Missing Schemas (If Needed)
+### Phase 4: Knowledge Sync & Resumption
 ```bash
-# Ensure the 8 essential files exist (create minimal JSON if missing):
-for FILE in [activeContext.json, scratchpad.json, kanban.json, systemPatterns.json, mistakes.json, roadmap.json, progress.json, memory.json] do
-  IF missing → create minimal {}
-  → validate against corresponding schema
-done
+# Sync with knowledge systems and resume
+@mcp:memory → Store updated patterns in local knowledge graph
+@mcp:time → Record knowledge sync completion
+→ Report completion and resume /next execution
 ```
-
-### Phase 5: Schema Validation
-```bash
-# Validate all updates:
-@mcp:filesystem → Read .windsurf/memory-bank/schemas/*.schema.json
-
-# For each updated file:
-- Validate against corresponding schema
-- Check required fields present
-- Verify data types correct
-- Ensure constitutional compliance
-
-# IF validation fails:
-  → Rollback to previous version via @mcp:git
-  → Fix validation errors
-  → Re-validate until pass
-```
-
-### Phase 6: Context Optimization
-```bash
-# Compress files if needed:
-IF any file >10KB:
-  → Auto-compress low-signal content
-  → Preserve critical patterns
-  → Archive historical data
-  → Verify file ≤10KB after compression
-
-# Rebalance attention allocation:
-@mcp:math → Calculate optimal attention distribution
-- CRITICAL: 45% (scratchpad, activeContext)
-- HIGH: 30% (roadmap, mistakes)
-- SUPPORTING: 18% (techContext, progress)
-- REFERENCE: 7% (systemPatterns, productContext, projectbrief)
-```
-
-### Phase 7: Git Snapshot
-```bash
-# Create immutable snapshot:
-@mcp:git → Commit all updated files
-- Timestamp: Current datetime
-- Message: "Memory bank update - manual fallback"
-- Branch: Current working branch
-- Verify snapshot created successfully
-```
-
-### Phase 8: Knowledge Sync
-
-_**Note**: The `@mcp:memory` server is configured via `npx` to use the `.windsurf/memory-bank/memory.json` file, as specified in the project's MCP server configuration._
-
-```bash
-# Sync with knowledge systems:
-@mcp:byterover-mcp → Store updated patterns
-@mcp:memory → Update local knowledge graph
-
-# Document update action:
-- Record in systemPatterns.json
-- Update activeContext.json with sync status
-```
-
-## Update Priority Matrix
-```bash
-# Critical (ALWAYS update):
-scratchpad.json, activeContext.json, kanban.json
-
-# High Priority (Update if >1 hour old):
-roadmap.json, roadmap.md, mistakes.json
-
-# Medium Priority (Update if >4 hours old):
-techContext.json, progress.json, systemPatterns.json
-
-# Low Priority (Update if >24 hours old):
-All remaining 10 files
-
-# On-Demand (Update only when changed):
-blueprint.json, userflow.json, deployment.json
-```
-
-## Constitutional Compliance
-```bash
-# Tri-branch oversight:
-Executive → Identifies update needs
-Legislative → Validates content quality
-Judicial → Ensures constitutional compliance
-
-# Update requirements:
-- All files ≤10KB (EMD compliance)
-- Schema validation pass (100%)
-- Attention budget optimized
-- Git snapshot created
-- Knowledge systems synced
-```
-
-## Success Criteria
-- ✅ All 8 essential schemas updated and validated
-- ✅ Schema compliance verified (100%)
-- ✅ File sizes ≤10KB each
-- ✅ Attention budget balanced
-- ✅ Git snapshot created
-- ✅ Knowledge systems synced
-- ✅ No context rot detected
-
-## Error Handling
-```bash
-IF schema validation fails:
-  → Identify specific validation errors
-  → @mcp:context7 → Check schema definitions
-  → Fix data structure issues
-  → Re-validate until pass
-
-IF file size exceeds 10KB:
-  → Auto-compress content
-  → Archive historical data
-  → Preserve only high-signal patterns
-  → Verify compression successful
-
-IF git snapshot fails:
-  → Check git configuration
-  → Resolve merge conflicts
-  → Retry snapshot creation
-  → Document failure in mistakes.json
-
-IF MCP sync fails:
-  → Enable fallback protocols
-  → Use native file operations
-  → Log sync failure
-  → Retry on next update
-```
-
-## Performance Metrics
-```bash
-@mcp:math → Calculate:
-- Files updated count
-- Validation success rate
-- Compression efficiency
-- Update completion time
-- Sync success rate
-
-# Report to progress.json
-```
-
-## Post-Update Actions
-```bash
-# After successful update:
-1. Verify all files accessible
-2. Check constitutional compliance
-3. Report update summary
-4. Return to /next execution
-5. Monitor for context rot
-```
-
-## Prevention Note
-```
-⚠️ This is a FALLBACK command. Real-time updates during /next 
-execution should prevent the need for manual updates.
-
-If /update is needed frequently, investigate:
-- Why real-time updates are failing
-- MCP filesystem connectivity issues
-- Attention budget exhaustion
-- Schema validation problems
-```
-
-## Next Steps
-After successful update, return to /next command for continuous autonomous execution.

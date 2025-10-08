@@ -24,7 +24,7 @@
       "command": "npx",
       "args": ["-y", "@modelcontextprotocol/server-memory"],
       "env": {
-        "MEMORY_FILE_PATH": "${PWD}/.windsurf/memory-bank/memory.json"
+        "MEMORY_FILE_PATH": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE/.windsurf/ide/codeium/memory.json"
       }
     },
     "sequential-thinking": {

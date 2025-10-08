@@ -7,7 +7,7 @@
     "memory_storage": {
       "location": ".windsurf/memory-bank/aegis-knowledge-graph",
       "purpose": "Unlimited local storage for tool patterns, mistakes, and recovery strategies",
-      "migration_status": "Replacing byterover-mcp gradually as primary knowledge store"
+      "status": "Primary and only knowledge store via @mcp:memory (ByteRover fully replaced)"
     },
     "validation_mcps": {
       "pre_call": ["@mcp:sequential-thinking", "@mcp:memory"],

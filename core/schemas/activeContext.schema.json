@@ -110,7 +110,7 @@
       "type": "object",
       "required": ["mandatory_mcps_active"],
       "properties": {
-        "mandatory_mcps_active": {"type": "array", "minItems": 9, "items": {"type": "string", "enum": ["context7", "fetch", "filesystem", "git", "memory", "byterover-mcp", "sequential-thinking", "time", "math"]}},
+        "mandatory_mcps_active": {"type": "array", "minItems": 8, "items": {"type": "string", "enum": ["context7", "fetch", "filesystem", "git", "memory", "sequential-thinking", "time", "math"]}},
         "last_context7_call": {"type": "string", "format": "date-time"},
         "anti_hallucination_active": {"type": "boolean"},
         "verified_sources_count": {"type": "number", "minimum": 0}

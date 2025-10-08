@@ -103,4 +103,4 @@ globs: *.py,*.js,*.ts,*.rs,scrapy,playwright,puppeteer,beautiful-soup,requests,r
 **Real-Time**: @mcp:fetch for anti-detection techniques
 **Docs**: @mcp:context7 for driver updates
 **Recovery**: Detection → MCP research → bypass → continue
-**Storage**: @mcp:byterover-mcp stores successful patterns
+**Storage**: @mcp:memory stores successful patterns

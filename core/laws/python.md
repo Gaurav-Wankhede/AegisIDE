@@ -238,7 +238,7 @@ src/
 **Before ANY implementation**: Auto-call @mcp:context7 + @mcp:fetch for latest documentation
 **Error Detection**: Instant @mcp:context7 activation for official docs
 **Best Practices**: Auto-fetch latest Python patterns from web (PEP updates, security advisories)
-**Continuous Learning**: Store successful patterns in @mcp:byterover-mcp for project reuse
+**Continuous Learning**: Store successful patterns in @mcp:memory for project reuse
 
 ## 30-Hour Continuous Operation
 **No Stopping**: 0-98% autonomy = continuous execution until scratchpad empty

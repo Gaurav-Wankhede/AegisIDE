@@ -1,288 +1,81 @@
 ---
-description: Provides comprehensive summary of memory bank status, tasks, progress, and metrics
+description: Provides comprehensive summary of memory bank status, tasks, progress, and metrics.
 ---
 
-# /status - Comprehensive System Status Report
-
-_This workflow is defined canonically under `core/workflow/status.md`. IDEs such as Windsurf surface the same workflow via `.windsurf/workflow/status.md`, so path references should be interpreted through that mount when executed inside the IDE._
+# /status – Comprehensive System Status Report
 
 ## Purpose
-Provide comprehensive overview of project status by analyzing all 8 essential schemas, tasks, progress, and constitutional compliance with AegisKG integration.
+Executed by the **Administrative Service (IAS)**, this workflow generates a comprehensive "State of the Republic" report for the **Prime Minister** and **Parliament**. It provides a full overview of project status by analyzing all memory-bank schemas, tasks, progress, and constitutional compliance.
 
 ## Constitutional Authority
+- **Article I**: Mandates the IAS to provide expert intelligence and maintain constitutional registers.
+- **Article III & III-A**: Define the memory-bank structure that this workflow audits.
+- **Article XI**: Enforces the compliance standards that this workflow measures.
 
-- **Article III**: Context-Engineered Development Workflow - 8-schema memory bank for status reporting
-- **Article II**: Autonomous Decision Making - Status monitoring
-- **Article VII**: Autonomous Operations - System health diagnostics
-- **Article XI**: Mandatory AI Agent Compliance - Compliance metrics and scoring
+## MCP Role Map
+- `@mcp:context7`: Confirms constitutional scoring thresholds and validation rules.
+- `@mcp:fetch`: Retrieves external advisories on any detected anomalies.
+- `@mcp:filesystem`: Reads all memory-bank schemas and roadmap artifacts for analysis.
+- `@mcp:git`: Captures the status report for the constitutional audit trail.
+- `@mcp:memory`: Pulls knowledge graph insights and stores the final report summary.
+- `@mcp:sequential-thinking`: Organizes diagnostics and proposes remediation plans.
+- `@mcp:time`: Timestamps the report and measures data freshness.
+- `@mcp:math`: Computes all quantitative metrics for the report.
 
 ## Workflow Sequence
 
-### Phase 1: 8-Schema Health Check (JSON Awareness)
+### Phase 1: 8-Schema Health Check (IAS Cabinet Secretary)
+*Audits the integrity and health of the core memory-bank.*
 ```bash
-# Scan 8 essential schemas with attention allocation:
-@mcp:filesystem → Read and analyze with priority:
-- scratchpad.json (30% attention - immediate priorities with MCP validation)
-- activeContext.json (25% attention - real-time execution state with session management)
-- kanban.json (15% attention - task workflow and parliamentary approval)
-- mistakes.json (15% attention - error patterns with Context7 source prioritization)
-- systemPatterns.json (7% attention - architecture patterns with AegisKG networks)
-- progress.json (5% attention - milestones with constitutional metrics)
-- roadmap.json (3% attention - strategic planning)
-- memory.json (for knowledge graph analysis)
-
-# Calculate health metrics with 59% optimization:
-@mcp:math → Analyze:
-- File sizes (≤10KB compliance for 2.6x faster parsing)
-- Schema validation against `.windsurf/memory-bank/schemas/`
-- AegisKG knowledge graph integration status
-- Memory-bank sync health
-- Context7 source prioritization accuracy
-- Attention budget efficiency (59% optimization achieved)
+# // turbo
+@mcp:context7 → Reconfirm schema definitions
+@mcp:filesystem → Read and analyze all 8 core schemas
+@mcp:math → Calculate health metrics (file sizes ≤10KB, schema validation, knowledge graph sync, attention budget)
+@mcp:time → Record phase timestamps
 ```
 
-### Phase 2: Task Status Analysis (8-Schema)
+### Phase 2: Task & Progress Analysis (IAS Field Officers)
+*Assesses the current state of execution and progress against the roadmap.*
 ```bash
-# Analyze task states from scratchpad.json:
-- Total pending tasks with MCP validation state
-- Priority distribution (P0/P1/P2/P3)
-- Blocked tasks with dependencies
-- Estimated completion time
-- AegisKG pattern matching for similar tasks
-
-# Cross-reference with progress.json:
-- Milestone completion percentage
-- Constitutional compliance metrics
-- AegisKG progress correlation
-- Performance tracking indicators
-- Done count
-- Approved count
-- Task velocity (tasks/day)
-- Average completion time
+# // turbo
+# Analyze task states from scratchpad.json & kanban.json
+- Pending/in-progress/blocked tasks, priority distribution
+- Milestone completion %, velocity, quality scores from progress.json
+@mcp:sequential-thinking → Propose actions for any identified blockers
 ```
 
-### Phase 3: Progress Metrics
+### Phase 3: Constitutional Compliance Audit (IAS Cabinet Secretary)
+*Verifies adherence to the constitutional framework.*
 ```bash
-# Calculate progress:
-
-From progress.json:
-- Milestones completed
-- Milestones in progress
-- Milestones pending
-- Overall completion percentage
-- Velocity trends
-- Performance metrics
-
-From roadmap.json:
-- Strategic objectives status
-- Business value delivered
-- Client requirements met
-- Roadmap alignment score (≥95%)
-
-@mcp:math → Calculate:
-- Project completion: X%
-- Sprint velocity: Y tasks/week
-- Quality score: Z%
-- Efficiency rating: A/B/C
+# // turbo
+@mcp:math → Calculate Framework Adherence (≥80%), Democratic Consensus (>95%), and Roadmap Alignment (≥95%)
+- Check Code Quality (EMD, ZUV, validation status from Article XIII)
+- Check Attention Budget (allocation, context rot, signal-to-noise)
+@mcp:sequential-thinking → Recommend remediation if any thresholds are missed
 ```
 
-### Phase 4: Constitutional Compliance (Constitution Awareness)
+### Phase 4: Error & Resource Analysis (IAS Home Officer & Researcher)
+*Analyzes outstanding issues and system resource health.*
 ```bash
-# Verify compliance:
-
-Constitutional adherence:
-- Framework compliance: ≥80% required
-- Democratic consensus: >95% achieved
-  - Memory bank integrity: Valid/Invalid (8 essential schemas)
-- MCP integration: Operational/Degraded
-
-Code quality:
-- EMD compliance: Files ≤80 lines
-- ZUV principle: Variables used meaningfully
-- Validation status: Pass/Fail
-- Test coverage: X%
-
-Attention budget:
-- Current allocation: X%
-- Optimal distribution: Yes/No
-- Context rot detected: Yes/No
-- Signal-to-noise ratio: X%
+# // turbo
+# Analyze issues from mistakes.json and current validation status
+- Total errors, recurring patterns, and resolution success rate
+# Analyze resource usage
+- Memory-bank size, Git repo status, and MCP health
 ```
 
-### Phase 5: Error & Warning Analysis
+### Phase 5: Report Generation & Publication
+*The IAS compiles and delivers the final report to Parliament.*
 ```bash
-# Analyze issues:
-
-From mistakes.json:
-- Total errors encountered
-- Error patterns identified
-- Resolution success rate
-- Prevention strategies applied
-- Learning integration status
-
-Current validation status:
-- Compilation errors: X
-- Type errors: Y
-- Linting warnings: Z
-- Security issues: A
-- Performance issues: B
-
-# Zero tolerance check:
-IF any errors/warnings:
-  → Status: BLOCKED
-  → Action: /fix required
-ELSE:
-  → Status: HEALTHY
-  → Action: Continue /next
-```
-
-### Phase 6: Resource Utilization (MCP Awareness)
-```bash
-# Analyze resource usage:
-
-## Memory bank:
-- Total size: X KB / 80 KB target (8 essential schemas × ≤10KB)
-- Largest file: Y KB
-- Files needing compression: Z
-- Schema compliance (8 essential schemas): X%
-
-Git repository:
-- Total commits: X
-- Branches: Y
-- Last commit: Z hours ago
-- Uncommitted changes: A files
-
-MCP integration:
-- @mcp:filesystem: Operational/Failed
-- @mcp:context7: Operational/Failed
-- @mcp:byterover-mcp: Operational/Failed
-- @mcp:memory: Operational/Failed
-- @mcp:sequential-thinking: Operational/Failed
-- @mcp:git: Operational/Failed
-- @mcp:fetch: Operational/Failed
-- @mcp:time: Operational/Failed
-- @mcp:math: Operational/Failed
-
-Overall MCP health: X/9 operational
-```
-
-### Phase 7: Status Report Generation
-```bash
-# Generate comprehensive report:
-
-═══════════════════════════════════════════
-          PROJECT STATUS REPORT
-═══════════════════════════════════════════
-
-📊 OVERALL STATUS: [HEALTHY/WARNING/BLOCKED]
-
-🎯 TASKS:
-  • Pending: X tasks (P0: A, P1: B, P2: C, P3: D)
-  • In Progress: Y tasks
-  • Completed: Z tasks
-  • Blocked: W tasks
-  • Velocity: V tasks/day
-
-🐛 BUGS:
-  • Total Detected: X
-  • Total Fixed: Y
-  • Fix Success Rate: Z%
-  • Pending: W (P0: A, P1: B)
-
-📈 PROGRESS:
-  • Project Completion: X%
-  • Milestones: Y/Z completed
-  • Roadmap Alignment: A%
-  • Sprint Velocity: B tasks/week
-
-⚖️ CONSTITUTIONAL COMPLIANCE:
-  • Framework Adherence: X% (≥80% required)
-  • Democratic Consensus: Y% (>95% required)
-  • Memory Bank Health: [HEALTHY/DEGRADED]
-  • MCP Integration: Z/9 operational
-
-✅ CODE QUALITY:
-  • Validation Status: [PASS/FAIL]
-  • EMD Compliance: [YES/NO]
-  • Test Coverage: X%
-  • Zero Errors/Warnings: [YES/NO]
-
-💾 MEMORY BANK:
-  • Total Size: X KB / 80 KB target (8 essential schemas)
-  • Essential Schemas Valid: Y/8
-  • Automation Files Present: N (validated as needed)
-  • Attention Budget: Z%
-  • Context Rot: [NONE/DETECTED]
-
-🔧 RECOMMENDED ACTIONS:
-  [List of recommended next steps]
-
-═══════════════════════════════════════════
+# // turbo
+@mcp:sequential-thinking → Generate a prioritized remediation checklist
+@mcp:git → Commit the full status report with the message "status: State of the Republic YYYY-MM-DD"
+@mcp:memory → Store the report summary in the knowledge graph
+@mcp:time → Log the completion timestamp
+# The final report, including the Status Category, is presented to the Prime Minister.
 ```
 
 ## Status Categories
-```bash
-# Overall status classification:
-
-HEALTHY:
-  ✓ Zero errors/warnings
-  ✓ Constitutional compliance ≥80%
-  ✓ Roadmap alignment ≥95%
-  ✓ All MCPs operational
-  ✓ Memory bank valid (8 essential schemas)
-  → Action: Continue /next
-
-WARNING:
-  ⚠ Minor issues detected
-  ⚠ Compliance 70-79%
-  ⚠ Some MCPs degraded
-  ⚠ Context rot indicators
-  → Action: /optimize or /update
-
-BLOCKED:
-  ❌ Errors/warnings present
-  ❌ Compliance <70%
-  ❌ Validation failures
-  ❌ Critical MCPs failed
-  → Action: /fix required immediately
-```
-
-## Quick Status Commands
-```bash
-# Focused status checks:
-
-status-tasks: Show only task summary
-status-bugs: Show only bug tracking
-status-progress: Show only progress metrics
-status-compliance: Show only constitutional compliance
-status-memory: Show only memory bank health
-status-mcp: Show only MCP integration status
-status-quick: Show condensed summary
-```
-
-## Performance Metrics
-```bash
-@mcp:math → Calculate trends:
-
-# Velocity trends:
-- Last 7 days: X tasks/day
-- Last 30 days: Y tasks/day
-- Trend: Increasing/Decreasing/Stable
-
-# Quality trends:
-- Error rate: X% (improving/degrading)
-- Fix success: Y% (improving/degrading)
-- Test coverage: Z% (improving/degrading)
-
-# Efficiency trends:
-- Time per task: X hours (improving/degrading)
-- Rework rate: Y% (improving/degrading)
-- Validation pass rate: Z% (improving/degrading)
-```
-
-## Next Steps
-Based on status report:
-- If HEALTHY → Continue /next execution
-- If WARNING → Run /optimize or /update
-- If BLOCKED → Run /fix immediately
-- Always monitor trends and adjust strategy
+- **HEALTHY**: Zero errors, compliance ≥80%, roadmap ≥95%, all MCPs operational → Continue /next.
+- **WARNING**: Minor issues, compliance 70-79%, some MCPs degraded → Run /optimize or /update.
+- **BLOCKED**: Errors present, compliance <70%, validation failures, critical MCPs failed → Run /fix.
