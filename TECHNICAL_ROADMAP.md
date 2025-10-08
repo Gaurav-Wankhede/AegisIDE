@@ -12,13 +12,13 @@ flowchart TD
     ContextAssembly --> TaskDiscovery[Task Discovery<br/>Read scratchpad.json]
 
     TaskDiscovery --> GovernanceGate{Governance Gate<br/>Needs Approval?}
-    GovernanceGate -- Yes --> Oversight["/oversight<br/>Debate --> >95% Vote --> Judicial Review"]
+    GovernanceGate -- Yes --> Oversight["<b>/oversight</b><br/>Debate → >95% Vote → Judicial Review"]
     Oversight -- "Approved" --> PreValidation
     GovernanceGate -- No --> PreValidation
 
-    PreValidation[/validate<br/>Pre-Execution Validation] --> ValidationCheck{"Validation Pass?"}
-    ValidationCheck -- Yes --> Execute[/next<br/>Implement Task]
-    ValidationCheck -- No --> ErrorHandling[/fix<br/>HALT-FIX-VALIDATE Loop]
+    PreValidation["<b>/validate</b><br/>Pre-Execution Validation"] --> ValidationCheck{"Validation Pass?"}
+    ValidationCheck -- Yes --> Execute["<b>/next</b><br/>Implement Task"]
+    ValidationCheck -- No --> ErrorHandling["<b>/fix</b><br/>HALT-FIX-VALIDATE Loop"]
     ErrorHandling --> PreValidation
 
     Execute --> PostUpdate[Update 8 Schemas<br/>@mcp:filesystem]
