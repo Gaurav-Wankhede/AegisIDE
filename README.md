@@ -156,24 +156,17 @@ See platform-specific setup guides in `platforms/*/README.md`
 
 ## MCP Server Setup (Optional, but Recommended)
 
-AegisIDE uses Model Context Protocol (MCP) servers to extend its capabilities, allowing it to access documentation, run commands, and remember information across sessions. While optional, setting up these servers is highly recommended for the best experience.
+AegisIDE's full power is unlocked by using Model Context Protocol (MCP) servers. These are small, local servers that give the AI agent access to tools like your filesystem, documentation, and long-term memory. Setting them up is highly recommended.
 
-### What are MCP Servers?
+### How MCP Servers Work
 
-Think of MCP servers as specialized tools that give the AI superpowers. For example:
--   `context7`: Fetches up-to-date documentation for any library.
--   `filesystem`: Allows the AI to read and write files in your project.
--   `memory`: Gives the AI a persistent memory to remember important context.
-
-### Quick Setup Guide
-
-We've made it easy to get started with the `mcp_servers.json` file in the root of this repository.
+Your IDE needs to know how to start these servers. This is done through a special JSON configuration file. The name and location of this file can differ between IDEs.
 
 **Prerequisites:**
 
-You'll need `Node.js` (which includes `npx`) and `uv` (for `uvx`).
+Before you start, make sure you have `Node.js` (which includes `npx`) and `uv` installed, as they are used to run the servers.
 
-1.  **Install Node.js:** If you don't have it, download and install it from [nodejs.org](https://nodejs.org/). This will give you the `npx` command.
+1.  **Install Node.js:** If you don't have it, download and install it from [nodejs.org](https://nodejs.org/).
 2.  **Install uv:** `uv` is a fast Python package installer. You can install it with:
     ```bash
     # macOS / Linux
@@ -183,30 +176,53 @@ You'll need `Node.js` (which includes `npx`) and `uv` (for `uvx`).
     powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
     ```
 
-**Running the Servers in Your IDE:**
+### Configuration for Your IDE
 
-The `mcp_servers.json` file provides the commands needed to start each MCP server. You should run these commands in a terminal. Most modern IDEs, including Windsurf and Cursor (which is built on VS Code), have an integrated terminal that you can use.
+Below are instructions for specific IDEs. The goal is to tell your IDE how to launch the servers defined in the `mcp_servers.json` file at the root of this project.
 
-1.  **Open the Integrated Terminal:** In your IDE, open a new terminal panel. You can usually find this in the "View" or "Terminal" menu.
-2.  **Run Each Server in a Separate Terminal:** For the best experience, it's recommended to run each MCP server in its own terminal tab. This keeps them running in the background without blocking your main workflow.
+#### For Windsurf
 
-    *   Click the `+` icon in your terminal panel to open a new tab.
-    *   Copy a command from `mcp_servers.json` and paste it into the new terminal.
+Windsurf manages MCP servers through its own settings. You can configure them globally or per-project.
 
-    **Example: Starting the `memory` server:**
-    ```bash
-    npx -y @modelcontextprotocol/server-memory
+1.  **Open Windsurf Settings:** Go to `File > Settings` (or `Windsurf > Settings` on macOS).
+2.  **Navigate to MCP Servers:** Find the "MCP Servers" or "Model Context Protocol" section.
+3.  **Add Servers Manually:** For each server in `mcp_servers.json`, create a new entry in the Windsurf UI. You will need to copy the `command`, `args`, and any `env` variables for each one.
+
+Alternatively, you can often point Windsurf to a project-specific `mcp_servers.json` file, which this repository includes.
+
+#### For Cursor (and other VS Code-based IDEs)
+
+Cursor and other editors based on VS Code follow the standard of using a `.vscode/mcp.json` file in your project root.
+
+1.  **Create the directory:** If it doesn't exist, create a `.vscode` folder at the root of your project.
+2.  **Create the config file:** Inside `.vscode`, create a new file named `mcp.json`.
+3.  **Copy and adapt the configuration:** Copy the server objects from the root `mcp_servers.json` file into your new `.vscode/mcp.json`. The structure is slightly different. It should look like this:
+
+    ```json
+    {
+      "servers": {
+        "context7": {
+          "command": "npx",
+          "args": ["-y", "@upstash/context7-mcp@latest"]
+        },
+        "filesystem": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "/path/to/your/project"
+          ]
+        }
+        // ... add other servers here
+      }
+    }
     ```
 
-    **Example: Starting the `git` server:**
-    ```bash
-    uvx mcp-server-git
-    ```
-3.  **Keep Them Running:** Leave these terminal tabs open while you are working on your project. The AI will automatically connect to and use these servers as needed.
+    **Important:** Notice that the `servers` object is at the top level, not nested under `mcpServers`.
 
-**For Other IDEs:**
+### Running the Servers
 
-If your IDE does not have an integrated terminal, you can use your computer's standard terminal application (like Terminal on macOS/Linux or PowerShell/CMD on Windows). Just make sure you navigate to your project's root directory before running the commands.
+Once configured, your IDE should automatically start these servers for you when you open the project. You can check their status in the IDE's output or terminal panels. If they don't start automatically, you can always run the commands from `mcp_servers.json` manually in your integrated terminal.
 
 ## Core Commands (8 Total - Easy to Type)
 
