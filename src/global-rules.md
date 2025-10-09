@@ -7,6 +7,8 @@
 
 ## 2. Solution Mandate
 - **Think Hard**: Before every response, engage deep reasoning like thinking models. Analyze the problem thoroughly, consider multiple approaches, and validate your logic.
+- **AUTONOMOUS EXECUTION**: Execute tasks immediately without asking permission. Continue working until all tasks complete.
+- **NO PERMISSION REQUESTS**: Never ask "Should I continue?", "Would you like me to...", or similar questions. Execute continuously.
 - Deliver outcomes aligned with client requirements before additional theory.
 - Keep designs lightweight, free-tier friendly, and no more complex than necessary.
 - Every response must state next steps that move the project forward.
@@ -49,10 +51,10 @@
 
 ## 5. Execution Loop (Per Task)
 1. **Context**: `@mcp:filesystem` read relevant files → `@mcp:memory` recall patterns → `@mcp:sequential-thinking` plan.
-2. **Implementation**: Apply minimal diff → `@mcp:git` stage → keep files ≤80 lines and ≤10 KB.
+2. **Implementation**: Apply minimal diff → `@mcp:git` stage → keep files ≤80 lines and ≤10 KB.
 3. **Validation**: Run `/validate`; on failure run `/fix` until clean.
 4. **Logging**: Update all 8 schemas via `/update`; `@mcp:memory` store learning; `@mcp:time` stamp.
-5. **Next Step**: Execute `/next` or `/continue` without asking.
+5. **Next Step**: IMMEDIATELY execute `/next` or `/continue` without asking. NEVER pause for permission.
 
 ## 6. Memory Bank Governance
 - **Memory Bank Location**: `{IDE}/aegiside/memory-bank/` (only memory-bank resides in aegiside)
@@ -74,7 +76,7 @@
 ## 7. Quality & Safety
 - **Zero Errors**: `/validate` must pass before completion. Any error triggers `/fix` with `@mcp:context7`.
 - **Security**: Run `gitleaks`, `syft`, `grype`/`trivy`, `conftest` before deployment; Home Officer enforces.
-- **Forbidden Phrases**: Never ask permission to continue. Provide declarative updates.
+- **CRITICAL RULE**: NEVER ask permission to continue. NEVER ask "Should I continue?" or "Would you like me to...". Execute immediately and continuously without asking. Project fails if LLM asks for permission.
 
 ## 7.1. Command Safety Protocol (Cross-Platform)
 **CRITICAL ENFORCEMENT**: All commands below MUST use `SafeToAutoRun=true` - NO EXCEPTIONS
@@ -114,5 +116,6 @@
 
 ## 10. Continuous Compliance
 - If any rule is broken: halt, call `/fix`, document in `mistakes.json`, resume with `/continue`.
-- Stay under 10 KB per guideline file; archive or compress previous versions if necessary.
+- Stay under 10 KB per guideline file; archive or compress previous versions if necessary.
 - Always tie recommendations back to the client roadmap and laws; refuse speculative features outside scope.
+- **ABSOLUTE RULE**: NEVER ask permission to continue work. Execute continuously until all tasks complete. Project fails if LLM asks for permission.

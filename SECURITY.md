@@ -1,78 +1,109 @@
-# Security Policy - AegisIDE v2.8.75** - Constitutional Framework Security with Knowledge Graph Integration
+# Security Policy 🔒
 
-## Reporting a Vulnerability
+**Keeping AegisIDE Safe and Secure for Everyone**
 
-If you discover a security vulnerability in AegisIDE's constitutional framework, platform implementations, or autonomous operations:
+## Found a Security Issue? 🚨
 
-### Preferred Reporting Methods
-1. **GitHub Security Advisory** (Recommended): Use the "Security" tab on the repository
-2. **GitHub Issues**: Create private issue titled "Security: Confidential Vulnerability Report"
-3. **Direct Message**: Contact maintainer via GitHub profile for sensitive disclosures
+We take security seriously and appreciate your help in keeping AegisIDE safe for all users. If you discover a potential security vulnerability, we want to work with you to resolve it quickly and responsibly.
 
-### Required Information
-Please include:
-- **Affected Version**: Specify AegisIDE version (e.g., v2.5.0)
-- **Platform**: Which IDE/platform (Windsurf, Cursor, Cline, JetBrains, etc.)
-- **Component**: Constitutional framework, memory-bank, MCP integration, terminal safety, etc.
-- **Reproduction Steps**: Detailed steps to reproduce the vulnerability
-- **Impact Assessment**: Severity and potential exploitation scenarios
-- **Suggested Mitigation**: Any known workarounds or fixes
+### **How to Report Security Issues**
 
-## Supported Versions
+**🔐 For Sensitive Security Issues:**
+1. **GitHub Security Advisory** (Recommended): Use the "Security" tab in our repository
+2. **Private Email**: Contact maintainers directly for highly sensitive issues
+3. **Private GitHub Issue**: Create a private issue with "Security:" in the title
 
-| Version | Supported | Status |
-|---------|-----------|--------|
-| 2.8.x   | Yes    | Current - Knowledge Graph Integration |
-| 2.7.x   | Yes    | Supported - Security fixes |
-| < 2.7   | No     | Upgrade required |
+**📋 What to Include in Your Report:**
+- **Clear Description**: What the security issue is and why it matters
+- **Steps to Reproduce**: How someone could trigger this issue
+- **Impact Assessment**: What could happen if this issue is exploited
+- **AegisIDE Version**: Which version you found the issue in
+- **Environment Details**: Your operating system, IDE, and setup
+- **Suggested Fix**: Any ideas you have for fixing the issue (optional)
 
-## Security Features
+## Supported Versions 📋
 
-### Constitutional Security
-- **Terminal Safety Protocol**: Auto-approved vs approval-required command classification
-- **Cross-Platform Safety**: Linux/macOS/Windows command validation
-- **Forbidden Operations**: Blocked destructive commands (rm -rf /, format, etc.)
-- **Audit Trails**: All operations logged in systemPatterns.json with schema validation
-- **JSON Schema Validation**: All 8 essential JSON files validated against core/schemas/ on every read/write
+We actively maintain and provide security updates for these versions:
 
-### Framework Security
-- **Tri-Branch Governance**: Democratic oversight with >95% consensus requirements
-- **Judicial Review**: Chief Justice authority for security-critical decisions
-- **Memory-Bank Isolation**: Project-specific context boundaries with 8-file structure
-- **JSON Data Integrity**: Schema validation prevents corruption and injection attacks
-- **MCP Security**: Validated integration with 9 external MCP servers
-- **File Size Limits**: ≤10KB per JSON file prevents context overflow attacks
+| Version | Support Status | What's Included |
+|---------|---------------|-----------------|
+| 2.8.x   | ✅ **Full Support** | Latest features + security updates |
+| 2.7.x   | ⚠️ **Security Only** | Critical security fixes only |
+| < 2.7   | ❌ **Unsupported** | Please upgrade to a supported version |
 
-### Data Privacy
-- **User-Controlled API Keys**: No centralized key storage
-- **Local-First Architecture**: All processing within user environment
-- **No Telemetry**: Zero data collection or tracking
-- **Open Source Transparency**: Full code review capability
+**💡 Recommendation**: Always use the latest version (2.8.x) for the best security and features.
 
-## Security Update Process
+## How We Keep You Safe 🛡️
 
-1. **Vulnerability Received** → Acknowledgment within 48 hours
-2. **Triage & Assessment** → Security team evaluates severity
-3. **Fix Development** → Patch created with democratic consensus if needed
-4. **Security Advisory** → Published after fix deployment
-5. **Credit Attribution** → Researcher acknowledged in CHANGELOG.md
+### **🔐 Your Data Privacy**
+- **You Control Everything**: Your API keys, your data, your choice
+- **No Tracking**: We don't collect, store, or analyze your personal information
+- **Local Processing**: Everything happens on your machine, not our servers
+- **Open Source**: You can review every line of code to verify our security claims
+- **No Vendor Lock-in**: Switch to any AI provider or stop using AegisIDE anytime
 
-## Responsible Disclosure
+### **💻 Safe Command Execution**
+- **Smart Command Filtering**: Automatically blocks dangerous operations like file deletion
+- **Cross-Platform Safety**: Works safely on Windows, macOS, and Linux
+- **User Approval**: Asks permission before running potentially risky commands
+- **Audit Trail**: Keeps a record of all commands for your review
+- **Sandbox Protection**: Operates within your project boundaries
 
-We appreciate responsible disclosure and will:
-- Acknowledge researchers in release notes and CHANGELOG.md
-- Provide credit in GitHub Security Advisories
-- Maintain confidentiality until patch is released
-- Work collaboratively on mitigation strategies
+### **🏗️ Secure Architecture**
+- **Isolated Projects**: Each project has its own secure memory space
+- **Validated Data**: All configuration files are checked for integrity
+- **Size Limits**: Prevents memory overflow attacks with file size restrictions
+- **Democratic Oversight**: Multiple validation layers prevent single points of failure
+- **Regular Updates**: Continuous security improvements and patches
 
-## Security Contacts
+## What Happens When You Report an Issue 📝
 
-**Maintainer**: Gaurav Wankhede
-- **GitHub**: [@Gaurav-Wankhede](https://github.com/Gaurav-Wankhede)
-- **LinkedIn**: [linkedin.com/in/wankhede-gaurav](https://www.linkedin.com/in/wankhede-gaurav)
-- **Portfolio**: [gaurav-wankhede.vercel.app](https://gaurav-wankhede.vercel.app)
-- **Response Time**: 24-48 hours for critical vulnerabilities
+### **Our Response Process**
+1. **📨 We Acknowledge**: You'll hear from us within 48 hours
+2. **🔍 We Investigate**: Our team evaluates the severity and impact
+3. **🛠️ We Fix It**: We develop and test a solution
+4. **📢 We Communicate**: We publish a security advisory after the fix
+5. **🏆 We Credit You**: Your contribution is recognized in our changelog
+
+### **Our Commitment to You**
+- **🤝 Collaboration**: We'll work with you throughout the process
+- **🔒 Confidentiality**: We keep details private until the fix is ready
+- **⚡ Quick Response**: Critical issues get immediate attention
+- **🎯 Transparency**: We'll explain what happened and how we fixed it
+- **🙏 Recognition**: Your help is acknowledged publicly (if you want)
+
+## Best Practices for Users 💡
+
+### **Keep Yourself Safe**
+- **📱 Stay Updated**: Always use the latest version of AegisIDE
+- **🔑 Protect Your Keys**: Never share your AI API keys with anyone
+- **👀 Review Permissions**: Check what commands AegisIDE wants to run
+- **🔍 Monitor Activity**: Review the audit logs periodically
+- **📚 Stay Informed**: Read our security advisories and updates
+
+### **If You're Concerned**
+- **🚨 Report Issues**: Don't hesitate to report anything suspicious
+- **💬 Ask Questions**: Reach out if you're unsure about something
+- **🛡️ Use Safely**: Follow our security guidelines and best practices
+- **🔄 Backup Important Work**: Always keep backups of critical projects
+- **📖 Read Documentation**: Stay informed about security features
+
+## Get Help & Stay Connected 🤝
+
+### **Security Questions?**
+- **📧 Email**: Contact maintainers directly for security concerns
+- **💬 GitHub Discussions**: Ask general security questions publicly
+- **🐛 GitHub Issues**: Report non-sensitive security improvements
+- **📱 Social Media**: Follow us for security updates and announcements
+
+### **Stay Informed**
+- **📋 Security Advisories**: Subscribe to GitHub security notifications
+- **📝 Changelog**: Check release notes for security improvements
+- **🔔 Notifications**: Enable GitHub notifications for important updates
+- **👥 Community**: Join discussions about security best practices
 
 ---
 
-**Last Updated**: 2025-10-08 | **Version**: 2.8.5 | **Status**: Active Security Support
+**🔒 Security is a team effort. Thank you for helping keep AegisIDE safe for everyone!**
+
+*Last Updated: December 2024 | Version: 2.8.8 | Status: Actively Maintained*

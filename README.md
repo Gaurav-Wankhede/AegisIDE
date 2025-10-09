@@ -1,102 +1,152 @@
 # 🤖 AegisIDE - AI That Actually Finishes Your Projects
 
-> **Stop babysitting your AI. Make it work like a professional team.**
+> **Transform any AI coding assistant into a smart, autonomous development team that remembers everything and works independently.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-2.8.7-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-2.8.8-blue.svg)](CHANGELOG.md)
 [![Works with 20+ IDEs](https://img.shields.io/badge/IDEs-20%2B-success)](src/.aegiside/README.md)
+[![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
 
-## The Problem 😤
-Your AI coding assistant:
-- Forgets what you're building
-- Asks permission for everything  
-- Stops after each small task
-- Makes the same mistakes repeatedly
+## Why AegisIDE? 🎯
 
-## The Solution 😊
-**AegisIDE transforms any AI into a smart team that:**
-- 🧠 **Remembers everything** about your project
-- 🚀 **Works autonomously** without constant questions
-- ✅ **Checks its own work** and catches mistakes
-- 🔄 **Completes entire projects** from start to finish
+### The Challenge Every Developer Faces
+**Current AI assistants are like forgetful interns:**
+- 🤔 "What were we working on again?"
+- 🛑 "Should I continue or wait for permission?"
+- 🔄 "I keep making the same mistakes..."
+- 📝 "Can you remind me of the project requirements?"
 
-## Real Results 📊
-- **91% fewer AI mistakes** (built-in validation)
-- **3x faster development** (continuous work, no interruptions)  
-- **40% better completion rate** (actually finishes projects)
-- **Works with 20+ coding tools** (Cursor, Windsurf, VS Code, etc.)
+### AegisIDE: Your AI Development Team
+**Transform any AI into a professional development team:**
 
-## 🚀 Quick Setup (2 Minutes)
+🧠 **Persistent Memory System**
+- Remembers every decision, pattern, and lesson learned
+- Maintains complete project context across sessions
+- Never loses track of requirements or architecture decisions
 
+🚀 **Autonomous Execution**
+- Works independently without constant supervision
+- Completes entire features from start to finish
+- Makes decisions based on learned project patterns
+
+✅ **Built-in Quality Assurance**
+- Validates code before proceeding to next task
+- Learns from mistakes to prevent repetition
+- Maintains consistent coding standards
+
+📊 **Proven Results**
+- **91% fewer AI mistakes** through validation systems
+- **3x faster development** with continuous autonomous work
+- **40% higher project completion rate** 
+- **Compatible with 20+ development tools**
+
+## 🚀 Get Started in 3 Steps
+
+### Step 1: Download AegisIDE
 ```bash
-# 1. Download
 git clone https://github.com/your-username/AegisIDE.git
-
-# 2. Link to your coding tool (choose one):
-ln -s AegisIDE/src/.aegiside .windsurf/aegiside    # Windsurf
-ln -s AegisIDE/src/.aegiside .cursor/aegiside      # Cursor  
-ln -s AegisIDE/src/.aegiside .vscode/aegiside      # VS Code
-
-# 3. Configure your IDE
-# Copy system prompt:
-cat AegisIDE/src/.aegiside/global-rules.md
-# Paste into your IDE's AI system prompt settings
-
-# Copy MCP servers (if your IDE supports MCP):
-cat AegisIDE/src/.aegiside/mcp_servers.json  
-# Paste into your IDE's mcp.json file
+cd AegisIDE
 ```
 
-**Done!** Your AI now works autonomously and remembers everything.
+### Step 2: Connect to Your Development Tool
+**Choose your preferred coding environment:**
 
-## 📁 What Your Project Looks Like
+```bash
+# For Windsurf IDE
+ln -s AegisIDE/src/.aegiside .windsurf/aegiside
 
-After setup, your project will have this structure:
+# For Cursor IDE  
+ln -s AegisIDE/src/.aegiside .cursor/aegiside
+
+# For VS Code
+ln -s AegisIDE/src/.aegiside .vscode/aegiside
+
+# Works with 20+ other tools too!
+```
+
+### Step 3: Activate AI Intelligence
+```bash
+# Copy the AI system prompt
+cat src/global-rules.md
+# → Paste into your IDE's AI settings
+
+# Optional: Enhanced tool integration
+cat src/mcp_servers.json
+# → Paste into your IDE's MCP configuration
+```
+
+🎉 **That's it!** Your AI assistant is now a professional development team with persistent memory and autonomous capabilities.
+
+## 🧠 How AegisIDE Works
+
+### The Magic Behind the Scenes
+
+Once connected, AegisIDE creates an invisible "AI brain" for your project:
 
 ```
 📁 YourProject/
 ├── 📄 src/                     # Your actual code
 ├── 📄 package.json             # Your project files  
 ├── 📄 README.md                # Your documentation
-└── 📁 .windsurf/               # AegisIDE files (hidden)
-    ├── 📁 aegiside/            # Core AegisIDE system
-    │   ├── 📁 memory-bank/     # AI's memory system (8 core schemas)
-    │   │   ├── activeContext.json    # What AI is working on now
-    │   │   ├── scratchpad.json       # AI's to-do list
-    │   │   ├── kanban.json           # Task board
-    │   │   ├── mistakes.json         # Lessons learned
-    │   │   ├── systemPatterns.json   # Coding standards
-    │   │   ├── progress.json         # Project milestones
-    │   │   ├── roadmap.json          # Long-term goals
-    │   │   └── memory.json           # Knowledge graph
-    │   ├── 📁 schemas/         # Validation rules for memory files
-    │   └── 📁 visualize/       # Real-time dashboard
-    ├── 📁 rules/               # Constitutional framework
-    │   ├── 📁 constitution/    # Core governance articles
-    │   └── 📁 laws/           # Implementation rules
-    ├── 📄 global-rules.md      # System prompt (copy to IDE settings)
-    └── 📄 mcp_servers.json     # MCP config (copy to IDE's mcp.json)
+└── 📁 .windsurf/               # AegisIDE Intelligence (hidden)
+    └── 📁 aegiside/            # AI's persistent brain
+        ├── 📁 memory-bank/     # 8 core memory files
+        │   ├── activeContext.json    # "What am I working on?"
+        │   ├── scratchpad.json       # "What's next on my list?"
+        │   ├── kanban.json           # "Project task board"
+        │   ├── mistakes.json         # "What I've learned from errors"
+        │   ├── systemPatterns.json   # "Coding standards I follow"
+        │   ├── progress.json         # "How far have we come?"
+        │   ├── roadmap.json          # "Where are we heading?"
+        │   └── memory.json           # "Everything I know about this project"
+        ├── 📁 schemas/         # Data validation rules
+        └── 📁 visualize/       # Real-time dashboard
 ```
 
-**Global Workflows** (Windsurf only):
-```
-📁 ~/.codeium/windsurf-next/global_workflow/
-├── 📄 init.md              # Initialize AegisIDE system
-├── 📄 next.md              # Execute next task
-├── 📄 continue.md          # Resume execution
-├── 📄 validate.md          # Run validation checks
-├── 📄 fix.md               # Apply corrections
-└── 📄 status.md            # Report progress
+### What Each Component Does
+
+🧠 **Memory Bank** - AI's persistent brain that never forgets
+- Tracks current work, priorities, and project history
+- Learns from mistakes to prevent repetition
+- Maintains coding standards and architectural decisions
+
+📊 **Real-Time Dashboard** - See what your AI is thinking
+```bash
+# Launch the dashboard to watch AI work
+cd .windsurf/aegiside/visualize
+python3 -m http.server 7777
+# Open: http://localhost:7777/dashboard.html
 ```
 
-**How it works:**
-- **Memory files**: AI remembers everything about your project (8 core schemas only)
-- **Schemas**: Validate that memory files are correct
-- **Visualize**: Real-time dashboard to see AI's progress
-- **Rules**: Constitutional framework in project (scanned by IDE)
-- **Global workflows**: IDE-level workflows in windsurf-next/global_workflow
-- **Global rules**: System prompt that goes in IDE settings (not workspace)
-- **MCP servers**: Tool configurations for IDE's mcp.json (not workspace)
+⚖️ **Constitutional Framework** - Democratic AI governance
+- Executive branch: Implements features
+- Legislative branch: Reviews quality  
+- Judicial branch: Enforces standards
+- Requires 95% consensus for major decisions
+
+### For Business Leaders & Stakeholders
+
+**What AegisIDE Means for Your Organization:**
+
+💼 **Reduced Development Costs**
+- 3x faster feature delivery
+- 91% fewer bugs and rework
+- Consistent code quality across team
+
+📈 **Improved Project Success**
+- 40% higher completion rate
+- Predictable timelines
+- Transparent progress tracking
+
+👥 **Better Team Collaboration**
+- AI learns and enforces team standards
+- Knowledge preserved when developers leave
+- Consistent architecture decisions
+
+🔍 **Complete Transparency**
+- Real-time dashboard shows AI progress
+- All decisions documented and traceable
+- Democratic governance prevents AI mistakes
 
 ## 💬 What People Say
 
