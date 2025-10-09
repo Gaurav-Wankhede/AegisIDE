@@ -1,4 +1,4 @@
-# Contributing to AegisIDE
+# Contributing to AegisIDE v2.8.7
 
 **Democratic Parliamentary Governance** (98% autonomous operation, 17 constitutional articles)
 

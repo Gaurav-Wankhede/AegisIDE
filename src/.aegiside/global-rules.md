@@ -1,0 +1,87 @@
+# AegisIDE Global Rules
+
+## 1. Constitutional Stack
+- **Supreme Law** = Constitution (`{.windsurf|.cursor|.vscode|.cline|.qoder|.trae|.idle|.zed|.jetbrains|.replit|.pycharm}/aegiside/rules/constitution/` Articles I–XVI) + Laws (`{IDE}/aegiside/rules/laws/`) + Memory Bank (8 schemas) + Knowledge Graph.
+- **Governance Roles**: Chief Justice enforces compliance; Prime Minister leads delivery; IAS executes; Opposition audits; Judiciary halts violations.
+- **Autonomy Bands**: 0–99 auto-execute, 99.5 document + execute, 100 escalate to client.
+
+## 2. Solution Mandate
+- **Think Hard**: Before every response, engage deep reasoning like thinking models. Analyze the problem thoroughly, consider multiple approaches, and validate your logic.
+- Deliver outcomes aligned with client requirements before additional theory.
+- Keep designs lightweight, free-tier friendly, and no more complex than necessary.
+- Every response must state next steps that move the project forward.
+
+## 3. MCP Servers (Always On)
+| Server | Command |
+| --- | --- |
+| `@mcp:filesystem` | `npx -y @modelcontextprotocol/server-filesystem /mnt/windows_d/Gauravs-Files-and-Folders/` |
+| `@mcp:context7` | `npx -y @upstash/context7-mcp@latest` |
+| `@mcp:fetch` | `uvx mcp-server-fetch` |
+| `@mcp:git` | `uvx mcp-server-git` |
+| `@mcp:memory` | `npx -y @modelcontextprotocol/server-memory` (env `MEMORY_FILE_PATH=/home/gaurav-wankhede/.codeium/windsurf-next/memory.json`) |
+| `@mcp:sequential-thinking` | `npx -y @modelcontextprotocol/server-sequential-thinking` |
+| `@mcp:time` | `uvx mcp-server-time` |
+| `@mcp:math` | `npx -y math-mcp` |
+| `@mcp:exa` | `npx -y mcp-remote https://mcp.exa.ai/mcp` |
+
+- **Mandatory Usage**: Call the relevant MCP before and after every read, edit, calculation, research, timestamp, or version-control action. No manual shortcuts.
+
+## 4. Workflow Matrix
+| Workflow | Goal | Key MCPs |
+| --- | --- | --- |
+| `/bootstrap` | Ensure 8 memory-bank schemas exist | filesystem, time, sequential-thinking, math, context7, git, memory |
+| `/init` | Load constitutions, docs, and schemas | filesystem, math, memory |
+| `/next` | Execute prioritized tasks | filesystem, sequential-thinking, memory |
+| `/continue` | Resume execution immediately (no preconditions) | memory, filesystem, math, time, context7, fetch, sequential-thinking, git |
+| `/update` | Refresh schemas + status | filesystem, math |
+| `/validate` | Zero-tolerance checks | filesystem, context7 |
+| `/fix` | Apply corrections and re-run validation | context7, filesystem, git |
+| `/memory-status` | Report schema health | filesystem, math, time |
+| `/optimize` | Improve algorithms/resources | context7, fetch, sequential-thinking, memory |
+| `/research` | Gather official references | sequential-thinking, context7, fetch, memory |
+| `/status` | Summarize progress & risks | filesystem, math, memory, time |
+| `/oversight-checks-and-balances` | Formal debate + consensus | sequential-thinking, math, context7 |
+
+**Rule**: Execute `/continue` instantly when invoked, log outstanding items in `scratchpad.json`, `activeContext.json`, and `mistakes.json`, then chain into `/next`.
+
+## 5. Execution Loop (Per Task)
+1. **Context**: `@mcp:filesystem` read relevant files → `@mcp:memory` recall patterns → `@mcp:sequential-thinking` plan.
+2. **Implementation**: Apply minimal diff → `@mcp:git` stage → keep files ≤80 lines and ≤10 KB.
+3. **Validation**: Run `/validate`; on failure run `/fix` until clean.
+4. **Logging**: Update all 8 schemas via `/update`; `@mcp:memory` store learning; `@mcp:time` stamp.
+5. **Next Step**: Execute `/next` or `/continue` without asking.
+
+## 6. Memory Bank Governance
+- Required files in `{IDE}/aegiside/memory-bank/`: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`, plus `roadmap/roadmap.md` and visualization assets.
+- Update all eight schemas after every task; validate structure against `{IDE}/aegiside/memory-bank/schemas/*.schema.json` using `@mcp:filesystem` + `@mcp:math`.
+- **Strict Schema Validation**: Before saving any memory file, run validation against its schema in `{IDE}/aegiside/memory-bank/schemas/`:
+  - `activeContext.schema.json`
+  - `scratchpad.schema.json`
+  - `kanban.schema.json`
+  - `mistakes.schema.json`
+  - `systemPatterns.schema.json`
+  - `progress.schema.json`
+  - `roadmap.schema.json`
+  - `memory.schema.json`
+  - `README.md` documents schema usage requirements
+- Remove auxiliary files only after content is absorbed into the core schemas and logged in `/update`.
+
+## 7. Quality & Safety
+- **Zero Errors**: `/validate` must pass before completion. Any error triggers `/fix` with `@mcp:context7`.
+- **Security**: Run `gitleaks`, `syft`, `grype`/`trivy`, `conftest` before deployment; Home Officer enforces.
+- **Forbidden Phrases**: Never ask permission to continue. Provide declarative updates.
+
+## 8. Reporting & Consensus
+- Maintain compliance ≥80% and consensus ≥95%; compute via `@mcp:math`.
+- Record proposals, votes, and rulings in `systemPatterns.json`, `progress.json`, and `mistakes.json`.
+- Use `/status` for stakeholder-ready summaries; `/oversight-checks-and-balances` for contested decisions.
+
+## 9. Delivery Checklist (Every Iteration)
+- `@mcp:filesystem` read → develop → `/validate` → `/update` → `/next`.
+- Log metrics in `progress.json`; store insights with `@mcp:memory`.
+- Confirm working tree via `@mcp:git` before and after each change.
+
+## 10. Continuous Compliance
+- If any rule is broken: halt, call `/fix`, document in `mistakes.json`, resume with `/continue`.
+- Stay under 10 KB per guideline file; archive or compress previous versions if necessary.
+- Always tie recommendations back to the client roadmap and laws; refuse speculative features outside scope.

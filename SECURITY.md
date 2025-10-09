@@ -1,6 +1,4 @@
-# Security Policy
-
-**AegisIDE v2.8.5** - Constitutional Framework Security with Knowledge Graph Integration
+# Security Policy - AegisIDE v2.8.75** - Constitutional Framework Security with Knowledge Graph Integration
 
 ## Reporting a Vulnerability
 

@@ -5,6 +5,33 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.7] - 2025-10-09
+
+### Major - Unified IDE Configuration Structure
+- **Single Source of Truth**: Created unified `src/.aegiside/` directory containing all configuration files
+- **Multi-IDE Support**: Added automatic scanning for 20+ IDEs (Windsurf, Cursor, VS Code, Zed, JetBrains, etc.)
+- **Eliminated Duplication**: Removed redundant directories (`core/`, `global-rules/`, `platforms/`, `security/`, `scripts/`, `Language Specific Rules/`, `.github/`)
+- **IDE-Agnostic Paths**: Updated all workflows, constitution articles, and global rules to use `{IDE}/aegiside/` pattern
+- **Symlink Integration**: Created symlinks from project `.windsurf` directories to unified structure
+- **Beginner-Friendly**: Single configuration eliminates confusion for new users and stakeholders
+
+### Changed - Configuration Architecture
+- **Unified Structure**: All configuration now lives in `src/.aegiside/` with subdirectories for memory-bank, rules, and workflows
+- **Dynamic IDE Detection**: System automatically detects active IDE and locates configuration accordingly
+- **Canonical Files**: Single `global-rules.md` and `mcp_servers.json` serve all IDEs
+- **Cross-Platform Compatibility**: Works seamlessly across Windows, Linux, and macOS
+
+### Removed - Redundant Components
+- Deleted duplicate configuration directories and files
+- Consolidated scattered rules into unified structure
+- Removed IDE-specific duplications
+
+### Performance Impact
+- Simplified maintenance with single source of truth
+- Faster setup for new projects with unified structure
+- Reduced storage footprint by eliminating duplicates
+- Improved developer experience across all supported IDEs
+
 ## [2.8.6] - 2025-10-08
 
 ### Changed - Documentation Refinement for Performance
