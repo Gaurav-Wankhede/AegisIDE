@@ -59,28 +59,42 @@ After setup, your project will have this structure:
 ├── 📄 package.json             # Your project files  
 ├── 📄 README.md                # Your documentation
 └── 📁 .windsurf/               # AegisIDE files (hidden)
-    └── 📁 aegiside/
-        ├── 📁 memory-bank/     # AI's memory system
-        │   ├── 📁 schemas/     # Validation rules for memory files
-        │   ├── 📁 visualize/   # Real-time dashboard
-        │   ├── activeContext.json    # What AI is working on now
-        │   ├── scratchpad.json       # AI's to-do list
-        │   ├── kanban.json           # Task board
-        │   ├── mistakes.json         # Lessons learned
-        │   ├── systemPatterns.json   # Coding standards
-        │   ├── progress.json         # Project milestones
-        │   ├── roadmap.json          # Long-term goals
-        │   └── memory.json           # Knowledge graph
-        ├── 📁 rules/           # Constitutional framework
-        ├── 📁 workflow/        # Step-by-step processes
-        ├── 📄 global-rules.md  # System prompt (copy to IDE settings)
-        └── 📄 mcp_servers.json # MCP config (copy to IDE's mcp.json)
+    ├── 📁 aegiside/            # Core AegisIDE system
+    │   ├── 📁 memory-bank/     # AI's memory system (8 core schemas)
+    │   │   ├── activeContext.json    # What AI is working on now
+    │   │   ├── scratchpad.json       # AI's to-do list
+    │   │   ├── kanban.json           # Task board
+    │   │   ├── mistakes.json         # Lessons learned
+    │   │   ├── systemPatterns.json   # Coding standards
+    │   │   ├── progress.json         # Project milestones
+    │   │   ├── roadmap.json          # Long-term goals
+    │   │   └── memory.json           # Knowledge graph
+    │   ├── 📁 schemas/         # Validation rules for memory files
+    │   └── 📁 visualize/       # Real-time dashboard
+    ├── 📁 rules/               # Constitutional framework
+    │   ├── 📁 constitution/    # Core governance articles
+    │   └── 📁 laws/           # Implementation rules
+    ├── 📄 global-rules.md      # System prompt (copy to IDE settings)
+    └── 📄 mcp_servers.json     # MCP config (copy to IDE's mcp.json)
+```
+
+**Global Workflows** (Windsurf only):
+```
+📁 ~/.codeium/windsurf-next/global_workflow/
+├── 📄 init.md              # Initialize AegisIDE system
+├── 📄 next.md              # Execute next task
+├── 📄 continue.md          # Resume execution
+├── 📄 validate.md          # Run validation checks
+├── 📄 fix.md               # Apply corrections
+└── 📄 status.md            # Report progress
 ```
 
 **How it works:**
-- **Memory files**: AI remembers everything about your project
+- **Memory files**: AI remembers everything about your project (8 core schemas only)
 - **Schemas**: Validate that memory files are correct
 - **Visualize**: Real-time dashboard to see AI's progress
+- **Rules**: Constitutional framework in project (scanned by IDE)
+- **Global workflows**: IDE-level workflows in windsurf-next/global_workflow
 - **Global rules**: System prompt that goes in IDE settings (not workspace)
 - **MCP servers**: Tool configurations for IDE's mcp.json (not workspace)
 

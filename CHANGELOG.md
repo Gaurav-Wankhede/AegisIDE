@@ -5,6 +5,28 @@ All notable changes to AegisIDE will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.8.8] - 2025-10-09
+
+### Major - Corrected AegisIDE Structure Documentation
+- **Fixed Structure Documentation**: Updated README.md to reflect correct AegisIDE project structure
+- **Windsurf Compatibility**: Clarified that rules must be in `.windsurf/rules/` (not inside aegiside) for IDE scanning
+- **Global Workflows Location**: Documented correct location as `~/.codeium/windsurf-next/global_workflow/` for Windsurf
+- **Memory Bank Isolation**: Only memory-bank system resides in `.windsurf/aegiside/memory-bank/`
+- **Cross-Project Unlinking**: Removed all symbolic links causing cross-project contamination
+
+### Changed - Documentation Accuracy
+- **Project Structure**: Updated structure diagram to show proper separation of concerns
+- **Workflow Location**: Corrected global workflow path to windsurf-next directory
+- **Rules Placement**: Clarified rules folder location outside aegiside for IDE compatibility
+- **8 Core Schemas**: Emphasized memory-bank contains only 8 essential JSON files
+- **IDE Scanning**: Added explanation of Windsurf scanning requirements
+
+### Fixed - Cross-Project Issues
+- **Symbolic Link Cleanup**: Removed all symlinks between projects causing memory bank contamination
+- **Project Isolation**: Each project now has independent .windsurf structure
+- **Memory Bank Consolidation**: Successfully merged auxiliary files into 8 core schemas
+- **Structure Compliance**: All projects now follow proper AegisIDE structure
+
 ## [2.8.7] - 2025-10-09
 
 ### Major - Unified IDE Configuration Structure

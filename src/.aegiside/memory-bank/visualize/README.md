@@ -3,9 +3,8 @@
 ## Quick Access
 
 ```bash
-# From project root - automatically detects your IDE
-# Supported: .windsurf, .cursor, .vscode, .cline, .qoder, .trae, .idle, .zed, .jetbrains, .replit, .pycharm
-cd {IDE}/aegiside/memory-bank  
+# From project root
+cd .windsurf/memory-bank  # or .cursor/memory-bank for Cursor IDE
 npx http-server -p 7777 -c-1 --cors
 
 # Open: http://localhost:7777/visualize/dashboard.html

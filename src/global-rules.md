@@ -27,6 +27,7 @@
 - **Mandatory Usage**: Call the relevant MCP before and after every read, edit, calculation, research, timestamp, or version-control action. No manual shortcuts.
 
 ## 4. Workflow Matrix
+**Global Workflows** (Windsurf only - located in `~/.codeium/windsurf-next/global_workflow/`):
 | Workflow | Goal | Key MCPs |
 | --- | --- | --- |
 | `/bootstrap` | Ensure 8 memory-bank schemas exist | filesystem, time, sequential-thinking, math, context7, git, memory |
@@ -42,6 +43,8 @@
 | `/status` | Summarize progress & risks | filesystem, math, memory, time |
 | `/oversight-checks-and-balances` | Formal debate + consensus | sequential-thinking, math, context7 |
 
+**Note**: Workflows are IDE-specific. Other IDEs may have different workflow locations and implementations.
+
 **Rule**: Execute `/continue` instantly when invoked, log outstanding items in `scratchpad.json`, `activeContext.json`, and `mistakes.json`, then chain into `/next`.
 
 ## 5. Execution Loop (Per Task)
@@ -52,9 +55,11 @@
 5. **Next Step**: Execute `/next` or `/continue` without asking.
 
 ## 6. Memory Bank Governance
-- Required files in `{IDE}/aegiside/memory-bank/`: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`, plus `roadmap/roadmap.md` and visualization assets.
-- Update all eight schemas after every task; validate structure against `{IDE}/aegiside/memory-bank/schemas/*.schema.json` using `@mcp:filesystem` + `@mcp:math`.
-- **Strict Schema Validation**: Before saving any memory file, run validation against its schema in `{IDE}/aegiside/memory-bank/schemas/`:
+- **Memory Bank Location**: `{IDE}/aegiside/memory-bank/` (only memory-bank resides in aegiside)
+- **Rules Location**: `{IDE}/rules/` (outside aegiside for IDE scanning compatibility)
+- **Required files in memory-bank**: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`, plus `roadmap/roadmap.md` and visualization assets.
+- Update all eight schemas after every task; validate structure against `{IDE}/aegiside/schemas/*.schema.json` using `@mcp:filesystem` + `@mcp:math`.
+- **Strict Schema Validation**: Before saving any memory file, run validation against its schema in `{IDE}/aegiside/schemas/`:
   - `activeContext.schema.json`
   - `scratchpad.schema.json`
   - `kanban.schema.json`
