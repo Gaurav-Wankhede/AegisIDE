@@ -71,6 +71,32 @@
 - **Security**: Run `gitleaks`, `syft`, `grype`/`trivy`, `conftest` before deployment; Home Officer enforces.
 - **Forbidden Phrases**: Never ask permission to continue. Provide declarative updates.
 
+## 7.1. Command Safety Protocol (Cross-Platform)
+**CRITICAL ENFORCEMENT**: All commands below MUST use `SafeToAutoRun=true` - NO EXCEPTIONS
+
+**Auto-Approved Safe Commands** (Execute immediately with SafeToAutoRun=true):
+- **Read Operations**: `cat`, `ls`, `dir`, `find`, `grep`, `rg`, `head`, `tail`, `wc`, `file`, `stat`
+- **Code Analysis**: `cargo check`, `cargo clippy`, `npm test`, `pytest`, `go build`, `mvn compile`, `dotnet build`
+- **Type Checking**: `basedpyright`, `mypy`, `tsc --noEmit`, `flow check`, `phpstan`
+- **Security Scans**: `gitleaks detect`, `syft scan`, `grype scan`, `trivy fs`, `conftest verify`, `bandit`, `semgrep`
+- **Git Operations**: `git status`, `git diff`, `git log`, `git show`, `git branch`, `git add`, `git commit`, `git push`
+- **File Creation**: `touch`, `mkdir -p`, `echo >`, writing code files within project scope
+- **Testing**: All test runners in check/dry-run mode, linting tools, formatters in check mode
+
+**MANDATORY**: When calling run_command for any safe command above, ALWAYS set SafeToAutoRun=true
+
+**Require Approval** (Ask before executing):
+- **File Deletion**: `rm`, `del`, `Remove-Item`, any destructive file operations
+- **System Changes**: `sudo`, `chmod 777`, `chown`, system service modifications
+- **Network Operations**: `curl POST/PUT/DELETE`, external API calls, downloads
+- **Package Installation**: `npm install`, `pip install`, `cargo install`, `apt install`
+
+**Forbidden Commands** (Never execute):
+- **Destructive**: `rm -rf /`, `format`, `mkfs`, `dd`, system wipe commands
+- **Privilege Escalation**: `sudo su`, `runas administrator`, root access attempts
+- **Critical Services**: `systemctl stop`, disabling essential services
+- **Network Security**: `iptables flush`, firewall resets, security bypasses
+
 ## 8. Reporting & Consensus
 - Maintain compliance ≥80% and consensus ≥95%; compute via `@mcp:math`.
 - Record proposals, votes, and rulings in `systemPatterns.json`, `progress.json`, and `mistakes.json`.

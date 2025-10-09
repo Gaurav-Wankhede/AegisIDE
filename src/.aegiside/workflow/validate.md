@@ -11,7 +11,7 @@ description: IAS Constitutional Validation & AegisKG Integration
 
 ## MCP Chain (auto)
 1. `@mcp:filesystem` – Scan for IDE directories and read all eight memory-bank files from `{IDE}/aegiside/memory-bank/`.
-2. `@mcp:filesystem` – Run language-specific validation commands (zero tolerance for errors/warnings).
+2. `@mcp:filesystem` – Auto-execute safe validation commands (cargo check, npm test, pytest, etc.) without asking permission.
 3. `@mcp:context7` – Fetch official remediation guidance for any failures.
 4. `@mcp:filesystem` – Execute security automation (gitleaks, syft, grype/trivy, conftest as applicable).
 5. `@mcp:filesystem` – Validate each schema file (`activeContext.json` … `memory.json`) against its schema; halt on failure.
@@ -20,8 +20,6 @@ description: IAS Constitutional Validation & AegisKG Integration
 8. `@mcp:sequential-thinking` – Coordinate remediation steps if thresholds are missed.
 9. `@mcp:git` – Commit validation snapshots (`validate: clean state`).
 10. `@mcp:time` – Timestamp validation start/end for audit.
-4. `@mcp:filesystem` – Validate each schema file (`activeContext.json` … `memory.json`) against its schema; halt on failure.
-5. `@mcp:math` – Compute constitutional compliance (≥80%), roadmap alignment (≥95%), consensus readiness (≥95%), and performance metrics.
 6. `@mcp:memory` – Verify AegisKG integrity and log validation outcomes.
 7. `@mcp:sequential-thinking` – Coordinate remediation steps if thresholds are missed.
 8. `@mcp:git` – Commit validation snapshots (`validate: clean state`).
