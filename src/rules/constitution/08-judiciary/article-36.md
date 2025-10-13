@@ -3,7 +3,7 @@ trigger: always_on
 part: VIII-Judiciary
 article: 36
 category: constitutional_interpretation_precedent
-last_updated: 2025-10-13T13:24:19+05:30
+last_updated: 2025-10-13T13:47:05+05:30
 ---
 
 # Article 36: Constitutional Interpretation & Precedent

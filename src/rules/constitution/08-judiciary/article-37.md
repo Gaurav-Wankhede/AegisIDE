@@ -3,7 +3,7 @@ trigger: always_on
 part: VIII-Judiciary
 article: 37
 category: constitutional_tribunals_impeachment
-last_updated: 2025-10-13T13:24:19+05:30
+last_updated: 2025-10-13T13:47:05+05:30
 ---
 
 # Article 37: Constitutional Tribunals & Impeachment
