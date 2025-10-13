@@ -1,1 +1,6 @@
 docs/
+
+# Auto-generated memory bank (created from constitution + schemas)
+src/.aegiside/memory-bank/
+**/.aegiside/memory-bank/
+*.aegiside/memory-bank/

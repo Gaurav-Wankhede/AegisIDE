@@ -120,6 +120,22 @@ description: RL-driven autonomous execution loop with selective article loading
 4. `systemPatterns.json` → Prepend recovery pattern
 5. Third occurrence → -50 RL + Load `{IDE}/aegiside/rules/constitution/04-fundamental-duties/article-15.md`
 
+## RL Scoring & Auto-Chain (PPO+GAE)
+
+- **GAE Advantage Calculation**: After task completion:
+  ```
+  advantage = GAE(values, rewards, γ=1.0, λ=1.0)
+  kl_penalty = 0.005 × KL(current_policy || reference_policy)
+  final_reward = base_reward - kl_penalty
+  ```
+- **Success Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "next", "rl_reward": 5-50,
+   "task_id": "...", "outcome": "success",
+   "gae_advantage": 0.85, "kl_divergence": 0.003,
+   "timestamp": "@mcp:time"}
+  ```
+
 ## 9. Constitutional Compliance (Selective Loading)
 
 **Always Active** (load from `{IDE}/aegiside/rules/constitution/02-preliminary/`):

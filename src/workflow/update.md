@@ -61,6 +61,16 @@ location: {IDE}/workflow/update.md
   {"workflow": "update", "rl_reward": 8,
    "schemas_synced": 8, "timestamp": "@mcp:time"}
   ```
+- **RL Scoring (PPO+GAE)**
+
+- **GAE Calculation**: Compute advantage for schema update task
+- **Success**: +5 RL → `progress.json`[0]
+  ```json
+  {"workflow": "update", "rl_reward": 5,
+   "schemas_updated": 8, "checksum_verified": true,
+   "gae_advantage": 0.92, "kl_divergence": 0.002,
+   "exploit_ratio": 0.7, "timestamp": "@mcp:time"}
+  ```
 - **Commit**: `@mcp:git` → "update: 8-schema atomic sync complete"
 - **IMMEDIATE CHAIN**: Execute `/next` (NO asking)
 - **Top-Append Verified**: All schemas maintain latest-first order

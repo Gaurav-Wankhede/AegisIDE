@@ -44,13 +44,18 @@
 | roadmap | Strategy | filesystem | 14 |
 | memory | Knowledge | memory | 10,42 |
 
-## V. RL (Art 12)
-`total_rl = Σrewards - Σpenalties` → progress[0]
+## V. RL Architecture (Art 12)
+**Algorithm**: PPO + GAE | **KL Coef**: 0.005 | **GAE**: γ=1.0, λ=1.0
 
-**Rewards**: Task(+5-50), Validate(+15), Reuse(+20), MCP(+10)
+`total_rl = Σrewards - Σpenalties` → progress[0]
+`advantage = GAE(values, rewards, γ=1.0, λ=1.0)` → stable learning
+`kl_penalty = kl_coef × KL(policy || ref_policy)` → prevent drift
+
+**Rewards**: Task(+5-50), Validate(+15), Reuse(+20), MCP(+10), Explore(+10)
 **Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50)
 
-**Exploit(70%)**: memory≥0.9→apply→+20 | **Explore(30%)**: context7/fetch→+10 (Art 26-31)
+**Exploit(70%)**: memory≥0.9→+20 | **Explore(30%)**: context7+exa→+10
+**Value Network**: Multi-branch (per reward component) | **Design**: LLM-automated (Art 26-31)
 
 ## VI. Workflow Integration (Art 26-31)
 
