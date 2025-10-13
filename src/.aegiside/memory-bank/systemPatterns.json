@@ -17,8 +17,9 @@
           "meta_cognitive_monitoring": "Monitor effectiveness→auto-adapt when <0.8 threshold",
           "zero_permission_autonomy": "Eliminate 100% band, auto-execute 99.5% with doc",
           "parallel_execution": "Multiple concurrent workers via MCP coordination",
-          "federated_sync": "Value network broadcast every 50 tasks via Port 7777",
-          "reward_guided_evolution": "Patterns auto-optimize based on success rates"
+          "value_network_sync": "progress.json.value_network_branches updated every 50 tasks",
+          "reward_guided_evolution": "Patterns auto-optimize based on success rates",
+          "note": "Port 7777 multi-IDE coordination planned for AegisIDE-desktop (separate project)"
         },
         "implementation": {
           "autonomous_loop": "def autonomous_loop(): while not perfect: learn() + practice() + if effectiveness<0.8: adapt_strategy(); return autonomous_loop(next)",

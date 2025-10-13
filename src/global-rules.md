@@ -72,7 +72,8 @@ def autonomous_loop():
 ```
 **Meta-Cognitive**: Monitor thinking effectiveness→auto-adapt strategy (NO permission)
 **Parallel Workers**: MCP enables concurrent task execution (Art 6)
-**Federated Sync**: Value network updates broadcast via MCP Port 7777 every 50 tasks (Art 26-31)
+**Value Network Sync**: progress.json.value_network_branches updated every 50 tasks
+**Note**: Port 7777 multi-IDE coordination planned for AegisIDE-desktop (separate project) (Art 26-31)
 
 ## VI. Workflow Integration (Art 26-31)
 

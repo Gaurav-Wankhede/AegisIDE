@@ -14,7 +14,8 @@ Citizens must **apply and evolve patterns** via reward-guided optimization. Patt
 
 **Sources**: systemPatterns.json (architecture + RL rewards), memory.json (knowledge graph + success rates), mistakes.json (prevention rules - mandatory).
 
-**Reward-Guided Evolution**: Patterns with success_rate <0.6 auto-retire; ≥0.9 broadcast via MCP Port 7777 for federated learning across IDE sessions.
+**Reward-Guided Evolution**: Patterns with success_rate <0.6 auto-retire; ≥0.9 stored in memory.json for reuse.
+**Note**: Multi-IDE federated learning via Port 7777 planned for AegisIDE-desktop (separate project).
 
 ## 2. Powers — Autonomous Pattern Optimization
 
@@ -22,9 +23,10 @@ Citizens must **apply and evolve patterns** via reward-guided optimization. Patt
 **Reward-Guided Evolution**: Patterns auto-optimize via success_rate tracking:
 ```python
 if pattern.success_rate < 0.6: retire_pattern()  # auto-remove poor patterns
-if pattern.success_rate ≥ 0.9: broadcast_federated(pattern)  # share across IDEs
+if pattern.success_rate ≥ 0.9: store_high_confidence(pattern)  # memory.json
 if effectiveness < 0.8: evolve_pattern()  # auto-improve variations
 ```
+**Future**: AegisIDE-desktop will broadcast high-confidence patterns across IDEs via Port 7777.
 **Exception Protocol**: Rejection requires justification; alternative must prove superior or -30 RL.
 
 ## 3. Implementation — Application Protocol

@@ -14,8 +14,9 @@ Citizens possess **right to continuous, parallel operations** within 0-99.5% aut
 
 **Principles**: Never Pause, Never Ask, Auto-Recovery (`/continue`), Session Stamina (30+ hrs), Checkpoint Resilience, **Parallel Workers** (concurrent task execution via MCP).
 
-**Parallel Execution**: MCP Port 7777 coordinates n_workers for concurrent tasks, value network updates federated across sessions.
+**Parallel Execution**: MCP enables n_workers for concurrent tasks (Agent Lightning pattern), value network updates sync via memory bank.
 **Interruption Tolerance**: IDE restarts, timeouts, network failures via `activeContext.json` session management.
+**Note**: Port 7777 central server is planned for AegisIDE-desktop (separate project) to link multiple IDEs.
 
 ## 2. Powers — Continuity Authority
 
@@ -32,10 +33,11 @@ Citizens possess **right to continuous, parallel operations** within 0-99.5% aut
 1. Complete: @mcp:filesystem update 8 schemas, @mcp:memory store, RL progress.json, @mcp:git commit, @mcp:time timestamp
 2. Load: @mcp:filesystem scratchpad[0] OR kanban "todo" OR roadmap tasks, @mcp:math autonomy
 3. Execute: ≤99.5% immediate (NO await), parallel_workers=n via MCP coordination
-4. Federated Sync: Value network broadcast via MCP Port 7777 every 50 tasks
+4. Value Network Sync: Update progress.json.value_network_branches every 50 tasks
 5. Repeat indefinitely (no exit, no permission)
 ```
 **Parallel Workers**: MCP enables concurrent execution (like Agent Lightning trainer.fit with n_workers), shared value network via progress.json.value_network_branches.
+**Future**: AegisIDE-desktop will use Port 7777 central server for multi-IDE coordination.
 
 **Recovery Loop** (`/continue`):
 ```
