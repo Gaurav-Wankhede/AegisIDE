@@ -9,7 +9,7 @@
 
 **Code**: filesystem→memory→filesystem→git→memory (+10)
 **Error**: context7→sequential-thinking→filesystem→validate→memory (+15)
-**Research**: context7→fetch→math→memory→filesystem (+10)
+**Research**: context7+exa→fetch→sequential-thinking→math→memory→filesystem (+10)
 **Plan**: sequential-thinking→memory→math→filesystem→time (+5)
 **Validate**: filesystem→validate→context7→git→memory (+15)
 **Schema**: filesystem→filesystem(prepend)→validate→git→time (+5)

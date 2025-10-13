@@ -14,24 +14,25 @@ location: {IDE}/workflow/research.md
 
 ## MCP Chain (Intelligence Gathering)
 
-1. `@mcp:context7` → Fetch official documentation for topic
-2. `@mcp:fetch` → Gather benchmarks, pricing (free-tier priority)
-3. `@mcp:memory` → Retrieve historical research patterns
-4. `@mcp:math` → Compute:
+1. `@mcp:context7` → Fetch official documentation for topic (resolve-library-id first)
+2. `@mcp:exa` → Latest research papers, cutting-edge techniques (get_code_context_exa)
+3. `@mcp:fetch` → Gather benchmarks, pricing (free-tier priority)
+4. `@mcp:memory` → Retrieve historical research patterns
+5. `@mcp:sequential-thinking` → Structure analysis, synthesize findings
+6. `@mcp:math` → Compute:
    - Performance curves
    - Cost projections (free-tier focus)
    - ROI estimates
-5. `@mcp:sequential-thinking` → Structure analysis, compare options
-6. `@mcp:filesystem` → Write dossier to `systemPatterns.json` with:
+7. `@mcp:filesystem` → Write dossier to `systemPatterns.json` with:
    - Executive summary
    - Benchmarks (before/after)
    - Resource footprint
    - Security assessment
    - MCP evidence trail
-7. `@mcp:time` → Timestamp research completion
-8. `@mcp:filesystem` → Validate schemas
-9. `@mcp:git` → Commit "research: [topic] assessment"
-10. `@mcp:memory` → Store findings in knowledge graph
+8. `@mcp:time` → Timestamp research completion
+9. `@mcp:filesystem` → Validate schemas
+10. `@mcp:git` → Commit "research: [topic] assessment"
+11. `@mcp:memory` → Store findings in knowledge graph
 
 ## Actions & RL Logging
 

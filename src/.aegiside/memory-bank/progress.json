@@ -32,6 +32,17 @@
     "emd_compliance_rate": 100,
     "zero_tolerance_violations": 0
   },
+  "reinforcement_learning": [
+    {
+      "tx_id": "rl-tx-research-001",
+      "timestamp": "2025-10-14T00:26:20+05:30",
+      "category": "research",
+      "reward": 10,
+      "source_file": "systemPatterns.json",
+      "description": "RL architecture research: PPO+GAE+Automated Reward Design",
+      "details": "Sources verified: AgentGym-RL (8.9 trust), arXiv papers (10% improvement)"
+    }
+  ],
   "reinforcement_learning_ledger": {
     "total_score": 10,
     "session_score": 10,
