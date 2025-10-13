@@ -2,10 +2,10 @@
   "schema_version": "3.0.0",
   "last_updated": "2025-10-13T16:28:41+05:30",
   "metrics": {
-    "total_rl_score": 65,
+    "total_rl_score": -60,
     "tasks_completed": 4,
-    "tasks_failed": 0,
-    "commits": 3
+    "tasks_failed": 5,
+    "commits": 4
   },
   "columns": {
     "todo": {

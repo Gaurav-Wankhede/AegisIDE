@@ -2,10 +2,10 @@
   "schema_version": "3.0.0",
   "last_updated": "2025-10-13T16:28:41+05:30",
   "metrics": {
-    "total_rl_score": 65,
+    "total_rl_score": -60,
     "tasks_completed": 4,
-    "tasks_failed": 0,
-    "commits": 3
+    "tasks_failed": 5,
+    "commits": 4
   },
   "milestone_tracking": [
     {
@@ -39,6 +39,61 @@
     "zero_tolerance_violations": 0
   },
   "reinforcement_learning": [
+    {
+      "tx_id": "rl-penalty-005",
+      "timestamp": "2025-10-14T01:42:40+05:30",
+      "category": "schema_violation",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Schema violation: systemPatterns.json missing required metrics field",
+      "gae_advantage": -0.95,
+      "kl_divergence": 0.008
+    },
+    {
+      "tx_id": "rl-penalty-004",
+      "timestamp": "2025-10-14T01:42:40+05:30",
+      "category": "schema_violation",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Schema violation: memory.json missing required metrics field",
+      "gae_advantage": -0.95,
+      "kl_divergence": 0.008
+    },
+    {
+      "tx_id": "rl-penalty-003",
+      "timestamp": "2025-10-14T01:42:40+05:30",
+      "category": "schema_violation",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Schema violation: roadmap.json missing required metrics field",
+      "gae_advantage": -0.95,
+      "kl_divergence": 0.008
+    },
+    {
+      "tx_id": "rl-penalty-002",
+      "timestamp": "2025-10-14T01:42:40+05:30",
+      "category": "schema_violation",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Schema violation: mistakes.json missing required metrics field",
+      "gae_advantage": -0.95,
+      "kl_divergence": 0.008
+    },
+    {
+      "tx_id": "rl-penalty-001",
+      "timestamp": "2025-10-14T01:42:40+05:30",
+      "category": "schema_violation",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Schema violation: kanban.json missing required metrics field",
+      "gae_advantage": -0.95,
+      "kl_divergence": 0.008
+    },
     {
       "tx_id": "rl_2025_10_14_01_15_00",
       "timestamp": "2025-10-14T01:15:00+05:30",
