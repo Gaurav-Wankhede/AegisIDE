@@ -3,7 +3,7 @@ trigger: always_on
 part: IX-Constitutional-Bodies
 article: 41
 category: mcp_infrastructure_coordination
-last_updated: 2025-10-13T13:24:19+05:30
+last_updated: 2025-10-13T13:47:05+05:30
 ---
 
 # Article 41: MCP Infrastructure - Tool Coordination
