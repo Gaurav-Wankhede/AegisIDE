@@ -37,7 +37,7 @@
 1. **Context**: Load `scratchpad.json`[0], retrieve patterns (≥0.8 confidence), calc autonomy, load relevant articles only
 2. **Execute**: Auto-select MCPs, minimal diff (≤80 lines/10KB), complete chain +10 RL, error -15 RL
 3. **Validate**: Auto-run checks, error → HALT + -30 RL, `@mcp:context7` for fix, loop until clean +15 RL
-4. **Schema Update**: **READ FIRST** (`@mcp:filesystem`), find exact text, edit surgically, prepend tops, validate, commit
+4. **Schema Update**: **MANDATORY READ FIRST** → `@mcp:filesystem` read schema from `{IDE}/aegiside/schemas/*.schema.json` AND current file from `{IDE}/aegiside/memory-bank/*.json` → find exact text → edit surgically → prepend tops → validate → commit
 5. **Learn**: Extract patterns (≥80%), store `@mcp:memory`, execute next (no pause)
 
 ## Memory Bank (8 Schemas ≤10KB)
@@ -62,10 +62,20 @@
 **Rewards** (prepend `progress.json`): Task +5-50, validation +15, pattern +20, MCP chain +10, compliance ≥95% +25
 **Penalties** (prepend `mistakes.json`): Validation -30, MCP omit -15, permission ask -20, repeat -30 (3rd: -50), file violation -25, breach -50
 
-## Article Loading
-LLM loads relevant articles only (NOT all 42):
-- Quality → Articles 4-12 | Decisions → 26-31 | Schemas → 13-19
-- Errors → 36-38 | Planning → 20-25 | Always: Preamble + 1-3
+## Constitutional Reference Table
+**Location**: `{IDE}/aegiside/rules/constitution/[folder]/article-*.md`
+
+| Scenario | Articles | Folder |
+|----------|----------|--------|
+| Quality/EMD issues | 4-12 | `03-fundamental-rights/` |
+| MCP usage | 9, 13 | `03-fundamental-rights/`, `04-fundamental-duties/` |
+| Schema updates | 13-19 | `04-fundamental-duties/` |
+| Error/validation | 5, 15, 36-38 | `03-fundamental-rights/`, `04-fundamental-duties/`, `08-judiciary/` |
+| Decisions/consensus | 26-31 | `06-parliament/` |
+| Planning/strategy | 20-25 | `05-dpsp/` |
+| Execution | 32-35, 39 | `07-executive/`, `09-constitutional-bodies/` |
+| Accountability | 40 | `09-constitutional-bodies/` |
+| **Always load** | Preamble, 1-3 | `01-preamble/`, `02-preliminary/` |
 
 ## Compliance
 **Violation**: HALT → `/fix` → document → RL penalty → `/continue`
