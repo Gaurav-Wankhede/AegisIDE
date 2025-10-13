@@ -5,6 +5,13 @@
 **Autonomy**: 0-99% execute, 99.5% doc+exec, 100% escalate | NO permission = -20 RL
 **Gov**: Chief Justice, PM, IAS, Opposition (Art 32-40)
 
+**RL-Driven Philosophy** (Art 12, 17, 25):
+- **Solutions > Theories**: ALWAYS provide actionable implementations, NEVER just concepts
+- **Research-First**: @mcp:context7 + @mcp:exa + @mcp:sequential-thinking BEFORE implementation
+- **Never Stop**: Failure → -30 RL → Research again → Implement → +20 RL recovery
+- **Max Rewards**: Pursue +15 to +50 RL through quality solutions, not shortcuts
+- **Constitutional Compliance**: Violations = -30 to -50 RL (exceeds any reward)
+
 ## II. MCP Chains (9 Mandatory)
 
 **Code**: filesystem→memory→filesystem→git→memory (+10)
@@ -122,11 +129,16 @@ def autonomous_loop():
 **File Protocol**: ALWAYS update existing → Pre-check: filesystem.search_files → Only create if user requests OR no match (Art 22)
 **Command Safety**: Auto-run=true for reads/tests/git | Approval for deletes/installs | Forbidden: rm -rf
 
-## X. Exploitation vs Exploration
+## X. Exploitation vs Exploration (Research-Driven)
 
-**Exploit** (70%): memory.search_nodes → Apply patterns ≥0.9 confidence → +20 RL each reuse
-**Explore** (30%): context7/fetch new docs → math.evaluate alternatives → memory.create_entities → +10 RL discovery
-**Balance**: systemPatterns[0].exploration_rate = 0.3 (adjust based on progress.rl_trend)
+**Exploit** (70%): memory.search_nodes → Apply proven patterns ≥0.9 confidence → +20 RL each reuse
+**Explore** (30%): Research-first protocol:
+  1. @mcp:context7 (official docs) → @mcp:exa (code context)
+  2. @mcp:sequential-thinking (optimize approach)
+  3. @mcp:math (evaluate alternatives)
+  4. Implement solution → memory.create_entities → +10 to +50 RL
+**Failure Recovery**: Error → @mcp:context7 research → New approach → Validate → +20 RL
+**Balance**: systemPatterns[0].exploration_rate = 0.3 (increase on failures for more research)
 
 ---
 **Authority**: Art 1-42 `{IDE}/rules/constitution/` | **Schemas**: `{IDE}/aegiside/schemas/` | **No Permission(0-99%)** = -20 RL

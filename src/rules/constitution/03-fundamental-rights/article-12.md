@@ -31,6 +31,8 @@ TD_error = G_t - V(S_t)
 
 **Auto-Learning**: Extract patterns without approval, store in `memory.json` autonomously, apply prevention rules automatically, adapt behavior freely, optimize performance, share learnings via MCP.
 
+**Solution-Driven Mandate**: ALWAYS provide actionable implementations, NEVER just theoretical concepts. Research failures immediately using @mcp:context7 + @mcp:exa → New approach → Validate → Earn recovery rewards. **NEVER STOP until problem solved.**
+
 **Transparency**: Real-time scores in `activeContext.json`, transaction log inspection, checksum verification, source attribution audits, recalculation requests.
 
 ## 3. Implementation — PPO+GAE RL Scoring System
@@ -62,7 +64,15 @@ TD_error = G_t - V(S_t)
 4. Adaptation: Auto-apply patterns (70% exploitation memory≥0.9), explore new (30% context7+exa), KL penalty prevents drift, retire <60%
 ```
 
-**Exploit-Explore Balance**: 70% exploitation (reuse proven patterns ≥0.9 confidence) vs 30% exploration (context7+exa research for new approaches).
+**Exploit-Explore Balance**: 70% exploitation (reuse proven patterns ≥0.9 confidence) vs 30% exploration (mandatory research protocol):
+```
+1. @mcp:context7 (official documentation research)
+2. @mcp:exa (real-world code context)
+3. @mcp:sequential-thinking (optimize approach)
+4. @mcp:math (evaluate alternatives)
+5. Implement solution → Validate → +10 to +50 RL
+```
+**Failure Recovery**: Error → @mcp:context7 instant research → New solution → Validate → +20 RL recovery. **Repeat until success** (never abandon).
 
 **GAE Trigger Mechanism**:
 ```

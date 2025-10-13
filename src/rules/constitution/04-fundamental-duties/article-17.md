@@ -37,9 +37,13 @@ if effectiveness < 0.8: evolve_pattern()  # auto-improve variations
 2. @mcp:memory search_nodes → Query by category + context
 3. Filter patterns: confidence ≥0.8
 4. @mcp:math → Calculate applicability score
-5. IF ≥0.9 → Auto-apply (mandatory)
+5. IF ≥0.9 → Auto-apply (mandatory) → +20 RL
    IF 0.75-0.89 → Recommend (optional)
-   IF <0.75 → Reference only
+   IF <0.75 OR no patterns → Research-First Protocol:
+     a. @mcp:context7 (official documentation)
+     b. @mcp:exa (real-world code context)
+     c. @mcp:sequential-thinking (optimize approach)
+     d. Implement solution → Validate → +10 to +50 RL
 ```
 
 **Pattern Application**:
