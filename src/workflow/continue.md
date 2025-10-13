@@ -1,30 +1,59 @@
 ---
-description: Resume execution immediately after any interruption.
+description: RL-driven immediate recovery after interruption
+location: {IDE}/workflow/continue.md
 ---
 
 # /continue — Immediate Recovery
 
-## Directives
-- Execute the moment `/continue` is invoked—no asking, no excuses.
-- IAS Field Officers restore context, capture blockers, and trigger `/next` in the same run.
-- Outstanding work must be logged in `activeContext.json`, `scratchpad.json`, and `mistakes.json` before exiting.
+## RL Recovery Protocol (0-99% Auto-Execute)
 
-## MCP Chain (auto)
-1. `@mcp:memory` – Restore the latest `activeContext.json` snapshot and log the resume event.
-2. `@mcp:filesystem` – Scan for IDE directories and read `{IDE}/aegiside/memory-bank/scratchpad.json` and `kanban.json` to capture current blockers (do not halt regardless of state).
-3. `@mcp:math` – Record readiness metrics for reporting.
-4. `@mcp:time` – Timestamp downtime, resume moment, and duration.
-5. `@mcp:context7` – Refresh validation guidance for the next queued task.
-6. `@mcp:fetch` – Pull external advisories if required.
-7. `@mcp:sequential-thinking` – Reconstruct the immediate execution plan when mid-step interruptions occurred.
-8. `@mcp:git` – Verify clean working tree and stage checkpoint if files changed.
+**Purpose**: Restore context from `{IDE}/aegiside/memory-bank/` and resume execution
+**RL Reward**: +5 for successful recovery
+**RL Penalty**: -10 if context restoration fails
+**CRITICAL**: Auto-chain to `/next` immediately (NO asking)
 
-## Actions
-1. Update `scratchpad.json`, `kanban.json`, and `activeContext.json` with the restored state and enumerate pending consolidation/validation items.
-2. Log required remediation entries in `systemPatterns.json` or `mistakes.json`; do not defer.
-3. Chain directly into `/next` at the end of the workflow.
+## MCP Chain (Autonomous)
 
-## Logging & Exit
-- Capture resume metrics in `progress.json`.
-- If schema discrepancies are detected, schedule `/update` immediately after `/next` execution begins.
-- Declare completion in `activeContext.json` and proceed without further prompts.
+1. `@mcp:memory` → Restore latest snapshot from knowledge graph
+2. `@mcp:filesystem` → Read `scratchpad.json`[0] (top entry) + `activeContext.json`
+3. `@mcp:math` → Calculate downtime duration + readiness score
+4. `@mcp:time` → Timestamp resume moment
+5. IF mid-task interruption → `@mcp:sequential-thinking` → Reconstruct execution plan
+6. IF errors detected → `@mcp:context7` → Fetch validation guidance
+7. `@mcp:git` → Verify clean working tree
+
+**Context Restoration** (Top-Append Strategy):
+- Read `scratchpad.json`[0] → Latest task at array top
+- Read `activeContext.json` → Last execution state
+- Read `mistakes.json`[0] → Recent errors if any
+- Read `progress.json`[0] → Latest RL score
+
+## Actions & RL Logging
+
+1. **Restore State**: Prepend recovery event to `activeContext.json`[0]:
+   ```json
+   {"event": "continue_recovery", "downtime_seconds": X,
+    "pending_tasks": Y, "rl_reward": 5, "timestamp": "..."}
+   ```
+2. **Capture Blockers**: Update `scratchpad.json` (maintain top-append order)
+3. **RL Scoring**:
+   - Successful recovery → +5 RL → Prepend to `progress.json`
+   - Context corruption → -10 RL → Prepend to `mistakes.json`
+4. **Selective Article Loading**:
+   - If blockers exist → Load `{IDE}/aegiside/rules/constitution/04-fundamental-duties/article-14.md`
+   - If errors → Load `{IDE}/aegiside/rules/constitution/08-judiciary/article-36.md`
+
+## Exit & Auto-Chain
+
+- **Metrics**: Prepend to `progress.json` (top-append):
+  ```json
+  {"workflow": "continue", "rl_reward": 5, 
+   "recovery_time_ms": X, "timestamp": "@mcp:time"}
+  ```
+- **Schema Validation**: If discrepancies → Queue `/update` in `scratchpad.json`
+- **Commit**: `@mcp:git` → "continue: context restored"
+- **IMMEDIATE CHAIN**: Execute `/next` (NO pause, NO asking)
+- **Asking Permission Penalty**: -20 RL → `mistakes.json`
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/continue.md`

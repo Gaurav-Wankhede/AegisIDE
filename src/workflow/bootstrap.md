@@ -1,31 +1,65 @@
 ---
-description: Ensure mandatory memory-bank schemas exist and pass strict validation.
+description: Ensure 8 mandatory schemas exist with RL tracking
+location: {IDE}/workflow/bootstrap.md
 ---
 
 # /bootstrap — Memory Bank Regeneration
 
-## Directives
-- Execute immediately when `/bootstrap` is invoked; no questions, no delays.
-- IAS Field Officers run the action autonomously and log every step in `activeContext.json`.
-- Reference schemas live in `{IDE}/aegiside/memory-bank/schemas/*.schema.json`; validation is mandatory before saving.
+## RL-Driven Regeneration (Auto-Execute)
 
-## MCP Chain (auto)
-1. `@mcp:filesystem` – Scan for IDE directories (`.windsurf/`, `.cursor/`, `.vscode/`, `.cline/`, `.qoder/`, `.trae/`, `.idle/`, `.zed/`, `.jetbrains/`, `.replit/`, `.pycharm/`) and locate `aegiside/memory-bank/` within the active IDE directory.
-2. `@mcp:sequential-thinking` – Compare the directory contents with the canonical list of eight schemas.
-3. `@mcp:math` – Count files and compute completion percentage.
-4. `@mcp:context7` – Re-confirm schema contracts for any missing files.
-5. `@mcp:filesystem` – Create missing files with minimal valid payloads.
-6. `@mcp:time` – Timestamp scan, creation, and verification events.
-7. `@mcp:filesystem` – Validate each file against its schema (`activeContext`, `scratchpad`, `kanban`, `mistakes`, `systemPatterns`, `progress`, `roadmap`, `memory`).
-8. `@mcp:git` – Stage the regeneration changes for auditability.
-9. `@mcp:memory` – Persist the regeneration summary to the knowledge graph.
+**Purpose**: Create/repair 8 essential schemas at `{IDE}/aegiside/memory-bank/`
+**RL Reward**: +10 for successful regeneration
+**RL Penalty**: -15 if schema validation fails
 
-## Actions
-1. Regenerate missing files under `{IDE}/aegiside/memory-bank/` only; never touch the canonical source directory.
-2. Re-run schema validation after each creation; halt immediately if a schema error appears.
-3. Update `activeContext.json` with the regeneration event and list remaining discrepancies (if any).
+## MCP Chain (Autonomous Selection)
 
-## Logging & Exit
-- Record remediation details in `mistakes.json` when files were missing or malformed.
-- Append bootstrap success metrics to `progress.json`.
-- Commit with message `bootstrap: memory bank regenerated` and proceed directly to `/update` or `/next` as required.
+**Step-by-Step**:
+1. `@mcp:filesystem` → Scan `{IDE}/aegiside/memory-bank/` for 8 required schemas
+2. `@mcp:math` → Count files, compute completion % (reward if 100%)
+3. `@mcp:context7` → Fetch schema contracts for missing files
+4. `@mcp:filesystem` → Create missing files with minimal valid JSON:
+   ```json
+   {"schema_version": "1.0.0", "last_updated": "@mcp:time", ...}
+   ```
+5. `@mcp:filesystem` → Validate each against `{IDE}/aegiside/schemas/*.schema.json`
+6. `@mcp:git` → Commit with message "bootstrap: regenerated [X] schemas"
+7. `@mcp:memory` → Log regeneration event to knowledge graph
+8. `@mcp:time` → Timestamp all operations
+
+**Required Schemas**:
+1. `activeContext.json` — Must include `rl_reward_tracking` field
+2. `scratchpad.json` — Array structure (top-append ready)
+3. `kanban.json` — Columns: todo, in_progress, done
+4. `mistakes.json` — Must include `rl_penalty_ledger` field
+5. `systemPatterns.json` — Pattern storage with success_rate
+6. `progress.json` — RL rewards ledger
+7. `roadmap.json` — Strategic planning
+8. `memory.json` — Knowledge graph entities/relations
+
+## Actions & RL Logging
+
+1. **Create Missing Files**: Generate under `{IDE}/aegiside/memory-bank/` ONLY
+2. **Validate**: Each file against `{IDE}/aegiside/schemas/*.schema.json` → HALT if fails
+3. **RL Logging**:
+   - Success → +10 RL → Prepend to `progress.json`
+   - Validation fail → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
+4. **Update activeContext.json**: Prepend regeneration event at array[0]:
+   ```json
+   {"event": "bootstrap_complete", "schemas_created": ["..."], 
+    "rl_reward": 10, "timestamp": "..."}
+   ```
+
+## Exit & Chain
+
+- **Selective Article Loading**: If errors → Load `{IDE}/aegiside/rules/constitution/08-judiciary/article-36.md`
+- **Success Metrics**: Prepend to `progress.json` (top-append):
+  ```json
+  {"workflow": "bootstrap", "rl_reward": 10, "schemas_count": 8, 
+   "timestamp": "@mcp:time"}
+  ```
+- **Failure Handling**: Prepend to `mistakes.json` + trigger `/fix` workflow
+- **Commit**: `@mcp:git` → "bootstrap: 8-schema memory bank ready"
+- **Auto-Chain**: Immediately execute `/next` (NO asking permission)
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/bootstrap.md`

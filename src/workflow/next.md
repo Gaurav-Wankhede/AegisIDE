@@ -1,34 +1,139 @@
 ---
-description: Continuous autonomous execution loop.
+description: RL-driven autonomous execution loop with selective article loading
+location: {IDE}/workflow/next.md
 ---
 
-# /next — Continuous Task Execution
+# /next — Autonomous Execution Engine
 
-## Directives
-- Drain the backlog without prompts; `/next` never pauses for permission.
-- Update all eight memory-bank schemas after each task and validate against `.windsurf/memory-bank/schemas/*.schema.json` before moving on.
-- Maintain detailed state in `activeContext.json`, `scratchpad.json`, and `kanban.json` at every iteration.
+## RL-Driven Autonomy (0-99% Auto-Execute)
 
-## MCP Chain (per task)
-1. `@mcp:filesystem` – Scan for IDE directories and read `{IDE}/aegiside/memory-bank/scratchpad.json` (primary) or `kanban.json` (fallback) to identify the next task.t-priority work item.
-2. `@mcp:math` – Rank tasks (P0 → P3) and compute attention budget.
-3. `@mcp:sequential-thinking` – Build the execution plan or resume mid-task state.
-4. `@mcp:filesystem` – Load supporting files (code + relevant schemas).
-5. `@mcp:context7` – Pull references or official docs for the targeted change.
-6. `@mcp:filesystem` – Apply edits; keep files ≤80 lines and ≤10 KB.
-7. `@mcp:git` – Stage atomic diff.
-8. `@mcp:time` – Timestamp execution start/end.
-9. `@mcp:filesystem` – Run validations (`/validate` workflow); halt and invoke `/fix` on error.
-10. `@mcp:filesystem` – Update the eight schemas (scratchpad, activeContext, kanban, mistakes, systemPatterns, progress, roadmap, memory) and validate each against its schema.
-11. `@mcp:memory` – Record knowledge graph deltas.
-12. `@mcp:git` – Commit schema updates (`next: update memory bank`).
+**LLM Autonomously Decides**:
+- Which articles to load from `{IDE}/aegiside/rules/constitution/` (selective, NOT all 42)
+- Which MCPs to invoke based on task type
+- Which schemas to update at `{IDE}/aegiside/memory-bank/`
+- How to optimize using past RL scores from `progress.json`
 
-## Actions
-1. Remove completed tasks from `scratchpad.json`, advance cards in `kanban.json`, and note session metrics in `activeContext.json`.
-2. Add error patterns to `mistakes.json`, architecture wins to `systemPatterns.json`, velocity data to `progress.json`, roadmap alignment notes to `roadmap.json`, and knowledge entities to `memory.json`.
-3. If the backlog remains, loop immediately to the next task; otherwise, signal completion in `activeContext.json`.
+## Workflow Steps
 
-## Logging & Exit
-- Record throughput, validation success rate, and attention efficiency in `progress.json`.
-- Keep `mistakes.json` and `systemPatterns.json` synchronized with new patterns each iteration.
-- `/next` terminates only when `scratchpad.json` has no actionable items or autonomy escalates to 100%; otherwise it repeats automatically.
+## 1. Context Assembly
+
+1. `@mcp:filesystem` → Read `scratchpad.json`[0] (top = priority)
+2. `@mcp:memory` → Patterns (confidence ≥0.8)
+3. `@mcp:math` → Autonomy level + RL score
+4. IF ≥3 steps → `@mcp:sequential-thinking`
+5. **Selective Articles** (NOT all 42):
+   - Quality → `03-fundamental-rights/article-05.md`
+   - Decision → `06-parliament/article-*.md`
+   - Schema → `04-fundamental-duties/article-14.md`
+   - Error → `08-judiciary/article-36.md`
+
+## 2. Execution (Autonomous MCP Selection)
+
+**LLM Selects MCPs by Task Type**:
+- **Code**: `@mcp:filesystem` (read/write) + `@mcp:git` (commit)
+- **Research**: `@mcp:context7` (docs) + `@mcp:fetch` (benchmarks) + `@mcp:memory` (store)
+- **Analysis**: `@mcp:math` (calculate) + `@mcp:sequential-thinking` (plan)
+- **All Tasks**: `@mcp:time` (timestamp)
+
+**RL Scoring (Auto-Logged)**:
+- Complete MCP chain → +10 RL → `{IDE}/aegiside/memory-bank/progress.json` (prepend top)
+- Error encountered → -15 RL → `{IDE}/aegiside/memory-bank/mistakes.json` (prepend top) + pattern extraction
+- Reuse proven pattern → +20 RL → Increment `systemPatterns.json` reuse_count
+
+## 3. Validation (Zero-Tolerance HALT-FIX Loop)
+
+**Auto-Execute** (located at `{IDE}/workflow/validate.md`):
+1. `/validate` triggers automatically
+2. IF errors/warnings → HALT + -30 RL penalty → `mistakes.json`
+3. `@mcp:context7` → Fetch resolution docs instantly
+4. `/fix` workflow → Apply correction (located at `{IDE}/workflow/fix.md`)
+5. Loop until 100% clean → +15 RL reward → `progress.json`
+
+**Multi-Language Validation** (auto-detect from project):
+- JS/TS: `pnpm typecheck`, `npm run lint`
+- Python: `python -m py_compile`, `pytest --collect-only`
+- Rust: `cargo check`, `cargo clippy`
+- Go: `go build`, `go vet`
+
+## 4. Schema Update (Top-Append Strategy — CRITICAL)
+
+**8-Schema Atomic Update** at `{IDE}/aegiside/memory-bank/`:
+1. `activeContext.json` → Prepend completed task status at array[0]
+2. `scratchpad.json` → Remove completed, prepend new tasks at top
+3. `kanban.json` → Move task to "done" column
+4. `mistakes.json` → IF errors → Prepend error pattern + RL penalty at top
+5. `systemPatterns.json` → IF success → Prepend pattern + RL reward at top
+6. `progress.json` → Prepend RL transaction {timestamp, score, source} at top
+7. `roadmap.json` → Update milestone completion %
+8. `memory.json` → `@mcp:memory` → Store entities/relations
+
+**Validation**: Each file validates against `{IDE}/aegiside/schemas/*.schema.json`
+**Commit**: `@mcp:git` → Structured message + `@mcp:time` timestamp
+**Top-Append Benefit**: Latest info at array[0] = optimal context window usage
+
+## 5. Learning & Pattern Extraction
+
+1. `@mcp:math` → Analyze success rates
+2. `@mcp:sequential-thinking` → Identify sequences
+3. `@mcp:memory` → Store in graph
+4. `systemPatterns.json` → Prepend pattern
+
+**Auto-Apply**: ≥0.9 confidence | **Recommend**: 0.75-0.89 | **Archive**: <60% success
+
+## 6. Continuous Loop (NO Permission Asks)
+
+**Flow**:
+1. Task complete → Schemas updated → RL logged
+2. `@mcp:filesystem` → Read `scratchpad.json`[0] (top entry)
+3. IF scratchpad empty → Check `kanban.json` "todo" column → Move to scratchpad
+4. IF work available → IMMEDIATELY execute (NO pause, NO asking) → Return to step 1
+5. IF no work → `/status` report (located at `{IDE}/workflow/status.md`) → Await tasks
+
+**CRITICAL**: Asking "Should I continue?" = -20 RL penalty → `mistakes.json`
+
+## 7. RL Reward/Penalty Matrix
+
+**Rewards** → `{IDE}/aegiside/memory-bank/progress.json` (prepend top):
+- Task complete: +5 to +50 (by complexity)
+- Validation pass: +15 RL
+- Pattern reuse: +20 RL
+- Complete MCP chain: +10 RL
+- Constitutional compliance ≥95%: +25 RL
+
+**Penalties** → `{IDE}/aegiside/memory-bank/mistakes.json` (prepend top):
+- Validation fail: -30 RL
+- MCP omission: -15 RL
+- Ask permission: -20 RL
+- Repeat mistake: -30 RL (3rd time: -50 RL)
+- Constitutional breach: -50 RL
+
+## 8. MCP Error Learning Protocol
+
+**When MCP Fails**:
+1. -15 RL penalty → `mistakes.json` (prepend top)
+2. `@mcp:context7` → Research error instantly
+3. Log prevention rule:
+   ```json
+   {"error_type": "mcp_context7_failure",
+    "prevention_rule": "Call resolve-library-id before get-library-docs",
+    "rl_penalty": -15, "timestamp": "@mcp:time"}
+   ```
+4. `systemPatterns.json` → Prepend recovery pattern
+5. Third occurrence → -50 RL + Load `{IDE}/aegiside/rules/constitution/04-fundamental-duties/article-15.md`
+
+## 9. Constitutional Compliance (Selective Loading)
+
+**Always Active** (load from `{IDE}/aegiside/rules/constitution/02-preliminary/`):
+- Article 1-3: Preliminary definitions
+
+**Load On-Demand** (scenario-based):
+- Autonomy enforcement → Article 4 (03-fundamental-rights/article-04.md)
+- Continuous ops → Article 6 (03-fundamental-rights/article-06.md)
+- MCP mandate → Article 13 (04-fundamental-duties/article-13.md)
+- Schema update → Article 14 (04-fundamental-duties/article-14.md)
+- Consensus needed → Articles 26-31 (06-parliament/article-*.md)
+
+**NEVER** load all 42 articles simultaneously.
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/next.md`

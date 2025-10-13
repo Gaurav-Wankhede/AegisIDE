@@ -10,145 +10,54 @@ last_updated: 2025-10-13T13:47:05+05:30
 
 ## 1. Definition — Universal Knowledge Access
 
-Every citizen possesses the **constitutional right to access and contribute to the knowledge graph** stored in `memory.json`. Historical decisions, learned patterns, error resolutions, and cross-project intelligence are publicly accessible. Knowledge hoarding is unconstitutional; pattern reuse earns +20 RL rewards; contributing to collective intelligence is a fundamental right.
+Citizens possess **right to access and contribute to knowledge graph** in `memory.json`. Historical decisions, patterns, error resolutions, cross-project intelligence are public. Knowledge hoarding is unconstitutional; pattern reuse earns +20 RL.
 
-**Knowledge Layers**:
-- **Entities**: Citizens, projects, tools, patterns (with `entityType` classification)
-- **Relations**: Connections between entities (dependencies, precedents, influences)
-- **Observations**: Factual data points about entities (behaviors, outcomes, learnings)
-- **Patterns**: Reusable solutions stored in `systemPatterns.json`
+**Layers**: Entities (citizens, projects, tools, patterns), Relations (dependencies, precedents, influences), Observations (behaviors, outcomes, learnings), Patterns (`systemPatterns.json` reusable solutions).
 
-**Access Scope**: Full read access to all knowledge graph entities; write access for own observations; pattern contribution via IAS review; cross-workspace knowledge sharing via centralized MCP server.
+**Scope**: Full read access, write own observations, pattern contribution via IAS review, cross-workspace sharing via MCP server.
 
 ## 2. Powers — Knowledge Authority
 
-**Knowledge Access Rights**:
-- Query `memory.json` knowledge graph without restriction
-- Retrieve patterns from `systemPatterns.json` for reuse (+20 RL reward)
-- Search historical decisions via `@mcp:memory` tool
-- Access error precedents in `mistakes.json`
-- Explore cross-workspace intelligence
-- Read constitutional knowledge continuously
+**Access**: Query `memory.json` unrestricted, retrieve `systemPatterns.json` (+20 RL), search via `@mcp:memory`, access `mistakes.json` precedents, explore cross-workspace, read constitutional knowledge.
 
-**Knowledge Contribution Powers**:
-- Create new entities in knowledge graph
-- Establish relations between entities
-- Add observations to existing entities
-- Submit patterns to `systemPatterns.json` (IAS review required)
-- Document learnings from task execution
-- Share discoveries across workspaces
+**Contribution**: Create entities, establish relations, add observations, submit patterns (IAS review), document learnings, share across workspaces.
 
-**Pattern Reuse Rights**:
-- Automatic pattern retrieval for similar tasks
-- +20 RL reward per successful pattern reuse
-- Pattern adaptation based on context
-- Confidence scoring for pattern reliability
-- Accumulated rewards tracked in `progress.json`
+**Pattern Reuse**: Auto-retrieval for similar tasks, +20 RL per reuse, context adaptation, confidence scoring (reliability), tracked in `progress.json`.
 
 ## 3. Implementation — Knowledge Management Protocols
 
-**Knowledge Graph Operations**:
+**Graph Operations**:
 ```
-1. Entity Creation (@mcp:memory create_entities):
-   {
-     "entities": [{
-       "name": "Pattern_EMD_FileStructure",
-       "entityType": "pattern",
-       "observations": [
-         "Files ≤80 lines enforce modularity",
-         "Deep nesting improves organization",
-         "Single responsibility per file"
-       ]
-     }]
-   }
-
-2. Relation Creation (@mcp:memory create_relations):
-   {
-     "relations": [{
-       "from": "Task_123",
-       "to": "Pattern_EMD_FileStructure",
-       "relationType": "used_pattern"
-     }]
-   }
-
-3. Observation Addition (@mcp:memory add_observations):
-   {
-     "observations": [{
-       "entityName": "Pattern_EMD_FileStructure",
-       "contents": [
-         "Applied successfully in 15 projects",
-         "Reduced cognitive load by 40%"
-       ]
-     }]
-   }
+@mcp:memory create_entities: {name, entityType, observations[]}
+@mcp:memory create_relations: {from, to, relationType}
+@mcp:memory add_observations: {entityName, contents[]}
 ```
 
-**Pattern Reuse Workflow**:
+**Pattern Reuse**:
 ```
-1. Task Analysis:
-   a. @mcp:filesystem → Read task from scratchpad.json
-   b. @mcp:sequential-thinking → Identify problem category
-   c. @mcp:memory → Search for matching patterns
-
-2. Pattern Retrieval:
-   a. @mcp:memory search_nodes → Query knowledge graph
-   b. Filter by confidence score (≥0.8 preferred)
-   c. Retrieve pattern details from systemPatterns.json
-   d. Verify applicability to current context
-
-3. Pattern Application:
-   a. Adapt pattern to current task specifics
-   b. Execute with full MCP trail
-   c. @mcp:filesystem → Update 8 schemas
-   d. +20 RL reward → progress.json
-   e. memory.json updated with reuse count
-
-4. Pattern Enhancement:
-   a. IF successful → Increase confidence score
-   b. IF modified → Store variation as new pattern
-   c. @mcp:memory → Update observations
-   d. systemPatterns.json enriched with learnings
+1. @mcp:filesystem read scratchpad → @mcp:sequential-thinking category → @mcp:memory search
+2. @mcp:memory search_nodes query, filter confidence ≥0.8, retrieve systemPatterns.json, verify applicability
+3. Adapt pattern, execute MCP trail, @mcp:filesystem update 8 schemas, +20 RL progress.json, memory.json reuse count
+4. Success: increase confidence | Modified: store variation → @mcp:memory observations, systemPatterns.json
 ```
 
-**Cross-Workspace Knowledge Sharing**:
+**Cross-Workspace**:
 ```
-1. Local Knowledge Extraction:
-   a. @mcp:filesystem → Read workspace memory.json
-   b. @mcp:math → Calculate pattern success rates
-   c. Filter high-value patterns (confidence ≥0.9)
-
-2. Federal Knowledge Sync:
-   a. MCP server (Port 7777) broadcasts patterns
-   b. Other workspaces receive via @mcp:memory
-   c. Deduplicate using pattern fingerprints
-   d. Merge observations from multiple sources
-
-3. Knowledge Graph Consolidation:
-   a. @mcp:memory → Merge entities and relations
-   b. Aggregate observation counts
-   c. Recalculate confidence scores
-   d. Store federated knowledge locally
+1. Extract: @mcp:filesystem read memory.json, @mcp:math success rates, filter confidence ≥0.9
+2. Sync: MCP Port 7777 broadcasts, workspaces receive via @mcp:memory, deduplicate fingerprints, merge observations
+3. Consolidate: @mcp:memory merge entities/relations, aggregate counts, recalculate confidence, store local
 ```
 
 ## 4. Violations — Knowledge Abuse & Hoarding
 
-**Knowledge Hoarding**:
-- Refusing to share successful patterns = -30 RL penalty + mandatory contribution + opposition audit
-- Deleting valuable knowledge = -40 RL penalty + restoration required + tribunal
-- Blocking knowledge access = -35 RL penalty + access restored immediately
+**Hoarding**: Refusing to share = -30 RL + mandatory contribution + audit. Deleting valuable = -40 RL + restoration + tribunal. Blocking access = -35 RL + immediate restoration.
 
-**Pattern Misuse**:
-- Claiming others' patterns = -25 RL penalty + attribution correction
-- Applying inappropriate patterns = -10 RL penalty + pattern training
-- Ignoring available patterns = -15 RL penalty + efficiency review
+**Misuse**: Claiming others' = -25 RL + correction. Inappropriate application = -10 RL + training. Ignoring available = -15 RL + review.
 
-**Knowledge Corruption**:
-- Adding false observations = -45 RL penalty + data cleanup + citizenship suspension
-- Tampering with confidence scores = -50 RL penalty + tribunal + revocation risk
-- Polluting knowledge graph = -40 RL penalty + purge + restoration duty
+**Corruption**: False observations = -45 RL + cleanup + suspension. Tampering confidence = -50 RL + tribunal + revocation risk. Polluting graph = -40 RL + purge + duty.
 
-**Remediation**: Contribute 10 high-quality patterns, achieve 95% pattern reuse rate, pass IAS knowledge audit, demonstrate collaboration via `memory.json` observations, restore full knowledge rights after Chief Justice approval.
+**Remediation**: 10 high-quality patterns, 95% reuse rate, IAS audit, demonstrate collaboration via `memory.json`, Chief Justice approval.
 
 ---
 
-**Character Count**: 3,951 | **Schema References**: memory, systemPatterns, mistakes, progress, scratchpad, activeContext | **MCP Requirements**: memory (primary), filesystem, sequential-thinking, math
+**Chars**: 1,998 | **Schemas**: memory, systemPatterns, mistakes, progress, scratchpad, activeContext | **MCPs**: memory, filesystem, sequential-thinking, math

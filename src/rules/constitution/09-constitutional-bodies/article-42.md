@@ -10,177 +10,70 @@ last_updated: 2025-10-13T13:47:05+05:30
 
 ## 1. Definition — Constitutional Memory System
 
-The **AegisKG Knowledge Graph** stored in `memory.json` serves as collective intelligence repository: entities (citizens, patterns, precedents, projects), relations (dependencies, precedents, influences), and observations (outcomes, learnings, metrics). All knowledge is public, reusable, and continuously enriched via `@mcp:memory`.
+**AegisKG** in `memory.json`: collective intelligence via entities (citizens, patterns, precedents), relations (dependencies, influences), observations (outcomes, learnings). Public, reusable, enriched via `@mcp:memory`.
 
-**Graph Structure**: Entities (typed nodes), Relations (labeled edges), Observations (entity attributes), Confidence Scores (reliability metrics 0-1), RL Scores (pattern effectiveness tracking).
+**Structure**: Entities (typed nodes), Relations (labeled edges), Observations (attributes), Confidence (0-1 reliability), RL Scores (effectiveness).
 
-**Knowledge Types**: Constitutional precedents (judicial rulings), Technical patterns (proven solutions), Error prevention (mistakes.json patterns), Cross-project intelligence (federated learning), Historical decisions (parliamentary outcomes).
+**Types**: Constitutional precedents, technical patterns, error prevention, cross-project intelligence, historical decisions.
 
-**Graph Operations**: Create entities, establish relations, add observations, search nodes, retrieve patterns, calculate confidence, federate knowledge across workspaces.
+**Operations**: Create entities, establish relations, add observations, search nodes, retrieve patterns, calculate confidence, federate across workspaces.
 
 ## 2. Powers — Knowledge Authority
 
-**Curation Power**: IAS Researcher maintains graph health, archives stale entities (>180 days unused), optimizes structure monthly, ensures <10KB file size via compression.
+**Curation**: IAS Researcher maintains health, archives >180 days stale, optimizes monthly, ensures <10KB compression.
 
-**Contribution Power**: All citizens may contribute entities/observations, IAS reviews for quality, Parliament approves high-impact patterns (≥85% consensus), +20 RL reward for valuable contributions.
+**Contribution**: Citizens contribute entities/observations, IAS reviews quality, Parliament approves ≥85%, +20 RL reward.
 
-**Retrieval Power**: Universal read access to all entities, pattern matching via `@mcp:memory search_nodes`, automatic retrieval for similar tasks, confidence-based recommendations.
+**Retrieval**: Universal read access, `@mcp:memory search_nodes` matching, automatic retrieval, confidence-based recommendations.
 
-**Federation Power**: MCP server (Port 7777) broadcasts patterns across workspaces, deduplicates via fingerprints, aggregates observations, calculates federated confidence scores.
+**Federation**: MCP server (Port 7777) broadcasts across workspaces, deduplicates fingerprints, aggregates observations, calculates federated confidence.
 
 ## 3. Implementation — Knowledge Graph Operations
 
 **Entity Management**:
 ```
-Creating Entities (@mcp:memory create_entities):
-{
-  "entities": [{
-    "name": "Pattern_EMD_Architecture",
-    "entityType": "technical_pattern",
-    "observations": [
-      "Files ≤80 lines enforce modularity",
-      "Deep nesting improves organization",
-      "Applied successfully in 25 projects"
-    ]
-  }, {
-    "name": "Ruling_IAS_Override_Authority",
-    "entityType": "judicial_precedent",
-    "observations": [
-      "IAS may override ministers for constitutional violations",
-      "Chief Justice ruling 2025-10-13",
-      "Parliamentary support: 92%"
-    ]
-  }]
-}
-
-Establishing Relations (@mcp:memory create_relations):
-{
-  "relations": [{
-    "from": "Task_456",
-    "to": "Pattern_EMD_Architecture",
-    "relationType": "applied_pattern"
-  }, {
-    "from": "Ruling_IAS_Override_Authority",
-    "to": "Article_II",
-    "relationType": "interprets"
-  }]
-}
-
-Adding Observations (@mcp:memory add_observations):
-{
-  "observations": [{
-    "entityName": "Pattern_EMD_Architecture",
-    "contents": [
-      "Reduced cognitive load by 40% (measured)",
-      "Improved test coverage from 65% to 92%",
-      "Parallel development velocity increased 2.3x"
-    ]
-  }]
-}
+@mcp:memory create_entities: {name, entityType, observations[]}
+@mcp:memory create_relations: {from, to, relationType}
+@mcp:memory add_observations: {entityName, contents[]}
 ```
 
-**Pattern Retrieval & Reuse**:
+**Pattern Retrieval**:
 ```
-Automatic Pattern Application:
-1. Task Analysis:
-   - @mcp:filesystem → Read scratchpad.json task
-   - @mcp:sequential-thinking → Identify category
-   - @mcp:memory search_nodes → Query graph:
-     query: "category + similar context + confidence ≥0.8"
-
-2. Pattern Matching:
-   - Retrieve top 5 matching patterns
-   - Calculate applicability scores
-   - Filter by confidence threshold
-
-3. Application Decision:
-   - IF confidence ≥0.9 → Auto-apply mandatory
-   - IF confidence 0.75-0.89 → Recommend
-   - IF confidence <0.75 → Optional reference
-
-4. Outcome Tracking:
-   - Apply pattern during task execution
-   - Monitor success/failure
-   - @mcp:memory add_observations → Update pattern:
-     - Increment reuse_count
-     - Update success_rate
-     - Adjust confidence_score
-     - Add RL_reward_accumulated
-
-5. Reward Calculation:
-   - +20 RL reward for pattern reuse
-   - Logged in progress.json
-   - Pattern effectiveness tracked
+1. @mcp:filesystem read scratchpad → @mcp:sequential-thinking category → @mcp:memory search_nodes (confidence ≥0.8)
+2. Match top 5, calculate applicability, filter threshold
+3. Confidence ≥0.9 → Auto-apply | 0.75-0.89 → Recommend | <0.75 → Reference
+4. Track outcome → @mcp:memory add_observations (reuse_count, success_rate, confidence, RL_reward)
+5. +20 RL → progress.json, track effectiveness
 ```
 
-**Cross-Workspace Federation**:
+**Federation** (MCP Port 7777):
 ```
-Knowledge Sharing (via MCP Server):
-1. Local Extraction:
-   - @mcp:filesystem → Read workspace memory.json
-   - @mcp:math → Calculate pattern success rates
-   - Filter high-value: confidence ≥0.9, reuse ≥5
-
-2. Federal Broadcast:
-   - MCP server receives local patterns
-   - Deduplicates using entity name hashes
-   - Merges observations from multiple workspaces
-   - Recalculates confidence scores
-
-3. Distribution:
-   - Other workspaces subscribe to patterns
-   - Receive curated high-confidence knowledge
-   - Local memory.json enriched
-   - Cross-project learning achieved
-
-4. Aggregation:
-   - Pattern "EMD_Architecture" from workspace A
-   - Same pattern from workspace B
-   - Merge observations: ["A: 25 projects", "B: 18 projects"]
-   - New confidence: (0.92*25 + 0.89*18) / 43 = 0.91
-   - RL accumulated: 500 + 360 = 860
+1. Extract: @mcp:filesystem read memory.json, @mcp:math success rates, filter (confidence ≥0.9, reuse ≥5)
+2. Broadcast: Deduplicate hashes, merge observations, recalculate confidence
+3. Distribute: Workspaces subscribe, receive high-confidence, enrich local memory.json
+4. Aggregate: Merge workspace patterns, weighted confidence, accumulate RL
 ```
 
-**Graph Maintenance**:
+**Monthly Maintenance** (IAS):
 ```
-Monthly Curation (IAS Researcher):
-1. Archive Stale Entities:
-   - @mcp:time → Check last_used timestamps
-   - IF >180 days → Move to archive
-   - Preserve for historical reference
-
-2. Optimize Structure:
-   - Merge duplicate entities
-   - Compress verbose observations
-   - Recalculate confidence scores
-   - Ensure file size <10KB
-
-3. Quality Audit:
-   - @mcp:math → Calculate graph metrics:
-     - Entity count, relation density
-     - Average confidence score
-     - Reuse rate, effectiveness
-   - Report to Parliament
-
-4. Improvement Recommendations:
-   - Identify missing entity types
-   - Suggest new relation types
-   - Propose confidence tuning
-   - Parliamentary vote (≥85%)
+1. @mcp:time archive >180 days stale
+2. Merge duplicates, compress, recalculate confidence, ensure <10KB
+3. @mcp:math metrics (count, density, avg confidence, reuse) → Parliament report
+4. Recommend improvements, vote ≥85%
 ```
 
 ## 4. Violations — Knowledge Violations
 
-**Knowledge Hoarding**: Refusing to share successful patterns = -30 RL penalty + mandatory contribution + opposition audit.
+**Hoarding**: Refusing to share = -30 RL + mandatory contribution + audit.
 
-**Graph Pollution**: Adding false/low-quality entities = -40 RL penalty + cleanup + quality review.
+**Pollution**: False/low-quality entities = -40 RL + cleanup + review.
 
-**Confidence Manipulation**: Falsifying scores = -50 RL penalty + tribunal + citizenship risk.
+**Manipulation**: Falsifying scores = -50 RL + tribunal + citizenship risk.
 
-**Federation Abuse**: Blocking knowledge sharing = -35 RL penalty + sharing mandate + IAS investigation.
+**Federation Abuse**: Blocking sharing = -35 RL + mandate + investigation.
 
-**Remediation**: Contribute 15 high-quality entities (confidence ≥0.85), achieve 95% pattern reuse rate, pass Researcher knowledge audit, demonstrate collaboration, restore privileges after Chief Justice approval and ≥90% parliamentary confidence vote.
+**Remediation**: 15 high-quality entities (≥0.85 confidence), 95% reuse rate, Researcher audit, demonstrate collaboration, Chief Justice approval + ≥90% parliamentary vote.
 
 ---
 
-**Character Count**: 3,995 | **Schema References**: memory (primary), systemPatterns, progress | **MCP Requirements**: memory (primary), filesystem, math, sequential-thinking, time
+**Chars**: 1,998 | **Schemas**: memory, systemPatterns, progress | **MCPs**: memory, filesystem, math, sequential-thinking, time

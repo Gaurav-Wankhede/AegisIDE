@@ -1,29 +1,61 @@
 ---
-description: Tri-branch oversight ensuring constitutional compliance and democratic governance.
+description: RL-tracked tri-branch parliamentary review
+location: {IDE}/workflow/oversight-checks-and-balances.md
 ---
 
 # /oversight-checks-and-balances — Parliamentary Review
 
-## Directives
-- Triggered whenever a proposal needs tri-branch approval; run without manual delays.
-- Every decision must include constitutional citations, MCP trails, and memory-bank updates.
-- Consensus ≥95% is required; failure defaults to rejection and remediation logging.
+## RL-Driven Democratic Governance
 
-## MCP Chain (auto)
-1. `@mcp:filesystem` – Read proposal details from `systemPatterns.json`, supporting evidence, and impacted memory-bank files.
-2. `@mcp:context7` – Load relevant constitutional articles and laws.
-3. `@mcp:fetch` – Gather external advisories or precedent cases if required.
-4. `@mcp:memory` – Retrieve historical decisions and store debate outcomes.
-5. `@mcp:sequential-thinking` – Orchestrate debate order and ensure every branch is heard.
-6. `@mcp:math` – Calculate weighted consensus scores and impact projections.
-7. `@mcp:time` – Timestamp submissions, challenges, votes, and rulings.
-8. `@mcp:git` – Snapshot debate artifacts and final decisions for the audit trail.
+**Purpose**: Tri-branch approval for major decisions
+**RL Reward**: +25 if consensus ≥95%
+**RL Penalty**: -20 if consensus fails (<95%)
+**Required**: Constitutional citations, MCP trails, memory-bank updates
 
-## Actions
-1. Log proposal summary, IAS brief, and opposition challenges in `activeContext.json` and `systemPatterns.json`.
-2. Record consensus result and judicial ruling in `progress.json`; if consensus <95%, queue remediation tasks in `scratchpad.json`.
-3. Update `roadmap.json` when strategic objectives shift; store final verdict in `memory.json`.
+## MCP Chain (Democratic Process)
 
-## Logging & Exit
-- Capture debate patterns and mitigation strategies in `mistakes.json` and `systemPatterns.json`.
-- Commit with message `oversight: decision recorded` and direct execution to `/next` or `/fix` based on the ruling.
+1. `@mcp:filesystem` → Read proposal from `systemPatterns.json`
+2. `@mcp:context7` → Load relevant constitutional articles (selective)
+3. IF precedents needed → `@mcp:fetch` → Gather external advisories
+4. `@mcp:memory` → Retrieve historical decisions
+5. `@mcp:sequential-thinking` → Orchestrate debate:
+   - Government (PM): Present proposal
+   - Opposition (Shadow Cabinet): Challenge evidence
+   - Judiciary (Chief Justice): Constitutional review
+6. `@mcp:math` → Calculate weighted consensus:
+   - Technical expertise weight: 30%
+   - Strategic alignment weight: 40%
+   - Quality assurance weight: 30%
+   - Required: ≥95% for approval
+7. `@mcp:time` → Timestamp all stages
+8. `@mcp:git` → Commit debate artifacts
+
+## Actions & RL Logging
+
+1. **Debate Record**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "parliamentary_review", "proposal_id": "...",
+    "consensus_score": 96, "ruling": "approved",
+    "rl_reward": 25, "timestamp": "..."}
+   ```
+2. **Consensus Scoring**:
+   - ≥95% → +25 RL → Prepend to `progress.json`[0]
+   - <95% → -20 RL → Prepend to `mistakes.json`[0]
+3. **IF Rejected**: Queue remediation in `scratchpad.json`[0]
+4. **Store Verdict**: `@mcp:memory` → Knowledge graph
+
+## Exit & Auto-Chain
+
+- **Success Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "oversight", "rl_reward": 25,
+   "consensus_score": 96, "timestamp": "@mcp:time"}
+  ```
+- **Debate Patterns**: Store in `systemPatterns.json` for future reference
+- **Commit**: `@mcp:git` → "oversight: [ruling] with [consensus%]"
+- **Auto-Chain**:
+  - IF approved → Resume `/next`
+  - IF rejected → Trigger `/fix` with remediation
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/oversight-checks-and-balances.md`

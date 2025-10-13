@@ -52,4 +52,4 @@ Citizens must **apply learned patterns** from `systemPatterns.json` and `memory.
 
 ---
 
-**Char Count**: 1,847 | **Schemas**: systemPatterns, memory, mistakes, progress | **MCPs**: memory, filesystem, math
+**Chars**: 1,847 | **Schemas**: systemPatterns, memory, mistakes, progress | **MCPs**: memory, filesystem, math

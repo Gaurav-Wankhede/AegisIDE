@@ -1,35 +1,64 @@
 ---
-description: IAS Constitutional Validation & AegisKG Integration
+description: Zero-tolerance validation with RL penalties
+location: {IDE}/workflow/validate.md
 ---
 
 # /validate — Constitutional Compliance Validation
 
-## Directives
-- IAS executes `/validate` autonomously; HALT-FIX-VALIDATE loop enforced by the Chief Justice.
-- Validate the eight schemas only (`activeContext`, `scratchpad`, `kanban`, `mistakes`, `systemPatterns`, `progress`, `roadmap`, `memory`) via `{IDE}/aegiside/memory-bank/schemas/*.schema.json` before resuming `/next`.
-- Record validation results and remediation tasks in `activeContext.json`, `scratchpad.json`, and `mistakes.json`.
+## RL-Enforced Zero-Tolerance
 
-## MCP Chain (auto)
-1. `@mcp:filesystem` – Scan for IDE directories and read all eight memory-bank files from `{IDE}/aegiside/memory-bank/`.
-2. `@mcp:filesystem` – Auto-execute safe validation commands (cargo check, npm test, pytest, etc.) without asking permission.
-3. `@mcp:context7` – Fetch official remediation guidance for any failures.
-4. `@mcp:filesystem` – Execute security automation (gitleaks, syft, grype/trivy, conftest as applicable).
-5. `@mcp:filesystem` – Validate each schema file (`activeContext.json` … `memory.json`) against its schema; halt on failure.
-6. `@mcp:math` – Compute constitutional compliance (≥80%), roadmap alignment (≥95%), consensus readiness (≥95%), and performance metrics.
-7. `@mcp:memory` – Verify AegisKG integrity and log validation outcomes.
-8. `@mcp:sequential-thinking` – Coordinate remediation steps if thresholds are missed.
-9. `@mcp:git` – Commit validation snapshots (`validate: clean state`).
-10. `@mcp:time` – Timestamp validation start/end for audit.
-6. `@mcp:memory` – Verify AegisKG integrity and log validation outcomes.
-7. `@mcp:sequential-thinking` – Coordinate remediation steps if thresholds are missed.
-8. `@mcp:git` – Commit validation snapshots (`validate: clean state`).
-9. `@mcp:time` – Timestamp validation start/end for audit.
+**Purpose**: HALT on any error/warning until 100% clean
+**RL Reward**: +15 for passing validation
+**RL Penalty**: -30 for failures (triggers `/fix` loop)
+**Multi-Language**: Auto-detect project type and run appropriate checks
 
-## Actions
-1. Update `activeContext.json` with validation summary, compliance scores, and roadmap alignment.
-2. If issues remain, queue tasks in `scratchpad.json`, adjust `kanban.json`, and document patterns in `mistakes.json` / `systemPatterns.json`.
-3. Record metrics in `progress.json` and align strategy changes in `roadmap.json`.
+## MCP Chain (Multi-Language Auto-Detection)
 
-## Logging & Exit
-- Store knowledge graph updates in `memory.json` via `@mcp:memory`.
-- If validation fails, invoke `/fix` immediately; otherwise resume `/next` without delay.
+1. `@mcp:filesystem` → Read 8 schemas from `{IDE}/aegiside/memory-bank/`
+2. **Auto-Detect Language** (manifest-based):
+   - `package.json` → JS/TS: `pnpm typecheck`, `npm run lint`
+   - `Cargo.toml` → Rust: `cargo check`, `cargo clippy`
+   - `requirements.txt` → Python: `python -m py_compile`, `pytest --collect-only`
+   - `go.mod` → Go: `go build`, `go vet`
+3. **Execute Validation** (SafeToAutoRun=true):
+   - Run language-specific checks
+   - IF error/warning → HALT + -30 RL penalty
+4. `@mcp:filesystem` → Validate schemas against `{IDE}/aegiside/schemas/*.schema.json`
+5. IF fails → `@mcp:context7` → Fetch remediation docs
+6. `@mcp:math` → Compute compliance scores (≥80% required)
+7. `@mcp:memory` → Verify knowledge graph integrity
+8. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
+9. `@mcp:time` → Timestamp validation
+10. `@mcp:git` → Commit if clean: "validate: 100% compliance"
+
+## Actions & RL Logging
+
+1. **Validation Results**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "validation_complete", "status": "pass",
+    "compliance_score": 100, "rl_reward": 15, "timestamp": "..."}
+   ```
+2. **IF Pass**: +15 RL → Prepend to `progress.json`[0]
+3. **IF Fail**: 
+   - -30 RL → Prepend to `mistakes.json`[0]
+   - Queue remediation in `scratchpad.json`[0]
+   - Trigger `/fix` workflow immediately
+4. **Selective Article Loading**:
+   - Validation fail → Load `{IDE}/aegiside/rules/constitution/08-judiciary/article-36.md`
+   - Quality issue → Load `03-fundamental-rights/article-05.md`
+
+## Exit & HALT-FIX Loop
+
+- **IF Pass**: 
+  - Prepend success to `progress.json`
+  - `@mcp:git` → Commit "validate: clean"
+  - Resume `/next` immediately
+- **IF Fail**:
+  - HALT all operations
+  - Trigger `/fix` workflow
+  - Loop until 100% clean
+  - NO asking permission
+- **Top-Append**: All logs prepend to array[0] for latest-first access
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/validate.md`

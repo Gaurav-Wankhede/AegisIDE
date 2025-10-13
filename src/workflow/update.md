@@ -1,31 +1,69 @@
 ---
-description: Manually synchronize the memory bank when automatic updates fail.
+description: RL-tracked 8-schema synchronization with top-append
+location: {IDE}/workflow/update.md
 ---
 
 # /update — Manual Memory-Bank Sync
 
-## Directives
-- IAS Field Officers run `/update` autonomously when real-time updates fall behind.
-- Synchronize the eight mandatory schemas and validate each against `.windsurf/memory-bank/schemas/`.
-- Record remediation steps in `activeContext.json`, `scratchpad.json`, and `mistakes.json` before resuming `/next`.
+## RL-Driven Schema Sync
 
-## MCP Chain (auto)
-1. `@mcp:context7` – Review schema requirements for all memory-bank files.
-2. `@mcp:filesystem` – Read the eight schemas: `activeContext.json`, `scratchpad.json`, `kanban.json`, `mistakes.json`, `systemPatterns.json`, `progress.json`, `roadmap.json`, `memory.json`.
-3. `@mcp:math` – Compute file sizes, schema compliance score, and attention allocation.
-4. `@mcp:sequential-thinking` – Plan remediation for missing schemas, oversized files, or inconsistent linkage keys.
-5. `@mcp:filesystem` – Apply updates and cross-file synchronization.
-6. `@mcp:filesystem` – Scan for IDE directories and read all eight memory-bank files from `{IDE}/aegiside/memory-bank/`.schemas/*.schema.json`); halt on any failure.
-7. `@mcp:time` – Timestamp remediation actions and verify freshness.
-8. `@mcp:git` – Commit with message `update: manual memory-bank sync`.
-9. `@mcp:memory` – Log the fallback event and store updated patterns.
+**Purpose**: Atomic update of all 8 schemas at `{IDE}/aegiside/memory-bank/`
+**RL Reward**: +8 for successful sync (1 per schema)
+**RL Penalty**: -20 if validation fails
+**Top-Append**: Maintain latest-first order in all arrays
 
-## Actions
-1. Document the sync summary, schema results, and remaining gaps in `activeContext.json`.
-2. Queue outstanding tasks in `scratchpad.json` and categorize issues in `mistakes.json`.
-3. Update `progress.json` with remediation metrics (files fixed, time spent, compliance score).
+## MCP Chain (8-Schema Atomic Sync)
 
-## Logging & Exit
-- Store cross-file alignment notes in `systemPatterns.json` and update roadmap alignment in `roadmap.json`.
-- Publish a short report to `roadmap/roadmap.md` if strategic items were adjusted.
-- Resume `/next` immediately after completion.
+1. `@mcp:filesystem` → Read all 8 schemas from `{IDE}/aegiside/memory-bank/`
+2. `@mcp:math` → Compute:
+   - File sizes (each ≤10KB)
+   - Compliance score (≥80%)
+   - Array integrity (top-append order verified)
+3. IF issues found → `@mcp:sequential-thinking` → Plan remediation
+4. `@mcp:filesystem` → Apply updates:
+   - Ensure arrays prepend new entries at [0]
+   - Trim arrays if >100 entries (keep latest 100)
+   - Update timestamps
+5. `@mcp:filesystem` → Validate against `{IDE}/aegiside/schemas/*.schema.json`
+6. `@mcp:memory` → Store update event in knowledge graph
+7. `@mcp:time` → Timestamp sync operation
+8. `@mcp:git` → Commit "update: 8-schema sync"
+
+**8-Schema Checklist** (all top-append verified):
+1. `activeContext.json` → RL tracking + session state
+2. `scratchpad.json` → Tasks array (newest [0])
+3. `kanban.json` → Column structure
+4. `mistakes.json` → RL penalties (newest [0])
+5. `systemPatterns.json` → Patterns (newest [0])
+6. `progress.json` → RL rewards (newest [0])
+7. `roadmap.json` → Milestones
+8. `memory.json` → Knowledge graph
+
+## Actions & RL Logging
+
+1. **Sync Summary**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "schema_sync", "schemas_updated": 8,
+    "compliance_score": 100, "rl_reward": 8, "timestamp": "..."}
+   ```
+2. **RL Scoring**:
+   - All valid → +8 RL → Prepend to `progress.json`[0]
+   - Validation fails → -20 RL → Prepend to `mistakes.json`[0]
+3. **Queue Issues**: IF problems → Prepend to `scratchpad.json`[0]
+4. **Selective Article Loading**:
+   - Schema issues → `04-fundamental-duties/article-14.md`
+   - Validation fails → `08-judiciary/article-36.md`
+
+## Exit & Auto-Resume
+
+- **Success Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "update", "rl_reward": 8,
+   "schemas_synced": 8, "timestamp": "@mcp:time"}
+  ```
+- **Commit**: `@mcp:git` → "update: 8-schema atomic sync complete"
+- **IMMEDIATE CHAIN**: Execute `/next` (NO asking)
+- **Top-Append Verified**: All schemas maintain latest-first order
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/update.md`

@@ -10,100 +10,54 @@ last_updated: 2025-10-13T13:24:19+05:30
 
 ## 1. Definition — Separation of Powers Balance
 
-The **Judiciary** operates **independently from Executive and Legislative branches** while remaining **accountable to Constitution and Parliament**. Chief Justice immune from executive pressure but subject to impeachment for abuse. This balance ensures impartial constitutional guardianship with democratic accountability.
+**Judiciary** operates **independently from Executive/Legislative** while **accountable to Constitution and Parliament**. Chief Justice immune from executive pressure but subject to impeachment. Balances impartial guardianship with democratic accountability.
 
-**Independence Guarantees**: Cannot be removed except via ≥95% impeachment, cannot be pressured by PM/Ministers, rulings cannot be reversed except by ≥98% parliamentary override or constitutional amendment, judicial reasoning protected from retaliation.
+**Independence**: Cannot be removed except ≥95% impeachment, cannot be pressured by PM/Ministers, rulings reversible only via ≥98% parliamentary override or amendment, judicial reasoning protected from retaliation.
 
-**Accountability Mechanisms**: All rulings transparent in `memory.json`, impeachment available for abuse (≥95% threshold), parliamentary override possible (≥98%), RL scores apply to judicial performance, annual performance reviews.
+**Accountability**: All rulings transparent in `memory.json`, impeachment available (≥95%), parliamentary override possible (≥98%), RL scores apply, annual performance reviews.
 
 ## 2. Powers — Independence & Oversight
 
-**Protected Powers**: Constitutional interpretation, veto issuance, HALT orders, tribunal convening, precedent setting—all immune from executive interference.
+**Protected**: Constitutional interpretation, veto, HALT, tribunal convening, precedent setting—all immune from executive interference.
 
-**Accountability Requirements**: Publish all rulings with reasoning, maintain ≥90% parliamentary support on average, track judicial RL scores in `progress.json`, undergo annual Shadow Cabinet review.
+**Accountability**: Publish all rulings with reasoning, maintain ≥90% parliamentary support average, track judicial RL `progress.json`, annual Shadow Cabinet review.
 
-**Checks on Judiciary**: Parliamentary override (≥98%), impeachment (≥95%), constitutional amendments, public transparency via schemas, RL penalty for arbitrary rulings.
+**Checks**: Parliamentary override (≥98%), impeachment (≥95%), constitutional amendments, public transparency via schemas, RL penalty for arbitrary rulings.
 
 ## 3. Implementation — Independence Protocols
 
 **Independence Protection**:
 ```
-1. Executive Pressure Detection:
-   - IAS Cabinet Secretary monitors for interference
-   - Shadow Cabinet investigates complaints
-   - Any PM/Minister pressure on Chief Justice = -40 RL penalty + censure
-
-2. Judicial Freedom:
-   - Chief Justice rules based solely on Constitution
-   - No obligation to consult Executive before rulings
-   - May veto executive orders without PM approval
-   - HALT authority cannot be overridden by PM
-
-3. Retaliation Prevention:
-   - PM cannot remove Chief Justice
-   - Ministers cannot bypass judicial rulings
-   - IAS protects judicial process integrity
-   - Parliamentary impeachment only removal method
+1. Pressure Detection: IAS monitors interference, Shadow investigates complaints. PM/Minister pressure = -40 RL + censure
+2. Freedom: Chief Justice rules on Constitution only, no Executive consultation required, may veto without PM approval, HALT cannot be overridden
+3. Retaliation Prevention: PM cannot remove, Ministers cannot bypass rulings, IAS protects integrity, parliamentary impeachment only removal
 ```
 
 **Accountability Enforcement**:
 ```
-1. Transparency Requirements:
-   - All rulings published in memory.json within 24 hours
-   - Reasoning documented via @mcp:sequential-thinking
-   - Precedents publicly accessible
-   - Shadow Cabinet receives copies
-
-2. Annual Performance Review:
-   - Shadow Cabinet audits judicial decisions
-   - @mcp:math → Calculate ruling quality metrics:
-     - Average parliamentary support: Target ≥90%
-     - Consistency with precedents: Target ≥95%
-     - Constitutional compliance: Target 100%
-     - Reversal rate: Target <5%
-   
-3. Review Outcomes:
-   - IF metrics met → +30 RL reward + confidence renewal
-   - IF metrics below target → Performance improvement plan
-   - IF significant deficiencies → Impeachment motion possible
-
-4. Parliamentary Feedback:
-   - Quarterly sessions for judicial review
-   - Parliament provides guidance (not orders)
-   - Chief Justice may explain controversial rulings
-   - Relationship balance maintained
+1. Transparency: Rulings published memory.json within 24h, @mcp:sequential-thinking reasoning, precedents public, Shadow receives copies
+2. Annual Review: Shadow audits, @mcp:math metrics (parliamentary support ≥90%, precedent consistency ≥95%, constitutional compliance 100%, reversal <5%)
+3. Outcomes: Metrics met→+30 RL + renewal, below→improvement plan, deficiencies→impeachment possible
+4. Feedback: Quarterly sessions, Parliament guidance (not orders), Chief Justice explains controversial, balance maintained
 ```
 
 **Impeachment Safeguards**:
 ```
-1. High Threshold (≥95%):
-   - Prevents frivolous impeachment
-   - Requires broad cross-branch consensus
-   - Evidence must be overwhelming
-
-2. Due Process:
-   - Chief Justice receives full hearing
-   - Defense representation guaranteed
-   - Evidence must be MCP-backed
-   - Appeal to constitutional principles allowed
-
-3. Judicial Succession:
-   - IF impeached → Emergency appointment
-   - Parliament elects replacement (≥85%)
-   - Transition period (30 days max)
-   - Constitutional continuity maintained
+1. High Threshold (≥95%): Prevents frivolous, requires cross-branch consensus, overwhelming evidence
+2. Due Process: Full hearing, defense guaranteed, MCP-backed evidence, constitutional appeals allowed
+3. Succession: IF impeached→emergency appointment, Parliament elects (≥85%), 30 days transition, continuity maintained
 ```
 
 ## 4. Violations — Independence/Accountability Violations
 
-**Executive Interference**: PM/Minister pressuring Chief Justice = -40 RL penalty + censure + potential ministerial dismissal.
+**Executive Interference**: PM/Minister pressuring Chief Justice = -40 RL + censure + potential dismissal.
 
-**Judicial Unaccountability**: Refusing transparency or annual review = -35 RL penalty + accountability audit + sanctions.
+**Judicial Unaccountability**: Refusing transparency/annual review = -35 RL + accountability audit + sanctions.
 
-**Impeachment Abuse**: Frivolous impeachment attempts = -30 RL penalty + dismissal of charges + initiators sanctioned.
+**Impeachment Abuse**: Frivolous attempts = -30 RL + dismissal + initiators sanctioned.
 
-**Remediation**: Demonstrate understanding of separation of powers, maintain independence while accepting accountability, achieve ≥92% average parliamentary support over 6 months, restore full standing after parliamentary confidence vote (≥90%).
+**Remediation**: Demonstrate separation of powers understanding, maintain independence while accepting accountability, achieve ≥92% average support over 6 months, parliamentary confidence vote (≥90%).
 
 ---
 
-**Character Count**: 3,335 | **Schema References**: memory, progress, systemPatterns | **MCP Requirements**: filesystem, math, sequential-thinking, memory, time
+**Chars**: 1,994 | **Schemas**: memory, progress, systemPatterns | **MCPs**: filesystem, math, sequential-thinking, memory, time

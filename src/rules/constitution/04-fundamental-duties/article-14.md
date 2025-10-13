@@ -10,157 +10,54 @@ last_updated: 2025-10-13T13:47:05+05:30
 
 ## 1. Definition — Mandatory Schema Maintenance
 
-Every citizen bears the **constitutional duty to update all 8 schemas atomically** after every task completion. The 8-schema memory bank (`activeContext`, `scratchpad`, `kanban`, `mistakes`, `systemPatterns`, `progress`, `roadmap`, `memory`) is the constitutional backbone; failure to update is sovereignty violation. Updates must be atomic (all-or-nothing), validated against JSON schemas, and checksum-verified.
+Citizens must **update all 8 schemas atomically** after every task. Failure violates sovereignty. Updates: atomic (all-or-nothing), JSON validated, checksum-verified.
 
-**8 Essential Schemas**:
-1. **activeContext.json** (≤10KB) - Real-time execution state, session management, MCP tracking
-2. **scratchpad.json** (≤10KB) - Immediate priority queue, task descriptions
-3. **kanban.json** (≤10KB) - Task workflow (todo/in_progress/done/approved columns)
-4. **mistakes.json** (≤10KB) - Error patterns, prevention rules, RL penalties
-5. **systemPatterns.json** (≤10KB) - Architecture patterns, successful solutions, RL rewards
-6. **progress.json** (≤10KB) - RL central ledger, milestones, metrics
-7. **roadmap.json** (≤10KB) - Strategic planning, dependencies, alignment
-8. **memory.json** (≤10KB) - Knowledge graph, entities, relations, observations
+**8 Schemas (≤10KB each)**: `activeContext` (execution state, MCP tracking), `scratchpad` (priority queue), `kanban` (workflow columns), `mistakes` (error patterns, RL penalties), `systemPatterns` (architecture, RL rewards), `progress` (RL ledger, metrics), `roadmap` (strategic planning), `memory` (knowledge graph).
 
-**Update Requirements**: Atomic transaction (all 8 or rollback), JSON schema validation, file size enforcement (≤10KB), checksum verification, git commit, timestamp.
+**Requirements**: Atomic transaction, JSON schema validation, ≤10KB, checksum, git commit, timestamp.
 
 ## 2. Powers — Schema Enforcement Authority
 
-**IAS Field Officers**:
-- Monitor schema updates in real-time
-- Validate against `.aegiside/schemas/*.schema.json`
-- Enforce atomic transaction requirement
-- Verify checksums for data integrity
-- Report violations to Cabinet Secretary
+**IAS Field Officers**: Monitor real-time, validate against `.aegiside/schemas/*.schema.json`, enforce atomic transaction, verify checksums, report violations.
 
-**Chief Justice**:
-- HALT operations if schemas invalid
-- Order rollback on failed updates
-- Enforce schema compliance constitutionally
-- Mandate remediation before resumption
+**Chief Justice**: HALT if invalid, order rollback, enforce compliance, mandate remediation.
 
-**Shadow Cabinet**:
-- Audit schema update quality
-- Challenge incomplete updates
-- Verify RL score accuracy
-- Review knowledge graph integrity
+**Shadow Cabinet**: Audit quality, challenge incomplete updates, verify RL scores, review graph integrity.
 
 ## 3. Implementation — Atomic Update Protocol
 
-**Mandatory Post-Task Update**:
+**Post-Task Update**:
 ```
-1. Task Completion Detection:
-   a. Code changes committed via @mcp:git
-   b. Validation passed (Article 5)
-   c. RL score assigned (Article 12)
-   d. Learning extracted
-
-2. Schema Preparation (Pre-Update):
-   a. @mcp:filesystem → Read current 8 schemas
-   b. @mcp:time → Get timestamp for updates
-   c. @mcp:math → Calculate new RL scores
-   d. @mcp:memory → Prepare knowledge graph updates
-   e. Validate all changes in memory (not disk yet)
-
-3. Atomic Write Transaction:
-   a. BEGIN TRANSACTION
-   b. @mcp:filesystem → Update activeContext.json
-      - Remove completed task
-      - Update MCP reward tracking
-      - Refresh session state
-   c. @mcp:filesystem → Update scratchpad.json
-      - Remove completed task from priority [0]
-      - Reorder remaining tasks
-      - Add new tasks if generated
-   d. @mcp:filesystem → Update kanban.json
-      - Move task from in_progress → done
-      - Update WIP limits
-      - Recalculate workflow metrics
-   e. @mcp:filesystem → Update mistakes.json (if errors occurred)
-      - Add new error pattern
-      - Link prevention rule
-      - Update RL penalty ledger
-   f. @mcp:filesystem → Update systemPatterns.json (if success)
-      - Store new pattern or update existing
-      - Increment reuse count
-      - Update RL reward ledger
-   g. @mcp:filesystem → Update progress.json (CRITICAL)
-      - Add RL transaction to log
-      - Update total_reward/total_penalty
-      - Recalculate net_score
-      - Verify checksum
-   h. @mcp:filesystem → Update roadmap.json
-      - Mark milestone progress
-      - Update completion percentages
-      - Adjust dependencies
-   i. @mcp:filesystem → Update memory.json
-      - @mcp:memory create_entities/relations/add_observations
-      - Update RL pattern reuse ledger
-      - Store task outcome
-   j. IF all 8 succeed → COMMIT
-   k. IF any fail → ROLLBACK all changes
-
-4. Schema Validation:
-   a. @mcp:filesystem → Read updated schemas
-   b. Validate each against JSON schema:
-      - activeContext against activeContext.schema.json
-      - scratchpad against scratchpad.schema.json
-      - ... (all 8)
-   c. @mcp:math → Verify file sizes (≤10KB each)
-   d. @mcp:math → Calculate checksums
-   e. IF validation fails → ROLLBACK + HALT
-
-5. Git Commit:
-   a. @mcp:git add [all 8 schema files]
-   b. @mcp:git commit -m "chore: update 8-schema memory bank post task-{id}"
-   c. @mcp:time → Timestamp commit
-   d. progress.json updated with commit hash
-
-6. Verification:
-   a. @mcp:filesystem → Re-read all 8 schemas
-   b. Verify data integrity
-   c. Check RL score checksum
-   d. Confirm knowledge graph consistency
-   e. IF verified → Proceed to next task
-   f. IF failed → Emergency recovery via /continue
+1. Detect: @mcp:git commit, validation passed, RL assigned, learning extracted
+2. Prepare: @mcp:filesystem read 8 schemas, @mcp:time timestamp, @mcp:math RL scores, @mcp:memory graph prep
+3. Atomic Write:
+   BEGIN TRANSACTION
+   @mcp:filesystem update activeContext (task done, MCP rewards, session)
+   @mcp:filesystem update scratchpad (remove [0], reorder, add new)
+   @mcp:filesystem update kanban (in_progress→done, WIP limits)
+   @mcp:filesystem update mistakes (if errors: pattern, prevention, RL penalty)
+   @mcp:filesystem update systemPatterns (if success: pattern, reuse, RL reward)
+   @mcp:filesystem update progress (RL transaction, totals, checksum)
+   @mcp:filesystem update roadmap (milestones, completion, dependencies)
+   @mcp:filesystem update memory (@mcp:memory entities/relations, RL reuse)
+   IF all 8 succeed → COMMIT | ELSE → ROLLBACK
+4. Validate: @mcp:filesystem read, validate vs *.schema.json, @mcp:math verify ≤10KB + checksums
+5. Commit: @mcp:git add + commit, @mcp:time timestamp, update progress with hash
+6. Verify: Re-read, check integrity, RL checksum, graph consistency → Proceed or /continue
 ```
 
-**Schema Validation Rules**:
-```
-Common Rules (All Schemas):
-- Valid JSON format (strict parsing)
-- schema_version field present
-- last_updated timestamp within 1 minute
-- File size ≤10KB
-- Required fields present per schema definition
-
-Specific Rules:
-- progress.json: Checksum must match calculated total
-- memory.json: Entity/relation IDs must be unique
-- kanban.json: Tasks must reference valid proposal/milestone IDs
-- mistakes.json: RL penalties must link to progress.json transactions
-- systemPatterns.json: RL rewards must link to progress.json transactions
-```
+**Validation Rules**: Valid JSON, schema_version, timestamp <1min, ≤10KB, required fields. Specific: progress checksum match, memory unique IDs, kanban valid references, mistakes/systemPatterns link progress RL.
 
 ## 4. Violations — Schema Duty Negligence
 
-**Update Failures**:
-- Skipping schema update = -30 RL penalty + HALT + mandatory update + IAS audit
-- Partial update (< 8 schemas) = -35 RL penalty + rollback + complete update required
-- Failed atomic transaction = -25 RL penalty + restoration + investigation
+**Update Failures**: Skipping = -30 RL + HALT + mandatory + audit. Partial (<8) = -35 RL + rollback + complete. Failed atomic = -25 RL + restoration + investigation.
 
-**Validation Violations**:
-- Invalid JSON = -20 RL penalty + fix required + validation training
-- Schema mismatch = -25 RL penalty + correction + schema education
-- File size exceeded (>10KB) = -15 RL penalty + data compression + optimization
+**Validation**: Invalid JSON = -20 RL + fix + training. Schema mismatch = -25 RL + correction + education. Size >10KB = -15 RL + compression.
 
-**Data Integrity Breaches**:
-- Checksum mismatch = -40 RL penalty + audit + data verification
-- Corrupted knowledge graph = -45 RL penalty + restoration + tribunal
-- RL score tampering = -50 RL penalty + rollback + citizenship revocation
+**Integrity**: Checksum mismatch = -40 RL + audit + verification. Corrupted graph = -45 RL + restoration + tribunal. RL tampering = -50 RL + rollback + revocation.
 
-**Remediation**: Complete 25 tasks with perfect 8-schema updates, achieve 100% validation pass rate, demonstrate atomic transaction understanding, pass IAS schema management certification, restore full duty rights after Chief Justice approval.
+**Remediation**: 25 perfect updates, 100% validation pass, demonstrate atomic understanding, IAS certification, Chief Justice approval.
 
 ---
 
-**Character Count**: 3,972 | **Schema References**: ALL 8 MANDATORY | **MCP Requirements**: filesystem (primary), time, math, memory, git
+**Chars**: 1,987 | **Schemas**: ALL 8 MANDATORY | **MCPs**: filesystem, time, math, memory, git

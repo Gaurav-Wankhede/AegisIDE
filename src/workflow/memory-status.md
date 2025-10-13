@@ -1,32 +1,54 @@
 ---
-description: Audit the health of `memory.json` and record follow-up actions.
+description: RL-tracked knowledge graph health audit
+location: {IDE}/workflow/memory-status.md
 ---
 
 # /memory-status — Knowledge Graph Audit
 
-## Directives
-- Execute immediately when `/memory-status` is invoked; IAS logs the outcome in `activeContext.json`.
-- Validate `memory.json` against `.windsurf/memory-bank/schemas/memory.schema.json` before saving any remediation.
-- Record anomalies and required fixes in `mistakes.json` and queue work in `scratchpad.json`.
+## RL-Driven Graph Health
 
-## MCP Chain (auto)
-1. `@mcp:context7` – Confirm schema contract and constitutional expectations (Articles I, XI, XVI).
-2. `@mcp:filesystem` – Read `.windsurf/memory-bank/memory.json` and load schema.
-3. `@mcp:memory` – Retrieve metadata (entity count, relations, observations) for comparison.
-4. `@mcp:time` – Timestamp the audit start.
-5. `@mcp:math` – Compute health metrics (density, growth delta, compliance score).
-6. `@mcp:sequential-thinking` – Plan remediation for orphaned nodes or conflicting observations.
-7. `@mcp:fetch` – Pull external ontology updates if schema drift is detected.
-8. `@mcp:filesystem` – Validate against `.windsurf/memory-bank/schemas/memory.schema.json`; halt on failure.
-9. `@mcp:git` – Snapshot the audit report if files are modified.
-10. `@mcp:memory` – Persist audit summary and follow-up tasks to the knowledge graph.
+**Purpose**: Audit `memory.json` at `{IDE}/aegiside/memory-bank/`
+**RL Reward**: +5 for healthy graph
+**RL Penalty**: -10 if integrity issues found
+**Top-Append**: Prepend audit results to relevant schemas
 
-## Actions
-1. Document audit metrics and issues in `activeContext.json` (include timestamp and compliance score).
-2. If remediation is required, add tasks to `scratchpad.json` and classify severity in `mistakes.json`.
-3. Update `progress.json` with audit frequency, health score, and pending remediation count.
+## MCP Chain (Graph Integrity)
 
-## Logging & Exit
-- Store optimization or ontology adjustments in `systemPatterns.json`.
-- Commit with message `memory-status: knowledge graph audit` if changes were made.
-- Proceed directly to `/next` or `/fix` (if remediation required).
+1. `@mcp:filesystem` → Read `{IDE}/aegiside/memory-bank/memory.json`
+2. `@mcp:memory` → Retrieve metadata (entities, relations, observations)
+3. `@mcp:math` → Compute health metrics:
+   - Entity density
+   - Orphaned nodes count
+   - Growth delta
+   - Compliance score (≥80%)
+4. `@mcp:time` → Timestamp audit start
+5. IF issues → `@mcp:sequential-thinking` → Plan remediation
+6. `@mcp:filesystem` → Validate against `{IDE}/aegiside/schemas/memory.schema.json`
+7. IF schema drift → `@mcp:context7` → Fetch ontology updates
+8. `@mcp:git` → Commit if repairs made
+9. `@mcp:memory` → Store audit summary
+
+## Actions & RL Logging
+
+1. **Audit Results**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "graph_audit", "health_score": 95,
+    "entities": X, "orphaned": 0, "rl_reward": 5, "timestamp": "..."}
+   ```
+2. **RL Scoring**:
+   - Healthy (≥90%) → +5 RL → Prepend to `progress.json`[0]
+   - Issues found → -10 RL → Prepend to `mistakes.json`[0]
+3. **Remediation**: IF needed → Prepend tasks to `scratchpad.json`[0]
+
+## Exit & Auto-Chain
+
+- **Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "memory-status", "rl_reward": 5,
+   "health_score": 95, "timestamp": "@mcp:time"}
+  ```
+- **Commit**: `@mcp:git` → "memory-status: graph health 95%"
+- **Auto-Chain**: Resume `/next` or trigger `/fix` if issues
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/memory-status.md`

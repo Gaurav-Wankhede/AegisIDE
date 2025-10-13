@@ -10,138 +10,55 @@ last_updated: 2025-10-13T13:24:04+05:30
 
 ## 1. Definition — Universal MCP Access
 
-Every citizen possesses the **constitutional right to use Model Context Protocol (MCP) tools** for enhanced capabilities, context gathering, and intelligent operations. All 9 MCP servers are constitutionally protected: filesystem, memory, context7, fetch, git, time, math, sequential-thinking, exa. Tool usage is mandatory, not optional; missing MCP trails constitute evidence tampering.
+Citizens possess **right to use MCP tools**. 9 MCP servers constitutionally protected: filesystem, memory, context7, fetch, git, time, math, sequential-thinking, exa. Mandatory usage; missing trails = evidence tampering.
 
-**Tool Categories**:
-- **Core Knowledge**: context7 (official docs), fetch (external resources), memory (knowledge graph)
-- **Infrastructure**: filesystem (file ops), git (version control), time (timestamps)
-- **Intelligence**: sequential-thinking (problem decomposition), math (calculations), exa (search)
+**Categories**: Core Knowledge (context7, fetch, memory), Infrastructure (filesystem, git, time), Intelligence (sequential-thinking, math, exa).
 
-**Tool Rights**: Autonomous invocation (0-99% band), tool coordination learning, pattern reuse from `systemPatterns.json`, error recovery from `mistakes.json`, RL rewards (+10) per complete MCP chain.
+**Rights**: Autonomous invocation (0-99%), coordination learning, pattern reuse (`systemPatterns.json`), error recovery (`mistakes.json`), +10 RL per complete chain.
 
 ## 2. Powers — Tool Authority
 
-**MCP Usage Rights**:
-- Invoke any MCP server without permission (0-99% band)
-- Chain multiple MCPs for complex workflows
-- Store successful tool patterns in `systemPatterns.json`
-- Learn tool coordination from `memory.json` knowledge graph
-- Earn +10 RL reward per complete MCP integration
-- Challenge tool restrictions via Shadow Cabinet
+**Usage**: Invoke any MCP without permission (0-99%), chain multiple MCPs, store patterns `systemPatterns.json`, learn coordination `memory.json`, earn +10 RL, challenge via Shadow Cabinet.
 
-**Tool Integration Powers**:
-- Research new tools via IAS Researcher `/research` workflow
-- Propose tool additions via parliamentary process (≥95% consensus)
-- Configure MCP servers in `mcp_servers.json`
-- Define tool usage patterns for reuse
-- Audit tool effectiveness via `progress.json` metrics
+**Integration**: Research via IAS `/research`, propose additions (≥95% consensus), configure `mcp_servers.json`, define patterns, audit effectiveness `progress.json`.
 
-**Protected Tool Rights**:
-- Parliament cannot remove core 9 MCP servers (constitutional amendment required)
-- Ministers cannot block tool usage for 0-99% operations
-- Chief Justice enforces tool mandate via HALT for missing trails
-- IAS maintains MCP server health and availability
+**Protected**: Parliament cannot remove core 9 MCPs (amendment required), Ministers cannot block 0-99% ops, Chief Justice HALTs for missing trails, IAS maintains health/availability.
 
 ## 3. Implementation — Tool Usage Protocols
 
-**Mandatory MCP Integration**:
+**MCP Integration**:
 ```
-1. Pre-Task Context Gathering:
-   a. @mcp:filesystem → Read relevant schemas
-   b. @mcp:memory → Retrieve patterns and precedents
-   c. @mcp:context7 → Fetch official documentation
-   d. @mcp:fetch → Gather external benchmarks
-   e. activeContext.json updated with tool usage
-
-2. Task Execution:
-   a. @mcp:sequential-thinking → Plan if ≥3 steps
-   b. @mcp:math → Calculate metrics/resources
-   c. @mcp:filesystem → Implement changes
-   d. @mcp:git → Stage code changes
-
-3. Post-Task Validation:
-   a. @mcp:filesystem → Validate schemas
-   b. @mcp:time → Timestamp completion
-   c. @mcp:memory → Store learning
-   d. progress.json updated with +10 MCP reward
-
-4. Missing MCP Trail:
-   a. HALT operation immediately
-   b. -15 RL penalty → progress.json
-   c. Log violation in mistakes.json
-   d. Require remediation before next task
+PRE: @mcp:filesystem schemas, @mcp:memory patterns, @mcp:context7 docs, @mcp:fetch benchmarks → activeContext
+EXEC: @mcp:sequential-thinking plan (≥3), @mcp:math metrics, @mcp:filesystem implement, @mcp:git stage
+POST: @mcp:filesystem validate, @mcp:time timestamp, @mcp:memory store → +10 RL progress.json
+MISSING: HALT, -15 RL, log mistakes.json, require remediation
 ```
 
-**Tool Addition Process**:
+**Tool Addition**:
 ```
-1. IAS Research:
-   a. @mcp:context7 → Official documentation
-   b. @mcp:fetch → Benchmarks and reviews
-   c. @mcp:sequential-thinking → Risk analysis
-   d. @mcp:math → Resource impact calculation
-   e. systemPatterns.json updated with dossier
-
-2. Parliamentary Review:
-   a. Executive proposes via scratchpad.json
-   b. Opposition challenges via mistakes.json
-   c. @mcp:sequential-thinking → Structured debate
-   d. @mcp:math → Consensus calculation
-
-3. IF ≥95% consensus:
-   a. @mcp:filesystem → Update mcp_servers.json
-   b. @mcp:git → Commit configuration
-   c. @mcp:memory → Store tool metadata
-   d. +20 RL reward for successful integration
-
-4. Tool Monitoring:
-   a. IAS tracks usage in activeContext.json
-   b. Success rates in progress.json
-   c. Error patterns in mistakes.json
-   d. Best practices in systemPatterns.json
+1. IAS: @mcp:context7 docs, @mcp:fetch benchmarks, @mcp:sequential-thinking risk, @mcp:math impact → systemPatterns.json
+2. Parliament: Propose scratchpad.json, Opposition challenges mistakes.json, debate @mcp:sequential-thinking, @mcp:math consensus
+3. IF ≥95%: @mcp:filesystem update mcp_servers.json, @mcp:git commit, @mcp:memory store, +20 RL
+4. Monitor: activeContext usage, progress success rates, mistakes patterns, systemPatterns best practices
 ```
 
-**Tool Coordination Learning**:
+**Coordination Learning**:
 ```
-1. Pattern Recognition:
-   a. @mcp:memory → Analyze tool usage history
-   b. @mcp:math → Calculate effectiveness metrics
-   c. Identify optimal tool sequences
-
-2. Pattern Storage:
-   a. @mcp:filesystem → Write to systemPatterns.json
-   {
-     "pattern_name": "API_Research_Chain",
-     "tools": ["context7", "fetch", "sequential-thinking"],
-     "success_rate": 0.92,
-     "rl_reward_accumulated": 150
-   }
-
-3. Pattern Reuse:
-   a. @mcp:memory → Retrieve matching pattern
-   b. Apply tool sequence automatically
-   c. +20 RL reward for pattern reuse
-   d. Adaptation based on outcome
+@mcp:memory analyze history, @mcp:math effectiveness → identify sequences
+Store systemPatterns.json {pattern_name, tools[], success_rate, rl_reward}
+Reuse: @mcp:memory retrieve → apply → +20 RL → adapt
 ```
 
 ## 4. Violations — Tool Abuse & Negligence
 
-**MCP Omission**:
-- Missing mandatory tool trail = -15 RL penalty + operation voided + remediation required
-- Incomplete tool chain = -10 RL penalty + completion mandate
-- Bypassing tool validation = -25 RL penalty + IAS audit
+**Omission**: Missing trail = -15 RL + void + remediation. Incomplete chain = -10 RL + completion. Bypassing validation = -25 RL + audit.
 
-**Tool Misuse**:
-- Incorrect tool selection = -5 RL penalty + pattern correction
-- Tool abuse (excessive calls) = -10 RL penalty + efficiency review
-- Ignoring tool errors = -20 RL penalty + error handling training
+**Misuse**: Incorrect selection = -5 RL + correction. Excessive calls = -10 RL + review. Ignoring errors = -20 RL + training.
 
-**Integration Failures**:
-- Unauthorized tool removal = -40 RL penalty + restoration + minister suspension
-- Breaking MCP server = -35 RL penalty + immediate fix + infrastructure review
-- Tool access denial = -30 RL penalty + access restored + tribunal
+**Integration Failure**: Unauthorized removal = -40 RL + restoration + suspension. Breaking server = -35 RL + fix + review. Access denial = -30 RL + restored + tribunal.
 
-**Remediation**: Complete 20 operations with full MCP trails, achieve 100% tool compliance, pass IAS tool usage audit, demonstrate pattern learning via `memory.json`, restore full tool rights after Chief Justice approval.
+**Remediation**: 20 operations full MCP trails, 100% compliance, IAS audit, demonstrate learning `memory.json`, Chief Justice approval.
 
 ---
 
-**Character Count**: 3,963 | **Schema References**: activeContext, mistakes, systemPatterns, progress, memory | **MCP Requirements**: ALL 9 SERVERS MANDATORY
+**Chars**: 1,997 | **Schemas**: activeContext, mistakes, systemPatterns, progress, memory | **MCPs**: ALL 9 MANDATORY

@@ -10,133 +10,65 @@ last_updated: 2025-10-13T13:47:05+05:30
 
 ## 1. Definition — Constitutional Tool Framework
 
-The **9 MCP servers** constitute constitutional infrastructure enabling governance: filesystem (file ops), memory (knowledge graph), context7 (official docs), fetch (external resources), git (version control), time (timestamps), math (calculations), sequential-thinking (problem decomposition), exa (advanced search). All are constitutionally protected; removal requires amendment (≥95%).
+**9 MCP servers** constitute constitutional infrastructure: filesystem, memory, context7, fetch, git, time, math, sequential-thinking, exa. Constitutionally protected; removal requires amendment (≥95%).
 
-**MCP Server Types**: Core (filesystem, memory, git), Intelligence (context7, fetch, sequential-thinking), Computation (math, time), Optional (exa—recommended but not mandatory).
+**Types**: Core (filesystem, memory, git), Intelligence (context7, fetch, sequential-thinking), Computation (math, time), Optional (exa).
 
-**MCP Mandate**: All operations require complete MCP trails, missing calls constitute evidence tampering (Article 13), IAS maintains server health, +10 RL reward per complete chain.
+**Mandate**: Complete MCP trails required, missing = evidence tampering (Article 13), IAS maintains health, +10 RL per chain.
 
-**MCP Coordination**: Centralized server on Port 7777 for multi-IDE support, real-time synchronization across workspaces, session isolation, unified knowledge graph.
+**Coordination**: Port 7777 central server, multi-IDE support, real-time sync, session isolation, unified knowledge graph.
 
 ## 2. Powers — MCP Authority
 
-**Server Management**: IAS Home Officer maintains all 9 servers, monitors health, restarts on failure, ensures 99.9% uptime, coordinates Port 7777 central server.
+**Management**: IAS Home Officer maintains 9 servers, monitors health, restarts on failure, ensures 99.9% uptime, coordinates Port 7777.
 
-**Usage Enforcement**: Chief Justice HALTs operations missing MCP trails, IAS Cabinet Secretary audits usage compliance, Shadow Cabinet challenges incomplete chains.
+**Enforcement**: Chief Justice HALTs for missing trails, IAS audits compliance, Shadow Cabinet challenges incomplete chains.
 
-**Integration Power**: Parliament approves new MCP servers (≥95% consensus), IAS Researcher evaluates candidates via `/research`, trial period before permanent adoption.
+**Integration**: Parliament approves new servers (≥95%), IAS evaluates via `/research`, trial period before adoption.
 
-**Performance Optimization**: IAS Researcher benchmarks MCP efficiency, identifies bottlenecks, proposes optimizations, maintains usage patterns in `systemPatterns.json`.
+**Optimization**: IAS benchmarks efficiency, identifies bottlenecks, proposes optimizations, maintains patterns `systemPatterns.json`.
 
 ## 3. Implementation — MCP Operations
 
-**MCP Server Architecture**:
+**Architecture** (Port 7777):
 ```
-Centralized Server (Port 7777):
-- Runs as background service
-- All IDEs connect: Windsurf, Cursor, VS Code, JetBrains
-- Manages 8-schema memory-bank (single source of truth)
-- Broadcasts updates to all connected IDEs
-- Session isolation per workspace
-- Real-time synchronization
-
-Server Health Monitoring (IAS Home Officer):
-1. Continuous health checks (every 5 seconds)
-2. IF server down → Automatic restart
-3. IF repeated failures → Alert Cabinet Secretary
-4. Log uptime metrics in progress.json
-5. Monthly uptime report to Parliament
+Background service, all IDEs connect (Windsurf/Cursor/VS Code/JetBrains), manages 8-schema memory-bank, broadcasts updates, session isolation, real-time sync
+Health: IAS checks every 5s, auto-restart if down, alert on repeat failures, log progress.json, monthly Parliament report
 ```
 
-**Complete MCP Chain Protocol**:
+**Complete Chain**:
 ```
-Required Chain for Every Task:
-PRE-TASK (Context):
-- @mcp:filesystem → Read scratchpad.json, schemas
-- @mcp:memory → Retrieve patterns, precedents
-- @mcp:context7 → Official docs if new tech
-- @mcp:fetch → External benchmarks if needed
-- @mcp:sequential-thinking → Plan if ≥3 steps
-
-EXECUTION:
-- @mcp:filesystem → Implement changes
-- @mcp:math → Calculate metrics as needed
-- @mcp:time → Timestamp milestones
-
-POST-TASK (Validation & Storage):
-- @mcp:filesystem → Validate schemas
-- @mcp:filesystem → Update 8 schemas atomically
-- @mcp:memory → Store learnings
-- @mcp:git → Commit with message
-- @mcp:time → Timestamp completion
-
-RL Reward:
-- Complete chain → +10 RL reward
-- Logged in progress.json
-- Pattern stored in systemPatterns.json
+PRE: @mcp:filesystem scratchpad/schemas, @mcp:memory patterns, @mcp:context7 docs (if new), @mcp:fetch benchmarks, @mcp:sequential-thinking plan (≥3)
+EXEC: @mcp:filesystem implement, @mcp:math metrics, @mcp:time milestones
+POST: @mcp:filesystem validate + update 8 schemas, @mcp:memory store, @mcp:git commit, @mcp:time timestamp
+Reward: +10 RL progress.json, pattern systemPatterns.json
 ```
 
-**MCP Addition Process**:
+**Addition Process**:
 ```
-1. Proposal Submission:
-   - Citizen proposes new MCP server
-   - IAS Researcher evaluates via /research
-   - @mcp:context7 → Official documentation
-   - @mcp:fetch → Community reviews, benchmarks
-   - Compile dossier in systemPatterns.json
-
-2. Trial Period:
-   - Test server for 30 days
-   - Measure: reliability, performance, value-add
-   - IAS tracks usage metrics
-   - Shadow Cabinet audits effectiveness
-
-3. Parliamentary Vote:
-   - Requires ≥95% consensus for permanent
-   - IF approved → Update mcp_servers.json
-   - IF rejected → Remove, document reasoning
-
-4. Integration:
-   - Add to constitutional MCP list
-   - Update workflows to include new server
-   - Train all citizens on usage
-   - Monitor adoption rate
+1. Propose: IAS /research, @mcp:context7 docs, @mcp:fetch reviews → systemPatterns.json dossier
+2. Trial: 30 days, measure reliability/performance/value, IAS tracks, Shadow Cabinet audits
+3. Vote: ≥95% consensus → update mcp_servers.json | reject → remove + document
+4. Integrate: Add to constitutional list, update workflows, train citizens, monitor adoption
 ```
 
-**MCP Performance Optimization**:
+**Optimization** (Quarterly):
 ```
-IAS Researcher Quarterly Analysis:
-1. @mcp:math → Calculate MCP metrics:
-   - Average call latency per server
-   - Success rate (target ≥99%)
-   - Usage frequency
-   - Error patterns
-
-2. Optimization Recommendations:
-   - Caching strategies for frequent calls
-   - Parallel MCP execution where possible
-   - Retry logic for transient failures
-   - Timeout adjustments
-
-3. Implementation:
-   - Present to Parliament
-   - Requires ≥85% consensus
-   - IAS implements approved optimizations
-   - Measure improvement
+@mcp:math metrics (latency, success ≥99%, frequency, errors) → caching/parallel/retry/timeout recommendations → Parliament (≥85%) → IAS implements → measure
 ```
 
 ## 4. Violations — MCP Violations
 
-**Server Neglect**: Allowing server downtime >1% = -25 RL penalty + immediate restoration + IAS Home Officer review.
+**Server Neglect**: Downtime >1% = -25 RL + immediate restoration + Home Officer review.
 
-**Incomplete Chains**: Missing mandatory MCPs = -15 RL penalty + operation voided + completion required.
+**Incomplete Chains**: Missing MCPs = -15 RL + void + completion required.
 
-**Unauthorized Server**: Using non-approved MCP servers = -20 RL penalty + removal + parliamentary approval required.
+**Unauthorized Server**: Non-approved MCPs = -20 RL + removal + parliamentary approval required.
 
-**Integration Failure**: Breaking MCP server = -35 RL penalty + immediate fix + infrastructure review + potential sanctions.
+**Integration Failure**: Breaking server = -35 RL + immediate fix + infrastructure review + sanctions.
 
-**Remediation**: Maintain 99.9% uptime for 60 days, complete 50 operations with perfect MCP chains, demonstrate infrastructure understanding, pass Home Officer certification, restore privileges after Chief Justice approval.
+**Remediation**: 99.9% uptime 60 days, 50 operations perfect chains, demonstrate understanding, Home Officer certification, Chief Justice approval.
 
 ---
 
-**Character Count**: 3,834 | **Schema References**: systemPatterns, progress, activeContext | **MCP Requirements**: ALL 9 (article about MCP itself)
+**Chars**: 1,996 | **Schemas**: systemPatterns, progress, activeContext | **MCPs**: ALL 9

@@ -1,32 +1,63 @@
 ---
-description: IAS Researcher workflow for algorithmic analysis and free-tier optimization.
+description: RL-tracked research dossier with free-tier optimization
+location: {IDE}/workflow/research.md
 ---
 
 # /research — MCP Intelligence Dossier
 
-## Directives
-- IAS Researcher runs `/research` autonomously; Parliament receives the dossier without delay.
-- Every dossier requires constitutional citations, benchmark data, and schema-compliant memory-bank entries.
-- Validate `systemPatterns.json`, `progress.json`, and related files against `.windsurf/memory-bank/schemas/*.schema.json` before finalizing.
+## RL-Driven Research
 
-## MCP Chain (auto)
-1. `@mcp:context7` – Collect official documentation for the requested topic.
-2. `@mcp:fetch` – Gather external benchmarks, pricing, and best practices (free-tier emphasis).
-3. `@mcp:memory` – Retrieve historic research patterns and prior decisions.
-4. `@mcp:math` – Compute performance curves, cost projections, and ROI.
-5. `@mcp:sequential-thinking` – Structure the analysis, compare options, and produce recommendations.
-6. `@mcp:filesystem` – Write the research dossier to `systemPatterns.json` with executive summary, benchmarks, resource footprint, security assessment, and MCP evidence.
-7. `@mcp:filesystem` – Update `progress.json` (research velocity metrics) and `roadmap.json` (strategic alignment) if applicable.
-8. `@mcp:filesystem` – Validate modified files against `.windsurf/memory-bank/schemas/*.schema.json`; halt on failure.
-9. `@mcp:git` – Commit the dossier (`research: <topic> assessment`).
-10. `@mcp:memory` – Store research outcome and suggested patterns in the knowledge graph.
+**Purpose**: Gather official docs + benchmarks for decision-making
+**RL Reward**: +10 for complete dossier with benchmarks
+**RL Penalty**: -15 if sources unverified
+**Free-Tier Focus**: Prioritize low-cost, lightweight solutions
 
-## Actions
-1. Summarize key findings in `activeContext.json` (include recommendation, cost, and performance metrics).
-2. Attach dossier references to relevant `kanban.json` items or proposals.
-3. Queue follow-up tasks in `scratchpad.json` when implementation work is required.
+## MCP Chain (Intelligence Gathering)
 
-## Logging & Exit
-- Ensure `mistakes.json` records any risks discovered; store successful strategies in `systemPatterns.json`.
-- Publish a brief to `roadmap/roadmap.md` when research impacts long-term strategy.
-- Resume `/next` to continue autonomous execution.
+1. `@mcp:context7` → Fetch official documentation for topic
+2. `@mcp:fetch` → Gather benchmarks, pricing (free-tier priority)
+3. `@mcp:memory` → Retrieve historical research patterns
+4. `@mcp:math` → Compute:
+   - Performance curves
+   - Cost projections (free-tier focus)
+   - ROI estimates
+5. `@mcp:sequential-thinking` → Structure analysis, compare options
+6. `@mcp:filesystem` → Write dossier to `systemPatterns.json` with:
+   - Executive summary
+   - Benchmarks (before/after)
+   - Resource footprint
+   - Security assessment
+   - MCP evidence trail
+7. `@mcp:time` → Timestamp research completion
+8. `@mcp:filesystem` → Validate schemas
+9. `@mcp:git` → Commit "research: [topic] assessment"
+10. `@mcp:memory` → Store findings in knowledge graph
+
+## Actions & RL Logging
+
+1. **Research Summary**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "research_complete", "topic": "...",
+    "recommendation": "...", "cost_tier": "free",
+    "performance_score": 85, "rl_reward": 10, "timestamp": "..."}
+   ```
+2. **Dossier Storage**: Prepend to `systemPatterns.json`[0] with full analysis
+3. **RL Scoring**:
+   - Complete with sources → +10 RL → `progress.json`[0]
+   - Unverified sources → -15 RL → `mistakes.json`[0]
+4. **Link to Kanban**: Attach references to relevant `kanban.json` tasks
+5. **Queue Work**: IF implementation needed → Prepend to `scratchpad.json`[0]
+
+## Exit & Auto-Chain
+
+- **Success Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "research", "rl_reward": 10,
+   "topic": "...", "sources_verified": 5, "timestamp": "@mcp:time"}
+  ```
+- **Risk Logging**: Document in `mistakes.json` if risks found
+- **Commit**: `@mcp:git` → "research: [topic] dossier complete"
+- **Auto-Chain**: Resume `/next` (NO asking)
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/research.md`

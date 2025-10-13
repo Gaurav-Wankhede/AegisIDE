@@ -1,31 +1,61 @@
 ---
-description: Provides comprehensive summary of memory bank status, tasks, progress, and metrics.
+description: RL-tracked comprehensive system status report
+location: {IDE}/workflow/status.md
 ---
 
 # /status — System Status Report
 
-## Directives
-- IAS executes `/status` autonomously to deliver a real-time health snapshot to Parliament.
-- All metrics must cite constitutional thresholds; schema validation is required before reporting.
-- Any variance triggers follow-up tasks added to `scratchpad.json`.
+## RL-Driven Status Reporting
 
-## MCP Chain (auto)
-1. `@mcp:context7` – Confirm scoring thresholds (Articles I, III, III-A, XI).
-2. `@mcp:filesystem` – Read the eight core schemas, automation files, and roadmap assets.
-3. `@mcp:math` – Compute compliance scores (Framework ≥80%, Consensus ≥95%, Roadmap ≥95%), velocity metrics, error rates.
-4. `@mcp:sequential-thinking` – Compile remediation recommendations for any failing thresholds.
-5. `@mcp:time` – Timestamp the audit and measure data freshness.
-6. `@mcp:fetch` – Pull external advisories if anomalies require validation.
-7. `@mcp:filesystem` – Validate each updated memory file against `.windsurf/memory-bank/schemas/*.schema.json`.
-8. `@mcp:git` – Commit the status dossier (`status: State of the Republic YYYY-MM-DD`).
-9. `@mcp:memory` – Store summary metrics and recommended actions in the knowledge graph.
+**Purpose**: Real-time health snapshot with compliance scores
+**RL Reward**: +5 for comprehensive report
+**Constitutional Thresholds**: Framework ≥80%, Consensus ≥95%, Roadmap ≥95%
+**Auto-Remediation**: Trigger `/fix` if thresholds missed
 
-## Actions
-1. Write the status summary to `activeContext.json`, including compliance, consensus, roadmap alignment, error counts, and MCP health.
-2. Log task distribution and blockers in `scratchpad.json`, update `kanban.json` with any follow-up workflow items.
-3. Update `progress.json` with performance metrics; adjust `roadmap.json` if strategic targets shift.
+## MCP Chain (Comprehensive Audit)
 
-## Logging & Exit
-- Record risks and mitigation steps in `mistakes.json`, add proven playbooks to `systemPatterns.json`.
-- Publish a condensed stakeholder summary to `roadmap/roadmap.md`.
-- Run `/fix`, `/optimize`, or `/update` immediately if any category falls below thresholds; otherwise resume `/next`.
+1. `@mcp:filesystem` → Read 8 schemas from `{IDE}/aegiside/memory-bank/`
+2. `@mcp:math` → Compute scores:
+   - Constitutional compliance (≥80%)
+   - Consensus readiness (≥95%)
+   - Roadmap alignment (≥95%)
+   - Task velocity (tasks/hour)
+   - Error rate (errors/100 tasks)
+   - RL score trend (last 10 tasks)
+3. `@mcp:time` → Timestamp audit + measure data freshness
+4. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
+5. IF anomalies → `@mcp:context7` → Fetch guidance
+6. `@mcp:filesystem` → Validate schemas
+7. `@mcp:memory` → Store metrics in knowledge graph
+8. `@mcp:git` → Commit "status: [compliance%] - [date]"
+
+## Actions & RL Logging
+
+1. **Status Report**: Prepend to `activeContext.json`[0]:
+   ```json
+   {"event": "status_report", "compliance_score": 95,
+    "consensus_score": 98, "roadmap_alignment": 96,
+    "task_velocity": 12, "error_rate": 2,
+    "rl_score_trend": "+15", "rl_reward": 5, "timestamp": "..."}
+   ```
+2. **Blockers**: Log in `scratchpad.json`[0] if tasks blocked
+3. **Metrics**: Prepend to `progress.json`[0] with velocity + RL trends
+4. **RL Scoring**: +5 RL for complete report → `progress.json`[0]
+
+## Exit & Auto-Chain
+
+- **Success Metrics**: Prepend to `progress.json`[0]:
+  ```json
+  {"workflow": "status", "rl_reward": 5,
+   "compliance_score": 95, "timestamp": "@mcp:time"}
+  ```
+- **Risks**: Document in `mistakes.json` if found
+- **Commit**: `@mcp:git` → "status: 95% compliance"
+- **Auto-Remediation**:
+  - IF compliance <80% → Trigger `/fix`
+  - IF velocity declining → Trigger `/optimize`
+  - IF schemas out-of-sync → Trigger `/update`
+  - ELSE → Resume `/next`
+
+---
+**Chars**: <6000 | **Location**: `{IDE}/workflow/status.md`
