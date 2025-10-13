@@ -35,8 +35,9 @@ description: RL-driven immediate recovery after interruption
     "pending_tasks": Y, "rl_reward": 5, "timestamp": "..."}
    ```
 2. **Capture Blockers**: Update `scratchpad.json` (maintain top-append order)
-3. **RL Scoring**:
-   - Successful recovery → +5 RL → Prepend to `progress.json`
+3. **RL Scoring & Computation**:
+   - Compute: TD_error for recovery value, GAE_adv for continuation
+   - Successful recovery → +5 RL → Prepend to `progress.json` with rl_computation
    - Context corruption → -10 RL → Prepend to `mistakes.json`
 4. **Selective Article Loading**:
    - If blockers exist → Load `{IDE}/aegiside/rules/constitution/04-fundamental-duties/article-14.md`

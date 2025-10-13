@@ -100,6 +100,16 @@ description: RL-driven autonomous execution loop with selective article loading
 - Complete MCP chain: +10 RL
 - Constitutional compliance ≥95%: +25 RL
 
+## 8. RL Computation
+
+- **RL Computation Step**:
+  - Calculate: TD_error = r + γV(s') - V(s), GAE_adv = Σ(γλ)^k×δ_{t+k}
+  - Update: V_new = V_old + α×TD_error
+  - Store: progress.json[0].rl_computation {td_error, value_updated, gae_advantage}
+  - Complete with validation → +20 RL → `progress.json`[0]
+  - Partial completion → +10 RL
+  - Failed with learning → +5 RL
+
 **Penalties** → `{IDE}/aegiside/memory-bank/mistakes.json` (prepend top):
 - Validation fail: -30 RL
 - MCP omission: -15 RL

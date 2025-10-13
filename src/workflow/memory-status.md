@@ -34,8 +34,10 @@ description: RL-tracked knowledge graph health audit
    {"event": "graph_audit", "health_score": 95,
     "entities": X, "orphaned": 0, "rl_reward": 5, "timestamp": "..."}
    ```
-2. **RL Scoring**:
-   - Healthy (≥90%) → +5 RL → Prepend to `progress.json`[0]
+2. **RL Scoring & Computation**:
+   - Healthy (≥90%) → Calculate: Pattern reuse rates for exploitation vs exploration
+   - Compute: KL divergence from reference policy over time
+   - Store: +5 RL memory audit → `progress.json` with pattern value estimates[0]
    - Issues found → -10 RL → Prepend to `mistakes.json`[0]
 3. **Remediation**: IF needed → Prepend tasks to `scratchpad.json`[0]
 

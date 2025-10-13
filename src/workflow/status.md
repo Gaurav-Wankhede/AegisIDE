@@ -40,7 +40,10 @@ location: {IDE}/workflow/status.md
    ```
 2. **Blockers**: Log in `scratchpad.json`[0] if tasks blocked
 3. **Metrics**: Prepend to `progress.json`[0] with velocity + RL trends
-4. **RL Scoring**: +5 RL for complete report → `progress.json`[0]
+4. **RL Scoring & Computation**: 
+- Calculate: Policy entropy for exploration tracking
+- Compute: Value estimates across all branches
+- Store: +5 RL status check → `progress.json` with current rl_computation state[0]
 
 ## Exit & Auto-Chain
 

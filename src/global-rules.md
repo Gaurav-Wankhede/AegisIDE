@@ -71,12 +71,50 @@ Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(
 **Rewards**: Task(+5-50), Validate(+15), Reuse(+20), MCP(+10), Explore(+10)
 **Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50)
 
-**Exploit(70%)**: memory≥0.9→+20 | **Explore(30%)**: context7+exa→+10
+**RL Exploitation**: Reuse patterns ≥0.9 confidence (+20 RL) | **Exploration**: context7/fetch new approaches (+10 RL)
+
+### **RL Computational Protocol (Formula-Based Learning)**
+
+**Implementation**: AegisIDE uses actual RL algorithms via manual JSON computation (no neural networks/gradient descent)
+
+**Core Formulas** (see `schemas/helpers/common-mistakes.json` for examples):
+```
+1. GAE Advantage: Adv_t = Σ(γλ)^k × δ_{t+k} where δ = r + γV(s') - V(s)
+2. TD Learning: V(s) ← V(s) + α[r + γV(s') - V(s)]
+3. Softmax Policy: π(a) = exp(Q(a)/τ) / Σexp(Q/τ)
+4. Monte Carlo: G_t = Σγ^k × r_{t+k}
+5. KL Divergence: KL(π_new || π_ref) for stability (PPO constraint)
+6. Bellman: V(s) = r + γ × max_a Q(s',a)
+```
+
+**Computation Workflow**:
+```
+1. Task Complete → Calculate rewards/values
+2. Compute TD Error: δ = r + γV(s') - V(s)
+3. Calculate GAE Advantage: Adv = Σ(γλ)^k × δ_{t+k}
+4. Update Value: V_new = V_old + α × TD_error
+5. Store in progress.json[0].rl_computation:
+   {td_error, value_updated, policy_probabilities, monte_carlo_return}
+6. Check KL divergence: If >0.01 → update reference policy
+7. Apply softmax for next task selection in scratchpad.json
+```
+
+**Storage Locations**:
+- `progress.json[0].rl_computation` - Actual computed values
+- `progress.json[0].gae_advantage` - GAE advantage scalar
+- `progress.json[0].kl_divergence` - Policy drift tracking
+- `progress.json.value_network_branches` - Multi-branch values
+- `scratchpad.json.task_selection_policy` - Softmax probabilities
+- `schemas/helpers/common-mistakes.json.rl_computation_examples` - Formula reference
+
+**vs Real RL**: Same algorithms ✓ | Manual computation (not gradient descent) | Interpretable | Free-tier ($0/month)
 **Value Network**: Multi-branch (per reward component) | **Design**: LLM-automated
 
 **Value Branches**: task_success(0.3), validation(0.25), pattern_reuse(0.2), mcp(0.15), innovation(0.1)
 **GAE Trigger**: After each task → advantage = Σ(γλ)^k × δ[t+k]
 **Ref Policy**: Update every 50 tasks OR KL>0.01 | Drift threshold: 0.01
+
+### **RL System**
 
 **Autonomous Self-Improvement** (Art 4,6,12):
 ```python

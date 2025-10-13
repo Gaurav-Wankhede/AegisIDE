@@ -46,9 +46,11 @@ location: {IDE}/workflow/update.md
    {"event": "schema_sync", "schemas_updated": 8,
     "compliance_score": 100, "rl_reward": 8, "timestamp": "..."}
    ```
-2. **RL Scoring**:
-   - All valid → +8 RL → Prepend to `progress.json`[0]
-   - Validation fails → -20 RL → Prepend to `mistakes.json`[0]
+2. **RL Scoring & Computation**:
+   - Calculate: TD_error for schema maintenance value
+   - Update: V(maintenance_task) via temporal difference
+   - All 8 updated → +10 RL → `progress.json` with rl_computation
+   - Incomplete → -25 RL → `mistakes.json`[0]
 3. **Queue Issues**: IF problems → Prepend to `scratchpad.json`[0]
 4. **Selective Article Loading**:
    - Schema issues → `04-fundamental-duties/article-14.md`

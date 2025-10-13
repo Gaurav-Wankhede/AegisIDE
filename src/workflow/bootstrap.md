@@ -42,7 +42,12 @@ description: Ensure 8 mandatory schemas exist with RL tracking
 3. **RL Logging**:
    - Success → +10 RL → Prepend to `progress.json`
    - Validation fail → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
-4. **Update activeContext.json**: Prepend regeneration event at array[0]:
+4. **RL Scoring & Computation**:
+   - Initialize: All value branches to 0, set reference policy
+   - Formula: V(bootstrap) = r_bootstrap + γ×E[V(future_tasks)]
+   - Store: +50 RL workspace creation → `progress.json`[0] with rl_computation baseline
+   - Validation fail → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
+5. **Update activeContext.json**: Prepend regeneration event at array[0]:
    ```json
    {"event": "bootstrap_complete", "schemas_created": ["..."], 
     "rl_reward": 10, "timestamp": "..."}

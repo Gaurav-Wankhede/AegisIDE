@@ -37,7 +37,11 @@ description: RL-tracked tri-branch parliamentary review
     "consensus_score": 96, "ruling": "approved",
     "rl_reward": 25, "timestamp": "..."}
    ```
-2. **Consensus Scoring**:
+2. **Consensus RL Scoring & Computation**:
+   - Calculate: TD_error for governance effectiveness
+   - Update: V(democratic_process) via multi-step GAE
+   - Consensus → +10 RL with rl_computation
+   - Quality improvement → +15 RL → Prepend to `progress.json`[0]
    - ≥95% → +25 RL → Prepend to `progress.json`[0]
    - <95% → -20 RL → Prepend to `mistakes.json`[0]
 3. **IF Rejected**: Queue remediation in `scratchpad.json`[0]

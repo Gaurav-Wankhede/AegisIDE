@@ -43,8 +43,10 @@ location: {IDE}/workflow/research.md
     "performance_score": 85, "rl_reward": 10, "timestamp": "..."}
    ```
 2. **Dossier Storage**: Prepend to `systemPatterns.json`[0] with full analysis
-3. **RL Scoring**:
-   - Complete with sources → +10 RL → `progress.json`[0]
+3. **RL Scoring & Computation**:
+   - Calculate: TD_error for research value, GAE_adv for exploration bonus
+   - Update: V(exploration_branch) via Bellman backup
+   - Complete with sources → +10 RL → `progress.json`[0] with rl_computation
    - Unverified sources → -15 RL → `mistakes.json`[0]
 4. **Link to Kanban**: Attach references to relevant `kanban.json` tasks
 5. **Queue Work**: IF implementation needed → Prepend to `scratchpad.json`[0]

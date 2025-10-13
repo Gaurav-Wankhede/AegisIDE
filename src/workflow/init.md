@@ -9,6 +9,10 @@ description: RL-driven session initialization with selective article loading
 **Purpose**: Initialize session with 8-schema validation + selective article loading
 **RL Reward**: +10 for successful initialization
 **RL Penalty**: -15 if schema validation fails
+8. **RL Scoring & Computation**: 
+   - Initialize: V(session_start) = 0, reference_policy = baseline
+   - Calculate: GAE for initialization sequence, TD_error for first task
+   - Store: +45 RL for successful initialization → `progress.json`[0] with rl_computationalty
 **Context Assembly**: Top-append strategy for optimal window usage
 
 ## Directives

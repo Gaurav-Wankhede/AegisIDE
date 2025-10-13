@@ -35,7 +35,10 @@ description: Zero-tolerance validation with RL penalties
 ## RL Scoring (PPO+GAE)
 
 - **GAE Calculation**: Compute advantage for validation success
-- **Success**: +15 RL → `progress.json`[0]
+- **RL Scoring & Computation**:
+  - Calculate: TD_error for validation value, update V(validation_branch)
+  - Pass → +15 RL → `progress.json` with rl_computation {td_error, value_updated}
+  - Fail → -30 RL → `mistakes.json` with prevention rule
   ```json
   {"workflow": "validate", "rl_reward": 15,
    "validation_passed": true, "issues_found": 0,

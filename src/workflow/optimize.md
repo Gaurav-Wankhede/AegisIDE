@@ -41,7 +41,11 @@ description: RL-driven performance optimization with benchmarking
     "improvement_pct": 40, "rl_reward": 20,
     "confidence_score": 0.95, "reuse_count": 0}
    ```
-2. **RL Scoring (PPO+GAE)**:
+2. **RL Scoring & Computation**:
+   - Calculate: TD_error for optimization value, GAE for multi-step improvements
+   - Update: V(performance_branch) via Bellman backup
+   - Optimization → +15 RL → `progress.json` with rl_computation
+   - Performance gain → bonus +10 RL
    - Improvement ≥20% → +20 RL → Prepend to `progress.json`[0]
    - Regression → -25 RL → Prepend to `mistakes.json`[0] + rollback
    - **GAE Calculation**: Compute advantage for optimization success
