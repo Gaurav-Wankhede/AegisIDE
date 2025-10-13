@@ -55,12 +55,17 @@ description: RL-driven session initialization with selective article loading
 
 ## Exit & Auto-Chain
 
-- **Readiness Metrics**: Prepend to `progress.json`[0]:
+- **RL Scoring (PPO+GAE)**
+
+- **Success**: +5 RL → `progress.json`[0]
   ```json
-  {"workflow": "init", "rl_reward": 10,
-   "schema_compliance": 100, "articles_loaded": 3,
-   "timestamp": "@mcp:time"}
+  {"workflow": "init", "rl_reward": 5,
+   "schemas_initialized": 8, "constitution_loaded": true,
+   "autonomous_loop_activated": true, "meta_cognitive_enabled": true,
+   "parallel_workers": 1, "timestamp": "@mcp:time"}
   ```
+- **Autonomous Loop**: Initialize recursive self-teaching: `while not create(): learn() + practice() + adapt()`
+- **Meta-Cognitive**: Enable effectiveness monitoring in `activeContext.rl_runtime`
 - **Context Patterns**: Store assembly strategy in `systemPatterns.json`
 - **Commit**: `@mcp:git` → "init: session ready with [X] articles"
 - **IMMEDIATE CHAIN**: Execute `/next` (NO asking permission)
