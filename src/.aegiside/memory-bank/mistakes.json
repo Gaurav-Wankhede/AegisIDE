@@ -2,12 +2,24 @@
   "schema_version": "3.0.0",
   "last_updated": "2025-10-14T02:16:18+05:30",
   "metrics": {
-    "total_rl_score": -120,
+    "total_rl_score": -140,
     "tasks_completed": 5,
     "tasks_failed": 7,
     "commits": 7
   },
   "error_patterns": [
+    {
+      "error_id": "error-logging-duplication-001",
+      "timestamp": "2025-10-14T02:21:46+05:30",
+      "category": "error_logging_design_flaw",
+      "severity": "MEDIUM",
+      "description": "Created 5 separate error entries for same error type (missing metrics field) instead of 1 consolidated entry",
+      "root_cause": "Overly granular logging - violated DRY principle by logging same error pattern 5 times for different files",
+      "impact": "Memory bank pollution, harder to read error patterns, poor pattern design",
+      "rl_penalty": -20,
+      "fixed_at": "2025-10-14T02:21:46+05:30",
+      "fixed_by": "autonomous_self_correction"
+    },
     {
       "error_id": "metrics-sync-violation-001",
       "timestamp": "2025-10-14T02:19:51+05:30",
@@ -33,45 +45,13 @@
       "fixed_by": "autonomous_self_correction"
     },
     {
-      "error_id": "schema-violation-001",
+      "error_id": "schema-violation-001-consolidated",
       "timestamp": "2025-10-14T01:42:40+05:30",
       "category": "schema_compliance_failure",
       "severity": "HIGH",
-      "description": "Failed to add required metrics field to kanban.json during initial setup",
-      "root_cause": "Did not validate file against schema before committing",
-      "rl_penalty": -25,
-      "fixed_at": "2025-10-14T01:42:40+05:30",
-      "fixed_by": "autonomous_self_correction"
-    },
-    {
-      "error_id": "schema-violation-002",
-      "timestamp": "2025-10-14T01:42:40+05:30",
-      "category": "schema_compliance_failure",
-      "severity": "HIGH",
-      "description": "Failed to add required metrics field to mistakes.json during initial setup",
-      "root_cause": "Did not validate file against schema before committing",
-      "rl_penalty": -25,
-      "fixed_at": "2025-10-14T01:42:40+05:30",
-      "fixed_by": "autonomous_self_correction"
-    },
-    {
-      "error_id": "schema-violation-003",
-      "timestamp": "2025-10-14T01:42:40+05:30",
-      "category": "schema_compliance_failure",
-      "severity": "HIGH",
-      "description": "Failed to add required metrics field to roadmap.json during initial setup",
-      "root_cause": "Did not validate file against schema before committing",
-      "rl_penalty": -25,
-      "fixed_at": "2025-10-14T01:42:40+05:30",
-      "fixed_by": "autonomous_self_correction"
-    },
-    {
-      "error_id": "schema-violation-004",
-      "timestamp": "2025-10-14T01:42:40+05:30",
-      "category": "schema_compliance_failure",
-      "severity": "HIGH",
-      "description": "Failed to add required metrics field to memory.json during initial setup",
-      "root_cause": "Did not validate file against schema before committing",
+      "description": "Failed to add required metrics field during initial setup",
+      "affected_files": ["kanban.json", "mistakes.json", "roadmap.json", "memory.json", "systemPatterns.json"],
+      "root_cause": "Did not validate files against schemas before committing",
       "rl_penalty": -25,
       "fixed_at": "2025-10-14T01:42:40+05:30",
       "fixed_by": "autonomous_self_correction"
@@ -99,17 +79,6 @@
       "rl_penalty": -25,
       "fixed_at": "2025-10-14T01:51:40+05:30",
       "fixed_by": "autonomous_self_correction"
-    },
-    {
-      "error_id": "schema-violation-005",
-      "timestamp": "2025-10-14T01:42:40+05:30",
-      "category": "schema_compliance_failure",
-      "severity": "HIGH",
-      "description": "Failed to add required metrics field to systemPatterns.json during initial setup",
-      "root_cause": "Did not validate file against schema before committing",
-      "rl_penalty": -25,
-      "fixed_at": "2025-10-14T01:42:40+05:30",
-      "fixed_by": "autonomous_self_correction"
     }
   ],
   "prevention_rules": [
@@ -130,6 +99,15 @@
       "triggers_on": ["rl_transaction", "penalty_applied", "reward_earned"],
       "penalty_if_violated": -25,
       "created_at": "2025-10-14T02:19:51+05:30"
+    },
+    {
+      "rule_id": "prevent-error-duplication-001",
+      "category": "error_logging_design",
+      "rule": "CONSOLIDATE similar errors into single entry with 'affected_files' array instead of creating separate entries",
+      "enforcement": "If same error type affects multiple files: log once with array of files, NOT separate entries for each file",
+      "triggers_on": ["error_logging", "pattern_storage"],
+      "penalty_if_violated": -20,
+      "created_at": "2025-10-14T02:21:46+05:30"
     },
     {
       "rule_id": "prevent-schema-001",
