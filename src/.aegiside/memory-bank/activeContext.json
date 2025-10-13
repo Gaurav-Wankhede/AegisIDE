@@ -2,10 +2,10 @@
   "schema_version": "3.0.0",
   "last_updated": "2025-10-13T16:28:41+05:30",
   "metrics": {
-    "total_rl_score": -60,
+    "total_rl_score": -85,
     "tasks_completed": 4,
     "tasks_pending": 1,
-    "constitutional_compliance": 75,
+    "constitutional_compliance": 70,
     "session_readiness": 100,
     "emd_compliance": "passing"
   },
