@@ -1,6 +1,6 @@
 {
   "schema_version": "3.0.0",
-  "last_updated": "2025-10-14T02:13:05+05:30",
+  "last_updated": "2025-10-14T02:16:18+05:30",
   "metrics": {
     "total_rl_score": -70,
     "tasks_completed": 5,
@@ -8,6 +8,18 @@
     "commits": 7
   },
   "error_patterns": [
+    {
+      "error_id": "top-append-violation-001",
+      "timestamp": "2025-10-14T02:16:18+05:30",
+      "category": "schema_compliance_failure",
+      "severity": "HIGH",
+      "description": "Violated top-append rule in kanban.json activity_log: newest entry at [1] instead of [0]",
+      "root_cause": "Failed to prepend new activity_log entry at [0], appended at end instead",
+      "impact": "Breaks optimal context window usage (latest info should be at [0])",
+      "rl_penalty": -25,
+      "fixed_at": "2025-10-14T02:16:18+05:30",
+      "fixed_by": "autonomous_self_correction"
+    },
     {
       "error_id": "schema-violation-001",
       "timestamp": "2025-10-14T01:42:40+05:30",
@@ -89,6 +101,15 @@
     }
   ],
   "prevention_rules": [
+    {
+      "rule_id": "prevent-top-append-001",
+      "category": "array_ordering",
+      "rule": "ALL array fields with logs/events/transactions MUST prepend at [0], NEVER append",
+      "enforcement": "For activity_log, event_tracking, error_patterns, reinforcement_learning, priority_queue, completed: ALWAYS insert at index 0",
+      "triggers_on": ["array_modification", "new_entry_addition"],
+      "penalty_if_violated": -25,
+      "created_at": "2025-10-14T02:16:18+05:30"
+    },
     {
       "rule_id": "prevent-schema-001",
       "category": "schema_validation",

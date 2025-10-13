@@ -28,8 +28,8 @@
       }
     },
     "architecture_patterns": {
-      "type": "object",
-      "description": "Named patterns with implementation details",
+      "type": "array",
+      "description": "TOP-APPEND MANDATORY: Prepend new patterns at [0]. Each pattern contains implementation details.",
       "additionalProperties": {
         "type": "object",
         "properties": {

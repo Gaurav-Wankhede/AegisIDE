@@ -18,7 +18,7 @@
     },
     "reinforcement_learning": {
       "type": "array",
-      "description": "RL transaction ledger (prepend at [0]) - PPO+GAE architecture",
+      "description": "TOP-APPEND MANDATORY: Newest transaction MUST be at [0]. RL ledger with PPO+GAE architecture.",
       "items": {
         "type": "object",
         "properties": {

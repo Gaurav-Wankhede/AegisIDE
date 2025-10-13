@@ -82,6 +82,22 @@
           }
         }
       }
+    },
+    "activity_log": {
+      "type": "array",
+      "description": "TOP-APPEND MANDATORY: Newest entry MUST be at [0]. Prepend, never append.",
+      "items": {
+        "type": "object",
+        "required": ["id", "timestamp", "action", "task_id", "actor"],
+        "properties": {
+          "id": {"type": "string"},
+          "timestamp": {"type": "string", "format": "date-time"},
+          "action": {"type": "string"},
+          "task_id": {"type": "string"},
+          "actor": {"type": "string"},
+          "details": {"type": "string"}
+        }
+      }
     }
   }
 }

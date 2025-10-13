@@ -1,8 +1,8 @@
 {
   "schema_version": "3.0.0",
-  "last_updated": "2025-10-14T02:13:05+05:30",
+  "last_updated": "2025-10-14T02:16:18+05:30",
   "metrics": {
-    "total_rl_score": -70,
+    "total_rl_score": -95,
     "tasks_completed": 5,
     "tasks_failed": 7,
     "commits": 7
@@ -39,6 +39,17 @@
     "zero_tolerance_violations": 0
   },
   "reinforcement_learning": [
+    {
+      "tx_id": "rl-penalty-009",
+      "timestamp": "2025-10-14T02:16:18+05:30",
+      "category": "schema_compliance_failure",
+      "reward": 0,
+      "penalty": -25,
+      "source_file": "mistakes.json",
+      "description": "Top-append violation: activity_log newest at [1] not [0]",
+      "gae_advantage": -0.97,
+      "kl_divergence": 0.011
+    },
     {
       "tx_id": "rl-reward-008",
       "timestamp": "2025-10-14T02:13:05+05:30",

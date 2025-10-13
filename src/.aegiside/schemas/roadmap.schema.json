@@ -33,6 +33,7 @@
     },
     "strategic_goals": {
       "type": "array",
+      "description": "TOP-APPEND MANDATORY: Newest goal MUST be at [0]. Prepend, never append.",
       "items": {
         "type": "object",
         "properties": {

@@ -37,7 +37,7 @@
     },
     "priority_queue": {
       "type": "array",
-      "description": "Prepend new tasks at [0]",
+      "description": "TOP-APPEND MANDATORY: Newest task MUST be at [0]. Prepend, never append.",
       "items": {
         "type": "object",
         "required": ["id", "task", "priority"],
@@ -74,6 +74,7 @@
     },
     "completed": {
       "type": "array",
+      "description": "TOP-APPEND MANDATORY: Newest completed task MUST be at [0]. Prepend, never append.",
       "maxItems": 50,
       "items": {
         "type": "object",

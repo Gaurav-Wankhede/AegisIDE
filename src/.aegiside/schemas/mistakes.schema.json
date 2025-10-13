@@ -24,7 +24,7 @@
     },
     "error_patterns": {
       "type": "array",
-      "description": "Prepend new errors at [0]",
+      "description": "TOP-APPEND MANDATORY: Newest error MUST be at [0]. Prepend, never append.",
       "items": {
         "type": "object",
         "properties": {
