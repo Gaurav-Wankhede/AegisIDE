@@ -64,6 +64,22 @@
               "cost_savings": {"type": "string"}
             }
           }
+        },
+        "approved": {
+          "type": "array",
+          "description": "Constitutional verification passed - Chief Justice + Opposition approval",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {"type": "string"},
+              "title": {"type": "string"},
+              "approved_at": {"type": "string", "format": "date-time"},
+              "tags": {"type": "array", "items": {"type": "string"}},
+              "rl_impact": {"type": "number"},
+              "constitutional_compliance": {"type": "number"},
+              "approved_by": {"type": "string"}
+            }
+          }
         }
       }
     }
