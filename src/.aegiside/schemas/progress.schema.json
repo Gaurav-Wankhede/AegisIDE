@@ -58,7 +58,7 @@
         "reward_design": {"type": "string", "default": "automated_llm"},
         "n_step_td_learning": {
           "type": "object",
-          "description": "Temporal Difference n-step returns for credit assignment across multi-step tasks",
+          "description": "Temporal Difference n-step returns for credit assignment across multi-step tasks. Formula: V(s) ← V(s) + α[r + γV(s') - V(s)]",
           "properties": {
             "n_steps": {"type": "integer", "default": 3, "description": "Lookahead horizon for TD(n)"},
             "discount_gamma": {"type": "number", "default": 0.99, "description": "Discount factor for future rewards"},
@@ -70,8 +70,18 @@
                 "type": "object",
                 "properties": {
                   "step": {"type": "integer"},
-                  "reward": {"type": "number"},
-                  "state_value": {"type": "number"}
+                  "gae_advantage": {"type": "number", "description": "GAE advantage: Σ(γλ)^k × δ_{t+k}"},
+                  "kl_divergence": {"type": "number", "description": "KL(π_new || π_ref) for policy stability"},
+                  "rl_computation": {
+                    "type": "object",
+                    "description": "Actual RL formula calculations for this transaction",
+                    "properties": {
+                      "td_error": {"type": "number", "description": "r_t + γV(s_{t+1}) - V(s_t)"},
+                      "value_updated": {"type": "number", "description": "V(s) + α*TD_error"},
+                      "policy_probabilities": {"type": "object", "description": "Softmax π(a) = exp(Q/τ)/Σexp(Q/τ)"},
+                      "monte_carlo_return": {"type": "number", "description": "G_t = Σγ^k*r_{t+k}"}
+                    }
+                  }
                 }
               }
             }
