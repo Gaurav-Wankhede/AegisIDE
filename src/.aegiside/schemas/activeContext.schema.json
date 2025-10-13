@@ -10,17 +10,27 @@
   },
   "description": "Real-time execution state with event tracking",
   "type": "object",
-  "required": ["schema_version", "last_updated", "current_implementation", "ai_state", "session_management", "mcp_integration"],
+  "required": ["schema_version", "last_updated", "metrics", "event_tracking"],
   "properties": {
     "schema_version": {
       "type": "string",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "description": "Semantic version of schema"
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
     },
     "last_updated": {
       "type": "string",
-      "format": "date-time",
-      "description": "ISO 8601 timestamp of last update"
+      "format": "date-time"
+    },
+    "metrics": {
+      "type": "object",
+      "description": "SYNCED FROM progress.json - Copy total_rl_score after every update",
+      "required": ["total_rl_score", "tasks_completed"],
+      "properties": {
+        "total_rl_score": {"type": "number"},
+        "tasks_completed": {"type": "integer", "minimum": 0},
+        "tasks_pending": {"type": "integer", "minimum": 0},
+        "constitutional_compliance": {"type": "number", "minimum": 0, "maximum": 100},
+        "session_readiness": {"type": "number", "minimum": 0, "maximum": 100}
+      }
     },
     "current_implementation": {
       "type": "object",
