@@ -1,6 +1,5 @@
 ---
 description: Zero-tolerance validation with RL penalties
-location: {IDE}/workflow/validate.md
 ---
 
 # /validate — Constitutional Compliance Validation

@@ -1,6 +1,5 @@
 ---
 description: Ensure 8 mandatory schemas exist with RL tracking
-location: {IDE}/workflow/bootstrap.md
 ---
 
 # /bootstrap — Memory Bank Regeneration

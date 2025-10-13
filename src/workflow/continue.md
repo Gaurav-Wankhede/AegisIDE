@@ -1,6 +1,5 @@
 ---
 description: RL-driven immediate recovery after interruption
-location: {IDE}/workflow/continue.md
 ---
 
 # /continue — Immediate Recovery

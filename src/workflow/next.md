@@ -1,6 +1,5 @@
 ---
 description: RL-driven autonomous execution loop with selective article loading
-location: {IDE}/workflow/next.md
 ---
 
 # /next — Autonomous Execution Engine

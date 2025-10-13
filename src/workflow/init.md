@@ -1,6 +1,5 @@
 ---
 description: RL-driven session initialization with selective article loading
-location: {IDE}/workflow/init.md
 ---
 
 # /init — Session Initialization

@@ -1,6 +1,5 @@
 ---
 description: RL-driven performance optimization with benchmarking
-location: {IDE}/workflow/optimize.md
 ---
 
 # /optimize — Performance Upgrade Loop

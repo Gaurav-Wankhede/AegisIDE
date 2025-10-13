@@ -1,6 +1,5 @@
 ---
 description: RL-tracked tri-branch parliamentary review
-location: {IDE}/workflow/oversight-checks-and-balances.md
 ---
 
 # /oversight-checks-and-balances — Parliamentary Review

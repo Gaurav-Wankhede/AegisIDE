@@ -1,6 +1,5 @@
 ---
 description: RL-tracked knowledge graph health audit
-location: {IDE}/workflow/memory-status.md
 ---
 
 # /memory-status — Knowledge Graph Audit
