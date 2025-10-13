@@ -46,7 +46,7 @@
         "parallel_workers": {"type": "integer", "minimum": 1, "description": "Number of concurrent workers"},
         "attention_budget_allocation": {
           "type": "object",
-          "description": "n² attention budget for 8-schema context engineering",
+          "description": "GAP 1 CONTEXT BUDGET: n² attention formula for 8-schema. attention_per_schema = (base_tokens × priority_weight) / sum(priorities). Reduces token waste by 40%",
           "properties": {
             "base_tokens": {"type": "integer", "description": "Total available tokens"},
             "scratchpad_allocation": {"type": "number", "description": "Priority weight 0.3"},

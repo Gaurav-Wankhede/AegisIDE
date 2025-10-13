@@ -58,7 +58,7 @@
         "reward_design": {"type": "string", "default": "automated_llm"},
         "n_step_td_learning": {
           "type": "object",
-          "description": "Temporal Difference learning for multi-step credit assignment",
+          "description": "Temporal Difference n-step returns for credit assignment across multi-step tasks",
           "properties": {
             "n_steps": {"type": "integer", "default": 3, "description": "Lookahead horizon for TD(n)"},
             "discount_gamma": {"type": "number", "default": 0.99, "description": "Discount factor for future rewards"},
