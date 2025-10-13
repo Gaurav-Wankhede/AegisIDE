@@ -1,0 +1,44 @@
+{
+  "schema_version": "3.0.0",
+  "last_updated": "2025-10-13T16:28:41+05:30",
+  "columns": {
+    "todo": {
+      "wip_limit": 10,
+      "task_ids": []
+    },
+    "in_progress": {
+      "wip_limit": 3,
+      "task_ids": ["task-init-001"]
+    },
+    "done": {
+      "task_ids": []
+    },
+    "approved": {
+      "task_ids": []
+    }
+  },
+  "tasks": [
+    {
+      "id": "task-init-001",
+      "title": "Complete 8-schema memory bank initialization",
+      "description": "Generate all 8 required schemas for AegisIDE v3.0 session",
+      "status": "in_progress",
+      "priority": "high",
+      "assigned_to": "project_manager",
+      "created_at": "2025-10-13T16:28:41+05:30",
+      "started_at": "2025-10-13T16:28:41+05:30",
+      "estimated_hours": 0.5,
+      "tags": ["initialization", "bootstrap", "v3.0"]
+    }
+  ],
+  "activity_log": [
+    {
+      "id": "activity-001",
+      "timestamp": "2025-10-13T16:28:41+05:30",
+      "action": "task_created",
+      "task_id": "task-init-001",
+      "actor": "project_manager",
+      "details": "Session initialization task created"
+    }
+  ]
+}

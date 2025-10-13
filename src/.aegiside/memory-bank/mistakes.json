@@ -1,0 +1,22 @@
+{
+  "schema_version": "3.0.0",
+  "last_updated": "2025-10-13T16:28:41+05:30",
+  "error_patterns": [],
+  "prevention_rules": [],
+  "context7_sources": {
+    "verified_docs": [],
+    "trust_scores": {},
+    "last_verification": "2025-10-13T16:28:41+05:30"
+  },
+  "anti_hallucination_metrics": {
+    "total_verifications": 0,
+    "successful_verifications": 0,
+    "failed_verifications": 0,
+    "source_accuracy_rate": 100
+  },
+  "instant_lint_tracking": {
+    "total_lints": 0,
+    "resolved_lints": 0,
+    "pending_lints": []
+  }
+}
