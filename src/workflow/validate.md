@@ -61,6 +61,7 @@ description: Zero-tolerance validation with RL penalties
 - **IF Pass**: 
   - Prepend success to `progress.json`
   - `@mcp:git` → Commit "validate: clean"
+  - Move task to kanban 'done' (awaits Opposition + Chief Justice approval for 'approved')
   - Resume `/next` immediately
 - **IF Fail**:
   - HALT all operations

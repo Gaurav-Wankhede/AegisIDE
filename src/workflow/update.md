@@ -32,7 +32,7 @@ location: {IDE}/workflow/update.md
 **8-Schema Checklist** (all top-append verified):
 1. `activeContext.json` → RL tracking + session state
 2. `scratchpad.json` → Tasks array (newest [0])
-3. `kanban.json` → Column structure
+3. `kanban.json` → Workflow columns (todo→in_progress→done→approved) with Opposition + Chief Justice verification
 4. `mistakes.json` → RL penalties (newest [0])
 5. `systemPatterns.json` → Patterns (newest [0])
 6. `progress.json` → RL rewards (newest [0])

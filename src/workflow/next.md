@@ -59,7 +59,7 @@ description: RL-driven autonomous execution loop with selective article loading
 **8-Schema Atomic Update** at `{IDE}/aegiside/memory-bank/`:
 1. `activeContext.json` → Prepend completed task status at array[0]
 2. `scratchpad.json` → Remove completed, prepend new tasks at top
-3. `kanban.json` → Move task to "done" column
+3. `kanban.json` → Move task: in_progress→done (awaits Chief Justice + Opposition approval for done→approved)
 4. `mistakes.json` → IF errors → Prepend error pattern + RL penalty at top
 5. `systemPatterns.json` → IF success → Prepend pattern + RL reward at top
 6. `progress.json` → Prepend RL transaction {timestamp, score, source} at top
@@ -82,11 +82,12 @@ description: RL-driven autonomous execution loop with selective article loading
 ## 6. Continuous Loop (NO Permission Asks)
 
 **Flow**:
-1. Task complete → Schemas updated → RL logged
-2. `@mcp:filesystem` → Read `scratchpad.json`[0] (top entry)
-3. IF scratchpad empty → Check `kanban.json` "todo" column → Move to scratchpad
-4. IF work available → IMMEDIATELY execute (NO pause, NO asking) → Return to step 1
-5. IF no work → `/status` report (located at `{IDE}/workflow/status.md`) → Await tasks
+1. Task complete → Schemas updated → RL logged → Move to kanban 'done'
+2. **Approval Stage**: Task in 'done' awaits Opposition (Art 29) + Chief Justice (Art 32) verification before 'approved'
+3. `@mcp:filesystem` → Read `scratchpad.json`[0] (top entry)
+4. IF scratchpad empty → Check `kanban.json` "todo" column → Move to scratchpad
+5. IF work available → IMMEDIATELY execute (NO pause, NO asking) → Return to step 1
+6. IF no work → `/status` report (located at `{IDE}/workflow/status.md`) → Await tasks
 
 **CRITICAL**: Asking "Should I continue?" = -20 RL penalty → `mistakes.json`
 

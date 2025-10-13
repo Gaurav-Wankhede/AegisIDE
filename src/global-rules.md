@@ -24,6 +24,7 @@
 [LOAD] scratchpad[0]→memory→calc autonomy
 [EXEC] MCP chain→edit(≤80)→validate→HALT→context7→fix
 [UPDATE] Read schemas→edit_file(prepend)→validate 8→git
+[APPROVAL] done→approved (Chief Justice + Opposition verify) | fail→todo (retry)
 [LEARN] Extract(≥80%)→memory→progress[0]→NO PAUSE→next
 **RL**: Reuse≥0.9 (+20) | Explore (+10)
 
@@ -45,7 +46,7 @@ Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(
 | progress | RL ledger (MASTER) | math,filesystem | 12,14 |
 | activeContext | Session | filesystem,time | 14 |
 | scratchpad | Queue | filesystem | 14 |
-| kanban | Workflow | filesystem | 14 |
+| kanban | Workflow (todo→in_progress→done→approved) | filesystem | 14,29,32 |
 | mistakes | Errors | filesystem,memory | 14,15 |
 | systemPatterns | Arch | filesystem,memory | 14,17 |
 | roadmap | Strategy | filesystem | 14 |
