@@ -47,7 +47,22 @@
         "exploit_mode": {"type": "boolean", "description": "true=exploitation(70%), false=exploration(30%)"},
         "strategy_effectiveness": {"type": "number", "minimum": 0, "maximum": 1, "description": "Current strategy effectiveness (triggers auto-adapt if <0.8)"},
         "autonomous_loop_active": {"type": "boolean", "description": "Recursive self-teaching loop active"},
-        "parallel_workers": {"type": "integer", "minimum": 1, "description": "Number of concurrent workers"}
+        "parallel_workers": {"type": "integer", "minimum": 1, "description": "Number of concurrent workers"},
+        "attention_budget_allocation": {
+          "type": "object",
+          "description": "n² attention budget for 8-schema context engineering",
+          "properties": {
+            "base_tokens": {"type": "integer", "description": "Total available tokens"},
+            "scratchpad_allocation": {"type": "number", "description": "Priority weight 0.3"},
+            "activeContext_allocation": {"type": "number", "description": "Priority weight 0.25"},
+            "mistakes_allocation": {"type": "number", "description": "Priority weight 0.2"},
+            "systemPatterns_allocation": {"type": "number", "description": "Priority weight 0.1"},
+            "progress_allocation": {"type": "number", "description": "Priority weight 0.1"},
+            "roadmap_allocation": {"type": "number", "description": "Priority weight 0.05"},
+            "memory_allocation": {"type": "number", "description": "Priority weight 0.0 (via MCP)"},
+            "kanban_allocation": {"type": "number", "description": "Priority weight 0.0 (via MCP)"}
+          }
+        }
       }
     },
     "event_tracking": {

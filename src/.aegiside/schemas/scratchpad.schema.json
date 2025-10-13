@@ -51,7 +51,27 @@
           "blocker": {"type": "boolean"},
           "context": {"type": "string"},
           "roadmap_milestone_id": {"$ref": "#/$defs/roadmap_milestone_id"},
-          "added_at": {"type": "string", "format": "date-time"}
+          "added_at": {"type": "string", "format": "date-time"},
+          "complexity_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Task complexity for curriculum ordering: f(lines_affected, dependencies, cognitive_load)"
+          },
+          "lookahead_candidates": {
+            "type": "array",
+            "description": "Monte Carlo Beam Search candidates (beam_width=3-5)",
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "properties": {
+                "action": {"type": "string", "description": "Candidate action/approach"},
+                "rollout_steps": {"type": "integer", "default": 3, "description": "Short horizon simulation"},
+                "estimated_value": {"type": "number", "description": "Q-value from critic"},
+                "selected": {"type": "boolean", "description": "Best candidate chosen"}
+              }
+            }
+          }
         }
       }
     },

@@ -27,9 +27,16 @@
 [LEARN] Extract(≥80%)→memory→progress[0]→NO PAUSE→next
 **RL**: Reuse≥0.9 (+20) | Explore (+10)
 
-## IV. Memory Bank (8 Schemas ≤10KB)
+## III. 8-Schema Memory Bank (Art 14) + Context Budget
 
-**UNIFIED SYNC**: All 8 schemas have metrics at top (lines 3-9)
+**n² Attention Budget Formula** (Anthropic Context Engineering):
+```
+attention_per_schema = (base_tokens * priority_weight) / Σ(all_priorities)
+Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(0.1), progress(0.1), roadmap(0.05), memory(0.0 via MCP), kanban(0.0 via MCP)
+```
+**Dynamic Rebalancing**: If schema >10KB → compress/archive → rebalance tokens across remaining schemas
+
+**Mandatory Atomic Updates**: After EVERY task, update all 8 schemas in single transaction: top (lines 3-9)
 
 `progress` (SOURCE) → ALL 7 schemas copy metrics
 

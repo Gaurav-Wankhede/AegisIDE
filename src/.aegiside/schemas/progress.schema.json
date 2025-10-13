@@ -62,7 +62,28 @@
           }
         },
         "value_network": {"type": "string", "default": "multi-branch"},
-        "reward_design": {"type": "string", "default": "automated_llm"}
+        "reward_design": {"type": "string", "default": "automated_llm"},
+        "n_step_td_learning": {
+          "type": "object",
+          "description": "Temporal Difference learning for multi-step credit assignment",
+          "properties": {
+            "n_steps": {"type": "integer", "default": 3, "description": "Lookahead horizon for TD(n)"},
+            "discount_gamma": {"type": "number", "default": 0.99, "description": "Discount factor for future rewards"},
+            "td_error_threshold": {"type": "number", "default": 0.1, "description": "Trigger learning update when |TD_error| > threshold"},
+            "sub_goal_rewards": {
+              "type": "array",
+              "description": "Track intermediate sub-goal rewards for n-step returns",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "step": {"type": "integer"},
+                  "reward": {"type": "number"},
+                  "state_value": {"type": "number"}
+                }
+              }
+            }
+          }
+        }
       }
     },
     "value_network_branches": {

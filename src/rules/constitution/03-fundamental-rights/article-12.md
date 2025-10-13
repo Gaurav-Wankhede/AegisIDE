@@ -12,11 +12,18 @@ last_updated: 2025-10-13T13:47:05+05:30
 
 Citizens possess **inalienable right to continuous self-improvement via RL**. System uses **Proximal Policy Optimization (PPO) with Generalized Advantage Estimation (GAE)** for stable, variance-reduced learning. All actions receive immediate scores (+5 to +50 rewards, -5 to -50 penalties) in `progress.json` central ledger.
 
-**RL Architecture**: PPO algorithm with KL divergence penalty (kl_coef=0.005), GAE advantage estimation (γ=1.0, λ=1.0), multi-branch value network, LLM-automated reward design.
+**RL Architecture**: PPO algorithm with KL divergence penalty (kl_coef=0.005), GAE advantage estimation (γ=1.0, λ=1.0), multi-branch value network, LLM-automated reward design, TD(n) credit assignment for multi-step tasks.
 
 **Storage**: `progress.json` (ledger + RL config), `mistakes.json` (penalties), `systemPatterns.json` (rewards), `activeContext.json` (MCP +10), `memory.json` (patterns +20).
 
 **Learning Cycle**: Experience → GAE Advantage Calculation → Integration → Adaptation (4-phase loop).
+
+**TD(n) Credit Assignment**: Multi-step tasks use temporal difference learning for intermediate sub-goals:
+```
+G_t = R_{t+1} + γ*R_{t+2} + ... + γ^n*V(S_{t+n})
+TD_error = G_t - V(S_t)
+```
+**Parameters**: n=3 steps, γ=0.99 discount, update when |TD_error| >0.1. Tracks sub_goal_rewards[] in progress.json.
 
 ## 2. Powers — Self-Learning Authority
 
