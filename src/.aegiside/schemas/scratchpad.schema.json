@@ -1,12 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://aegiside.org/schemas/scratchpad.json",
-  "title": "Scratchpad Schema",
-  "$defs": {
-    "task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
-    "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"}
-  },
-  "description": "Task priority queue - prepend new tasks at [0] + metrics synced FROM progress.json",
   "type": "object",
   "required": ["schema_version", "last_updated", "metrics", "top_append_metadata", "priority_queue"],
   "properties": {

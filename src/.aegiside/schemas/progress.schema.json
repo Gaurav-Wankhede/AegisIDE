@@ -1,12 +1,5 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://aegiside.org/schemas/progress.json",
-  "title": "Progress Schema",
-  "$defs": {
-    "workflow_id": {"type": "string", "pattern": "^wf-[A-Za-z0-9_-]+$"},
-    "task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"}
-  },
-  "description": "RL ledger with metrics as SOURCE OF TRUTH for all schemas, synced to activeContext",
   "type": "object",
   "required": ["schema_version", "reinforcement_learning"],
   "properties": {
