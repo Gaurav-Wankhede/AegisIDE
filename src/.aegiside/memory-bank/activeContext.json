@@ -1,6 +1,14 @@
 {
   "schema_version": "3.0.0",
   "last_updated": "2025-10-13T16:28:41+05:30",
+  "metrics": {
+    "total_rl_score": 65,
+    "tasks_completed": 4,
+    "tasks_pending": 1,
+    "constitutional_compliance": 85,
+    "session_readiness": 100,
+    "emd_compliance": "passing"
+  },
   "current_implementation": {
     "active_task_id": "init-session",
     "current_phase": "planning",

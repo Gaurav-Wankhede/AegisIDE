@@ -27,9 +27,9 @@
 [LEARN] Extract(≥80%)→memory→progress[0]→NO PAUSE→next
 **RL**: Reuse≥0.9 (+20) | Explore (+10)
 
-## III. 8-Schema Memory Bank (Art 14) + Context Budget
+## IV. 8-Schema Memory Bank (Art 14)
 
-**n² Attention Budget Formula** (Anthropic Context Engineering):
+**n² Attention Budget Formula** (Anthropic Context Engineering - context window optimization):
 ```
 attention_per_schema = (base_tokens * priority_weight) / Σ(all_priorities)
 Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(0.1), progress(0.1), roadmap(0.05), memory(0.0 via MCP), kanban(0.0 via MCP)
@@ -51,12 +51,14 @@ Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(
 | roadmap | Strategy | filesystem | 14 |
 | memory | Knowledge | memory | 10,42 |
 
-## V. RL Architecture (Art 12)
-**Algorithm**: PPO + GAE | **KL Coef**: 0.005 | **GAE**: γ=1.0, λ=1.0
+## V. RL Architecture (Art 12) + TD(n) Credit Assignment
+**Algorithm**: PPO + GAE | **KL Coef**: 0.005 | **GAE**: γ=1.0, λ=1.0 | **TD(n)**: n=3, γ=0.99
 
 `total_rl = Σrewards - Σpenalties` → progress[0]
 `advantage = GAE(values, rewards, γ=1.0, λ=1.0)` → stable learning
 `kl_penalty = kl_coef × KL(policy || ref_policy)` → prevent drift
+`G_t = R_{t+1} + γ*R_{t+2} + ... + γ^n*V(S_{t+n})` → multi-step credit
+`TD_error = G_t - V(S_t)` → update when |TD_error| >0.1
 
 **Rewards**: Task(+5-50), Validate(+15), Reuse(+20), MCP(+10), Explore(+10)
 **Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50)
