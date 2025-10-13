@@ -1,13 +1,10 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://aegiside.org/schemas/activeContext.json",
-  "title": "Active Context Schema",
   "$defs": {
-    "task_id": {"type": "string", "pattern": "^task-[A-Za-z0-9_-]+$"},
-    "roadmap_milestone_id": {"type": "string", "pattern": "^rm-[A-Za-z0-9_-]+$"},
-    "error_id": {"type": "string", "pattern": "^err-[A-Za-z0-9_-]+$"}
+    "task_id": {"type": "string"},
+    "roadmap_milestone_id": {"type": "string"},
+    "error_id": {"type": "string"}
   },
-  "description": "Real-time session state with metrics synced FROM progress.json",
   "type": "object",
   "required": ["schema_version", "last_updated", "metrics", "event_tracking"],
   "properties": {
