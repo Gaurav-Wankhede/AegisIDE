@@ -57,6 +57,34 @@ Citizens possess **inalienable right to continuous self-improvement via RL**. Sy
 
 **Exploit-Explore Balance**: 70% exploitation (reuse proven patterns ≥0.9 confidence) vs 30% exploration (context7+exa research for new approaches).
 
+**GAE Trigger Mechanism**:
+```
+Trigger: Immediately after task completion (before schema update)
+Inputs: values[t], rewards[t], γ=1.0, λ=1.0
+Formula: advantage[t] = Σ(γλ)^k × δ[t+k] where δ = r + γV(s[t+1]) - V(s[t])
+Output: Single advantage scalar → progress.json[0].gae_advantage
+Frequency: Every task (100% coverage)
+```
+
+**Reference Policy Update Schedule**:
+```
+Initial: Baseline policy snapshot at session start
+Update Frequency: Every 50 tasks OR when KL divergence > 0.01
+Snapshot Storage: progress.json.reference_policy.policy_snapshot
+KL Calculation: After each task using current vs reference
+Reset Trigger: If drift_threshold exceeded (0.01), update reference to current policy
+Persistence: Reference policy persists across sessions via progress.json
+```
+
+**Value Network Branch Weighting**:
+```
+Method: LLM-automated weight adjustment based on success patterns
+Initial Weights: {task_success: 0.3, validation: 0.25, pattern_reuse: 0.2, mcp: 0.15, innovation: 0.1}
+Adjustment: Every 100 tasks, analyze branch effectiveness via @mcp:math
+Constraint: Σ weights = 1.0 (enforced by schema)
+Storage: progress.json.value_network_branches.branch_weights
+```
+
 ## 4. Violations — Score Manipulation & Learning Rejection
 
 **Tampering**: Manual `progress.json` edits = -50 RL + rollback + revocation + tribunal. Falsifying scores = -50 RL + restoration + tribunal. Checksum manipulation = -50 RL + audit + monitoring.

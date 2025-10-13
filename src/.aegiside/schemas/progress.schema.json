@@ -65,6 +65,40 @@
         "reward_design": {"type": "string", "default": "automated_llm"}
       }
     },
+    "value_network_branches": {
+      "type": "object",
+      "description": "Multi-branch value network with per-component tracking",
+      "properties": {
+        "task_success_value": {"type": "number", "description": "Value estimate for task completion branch"},
+        "validation_value": {"type": "number", "description": "Value estimate for quality validation branch"},
+        "pattern_reuse_value": {"type": "number", "description": "Value estimate for knowledge exploitation branch"},
+        "mcp_integration_value": {"type": "number", "description": "Value estimate for MCP chain completion branch"},
+        "innovation_value": {"type": "number", "description": "Value estimate for exploration bonus branch"},
+        "branch_weights": {
+          "type": "object",
+          "description": "Dynamic weights for each value branch (sum=1.0)",
+          "properties": {
+            "task_success": {"type": "number", "minimum": 0, "maximum": 1},
+            "validation": {"type": "number", "minimum": 0, "maximum": 1},
+            "pattern_reuse": {"type": "number", "minimum": 0, "maximum": 1},
+            "mcp_integration": {"type": "number", "minimum": 0, "maximum": 1},
+            "innovation": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        },
+        "last_updated": {"type": "string", "format": "date-time"}
+      }
+    },
+    "reference_policy": {
+      "type": "object",
+      "description": "Baseline policy for KL divergence calculation",
+      "properties": {
+        "policy_snapshot": {"type": "string", "description": "Reference policy state identifier"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "update_frequency": {"type": "string", "default": "every_50_tasks"},
+        "last_kl_divergence": {"type": "number"},
+        "drift_threshold": {"type": "number", "default": 0.01, "description": "Max allowed KL before policy reset"}
+      }
+    },
     "current_focus": {
       "type": "object",
       "properties": {

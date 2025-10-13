@@ -55,7 +55,11 @@
 **Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50)
 
 **Exploit(70%)**: memory≥0.9→+20 | **Explore(30%)**: context7+exa→+10
-**Value Network**: Multi-branch (per reward component) | **Design**: LLM-automated (Art 26-31)
+**Value Network**: Multi-branch (per reward component) | **Design**: LLM-automated
+
+**Value Branches**: task_success(0.3), validation(0.25), pattern_reuse(0.2), mcp(0.15), innovation(0.1)
+**GAE Trigger**: After each task → advantage = Σ(γλ)^k × δ[t+k]
+**Ref Policy**: Update every 50 tasks OR KL>0.01 | Drift threshold: 0.01 (Art 26-31)
 
 ## VI. Workflow Integration (Art 26-31)
 

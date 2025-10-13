@@ -61,6 +61,16 @@ location: {IDE}/workflow/fix.md
   {"workflow": "fix", "rl_reward": 15,
    "time_to_fix_ms": X, "attempts": Y, "timestamp": "@mcp:time"}
   ```
+- **RL Scoring (PPO+GAE)**
+
+- **GAE Calculation**: Compute advantage for error resolution
+- **Success**: +10 RL → `progress.json`[0]
+  ```json
+  {"workflow": "fix", "rl_reward": 10,
+   "error_resolved": "...", "prevention_rule_added": true,
+   "gae_advantage": 0.88, "kl_divergence": 0.004,
+   "value_branch": "validation", "timestamp": "@mcp:time"}
+  ```
 - **Selective Article Loading**:
   - Quality issue → `03-fundamental-rights/article-05.md`
   - Schema issue → `04-fundamental-duties/article-14.md`

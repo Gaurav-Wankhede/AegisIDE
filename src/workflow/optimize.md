@@ -41,9 +41,17 @@ description: RL-driven performance optimization with benchmarking
     "improvement_pct": 40, "rl_reward": 20,
     "confidence_score": 0.95, "reuse_count": 0}
    ```
-2. **RL Scoring**:
+2. **RL Scoring (PPO+GAE)**:
    - Improvement ≥20% → +20 RL → Prepend to `progress.json`[0]
    - Regression → -25 RL → Prepend to `mistakes.json`[0] + rollback
+   - **GAE Calculation**: Compute advantage for optimization success
+   - **Success**: +10 RL → `progress.json`[0]
+     ```json
+     {"workflow": "optimize", "rl_reward": 10,
+      "optimization_applied": "...", "performance_gain": "+X%",
+      "gae_advantage": 0.82, "kl_divergence": 0.005,
+      "value_branch": "innovation", "timestamp": "@mcp:time"}
+     ```
 3. **Update Roadmap**: Link to impacted milestones in `roadmap.json`
 
 ## Exit & Auto-Chain

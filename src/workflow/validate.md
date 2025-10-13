@@ -32,6 +32,16 @@ description: Zero-tolerance validation with RL penalties
 
 ## Actions & RL Logging
 
+## RL Scoring (PPO+GAE)
+
+- **GAE Calculation**: Compute advantage for validation success
+- **Success**: +15 RL → `progress.json`[0]
+  ```json
+  {"workflow": "validate", "rl_reward": 15,
+   "validation_passed": true, "issues_found": 0,
+   "gae_advantage": 0.95, "kl_divergence": 0.001,
+   "value_branch": "validation", "timestamp": "@mcp:time"}
+  ```
 1. **Validation Results**: Prepend to `activeContext.json`[0]:
    ```json
    {"event": "validation_complete", "status": "pass",
