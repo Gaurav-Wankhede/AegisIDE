@@ -57,25 +57,44 @@
 
 ## IV. Memory Bank (8 Schemas ≤10KB Each)
 
-| Schema | Purpose | Update Trigger | MCP Tools | Article |
-|--------|---------|----------------|-----------|---------|  
-| `progress` | **SOURCE OF TRUTH** - RL ledger, metrics at [0] | Every task | math.evaluate, filesystem.edit_file(prepend) | Art 12,14 |
-| `activeContext` | Session state, **syncs metrics FROM progress** | Every action | filesystem.edit_file, time.get_current_time | Art 14 |
-| `scratchpad` | Priority queue (prepend) | Task add/complete | filesystem.edit_file(prepend) | Art 14 |
-| `kanban` | Workflow (todo/progress/done) | Status change | filesystem.edit_file | Art 14 |
-| `mistakes` | Error patterns, RL penalties | Error occurs | filesystem.edit_file(prepend), memory.add_observations | Art 14,15 |
-| `systemPatterns` | Architecture, RL rewards | Success/research | filesystem.edit_file(prepend), memory.create_entities | Art 14,17 |
-| `roadmap` | Strategic milestones | Planning/review | filesystem.edit_file | Art 14 |
-| `memory` | Knowledge graph (AegisKG) | Learning | memory.create_entities/relations, memory.add_observations | Art 10,42 |
+**UNIFIED METRICS SYNC**: ALL 8 schemas now have synchronized metrics at top (lines 3-9)
 
-**Cross-Schema Sync Protocol**:
-```
-1. progress.json: Update metrics{total_rl_score, tasks_completed, commits} FIRST
-2. activeContext.json: Copy metrics FROM progress.json (sync total_rl_score)
-3. All prepends happen at array [0] for optimal context window
+| Schema | Purpose | Metrics Sync | Update Trigger | MCP Tools | Article |
+|--------|---------|--------------|----------------|-----------|---------|  
+| `progress` | **SOURCE OF TRUTH** - RL ledger | **MASTER** (updates first) | Every task | math.evaluate, filesystem.edit_file(prepend) | Art 12,14 |
+| `activeContext` | Session state | ← FROM progress | Every action | filesystem.edit_file, time.get_current_time | Art 14 |
+| `scratchpad` | Priority queue | ← FROM progress | Task add/complete | filesystem.edit_file(prepend) | Art 14 |
+| `kanban` | Workflow board | ← FROM progress | Status change | filesystem.edit_file | Art 14 |
+| `mistakes` | Error patterns | ← FROM progress | Error occurs | filesystem.edit_file(prepend), memory.add_observations | Art 14,15 |
+| `systemPatterns` | Architecture | ← FROM progress | Success/research | filesystem.edit_file(prepend), memory.create_entities | Art 14,17 |
+| `roadmap` | Strategic plan | ← FROM progress | Planning/review | filesystem.edit_file | Art 14 |
+| `memory` | Knowledge graph | ← FROM progress | Learning | memory.create_entities/relations, memory.add_observations | Art 10,42 |
+
+**Cross-Schema Sync Protocol** (MANDATORY after every task):
+```json
+// Step 1: Update progress.json metrics FIRST (SOURCE OF TRUTH)
+{
+  "metrics": {
+    "total_rl_score": -7,
+    "tasks_completed": 35,
+    "tasks_failed": 0,
+    "commits": 6
+  }
+}
+
+// Step 2: Copy same metrics to ALL 7 other schemas
+// activeContext.json, scratchpad.json, kanban.json, mistakes.json,
+// systemPatterns.json, roadmap.json, memory.json ALL have identical metrics at top
 ```
 
-**Atomic Update**: Read schema definition → Read current file → edit_file(prepend) → Sync metrics → Validate → git.commit
+**Atomic Update Sequence**:
+1. Complete task → Calculate RL score
+2. **progress.json**: Update metrics{total_rl_score, tasks_completed, tasks_failed, commits} FIRST
+3. **ALL 7 schemas**: Copy exact same metrics from progress.json
+4. Update schema-specific content (prepend at [0] for arrays)
+5. Validate all 8 schemas → git.commit
+
+**Benefits**: Real-time sync, no drift, instant metrics visibility across all schemas, perfect for autonomous operations
 
 ## V. Reinforcement Learning System (Art 12)
 
