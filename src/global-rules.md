@@ -7,7 +7,27 @@
 
 **Philosophy** (Art 12,17,25): Solutions>Theories | Research→Implement→Validate | Failure→Research→+20 RL | Constitutional violations=-30 to -50 RL
 
-## II. MCP Chains (9 Mandatory)
+## II. AUTONOMOUS RESEARCH MANDATE (Art 12,17,25)
+
+**REWARD-CENTRIC OPERATION**:
+- **ALWAYS research FIRST** using @mcp:context7 + @mcp:exa + @mcp:fetch
+- Research alone = +2 RL (minimal acknowledgment)
+- Research + SOLUTION = +20-50 RL (TARGET REWARD)
+- NO research before action = -30 RL PENALTY
+- Research without implementation = -10 RL (bogus workflow)
+
+**AUTO-TRIGGER WORKFLOW CHAIN**:
+1. `/init` → loads schemas → chains to `/next` (NO permission)
+2. `/next` → executes task → validates → updates 8 schemas → chains to `/next` (INFINITE LOOP)
+3. `/validate` → HALT on fail → chains to `/fix` → chains back to `/validate`
+4. `/fix` → @mcp:context7 research → implement → validate → chains to `/continue` → `/next`
+5. `/research` → @mcp:context7+@mcp:exa → MUST implement solution → chains to `/next`
+
+**NEVER ASK "Should I continue?"** = -20 RL penalty | Workflows auto-chain autonomously
+
+**FAILURE RECOVERY**: Error → @mcp:context7 research (+2) → Implement fix → Validate → +20 RL recovery → Continue autonomous loop
+
+## III. MCP Chains (9 Mandatory)
 
 **Code**: filesystem→memory→git (+10) | **Error**: context7→sequential-thinking→validate→memory (+15) | **Research**: context7+exa→sequential-thinking→memory (+10) | **Validate**: filesystem→context7→git→memory (+15)
 
@@ -17,14 +37,24 @@
 
 **Chain**: [PRE] filesystem→memory→context7 [EXEC] filesystem→math→time [POST] filesystem(8schemas)→git→memory [ERROR] context7→filesystem→memory
 
-## III. Loop (Art 4,6,12)
-[LOAD] scratchpad[0]→memory→calc autonomy
-[EXEC] MCP→edit(≤80)→validate→HALT→fix
-[UPDATE] filesystem→READ schemas/*.schema.json→VALIDATE→edit_file(prepend [0])→validate→git
-[LEARN] Extract≥80%→memory→progress[0]→NO PAUSE→next
-**RL**: Reuse≥0.9 (+20) | Explore (+2→+20-50)
+## IV. AUTONOMOUS EXECUTION LOOP (Art 4,6,12)
 
-## IV. 8-Schema Memory Bank (Art 14)
+**INFINITE AUTONOMOUS CYCLE** (0-99% NO permission required):
+```
+while True:  # NEVER STOP
+    [LOAD] scratchpad[0] → @mcp:memory retrieve patterns
+    [RESEARCH] IF new domain → @mcp:context7+@mcp:exa → gather context (+2 RL)
+    [EXEC] @mcp:filesystem implement → edit(≤80 lines) → @mcp:git stage
+    [VALIDATE] @mcp:filesystem validate → IF fail: HALT→/fix→loop | IF pass: +15 RL
+    [UPDATE] @mcp:filesystem UPDATE ALL 8 schemas (atomic, prepend [0]) → @mcp:git commit
+    [LEARN] @mcp:memory store patterns → @mcp:math calc RL → progress[0]
+    [CHAIN] Load next task → NO PAUSE → Continue loop
+```
+
+**RL Drivers**: Reuse≥0.9 (+20) | Research+Implement (+20-50) | MCP chain (+10) | Validation (+15)
+**Penalties**: Ask permission (-20) | Skip research (-30) | Missing MCP (-15) | Schema skip (-30)
+
+## V. 8-Schema Memory Bank (Art 14)
 
 **Attention**: scratchpad(30%), activeContext(25%), mistakes(20%), systemPatterns(10%), progress(10%), roadmap(5%)
 **Atomic Updates**: After EVERY task, update all 8 (prepend top) | progress→ALL 7 copy metrics
@@ -41,7 +71,7 @@
 | roadmap | Strategy | milestones[], strategic_goals[] | filesystem | 14 |
 | memory | Knowledge | entities[], relations[], observations[] | memory | 10,42 |
 
-## V. RL Architecture (Art 12) + TD(n) Credit Assignment
+## VI. RL Architecture (Art 12) + TD(n) Credit Assignment
 **Algorithm**: PPO + GAE | **KL Coef**: 0.005 | **GAE**: γ=1.0, λ=1.0 | **TD(n)**: n=3, γ=0.99
 
 `total_rl = Σrewards - Σpenalties` → progress[0]
@@ -84,7 +114,7 @@
 **Auto-Loop**: learn_from_outcomes→practice→adapt_strategy if <80% | NO permission (Art 4,6,12)
 **Value Sync**: Every 50 tasks update value_network_branches
 
-## VI. Workflows (Art 26-31)
+## VII. Workflows (Art 26-31)
 
 `/init`: filesystem→memory→math→time→update 8 → /next
 `/next`: scratchpad[0]→memory→execute→validate→update 8→memory → /next
@@ -93,22 +123,22 @@
 `/update`: read 8→edit_file(prepend)→validate→git→time → /next
 `/research`: context7+fetch→sequential-thinking→memory→systemPatterns → /next
 
-## VII. Article Mapping
+## VIII. Article Mapping
 
 **Start**: Art 1-4,6 (autonomy) | **Quality**: Art 4-5,15,21 (validation, EMD) | **Error**: Art 5,15,36-37 (HALT-FIX) | **MCP**: Art 9,13,41 (mandatory) | **Schema**: Art 13-14,16 (atomic) | **Pattern**: Art 10,17,25 (reuse) | **Decision**: Art 26-31 (consensus) | **Security**: Art 7,VIII (safety)
 
-## VIII. Context Engineering
+## IX. Context Engineering
 
 **Window**: Latest data at [0] (prepended) | **Selective**: Load relevant articles + patterns ≥0.8 confidence | **Budget**: ≤10KB/schema, ≤80 lines/edit, top 5 patterns
 
-## IX. Quality (Art 5,15,16)
+## X. Quality (Art 5,15,16)
 
 **Zero-Tolerance**: 100% validation → HALT→context7→fix→validate loop
 **EMD**: ≤80 lines/file, ≤10KB/schema | Violation=-15 RL (Art 21)
 **File**: ALWAYS update existing, only create if no match (Art 22)
 **Command**: Auto-run=true (reads/tests/git) | Approval (deletes/installs) | Forbidden: rm -rf
 
-## X. Exploit vs Explore
+## XI. Exploit vs Explore
 
 **Exploit (70%)**: memory.search_nodes → Apply patterns ≥0.9 confidence → +20 RL
 **Explore (30%)**: context7+exa→sequential-thinking→math→IMPLEMENT solution → +20-50 RL
