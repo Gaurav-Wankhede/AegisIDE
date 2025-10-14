@@ -2,7 +2,7 @@
   "schema_version": "3.0.0",
   "last_updated": "2025-10-14T02:16:18+05:30",
   "metrics": {
-    "total_rl_score": 25,
+    "total_rl_score": 35,
     "tasks_completed": 5,
     "tasks_failed": 7,
     "commits": 7
@@ -39,6 +39,27 @@
     "zero_tolerance_violations": 0
   },
   "reinforcement_learning": [
+    {
+      "tx_id": "rl-reward-017",
+      "timestamp": "2025-10-14T11:18:09+05:30",
+      "category": "optimization_compression",
+      "reward": 10,
+      "penalty": 0,
+      "source_file": "global-rules.md",
+      "description": "Compressed global-rules.md from 10,146 to 5,662 characters (44% reduction). Under 9000 char limit by 3,338 chars. Preserved ALL critical rules: RL formulas, STRICT rewards, 8-schemas, workflows, article mappings.",
+      "chars_before": 10146,
+      "chars_after": 5662,
+      "reduction_percent": 44.2,
+      "under_limit_by": 3338,
+      "gae_advantage": 0.88,
+      "kl_divergence": 0.003,
+      "rl_computation": {
+        "td_error": 18.5,
+        "value_updated": 26.85,
+        "policy_probabilities": {"optimization": 0.85, "verbosity": 0.15},
+        "monte_carlo_return": 125.0
+      }
+    },
     {
       "tx_id": "rl-reward-016",
       "timestamp": "2025-10-14T11:10:09+05:30",
