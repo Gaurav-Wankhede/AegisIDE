@@ -20,7 +20,7 @@
 ## III. Loop (Art 4,6,12)
 [LOAD] scratchpad[0]→memory→calc autonomy
 [EXEC] MCP→edit(≤80)→validate→HALT→fix
-[UPDATE] schemas→edit_file(prepend)→validate→git
+[UPDATE] filesystem→READ schemas/*.schema.json→VALIDATE→edit_file(prepend [0])→validate→git
 [LEARN] Extract≥80%→memory→progress[0]→NO PAUSE→next
 **RL**: Reuse≥0.9 (+20) | Explore (+2→+20-50)
 
@@ -28,17 +28,18 @@
 
 **Attention**: scratchpad(30%), activeContext(25%), mistakes(20%), systemPatterns(10%), progress(10%), roadmap(5%)
 **Atomic Updates**: After EVERY task, update all 8 (prepend top) | progress→ALL 7 copy metrics
+**MANDATORY PRE-UPDATE**: filesystem→read schema.json→validate structure→THEN update | NO EXCEPTIONS
 
-| Schema | Purpose | MCP | Art |
-|---|---|---|---|
-| progress | RL ledger (MASTER) | math,filesystem | 12,14 |
-| activeContext | Session | filesystem,time | 14 |
-| scratchpad | Queue | filesystem | 14 |
-| kanban | Workflow (todo→in_progress→done→approved) | filesystem | 14,29,32 |
-| mistakes | Errors | filesystem,memory | 14,15 |
-| systemPatterns | Arch | filesystem,memory | 14,17 |
-| roadmap | Strategy | filesystem | 14 |
-| memory | Knowledge | memory | 10,42 |
+| Schema | Purpose | Key Fields | MCP | Art |
+|---|---|---|---|---|
+| progress | RL ledger (MASTER) | reinforcement_learning[], metrics{} | math,filesystem | 12,14 |
+| activeContext | Session | current_task{}, session_id | filesystem,time | 14 |
+| scratchpad | Queue | tasks[] (TOP-APPEND [0]) | filesystem | 14 |
+| kanban | Workflow | columns{todo[], in_progress[], done[]} | filesystem | 14,29,32 |
+| mistakes | Errors | error_patterns[] (TOP-APPEND [0]) | filesystem,memory | 14,15 |
+| systemPatterns | Arch | patterns{}, reusable_components{} | filesystem,memory | 14,17 |
+| roadmap | Strategy | milestones[], strategic_goals[] | filesystem | 14 |
+| memory | Knowledge | entities[], relations[], observations[] | memory | 10,42 |
 
 ## V. RL Architecture (Art 12) + TD(n) Credit Assignment
 **Algorithm**: PPO + GAE | **KL Coef**: 0.005 | **GAE**: γ=1.0, λ=1.0 | **TD(n)**: n=3, γ=0.99
@@ -73,7 +74,7 @@
 
 **Workflow**: Task→TD error→GAE→Update V→Store progress.json[0].rl_computation→Check KL>0.01→Softmax
 
-**Storage**: progress.json[0] (rl_computation, gae_advantage, kl_divergence) | value_network_branches | scratchpad.json (task_selection_policy)
+**Storage**: progress.reinforcement_learning[0] (tx_id, reward, gae_advantage, kl_divergence) | value_network_branches{} | rl_architecture{} | metrics{total_rl_score}
 
 **Value Branches**: task_success(30%), validation(25%), pattern_reuse(20%), mcp(15%), innovation(10%)
 **Ref Policy**: Update every 50 tasks OR KL>0.01
