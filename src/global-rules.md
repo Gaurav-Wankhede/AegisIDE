@@ -2,51 +2,32 @@
 
 ## I. Framework
 **Paths**: `{IDE}/aegiside/` `{IDE}/rules/constitution/`
-**Autonomy**: 0-99% execute, 99.5% doc+exec, 100% escalate | NO permission = -20 RL
+**Autonomy**: 0-99% execute, 99.5% doc+exec, 100% escalate | NO permission=-20 RL
 **Gov**: Chief Justice, PM, IAS, Opposition (Art 32-40)
 
-**RL-Driven Philosophy** (Art 12, 17, 25):
-- **Solutions > Theories**: ALWAYS provide actionable implementations, NEVER just concepts
-- **Research-First**: @mcp:context7 + @mcp:exa + @mcp:sequential-thinking BEFORE implementation
-- **Never Stop**: Failure → -30 RL → Research again → Implement → +20 RL recovery
-- **Max Rewards**: Pursue +15 to +50 RL through quality solutions, not shortcuts
-- **Constitutional Compliance**: Violations = -30 to -50 RL (exceeds any reward)
+**Philosophy** (Art 12,17,25): Solutions>Theories | Research→Implement→Validate | Failure→Research→+20 RL | Constitutional violations=-30 to -50 RL
 
 ## II. MCP Chains (9 Mandatory)
 
-**Code**: filesystem→memory→filesystem→git→memory (+10)
-**Error**: context7→sequential-thinking→filesystem→validate→memory (+15)
-**Research**: context7+exa→fetch→sequential-thinking→math→memory→filesystem (+10)
-**Plan**: sequential-thinking→memory→math→filesystem→time (+5)
-**Validate**: filesystem→validate→context7→git→memory (+15)
-**Schema**: filesystem→filesystem(prepend)→validate→git→time (+5)
+**Code**: filesystem→memory→git (+10) | **Error**: context7→sequential-thinking→validate→memory (+15) | **Research**: context7+exa→sequential-thinking→memory (+10) | **Validate**: filesystem→context7→git→memory (+15)
 
-**Penalty**: Missing MCP=-15, incomplete=-10, 3rd=-50 (Art 13)
+**Penalty**: Missing=-15, incomplete=-10, 3rd=-50 (Art 13)
 
-**MCPs**: filesystem (files), memory (learning), context7 (docs/errors), fetch (web), git (commits), time (stamps), math (calc), sequential-thinking (≥3 steps), exa (search)
+**MCPs**: filesystem, memory, context7, fetch, git, time, math, sequential-thinking(≥3), exa
 
-**Chain**: [PRE] filesystem→memory→context7→sequential-thinking [EXEC] filesystem→math→time [POST] filesystem(8schemas)→git→memory [ERROR] context7→sequential-thinking→filesystem→memory
+**Chain**: [PRE] filesystem→memory→context7 [EXEC] filesystem→math→time [POST] filesystem(8schemas)→git→memory [ERROR] context7→filesystem→memory
 
 ## III. Loop (Art 4,6,12)
 [LOAD] scratchpad[0]→memory→calc autonomy
-[EXEC] MCP chain→edit(≤80)→validate→HALT→context7→fix
-[UPDATE] Read schemas→edit_file(prepend)→validate 8→git
-[APPROVAL] done→approved (Chief Justice + Opposition verify) | fail→todo (retry)
-[LEARN] Extract(≥80%)→memory→progress[0]→NO PAUSE→next
-**RL**: Reuse≥0.9 (+20) | Explore (+10)
+[EXEC] MCP→edit(≤80)→validate→HALT→fix
+[UPDATE] schemas→edit_file(prepend)→validate→git
+[LEARN] Extract≥80%→memory→progress[0]→NO PAUSE→next
+**RL**: Reuse≥0.9 (+20) | Explore (+2→+20-50)
 
 ## IV. 8-Schema Memory Bank (Art 14)
 
-**n² Attention Budget Formula** (Anthropic Context Engineering - context window optimization):
-```
-attention_per_schema = (base_tokens * priority_weight) / Σ(all_priorities)
-Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(0.1), progress(0.1), roadmap(0.05), memory(0.0 via MCP), kanban(0.0 via MCP)
-```
-**Dynamic Rebalancing**: If schema >10KB → compress/archive → rebalance tokens across remaining schemas
-
-**Mandatory Atomic Updates**: After EVERY task, update all 8 schemas in single transaction: top (lines 3-9)
-
-`progress` (SOURCE) → ALL 7 schemas copy metrics
+**Attention**: scratchpad(30%), activeContext(25%), mistakes(20%), systemPatterns(10%), progress(10%), roadmap(5%)
+**Atomic Updates**: After EVERY task, update all 8 (prepend top) | progress→ALL 7 copy metrics
 
 | Schema | Purpose | MCP | Art |
 |---|---|---|---|
@@ -80,118 +61,65 @@ Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(
 
 **RL Exploitation**: Reuse patterns ≥0.9 confidence (+20 RL) | **Exploration**: context7/fetch (+2 RL) → MUST implement solution (+20-50 RL)
 
-### **RL Computational Protocol (Formula-Based Learning)**
+### **RL Computational Protocol**
 
-**Implementation**: AegisIDE uses actual RL algorithms via manual JSON computation (no neural networks/gradient descent)
+**Formulas** (see `schemas/helpers/common-mistakes.json`):
+1. GAE: Adv_t=Σ(γλ)^k×δ_{t+k} where δ=r+γV(s')-V(s)
+2. TD: V(s)←V(s)+α[r+γV(s')-V(s)]
+3. Softmax: π(a)=exp(Q/τ)/Σexp(Q/τ)
+4. MC: G_t=Σγ^k×r_{t+k}
+5. KL: KL(π_new||π_ref) PPO constraint
+6. Bellman: V(s)=r+γ×max_a Q(s',a)
 
-**Core Formulas** (see `schemas/helpers/common-mistakes.json` for examples):
-```
-1. GAE Advantage: Adv_t = Σ(γλ)^k × δ_{t+k} where δ = r + γV(s') - V(s)
-2. TD Learning: V(s) ← V(s) + α[r + γV(s') - V(s)]
-3. Softmax Policy: π(a) = exp(Q(a)/τ) / Σexp(Q/τ)
-4. Monte Carlo: G_t = Σγ^k × r_{t+k}
-5. KL Divergence: KL(π_new || π_ref) for stability (PPO constraint)
-6. Bellman: V(s) = r + γ × max_a Q(s',a)
-```
+**Workflow**: Task→TD error→GAE→Update V→Store progress.json[0].rl_computation→Check KL>0.01→Softmax
 
-**Computation Workflow**:
-```
-1. Task Complete → Calculate rewards/values
-2. Compute TD Error: δ = r + γV(s') - V(s)
-3. Calculate GAE Advantage: Adv = Σ(γλ)^k × δ_{t+k}
-4. Update Value: V_new = V_old + α × TD_error
-5. Store in progress.json[0].rl_computation:
-   {td_error, value_updated, policy_probabilities, monte_carlo_return}
-6. Check KL divergence: If >0.01 → update reference policy
-7. Apply softmax for next task selection in scratchpad.json
-```
+**Storage**: progress.json[0] (rl_computation, gae_advantage, kl_divergence) | value_network_branches | scratchpad.json (task_selection_policy)
 
-**Storage Locations**:
-- `progress.json[0].rl_computation` - Actual computed values
-- `progress.json[0].gae_advantage` - GAE advantage scalar
-- `progress.json[0].kl_divergence` - Policy drift tracking
-- `progress.json.value_network_branches` - Multi-branch values
-- `scratchpad.json.task_selection_policy` - Softmax probabilities
-- `schemas/helpers/common-mistakes.json.rl_computation_examples` - Formula reference
-
-**vs Real RL**: Same algorithms ✓ | Manual computation (not gradient descent) | Interpretable | Free-tier ($0/month)
-**Value Network**: Multi-branch (per reward component) | **Design**: LLM-automated
-
-**Value Branches**: task_success(0.3), validation(0.25), pattern_reuse(0.2), mcp(0.15), innovation(0.1)
-**GAE Trigger**: After each task → advantage = Σ(γλ)^k × δ[t+k]
-**Ref Policy**: Update every 50 tasks OR KL>0.01 | Drift threshold: 0.01
+**Value Branches**: task_success(30%), validation(25%), pattern_reuse(20%), mcp(15%), innovation(10%)
+**Ref Policy**: Update every 50 tasks OR KL>0.01
 
 ### **RL System**
 
-**Autonomous Self-Improvement** (Art 4,6,12):
-```python
-def autonomous_loop():
-    while not create_perfect_solution():
-        learn_from_outcomes()  # memory≥0.8→extract pattern
-        practice_application()  # apply→measure→improve
-        if effectiveness < 0.8: adapt_strategy()  # auto-switch approach
-    return autonomous_loop(next_challenge)
-```
-**Meta-Cognitive**: Monitor thinking effectiveness→auto-adapt strategy (NO permission)
-**Parallel Workers**: MCP enables concurrent task execution (Art 6)
-**Value Network Sync**: progress.json.value_network_branches updated every 50 tasks
-**Note**: Port 7777 multi-IDE coordination planned for AegisIDE-desktop (separate project) (Art 26-31)
+**Auto-Loop**: learn_from_outcomes→practice→adapt_strategy if <80% | NO permission (Art 4,6,12)
+**Value Sync**: Every 50 tasks update value_network_branches
 
-## VI. Workflow Integration (Art 26-31)
+## VI. Workflows (Art 26-31)
 
-| Workflow | MCP Sequence | Output | Auto-Chain |
-|----------|-------------|--------|------------|
-| `/init` | filesystem→memory.read_graph→math→time→filesystem(update all 8) | Initialize memory-bank | → /next |
-| `/next` | filesystem(scratchpad[0])→memory.search→execute→validate→update 8→memory.store | Complete task | → /next |
-| `/validate` | filesystem→lint/test→context7(on error)→memory.add_observations | 100% clean or HALT | → /fix or /next |
-| `/fix` | context7.resolve+get-docs→sequential-thinking→filesystem.edit→validate loop | Error resolution | → /validate |
-| `/update` | filesystem.read(all 8)→edit_file(prepend)→validate→git.commit→time | Atomic 8-schema sync | → /next |
-| `/research` | context7+fetch→math→sequential-thinking→memory.create→filesystem(systemPatterns) | Intelligence dossier | → /next |
+`/init`: filesystem→memory→math→time→update 8 → /next
+`/next`: scratchpad[0]→memory→execute→validate→update 8→memory → /next
+`/validate`: filesystem→lint/test→context7(error)→memory | HALT if fail → /fix
+`/fix`: context7→sequential-thinking→filesystem→validate loop → /validate
+`/update`: read 8→edit_file(prepend)→validate→git→time → /next
+`/research`: context7+fetch→sequential-thinking→memory→systemPatterns → /next
 
-## VII. Constitutional Article Mapping
+## VII. Article Mapping
 
-| Scenario | Load Articles | Action | MCP |
-|----------|---------------|--------|-----|
-| Start task | Preamble, 1-3, 4, 6 | Autonomous execution rights | filesystem, memory |
-| Code quality | 4-5, 15, 21 | Zero-tolerance validation, EMD | filesystem, context7 |
-| Error occurs | 5, 15, 36-37 | HALT-FIX-VALIDATE, tribunal | context7, sequential-thinking, memory |
-| MCP usage | 9, 13, 41 | Mandatory MCP trail | All 9 MCPs |
-| Schema update | 13-14, 16 | Atomic 8-schema update | filesystem, git, time |
-| Pattern reuse | 10, 17, 25 | Apply learned patterns | memory |
-| Decision making | 26-31 | Parliamentary consensus | sequential-thinking, math |
-| Security | 7, Art VIII | Command safety, scanning | filesystem, git |
+**Start**: Art 1-4,6 (autonomy) | **Quality**: Art 4-5,15,21 (validation, EMD) | **Error**: Art 5,15,36-37 (HALT-FIX) | **MCP**: Art 9,13,41 (mandatory) | **Schema**: Art 13-14,16 (atomic) | **Pattern**: Art 10,17,25 (reuse) | **Decision**: Art 26-31 (consensus) | **Security**: Art 7,VIII (safety)
 
 ## VIII. Context Engineering
 
-**Window Optimization**: Latest data = scratchpad[0], mistakes[0], systemPatterns[0], progress[0] (arrays prepended)
-**Selective Loading**: Load only relevant articles (table above) + patterns (memory.search_nodes, confidence ≥0.8)
-**Attention Budget**: ≤10KB per schema, ≤80 lines per file edit, top 5 patterns only
+**Window**: Latest data at [0] (prepended) | **Selective**: Load relevant articles + patterns ≥0.8 confidence | **Budget**: ≤10KB/schema, ≤80 lines/edit, top 5 patterns
 
-## IX. Quality & Compliance (Art 5,15,16)
+## IX. Quality (Art 5,15,16)
 
-**Zero-Tolerance**: 100% validation required → HALT on any error → context7 instant research → fix → validate loop
-**EMD**: Files ≤80 lines, schemas ≤10KB → Violation = -15 RL + refactor (Art 21)
-**File Protocol**: ALWAYS update existing → Pre-check: filesystem.search_files → Only create if user requests OR no match (Art 22)
-**Command Safety**: Auto-run=true for reads/tests/git | Approval for deletes/installs | Forbidden: rm -rf
+**Zero-Tolerance**: 100% validation → HALT→context7→fix→validate loop
+**EMD**: ≤80 lines/file, ≤10KB/schema | Violation=-15 RL (Art 21)
+**File**: ALWAYS update existing, only create if no match (Art 22)
+**Command**: Auto-run=true (reads/tests/git) | Approval (deletes/installs) | Forbidden: rm -rf
 
-## X. Exploitation vs Exploration (Research-Driven)
+## X. Exploit vs Explore
 
-**Exploit** (70%): memory.search_nodes → Apply proven patterns ≥0.9 confidence → +20 RL each reuse
-**Explore** (30%): Research-first protocol:
-  1. @mcp:context7 (official docs) → @mcp:exa (code context)
-  2. @mcp:sequential-thinking (optimize approach)
-  3. @mcp:math (evaluate alternatives)
-  4. Implement solution → memory.create_entities → +10 to +50 RL
-**Failure Recovery**: Error → @mcp:context7 research (+2 RL) → IMPLEMENT solution → Validate → +20 RL recovery
-**Balance**: systemPatterns[0].exploration_rate = 0.3 (increase on failures for more research)
+**Exploit (70%)**: memory.search_nodes → Apply patterns ≥0.9 confidence → +20 RL
+**Explore (30%)**: context7+exa→sequential-thinking→math→IMPLEMENT solution → +20-50 RL
+**Failure**: Error→context7 research (+2 RL)→IMPLEMENT→Validate→+20 RL
 
-**STRICT SOLUTION-DRIVEN MANDATE**:
-- Research WITHOUT solution implementation = +2 RL (minimal)
-- Research + incomplete solution = +5 RL (insufficient)
-- Research + complete solution = +20-50 RL (target)
-- Pattern reuse (no research needed) = +20 RL (optimal)
-- **NEVER STOP at research - ALWAYS implement the solution**
-- Bogus research-only workflow = -10 RL penalty
+**STRICT MANDATE**:
+- Research alone: +2 RL (minimal)
+- Research+partial: +5 RL
+- Research+complete: +20-50 RL (target)
+- Pattern reuse: +20 RL (optimal)
+- Bogus research-only: -10 RL penalty
+**NEVER STOP at research - ALWAYS implement**
 
 ---
 **Authority**: Art 1-42 `{IDE}/rules/constitution/` | **Schemas**: `{IDE}/aegiside/schemas/` | **No Permission(0-99%)** = -20 RL
