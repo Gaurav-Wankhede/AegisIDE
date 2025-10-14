@@ -43,13 +43,20 @@ location: {IDE}/workflow/research.md
     "performance_score": 85, "rl_reward": 10, "timestamp": "..."}
    ```
 2. **Dossier Storage**: Prepend to `systemPatterns.json`[0] with full analysis
-3. **RL Scoring & Computation**:
+3. **RL Scoring & Computation (STRICT - Solution Required)**:
    - Calculate: TD_error for research value, GAE_adv for exploration bonus
    - Update: V(exploration_branch) via Bellman backup
-   - Complete with sources → +10 RL → `progress.json`[0] with rl_computation
+   - **Research alone → +2 RL** (minimal, just for effort)
+   - **Research + partial solution → +5 RL**
+   - **Research + complete solution → +20-50 RL** (target reward)
    - Unverified sources → -15 RL → `mistakes.json`[0]
+   - Research without implementation → -10 RL bogus penalty
 4. **Link to Kanban**: Attach references to relevant `kanban.json` tasks
-5. **Queue Work**: IF implementation needed → Prepend to `scratchpad.json`[0]
+5. **MANDATORY: Implement Solution**:
+   - Research MUST lead to actual implementation
+   - Create task in `scratchpad.json`[0] AND execute immediately
+   - No stopping at research phase (bogus workflow)
+   - Solution implementation = where real RL rewards come from
 
 ## Exit & Auto-Chain
 

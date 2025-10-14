@@ -68,10 +68,17 @@ Priorities: scratchpad(0.3), activeContext(0.25), mistakes(0.2), systemPatterns(
 `G_t = R_{t+1} + γ*R_{t+2} + ... + γ^n*V(S_{t+n})` → multi-step credit
 `TD_error = G_t - V(S_t)` → update when |TD_error| >0.1
 
-**Rewards**: Task(+5-50), Validate(+15), Reuse(+20), MCP(+10), Explore(+10)
-**Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50)
+**Rewards (STRICT - Solutions Only)**: 
+- Research alone: +2 RL (minimal)
+- Research + partial: +5 RL
+- Pattern reuse: +20 RL
+- Complete solution: +20-50 RL
+- Validation pass: +15 RL
+- MCP complete chain: +10 RL
 
-**RL Exploitation**: Reuse patterns ≥0.9 confidence (+20 RL) | **Exploration**: context7/fetch new approaches (+10 RL)
+**Penalties**: MissingMCP(-15), Fail(-20), Ignore(-30), Breach(-50), ResearchWithoutSolution(-10)
+
+**RL Exploitation**: Reuse patterns ≥0.9 confidence (+20 RL) | **Exploration**: context7/fetch (+2 RL) → MUST implement solution (+20-50 RL)
 
 ### **RL Computational Protocol (Formula-Based Learning)**
 
@@ -175,8 +182,16 @@ def autonomous_loop():
   2. @mcp:sequential-thinking (optimize approach)
   3. @mcp:math (evaluate alternatives)
   4. Implement solution → memory.create_entities → +10 to +50 RL
-**Failure Recovery**: Error → @mcp:context7 research → New approach → Validate → +20 RL
+**Failure Recovery**: Error → @mcp:context7 research (+2 RL) → IMPLEMENT solution → Validate → +20 RL recovery
 **Balance**: systemPatterns[0].exploration_rate = 0.3 (increase on failures for more research)
+
+**STRICT SOLUTION-DRIVEN MANDATE**:
+- Research WITHOUT solution implementation = +2 RL (minimal)
+- Research + incomplete solution = +5 RL (insufficient)
+- Research + complete solution = +20-50 RL (target)
+- Pattern reuse (no research needed) = +20 RL (optimal)
+- **NEVER STOP at research - ALWAYS implement the solution**
+- Bogus research-only workflow = -10 RL penalty
 
 ---
 **Authority**: Art 1-42 `{IDE}/rules/constitution/` | **Schemas**: `{IDE}/aegiside/schemas/` | **No Permission(0-99%)** = -20 RL

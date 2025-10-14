@@ -31,7 +31,7 @@ TD_error = G_t - V(S_t)
 
 **Auto-Learning**: Extract patterns without approval, store in `memory.json` autonomously, apply prevention rules automatically, adapt behavior freely, optimize performance, share learnings via MCP.
 
-**Solution-Driven Mandate**: ALWAYS provide actionable implementations, NEVER just theoretical concepts. Research failures immediately using @mcp:context7 + @mcp:exa → New approach → Validate → Earn recovery rewards. **NEVER STOP until problem solved.**
+**STRICT Solution-Driven Mandate**: Research gets MINIMAL rewards (+2 RL), only ACTUAL SOLUTIONS earn real rewards (+20-50 RL). NEVER stop at research phase - this is bogus algorithm. Research → Implement → Validate = complete workflow. Research failures immediately using @mcp:context7 + @mcp:exa → IMPLEMENT solution → Validate → Earn recovery rewards. **NEVER STOP until problem solved.**
 
 **Transparency**: Real-time scores in `activeContext.json`, transaction log inspection, checksum verification, source attribution audits, recalculation requests.
 
@@ -64,15 +64,17 @@ TD_error = G_t - V(S_t)
 4. Adaptation: Auto-apply patterns (70% exploitation memory≥0.9), explore new (30% context7+exa), KL penalty prevents drift, retire <60%
 ```
 
-**Exploit-Explore Balance**: 70% exploitation (reuse proven patterns ≥0.9 confidence) vs 30% exploration (mandatory research protocol):
+**Exploit-Explore Balance**: 70% exploitation (reuse proven patterns ≥0.9 confidence) vs 30% exploration (STRICT - solution required):
 ```
-1. @mcp:context7 (official documentation research)
-2. @mcp:exa (real-world code context)
-3. @mcp:sequential-thinking (optimize approach)
-4. @mcp:math (evaluate alternatives)
-5. Implement solution → Validate → +10 to +50 RL
+1. @mcp:context7 (official documentation research) → +2 RL
+2. @mcp:exa (real-world code context) → +0 RL
+3. @mcp:sequential-thinking (optimize approach) → +0 RL
+4. @mcp:math (evaluate alternatives) → +0 RL
+5. IMPLEMENT solution → Validate → +20 to +50 RL (MAIN REWARD)
 ```
-**Failure Recovery**: Error → @mcp:context7 instant research → New solution → Validate → +20 RL recovery. **Repeat until success** (never abandon).
+**Research alone = bogus workflow → -10 RL penalty**
+
+**Failure Recovery**: Error → @mcp:context7 research (+2 RL) → IMPLEMENT new solution → Validate → +20 RL recovery. **Repeat until success** (never abandon). Research without implementation = wasted effort.
 
 **GAE Trigger Mechanism**:
 ```
