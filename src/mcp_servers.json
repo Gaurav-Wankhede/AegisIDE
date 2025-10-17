@@ -18,7 +18,7 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/mnt/windows_d/Gauravs-Files-and-Folders/"
+        "${HOME}/Projects"
       ]
     },
     "git": {
@@ -34,7 +34,7 @@
         "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "/home/gaurav-wankhede/.codeium/windsurf-next/memory.json"
+        "MEMORY_FILE_PATH": "${HOME}/.windsurf/memory.json"
       }
     },
     "sequential-thinking": {

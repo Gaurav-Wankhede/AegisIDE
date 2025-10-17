@@ -82,34 +82,51 @@ git clone https://github.com/your-username/AegisIDE.git
 cd AegisIDE
 ```
 
-### Step 2: Connect to Your Development Tool
-**Choose your preferred coding environment:**
+### Step 2: Quick Setup (Automated)
+**Run the setup script:**
 
 ```bash
-# For Windsurf IDE
-ln -s AegisIDE/src/.aegiside .windsurf/aegiside
+# Automated setup (detects your IDE)
+./setup.sh
 
-# For Cursor IDE  
-ln -s AegisIDE/src/.aegiside .cursor/aegiside
+# Or manual installation for specific IDE:
+# Windsurf
+cp -r src/.aegiside ~/.windsurf/aegiside
+cp -r src/rules ~/.windsurf/rules
+cp -r src/workflow ~/.windsurf/workflow
 
-# For VS Code
-ln -s AegisIDE/src/.aegiside .vscode/aegiside
+# Cursor
+cp -r src/.aegiside ~/.cursor/aegiside
+cp -r src/rules ~/.cursor/rules
+cp -r src/workflow ~/.cursor/workflow
 
-# Works with 20+ other tools too!
+# VS Code
+cp -r src/.aegiside ~/.vscode/aegiside
+cp -r src/rules ~/.vscode/rules
+cp -r src/workflow ~/.vscode/workflow
 ```
 
-### Step 3: Activate AI Intelligence
-```bash
-# Copy the AI system prompt
-cat src/global-rules.md
-# → Paste into your IDE's AI settings
+**⚠️ Important:** Use `cp` (copy) NOT `ln -s` (symlink) to avoid cross-project contamination.
 
-# Optional: Enhanced tool integration
-cat src/mcp_servers.json
-# → Paste into your IDE's MCP configuration
+### Step 3: Configure & Activate
+```bash
+# 1. Configure MCP servers (edit paths for your machine)
+cp src/mcp_servers.json ~/mcp_servers.json
+# Edit ~/mcp_servers.json: Replace ${HOME}/Projects with your path
+
+# 2. Add MCP config to your IDE
+# Windsurf: Settings → MCP Servers → Import ~/mcp_servers.json
+# Cursor: Settings → Extensions → MCP → Import configuration
+# VS Code: Cline settings → MCP configuration
+
+# 3. Start AI and initialize framework
+# Type in AI chat: /init
+# AI will auto-generate 8 memory-bank files
 ```
 
 🎉 **That's it!** Your AI assistant is now a professional development team with persistent memory and autonomous capabilities.
+
+📖 **For detailed setup:** See [INSTALLATION.md](INSTALLATION.md)
 
 ## 🧠 How AegisIDE Works
 
