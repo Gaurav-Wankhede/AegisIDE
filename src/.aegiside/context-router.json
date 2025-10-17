@@ -2,12 +2,25 @@
   "meta_version": "1.0.0",
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
   "system_paths": {
-    "schemas": "{IDE}/aegiside/schemas/",
-    "helpers": "{IDE}/aegiside/schemas/helpers/",
+    "root": "{IDE}/.aegiside/",
+    "schemas": "{IDE}/.aegiside/schemas/",
+    "helpers": "{IDE}/.aegiside/schemas/helpers/",
     "constitution": "{IDE}/rules/constitution/",
+    "laws": "{IDE}/rules/laws/",
     "workflows": "{IDE}/workflow/",
-    "memory_bank": "{IDE}/aegiside/memory-bank/"
+    "memory_bank": "{IDE}/.aegiside/memory-bank/",
+    "mcp_config": "~/.codeium/windsurf-next/mcp_config.json"
   },
+  "memory_bank_files": [
+    "activeContext.json",
+    "scratchpad.json",
+    "kanban.json",
+    "mistakes.json",
+    "systemPatterns.json",
+    "progress.json",
+    "roadmap.json",
+    "memory.json"
+  ],
   "schema_files": [
     "activeContext.schema.json",
     "scratchpad.schema.json",
@@ -24,6 +37,27 @@
     "tool_patterns": "tool-usage-patterns.json",
     "constitutional_governance": "constitutional-governance.json",
     "schema_evolution": "schema-evolution.json"
+  },
+  "workflow_files": [
+    "bootstrap.md",
+    "continue.md",
+    "fix.md",
+    "init.md",
+    "memory-status.md",
+    "next.md",
+    "optimize.md",
+    "oversight-checks-and-balances.md",
+    "research.md",
+    "status.md",
+    "update.md",
+    "validate.md"
+  ],
+  "law_files": {
+    "emd_compliance": "emd-architecture.md",
+    "anti_duplication": "anti-duplication.md",
+    "mcp_mandate": "mcp-mandatory-usage.md",
+    "zero_tolerance": "zero-tolerance-validation.md",
+    "rl_learning": "reinforcement-learning.md"
   },
   "constitutional_structure": {
     "01-preamble": {"file": "preamble.md", "articles": 0},
@@ -202,12 +236,20 @@
     }
   },
   "rl_calculation": {
+    "central_ledger": "{IDE}/.aegiside/memory-bank/progress.json",
+    "formula_patterns": {
+      "consensus": "eval(f'({exec} * 0.3) + ({admin} * 0.3) + ({opp} * 0.3) + ({judicial} * 0.1)')",
+      "compliance": "eval(f'({structural}/25 + {procedural}/25 + {quality}/25 + {learning}/25) * 100')",
+      "autonomy": "min(100, base_autonomy + (success_rate * 10) - (violations * 5))",
+      "total_rl": "sum([tx['reward'] for tx in progress['rl_transactions']])"
+    },
     "rewards": {
       "task_completed": {"min": 20, "max": 50},
       "validation_passed": 15,
       "pattern_reused": 20,
       "mcp_chain_complete": 10,
-      "high_quality_code": 10
+      "high_quality_code": 10,
+      "research_with_solution": 30
     },
     "penalties": {
       "missing_mcp": -15,
@@ -215,12 +257,19 @@
       "ask_permission_0_99": -20,
       "research_without_implementation": -10,
       "validation_failure": -30,
-      "repeated_error_3rd": -50
+      "repeated_error_3rd": -50,
+      "duplicate_file_creation": -20
     },
     "exploit_explore": {
       "exploit_ratio": 0.7,
       "explore_ratio": 0.3,
       "pattern_confidence_threshold": 0.9
+    },
+    "sources": {
+      "mistakes.json": "penalties",
+      "systemPatterns.json": "rewards",
+      "activeContext.json": "mcp_rewards",
+      "memory.json": "pattern_reuse_rewards"
     }
   },
   "execution_rules": {
@@ -230,9 +279,26 @@
     "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "execute_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
   },
   "mcp_integration": {
-    "config_file": "{IDE}/mcp_servers.json",
-    "mandatory_servers": ["filesystem", "memory", "context7", "fetch", "git", "time", "math", "sequential-thinking", "exa"],
-    "usage_pattern_file": "helpers/tool-usage-patterns.json"
+    "global_config": "~/.codeium/windsurf-next/mcp_config.json",
+    "project_template": "{IDE}/mcp_servers.json",
+    "always_active": ["filesystem", "json-jq", "sequential-thinking", "memory", "git"],
+    "on_demand": {
+      "context7": ["error_detected", "new_feature", "library_integration"],
+      "exa": ["research_task", "code_examples"],
+      "fetch": ["external_data", "benchmarks"],
+      "time": ["timestamp_required"],
+      "math": ["complex_calculation"]
+    },
+    "eliminated": {
+      "time": "use terminal: date '+%Y-%m-%dT%H:%M:%S%z'",
+      "math": "use Python: eval(formula)"
+    },
+    "usage_pattern_file": "helpers/tool-usage-patterns.json",
+    "query_patterns": {
+      "router": "@mcp:json-jq query '$.intent_mapping.{intent}' from 'context-router.json'",
+      "memory_bank": "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
+      "schemas": "@mcp:filesystem read {IDE}/.aegiside/schemas/{schema_name}"
+    }
   },
   "atomic_update_chain": {
     "description": "8-schema atomic update with cross-file validation",
