@@ -18,7 +18,10 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "${HOME}/Projects"
+        "/mnt/windows_d/Gauravs-Files-and-Folders/"
+      ],
+      "disabledTools": [
+        "write_file"
       ]
     },
     "git": {
@@ -34,7 +37,7 @@
         "@modelcontextprotocol/server-memory"
       ],
       "env": {
-        "MEMORY_FILE_PATH": "${HOME}/.windsurf/memory.json"
+        "MEMORY_FILE_PATH": "/home/gaurav-wankhede/.codeium/windsurf-next/memory.json"
       }
     },
     "sequential-thinking": {
@@ -67,13 +70,16 @@
       "env": {},
       "disabled": false
     },
-    "json-query": {
-      "command": "npx",
+    "Shuttle": {
+      "command": "shuttle",
       "args": [
-        "-y",
-        "@gongrzhe/server-json-mcp@1.0.3"
-      ],
-      "disabled": false
+        "mcp",
+        "start"
+      ]
+    },
+    "json-jq": {
+      "command": "npx",
+      "args": ["-y", "@berrydev-ai/json-mcp-server"]
     }
   }
 }
