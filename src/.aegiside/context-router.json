@@ -243,11 +243,12 @@
     }
   },
   "mcp_integration": {
-    "core_mcps": 7,
+    "core_mcps": 8,
     "always_active": [
       "@mcp:sequential-thinking (deep reasoning ≥3 steps - ALWAYS)",
       "@mcp:memory (knowledge graph operations)",
-      "@mcp:json-jq (READ large JSON files only)"
+      "@mcp:json-jq (READ large JSON files only)",
+      "@mcp:git (version control - autonomous commits)"
     ],
     "on_demand": {
       "research": ["@mcp:context7 (official docs)", "@mcp:exa (research papers)", "@mcp:fetch (web scraping)"],
@@ -255,7 +256,6 @@
     },
     "replaced_by_cli": {
       "filesystem": "jq, sponge, glow, cat (100-267x faster)",
-      "git": "git CLI direct",
       "time": "date '+%Y-%m-%dT%H:%M:%S%z'",
       "math": "python3 -c 'calculation'"
     },
@@ -266,6 +266,7 @@
       "fetch": "Web scraping, API calls (NOT piping to shell)",
       "memory": "Create entities, relations, query graph",
       "json_jq": "READ large JSON (>10KB) only",
+      "git": "Autonomous commits (SafeToAutoRun=true)",
       "Shuttle": "Deploy Rust backend only"
     },
     "mcp_config_location": "/home/gaurav-wankhede/.codeium/windsurf-next/mcp_config.json"
