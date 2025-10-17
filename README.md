@@ -3,7 +3,7 @@
 > **Transform any AI coding assistant into a smart, autonomous development team that remembers everything and works independently.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.1.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](CHANGELOG.md)
 [![Works with 20+ IDEs](https://img.shields.io/badge/IDEs-20%2B-success)](src/.aegiside/README.md)
 [![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
 
