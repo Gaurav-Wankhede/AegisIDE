@@ -1,0 +1,28 @@
+{
+  "meta_version": "1.0.0",
+  "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router",
+  "intent_mapping": {
+    "error": {"workflows": ["/workflow/fix.md"], "articles": [5, 15], "priority": 1},
+    "bug": {"workflows": ["/workflow/fix.md"], "articles": [5, 15], "priority": 1},
+    "feature": {"workflows": ["/workflow/research.md", "/workflow/next.md"], "articles": [4, 17], "priority": 2},
+    "implement": {"workflows": ["/workflow/next.md"], "articles": [4, 6], "priority": 2},
+    "validate": {"workflows": ["/workflow/validate.md"], "articles": [5, 15], "priority": 1},
+    "test": {"workflows": ["/workflow/validate.md"], "articles": [5, 15], "priority": 1},
+    "optimize": {"workflows": ["/workflow/optimize.md"], "articles": [20, 25], "priority": 3},
+    "research": {"workflows": ["/workflow/research.md"], "articles": [23, 25], "priority": 2},
+    "status": {"workflows": ["/workflow/status.md"], "articles": [16], "priority": 3},
+    "init": {"workflows": ["/workflow/init.md"], "articles": [1, 2, 3], "priority": 1}
+  },
+  "auto_triggers": {
+    "session_start": ["/workflow/init.md", "articles:1-12"],
+    "every_5_ops": ["memory_anchor", "activeContext.summary"],
+    "task_complete": ["summary_generation", "rl_scoring"],
+    "error_detected": ["/workflow/fix.md", "articles:5,15"]
+  },
+  "core_rules": {
+    "autonomy": "0-99% auto",
+    "memory_anchor": "every_5_ops",
+    "summary_only": "last_10_tasks",
+    "no_ask": "unless_high_risk"
+  }
+}
