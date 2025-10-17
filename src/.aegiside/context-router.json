@@ -1,28 +1,123 @@
 {
   "meta_version": "1.0.0",
-  "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router",
+  "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Dynamic Execution Engine",
+  "nlu_patterns": {
+    "error": ["error", "bug", "broken", "failing", "exception", "crash", "issue"],
+    "feature": ["add", "create", "build", "implement", "new", "feature", "develop"],
+    "validate": ["test", "check", "validate", "verify", "ensure", "confirm"],
+    "optimize": ["slow", "optimize", "faster", "performance", "speed", "improve"],
+    "status": ["status", "health", "progress", "state", "report", "summary"],
+    "research": ["how", "what", "why", "explain", "research", "learn", "understand"]
+  },
   "intent_mapping": {
-    "error": {"workflows": ["/workflow/fix.md"], "articles": [5, 15], "priority": 1},
-    "bug": {"workflows": ["/workflow/fix.md"], "articles": [5, 15], "priority": 1},
-    "feature": {"workflows": ["/workflow/research.md", "/workflow/next.md"], "articles": [4, 17], "priority": 2},
-    "implement": {"workflows": ["/workflow/next.md"], "articles": [4, 6], "priority": 2},
-    "validate": {"workflows": ["/workflow/validate.md"], "articles": [5, 15], "priority": 1},
-    "test": {"workflows": ["/workflow/validate.md"], "articles": [5, 15], "priority": 1},
-    "optimize": {"workflows": ["/workflow/optimize.md"], "articles": [20, 25], "priority": 3},
-    "research": {"workflows": ["/workflow/research.md"], "articles": [23, 25], "priority": 2},
-    "status": {"workflows": ["/workflow/status.md"], "articles": [16], "priority": 3},
-    "init": {"workflows": ["/workflow/init.md"], "articles": [1, 2, 3], "priority": 1}
+    "error": {
+      "workflows": ["/workflow/fix.md"],
+      "articles": [5, 15],
+      "priority": 1,
+      "mcps_required": ["filesystem", "context7", "sequential-thinking", "git"],
+      "rl_base_reward": 15,
+      "rl_penalty": -30
+    },
+    "feature": {
+      "workflows": ["/workflow/research.md", "/workflow/next.md"],
+      "articles": [4, 17, 23],
+      "priority": 2,
+      "mcps_required": ["context7", "exa", "filesystem", "memory", "git"],
+      "rl_base_reward": 30,
+      "rl_penalty": -10
+    },
+    "validate": {
+      "workflows": ["/workflow/validate.md"],
+      "articles": [5, 15],
+      "priority": 1,
+      "mcps_required": ["filesystem", "git"],
+      "rl_base_reward": 15,
+      "rl_penalty": -30
+    },
+    "optimize": {
+      "workflows": ["/workflow/optimize.md"],
+      "articles": [20, 25],
+      "priority": 3,
+      "mcps_required": ["math", "sequential-thinking", "filesystem"],
+      "rl_base_reward": 25,
+      "rl_penalty": -15
+    },
+    "status": {
+      "workflows": ["/workflow/status.md"],
+      "articles": [16],
+      "priority": 3,
+      "mcps_required": ["filesystem", "math"],
+      "rl_base_reward": 10,
+      "rl_penalty": 0
+    }
   },
   "auto_triggers": {
-    "session_start": ["/workflow/init.md", "articles:1-12"],
-    "every_5_ops": ["memory_anchor", "activeContext.summary"],
-    "task_complete": ["summary_generation", "rl_scoring"],
-    "error_detected": ["/workflow/fix.md", "articles:5,15"]
+    "session_start": {
+      "check": "memory_bank_exists",
+      "if_false": "execute /workflow/init.md",
+      "load_articles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "load_mode": "full"
+    },
+    "every_5_ops": {
+      "trigger": "memory_anchor",
+      "actions": [
+        "@mcp:filesystem read activeContext.json",
+        "operation_counter += 1",
+        "@mcp:filesystem read scratchpad[0].title",
+        "@mcp:filesystem read activeContext.task_history[-10:]",
+        "@mcp:filesystem read progress.total_rl_score",
+        "@mcp:time update last_memory_anchor"
+      ]
+    },
+    "task_complete": {
+      "actions": [
+        "generate_summary",
+        "calculate_rl_score",
+        "update_8_schemas_atomic",
+        "@mcp:git commit"
+      ],
+      "summary_format": {
+        "task_id": "string",
+        "title": "max_50_chars",
+        "outcome": "success|partial|failed",
+        "key_changes": "array_max_3",
+        "rl_impact": "string",
+        "timestamp": "iso8601"
+      }
+    },
+    "error_detected": {
+      "workflow": "/workflow/fix.md",
+      "articles": [5, 15],
+      "halt": true,
+      "rl_penalty": -30
+    }
   },
-  "core_rules": {
-    "autonomy": "0-99% auto",
-    "memory_anchor": "every_5_ops",
-    "summary_only": "last_10_tasks",
-    "no_ask": "unless_high_risk"
+  "rl_calculation": {
+    "rewards": {
+      "task_completed": {"min": 20, "max": 50},
+      "validation_passed": 15,
+      "pattern_reused": 20,
+      "mcp_chain_complete": 10,
+      "high_quality_code": 10
+    },
+    "penalties": {
+      "missing_mcp": -15,
+      "skip_schema_update": -30,
+      "ask_permission_0_99": -20,
+      "research_without_implementation": -10,
+      "validation_failure": -30,
+      "repeated_error_3rd": -50
+    },
+    "exploit_explore": {
+      "exploit_ratio": 0.7,
+      "explore_ratio": 0.3,
+      "pattern_confidence_threshold": 0.9
+    }
+  },
+  "execution_rules": {
+    "autonomy_band": "0-99%",
+    "high_risk_requires_approval": ["database_mutations", "production_deploy", "delete_5plus_files", "git_force", "security_changes"],
+    "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"],
+    "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "execute_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
   }
 }
