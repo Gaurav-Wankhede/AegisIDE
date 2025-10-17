@@ -1,0 +1,187 @@
+{
+  "schema_version": "1.0.0",
+  "bug_id": "CRITICAL-001",
+  "severity": "CRITICAL",
+  "discovered_date": "2025-10-18T01:57:54+05:30",
+  "title": "Windsurf IDE Hangs on CLI After Task Completion",
+  
+  "symptoms": {
+    "description": "Windsurf IDE becomes unresponsive, stuck waiting on CLI commands that never complete",
+    "user_experience": "Cannot interact with IDE, must force-close terminal or IDE",
+    "affected_ides": ["Windsurf", "potentially Cursor and other IDEs"],
+    "reproducibility": "100% (always happens)"
+  },
+  
+  "root_cause_analysis": {
+    "primary_issue": "Infinite loop in /next workflow",
+    "code_location": "src/workflow/next.md",
+    "problematic_code": "while true; do ... done",
+    "explanation": "The /next workflow contains 'while true' infinite loop with NO exit condition. This causes the CLI process to never terminate, hanging the IDE terminal.",
+    
+    "secondary_issues": [
+      {
+        "issue": "Missing exit codes in all workflows",
+        "impact": "Workflows don't signal completion to IDE",
+        "location": "All 12 workflow files"
+      },
+      {
+        "issue": "Background processes not properly waited",
+        "impact": "Zombie processes may accumulate",
+        "location": "Workflows using '&' operator"
+      },
+      {
+        "issue": "No timeout mechanisms",
+        "impact": "If workflow gets stuck, no automatic recovery",
+        "location": "All workflows"
+      },
+      {
+        "issue": "Missing SIGINT/SIGTERM handlers",
+        "impact": "Cannot gracefully interrupt with Ctrl+C",
+        "location": "All workflows"
+      }
+    ]
+  },
+  
+  "affected_workflows": [
+    {
+      "file": "next.md",
+      "line": "while true; do",
+      "issue": "INFINITE LOOP - NO EXIT CONDITION",
+      "severity": "CRITICAL"
+    },
+    {
+      "file": "bootstrap.md",
+      "issue": "Calls invoke_workflow /next which enters infinite loop",
+      "severity": "HIGH"
+    },
+    {
+      "file": "continue.md",
+      "issue": "Calls invoke_workflow /next which enters infinite loop",
+      "severity": "HIGH"
+    },
+    {
+      "file": "fix.md",
+      "issue": "Calls invoke_workflow /continue → /next infinite loop",
+      "severity": "HIGH"
+    },
+    {
+      "file": "All workflows",
+      "issue": "Missing exit codes (exit 0 for success, exit 1 for failure)",
+      "severity": "MEDIUM"
+    },
+    {
+      "file": "All workflows",
+      "issue": "No signal handlers for Ctrl+C (SIGINT)",
+      "severity": "MEDIUM"
+    }
+  ],
+  
+  "fix_strategy": {
+    "immediate_fixes": [
+      {
+        "priority": 1,
+        "fix": "Remove 'while true' infinite loop from next.md",
+        "replace_with": "Single iteration with explicit exit",
+        "rationale": "Workflows should execute once and exit. Auto-chaining handled by IDE calling next workflow."
+      },
+      {
+        "priority": 2,
+        "fix": "Add 'exit 0' at end of all successful workflows",
+        "rationale": "Signals clean completion to IDE"
+      },
+      {
+        "priority": 3,
+        "fix": "Add 'exit 1' on failure paths",
+        "rationale": "Signals error condition to IDE"
+      },
+      {
+        "priority": 4,
+        "fix": "Add proper 'wait' after all background processes",
+        "rationale": "Ensures all child processes complete before exit"
+      },
+      {
+        "priority": 5,
+        "fix": "Add signal handlers for graceful shutdown",
+        "code": "trap 'echo \"Interrupted\"; exit 130' SIGINT",
+        "rationale": "Allows Ctrl+C to work properly"
+      }
+    ],
+    
+    "corrected_pattern": {
+      "workflow_structure": [
+        "#!/bin/bash",
+        "set -euo pipefail  # Exit on error, undefined vars, pipe failures",
+        "",
+        "# Signal handler for Ctrl+C",
+        "trap 'echo \"→ INTERRUPTED\" >&2; exit 130' SIGINT SIGTERM",
+        "",
+        "# Workflow logic here",
+        "echo \"→ WORKFLOW: Starting\" >&2",
+        "# ... actual work ...",
+        "",
+        "# Background processes",
+        "task=$(jq '.field' file.json) &",
+        "pid1=$!",
+        "wait $pid1  # MUST wait for background processes",
+        "",
+        "# Success exit",
+        "echo \"✓ WORKFLOW: Complete\" >&2",
+        "exit 0  # CRITICAL: Must exit!"
+      ],
+      
+      "anti_pattern_removed": [
+        "while true; do ... done  # ❌ NEVER use infinite loops",
+        "invoke_workflow /next  # ❌ Let IDE handle chaining",
+        "Missing exit codes  # ❌ Always exit explicitly"
+      ],
+      
+      "auto_chaining_note": "Auto-chaining should be handled by IDE/user calling '/next' again, NOT by infinite loops in workflows"
+    }
+  },
+  
+  "corrected_next_workflow": {
+    "before": "while true; do ... execute next task ... done",
+    "after": [
+      "# Execute SINGLE task and exit",
+      "task=$(jq -r '.priority_queue[0]' scratchpad.json)",
+      "if [[ -z \"$task\" ]]; then",
+      "  echo \"→ NO TASKS: Queue empty\" >&2",
+      "  exit 0",
+      "fi",
+      "",
+      "# Execute task",
+      "echo \"→ TASK: $task\" >&2",
+      "# ... work ...",
+      "",
+      "# Success",
+      "echo \"✓ TASK COMPLETE\" >&2",
+      "echo \"→ TIP: Run '/next' to continue\" >&2",
+      "exit 0  # Exit cleanly, let user/IDE call /next again"
+    ]
+  },
+  
+  "testing_checklist": [
+    "✓ Workflow completes and returns to IDE prompt",
+    "✓ Ctrl+C interrupts gracefully",
+    "✓ No zombie processes left behind",
+    "✓ Exit code 0 on success, 1 on failure",
+    "✓ Can run workflow multiple times without hanging",
+    "✓ Background processes properly waited",
+    "✓ Terminal responsive after workflow completes"
+  ],
+  
+  "prevention_measures": {
+    "code_review_checklist": [
+      "Check for 'while true' or 'while :' infinite loops",
+      "Verify all workflows have 'exit 0' or 'exit 1'",
+      "Ensure all '&' background processes have 'wait'",
+      "Add signal handlers for SIGINT/SIGTERM",
+      "Test in actual IDE (Windsurf) before committing"
+    ],
+    
+    "workflow_template": "All workflows must follow standard template with proper exit handling"
+  },
+  
+  "estimated_fix_time": "15 minutes (update all 12 workflows)",
+  "priority": "CRITICAL - Fix immediately"
+}

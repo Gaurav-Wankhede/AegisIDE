@@ -1,6 +1,27 @@
 {
   "meta_version": "1.0.0",
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
+  "anti_amnesia_protocol": {
+    "before_any_claim": [
+      "Verify files exist with @mcp:filesystem",
+      "Query context-router.json for paths (jq or @mcp:json-jq)",
+      "NEVER assume - ALWAYS verify",
+      "NO hallucinations - only facts from actual files",
+      "NO invented titles/sections - only what exists"
+    ],
+    "transparency_mandate": [
+      "Echo EVERY command before execution: echo '→ ACTION' && command",
+      "User sees exact commands in terminal",
+      "No hidden operations",
+      "All state changes visible"
+    ],
+    "anti_hallucination": [
+      "Reference only actual files/paths from router",
+      "Cite sources for patterns (mistakes.json, systemPatterns.json)",
+      "Use @mcp:context7 for official documentation (no guessing)",
+      "Verify with jq before claiming JSON fields exist"
+    ]
+  },
   "json_access_rules": {
     "description": "CRITICAL: CLI Pipeline approach - Zero filesystem MCP dependency",
     "philosophy": "Everything is a stream (stdin → stdout). No MCP calls for JSON/Markdown.",
@@ -30,15 +51,24 @@
     },
     "render_markdown": {
       "method": "glow CLI (stdin pipe)",
-      "purpose": "Beautiful terminal rendering of constitutional articles",
+      "mandatory": "REQUIRED for ALL markdown rendering",
+      "purpose": "Beautiful terminal rendering of constitutional articles, errors, guidance",
       "performance": "Instant (Go binary)",
       "pattern": "cat article.md | glow -",
+      "transparency_pattern": "echo '→ RENDER: article-name' >&2 && cat article.md | glow -",
       "examples": [
         "cat constitution/02-preliminary/article-01.md | glow -",
         "echo '# Title\n\nContent' | glow -",
         "curl API/docs | jq -r '.content' | glow -"
       ],
-      "features": "Color syntax, headers, lists, code blocks, TUI interface"
+      "features": "Color syntax, headers, lists, code blocks, TUI interface",
+      "use_cases": [
+        "Constitutional articles during parliamentary sessions",
+        "Error guidance (Article 36) on validation failures",
+        "Workflow documentation",
+        "Research dossiers"
+      ],
+      "never_use": "cat or less for markdown (always pipe to glow)"
     },
     "delete_json": {
       "method": "@mcp:filesystem",
@@ -95,10 +125,121 @@
       }
     },
     "required_tools": {
-      "jq": "JSON processor (apt-get install jq)",
-      "sponge": "Atomic write tool from moreutils (apt-get install moreutils)",
-      "glow": "Markdown renderer (apt-get install glow OR brew install glow)",
+      "jq": {
+        "description": "JSON processor",
+        "install": "apt-get install jq OR brew install jq",
+        "mandatory": true,
+        "performance": "167x faster than MCP"
+      },
+      "sponge": {
+        "description": "Atomic write tool",
+        "package": "moreutils",
+        "install": "apt-get install moreutils OR brew install moreutils",
+        "mandatory": true,
+        "performance": "267x faster than MCP"
+      },
+      "glow": {
+        "description": "Markdown renderer",
+        "install": "apt-get install glow OR brew install glow",
+        "mandatory": true,
+        "purpose": "REQUIRED for constitutional articles, errors, guidance",
+        "never_skip": "Always use glow for markdown rendering"
+      },
       "verify": "jq --version && sponge --version && glow --version"
+    }
+  },
+  "cascade_execution_model": {
+    "description": "How Windsurf Cascade executes workflows",
+    "critical_fact": "Cascade uses run_command tool, NOT direct bash script execution",
+    "execution_flow": [
+      "1. Cascade reads workflow markdown",
+      "2. Extracts commands from code blocks",
+      "3. Executes each via run_command (separate shell sessions)",
+      "4. Variables DON'T persist between commands",
+      "5. State stored in JSON files only"
+    ],
+    "atomic_command_rules": {
+      "one_purpose": "Each command does ONE thing",
+      "no_variables": "No bash variables between run_command calls",
+      "absolute_paths": "Use .windsurf/aegiside/... not $memory_bank",
+      "self_contained": "Each command works independently",
+      "transparent": "Echo action before execution"
+    },
+    "forbidden_patterns": {
+      "infinite_loops": "while true; do ... done (causes IDE hang)",
+      "variable_chains": "task=$(jq ...) && echo $task (variable lost)",
+      "for_loops": "for file in *.json; do ... done (multi-iteration)",
+      "bash_functions": "function name() { ... } (don't persist)",
+      "complex_conditionals": "Multi-line if/then/else (use simple or jq logic)"
+    },
+    "correct_patterns": {
+      "read": "jq -r '.priority_queue[0]' .windsurf/aegiside/memory-bank/scratchpad.json",
+      "update": "jq '.total_rl_score += 20' progress.json | sponge progress.json",
+      "transparency": "echo '→ UPDATE: description' && command",
+      "chaining": "Execute once and exit, user/Cascade calls workflow again"
+    },
+    "workflow_design": {
+      "format": "Markdown with atomic command examples",
+      "not": "Executable bash scripts",
+      "purpose": "Documentation that Cascade reads and executes step-by-step"
+    }
+  },
+  "command_safety": {
+    "description": "Safe command whitelist and forbidden commands",
+    "safe_commands": {
+      "read_only": ["jq -r", "cat", "ls", "grep", "find", "date", "echo"],
+      "safe_to_autorun": true,
+      "note": "These commands can execute without user approval"
+    },
+    "safe_tools": [
+      "jq (JSON parsing - no eval)",
+      "sponge (atomic writes - no eval)",
+      "glow (Markdown rendering - no eval)",
+      "curl (HTTP only - no code execution)",
+      "git (version control - controlled)",
+      "date (time utility - read-only)"
+    ],
+    "forbidden_commands": [
+      {
+        "command": "rm -rf",
+        "reason": "Destructive deletion",
+        "penalty": -50
+      },
+      {
+        "command": "chmod 777",
+        "reason": "Security vulnerability",
+        "penalty": -45
+      },
+      {
+        "command": "sudo",
+        "reason": "Privilege escalation",
+        "penalty": -50
+      },
+      {
+        "command": "eval $input",
+        "reason": "Code injection risk",
+        "penalty": -50
+      },
+      {
+        "command": "curl | bash",
+        "reason": "Remote code execution",
+        "penalty": -50
+      }
+    ],
+    "validation": {
+      "transparency": "Echo all commands to stderr before execution",
+      "pattern": "echo '→ EXECUTING: command' >&2; command",
+      "whitelist": "Only allow vetted CLI tools (jq, sponge, glow, curl, git, date)",
+      "no_user_input": "Never interpolate raw user input into shell commands",
+      "controlled_eval": "Only eval trusted mathematical expressions",
+      "log_file": "/tmp/aegiside-operations.log"
+    },
+    "transparency_enforcement": {
+      "all_commands": "Must echo action before execution",
+      "json_operations": "Log read/update operations with file names",
+      "markdown_rendering": "Log which article being rendered with glow",
+      "git_operations": "Show commit message before committing",
+      "no_silent_operations": "Every state change visible to user"
     }
   },
   "bootstrap_initialization": {

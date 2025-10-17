@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0.0",
+  "critical_realization": "Windsurf uses run_command tool, NOT direct bash script execution",
+  "discovery_date": "2025-10-18T02:00:17+05:30",
+  
+  "wrong_assumption": {
+    "what_i_thought": "Workflows are bash scripts that Windsurf executes directly in terminal",
+    "what_actually_happens": "Workflows are PATTERNS that Cascade reads and executes via run_command tool calls",
+    "impact": "All workflows designed wrong - they're bash scripts but should be command lists"
+  },
+  
+  "cascade_execution_model": {
+    "description": "How Windsurf's Cascade AI actually executes commands",
+    "tool": "run_command",
+    "behavior": [
+      "Cascade proposes SINGLE commands via run_command tool",
+      "Each command runs in SEPARATE shell session (no state preservation)",
+      "User must approve (unless SafeToAutoRun=true)",
+      "Cannot run multi-line bash scripts directly",
+      "Variables don't persist between run_command calls",
+      "Must store state in JSON files between commands"
+    ],
+    
+    "correct_pattern": {
+      "workflow_files": "Documentation/patterns for Cascade to follow",
+      "execution": "Cascade reads workflow, extracts commands, calls run_command for each",
+      "state_management": "All state stored in JSON files via jq",
+      "chaining": "Cascade calls multiple run_command sequentially"
+    }
+  },
+  
+  "correct_workflow_design": {
+    "format": "Markdown documentation with embedded command examples",
+    "structure": [
+      "## Step 1: Description",
+      "```bash",
+      "# Single atomic command",
+      "jq -r '.priority_queue[0]' scratchpad.json",
+      "```",
+      "",
+      "## Step 2: Description", 
+      "```bash",
+      "# Another atomic command",
+      "jq '.total_rl_score += 20' progress.json | sponge progress.json",
+      "```"
+    ],
+    
+    "cascade_execution": [
+      "1. Cascade reads workflow markdown",
+      "2. Identifies Step 1 command: jq -r '.priority_queue[0]' scratchpad.json",
+      "3. Calls run_command with that command",
+      "4. Captures output (e.g., 'task title')",
+      "5. Identifies Step 2 command: jq '.total_rl_score += 20' ...",
+      "6. Calls run_command with that command",
+      "7. Continues until workflow complete"
+    ]
+  },
+  
+  "why_cli_still_best": {
+    "reason": "Each jq command is atomic and stateless",
+    "advantage": "Perfect for run_command model - no shared state needed",
+    "example": {
+      "read": "run_command: jq -r '.field' file.json → outputs value",
+      "update": "run_command: jq '.field = \"new\"' file.json | sponge file.json → updates atomically",
+      "no_variables_needed": "Output stored in JSON files, not bash variables"
+    }
+  },
+  
+  "why_bash_scripts_dont_work": {
+    "problem": "Cascade cannot execute multi-line bash scripts via run_command",
+    "example_fails": [
+      "while true; do ... done → Cascade would propose this as single command, hangs",
+      "for loop with variables → Variables don't persist",
+      "ROUTER_JSON=$(cat ...) → Variable lost after command completes"
+    ],
+    "solution": "Break into atomic commands, store state in JSON files"
+  },
+  
+  "corrected_architecture": {
+    "workflows": {
+      "purpose": "Documentation and patterns for Cascade",
+      "format": "Markdown with atomic command examples",
+      "not": "Executable bash scripts"
+    },
+    
+    "execution": {
+      "actor": "Cascade AI (via run_command tool)",
+      "process": [
+        "Read workflow markdown",
+        "Extract commands from code blocks",
+        "Execute each via run_command sequentially",
+        "Store results in JSON files",
+        "Chain to next workflow if needed"
+      ]
+    },
+    
+    "state_management": {
+      "method": "JSON files as single source of truth",
+      "read": "jq -r '.field' file.json",
+      "write": "jq '.field = value' file.json | sponge file.json",
+      "no_bash_variables": "Everything persisted in JSON between commands"
+    }
+  },
+  
+  "workflow_redesign_principles": {
+    "1_atomic_commands": {
+      "rule": "Each command must be independently executable",
+      "example": "jq -r '.priority_queue[0]' \"$memory_bank\"scratchpad.json",
+      "note": "Can use environment variables IF they persist (like $PWD, $HOME)"
+    },
+    
+    "2_no_loops": {
+      "rule": "No while/for loops in workflows",
+      "why": "Cascade executes commands one at a time",
+      "alternative": "Document steps, Cascade repeats manually or via logic"
+    },
+    
+    "3_no_bash_variables": {
+      "rule": "Don't rely on bash variables between commands",
+      "why": "Each run_command is separate shell session",
+      "alternative": "Store in JSON files, read with jq in next command"
+    },
+    
+    "4_transparent_commands": {
+      "rule": "Each command should echo what it's doing",
+      "example": "echo '→ Reading task' && jq -r '.priority_queue[0]' scratchpad.json",
+      "why": "User sees exactly what's happening"
+    },
+    
+    "5_safe_to_autorun": {
+      "rule": "Mark read-only commands as SafeToAutoRun=true",
+      "examples": ["jq -r '.field' file.json", "cat file.md", "ls -la"],
+      "unsafe": ["jq '.field = value' | sponge", "git commit", "rm"]
+    }
+  },
+  
+  "example_corrected_workflow": {
+    "file": "next.md",
+    "content": [
+      "# /next — Execute Next Task",
+      "",
+      "## 1. Read Task from Queue",
+      "```bash",
+      "jq -r '.priority_queue[0].title' .windsurf/aegiside/memory-bank/scratchpad.json",
+      "```",
+      "*Cascade: Execute this with run_command, capture output as $task*",
+      "",
+      "## 2. Execute Task Logic",
+      "*Cascade: Use @mcp:memory, @mcp:sequential-thinking, etc.*",
+      "",
+      "## 3. Update RL Score",
+      "```bash",
+      "jq '.transactions = [{\"workflow\": \"next\", \"rl_reward\": 20}] + .transactions | .total_rl_score += 20' .windsurf/aegiside/memory-bank/progress.json | sponge .windsurf/aegiside/memory-bank/progress.json",
+      "```",
+      "*Cascade: Execute with run_command, SafeToAutoRun=false*",
+      "",
+      "## 4. Commit Changes",
+      "```bash",
+      "git add -A && git commit -m 'task: complete'",
+      "```"
+    ],
+    
+    "cascade_execution_flow": [
+      "1. Cascade reads next.md",
+      "2. Sees Step 1 → calls run_command with jq read",
+      "3. Gets task title from output",
+      "4. Proceeds to Step 2 with MCP calls",
+      "5. Sees Step 3 → calls run_command with jq update",
+      "6. Sees Step 4 → calls run_command with git commit",
+      "7. Workflow complete, returns control to user"
+    ]
+  },
+  
+  "benefits_of_corrected_model": {
+    "no_hanging": "No infinite loops, each command completes",
+    "transparency": "User sees each command before execution",
+    "control": "User can approve/reject each step",
+    "debugging": "Easy to see which command failed",
+    "portability": "Works in any IDE with run_command pattern"
+  },
+  
+  "migration_strategy": {
+    "step_1": "Redesign workflows as command documentation (not scripts)",
+    "step_2": "Each workflow step = one or more atomic commands",
+    "step_3": "No loops, no complex bash logic",
+    "step_4": "State stored in JSON files only",
+    "step_5": "Cascade orchestrates execution via run_command"
+  },
+  
+  "why_this_is_actually_better": {
+    "transparency": "Every command visible to user BEFORE execution",
+    "control": "User can approve/modify each command",
+    "safety": "No hidden script execution",
+    "debugging": "Clear which command succeeded/failed",
+    "cross_ide": "Works with Cursor, VS Code, any IDE using similar pattern"
+  }
+}
