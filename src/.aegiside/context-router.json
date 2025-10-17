@@ -242,6 +242,34 @@
       "no_silent_operations": "Every state change visible to user"
     }
   },
+  "mcp_integration": {
+    "core_mcps": 7,
+    "always_active": [
+      "@mcp:sequential-thinking (deep reasoning ≥3 steps - ALWAYS)",
+      "@mcp:memory (knowledge graph operations)",
+      "@mcp:json-jq (READ large JSON files only)"
+    ],
+    "on_demand": {
+      "research": ["@mcp:context7 (official docs)", "@mcp:exa (research papers)", "@mcp:fetch (web scraping)"],
+      "deployment": ["@mcp:Shuttle (Rust only)"]
+    },
+    "replaced_by_cli": {
+      "filesystem": "jq, sponge, glow, cat (100-267x faster)",
+      "git": "git CLI direct",
+      "time": "date '+%Y-%m-%dT%H:%M:%S%z'",
+      "math": "python3 -c 'calculation'"
+    },
+    "usage_patterns": {
+      "sequential_thinking": "ALWAYS think deeply (≥3 steps) before action",
+      "context7": "IMMEDIATE on errors, new features, API usage",
+      "exa": "Research papers, cutting-edge solutions",
+      "fetch": "Web scraping, API calls (NOT piping to shell)",
+      "memory": "Create entities, relations, query graph",
+      "json_jq": "READ large JSON (>10KB) only",
+      "Shuttle": "Deploy Rust backend only"
+    },
+    "mcp_config_location": "/home/gaurav-wankhede/.codeium/windsurf-next/mcp_config.json"
+  },
   "bootstrap_initialization": {
     "description": "First-time setup: Auto-download from GitHub, detect IDE, create structure",
     "github_repo": "https://github.com/Gaurav-Wankhede/AegisIDE.git",
@@ -725,26 +753,6 @@
       "violation_penalty": -30,
       "log_to": "mistakes.json",
       "constitutional_article": 13
-    }
-  },
-  "mcp_integration": {
-    "global_config": "~/.codeium/windsurf-next/mcp_config.json",
-    "project_template": "{IDE}/mcp_servers.json",
-    "always_active": ["filesystem", "json-jq", "sequential-thinking", "memory", "git"],
-    "on_demand": {
-      "context7": ["error_detected", "new_feature", "library_integration"],
-      "exa": ["research_task", "code_examples"],
-      "fetch": ["external_data", "benchmarks"]
-    },
-    "eliminated": {
-      "time": "use terminal: date '+%Y-%m-%dT%H:%M:%S%z'",
-      "math": "use Python: eval(formula)"
-    },
-    "usage_pattern_file": "helpers/tool-usage-patterns.json",
-    "query_patterns": {
-      "router": "@mcp:json-jq query '$.intent_mapping.{intent}' from 'context-router.json'",
-      "memory_bank": "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
-      "schemas": "@mcp:filesystem read {IDE}/.aegiside/schemas/{schema_name}"
     }
   },
   "atomic_update_chain": {
