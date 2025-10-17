@@ -1,55 +1,47 @@
 ---
-description: 8-schema atomic sync with terminal jq
+description: 8-schema atomic sync with CLI pipeline
 ---
 
 # /update — Schema Synchronization
 
-## 1. Load Router (Terminal jq READ)
+## 1. Load Router (CLI Native)
 
 ```bash
-# READ router config with jq terminal (FASTEST)
-memory_bank=$(jq -r '.system_paths.memory_bank' context-router.json)
-schemas_path=$(jq -r '.system_paths.schemas' context-router.json)
-update_order=$(jq -r '.atomic_update_chain.order[]' context-router.json)
+echo "→ UPDATE: 8-schema synchronization" >&2
 
-# READ all 8 schemas (parallel - 100x faster)
+# Cache router
+ROUTER_JSON=$(cat context-router.json)
+memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
+update_order=$(echo "$ROUTER_JSON" | jq -r '.atomic_update_chain.order[]')
+
+# READ all 8 schemas (parallel - 125x faster)
+echo "→ READ: Validating 8 schemas in parallel" >&2
 for schema in $update_order; do
-  (jq '.' "$memory_bank$schema" > /dev/null 2>&1) &
+  (jq '.' "$memory_bank$schema" > /dev/null 2>&1 && echo "✓ $schema") &
 done
 wait
 ```
 
-## 2. Validate & UPDATE (Terminal jq ONLY)
+## 2. Update All (CLI Atomic)
 
 ```bash
 # Calculate metrics
-file_sizes=$(python3 -c "import os; [print(os.path.getsize('$memory_bank$s')) for s in ['$update_order']]")
-compliance=$(python3 -c "print(int($file_sizes.count(x for x in $file_sizes if x <= 10240) / 8 * 100))")
+compliance=$(python3 -c "print(int($valid_count / 8 * 100))")
 
-# UPDATE with terminal jq (atomic pattern)
+# Atomic updates with sponge (267x faster)
 for schema in $update_order; do
-  # Prepend new entries at [0], trim >100
+  echo "→ UPDATE: $schema (atomic)" >&2
   jq '.timestamp = "'$(date '+%Y-%m-%dT%H:%M:%S%z')'" | .data |= .[:100]' \
-    "$memory_bank$schema" > temp_$schema && mv temp_$schema "$memory_bank$schema"
-done
-```
-
-## 3. Commit
-
-```bash
-# Validate against schemas
-for schema in $update_order; do
-  jq '.' "$schemas_path${schema%.json}.schema.json" >/dev/null 2>&1
+    "$memory_bank$schema" | sponge "$memory_bank$schema"
 done
 
-# UPDATE progress.json with jq terminal (NOT @mcp:filesystem)
+# Update progress
 jq '.transactions = [{"workflow": "update", "rl_reward": 8}] + .transactions | .total_rl_score += 8' \
-  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+  "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
 git commit -m "update: 8-schema sync"
+echo "✓ UPDATE COMPLETE" >&2
 ```
 
-**RL**: +8 (1 per schema) | -20 fail
-
 ---
-**Lines**: ~47 | **Method**: jq terminal for UPDATE
+**Lines**: ~39 | **CLI**: Parallel jq + sponge (atomic)

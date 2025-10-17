@@ -1,51 +1,48 @@
 ---
-description: HALT-FIX-VALIDATE with terminal jq
+description: HALT-FIX-VALIDATE with CLI transparency
 ---
 
-# /fix — Zero-Tolerance Remediation
+# /fix — Remediation Loop
 
-## 1. Load Router & Apply Penalty (Terminal jq)
+## 1. Load Router & HALT (CLI Native)
 
 ```bash
-# Cache router
-ROUTER=$(jq '.' context-router.json)
-memory_bank=$(echo "$ROUTER" | jq -r '.system_paths.memory_bank')
-penalty=$(echo "$ROUTER" | jq -r '.rl_calculation.penalties.validation_failure')  # -30
+echo "→ FIX: Zero-tolerance remediation" >&2
 
-# HALT - atomic penalty update
-jq '.transactions = [{"workflow": "fix", "rl_penalty": '$penalty'}] + .transactions | .total_rl_score += '$penalty' \
-  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+ROUTER_JSON=$(cat context-router.json)
+memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
+penalty=$(echo "$ROUTER_JSON" | jq -r '.rl_calculation.penalties.validation_failure')
 
-# Prepend mistakes.json
-jq '.error_log = [{"error": "validation_failure", "timestamp": "'$(date -I)'"}] + .error_log | .error_log |= .[:100]' \
-  "$memory_bank"mistakes.json > temp.json && mv temp.json "$memory_bank"mistakes.json
+# HALT - atomic penalty
+echo "→ PENALTY: $penalty RL" >&2
+jq --argjson penalty $penalty \
+  '.transactions = [{"workflow": "fix", "rl_penalty": $penalty}] + .transactions | .total_rl_score += $penalty' \
+  "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 ```
 
-## 2. Fix Loop
+## 2. Fix Loop (Transparent)
 
 1. `@mcp:context7` → Fetch remediation docs
-2. `@mcp:sequential-thinking` → Plan fix (≥3 steps)
-3. `@mcp:filesystem` → Apply fix (≤80 lines EMD)
-4. `/validate` → Re-run (jq tracks retry count)
-5. Loop until clean
+2. `@mcp:sequential-thinking` → Plan fix
+3. Apply fix (≤80 lines EMD)
+4. `/validate` → Re-run (loop until clean)
 
-## 3. Success & Chain (Terminal jq)
+## 3. Success & Chain (CLI Pipeline)
 
 ```bash
 # Success - reward
-reward=15
-jq '.transactions = [{"workflow": "fix", "rl_reward": '$reward'}] + .transactions | .total_rl_score += '$reward' \
-  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+echo "→ SUCCESS: Fix validated (+15 RL)" >&2
+jq '.transactions = [{"workflow": "fix", "rl_reward": 15}] + .transactions | .total_rl_score += 15' \
+  "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
 # Store prevention pattern
 jq --arg rule "Run /validate before commit" \
-  '.patterns += [{"prevention_rule": $rule}]' \
-  "$memory_bank"systemPatterns.json > temp.json && mv temp.json "$memory_bank"systemPatterns.json
+  '.patterns = [{"prevention_rule": $rule}] + .patterns | .patterns |= .[:100]' \
+  "$memory_bank"systemPatterns.json | sponge "$memory_bank"systemPatterns.json
 
+echo "✓ FIX COMPLETE" >&2
 invoke_workflow "/continue"
 ```
 
-**RL**: +15 success | -30 fail
-
 ---
-**Lines**: ~43 | **jq**: Atomic updates
+**Lines**: ~40 | **CLI**: jq + sponge (atomic)

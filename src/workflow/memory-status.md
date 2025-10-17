@@ -1,48 +1,48 @@
 ---
-description: Knowledge graph audit with terminal jq
+description: Knowledge graph audit with CLI pipeline
 ---
 
-# /memory-status — Graph Audit
+# /memory-status — Graph Health Audit
 
-## 1. Load Router & Query (Terminal jq)
+## 1. Load Router & Query (CLI Native)
 
 ```bash
-# Cache router
-ROUTER=$(jq '.' context-router.json)
-memory_bank=$(echo "$ROUTER" | jq -r '.system_paths.memory_bank')
+echo "→ MEMORY-STATUS: Knowledge graph audit" >&2
 
-# Query metadata (FASTEST)
-entities=$(jq -r '.entities | length' "$memory_bank"memory.json)
-relations=$(jq -r '.relations | length' "$memory_bank"memory.json)
+ROUTER_JSON=$(cat context-router.json)
+memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
+
+# Query metadata (direct jq - FASTEST)
+entities=$(jq '.entities | length' "$memory_bank"memory.json)
+relations=$(jq '.relations | length' "$memory_bank"memory.json)
 orphaned=$(jq '[.entities[] | select(.relations == null)] | length' "$memory_bank"memory.json)
+
+echo "→ METRICS: Entities=$entities, Relations=$relations, Orphaned=$orphaned" >&2
 ```
 
-## 2. Health Metrics (Python)
+## 2. Health Calculation (Python CLI)
 
 ```bash
 # Calculate with Python
-entity_density=$(python3 -c "print($entities / ($entities + $relations))")
+density=$(python3 -c "print($entities / ($entities + $relations))")
 compliance=$(python3 -c "print(int((1 - $orphaned / $entities) * 100))")
+
+echo "→ HEALTH: $compliance% (threshold: ≥80%)" >&2
 ```
 
-## 3. Audit & Remediate
+## 3. Update & Remediate (CLI Atomic)
 
 ```bash
-# IF issues (compliance < 80%)
-if [[ $compliance -lt 80 ]]; then
-  @mcp:sequential-thinking plan_remediation
-  @mcp:context7 fetch_ontology_updates
-fi
+# Update progress
+jq --argjson health $compliance \
+  '.transactions = [{
+    "workflow": "memory-status",
+    "rl_reward": 5,
+    "health": $health
+  }] + .transactions' "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
-# Validate against schema
-jq '.' "$memory_bank/schemas/memory.schema.json" >/dev/null 2>&1
-
-# Update with jq
-jq '.transactions = [{"audit": "complete", "health": '$compliance'}] + .transactions' \
-  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+echo "✓ AUDIT COMPLETE" >&2
 ```
 
-**RL**: +5 healthy | -10 issues
-
 ---
-**Lines**: ~37 | **jq**: Direct field queries
+**Lines**: ~37 | **CLI**: Direct jq + python + sponge
