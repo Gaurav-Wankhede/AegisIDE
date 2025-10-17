@@ -284,6 +284,31 @@
     "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"],
     "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "invoke_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
   },
+  "memory_bank_management": {
+    "description": "Strict MCP usage rules for memory bank operations",
+    "read_operations": {
+      "tool": "@mcp:json-jq",
+      "rule": "ALWAYS use @mcp:json-jq for reading memory bank files",
+      "forbidden": ["@mcp:filesystem read", "direct file read", "other MCPs"],
+      "examples": [
+        "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
+        "@mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
+        "@mcp:json-jq query '$.rl_totals' from 'progress.json'"
+      ]
+    },
+    "write_operations": {
+      "tool": "@mcp:filesystem",
+      "rule": "ALWAYS use @mcp:filesystem for editing memory bank files",
+      "forbidden": ["@mcp:json-jq write", "direct file write", "other MCPs"],
+      "methods": ["write", "edit", "update"],
+      "validation": "Schema validation required after every write"
+    },
+    "enforcement": {
+      "violation_penalty": -30,
+      "log_to": "mistakes.json",
+      "constitutional_article": 13
+    }
+  },
   "mcp_integration": {
     "global_config": "~/.codeium/windsurf-next/mcp_config.json",
     "project_template": "{IDE}/mcp_servers.json",
