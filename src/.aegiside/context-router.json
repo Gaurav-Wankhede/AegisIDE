@@ -45,7 +45,18 @@
         "{IDE}/.aegiside/schemas/roadmap.schema.json",
         "{IDE}/.aegiside/schemas/memory.schema.json",
         "{IDE}/rules/constitution/01-preamble/preamble.md",
-        "{IDE}/workflow/next.md"
+        "{IDE}/workflow/bootstrap.md",
+        "{IDE}/workflow/continue.md",
+        "{IDE}/workflow/fix.md",
+        "{IDE}/workflow/init.md",
+        "{IDE}/workflow/memory-status.md",
+        "{IDE}/workflow/next.md",
+        "{IDE}/workflow/optimize.md",
+        "{IDE}/workflow/oversight-checks-and-balances.md",
+        "{IDE}/workflow/research.md",
+        "{IDE}/workflow/status.md",
+        "{IDE}/workflow/update.md",
+        "{IDE}/workflow/validate.md"
       ],
       "memory_bank_generation": "Auto-generate 8 JSON files from schemas after verification",
       "on_failure": "Retry clone OR manual download from GitHub releases"
