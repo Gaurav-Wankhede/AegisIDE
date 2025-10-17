@@ -3,8 +3,8 @@
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
   "anti_amnesia_protocol": {
     "before_any_claim": [
-      "Verify files exist with @mcp:filesystem",
       "Query context-router.json for paths (jq or @mcp:json-jq)",
+      "Verify files exist (cat, ls, jq)",
       "NEVER assume - ALWAYS verify",
       "NO hallucinations - only facts from actual files",
       "NO invented titles/sections - only what exists"
