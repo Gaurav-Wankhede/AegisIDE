@@ -27,13 +27,20 @@ The Memory Bank is AI's persistent brain for your project. Unlike traditional AI
 ├── schemas/                  # Validation rules
 │   ├── activeContext.schema.json
 │   ├── scratchpad.schema.json
-│   └── ... (8 schema files)
+│   ├── ... (8 core schemas)
+│   ├── helpers/             # Helper schemas (5 files)
+│   │   ├── common-mistakes.json
+│   │   ├── error-recovery.json
+│   │   ├── tool-usage-patterns.json
+│   │   ├── constitutional-governance.json
+│   │   └── schema-evolution.json
+│   └── schema-integrity-validator.json
 └── visualize/               # Real-time dashboard
     ├── dashboard.html       # Live memory visualization
     └── start-dashboard.sh   # Launch dashboard
 ```
 
-## 🎯 Top-Append Strategy (v3.0)
+## 🎯 Top-Append Strategy (v3.0+)
 
 **All 8 schemas use prepend operations** for optimal performance:
 

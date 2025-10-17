@@ -4,7 +4,9 @@ description: RL-driven immediate recovery after interruption
 
 # /continue — Immediate Recovery
 
-## RL Recovery Protocol (0-99% Auto-Execute)
+## RL-Driven Recovery (Auto-Execute with User Notification)
+
+**UX Gap 7 Fix**: Session resume now includes user-friendly status update
 
 **Purpose**: Restore context from `{IDE}/aegiside/memory-bank/` and resume execution
 **RL Reward**: +5 for successful recovery
@@ -12,6 +14,30 @@ description: RL-driven immediate recovery after interruption
 **CRITICAL**: Auto-chain to `/next` immediately (NO asking)
 
 ## MCP Chain (Autonomous)
+
+1. `@mcp:filesystem` → Read `activeContext.json` for last known state
+2. `@mcp:filesystem` → Validate 8-schema integrity (checksums match?)
+3. `@mcp:math` → Calculate recovery checkpoint position
+4. **NOTIFY USER** (UX Gap 7):
+   ```
+   Session resumed after interruption
+   
+   Previous state:
+   - Working on: {task from scratchpad[0]}
+   - Completed: {workflow progress percentage}
+   - Next step: {next_action from activeContext}
+   
+   Continue where I left off? [Y/n]
+   (Timeout: 30 seconds → auto-continue)
+   ```
+5. `@mcp:memory` → Reconstruct session knowledge graph
+6. `@mcp:filesystem` → Resume task queue from `scratchpad.json`
+7. `@mcp:git` → Verify working tree clean (no uncommitted changes)
+8. `@mcp:time` → Timestamp recovery event
+9. Update `activeContext.user_feedback` with "Resumed from checkpoint"
+10. Resume workflow from interruption point (NO re-execution of completed steps)
+
+## MCP Chain (Original)
 
 1. `@mcp:memory` → Restore latest snapshot from knowledge graph
 2. `@mcp:filesystem` → Read `scratchpad.json`[0] (top entry) + `activeContext.json`
@@ -22,10 +48,10 @@ description: RL-driven immediate recovery after interruption
 7. `@mcp:git` → Verify clean working tree
 
 **Context Restoration** (Top-Append Strategy):
+- Read `progress.json` → SINGLE SOURCE for `total_rl_score`
 - Read `scratchpad.json`[0] → Latest task at array top
-- Read `activeContext.json` → Last execution state
+- Read `activeContext.json` → Verify `rl_source_ref: "progress.json"`
 - Read `mistakes.json`[0] → Recent errors if any
-- Read `progress.json`[0] → Latest RL score
 
 ## Actions & RL Logging
 
@@ -35,20 +61,22 @@ description: RL-driven immediate recovery after interruption
     "pending_tasks": Y, "rl_reward": 5, "timestamp": "..."}
    ```
 2. **Capture Blockers**: Update `scratchpad.json` (maintain top-append order)
-3. **RL Scoring & Computation**:
-   - Compute: TD_error for recovery value, GAE_adv for continuation
-   - Successful recovery → +5 RL → Prepend to `progress.json` with rl_computation
-   - Context corruption → -10 RL → Prepend to `mistakes.json`
+3. **RL Scoring** (Single Source):
+   - Successful recovery → `progress.json[0]` transaction: +5 RL, update `total_rl_score`
+   - Context corruption → `progress.json[0]` penalty: -10 RL, update `total_rl_score`
+   - Error details → `mistakes.json[0]` (penalty transaction only)
 4. **Selective Article Loading**:
    - If blockers exist → Load `{IDE}/aegiside/rules/constitution/04-fundamental-duties/article-14.md`
    - If errors → Load `{IDE}/aegiside/rules/constitution/08-judiciary/article-36.md`
 
 ## Exit & Auto-Chain
 
-- **Metrics**: Prepend to `progress.json` (top-append):
+- **Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: +5 RL, update `total_rl_score`
   ```json
-  {"workflow": "continue", "rl_reward": 5, 
-   "recovery_time_ms": X, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "recovery", "reward": 5,
+   "description": "Context restored in [X]ms"}
   ```
 - **Schema Validation**: If discrepancies → Queue `/update` in `scratchpad.json`
 - **Commit**: `@mcp:git` → "continue: context restored"

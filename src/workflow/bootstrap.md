@@ -14,7 +14,8 @@ description: Ensure 8 mandatory schemas exist with RL tracking
 
 **Step-by-Step**:
 1. `@mcp:filesystem` → Scan `{IDE}/aegiside/memory-bank/` for 8 required schemas
-2. `@mcp:math` → Count files, compute completion % (reward if 100%)
+2. **UPDATE user_feedback**: `{current_action: "Scanning memory bank", progress_step: "Step 1 of 8", status: "working"}`
+3. `@mcp:math` → Count files, compute completion % (reward if 100%)
 3. `@mcp:context7` → Fetch schema contracts for missing files
 4. `@mcp:filesystem` → Create missing files with minimal valid JSON:
    ```json
@@ -25,32 +26,32 @@ description: Ensure 8 mandatory schemas exist with RL tracking
 7. `@mcp:memory` → Log regeneration event to knowledge graph
 8. `@mcp:time` → Timestamp all operations
 
-**Required Schemas**:
-1. `activeContext.json` — Must include `rl_reward_tracking` field
-2. `scratchpad.json` — Array structure (top-append ready)
-3. `kanban.json` — Columns: todo, in_progress, done
-4. `mistakes.json` — Must include `rl_penalty_ledger` field
-5. `systemPatterns.json` — Pattern storage with success_rate
-6. `progress.json` — RL rewards ledger
-7. `roadmap.json` — Strategic planning
-8. `memory.json` — Knowledge graph entities/relations
+**Required Schemas** (Single Source RL Architecture):
+1. `activeContext.json` — Session state with `rl_source_ref: "progress.json"`
+2. `scratchpad.json` — Task queue (top-append) with `rl_source_ref`
+3. `kanban.json` — Workflow columns: todo, in_progress, done, approved
+4. `mistakes.json` — Error patterns with penalty transactions
+5. `systemPatterns.json` — Architecture patterns with reward transactions
+6. `progress.json` — **SINGLE SOURCE OF TRUTH** for `total_rl_score`
+7. `roadmap.json` — Strategic planning with milestone RL
+8. `memory.json` — Knowledge graph with pattern reuse RL
 
 ## Actions & RL Logging
 
 1. **Create Missing Files**: Generate under `{IDE}/aegiside/memory-bank/` ONLY
 2. **Validate**: Each file against `{IDE}/aegiside/schemas/*.schema.json` → HALT if fails
-3. **RL Logging**:
-   - Success → +10 RL → Prepend to `progress.json`
-   - Validation fail → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
-4. **RL Scoring & Computation**:
-   - Initialize: All value branches to 0, set reference policy
-   - Formula: V(bootstrap) = r_bootstrap + γ×E[V(future_tasks)]
-   - Store: +50 RL workspace creation → `progress.json`[0] with rl_computation baseline
-   - Validation fail → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
-5. **Update activeContext.json**: Prepend regeneration event at array[0]:
+3. **RL Architecture Setup** (Single Source):
+   - Initialize `progress.json` with `metrics.total_rl_score: 0`
+   - All other schemas get `metrics.rl_source_ref: "progress.json"`
+   - Set `value_network_branches` with initial weights
+   - Create `reference_policy` baseline for KL divergence
+4. **RL Logging**:
+   - Success → +10 RL → `progress.json[0]` transaction
+   - Validation fail → -15 RL → `mistakes.json[0]` + trigger `/fix`
+5. **Update activeContext.json**: Prepend event at [0]:
    ```json
-   {"event": "bootstrap_complete", "schemas_created": ["..."], 
-    "rl_reward": 10, "timestamp": "..."}
+   {"event": "bootstrap_complete", "schemas_created": 8,
+    "rl_architecture": "single_source", "timestamp": "..."}
    ```
 
 ## Exit & Chain

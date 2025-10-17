@@ -9,10 +9,7 @@ description: RL-driven session initialization with selective article loading
 **Purpose**: Initialize session with 8-schema validation + selective article loading
 **RL Reward**: +10 for successful initialization
 **RL Penalty**: -15 if schema validation fails
-8. **RL Scoring & Computation**: 
-   - Initialize: V(session_start) = 0, reference_policy = baseline
-   - Calculate: GAE for initialization sequence, TD_error for first task
-   - Store: +45 RL for successful initialization → `progress.json`[0] with rl_computationalty
+**RL Architecture**: Verify progress.json = SINGLE SOURCE, others have rl_source_ref
 **Context Assembly**: Top-append strategy for optimal window usage
 
 ## Directives
@@ -46,16 +43,17 @@ description: RL-driven session initialization with selective article loading
 ## Actions & RL Logging
 
 1. **Technology Laws**: Auto-detect and load language-specific rules
-2. **Update activeContext.json**: Prepend init event at [0]:
+2. **Verify RL Architecture**: Check progress.json has total_rl_score, others have rl_source_ref
+3. **Update activeContext.json**: Prepend init event at [0]:
    ```json
    {"event": "session_init", "schema_compliance": 100,
     "articles_loaded": ["01", "02", "03"],
-    "rl_reward": 10, "timestamp": "..."}
+    "rl_source_ref": "progress.json", "timestamp": "..."}
    ```
-3. **RL Scoring**:
-   - All 8 schemas valid → +10 RL → Prepend to `progress.json`
-   - Validation fails → -15 RL → Prepend to `mistakes.json` + trigger `/fix`
-4. **Schema Remediation**: IF failures → Queue in `scratchpad.json`[0] + invoke `/fix`
+4. **RL Scoring** (Single Source):
+   - All 8 schemas valid → +10 RL → `progress.json[0]` transaction
+   - Validation fails → -15 RL → `mistakes.json[0]` + trigger `/fix`
+5. **Schema Remediation**: IF failures → Queue in `scratchpad.json`[0] + invoke `/fix`
 
 ## Exit & Auto-Chain
 

@@ -16,11 +16,31 @@ description: RL-driven autonomous execution loop with selective article loading
 
 ## 1. Context Assembly
 
-1. `@mcp:filesystem` → Read `scratchpad.json`[0] (top = priority)
-2. `@mcp:memory` → Patterns (confidence ≥0.8)
-3. `@mcp:math` → Autonomy level + RL score
-4. IF ≥3 steps → `@mcp:sequential-thinking`
-5. **Selective Articles** (NOT all 42):
+1. `@mcp:filesystem` → Read `scratchpad.json` priority queue (task at [0])
+2. **CONFLICT DETECTION** (UX Gap 8):
+   ```python
+   IF activeContext.current_execution.status == "in_progress":
+       IF new_task_conflicts_with_current(scratchpad[0], activeContext.current_execution):
+           PAUSE current task
+           NOTIFY USER:
+           "I'm currently working on: {current_task} ({progress}% done)
+           
+           New request: {new_task}
+           
+           Options:
+           1. Finish current task first, then start new task
+           2. Pause current task, start new task now (resume later)
+           3. Cancel current task, start new task
+           
+           Choose [1/2/3]: (Timeout: 60s → Option 1)"
+           
+           WAIT for user choice → Execute accordingly
+   ```
+3. `@mcp:memory` → Search for similar patterns (confidence ≥0.9 = reuse, +20 RL)
+4. **UPDATE user_feedback** (UX Gap 1): `{current_action: "Checking for existing solutions", progress_step: "Step 1 of 7", status: "working"}`
+5. `@mcp:sequential-thinking` → If pattern reuse, adapt to current context
+6. `@mcp:sequential-thinking` → If new task, plan approach (≥3 steps breakdown)
+7. **UPDATE user_feedback**: `{current_action: "Planning implementation", progress_step: "Step 2 of 7"}`:
    - Quality → `03-fundamental-rights/article-05.md`
    - Decision → `06-parliament/article-*.md`
    - Schema → `04-fundamental-duties/article-14.md`
@@ -34,10 +54,11 @@ description: RL-driven autonomous execution loop with selective article loading
 - **Analysis**: `@mcp:math` (calculate) + `@mcp:sequential-thinking` (plan)
 - **All Tasks**: `@mcp:time` (timestamp)
 
-**RL Scoring (Auto-Logged)**:
-- Complete MCP chain → +10 RL → `{IDE}/aegiside/memory-bank/progress.json` (prepend top)
-- Error encountered → -15 RL → `{IDE}/aegiside/memory-bank/mistakes.json` (prepend top) + pattern extraction
-- Reuse proven pattern → +20 RL → Increment `systemPatterns.json` reuse_count
+**RL Scoring** (Single Source Architecture):
+- Complete MCP chain → +10 RL → `progress.json[0]` transaction
+- Error encountered → -15 RL → `mistakes.json[0]` penalty transaction
+- Reuse proven pattern → +20 RL → `progress.json[0]` + increment `systemPatterns.json` reuse_count
+- **Note**: Only `progress.json` stores `total_rl_score`, others reference via `rl_source_ref`
 
 ## 3. Validation (Zero-Tolerance HALT-FIX Loop)
 
@@ -56,15 +77,15 @@ description: RL-driven autonomous execution loop with selective article loading
 
 ## 4. Schema Update (Top-Append Strategy — CRITICAL)
 
-**8-Schema Atomic Update** at `{IDE}/aegiside/memory-bank/`:
-1. `activeContext.json` → Prepend completed task status at array[0]
-2. `scratchpad.json` → Remove completed, prepend new tasks at top
-3. `kanban.json` → Move task: in_progress→done (awaits Chief Justice + Opposition approval for done→approved)
-4. `mistakes.json` → IF errors → Prepend error pattern + RL penalty at top
-5. `systemPatterns.json` → IF success → Prepend pattern + RL reward at top
-6. `progress.json` → Prepend RL transaction {timestamp, score, source} at top
+**8-Schema Atomic Update** (Single Source RL):
+1. `progress.json` → Prepend RL transaction at [0], update `total_rl_score`
+2. `activeContext.json` → Prepend task status at [0], verify `rl_source_ref: "progress.json"`
+3. `scratchpad.json` → Remove completed, prepend new tasks at [0]
+4. `kanban.json` → Move task status (todo→in_progress→done→approved)
+5. `mistakes.json` → IF errors → Prepend penalty transaction at [0]
+6. `systemPatterns.json` → IF success → Prepend reward transaction at [0]
 7. `roadmap.json` → Update milestone completion %
-8. `memory.json` → `@mcp:memory` → Store entities/relations
+8. `memory.json` → `@mcp:memory` → Store entities/relations with reuse RL
 
 **Validation**: Each file validates against `{IDE}/aegiside/schemas/*.schema.json`
 **Commit**: `@mcp:git` → Structured message + `@mcp:time` timestamp

@@ -1,7 +1,37 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2025-10-08T11:44:00+05:30",
+  "last_updated": "2025-10-17T16:11:18+05:30",
   "description": "Common LLM mistakes when calling tools - learned from real failures",
+  
+  "user_friendly_error_translation": {
+    "description": "UX Gap 4 fix: Translate technical errors to plain English for non-technical users",
+    "schema_validation_failed": {
+      "technical": "Schema validation failed: memory.json line 23: Expected rl_source_ref, got total_rl_score",
+      "user_friendly": "Memory system needs repair\n\nProblem: The memory file has incorrect data structure\nWhat happened: An automatic update tried to store data in the wrong place\nImpact: Workflow paused to prevent data corruption\n\nFix available: I can repair this automatically\nRepair? [Y/n]",
+      "auto_fix_available": true
+    },
+    "mcp_connection_failed": {
+      "technical": "MCP server connection failed: context7 timeout after 30s",
+      "user_friendly": "Documentation search is temporarily unavailable\n\nProblem: Cannot reach the documentation service\nWhat happened: Network timeout or service is down\nImpact: I'll use cached knowledge instead\n\nNo action needed - continuing with backup approach",
+      "auto_fix_available": true
+    },
+    "file_not_found": {
+      "technical": "FileNotFoundError: /path/to/file.json",
+      "user_friendly": "Required file is missing\n\nProblem: A file I need doesn't exist\nWhat happened: File may have been deleted or moved\nImpact: Current task cannot proceed\n\nI can create this file with default settings\nCreate? [Y/n]",
+      "auto_fix_available": true
+    },
+    "git_conflict": {
+      "technical": "Git merge conflict in src/main.rs lines 45-67",
+      "user_friendly": "Code conflict detected\n\nProblem: Two different changes to the same code\nWhat happened: Your changes conflict with recent updates\nImpact: Need to choose which version to keep\n\nI can show you the differences and help resolve\nShow conflicts? [Y/n]",
+      "auto_fix_available": false
+    },
+    "validation_error": {
+      "technical": "cargo check failed: error[E0425]: cannot find value `user_id`",
+      "user_friendly": "Code has an error\n\nProblem: Trying to use a variable that doesn't exist\nVariable: user_id\nImpact: Code won't compile\n\nI found this in official documentation and can fix it\nApply fix? [Y/n]",
+      "auto_fix_available": true
+    }
+  },
+  
   
   "critical_mistakes": {
     "stringified_arrays": {

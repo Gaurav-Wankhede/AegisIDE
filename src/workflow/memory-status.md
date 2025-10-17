@@ -34,19 +34,20 @@ description: RL-tracked knowledge graph health audit
    {"event": "graph_audit", "health_score": 95,
     "entities": X, "orphaned": 0, "rl_reward": 5, "timestamp": "..."}
    ```
-2. **RL Scoring & Computation**:
-   - Healthy (≥90%) → Calculate: Pattern reuse rates for exploitation vs exploration
-   - Compute: KL divergence from reference policy over time
-   - Store: +5 RL memory audit → `progress.json` with pattern value estimates[0]
-   - Issues found → -10 RL → Prepend to `mistakes.json`[0]
+2. **RL Scoring** (Single Source):
+   - Healthy (≥90%) → `progress.json[0]`: +5 RL, update `total_rl_score`
+   - Issues found → `progress.json[0]`: -10 RL penalty
+   - Issue details → `mistakes.json[0]`: penalty transaction with remediation plan
 3. **Remediation**: IF needed → Prepend tasks to `scratchpad.json`[0]
 
 ## Exit & Auto-Chain
 
-- **Metrics**: Prepend to `progress.json`[0]:
+- **Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: +5 RL, update `total_rl_score`
   ```json
-  {"workflow": "memory-status", "rl_reward": 5,
-   "health_score": 95, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "graph_audit", "reward": 5,
+   "description": "Graph health: 95%, entities: X"}
   ```
 - **Commit**: `@mcp:git` → "memory-status: graph health 95%"
 - **Auto-Chain**: Resume `/next` or trigger `/fix` if issues

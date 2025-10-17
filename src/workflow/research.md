@@ -1,6 +1,5 @@
 ---
 description: RL-tracked research dossier with free-tier optimization
-location: {IDE}/workflow/research.md
 ---
 
 # /research — MCP Intelligence Dossier
@@ -43,14 +42,13 @@ location: {IDE}/workflow/research.md
     "performance_score": 85, "rl_reward": 10, "timestamp": "..."}
    ```
 2. **Dossier Storage**: Prepend to `systemPatterns.json`[0] with full analysis
-3. **RL Scoring & Computation (STRICT - Solution Required)**:
-   - Calculate: TD_error for research value, GAE_adv for exploration bonus
-   - Update: V(exploration_branch) via Bellman backup
-   - **Research alone → +2 RL** (minimal, just for effort)
-   - **Research + partial solution → +5 RL**
-   - **Research + complete solution → +20-50 RL** (target reward)
-   - Unverified sources → -15 RL → `mistakes.json`[0]
-   - Research without implementation → -10 RL bogus penalty
+3. **RL Scoring** (Single Source - STRICT Solution Required):
+   - **Research alone** → `progress.json[0]`: +2 RL (minimal acknowledgment)
+   - **Research + partial** → `progress.json[0]`: +5 RL
+   - **Research + complete solution** → `progress.json[0]`: +20-50 RL (TARGET)
+   - **Research without implementation** → `progress.json[0]`: -10 RL (bogus workflow)
+   - Unverified sources → `mistakes.json[0]` penalty transaction + `progress.json[0]`: -15 RL
+   - **Note**: Only `progress.json` updates `total_rl_score`
 4. **Link to Kanban**: Attach references to relevant `kanban.json` tasks
 5. **MANDATORY: Implement Solution**:
    - Research MUST lead to actual implementation
@@ -60,10 +58,12 @@ location: {IDE}/workflow/research.md
 
 ## Exit & Auto-Chain
 
-- **Success Metrics**: Prepend to `progress.json`[0]:
+- **Success Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: reward based on implementation
   ```json
-  {"workflow": "research", "rl_reward": 10,
-   "topic": "...", "sources_verified": 5, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "research_and_implementation",
+   "reward": 20-50, "description": "Researched [topic] + implemented solution"}
   ```
 - **Risk Logging**: Document in `mistakes.json` if risks found
 - **Commit**: `@mcp:git` → "research: [topic] dossier complete"

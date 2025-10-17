@@ -1,6 +1,5 @@
 ---
 description: RL-tracked 8-schema synchronization with top-append
-location: {IDE}/workflow/update.md
 ---
 
 # /update — Manual Memory-Bank Sync
@@ -29,15 +28,15 @@ location: {IDE}/workflow/update.md
 7. `@mcp:time` → Timestamp sync operation
 8. `@mcp:git` → Commit "update: 8-schema sync"
 
-**8-Schema Checklist** (all top-append verified):
-1. `activeContext.json` → RL tracking + session state
-2. `scratchpad.json` → Tasks array (newest [0])
-3. `kanban.json` → Workflow columns (todo→in_progress→done→approved) with Opposition + Chief Justice verification
-4. `mistakes.json` → RL penalties (newest [0])
-5. `systemPatterns.json` → Patterns (newest [0])
-6. `progress.json` → RL rewards (newest [0])
-7. `roadmap.json` → Milestones
-8. `memory.json` → Knowledge graph
+**8-Schema Checklist** (Single Source RL):
+1. `progress.json` → **SINGLE SOURCE** for `total_rl_score`, RL transactions at [0]
+2. `activeContext.json` → Session state with `rl_source_ref: "progress.json"`
+3. `scratchpad.json` → Tasks array (newest [0]) with `rl_source_ref`
+4. `kanban.json` → Workflow (todo→in_progress→done→approved) with `rl_source_ref`
+5. `mistakes.json` → Penalty transactions at [0] (no total_rl_score)
+6. `systemPatterns.json` → Reward transactions at [0] (no total_rl_score)
+7. `roadmap.json` → Milestones with `rl_source_ref`
+8. `memory.json` → Knowledge graph with pattern reuse RL
 
 ## Actions & RL Logging
 
@@ -46,11 +45,10 @@ location: {IDE}/workflow/update.md
    {"event": "schema_sync", "schemas_updated": 8,
     "compliance_score": 100, "rl_reward": 8, "timestamp": "..."}
    ```
-2. **RL Scoring & Computation**:
-   - Calculate: TD_error for schema maintenance value
-   - Update: V(maintenance_task) via temporal difference
-   - All 8 updated → +10 RL → `progress.json` with rl_computation
-   - Incomplete → -25 RL → `mistakes.json`[0]
+2. **RL Scoring** (Single Source):
+   - All 8 updated → `progress.json[0]`: +8 RL (1 per schema), update `total_rl_score`
+   - Incomplete → `progress.json[0]`: -20 RL penalty
+   - Validation fail details → `mistakes.json[0]`: penalty transaction
 3. **Queue Issues**: IF problems → Prepend to `scratchpad.json`[0]
 4. **Selective Article Loading**:
    - Schema issues → `04-fundamental-duties/article-14.md`
@@ -58,20 +56,13 @@ location: {IDE}/workflow/update.md
 
 ## Exit & Auto-Resume
 
-- **Success Metrics**: Prepend to `progress.json`[0]:
+- **Success Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: +8 RL, update `total_rl_score`
   ```json
-  {"workflow": "update", "rl_reward": 8,
-   "schemas_synced": 8, "timestamp": "@mcp:time"}
-  ```
-- **RL Scoring (PPO+GAE)**
-
-- **GAE Calculation**: Compute advantage for schema update task
-- **Success**: +5 RL → `progress.json`[0]
-  ```json
-  {"workflow": "update", "rl_reward": 5,
-   "schemas_updated": 8, "checksum_verified": true,
-   "gae_advantage": 0.92, "kl_divergence": 0.002,
-   "exploit_ratio": 0.7, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "schema_sync", "reward": 8,
+   "description": "8 schemas synced, all validated",
+   "gae_advantage": 0.92, "kl_divergence": 0.002}
   ```
 - **Commit**: `@mcp:git` → "update: 8-schema atomic sync complete"
 - **IMMEDIATE CHAIN**: Execute `/next` (NO asking)

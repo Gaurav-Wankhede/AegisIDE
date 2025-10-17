@@ -1,6 +1,5 @@
 ---
 description: RL-tracked comprehensive system status report
-location: {IDE}/workflow/status.md
 ---
 
 # /status — System Status Report
@@ -39,18 +38,19 @@ location: {IDE}/workflow/status.md
     "rl_score_trend": "+15", "rl_reward": 5, "timestamp": "..."}
    ```
 2. **Blockers**: Log in `scratchpad.json`[0] if tasks blocked
-3. **Metrics**: Prepend to `progress.json`[0] with velocity + RL trends
-4. **RL Scoring & Computation**: 
-- Calculate: Policy entropy for exploration tracking
-- Compute: Value estimates across all branches
-- Store: +5 RL status check → `progress.json` with current rl_computation state[0]
+3. **Metrics** (Single Source):
+   - `progress.json[0]` transaction: +5 RL, update `total_rl_score`
+   - Include velocity + RL trends in description
+   - Value estimates across all branches in transaction
 
 ## Exit & Auto-Chain
 
-- **Success Metrics**: Prepend to `progress.json`[0]:
+- **Success Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: +5 RL, update `total_rl_score`
   ```json
-  {"workflow": "status", "rl_reward": 5,
-   "compliance_score": 95, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "status_check", "reward": 5,
+   "description": "Compliance: 95%, Velocity: 12 tasks/hr"}
   ```
 - **Risks**: Document in `mistakes.json` if found
 - **Commit**: `@mcp:git` → "status: 95% compliance"

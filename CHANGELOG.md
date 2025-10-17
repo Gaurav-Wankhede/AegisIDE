@@ -4,6 +4,56 @@ Track the evolution of AegisIDE from a simple AI framework to the world's most a
 
 *Following [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format with [Semantic Versioning](https://semver.org/spec/v2.0.0.html)*
 
+## [3.1.0] - 2025-10-17
+
+### Added
+- **Constitutional Mappings System**
+  - Added `constitutional_mappings` section to `schema-integrity-validator.json`
+  - Maps 20 schema fields to their implementing constitutional articles
+  - Enables traceability between schemas and governance framework
+  - Gap 46 fix: Explicit schema→article documentation
+
+- **Helper Schema Documentation**
+  - Clarified 8 core + 5 helper schema structure in global_rules.md
+  - Helper schemas: common-mistakes, error-recovery, tool-usage-patterns, constitutional-governance, schema-evolution
+  - Updated Article 11, 30, 37 to reference helper schemas
+  - Gap 43 fixes: Helper schema integration
+
+### Changed
+- **Constitutional Framework Refinements (Gaps 34-47)**
+  - Fixed Article 4: `activeContext.rl_runtime` → `progress.rl_runtime_controls`
+  - Extended Article 4: Added `user_controls` (pause/stop/skip) documentation
+  - Extended Article 8: Added `user_feedback` rights and RL influence
+  - Extended Article 9: Added `mcp_fallback_chain` resilience details
+  - Fixed Article 11: Corrected duplicate step 6 → proper 9-step workflow
+  - Updated Article 30: Added emergency succession protocol reference
+  - Updated Article 37: Added constitutional-governance.json reference
+  - Bulk updated timestamps on all 43 articles to 2025-10-17
+
+- **Global Rules Structure**
+  - Fixed Section V duplicate numbering → proper I-IX sequence
+  - Added Memory Bank section (IV) explicitly listing 8 core + 5 helper schemas
+  - Clarified schema count in update protocol (8 core schemas)
+  - Gap 44, 47 fixes: Documentation accuracy
+
+### Fixed
+- Gap 34: GitHub auto-bootstrap workflow in global_rules.md
+- Gap 40: Schema field reference correction in Article 4
+- Gap 41a-c: UX schema fields documented in Articles 4, 8, 9
+- Gap 42: Timestamp synchronization across all 43 constitution files
+- Gap 43a-c: Helper schema references in Articles 11, 30, 37
+- Gap 44: Schema count clarification (8 core + 5 helper)
+- Gap 45: Article 11 step numbering (8→9 steps)
+- Gap 46: Constitutional mappings added to validator
+- Gap 47: Global rules section numbering (V→VI, VI→VII, etc.)
+
+### Verified
+- ✅ All 43 constitution files present (1 preamble + 42 articles)
+- ✅ All 8 core + 5 helper + 1 validator schemas present
+- ✅ All 12 workflows exist and documented
+- ✅ Cross-references validated between all components
+- ✅ Zero gaps remaining in constitutional framework
+
 ## [3.0.0] - 2025-10-13
 
 ### Added

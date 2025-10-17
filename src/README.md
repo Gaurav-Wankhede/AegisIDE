@@ -16,12 +16,12 @@ This ensures AI development is reliable, accountable, and maintains high quality
 ```
 .aegiside/
 ├── memory-bank/          # AI's persistent memory (8 core schemas)
-├── schemas/              # Validation rules for memory files
+├── schemas/              # Validation rules (8 core + 5 helper + validator)
 ├── visualize/            # Real-time dashboard
 └── README.md            # This file
 
 rules/
-├── constitution/         # 17 governance articles
+├── constitution/         # 42 governance articles + preamble
 └── laws/                # Language-specific implementation rules
 
 workflow/                 # 12 autonomous workflows

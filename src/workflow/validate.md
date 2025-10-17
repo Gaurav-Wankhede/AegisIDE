@@ -35,26 +35,21 @@ description: Zero-tolerance validation with RL penalties
 ## RL Scoring (PPO+GAE)
 
 - **GAE Calculation**: Compute advantage for validation success
-- **RL Scoring & Computation**:
-  - Calculate: TD_error for validation value, update V(validation_branch)
-  - Pass → +15 RL → `progress.json` with rl_computation {td_error, value_updated}
-  - Fail → -30 RL → `mistakes.json` with prevention rule
-  ```json
-  {"workflow": "validate", "rl_reward": 15,
-   "validation_passed": true, "issues_found": 0,
-   "gae_advantage": 0.95, "kl_divergence": 0.001,
-   "value_branch": "validation", "timestamp": "@mcp:time"}
-  ```
-1. **Validation Results**: Prepend to `activeContext.json`[0]:
-   ```json
-   {"event": "validation_complete", "status": "pass",
-    "compliance_score": 100, "rl_reward": 15, "timestamp": "..."}
-   ```
-2. **IF Pass**: +15 RL → Prepend to `progress.json`[0]
-3. **IF Fail**: 
-   - -30 RL → Prepend to `mistakes.json`[0]
-   - Queue remediation in `scratchpad.json`[0]
+1. **IF Pass** (Single Source RL):
+   - +15 RL → `progress.json[0]` transaction, update `total_rl_score`
+   - Prepend to `activeContext.json[0]`: `{"event": "validation_complete", "status": "pass", "compliance_score": 100}`
+   - Move task to kanban 'done' (awaits Opposition + Chief Justice approval)
+2. **IF Fail** (Single Source RL):
+   - -30 RL → `progress.json[0]` transaction with penalty
+   - Prepend to `mistakes.json[0]`: penalty transaction with prevention rule
+   - Queue remediation in `scratchpad.json[0]`
    - Trigger `/fix` workflow immediately
+3. **RL Computation** (PPO+GAE):
+   ```json
+   {"workflow": "validate", "reward": 15,
+    "gae_advantage": 0.95, "kl_divergence": 0.001,
+    "value_branch": "validation", "timestamp": "@mcp:time"}
+   ```
 4. **Selective Article Loading**:
    - Validation fail → Load `{IDE}/aegiside/rules/constitution/08-judiciary/article-36.md`
    - Quality issue → Load `03-fundamental-rights/article-05.md`
@@ -62,12 +57,14 @@ description: Zero-tolerance validation with RL penalties
 ## Exit & HALT-FIX Loop
 
 - **IF Pass**: 
-  - Prepend success to `progress.json`
+  - `progress.json[0]` transaction: +15 RL, update `total_rl_score`
   - `@mcp:git` → Commit "validate: clean"
-  - Move task to kanban 'done' (awaits Opposition + Chief Justice approval for 'approved')
-  - Resume `/next` immediately
+  - kanban: task→done (awaits Art 29 Opposition + Art 32 Chief Justice)
+  - Resume `/next` immediately (NO permission)
 - **IF Fail**:
-  - HALT all operations
+  - HALT all operations (Art 5,15)
+  - `progress.json[0]`: -30 RL penalty
+  - `mistakes.json[0]`: prevention rule
   - Trigger `/fix` workflow
   - Loop until 100% clean
   - NO asking permission

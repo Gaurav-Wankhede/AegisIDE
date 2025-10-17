@@ -37,22 +37,21 @@ description: RL-tracked tri-branch parliamentary review
     "consensus_score": 96, "ruling": "approved",
     "rl_reward": 25, "timestamp": "..."}
    ```
-2. **Consensus RL Scoring & Computation**:
-   - Calculate: TD_error for governance effectiveness
-   - Update: V(democratic_process) via multi-step GAE
-   - Consensus → +10 RL with rl_computation
-   - Quality improvement → +15 RL → Prepend to `progress.json`[0]
-   - ≥95% → +25 RL → Prepend to `progress.json`[0]
-   - <95% → -20 RL → Prepend to `mistakes.json`[0]
+2. **Consensus RL Scoring** (Single Source):
+   - ≥95% consensus → `progress.json[0]`: +25 RL, update `total_rl_score`
+   - <95% failed → `progress.json[0]`: -20 RL penalty
+   - Failure details → `mistakes.json[0]`: penalty transaction with remediation
 3. **IF Rejected**: Queue remediation in `scratchpad.json`[0]
 4. **Store Verdict**: `@mcp:memory` → Knowledge graph
 
 ## Exit & Auto-Chain
 
-- **Success Metrics**: Prepend to `progress.json`[0]:
+- **Success Metrics** (Single Source RL):
+  - `progress.json[0]` transaction: +25 RL, update `total_rl_score`
   ```json
-  {"workflow": "oversight", "rl_reward": 25,
-   "consensus_score": 96, "timestamp": "@mcp:time"}
+  {"tx_id": "...", "timestamp": "@mcp:time",
+   "category": "parliamentary_review", "reward": 25,
+   "description": "Consensus: 96%, proposal approved"}
   ```
 - **Debate Patterns**: Store in `systemPatterns.json` for future reference
 - **Commit**: `@mcp:git` → "oversight: [ruling] with [consensus%]"
