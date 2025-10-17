@@ -4,34 +4,81 @@
   "bootstrap_initialization": {
     "description": "First-time setup: Auto-download from GitHub, detect IDE, create structure",
     "github_repo": "https://github.com/Gaurav-Wankhede/AegisIDE.git",
+    "platform_detection": {
+      "method": "Check OS environment variables and paths",
+      "windows": {
+        "indicator": "os.name == 'nt' OR %USERPROFILE% exists",
+        "user_home": "%USERPROFILE%",
+        "temp_folder": "%TEMP%\\aegiside-setup"
+      },
+      "linux": {
+        "indicator": "os.name == 'posix' AND uname == 'Linux'",
+        "user_home": "~",
+        "temp_folder": "/tmp/aegiside-setup"
+      },
+      "macos": {
+        "indicator": "os.name == 'posix' AND uname == 'Darwin'",
+        "user_home": "~",
+        "temp_folder": "/tmp/aegiside-setup"
+      }
+    },
     "ide_detection": {
-      "method": "Check MCP config paths and environment",
-      "paths": [
+      "method": "Check MCP config paths and environment (platform-aware)",
+      "windows_paths": [
+        {"ide": "windsurf", "check": "%USERPROFILE%\\.codeium\\windsurf-next\\mcp_config.json", "folder": ".windsurf"},
+        {"ide": "cursor", "check": "%USERPROFILE%\\.cursor\\mcp_config.json", "folder": ".cursor"},
+        {"ide": "vscode", "check": "%USERPROFILE%\\.vscode\\extensions", "folder": ".vscode"},
+        {"ide": "cline", "check": "%USERPROFILE%\\.cline", "folder": ".cline"}
+      ],
+      "linux_paths": [
         {"ide": "windsurf", "check": "~/.codeium/windsurf-next/mcp_config.json", "folder": ".windsurf"},
         {"ide": "cursor", "check": "~/.cursor/mcp_config.json", "folder": ".cursor"},
         {"ide": "vscode", "check": "~/.vscode/extensions", "folder": ".vscode"},
         {"ide": "cline", "check": "~/.cline", "folder": ".cline"}
       ],
+      "macos_paths": [
+        {"ide": "windsurf", "check": "~/Library/Application Support/Codeium/windsurf-next/mcp_config.json", "folder": ".windsurf"},
+        {"ide": "cursor", "check": "~/Library/Application Support/Cursor/mcp_config.json", "folder": ".cursor"},
+        {"ide": "vscode", "check": "~/Library/Application Support/Code/extensions", "folder": ".vscode"},
+        {"ide": "cline", "check": "~/.cline", "folder": ".cline"}
+      ],
       "fallback": "windsurf"
     },
     "initialization_workflow": [
-      "1. Detect IDE type via MCP config path checks",
-      "2. Check if {IDE}/.aegiside/context-router.json exists",
-      "3. If NOT exists: Clone GitHub repo to /tmp/aegiside-setup/",
-      "4. Copy src/.aegiside/ → {IDE}/.aegiside/ (schemas only)",
-      "5. Copy src/rules/ → {IDE}/rules/",
-      "6. Copy src/workflow/ → {IDE}/workflow/",
-      "7. Generate 8 memory bank JSON files from .schema.json definitions",
-      "8. Verify constitution files exist (42 articles)",
-      "9. Create global_rules.md in IDE config folder",
-      "10. Cleanup /tmp/aegiside-setup/"
+      "1. Detect OS platform (Windows/Linux/macOS)",
+      "2. Detect IDE type via platform-specific MCP config path checks",
+      "3. Check if {IDE}/.aegiside/context-router.json exists",
+      "4. If NOT exists: Clone GitHub repo to platform-specific temp folder",
+      "5. Copy src/.aegiside/ → {IDE}/.aegiside/ using platform-specific commands",
+      "6. Copy src/rules/ → {IDE}/rules/",
+      "7. Copy src/workflow/ → {IDE}/workflow/",
+      "8. Generate 8 memory bank JSON files from .schema.json definitions",
+      "9. Verify constitution files exist (42 articles)",
+      "10. Create global_rules.md in IDE config folder",
+      "11. Cleanup temp folder using platform-specific commands"
     ],
     "commands": {
-      "clone": "git clone --depth 1 https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegiside-setup",
-      "copy_aegiside": "cp -r /tmp/aegiside-setup/src/.aegiside {IDE}/",
-      "copy_rules": "cp -r /tmp/aegiside-setup/src/rules {IDE}/",
-      "copy_workflows": "cp -r /tmp/aegiside-setup/src/workflow {IDE}/",
-      "cleanup": "rm -rf /tmp/aegiside-setup"
+      "windows": {
+        "clone": "git clone --depth 1 https://github.com/Gaurav-Wankhede/AegisIDE.git %TEMP%\\aegiside-setup",
+        "copy_aegiside": "xcopy /E /I /Y %TEMP%\\aegiside-setup\\src\\.aegiside {IDE}\\.aegiside",
+        "copy_rules": "xcopy /E /I /Y %TEMP%\\aegiside-setup\\src\\rules {IDE}\\rules",
+        "copy_workflows": "xcopy /E /I /Y %TEMP%\\aegiside-setup\\src\\workflow {IDE}\\workflow",
+        "cleanup": "rmdir /S /Q %TEMP%\\aegiside-setup"
+      },
+      "linux": {
+        "clone": "git clone --depth 1 https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegiside-setup",
+        "copy_aegiside": "cp -r /tmp/aegiside-setup/src/.aegiside {IDE}/",
+        "copy_rules": "cp -r /tmp/aegiside-setup/src/rules {IDE}/",
+        "copy_workflows": "cp -r /tmp/aegiside-setup/src/workflow {IDE}/",
+        "cleanup": "rm -rf /tmp/aegiside-setup"
+      },
+      "macos": {
+        "clone": "git clone --depth 1 https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegiside-setup",
+        "copy_aegiside": "cp -r /tmp/aegiside-setup/src/.aegiside {IDE}/",
+        "copy_rules": "cp -r /tmp/aegiside-setup/src/rules {IDE}/",
+        "copy_workflows": "cp -r /tmp/aegiside-setup/src/workflow {IDE}/",
+        "cleanup": "rm -rf /tmp/aegiside-setup"
+      }
     },
     "verification": {
       "required_files": [
