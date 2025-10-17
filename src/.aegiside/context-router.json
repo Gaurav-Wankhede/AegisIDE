@@ -38,20 +38,21 @@
     "constitutional_governance": "constitutional-governance.json",
     "schema_evolution": "schema-evolution.json"
   },
-  "workflow_files": [
-    "bootstrap.md",
-    "continue.md",
-    "fix.md",
-    "init.md",
-    "memory-status.md",
-    "next.md",
-    "optimize.md",
-    "oversight-checks-and-balances.md",
-    "research.md",
-    "status.md",
-    "update.md",
-    "validate.md"
+  "workflow_slash_commands": [
+    "/bootstrap",
+    "/continue",
+    "/fix",
+    "/init",
+    "/memory-status",
+    "/next",
+    "/optimize",
+    "/oversight-checks-and-balances",
+    "/research",
+    "/status",
+    "/update",
+    "/validate"
   ],
+  "workflow_invocation_note": "Workflows are invoked directly as slash commands (e.g., /fix, /next), NOT loaded as markdown files. Each workflow auto-executes its MCP chain autonomously.",
   "law_files": {
     "description": "Project-specific rules and conventions",
     "examples": {
@@ -281,7 +282,7 @@
     "autonomy_band": "0-99%",
     "high_risk_requires_approval": ["database_mutations", "production_deploy", "delete_5plus_files", "git_force", "security_changes"],
     "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"],
-    "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "execute_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
+    "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "invoke_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
   },
   "mcp_integration": {
     "global_config": "~/.codeium/windsurf-next/mcp_config.json",
@@ -342,6 +343,7 @@
     }
   },
   "dynamic_loading": {
+    "workflows": "Invoke directly as slash commands (e.g., /fix, /next) - NOT file loading",
     "articles": "Load only articles specified in intent_mapping[intent].articles",
     "helpers": "Load helpers dynamically based on error type or workflow needs",
     "schemas": "Validate against schemas/*.schema.json on every update",
