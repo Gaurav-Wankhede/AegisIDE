@@ -1,6 +1,96 @@
 {
   "meta_version": "1.0.0",
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
+  
+  "constitution": {
+    "description": "Supreme law - ALL operations governed by constitutional framework",
+    "location": "{IDE}/rules/constitution/",
+    "structure": {
+      "preamble": "{IDE}/rules/constitution/01-preamble/preamble.md",
+      "preliminary": [
+        "{IDE}/rules/constitution/02-preliminary/article-1.md",
+        "{IDE}/rules/constitution/02-preliminary/article-2.md",
+        "{IDE}/rules/constitution/02-preliminary/article-3.md"
+      ],
+      "fundamental_rights": [
+        "{IDE}/rules/constitution/03-fundamental-rights/article-4.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-5.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-6.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-7.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-8.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-9.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-10.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-11.md",
+        "{IDE}/rules/constitution/03-fundamental-rights/article-12.md"
+      ],
+      "fundamental_duties": [
+        "{IDE}/rules/constitution/04-fundamental-duties/article-13.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-14.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-15.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-16.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-17.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-18.md",
+        "{IDE}/rules/constitution/04-fundamental-duties/article-19.md"
+      ]
+    },
+    "lazy_load": "Load articles only when needed via glow CLI",
+    "mandatory_compliance": "≥80% constitutional adherence required"
+  },
+  
+  "workflows": {
+    "description": "Slash commands for autonomous operations",
+    "location": "{IDE}/workflow/",
+    "core_workflows": [
+      "/init - Initialize memory bank (8 schemas)",
+      "/next - Execute next task from scratchpad",
+      "/validate - Run validation suite",
+      "/fix - Fix errors with HALT-FIX-VALIDATE loop",
+      "/continue - Resume after interruption",
+      "/research - IAS intelligence gathering",
+      "/optimize - Performance optimization",
+      "/bootstrap - First-time setup"
+    ],
+    "auto_chain": "Each workflow auto-continues to next (NO loops, ONE execution)",
+    "execution_model": "Atomic commands via Cascade run_command tool"
+  },
+  
+  "mcps": {
+    "description": "8 mandatory Model Context Protocol servers - NO CLI bypasses",
+    "core_count": 8,
+    "always_active": [
+      "@mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
+      "@mcp:memory - Knowledge graph operations",
+      "@mcp:json-jq - Large JSON read (>10KB files)",
+      "@mcp:git - Version control (NO CLI git)"
+    ],
+    "on_demand": [
+      "@mcp:context7 - Official documentation (IMMEDIATE on errors)",
+      "@mcp:exa - Research papers",
+      "@mcp:fetch - Web scraping",
+      "@mcp:Shuttle - Rust deployment"
+    ],
+    "enforcement": "Missing MCP = -30 RL penalty, CLI bypass = -50 RL penalty",
+    "config_location": "/home/gaurav-wankhede/.codeium/windsurf-next/mcp_config.json"
+  },
+  
+  "memory_bank": {
+    "description": "8 core schemas - Single source of runtime state",
+    "location": "{IDE}/.aegiside/memory-bank/",
+    "schemas": [
+      "activeContext.json - Real-time execution state",
+      "scratchpad.json - Task priority queue",
+      "kanban.json - Workflow tracking (todo→in_progress→done→approved)",
+      "mistakes.json - Error patterns + penalties",
+      "systemPatterns.json - Architecture patterns + rewards",
+      "progress.json - RL ledger + performance metrics",
+      "roadmap.json - Strategic planning",
+      "memory.json - Knowledge graph"
+    ],
+    "size_limit": "≤10KB per schema",
+    "update_frequency": "Atomic updates after every task",
+    "validation": "All schemas validated against {IDE}/.aegiside/schemas/*.schema.json"
+  },
+  
   "anti_amnesia_protocol": {
     "before_any_claim": [
       "Query context-router.json for paths (jq or @mcp:json-jq)",
