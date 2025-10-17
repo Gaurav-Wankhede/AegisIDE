@@ -11,7 +11,7 @@
   },
   "intent_mapping": {
     "error": {
-      "workflows": ["/workflow/fix.md"],
+      "workflows": ["/fix"],
       "articles": [5, 15],
       "priority": 1,
       "mcps_required": ["filesystem", "context7", "sequential-thinking", "git"],
@@ -19,7 +19,7 @@
       "rl_penalty": -30
     },
     "feature": {
-      "workflows": ["/workflow/research.md", "/workflow/next.md"],
+      "workflows": ["/research", "/next"],
       "articles": [4, 17, 23],
       "priority": 2,
       "mcps_required": ["context7", "exa", "filesystem", "memory", "git"],
@@ -27,7 +27,7 @@
       "rl_penalty": -10
     },
     "validate": {
-      "workflows": ["/workflow/validate.md"],
+      "workflows": ["/validate"],
       "articles": [5, 15],
       "priority": 1,
       "mcps_required": ["filesystem", "git"],
@@ -35,7 +35,7 @@
       "rl_penalty": -30
     },
     "optimize": {
-      "workflows": ["/workflow/optimize.md"],
+      "workflows": ["/optimize"],
       "articles": [20, 25],
       "priority": 3,
       "mcps_required": ["math", "sequential-thinking", "filesystem"],
@@ -43,20 +43,68 @@
       "rl_penalty": -15
     },
     "status": {
-      "workflows": ["/workflow/status.md"],
+      "workflows": ["/status"],
       "articles": [16],
       "priority": 3,
       "mcps_required": ["filesystem", "math"],
       "rl_base_reward": 10,
       "rl_penalty": 0
+    },
+    "init": {
+      "workflows": ["/init"],
+      "articles": [1, 2, 3],
+      "priority": 1,
+      "mcps_required": ["filesystem", "memory", "time", "math"],
+      "rl_base_reward": 10,
+      "rl_penalty": -15
+    },
+    "continue": {
+      "workflows": ["/continue"],
+      "articles": [6, 14],
+      "priority": 1,
+      "mcps_required": ["filesystem", "memory", "time"],
+      "rl_base_reward": 5,
+      "rl_penalty": -10
+    },
+    "bootstrap": {
+      "workflows": ["/bootstrap"],
+      "articles": [14],
+      "priority": 1,
+      "mcps_required": ["filesystem", "time", "git", "memory"],
+      "rl_base_reward": 10,
+      "rl_penalty": -15
+    },
+    "update": {
+      "workflows": ["/update"],
+      "articles": [14],
+      "priority": 2,
+      "mcps_required": ["filesystem", "time", "math", "git"],
+      "rl_base_reward": 8,
+      "rl_penalty": -20
+    },
+    "oversight": {
+      "workflows": ["/oversight-checks-and-balances"],
+      "articles": [26, 27, 28, 29],
+      "priority": 2,
+      "mcps_required": ["sequential-thinking", "math", "memory", "filesystem"],
+      "rl_base_reward": 25,
+      "rl_penalty": -20
+    },
+    "memory_status": {
+      "workflows": ["/memory-status"],
+      "articles": [10, 42],
+      "priority": 3,
+      "mcps_required": ["memory", "filesystem", "math"],
+      "rl_base_reward": 5,
+      "rl_penalty": -10
     }
   },
   "auto_triggers": {
     "session_start": {
       "check": "memory_bank_exists",
-      "if_false": "execute /workflow/init.md",
+      "if_false": "/init",
       "load_articles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "load_mode": "full"
+      "load_mode": "selective"
     },
     "every_5_ops": {
       "trigger": "memory_anchor",
@@ -86,7 +134,7 @@
       }
     },
     "error_detected": {
-      "workflow": "/workflow/fix.md",
+      "workflow": "/fix",
       "articles": [5, 15],
       "halt": true,
       "rl_penalty": -30
