@@ -4,13 +4,14 @@ description: RL-driven autonomous execution loop with selective article loading
 
 # /next — Autonomous Execution Engine
 
-## PRE-FLIGHT (Load Memory Bank)
+## PRE-FLIGHT (Load Summaries Only)
 ```python
-scratchpad = @mcp:filesystem read scratchpad.json[0]
-activeContext = @mcp:filesystem read activeContext.json[0]
-activeContext.operation_counter += 1
-IF operation_counter % 5 == 0: # Memory Anchor
-    @mcp:filesystem read progress.total_rl_score
+# Load brief summaries, NOT full content
+next_task_title = @mcp:filesystem read scratchpad.json[0].title
+last_10_summaries = @mcp:filesystem read activeContext.json[0].task_history[-10:]
+total_rl = @mcp:filesystem read progress.json.total_rl_score
+activeContext[0].operation_counter += 1
+# Total: ~500 tokens vs 5000+ tokens
 ```
 
 ## RL-Driven Autonomy (0-99% Auto-Execute)

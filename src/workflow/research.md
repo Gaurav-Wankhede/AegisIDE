@@ -4,11 +4,13 @@ description: RL-tracked research dossier with free-tier optimization
 
 # /research — MCP Intelligence Dossier
 
-## PRE-FLIGHT (Load Memory Bank)
+## PRE-FLIGHT (Load Summaries Only)
 ```python
-scratchpad = @mcp:filesystem read scratchpad.json[0]  # Task
-activeContext = @mcp:filesystem read activeContext.json[0]  # State
-activeContext.operation_counter += 1
+# Load brief summaries, NOT full content
+next_task_title = @mcp:filesystem read scratchpad.json[0].title
+last_10_summaries = @mcp:filesystem read activeContext.json[0].task_history[-10:]
+activeContext[0].operation_counter += 1
+# Total: ~500 tokens vs 5000+ tokens
 ```
 
 ## RL-Driven Research
