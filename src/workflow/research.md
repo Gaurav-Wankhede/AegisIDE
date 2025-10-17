@@ -4,6 +4,13 @@ description: RL-tracked research dossier with free-tier optimization
 
 # /research — MCP Intelligence Dossier
 
+## PRE-FLIGHT (Load Memory Bank)
+```python
+scratchpad = @mcp:filesystem read scratchpad.json[0]  # Task
+activeContext = @mcp:filesystem read activeContext.json[0]  # State
+activeContext.operation_counter += 1
+```
+
 ## RL-Driven Research
 
 **Purpose**: Gather official docs + benchmarks for decision-making

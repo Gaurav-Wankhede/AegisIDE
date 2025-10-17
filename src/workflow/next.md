@@ -4,6 +4,15 @@ description: RL-driven autonomous execution loop with selective article loading
 
 # /next — Autonomous Execution Engine
 
+## PRE-FLIGHT (Load Memory Bank)
+```python
+scratchpad = @mcp:filesystem read scratchpad.json[0]
+activeContext = @mcp:filesystem read activeContext.json[0]
+activeContext.operation_counter += 1
+IF operation_counter % 5 == 0: # Memory Anchor
+    @mcp:filesystem read progress.total_rl_score
+```
+
 ## RL-Driven Autonomy (0-99% Auto-Execute)
 
 **LLM Autonomously Decides**:
