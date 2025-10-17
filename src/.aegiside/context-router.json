@@ -53,11 +53,16 @@
     "validate.md"
   ],
   "law_files": {
-    "emd_compliance": "emd-architecture.md",
-    "anti_duplication": "anti-duplication.md",
-    "mcp_mandate": "mcp-mandatory-usage.md",
-    "zero_tolerance": "zero-tolerance-validation.md",
-    "rl_learning": "reinforcement-learning.md"
+    "description": "Project-specific rules and conventions",
+    "examples": {
+      "coding_standards": "coding-conventions.md",
+      "architecture_decisions": "architecture-rules.md",
+      "naming_conventions": "naming-standards.md",
+      "git_workflow": "git-commit-standards.md",
+      "testing_requirements": "testing-standards.md",
+      "security_policies": "security-rules.md"
+    },
+    "note": "Laws are project-specific, Constitution is universal across all AegisIDE projects"
   },
   "constitutional_structure": {
     "01-preamble": {"file": "preamble.md", "articles": 0},
