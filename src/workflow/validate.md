@@ -11,24 +11,33 @@ description: Zero-tolerance validation with RL penalties
 **RL Penalty**: -30 for failures (triggers `/fix` loop)
 **Multi-Language**: Auto-detect project type and run appropriate checks
 
-## MCP Chain (Multi-Language Auto-Detection)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read 8 schemas from `{IDE}/aegiside/memory-bank/`
-2. **Auto-Detect Language** (manifest-based):
-   - `package.json` → JS/TS: `pnpm typecheck`, `npm run lint`
-   - `Cargo.toml` → Rust: `cargo check`, `cargo clippy`
-   - `requirements.txt` → Python: `python -m py_compile`, `pytest --collect-only`
-   - `go.mod` → Go: `go build`, `go vet`
-3. **Execute Validation** (SafeToAutoRun=true):
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   schemas = ROUTER['system_paths']['schemas']
+   schema_files = ROUTER['schema_files']  # List of 8 schemas
+   rl_config = ROUTER['rl_calculation']
+   detection = ROUTER['auto_triggers']['session_start']['detection_logic']
+   ```
+2. `@mcp:json-jq` → Read 8 schemas from `memory_bank` (query specific fields only)
+3. **Auto-Detect Language** (from router detection_logic):
+   - IF exists('package.json') → JS/TS: `pnpm typecheck`, `npm run lint`
+   - IF exists('Cargo.toml') → Rust: `cargo check`, `cargo clippy`
+   - IF exists('requirements.txt') → Python: `python -m py_compile`, `pytest --collect-only`
+   - IF exists('go.mod') → Go: `go build`, `go vet`
+4. **Execute Validation** (SafeToAutoRun=true):
    - Run language-specific checks
-   - IF error/warning → HALT + -30 RL penalty
-4. `@mcp:filesystem` → Validate schemas against `{IDE}/aegiside/schemas/*.schema.json`
-5. IF fails → `@mcp:context7` → Fetch remediation docs
-6. `@mcp:math` → Compute compliance scores (≥80% required)
-7. `@mcp:memory` → Verify knowledge graph integrity
-8. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
-9. `@mcp:time` → Timestamp validation
-10. `@mcp:git` → Commit if clean: "validate: 100% compliance"
+   - IF error/warning → HALT + penalty from `rl_config['penalties']['validation_failure']`
+5. `@mcp:filesystem` → Validate schemas against files from `schemas` path
+6. IF fails → `@mcp:context7` → Fetch remediation docs
+7. **Manual Function**: Python `eval()` → Compute compliance scores (≥80% required)
+8. `@mcp:memory` → Verify knowledge graph integrity
+9. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
+10. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp validation
+11. `@mcp:git` → Commit if clean: "validate: 100% compliance"
 
 ## Actions & RL Logging
 

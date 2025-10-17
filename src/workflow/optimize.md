@@ -11,25 +11,32 @@ description: RL-driven performance optimization with benchmarking
 **RL Penalty**: -25 if regression detected
 **Benchmarking**: Mandatory before/after metrics
 
-## MCP Chain (Benchmark-Driven)
+## MCP Chain (Query Router First)
 
-1. `@mcp:context7` → Fetch optimization best practices
-2. `@mcp:fetch` → Gather industry benchmarks (free-tier focus)
-3. `@mcp:memory` → Load historical patterns from knowledge graph
-4. `@mcp:math` → Capture baseline metrics:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   rl_config = ROUTER['rl_calculation']
+   penalty = rl_config['penalties']['validation_failure']  # -25
+   reward = rl_config['rewards']['high_quality_code']  # +10 (or custom +20)
+   ```
+2. `@mcp:context7` → Fetch optimization best practices
+3. `@mcp:fetch` → Gather industry benchmarks (free-tier focus)
+4. `@mcp:memory` → Load historical patterns from knowledge graph
+5. **Manual Function**: Python `eval()` → Capture baseline metrics:
    - Latency (ms)
    - Throughput (ops/sec)
    - Resource usage (CPU/memory)
-5. `@mcp:sequential-thinking` → Plan optimization steps
-6. `@mcp:filesystem` → Apply changes (files ≤80 lines, ≤10KB)
-7. `@mcp:time` → Timestamp pre/post runs
-8. **Run Benchmarks** (SafeToAutoRun=true)
-9. `@mcp:math` → Compare results
-10. IF regression → HALT + -25 RL penalty + rollback
-11. IF improvement → +20 RL reward
-12. `@mcp:filesystem` → Validate schemas
-13. `@mcp:git` → Commit "optimize: [improvement%]"
-14. `@mcp:memory` → Store optimization pattern
+6. `@mcp:sequential-thinking` → Plan optimization steps
+7. `@mcp:filesystem` → Apply changes (files ≤80 lines, ≤10KB per EMD from router)
+8. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp pre/post runs
+9. **Run Benchmarks** (SafeToAutoRun=true)
+10. **Manual Function**: Python `eval()` → Compare results
+11. IF regression → HALT + penalty from router + rollback
+12. IF improvement → reward from router
+13. `@mcp:filesystem` → Validate schemas from router paths
+14. `@mcp:git` → Commit "optimize: [improvement%]"
+15. `@mcp:memory` → Store optimization pattern
 
 ## Actions & Pattern Learning
 

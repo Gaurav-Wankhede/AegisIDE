@@ -4,29 +4,39 @@ description: RL-driven autonomous execution loop with selective article loading
 
 # /next — Autonomous Execution Engine
 
-## PRE-FLIGHT (Load Summaries Only)
+## PRE-FLIGHT (Query Router Dynamically)
 ```python
-# Load brief summaries, NOT full content
-next_task_title = @mcp:filesystem read scratchpad.json[0].title
-last_10_summaries = @mcp:filesystem read activeContext.json[0].task_history[-10:]
-total_rl = @mcp:filesystem read progress.json.total_rl_score
-activeContext[0].operation_counter += 1
+# Step 1: Load router config
+ROUTER = @mcp:json-jq query '$.system_paths' from 'context-router.json'
+memory_bank = ROUTER['memory_bank']
+
+# Step 2: Load summaries (NOT full content) using @mcp:json-jq
+next_task_title = @mcp:json-jq query '$.priority_queue[0].title' from f"{memory_bank}scratchpad.json"
+last_10_summaries = @mcp:json-jq query '$.task_history[-10:]' from f"{memory_bank}activeContext.json"
+total_rl = @mcp:json-jq query '$.total_rl_score' from f"{memory_bank}progress.json"
+operation_counter = @mcp:json-jq query '$.operation_counter' from f"{memory_bank}activeContext.json"
+operation_counter += 1
 # Total: ~500 tokens vs 5000+ tokens
 ```
 
 ## RL-Driven Autonomy (0-99% Auto-Execute)
 
-**LLM Autonomously Decides**:
-- Which articles to load from `{IDE}/aegiside/rules/constitution/` (selective, NOT all 42)
-- Which MCPs to invoke based on task type
-- Which schemas to update at `{IDE}/aegiside/memory-bank/`
-- How to optimize using past RL scores from `progress.json`
+**LLM Autonomously Decides** (Query from context-router.json):
+- Which articles to load from `$.system_paths.constitution` (selective, NOT all 42)
+- Which MCPs to invoke from `$.mcp_integration.always_active` + `$.mcp_integration.on_demand`
+- Which schemas to update from `$.atomic_update_chain.order` at `$.system_paths.memory_bank`
+- How to optimize using RL formulas from `$.rl_calculation.formula_patterns`
 
 ## Workflow Steps
 
-## 1. Context Assembly
+## 1. Context Assembly (Query Router)
 
-1. `@mcp:filesystem` → Read `scratchpad.json` priority queue (task at [0])
+1. **Load Paths Dynamically**:
+   ```python
+   paths = @mcp:json-jq query '$.system_paths' from 'context-router.json'
+   memory_bank = paths['memory_bank']
+   ```
+2. `@mcp:json-jq` → Query `$.priority_queue[0]` from `scratchpad.json`
 2. **CONFLICT DETECTION** (UX Gap 8):
    ```python
    IF activeContext.current_execution.status == "in_progress":

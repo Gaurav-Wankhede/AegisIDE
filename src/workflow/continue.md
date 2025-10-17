@@ -8,16 +8,23 @@ description: RL-driven immediate recovery after interruption
 
 **UX Gap 7 Fix**: Session resume now includes user-friendly status update
 
-**Purpose**: Restore context from `{IDE}/aegiside/memory-bank/` and resume execution
-**RL Reward**: +5 for successful recovery
-**RL Penalty**: -10 if context restoration fails
+**Purpose**: Restore context from memory bank (query path from router) and resume execution
+**RL Reward**: +5 for successful recovery (from router rl_calculation)
+**RL Penalty**: -10 if context restoration fails (from router)
 **CRITICAL**: Auto-chain to `/next` immediately (NO asking)
 
-## MCP Chain (Autonomous)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read `activeContext.json` for last known state
-2. `@mcp:filesystem` → Validate 8-schema integrity (checksums match?)
-3. `@mcp:math` → Calculate recovery checkpoint position
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   schema_files = ROUTER['schema_files']
+   rl_config = ROUTER['rl_calculation']
+   ```
+2. `@mcp:json-jq` → Query `$.session` from `activeContext.json` for last known state
+3. `@mcp:filesystem` → Validate 8-schema integrity (checksums match?)
+4. **Manual Function**: Python `eval()` → Calculate recovery checkpoint position
 4. **NOTIFY USER** (UX Gap 7):
    ```
    Session resumed after interruption
@@ -31,10 +38,10 @@ description: RL-driven immediate recovery after interruption
    (Timeout: 30 seconds → auto-continue)
    ```
 5. `@mcp:memory` → Reconstruct session knowledge graph
-6. `@mcp:filesystem` → Resume task queue from `scratchpad.json`
+6. `@mcp:json-jq` → Query `$.priority_queue` from `scratchpad.json`
 7. `@mcp:git` → Verify working tree clean (no uncommitted changes)
-8. `@mcp:time` → Timestamp recovery event
-9. Update `activeContext.user_feedback` with "Resumed from checkpoint"
+8. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp recovery event
+9. `@mcp:filesystem` → Update `activeContext.user_feedback` with "Resumed from checkpoint"
 10. Resume workflow from interruption point (NO re-execution of completed steps)
 
 ## MCP Chain (Original)

@@ -11,21 +11,28 @@ description: MCP error learning with HALT-FIX-VALIDATE loop
 **RL Penalty**: -30 for validation failure (escalates -50 on 3rd occurrence)
 **MCP Error Learning**: Auto-log patterns to prevent recurrence
 
-## MCP Chain (Error Learning)
+## MCP Chain (Query Router First)
 
-1. **HALT**: `progress.json[0]` → -30 RL penalty, update `total_rl_score`
-2. `mistakes.json[0]` → Prepend penalty transaction with error details
-3. `@mcp:context7` → Fetch official remediation docs instantly
-4. `@mcp:filesystem` → Inspect failing files
-5. IF complex → `@mcp:sequential-thinking` → Decompose root cause
-6. IF unknown → `@mcp:fetch` → Pull upstream advisories
-7. `@mcp:filesystem` → Apply atomic fix (≤80 lines)
-8. `@mcp:git` → Stage fix for audit trail
-9. `/validate` → Re-run validation
-10. IF still fails → Loop (track retry count in mistakes.json)
-11. IF success → `progress.json[0]` → +15 RL reward, update `total_rl_score`
-12. `@mcp:memory` → Store error pattern + prevention rule
-13. `@mcp:time` → Timestamp resolution
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   rl_config = ROUTER['rl_calculation']
+   penalty = rl_config['penalties']['validation_failure']  # -30
+   ```
+2. **HALT**: Update `progress.json` via `@mcp:filesystem` → Apply penalty, recalc total_rl_score
+3. `@mcp:filesystem` → Prepend `mistakes.json` with error details + penalty
+4. `@mcp:context7` → Fetch official remediation docs instantly
+5. `@mcp:filesystem` → Inspect failing files
+6. IF complex → `@mcp:sequential-thinking` → Decompose root cause
+7. IF unknown → `@mcp:fetch` → Pull upstream advisories
+8. `@mcp:filesystem` → Apply atomic fix (≤80 lines per EMD from router)
+9. `@mcp:git` → Stage fix for audit trail
+10. `/validate` → Re-run validation
+11. IF still fails → Loop (track retry count in mistakes.json)
+12. IF success → `@mcp:filesystem` update `progress.json` → +15 RL reward from `rl_config['rewards']['validation_passed']`
+13. `@mcp:memory` → Store error pattern + prevention rule
+14. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp resolution
 
 **MCP Error Learning Protocol**:
 ```json

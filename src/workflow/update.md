@@ -6,27 +6,36 @@ description: RL-tracked 8-schema synchronization with top-append
 
 ## RL-Driven Schema Sync
 
-**Purpose**: Atomic update of all 8 schemas at `{IDE}/aegiside/memory-bank/`
-**RL Reward**: +8 for successful sync (1 per schema)
-**RL Penalty**: -20 if validation fails
+**Purpose**: Atomic update of all 8 schemas (query path from router)
+**RL Reward**: +8 for successful sync (from router rl_calculation)
+**RL Penalty**: -20 if validation fails (from router)
 **Top-Append**: Maintain latest-first order in all arrays
 
-## MCP Chain (8-Schema Atomic Sync)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read all 8 schemas from `{IDE}/aegiside/memory-bank/`
-2. `@mcp:math` → Compute:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   schemas_path = ROUTER['system_paths']['schemas']
+   schema_files = ROUTER['schema_files']  # List of 8
+   update_order = ROUTER['atomic_update_chain']['order']
+   rl_config = ROUTER['rl_calculation']
+   ```
+2. `@mcp:filesystem` → Read all 8 schemas from `memory_bank` in `update_order`
+3. **Manual Function**: Python `eval()` → Compute:
    - File sizes (each ≤10KB)
    - Compliance score (≥80%)
    - Array integrity (top-append order verified)
-3. IF issues found → `@mcp:sequential-thinking` → Plan remediation
-4. `@mcp:filesystem` → Apply updates:
+4. IF issues found → `@mcp:sequential-thinking` → Plan remediation
+5. `@mcp:filesystem` → Apply updates:
    - Ensure arrays prepend new entries at [0]
    - Trim arrays if >100 entries (keep latest 100)
    - Update timestamps
-5. `@mcp:filesystem` → Validate against `{IDE}/aegiside/schemas/*.schema.json`
-6. `@mcp:memory` → Store update event in knowledge graph
-7. `@mcp:time` → Timestamp sync operation
-8. `@mcp:git` → Commit "update: 8-schema sync"
+6. `@mcp:filesystem` → Validate against schemas from `schemas_path`
+7. `@mcp:memory` → Store update event in knowledge graph
+8. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp sync operation
+9. `@mcp:git` → Commit "update: 8-schema sync"
 
 **8-Schema Checklist** (Single Source RL):
 1. `progress.json` → **SINGLE SOURCE** for `total_rl_score`, RL transactions at [0]

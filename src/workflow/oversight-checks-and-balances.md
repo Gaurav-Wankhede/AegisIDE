@@ -11,23 +11,32 @@ description: RL-tracked tri-branch parliamentary review
 **RL Penalty**: -20 if consensus fails (<95%)
 **Required**: Constitutional citations, MCP trails, memory-bank updates
 
-## MCP Chain (Democratic Process)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read proposal from `systemPatterns.json`
-2. `@mcp:context7` → Load relevant constitutional articles (selective)
-3. IF precedents needed → `@mcp:fetch` → Gather external advisories
-4. `@mcp:memory` → Retrieve historical decisions
-5. `@mcp:sequential-thinking` → Orchestrate debate:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   constitution = ROUTER['system_paths']['constitution']
+   rl_config = ROUTER['rl_calculation']
+   consensus_formula = rl_config['formula_patterns']['consensus']
+   ```
+2. `@mcp:json-jq` → Query proposal from `systemPatterns.json` at `memory_bank`
+3. `@mcp:context7` → Load relevant constitutional articles from `constitution` (selective)
+4. IF precedents needed → `@mcp:fetch` → Gather external advisories
+5. `@mcp:memory` → Retrieve historical decisions
+6. `@mcp:sequential-thinking` → Orchestrate debate:
    - Government (PM): Present proposal
    - Opposition (Shadow Cabinet): Challenge evidence
    - Judiciary (Chief Justice): Constitutional review
-6. `@mcp:math` → Calculate weighted consensus:
-   - Technical expertise weight: 30%
-   - Strategic alignment weight: 40%
-   - Quality assurance weight: 30%
+7. **Manual Function**: Python `eval()` → Calculate weighted consensus using `consensus_formula`:
+   - Executive weight: 30%
+   - Administrative weight: 30%
+   - Opposition weight: 30%
+   - Judicial weight: 10%
    - Required: ≥95% for approval
-7. `@mcp:time` → Timestamp all stages
-8. `@mcp:git` → Commit debate artifacts
+8. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp all stages
+9. `@mcp:git` → Commit debate artifacts
 
 ## Actions & RL Logging
 

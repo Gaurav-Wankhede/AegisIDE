@@ -12,32 +12,48 @@ description: RL-driven session initialization with selective article loading
 **RL Architecture**: Verify progress.json = SINGLE SOURCE, others have rl_source_ref
 **Context Assembly**: Top-append strategy for optimal window usage
 
-## Directives
+## Directives (Query Router Dynamically)
 - Invoke `/init` once per session; IAS runs it autonomously and records progress in `activeContext.json`.
 - Constitution files and memory-bank schemas must load without prompts. Missing assets trigger `/bootstrap` automatically.
-- Schema validation uses `{IDE}/aegiside/memory-bank/schemas/*.schema.json` every time a file is read or regenerated.
+- Schema validation uses schemas from `@mcp:json-jq query '$.system_paths.schemas' from 'context-router.json'`
 
-## MCP Chain (Selective Loading)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Scan `{IDE}/aegiside/memory-bank/` for 8 schemas
-2. IF missing → Trigger `/bootstrap` workflow
-3. `@mcp:filesystem` → Load schemas (top-append order):
-   - Read `scratchpad.json`[0] → Latest priority task
-   - Read `activeContext.json` → Last session state
-   - Read `mistakes.json`[0] → Recent errors
-   - Read `progress.json`[0] → Latest RL score
-4. `@mcp:math` → Compute readiness: schema_count/8 * 100%
-5. `@mcp:filesystem` → Validate against `{IDE}/aegiside/schemas/*.schema.json`
-6. `@mcp:memory` → Restore knowledge graph snapshot
-7. `@mcp:time` → Timestamp session start
-8. `@mcp:git` → Verify clean working tree
+1. **Load Router Paths**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   paths = ROUTER['system_paths']
+   memory_bank = paths['memory_bank']
+   schemas = paths['schemas']
+   ```
+2. `@mcp:filesystem` → Scan `memory_bank` for 8 schemas from `ROUTER['schema_files']`
+3. IF missing → Trigger `/bootstrap` workflow
+4. `@mcp:json-jq` → Load schemas (top-append order):
+   - Query `$.priority_queue[0]` from `scratchpad.json` → Latest priority task
+   - Query `$.session` from `activeContext.json` → Last session state
+   - Query `$.error_log[0]` from `mistakes.json` → Recent errors
+   - Query `$.total_rl_score` from `progress.json` → Latest RL score
+5. **Manual Function**: Python `eval()` → Compute readiness: schema_count/8 * 100%
+6. `@mcp:filesystem` → Validate against schemas from `ROUTER['schema_files']`
+7. `@mcp:memory` → Restore knowledge graph snapshot
+8. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp session start
+9. `@mcp:git` → Verify clean working tree
 
-**Selective Article Loading** (NOT all 42):
-- **Always Load**: `02-preliminary/article-01.md` to `article-03.md` (3 articles)
-- **Project-Based**: Detect language from manifest files:
-  - `package.json` → Load `laws/javascript.md`
-  - `Cargo.toml` → Load `laws/rust.md`
-  - `requirements.txt` → Load `laws/python.md`
+**Selective Article Loading** (Query from Router):
+```python
+# Load from context-router.json auto_triggers.session_start
+auto_triggers = @mcp:json-jq query '$.auto_triggers.session_start' from 'context-router.json'
+load_config = auto_triggers['load_articles']
+
+# Always Load: Articles from load_config['always']
+articles_always = load_config['always']  # [1, 2, 3]
+
+# Project-Based: Use detection_logic from router
+detection = auto_triggers['detection_logic']
+IF exists('package.json'): load detection['package.json']  # laws/javascript.md
+IF exists('Cargo.toml'): load detection['Cargo.toml']      # laws/rust.md
+IF exists('requirements.txt'): load detection['requirements.txt']  # laws/python.md
+```
 - **IF errors detected** → Load `08-judiciary/article-36.md`
 
 ## Actions & RL Logging

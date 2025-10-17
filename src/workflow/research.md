@@ -4,12 +4,17 @@ description: RL-tracked research dossier with free-tier optimization
 
 # /research — MCP Intelligence Dossier
 
-## PRE-FLIGHT (Load Summaries Only)
+## PRE-FLIGHT (Query Router Dynamically)
 ```python
-# Load brief summaries, NOT full content
-next_task_title = @mcp:filesystem read scratchpad.json[0].title
-last_10_summaries = @mcp:filesystem read activeContext.json[0].task_history[-10:]
-activeContext[0].operation_counter += 1
+# Step 1: Load router config
+ROUTER = @mcp:json-jq query '$.system_paths' from 'context-router.json'
+memory_bank = ROUTER['memory_bank']
+
+# Step 2: Load summaries using @mcp:json-jq
+next_task_title = @mcp:json-jq query '$.priority_queue[0].title' from f"{memory_bank}scratchpad.json"
+last_10_summaries = @mcp:json-jq query '$.task_history[-10:]' from f"{memory_bank}activeContext.json"
+operation_counter = @mcp:json-jq query '$.operation_counter' from f"{memory_bank}activeContext.json"
+operation_counter += 1
 # Total: ~500 tokens vs 5000+ tokens
 ```
 
@@ -20,27 +25,33 @@ activeContext[0].operation_counter += 1
 **RL Penalty**: -15 if sources unverified
 **Free-Tier Focus**: Prioritize low-cost, lightweight solutions
 
-## MCP Chain (Intelligence Gathering)
+## MCP Chain (Query Router First)
 
-1. `@mcp:context7` → Fetch official documentation for topic (resolve-library-id first)
-2. `@mcp:exa` → Latest research papers, cutting-edge techniques (get_code_context_exa)
-3. `@mcp:fetch` → Gather benchmarks, pricing (free-tier priority)
-4. `@mcp:memory` → Retrieve historical research patterns
-5. `@mcp:sequential-thinking` → Structure analysis, synthesize findings
-6. `@mcp:math` → Compute:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   rl_config = ROUTER['rl_calculation']
+   ```
+2. `@mcp:context7` → Fetch official documentation for topic (resolve-library-id first)
+3. `@mcp:exa` → Latest research papers, cutting-edge techniques (get_code_context_exa)
+4. `@mcp:fetch` → Gather benchmarks, pricing (free-tier priority)
+5. `@mcp:memory` → Retrieve historical research patterns
+6. `@mcp:sequential-thinking` → Structure analysis, synthesize findings
+7. **Manual Function**: Python `eval()` → Compute:
    - Performance curves
    - Cost projections (free-tier focus)
    - ROI estimates
-7. `@mcp:filesystem` → Write dossier to `systemPatterns.json` with:
+8. `@mcp:filesystem` → Write dossier to `systemPatterns.json` with:
    - Executive summary
    - Benchmarks (before/after)
    - Resource footprint
    - Security assessment
    - MCP evidence trail
-8. `@mcp:time` → Timestamp research completion
-9. `@mcp:filesystem` → Validate schemas
-10. `@mcp:git` → Commit "research: [topic] assessment"
-11. `@mcp:memory` → Store findings in knowledge graph
+9. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp research completion
+10. `@mcp:filesystem` → Validate schemas from router paths
+11. `@mcp:git` → Commit "research: [topic] assessment"
+12. `@mcp:memory` → Store findings in knowledge graph
 
 ## Actions & RL Logging
 

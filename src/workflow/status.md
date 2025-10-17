@@ -11,22 +11,29 @@ description: RL-tracked comprehensive system status report
 **Constitutional Thresholds**: Framework ≥80%, Consensus ≥95%, Roadmap ≥95%
 **Auto-Remediation**: Trigger `/fix` if thresholds missed
 
-## MCP Chain (Comprehensive Audit)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read 8 schemas from `{IDE}/aegiside/memory-bank/`
-2. `@mcp:math` → Compute scores:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   rl_config = ROUTER['rl_calculation']
+   schema_files = ROUTER['schema_files']
+   ```
+2. `@mcp:json-jq` → Query 8 schemas from `memory_bank` (specific fields only)
+3. **Manual Function**: Python `eval()` → Compute scores:
    - Constitutional compliance (≥80%)
    - Consensus readiness (≥95%)
    - Roadmap alignment (≥95%)
    - Task velocity (tasks/hour)
    - Error rate (errors/100 tasks)
    - RL score trend (last 10 tasks)
-3. `@mcp:time` → Timestamp audit + measure data freshness
-4. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
-5. IF anomalies → `@mcp:context7` → Fetch guidance
-6. `@mcp:filesystem` → Validate schemas
-7. `@mcp:memory` → Store metrics in knowledge graph
-8. `@mcp:git` → Commit "status: [compliance%] - [date]"
+4. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp audit + measure data freshness
+5. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
+6. IF anomalies → `@mcp:context7` → Fetch guidance
+7. `@mcp:filesystem` → Validate schemas from router paths
+8. `@mcp:memory` → Store metrics in knowledge graph
+9. `@mcp:git` → Commit "status: [compliance%] - [date]"
 
 ## Actions & RL Logging
 

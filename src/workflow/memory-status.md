@@ -6,26 +6,33 @@ description: RL-tracked knowledge graph health audit
 
 ## RL-Driven Graph Health
 
-**Purpose**: Audit `memory.json` at `{IDE}/aegiside/memory-bank/`
-**RL Reward**: +5 for healthy graph
-**RL Penalty**: -10 if integrity issues found
+**Purpose**: Audit `memory.json` (query path from router)
+**RL Reward**: +5 for healthy graph (from router rl_calculation)
+**RL Penalty**: -10 if integrity issues found (from router)
 **Top-Append**: Prepend audit results to relevant schemas
 
-## MCP Chain (Graph Integrity)
+## MCP Chain (Query Router First)
 
-1. `@mcp:filesystem` → Read `{IDE}/aegiside/memory-bank/memory.json`
-2. `@mcp:memory` → Retrieve metadata (entities, relations, observations)
-3. `@mcp:math` → Compute health metrics:
+1. **Load Router Config**:
+   ```python
+   ROUTER = @mcp:json-jq query '$' from 'context-router.json'
+   memory_bank = ROUTER['system_paths']['memory_bank']
+   schemas_path = ROUTER['system_paths']['schemas']
+   rl_config = ROUTER['rl_calculation']
+   ```
+2. `@mcp:json-jq` → Query metadata from `memory.json` at `memory_bank`
+3. `@mcp:memory` → Retrieve full metadata (entities, relations, observations)
+4. **Manual Function**: Python `eval()` → Compute health metrics:
    - Entity density
    - Orphaned nodes count
    - Growth delta
    - Compliance score (≥80%)
-4. `@mcp:time` → Timestamp audit start
-5. IF issues → `@mcp:sequential-thinking` → Plan remediation
-6. `@mcp:filesystem` → Validate against `{IDE}/aegiside/schemas/memory.schema.json`
-7. IF schema drift → `@mcp:context7` → Fetch ontology updates
-8. `@mcp:git` → Commit if repairs made
-9. `@mcp:memory` → Store audit summary
+5. **Manual Function**: Terminal `date '+%Y-%m-%dT%H:%M:%S%z'` → Timestamp audit start
+6. IF issues → `@mcp:sequential-thinking` → Plan remediation
+7. `@mcp:filesystem` → Validate against schema from `schemas_path`
+8. IF schema drift → `@mcp:context7` → Fetch ontology updates
+9. `@mcp:git` → Commit if repairs made
+10. `@mcp:memory` → Store audit summary
 
 ## Actions & RL Logging
 
