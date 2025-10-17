@@ -295,7 +295,8 @@
       "workflows": ["/optimize"],
       "articles": [20, 25],
       "priority": 3,
-      "mcps_required": ["math", "sequential-thinking", "filesystem"],
+      "mcps_required": ["sequential-thinking", "filesystem"],
+      "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 25,
       "rl_penalty": -15
     },
@@ -303,7 +304,8 @@
       "workflows": ["/status"],
       "articles": [16],
       "priority": 3,
-      "mcps_required": ["filesystem", "math"],
+      "mcps_required": ["filesystem"],
+      "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 10,
       "rl_penalty": 0
     },
@@ -311,7 +313,8 @@
       "workflows": ["/init"],
       "articles": [1, 2, 3],
       "priority": 1,
-      "mcps_required": ["filesystem", "memory", "time", "math"],
+      "mcps_required": ["filesystem", "memory"],
+      "manual_functions": ["time: terminal date", "math: Python eval()"],
       "rl_base_reward": 10,
       "rl_penalty": -15
     },
@@ -319,7 +322,8 @@
       "workflows": ["/continue"],
       "articles": [6, 14],
       "priority": 1,
-      "mcps_required": ["filesystem", "memory", "time"],
+      "mcps_required": ["filesystem", "memory"],
+      "manual_functions": ["time: terminal date"],
       "rl_base_reward": 5,
       "rl_penalty": -10
     },
@@ -327,7 +331,8 @@
       "workflows": ["/bootstrap"],
       "articles": [14],
       "priority": 1,
-      "mcps_required": ["filesystem", "time", "git", "memory"],
+      "mcps_required": ["filesystem", "git", "memory"],
+      "manual_functions": ["time: terminal date"],
       "rl_base_reward": 10,
       "rl_penalty": -15
     },
@@ -335,7 +340,8 @@
       "workflows": ["/update"],
       "articles": [14],
       "priority": 2,
-      "mcps_required": ["filesystem", "time", "math", "git"],
+      "mcps_required": ["filesystem", "git"],
+      "manual_functions": ["time: terminal date", "math: Python eval()"],
       "rl_base_reward": 8,
       "rl_penalty": -20
     },
@@ -343,7 +349,8 @@
       "workflows": ["/oversight-checks-and-balances"],
       "articles": [26, 27, 28, 29],
       "priority": 2,
-      "mcps_required": ["sequential-thinking", "math", "memory", "filesystem"],
+      "mcps_required": ["sequential-thinking", "memory", "filesystem"],
+      "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 25,
       "rl_penalty": -20
     },
@@ -351,7 +358,8 @@
       "workflows": ["/memory-status"],
       "articles": [10, 42],
       "priority": 3,
-      "mcps_required": ["memory", "filesystem", "math"],
+      "mcps_required": ["memory", "filesystem"],
+      "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 5,
       "rl_penalty": -10
     }
@@ -366,12 +374,12 @@
     "every_5_ops": {
       "trigger": "memory_anchor",
       "actions": [
-        "@mcp:filesystem read activeContext.json",
+        "@mcp:json-jq query '$.session' from 'activeContext.json'",
         "operation_counter += 1",
-        "@mcp:filesystem read scratchpad[0].title",
-        "@mcp:filesystem read activeContext.task_history[-10:]",
-        "@mcp:filesystem read progress.total_rl_score",
-        "@mcp:time update last_memory_anchor"
+        "@mcp:json-jq query '$.priority_queue[0].title' from 'scratchpad.json'",
+        "@mcp:json-jq query '$.task_history[-10:]' from 'activeContext.json'",
+        "@mcp:json-jq query '$.total_rl_score' from 'progress.json'",
+        "terminal: date '+%Y-%m-%dT%H:%M:%S%z' >> last_memory_anchor"
       ]
     },
     "task_complete": {
@@ -472,9 +480,7 @@
     "on_demand": {
       "context7": ["error_detected", "new_feature", "library_integration"],
       "exa": ["research_task", "code_examples"],
-      "fetch": ["external_data", "benchmarks"],
-      "time": ["timestamp_required"],
-      "math": ["complex_calculation"]
+      "fetch": ["external_data", "benchmarks"]
     },
     "eliminated": {
       "time": "use terminal: date '+%Y-%m-%dT%H:%M:%S%z'",
