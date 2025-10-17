@@ -1,6 +1,67 @@
 {
   "meta_version": "1.0.0",
-  "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Dynamic Execution Engine",
+  "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
+  "system_paths": {
+    "schemas": "{IDE}/aegiside/schemas/",
+    "helpers": "{IDE}/aegiside/schemas/helpers/",
+    "constitution": "{IDE}/rules/constitution/",
+    "workflows": "{IDE}/workflow/",
+    "memory_bank": "{IDE}/aegiside/memory-bank/"
+  },
+  "schema_files": [
+    "activeContext.schema.json",
+    "scratchpad.schema.json",
+    "kanban.schema.json",
+    "mistakes.schema.json",
+    "systemPatterns.schema.json",
+    "progress.schema.json",
+    "roadmap.schema.json",
+    "memory.schema.json"
+  ],
+  "helper_files": {
+    "common_mistakes": "common-mistakes.json",
+    "error_recovery": "error-recovery.json",
+    "tool_patterns": "tool-usage-patterns.json",
+    "constitutional_governance": "constitutional-governance.json",
+    "schema_evolution": "schema-evolution.json"
+  },
+  "constitutional_structure": {
+    "01-preamble": {"file": "preamble.md", "articles": 0},
+    "02-preliminary": {"articles": [1, 2, 3]},
+    "03-fundamental-rights": {"articles": [4, 5, 6, 7, 8, 9, 10, 11, 12]},
+    "04-fundamental-duties": {"articles": [13, 14, 15, 16, 17, 18, 19]},
+    "05-dpsp": {"articles": [20, 21, 22, 23, 24, 25]},
+    "06-parliament": {"articles": [26, 27, 28, 29, 30, 31]},
+    "07-executive": {"articles": [32, 33, 34, 35]},
+    "08-judiciary": {"articles": [36, 37, 38]},
+    "09-constitutional-bodies": {"articles": [39, 40, 41, 42]}
+  },
+  "constitutional_roles": {
+    "chief_justice": {
+      "authority": "Constitutional Guardian",
+      "workflows": ["/validate", "/fix"],
+      "powers": ["HALT", "veto", "tribunal", "approval_gate"],
+      "articles": [32, 36, 37, 38]
+    },
+    "prime_minister": {
+      "authority": "Execution Leader",
+      "workflows": ["/next", "/continue"],
+      "powers": ["task_assignment", "resource_allocation"],
+      "articles": [33]
+    },
+    "ias": {
+      "authority": "Administrative Service",
+      "workflows": ["/research", "/status", "/update", "/bootstrap"],
+      "powers": ["intelligence", "schema_management", "compliance_audit"],
+      "articles": [39]
+    },
+    "shadow_cabinet": {
+      "authority": "Constitutional Opposition",
+      "workflows": ["/oversight-checks-and-balances", "/validate"],
+      "powers": ["challenge", "audit", "alternative_proposal"],
+      "articles": [40]
+    }
+  },
   "nlu_patterns": {
     "error": ["error", "bug", "broken", "failing", "exception", "crash", "issue"],
     "feature": ["add", "create", "build", "implement", "new", "feature", "develop"],
@@ -167,5 +228,52 @@
     "high_risk_requires_approval": ["database_mutations", "production_deploy", "delete_5plus_files", "git_force", "security_changes"],
     "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"],
     "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "execute_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
+  },
+  "mcp_integration": {
+    "config_file": "{IDE}/mcp_servers.json",
+    "mandatory_servers": ["filesystem", "memory", "context7", "fetch", "git", "time", "math", "sequential-thinking", "exa"],
+    "usage_pattern_file": "helpers/tool-usage-patterns.json"
+  },
+  "atomic_update_chain": {
+    "description": "8-schema atomic update with cross-file validation",
+    "order": [
+      "progress.json",
+      "activeContext.json",
+      "scratchpad.json",
+      "kanban.json",
+      "mistakes.json",
+      "systemPatterns.json",
+      "roadmap.json",
+      "memory.json"
+    ],
+    "validation": {
+      "against": "schemas/*.schema.json",
+      "integrity_check": "schemas/schema-integrity-validator.json",
+      "evolution": "helpers/schema-evolution.json"
+    },
+    "on_error": {
+      "workflow": "/fix",
+      "helper": "helpers/error-recovery.json",
+      "role": "chief_justice"
+    }
+  },
+  "workflow_execution": {
+    "pre_execution": {
+      "load_helpers": ["common-mistakes.json", "tool-usage-patterns.json"],
+      "check_schemas": true,
+      "verify_mcp_servers": true
+    },
+    "post_execution": {
+      "atomic_schema_update": true,
+      "rl_scoring": true,
+      "git_commit": true,
+      "approval_gate": "chief_justice + shadow_cabinet"
+    }
+  },
+  "dynamic_loading": {
+    "articles": "Load only articles specified in intent_mapping[intent].articles",
+    "helpers": "Load helpers dynamically based on error type or workflow needs",
+    "schemas": "Validate against schemas/*.schema.json on every update",
+    "governance": "Load helpers/constitutional-governance.json for parliamentary decisions"
   }
 }
