@@ -67,14 +67,13 @@
       "env": {},
       "disabled": false
     },
-    "json-server": {
+    "json-query": {
       "command": "npx",
       "args": [
         "-y",
-        "@mgraczyk/json-query-mcp"
+        "@gongrzhe/server-json-mcp@1.0.3"
       ],
-      "disabled": false,
-      "description": "FREE Rust-based JSON query via JSONPath (fallback when jq unavailable)"
+      "disabled": false
     }
   }
 }

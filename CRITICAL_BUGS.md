@@ -35,38 +35,43 @@ run_command: jq '.nlu_patterns' {IDE}/aegiside/context-router.json
 
 ### ✅ SOLUTION 2: MCP JSON Server (FREE - IMPLEMENTED)
 
-**ACTIVE: mgraczyk/json-query-mcp (FREE Rust-based)**
+**FINAL CHOICE: @gongrzhe/server-json-mcp@1.0.3**
 ```json
 // mcp_servers.json
 {
-  "json-server": {
+  "json-query": {
     "command": "npx",
-    "args": ["-y", "@mgraczyk/json-query-mcp"],
-    "description": "FREE Rust-based JSON query via JSONPath"
+    "args": ["-y", "@gongrzhe/server-json-mcp@1.0.3"],
+    "disabled": false
   }
 }
 ```
 
-**Usage (JSONPath Syntax)**:
+**Usage (file:// URLs + JSONPath)**:
 ```python
-@mcp:json-server query context-router.json "$.nlu_patterns"
-@mcp:json-server query context-router.json "$.intent_mapping.error"
-@mcp:json-server query context-router.json "$.intent_mapping.error.workflows[0]"
+@mcp:json-query query "file:///path/to/context-router.json" "$.nlu_patterns"
+@mcp:json-query query "file:///path/to/context-router.json" "$.intent_mapping.error"
+@mcp:json-query query "file:///path/to/memory-bank/progress.json" "$.rl_totals"
 ```
 
-**Advantages**:
+**Why GongRzhe Won:**
+- ✅ **Published on npm** (v1.0.3) - instant install via npx
+- ✅ **Production-ready** - stable release, no manual setup
+- ✅ **Cross-IDE compatible** - works on all platforms
+- ✅ JSONPath standard with extended operations
 - ✅ 100% FREE (no paid tiers)
-- ✅ Rust-based (high performance)
-- ✅ JSONPath standard (powerful queries)
-- ✅ No installation required (runs via npx)
-- ✅ Actively maintained by mgraczyk
+
+**Why NOT mgraczyk:**
+- ❌ **Not on npm** - requires manual git clone to local path
+- ❌ Manual setup burden per machine/IDE
+- ❌ Not suitable for multi-IDE deployment (AegisIDE goal)
 
 ### ✅ SOLUTION 3: Hybrid Approach (IMPLEMENTED)
 
 ```python
-# Step 1: MCP JSON server PRIMARY (@mgraczyk/json-query-mcp)
+# Step 1: MCP JSON server PRIMARY (@gongrzhe/server-json-mcp@1.0.3)
 try:
-    nlu = @mcp:json-server query context-router.json "$.nlu_patterns"
+    nlu = @mcp:json-query query "file:///path/to/context-router.json" "$.nlu_patterns"
     
 # Step 2: Fallback to terminal jq (if MCP unavailable)
 except:
@@ -77,9 +82,15 @@ except:
 ```
 
 **Priority Rationale**:
-- **MCP PRIMARY**: Consistent JSONPath syntax across all queries
+- **MCP PRIMARY**: Production-ready npm package, instant install
 - **jq FALLBACK**: Terminal availability if MCP fails
+- **file:// protocol**: Direct local file access
 - **JSONPath**: `$.key` syntax (standardized)
+
+**Research Findings:**
+- GongRzhe: npm availability > feature simplicity
+- mgraczyk: Better feature fit but lacks npm distribution
+- Decision: Deployment ease trumps minor complexity
 
 ### Updated Efficiency
 
