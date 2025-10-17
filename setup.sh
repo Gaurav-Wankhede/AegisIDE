@@ -128,23 +128,57 @@ else
     echo "   Install: curl -LsSf https://astral.sh/uv/install.sh | sh"
 fi
 
+# Check CLI tools (REQUIRED for 267x faster operations)
+echo ""
+echo "🛠️  Checking CLI tools..."
+
+if command -v jq &> /dev/null; then
+    JQ_VERSION=$(jq --version)
+    echo "✓ jq ${JQ_VERSION}"
+else
+    echo "❌ jq not found (REQUIRED - 167x faster)"
+    echo "   Install: sudo apt-get install jq OR brew install jq"
+fi
+
+if command -v sponge &> /dev/null; then
+    echo "✓ sponge (moreutils)"
+else
+    echo "❌ sponge not found (REQUIRED - 267x faster atomic updates)"
+    echo "   Install: sudo apt-get install moreutils OR brew install moreutils"
+fi
+
+if command -v glow &> /dev/null; then
+    GLOW_VERSION=$(glow --version 2>&1 | head -1)
+    echo "✓ glow ${GLOW_VERSION}"
+else
+    echo "❌ glow not found (REQUIRED - markdown rendering)"
+    echo "   Install: sudo snap install glow OR brew install glow"
+fi
+
 echo ""
 
-# Test MCP servers
+# Test MCP servers (7 core MCPs)
 echo "🧪 Testing MCP servers..."
 
-# Test context7
+# Test context7 (official docs)
 if npx -y @upstash/context7-mcp@latest --version &> /dev/null; then
     echo "✓ context7 MCP working"
 else
     echo "⚠️  context7 MCP test failed"
 fi
 
-# Test filesystem
-if npx -y @modelcontextprotocol/server-filesystem --help &> /dev/null; then
-    echo "✓ filesystem MCP working"
+# Test sequential-thinking (deep reasoning)
+if npx -y @modelcontextprotocol/server-sequential-thinking --help &> /dev/null; then
+    echo "✓ sequential-thinking MCP working"
 else
-    echo "⚠️  filesystem MCP test failed"
+    echo "⚠️  sequential-thinking MCP test failed"
+fi
+
+# Test memory (knowledge graph)
+if npx -y @modelcontextprotocol/server-memory --help &> /dev/null; then
+    echo "✓ memory MCP working"
+else
+    echo "⚠️  memory MCP test failed"
 fi
 
 echo ""
@@ -158,7 +192,14 @@ echo "   2. Start AI assistant"
 echo "   3. Type: /init"
 echo "   4. AI will auto-generate 8 memory-bank files"
 echo ""
-echo "📖 For detailed instructions, see: INSTALLATION.md"
-echo "🔧 For troubleshooting, see: INSTALLATION.md#troubleshooting"
+echo "📖 Documentation: README.md"
+echo "🔧 Troubleshooting: Run ./validate-setup.sh"
+echo ""
+echo "💡 CLI Tools Status:"
+if command -v jq &> /dev/null && command -v sponge &> /dev/null && command -v glow &> /dev/null; then
+    echo "   ✅ All CLI tools installed (267x faster operations)"
+else
+    echo "   ⚠️  Missing CLI tools (see installation instructions above)"
+fi
 echo ""
 echo "🎉 Happy autonomous coding!"

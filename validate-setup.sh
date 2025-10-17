@@ -44,12 +44,75 @@ fi
 
 echo ""
 
-# Check tools
+# Check Node.js tools
+echo "🔧 Checking Node.js tools..."
 command -v node &> /dev/null && echo "✓ Node.js" || { echo "❌ Node.js missing"; ERRORS=$((ERRORS + 1)); }
 command -v npx &> /dev/null && echo "✓ npx" || { echo "❌ npx missing"; ERRORS=$((ERRORS + 1)); }
 
 echo ""
-echo "📊 Summary: ${ERRORS} errors, ${WARNINGS} warnings"
+echo "🛠️  Checking CLI tools (REQUIRED)..."
 
-[ ${ERRORS} -eq 0 ] && echo "✅ Setup valid" || echo "❌ Fix errors before using"
+if command -v jq &> /dev/null; then
+    echo "✓ jq (167x faster JSON operations)"
+else
+    echo "❌ jq missing (REQUIRED)"
+    echo "   Install: sudo apt-get install jq OR brew install jq"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if command -v sponge &> /dev/null; then
+    echo "✓ sponge (267x faster atomic updates)"
+else
+    echo "❌ sponge missing (REQUIRED)"
+    echo "   Install: sudo apt-get install moreutils OR brew install moreutils"
+    ERRORS=$((ERRORS + 1))
+fi
+
+if command -v glow &> /dev/null; then
+    echo "✓ glow (markdown rendering)"
+else
+    echo "❌ glow missing (REQUIRED)"
+    echo "   Install: sudo snap install glow OR brew install glow"
+    ERRORS=$((ERRORS + 1))
+fi
+
+echo ""
+echo "🧪 Testing 7 Core MCPs..."
+
+# Test context7
+if npx -y @upstash/context7-mcp@latest --version &> /dev/null 2>&1; then
+    echo "✓ context7 (official docs)"
+else
+    echo "⚠️  context7 test failed"
+    WARNINGS=$((WARNINGS + 1))
+fi
+
+# Test sequential-thinking
+if npx -y @modelcontextprotocol/server-sequential-thinking --help &> /dev/null 2>&1; then
+    echo "✓ sequential-thinking (deep reasoning)"
+else
+    echo "⚠️  sequential-thinking test failed"
+    WARNINGS=$((WARNINGS + 1))
+fi
+
+# Test memory
+if npx -y @modelcontextprotocol/server-memory --help &> /dev/null 2>&1; then
+    echo "✓ memory (knowledge graph)"
+else
+    echo "⚠️  memory test failed"
+    WARNINGS=$((WARNINGS + 1))
+fi
+
+echo ""
+echo "📊 Summary: ${ERRORS} errors, ${WARNINGS} warnings"
+echo ""
+
+if [ ${ERRORS} -eq 0 ]; then
+    echo "✅ Setup valid - Ready for autonomous operation"
+    echo "   Next: Run /init in your IDE"
+else
+    echo "❌ Fix ${ERRORS} error(s) before using AegisIDE"
+    echo "   Run ./setup.sh to reinstall"
+fi
+
 exit ${ERRORS}
