@@ -368,8 +368,21 @@
     "session_start": {
       "check": "memory_bank_exists",
       "if_false": "/init",
-      "load_articles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      "load_mode": "selective"
+      "load_articles": {
+        "always": [1, 2, 3],
+        "project_based": "detect_from_manifest",
+        "on_error": [36],
+        "description": "Selective loading per init.md - NOT all 42 articles"
+      },
+      "load_mode": "selective",
+      "detection_logic": {
+        "package.json": "load laws/javascript.md",
+        "Cargo.toml": "load laws/rust.md",
+        "requirements.txt": "load laws/python.md",
+        "go.mod": "load laws/go.md",
+        "pom.xml": "load laws/java.md",
+        "*.csproj": "load laws/csharp.md"
+      }
     },
     "every_5_ops": {
       "trigger": "memory_anchor",
