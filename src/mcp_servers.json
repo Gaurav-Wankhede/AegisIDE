@@ -71,10 +71,10 @@
       "command": "npx",
       "args": [
         "-y",
-        "@lobehub/mcp-json-server"
+        "@mgraczyk/json-query-mcp"
       ],
       "disabled": false,
-      "description": "JSON key-based access fallback when jq unavailable"
+      "description": "FREE Rust-based JSON query via JSONPath (fallback when jq unavailable)"
     }
   }
 }

@@ -33,52 +33,50 @@ run_command: jq '.nlu_patterns' {IDE}/aegiside/context-router.json
 - ✅ Supports complex queries: `jq '.intent_mapping.error.workflows'`
 - ✅ Can pipe and transform: `jq -r '.nlu_patterns.error[]'`
 
-### ✅ SOLUTION 2: MCP JSON Server (Recommended)
+### ✅ SOLUTION 2: MCP JSON Server (FREE - IMPLEMENTED)
 
-**Option A: LobeHub MCP JSON Server**
+**ACTIVE: mgraczyk/json-query-mcp (FREE Rust-based)**
 ```json
 // mcp_servers.json
 {
   "json-server": {
     "command": "npx",
-    "args": ["-y", "@lobehub/mcp-json-server"]
+    "args": ["-y", "@mgraczyk/json-query-mcp"],
+    "description": "FREE Rust-based JSON query via JSONPath"
   }
 }
 ```
 
-**Usage**:
+**Usage (JSONPath Syntax)**:
 ```python
-@mcp:json-server query context-router.json "nlu_patterns"
-@mcp:json-server query context-router.json "intent_mapping.error"
+@mcp:json-server query context-router.json "$.nlu_patterns"
+@mcp:json-server query context-router.json "$.intent_mapping.error"
+@mcp:json-server query context-router.json "$.intent_mapping.error.workflows[0]"
 ```
 
-**Option B: Rust-based JSON MCP (High Performance)**
-```bash
-cargo install json-mcp-server
-```
+**Advantages**:
+- ✅ 100% FREE (no paid tiers)
+- ✅ Rust-based (high performance)
+- ✅ JSONPath standard (powerful queries)
+- ✅ No installation required (runs via npx)
+- ✅ Actively maintained by mgraczyk
 
-**Option C: mgraczyk/json-query-mcp (JSONPath)**
-```python
-@mcp:json-query query context-router.json "$.nlu_patterns"
-@mcp:json-query query context-router.json "$.intent_mapping.error.workflows[0]"
-```
-
-### ✅ SOLUTION 3: Hybrid Approach (Best)
+### ✅ SOLUTION 3: Hybrid Approach (IMPLEMENTED)
 
 ```python
 # Step 1: Use terminal jq for speed (default)
-if jq_available:
+try:
     nlu = run_command("jq '.nlu_patterns' context-router.json")
     
-# Step 2: Fallback to MCP JSON server
-elif mcp_json_server_available:
-    nlu = @mcp:json-server query context-router.json "nlu_patterns"
+# Step 2: Fallback to FREE Rust MCP JSON server (JSONPath)
+except:
+    nlu = @mcp:json-server query context-router.json "$.nlu_patterns"
     
-# Step 3: Last resort - load full file
-else:
-    full = @mcp:filesystem read context-router.json
-    nlu = JSON.parse(full)["nlu_patterns"]
+# Step 3: Last resort - load full file (emergency only)
+# (Not implemented - rely on jq + MCP fallback)
 ```
+
+**Note**: JSONPath uses `$.key` syntax (not just `key`)
 
 ### Updated Efficiency
 
