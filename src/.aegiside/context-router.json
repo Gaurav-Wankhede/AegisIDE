@@ -18,10 +18,10 @@
       "1. Detect IDE type via MCP config path checks",
       "2. Check if {IDE}/.aegiside/context-router.json exists",
       "3. If NOT exists: Clone GitHub repo to /tmp/aegiside-setup/",
-      "4. Copy src/.aegiside/ → {IDE}/.aegiside/",
+      "4. Copy src/.aegiside/ → {IDE}/.aegiside/ (schemas only)",
       "5. Copy src/rules/ → {IDE}/rules/",
       "6. Copy src/workflow/ → {IDE}/workflow/",
-      "7. Initialize 8-schema memory bank from templates",
+      "7. Generate 8 memory bank JSON files from .schema.json definitions",
       "8. Verify constitution files exist (42 articles)",
       "9. Create global_rules.md in IDE config folder",
       "10. Cleanup /tmp/aegiside-setup/"
@@ -36,14 +36,6 @@
     "verification": {
       "required_files": [
         "{IDE}/.aegiside/context-router.json",
-        "{IDE}/.aegiside/memory-bank/activeContext.json",
-        "{IDE}/.aegiside/memory-bank/scratchpad.json",
-        "{IDE}/.aegiside/memory-bank/kanban.json",
-        "{IDE}/.aegiside/memory-bank/mistakes.json",
-        "{IDE}/.aegiside/memory-bank/systemPatterns.json",
-        "{IDE}/.aegiside/memory-bank/progress.json",
-        "{IDE}/.aegiside/memory-bank/roadmap.json",
-        "{IDE}/.aegiside/memory-bank/memory.json",
         "{IDE}/.aegiside/schemas/activeContext.schema.json",
         "{IDE}/.aegiside/schemas/scratchpad.schema.json",
         "{IDE}/.aegiside/schemas/kanban.schema.json",
@@ -55,6 +47,7 @@
         "{IDE}/rules/constitution/01-preamble/preamble.md",
         "{IDE}/workflow/next.md"
       ],
+      "memory_bank_generation": "Auto-generate 8 JSON files from schemas after verification",
       "on_failure": "Retry clone OR manual download from GitHub releases"
     },
     "auto_trigger": "session_start when memory_bank_exists() == false"
