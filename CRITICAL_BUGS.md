@@ -64,27 +64,30 @@ run_command: jq '.nlu_patterns' {IDE}/aegiside/context-router.json
 ### ✅ SOLUTION 3: Hybrid Approach (IMPLEMENTED)
 
 ```python
-# Step 1: Use terminal jq for speed (default)
+# Step 1: MCP JSON server PRIMARY (@mgraczyk/json-query-mcp)
 try:
-    nlu = run_command("jq '.nlu_patterns' context-router.json")
-    
-# Step 2: Fallback to FREE Rust MCP JSON server (JSONPath)
-except:
     nlu = @mcp:json-server query context-router.json "$.nlu_patterns"
     
+# Step 2: Fallback to terminal jq (if MCP unavailable)
+except:
+    nlu = run_command("jq '.nlu_patterns' context-router.json")
+    
 # Step 3: Last resort - load full file (emergency only)
-# (Not implemented - rely on jq + MCP fallback)
+# (Not implemented - rely on MCP + jq fallback)
 ```
 
-**Note**: JSONPath uses `$.key` syntax (not just `key`)
+**Priority Rationale**:
+- **MCP PRIMARY**: Consistent JSONPath syntax across all queries
+- **jq FALLBACK**: Terminal availability if MCP fails
+- **JSONPath**: `$.key` syntax (standardized)
 
 ### Updated Efficiency
 
-| Method | Chars Loaded | Percentage | Speed |
-|--------|--------------|------------|-------|
-| **Terminal jq** | ~300 | 2.1% | ⚡ Fastest |
-| **MCP JSON Server** | ~300 | 2.1% | ⚡ Fast |
-| **Full Load** | 13,952 | 100% | 🐌 Slow |
+| Method | Chars Loaded | Percentage | Speed | Priority |
+|--------|--------------|------------|-------|----------|
+| **MCP JSON Server** | ~300 | 2.1% | ⚡ Fast | PRIMARY |
+| **Terminal jq** | ~300 | 2.1% | ⚡ Fastest | FALLBACK |
+| **Full Load** | 13,952 | 100% | 🐌 Slow | AVOIDED |
 
 **Result**: Efficient key-based loading is **NOW POSSIBLE** ✅
 
