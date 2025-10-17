@@ -66,6 +66,15 @@
       ],
       "env": {},
       "disabled": false
+    },
+    "json-server": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@lobehub/mcp-json-server"
+      ],
+      "disabled": false,
+      "description": "JSON key-based access fallback when jq unavailable"
     }
   }
 }
