@@ -275,5 +275,115 @@
     "helpers": "Load helpers dynamically based on error type or workflow needs",
     "schemas": "Validate against schemas/*.schema.json on every update",
     "governance": "Load helpers/constitutional-governance.json for parliamentary decisions"
+  },
+  "article_path_mapping": {
+    "description": "Convert article number to actual file path",
+    "logic": {
+      "1-3": "02-preliminary/article-{num}.md",
+      "4-12": "03-fundamental-rights/article-{num}.md",
+      "13-19": "04-fundamental-duties/article-{num}.md",
+      "20-25": "05-dpsp/article-{num}.md",
+      "26-31": "06-parliament/article-{num}.md",
+      "32-35": "07-executive/article-{num}.md",
+      "36-38": "08-judiciary/article-{num}.md",
+      "39-42": "09-constitutional-bodies/article-{num}.md"
+    },
+    "base_path": "{IDE}/rules/constitution/"
+  },
+  "helper_loading_triggers": {
+    "common-mistakes.json": {
+      "when": ["pre_execution", "error_detected"],
+      "purpose": "Prevent known errors before they occur",
+      "always_load": true
+    },
+    "error-recovery.json": {
+      "when": ["error_detected", "validation_failure"],
+      "purpose": "Recovery protocols for specific error types",
+      "always_load": false
+    },
+    "tool-usage-patterns.json": {
+      "when": ["pre_execution"],
+      "purpose": "MCP best practices and usage patterns",
+      "always_load": true
+    },
+    "constitutional-governance.json": {
+      "when": ["parliamentary_decision", "consensus_calculation", "approval_gate"],
+      "purpose": "Democratic decision-making protocols",
+      "always_load": false
+    },
+    "schema-evolution.json": {
+      "when": ["schema_migration", "version_upgrade"],
+      "purpose": "Safe schema migration protocols",
+      "always_load": false
+    }
+  },
+  "cross_schema_linkage": {
+    "description": "Standardized keys for cross-file references",
+    "linkage_keys": {
+      "proposal_id": {
+        "format": "proposal-YYYYMMDD-NNN",
+        "links": ["scratchpad", "systemPatterns", "progress", "memory"],
+        "purpose": "Track proposals through research, implementation, and RL scoring"
+      },
+      "kanban_task_id": {
+        "format": "task-YYYYMMDD-NNN",
+        "links": ["scratchpad", "kanban", "activeContext", "progress"],
+        "purpose": "Track task lifecycle from todo to approved"
+      },
+      "error_id": {
+        "format": "error-YYYYMMDD-NNN",
+        "links": ["mistakes", "progress", "activeContext"],
+        "purpose": "Link error patterns to RL penalties and prevention"
+      },
+      "pattern_id": {
+        "format": "pattern-YYYYMMDD-NNN",
+        "links": ["systemPatterns", "memory", "progress"],
+        "purpose": "Track pattern usage, reuse count, and RL rewards"
+      },
+      "tx_id": {
+        "format": "tx-TIMESTAMP-NNNNN",
+        "links": ["progress"],
+        "purpose": "Unique RL transaction identifier (single source)"
+      }
+    },
+    "validation": "All cross-references must exist in linked schemas"
+  },
+  "mcp_fallback_strategy": {
+    "description": "Resilience when MCP servers fail",
+    "fallback_chains": {
+      "context7": ["fetch", "memory_patterns", "halt_if_critical"],
+      "fetch": ["context7", "memory_patterns", "continue_with_degraded"],
+      "memory": ["filesystem_json_read", "halt_if_critical"],
+      "filesystem": ["halt_immediately"],
+      "git": ["manual_commit_required", "continue_workflow"]
+    },
+    "error_handling": {
+      "rate_limit": "Exponential backoff: 1s, 2s, 4s, 8s",
+      "timeout": "Retry once, then fallback",
+      "unavailable": "Load error-recovery.json for alternative approach"
+    },
+    "critical_mcps": ["filesystem", "memory"],
+    "degraded_mode": "Continue with available MCPs, log issues to mistakes.json"
+  },
+  "approval_gate_flow": {
+    "description": "Chief Justice + Shadow Cabinet verification before task approval",
+    "kanban_lifecycle": {
+      "todo": "Task queued in scratchpad, not started",
+      "in_progress": "Task actively being executed by workflows",
+      "done": "Task completed, awaiting approval gate",
+      "approved": "Task approved by CJ + Shadow Cabinet, RL scored"
+    },
+    "approval_process": {
+      "step_1": "Task moves to kanban.done after workflow completion",
+      "step_2": "Shadow Cabinet reviews (Article 29): Quality + Innovation + Analytics",
+      "step_3": "Chief Justice validates (Article 32): Constitutional compliance + MCP trail + RL accuracy",
+      "step_4_pass": "Both approve → kanban.approved + final RL to progress.json",
+      "step_4_fail": "Either fails → kanban.todo + mistakes.json + remediation required"
+    },
+    "verification_criteria": {
+      "shadow_cabinet": ["code_quality", "EMD_compliance", "test_coverage", "approach_validity"],
+      "chief_justice": ["constitutional_compliance", "mcp_trail_complete", "rl_calculation_correct", "schema_valid"]
+    },
+    "timeout": "24 hours in done status triggers auto-escalation to Parliament"
   }
 }
