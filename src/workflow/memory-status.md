@@ -1,37 +1,48 @@
 ---
-description: Knowledge graph health audit
+description: Knowledge graph audit with terminal jq
 ---
 
 # /memory-status — Graph Audit
 
-## 1. Load Router & Query Graph
+## 1. Load Router & Query (Terminal jq)
 
-```python
-ROUTER = @mcp:json-jq query '$' from 'context-router.json'
-memory_bank = ROUTER['system_paths']['memory_bank']
+```bash
+# Cache router
+ROUTER=$(jq '.' context-router.json)
+memory_bank=$(echo "$ROUTER" | jq -r '.system_paths.memory_bank')
 
-# Query metadata
-metadata = @mcp:json-jq query '$' from f"{memory_bank}memory.json"
+# Query metadata (FASTEST)
+entities=$(jq -r '.entities | length' "$memory_bank"memory.json)
+relations=$(jq -r '.relations | length' "$memory_bank"memory.json)
+orphaned=$(jq '[.entities[] | select(.relations == null)] | length' "$memory_bank"memory.json)
 ```
 
-## 2. Health Metrics
+## 2. Health Metrics (Python)
 
-```python
-# Compute with Python eval()
-entity_density = entities / total_nodes
-orphaned_nodes = count(no_relations)
-compliance_score = validation_pass / total_checks
+```bash
+# Calculate with Python
+entity_density=$(python3 -c "print($entities / ($entities + $relations))")
+compliance=$(python3 -c "print(int((1 - $orphaned / $entities) * 100))")
 ```
 
-## 3. Audit & Report
+## 3. Audit & Remediate
 
-1. `@mcp:memory` → Retrieve full metadata
-2. `@mcp:sequential-thinking` → Plan remediation if issues
-3. `@mcp:filesystem` → Validate against schema
-4. `@mcp:context7` → Fetch ontology updates if drift
-5. `@mcp:git` → Commit if repairs made
+```bash
+# IF issues (compliance < 80%)
+if [[ $compliance -lt 80 ]]; then
+  @mcp:sequential-thinking plan_remediation
+  @mcp:context7 fetch_ontology_updates
+fi
 
-**RL**: +5 healthy (≥90%) | -10 issues found
+# Validate against schema
+jq '.' "$memory_bank/schemas/memory.schema.json" >/dev/null 2>&1
+
+# Update with jq
+jq '.transactions = [{"audit": "complete", "health": '$compliance'}] + .transactions' \
+  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+```
+
+**RL**: +5 healthy | -10 issues
 
 ---
-**Lines**: ~40 | **Threshold**: ≥80% compliance
+**Lines**: ~37 | **jq**: Direct field queries

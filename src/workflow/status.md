@@ -1,46 +1,55 @@
 ---
-description: System status report with compliance scores
+description: System status with terminal jq READ
 ---
 
 # /status — System Status Report
 
-## 1. Load Router & Scan
+## 1. Load Router & READ (Terminal jq)
 
-```python
-ROUTER = @mcp:json-jq query '$' from 'context-router.json'
-memory_bank = ROUTER['system_paths']['memory_bank']
-rl_config = ROUTER['rl_calculation']
-schema_files = ROUTER['schema_files']
+```bash
+# READ router (jq terminal)
+memory_bank=$(jq -r '.system_paths.memory_bank' context-router.json)
+rl_config=$(jq '.rl_calculation' context-router.json)
+schema_files=$(jq -r '.schema_files[]' context-router.json)
 
-# Query 8 schemas (specific fields only)
-for schema in schema_files:
-    @mcp:json-jq query metadata from f"{memory_bank}{schema}"
+# READ 8 schemas (parallel queries - FASTEST)
+for schema in $schema_files; do
+  (jq '.timestamp' "$memory_bank$schema") &
+done
+wait
 ```
 
-## 2. Compute Scores
+## 2. Compute Scores (Python)
 
-```python
-# Python eval() calculations
-constitutional_compliance = validation_pass / total_checks  # ≥80%
-consensus_readiness = calculate_readiness()  # ≥95%
-roadmap_alignment = milestone_completion / total_milestones  # ≥95%
-task_velocity = tasks_per_hour
-error_rate = errors / 100_tasks
-rl_trend = last_10_tasks_avg
+```bash
+# Calculate with Python
+constitutional_compliance=$(python3 -c "print(validation_pass / total_checks * 100)")
+consensus_readiness=$(python3 -c "print(calculate_readiness())")
+roadmap_alignment=$(python3 -c "print(milestone_completion / total * 100)")
+task_velocity=$(jq '[.transactions[] | select(.timestamp > "'$(date -d '1 hour ago' -I)'")]' "$memory_bank"progress.json | jq length)
 ```
 
 ## 3. Report & Remediate
 
-1. Terminal `date` → Timestamp audit
-2. IF thresholds missed → `@mcp:sequential-thinking` → Plan remediation
-3. IF anomalies → `@mcp:context7` → Fetch guidance
-4. `@mcp:filesystem` → Validate schemas
-5. `@mcp:memory` → Store metrics
-6. `@mcp:git` → Commit "status: [compliance%] - [date]"
+```bash
+# IF thresholds missed
+if [[ $constitutional_compliance -lt 80 ]]; then
+  @mcp:sequential-thinking plan_remediation
+  @mcp:context7 fetch_guidance
+fi
 
-**Thresholds**: Framework ≥80%, Consensus ≥95%, Roadmap ≥95%
+# UPDATE with jq terminal (NOT @mcp:filesystem)
+jq '.transactions = [{
+  "workflow": "status",
+  "rl_reward": 5,
+  "compliance": '$constitutional_compliance',
+  "timestamp": "'$(date '+%Y-%m-%dT%H:%M:%S%z')'"
+}] + .transactions' "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
 
-**RL**: +5 comprehensive report
+git commit -m "status: compliance $constitutional_compliance%"
+```
+
+**Thresholds**: ≥80% framework, ≥95% consensus, ≥95% roadmap
 
 ---
-**Lines**: ~50 | **Auto-remediation**: If thresholds missed
+**Lines**: ~46 | **READ**: @mcp:json-jq or jq, **UPDATE**: jq only

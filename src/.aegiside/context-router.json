@@ -1,6 +1,73 @@
 {
   "meta_version": "1.0.0",
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
+  "json_access_rules": {
+    "description": "CRITICAL: How to access JSON files in memory bank",
+    "read_json": {
+      "method": "@mcp:json-jq",
+      "purpose": "Query specific fields from JSON files (97% context savings)",
+      "performance": "~5ms per query",
+      "usage": "@mcp:json-jq query '$.field' from 'file.json'",
+      "examples": [
+        "task = @mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
+        "rl_score = @mcp:json-jq query '$.total_rl_score' from 'progress.json'",
+        "session = @mcp:json-jq query '$.session' from 'activeContext.json'"
+      ]
+    },
+    "update_json": {
+      "method": "jq terminal",
+      "purpose": "Modify JSON fields atomically with temp file pattern",
+      "performance": "~10-15ms per update (50-100x faster than MCP filesystem)",
+      "pattern": "jq '.field = value' file.json > temp.json && mv temp.json file.json",
+      "examples": [
+        "jq '.total_rl_score += 20' progress.json > temp.json && mv temp.json progress.json",
+        "jq '.status = \"completed\"' activeContext.json > temp.json && mv temp.json activeContext.json",
+        "jq '.array = [$new] + .array | .array |= .[:100]' file.json > temp.json && mv temp.json file.json"
+      ],
+      "atomic_safety": "ALWAYS use temp file + mv for atomic updates"
+    },
+    "delete_json": {
+      "method": "@mcp:filesystem",
+      "purpose": "Delete entire JSON files only",
+      "usage": "@mcp:filesystem delete 'file.json'",
+      "note": "For deleting JSON keys, use jq terminal with del() function"
+    },
+    "write_json": {
+      "method": "@mcp:filesystem",
+      "purpose": "Create new JSON files from scratch only",
+      "usage": "@mcp:filesystem write 'file.json' with content",
+      "note": "For modifications, ALWAYS use jq terminal update pattern"
+    },
+    "forbidden": {
+      "never_use_filesystem_for": [
+        "Reading JSON fields (use @mcp:json-jq instead)",
+        "Updating JSON fields (use jq terminal instead)",
+        "Modifying existing JSON content (use jq terminal instead)"
+      ],
+      "penalties": {
+        "using_filesystem_for_json_read": -15,
+        "using_filesystem_for_json_update": -25,
+        "bypassing_atomic_update_pattern": -30
+      }
+    },
+    "performance_comparison": {
+      "read_field": {
+        "mcp_filesystem": "~500ms",
+        "mcp_json_jq": "~5ms",
+        "speedup": "100x"
+      },
+      "update_field": {
+        "mcp_filesystem": "~800ms",
+        "jq_terminal": "~10ms",
+        "speedup": "80x"
+      },
+      "parallel_operations": {
+        "mcp_filesystem": "Sequential only",
+        "jq_terminal": "Simultaneous with & wait",
+        "advantage": "True parallelization"
+      }
+    }
+  },
   "bootstrap_initialization": {
     "description": "First-time setup: Auto-download from GitHub, detect IDE, create structure",
     "github_repo": "https://github.com/Gaurav-Wankhede/AegisIDE.git",

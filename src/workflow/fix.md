@@ -1,43 +1,51 @@
 ---
-description: HALT-FIX-VALIDATE loop until clean
+description: HALT-FIX-VALIDATE with terminal jq
 ---
 
 # /fix — Zero-Tolerance Remediation
 
-## 1. Load Router & Apply Penalty
+## 1. Load Router & Apply Penalty (Terminal jq)
 
-```python
-ROUTER = @mcp:json-jq query '$' from 'context-router.json'
-memory_bank = ROUTER['system_paths']['memory_bank']
-rl_config = ROUTER['rl_calculation']
-penalty = rl_config['penalties']['validation_failure']  # -30
+```bash
+# Cache router
+ROUTER=$(jq '.' context-router.json)
+memory_bank=$(echo "$ROUTER" | jq -r '.system_paths.memory_bank')
+penalty=$(echo "$ROUTER" | jq -r '.rl_calculation.penalties.validation_failure')  # -30
+
+# HALT - atomic penalty update
+jq '.transactions = [{"workflow": "fix", "rl_penalty": '$penalty'}] + .transactions | .total_rl_score += '$penalty' \
+  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+
+# Prepend mistakes.json
+jq '.error_log = [{"error": "validation_failure", "timestamp": "'$(date -I)'"}] + .error_log | .error_log |= .[:100]' \
+  "$memory_bank"mistakes.json > temp.json && mv temp.json "$memory_bank"mistakes.json
 ```
 
 ## 2. Fix Loop
 
-1. **HALT** → Update progress.json with penalty
-2. `@mcp:filesystem` → Prepend mistakes.json
-3. `@mcp:context7` → Fetch remediation docs
-4. `@mcp:sequential-thinking` → Plan fix (≥3 steps)
-5. `@mcp:filesystem` → Apply fix (≤80 lines per EMD)
-6. `/validate` → Re-run validation
-7. IF still fails → Loop (track retry in mistakes.json)
-8. IF success → +15 RL reward
+1. `@mcp:context7` → Fetch remediation docs
+2. `@mcp:sequential-thinking` → Plan fix (≥3 steps)
+3. `@mcp:filesystem` → Apply fix (≤80 lines EMD)
+4. `/validate` → Re-run (jq tracks retry count)
+5. Loop until clean
 
-## 3. Store Pattern & Chain
+## 3. Success & Chain (Terminal jq)
 
-```python
-# Learn from error
-@mcp:memory store prevention_rule
+```bash
+# Success - reward
+reward=15
+jq '.transactions = [{"workflow": "fix", "rl_reward": '$reward'}] + .transactions | .total_rl_score += '$reward' \
+  "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
 
-# Timestamp
-terminal: date '+%Y-%m-%dT%H:%M:%S%z'
+# Store prevention pattern
+jq --arg rule "Run /validate before commit" \
+  '.patterns += [{"prevention_rule": $rule}]' \
+  "$memory_bank"systemPatterns.json > temp.json && mv temp.json "$memory_bank"systemPatterns.json
 
-# Auto-chain
-invoke_workflow("/continue")  # Then /next
+invoke_workflow "/continue"
 ```
 
-**RL**: +15 success | -30 fail (escalates -50 on 3rd)
+**RL**: +15 success | -30 fail
 
 ---
-**Lines**: ~45 | **Loop**: Until clean
+**Lines**: ~43 | **jq**: Atomic updates

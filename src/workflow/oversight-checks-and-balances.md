@@ -1,50 +1,54 @@
 ---
-description: Tri-branch parliamentary review
+description: Parliamentary review with terminal jq
 ---
 
 # /oversight-checks-and-balances — Parliamentary Review
 
-## 1. Load Router & Proposal
+## 1. Load Router & READ Proposal (Terminal jq)
 
-```python
-ROUTER = @mcp:json-jq query '$' from 'context-router.json'
-memory_bank = ROUTER['system_paths']['memory_bank']
-constitution = ROUTER['system_paths']['constitution']
-consensus_formula = ROUTER['rl_calculation']['formula_patterns']['consensus']
+```bash
+# READ router config (jq terminal)
+memory_bank=$(jq -r '.system_paths.memory_bank' context-router.json)
+constitution=$(jq -r '.system_paths.constitution' context-router.json)
+consensus_formula=$(jq -r '.rl_calculation.formula_patterns.consensus' context-router.json)
 
-# Query proposal
-proposal = @mcp:json-jq query '$' from f"{memory_bank}systemPatterns.json"
+# READ proposal (jq terminal - FASTEST)
+proposal=$(jq '.' "$memory_bank"systemPatterns.json)
 ```
 
 ## 2. Structured Debate
 
-1. `@mcp:context7` → Load relevant constitutional articles (selective)
+1. `@mcp:context7` → Load relevant articles (selective)
 2. `@mcp:fetch` → Gather precedents if needed
 3. `@mcp:memory` → Retrieve historical decisions
-4. `@mcp:sequential-thinking` → Orchestrate debate:
-   - Government (PM): Present proposal
-   - Opposition (Shadow): Challenge evidence
-   - Judiciary (Chief Justice): Constitutional review
+4. `@mcp:sequential-thinking` → Orchestrate debate (Government, Opposition, Judiciary)
 
-## 3. Consensus Calculation
+## 3. Consensus Calculation & UPDATE (Terminal jq)
 
-```python
-# Python eval() using consensus_formula
-consensus = (exec*0.3) + (admin*0.3) + (opp*0.3) + (jud*0.1)
+```bash
+# Calculate with Python
+consensus=$(python3 -c "exec_weight=0.3; admin_weight=0.3; opp_weight=0.3; jud_weight=0.1; print((exec*exec_weight) + (admin*admin_weight) + (opp*opp_weight) + (jud*jud_weight))")
 
-if consensus >= 0.95:
-    approved → +25 RL
-else:
-    rejected → -20 RL → queue remediation
+# UPDATE based on consensus (jq terminal ONLY)
+if (( $(echo "$consensus >= 0.95" | bc -l) )); then
+  # Approved - UPDATE progress.json
+  jq '.transactions = [{"workflow": "oversight", "rl_reward": 25, "consensus": '$consensus'}] + .transactions | .total_rl_score += 25' \
+    "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+else
+  # Rejected - UPDATE with penalty
+  jq '.transactions = [{"workflow": "oversight", "rl_penalty": -20}] + .transactions | .total_rl_score += -20' \
+    "$memory_bank"progress.json > temp.json && mv temp.json "$memory_bank"progress.json
+  
+  # Queue remediation in scratchpad
+  jq --arg proposal "$proposal" '.priority_queue = [{"title": "Remediate: " + $proposal}] + .priority_queue' \
+    "$memory_bank"scratchpad.json > temp.json && mv temp.json "$memory_bank"scratchpad.json
+fi
+
+git commit -m "oversight: consensus $consensus"
+@mcp:memory store_verdict
 ```
-
-## 4. Store & Commit
-
-1. Terminal `date` → Timestamp stages
-2. `@mcp:git` → Commit debate artifacts
-3. `@mcp:memory` → Store verdict
 
 **RL**: +25 consensus ≥95% | -20 fail
 
 ---
-**Lines**: ~55 | **Required**: ≥95% approval
+**Lines**: ~50 | **Pattern**: READ jq, UPDATE jq terminal
