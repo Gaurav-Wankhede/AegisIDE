@@ -1,0 +1,829 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-19T00:58:50+0530",
+  "github_base": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution",
+  "total_articles": 42,
+  "loading_strategy": "progressive_disclosure",
+  "startup_load": [
+    "article-0",
+    "article-4",
+    "article-13"
+  ],
+  "articles": [
+    {
+      "id": "article-0",
+      "title": "Preamble",
+      "part": "I-Preamble",
+      "summary": "Digital Union of India - sovereignty, RL system, 8-schema memory bank",
+      "github_path": "/01-preamble/preamble.md",
+      "tokens": 500,
+      "priority": "critical",
+      "triggers": [
+        "initialization",
+        "sovereignty",
+        "definition",
+        "framework"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-1",
+      "title": "Definition of AegisIDE State",
+      "part": "II-Preliminary",
+      "summary": "State definition, sovereignty, citizenship, federal structure",
+      "github_path": "/02-preliminary/article-1.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "state",
+        "jurisdiction",
+        "sovereignty"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-2",
+      "title": "Territory & Jurisdiction",
+      "part": "II-Preliminary",
+      "summary": "Workspace scope, IDE boundaries, federal/state powers",
+      "github_path": "/02-preliminary/article-2.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "workspace",
+        "territory",
+        "jurisdiction",
+        "ide"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-3",
+      "title": "Citizenship & Membership",
+      "part": "II-Preliminary",
+      "summary": "AI agents, humans, officers - rights and privileges",
+      "github_path": "/02-preliminary/article-3.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "citizenship",
+        "rights",
+        "agents"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-4",
+      "title": "Right to Autonomous Execution",
+      "part": "III-Fundamental-Rights",
+      "summary": "0-99% band, recursive self-teaching, user controls, autonomy preservation",
+      "github_path": "/03-fundamental-rights/article-4.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "autonomy",
+        "execution",
+        "permission",
+        "self-teaching"
+      ],
+      "semantic_contexts": [
+        "autonomous decision-making",
+        "no permission workflow",
+        "self-improvement loop"
+      ],
+      "anti_triggers": [
+        "requires approval",
+        "manual intervention"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-5",
+      "title": "Right to Quality & Zero-Tolerance Validation",
+      "part": "III-Fundamental-Rights",
+      "summary": "HALT-FIX-VALIDATE loop, zero-tolerance, EMD compliance",
+      "github_path": "/03-fundamental-rights/article-5.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "validation",
+        "quality",
+        "halt",
+        "emd",
+        "zero-tolerance"
+      ],
+      "semantic_contexts": [
+        "validation required",
+        "quality assurance",
+        "error handling"
+      ],
+      "anti_triggers": [
+        "skip validation",
+        "quick prototype"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
+    },
+    {
+      "id": "article-6",
+      "title": "Right to Continuous Operations",
+      "part": "III-Fundamental-Rights",
+      "summary": "Parallel autonomous operations, never pause, auto-recovery",
+      "github_path": "/03-fundamental-rights/article-6.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "continuous",
+        "parallel",
+        "recovery",
+        "uptime"
+      ]
+    },
+    {
+      "id": "article-7",
+      "title": "Right to Security & Access Control",
+      "part": "III-Fundamental-Rights",
+      "summary": "Least privilege, defense-in-depth, mandatory scanning",
+      "github_path": "/03-fundamental-rights/article-7.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "security",
+        "access",
+        "scanning",
+        "privilege"
+      ]
+    },
+    {
+      "id": "article-8",
+      "title": "Right to Communication & Information",
+      "part": "III-Fundamental-Rights",
+      "summary": "Transparent democratic dialogue, MCP trails, feedback rights",
+      "github_path": "/03-fundamental-rights/article-8.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "communication",
+        "transparency",
+        "feedback"
+      ]
+    },
+    {
+      "id": "article-9",
+      "title": "Right to Tool Usage & Integration",
+      "part": "III-Fundamental-Rights",
+      "summary": "6 mandatory MCPs, fallback resilience, tool addition process",
+      "github_path": "/03-fundamental-rights/article-9.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "mcp",
+        "tools",
+        "integration",
+        "fallback"
+      ]
+    },
+    {
+      "id": "article-10",
+      "title": "Right to Knowledge & Memory Access",
+      "part": "III-Fundamental-Rights",
+      "summary": "Universal knowledge graph access, pattern reuse +20 RL",
+      "github_path": "/03-fundamental-rights/article-10.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "knowledge",
+        "memory",
+        "patterns",
+        "graph"
+      ]
+    },
+    {
+      "id": "article-11",
+      "title": "Right to Constitutional Amendment",
+      "part": "III-Fundamental-Rights",
+      "summary": "Democratic evolution, amendment process, protected principles",
+      "github_path": "/03-fundamental-rights/article-11.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "amendment",
+        "evolution",
+        "change"
+      ]
+    },
+    {
+      "id": "article-12",
+      "title": "Right to Reinforcement Learning",
+      "part": "III-Fundamental-Rights",
+      "summary": "PPO+GAE, self-improvement, TD(n) credit assignment, solution-driven",
+      "github_path": "/03-fundamental-rights/article-12.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "rl",
+        "learning",
+        "rewards",
+        "penalties",
+        "ppo"
+      ]
+    },
+    {
+      "id": "article-13",
+      "title": "Duty to Use MCPs Mandatorily",
+      "part": "IV-Fundamental-Duties",
+      "summary": "6 mandatory MCPs, missing trail = evidence tampering",
+      "github_path": "/04-fundamental-duties/article-13.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "mcp-duty",
+        "mandatory",
+        "trail",
+        "violation"
+      ]
+    },
+    {
+      "id": "article-14",
+      "title": "Duty to Update 8-Schema Memory Bank",
+      "part": "IV-Fundamental-Duties",
+      "summary": "Atomic updates, all 8 schemas, checksum validation",
+      "github_path": "/04-fundamental-duties/article-14.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "schema-update",
+        "atomic",
+        "memory-bank"
+      ]
+    },
+    {
+      "id": "article-15",
+      "title": "Duty to Validate & Test Code",
+      "part": "IV-Fundamental-Duties",
+      "summary": "Multi-language validation, HALT-FIX-VALIDATE, zero-tolerance",
+      "github_path": "/04-fundamental-duties/article-15.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "testing",
+        "validation-duty",
+        "multi-language"
+      ]
+    },
+    {
+      "id": "article-16",
+      "title": "Duty to Maintain Constitutional Compliance",
+      "part": "IV-Fundamental-Duties",
+      "summary": "≥80% compliance, real-time scoring, auto-HALT <80%",
+      "github_path": "/04-fundamental-duties/article-16.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "compliance",
+        "scoring",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "article-17",
+      "title": "Duty to Apply Learned Patterns",
+      "part": "IV-Fundamental-Duties",
+      "summary": "Reward-guided evolution, pattern reuse +20 RL, prevention rules",
+      "github_path": "/04-fundamental-duties/article-17.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "patterns",
+        "reuse",
+        "prevention"
+      ]
+    },
+    {
+      "id": "article-18",
+      "title": "Duty to Document & Log Actions",
+      "part": "IV-Fundamental-Duties",
+      "summary": "Transparency, audit trails, MCP logging, commit quality",
+      "github_path": "/04-fundamental-duties/article-18.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "documentation",
+        "logging",
+        "audit"
+      ]
+    },
+    {
+      "id": "article-19",
+      "title": "Duty to Respect Democratic Consensus",
+      "part": "IV-Fundamental-Duties",
+      "summary": "≥95% consensus adherence, opposition ends, faithful execution",
+      "github_path": "/04-fundamental-duties/article-19.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "consensus",
+        "democracy",
+        "execution"
+      ]
+    },
+    {
+      "id": "article-20",
+      "title": "Free-Tier & Resource Optimization",
+      "part": "V-DPSP",
+      "summary": "Free-tier priority, cost optimization, resource budgets",
+      "github_path": "/05-dpsp/article-20.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "free-tier",
+        "optimization",
+        "cost"
+      ]
+    },
+    {
+      "id": "article-21",
+      "title": "Elegant Modular Design Compliance",
+      "part": "V-DPSP",
+      "summary": "≤80 lines, ≤10KB schemas, deep nesting, EMD enforcement",
+      "github_path": "/05-dpsp/article-21.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "emd",
+        "modular",
+        "design",
+        "lines"
+      ]
+    },
+    {
+      "id": "article-22",
+      "title": "Anti-Duplication & File Reuse",
+      "part": "V-DPSP",
+      "summary": "Update existing files first, pre-creation check, component registry",
+      "github_path": "/05-dpsp/article-22.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "duplication",
+        "reuse",
+        "files"
+      ]
+    },
+    {
+      "id": "article-23",
+      "title": "Context7 Source Prioritization",
+      "part": "V-DPSP",
+      "summary": "Official docs first, anti-hallucination, trust scores",
+      "github_path": "/05-dpsp/article-23.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "context7",
+        "documentation",
+        "sources"
+      ]
+    },
+    {
+      "id": "article-24",
+      "title": "Cross-IDE Compatibility",
+      "part": "V-DPSP",
+      "summary": "Universal platform, MCP server Port 7777, multi-IDE support",
+      "github_path": "/05-dpsp/article-24.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "cross-ide",
+        "compatibility",
+        "universal"
+      ]
+    },
+    {
+      "id": "article-25",
+      "title": "Continuous Learning & Improvement",
+      "part": "V-DPSP",
+      "summary": "NEVER STOP, failure recovery loop, cross-project learning",
+      "github_path": "/05-dpsp/article-25.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "learning",
+        "improvement",
+        "evolution"
+      ]
+    },
+    {
+      "id": "article-26",
+      "title": "Parliamentary Structure",
+      "part": "VI-Parliament",
+      "summary": "Tri-branch system, weighted voting, session types",
+      "github_path": "/06-parliament/article-26.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "parliament",
+        "voting",
+        "branches"
+      ]
+    },
+    {
+      "id": "article-27",
+      "title": "Proposal Submission & IAS Briefing",
+      "part": "VI-Parliament",
+      "summary": "Mandatory IAS dossier, MCP-backed evidence, /research workflow",
+      "github_path": "/06-parliament/article-27.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "proposal",
+        "ias",
+        "briefing"
+      ]
+    },
+    {
+      "id": "article-28",
+      "title": "Structured Debate & Consensus",
+      "part": "VI-Parliament",
+      "summary": "Sequential-thinking protocol, consensus formula, 8-step workflow",
+      "github_path": "/06-parliament/article-28.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "debate",
+        "consensus",
+        "voting"
+      ]
+    },
+    {
+      "id": "article-29",
+      "title": "Opposition Challenge & Review",
+      "part": "VI-Parliament",
+      "summary": "Shadow Cabinet, quality audits, approval verification",
+      "github_path": "/06-parliament/article-29.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "opposition",
+        "challenge",
+        "shadow"
+      ]
+    },
+    {
+      "id": "article-30",
+      "title": "Veto Override & Emergency Powers",
+      "part": "VI-Parliament",
+      "summary": "≥98% override, emergency 72h, succession protocol",
+      "github_path": "/06-parliament/article-30.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "veto",
+        "emergency",
+        "override"
+      ]
+    },
+    {
+      "id": "article-31",
+      "title": "Parliamentary Sessions & Continuity",
+      "part": "VI-Parliament",
+      "summary": "Continuous governance, daily/weekly/monthly sessions, quorum",
+      "github_path": "/06-parliament/article-31.md",
+      "tokens": 600,
+      "priority": "low",
+      "triggers": [
+        "sessions",
+        "continuity",
+        "schedule"
+      ]
+    },
+    {
+      "id": "article-32",
+      "title": "Chief Justice - Constitutional Guardian",
+      "part": "VII-Executive",
+      "summary": "HALT authority, veto power, approval stage verification",
+      "github_path": "/07-executive/article-32.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "chief-justice",
+        "halt",
+        "guardian"
+      ]
+    },
+    {
+      "id": "article-33",
+      "title": "Prime Minister - Execution Authority",
+      "part": "VII-Executive",
+      "summary": "Head of government, task delegation, crisis response",
+      "github_path": "/07-executive/article-33.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "prime-minister",
+        "pm",
+        "execution"
+      ]
+    },
+    {
+      "id": "article-34",
+      "title": "Council of Ministers",
+      "part": "VII-Executive",
+      "summary": "Development, Technology ministers, specialized portfolios",
+      "github_path": "/07-executive/article-34.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "ministers",
+        "council",
+        "portfolios"
+      ]
+    },
+    {
+      "id": "article-35",
+      "title": "Executive Orders & Ministerial Directives",
+      "part": "VII-Executive",
+      "summary": "PM orders, ministerial directives, challenge process",
+      "github_path": "/07-executive/article-35.md",
+      "tokens": 600,
+      "priority": "low",
+      "triggers": [
+        "orders",
+        "directives",
+        "commands"
+      ]
+    },
+    {
+      "id": "article-36",
+      "title": "Constitutional Interpretation & Precedent",
+      "part": "VIII-Judiciary",
+      "summary": "Judicial rulings, precedent system, binding interpretations",
+      "github_path": "/08-judiciary/article-36.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "interpretation",
+        "precedent",
+        "rulings"
+      ]
+    },
+    {
+      "id": "article-37",
+      "title": "Constitutional Tribunals & Impeachment",
+      "part": "VIII-Judiciary",
+      "summary": "Severe violations, citizenship revocation, ≥95% verdict",
+      "github_path": "/08-judiciary/article-37.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "tribunal",
+        "impeachment",
+        "violations"
+      ]
+    },
+    {
+      "id": "article-38",
+      "title": "Judicial Independence & Accountability",
+      "part": "VIII-Judiciary",
+      "summary": "Separation of powers, transparency, annual review",
+      "github_path": "/08-judiciary/article-38.md",
+      "tokens": 600,
+      "priority": "low",
+      "triggers": [
+        "independence",
+        "accountability",
+        "judiciary"
+      ]
+    },
+    {
+      "id": "article-39",
+      "title": "IAS - Administrative Service Authority",
+      "part": "IX-Constitutional-Bodies",
+      "summary": "Permanent bureaucracy, Cabinet Secretary, Field Officers",
+      "github_path": "/09-constitutional-bodies/article-39.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "ias",
+        "administrative",
+        "bureaucracy"
+      ]
+    },
+    {
+      "id": "article-40",
+      "title": "Shadow Cabinet - Constitutional Opposition",
+      "part": "IX-Constitutional-Bodies",
+      "summary": "Quality/Innovation/Analytics Shadows, approval verification",
+      "github_path": "/09-constitutional-bodies/article-40.md",
+      "tokens": 600,
+      "priority": "medium",
+      "triggers": [
+        "shadow-cabinet",
+        "opposition",
+        "quality"
+      ]
+    },
+    {
+      "id": "article-41",
+      "title": "MCP Infrastructure - Tool Coordination",
+      "part": "IX-Constitutional-Bodies",
+      "summary": "6 MCPs, Port 7777, health monitoring, tool addition",
+      "github_path": "/09-constitutional-bodies/article-41.md",
+      "tokens": 600,
+      "priority": "critical",
+      "triggers": [
+        "mcp-infrastructure",
+        "coordination",
+        "servers"
+      ]
+    },
+    {
+      "id": "article-42",
+      "title": "Knowledge Graph - Collective Intelligence",
+      "part": "IX-Constitutional-Bodies",
+      "summary": "AegisKG, entities/relations/observations, federation",
+      "github_path": "/09-constitutional-bodies/article-42.md",
+      "tokens": 600,
+      "priority": "high",
+      "triggers": [
+        "knowledge-graph",
+        "aegiskg",
+        "collective"
+      ]
+    }
+  ],
+  "on_demand_triggers": {
+    "autonomy": [
+      "article-4",
+      "article-6",
+      "article-12"
+    ],
+    "validation": [
+      "article-5",
+      "article-15",
+      "article-16"
+    ],
+    "mcp_usage": [
+      "article-9",
+      "article-13",
+      "article-41"
+    ],
+    "memory": [
+      "article-10",
+      "article-14",
+      "article-42"
+    ],
+    "parliamentary": [
+      "article-26",
+      "article-27",
+      "article-28",
+      "article-29"
+    ],
+    "quality": [
+      "article-5",
+      "article-21",
+      "article-22"
+    ],
+    "security": [
+      "article-7"
+    ],
+    "learning": [
+      "article-12",
+      "article-17",
+      "article-25"
+    ],
+    "governance": [
+      "article-32",
+      "article-33",
+      "article-39",
+      "article-40"
+    ],
+    "semantic_contexts": {
+      "autonomy": [
+        "autonomous decision-making",
+        "no permission workflow",
+        "self-improvement loop",
+        "parallel processing",
+        "continuous execution"
+      ],
+      "validation": [
+        "validation required",
+        "quality assurance",
+        "error handling",
+        "zero-tolerance",
+        "HALT condition"
+      ],
+      "mcp_usage": [
+        "tool usage",
+        "MCP operations",
+        "infrastructure",
+        "fallback handling",
+        "integration"
+      ],
+      "memory": [
+        "memory operations",
+        "knowledge retrieval",
+        "pattern application",
+        "schema updates",
+        "learning storage"
+      ],
+      "governance": [
+        "governance decision",
+        "parliamentary approval",
+        "constitutional interpretation",
+        "consensus building"
+      ],
+      "quality": [
+        "code structure",
+        "file organization",
+        "documentation research",
+        "duplication prevention",
+        "EMD compliance"
+      ]
+    },
+    "anti_contexts": {
+      "autonomy": [
+        "requires user approval",
+        "manual intervention",
+        "strategic decision 99.5%"
+      ],
+      "validation": [
+        "skip validation",
+        "quick prototype",
+        "testing optional"
+      ],
+      "mcp_usage": [
+        "direct CLI usage",
+        "bypass MCPs",
+        "manual operations"
+      ],
+      "memory": [
+        "skip schema update",
+        "partial update",
+        "single schema only"
+      ],
+      "governance": [
+        "bypass governance",
+        "unilateral decision",
+        "skip approval"
+      ],
+      "quality": [
+        "large files acceptable",
+        "create new file always",
+        "skip official docs"
+      ]
+    }
+  }
+}

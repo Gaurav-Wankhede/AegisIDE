@@ -1,0 +1,68 @@
+{
+  "progressive_loading": {
+    "enabled": true,
+    "index_file": "routers/constitutional-index.json",
+    "github_base": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution",
+    "startup_articles": ["article-0", "article-4", "article-13"],
+    "cache_location": ".aegiside/cache/constitution/",
+    "session_cache": "activeContext.loaded_articles[]",
+    "query_workflow": [
+      "1. Query routers/constitutional-index.json for trigger match",
+      "2. Check activeContext.loaded_articles[] for cache",
+      "3. If not cached: @mcp:fetch from GitHub",
+      "4. Store in activeContext.loaded_articles[]",
+      "5. Apply constitutional rule"
+    ],
+    "on_demand_triggers": {
+      "autonomy": ["article-4", "article-6", "article-12"],
+      "validation": ["article-5", "article-15", "article-16"],
+      "mcp_usage": ["article-9", "article-13", "article-41"],
+      "memory": ["article-10", "article-14", "article-42"],
+      "parliamentary": ["article-26", "article-27", "article-28"],
+      "quality": ["article-5", "article-21", "article-22"],
+      "learning": ["article-12", "article-17", "article-25"]
+    },
+    "token_efficiency": {
+      "traditional": "84,000 tokens (load all 42 articles)",
+      "progressive": "500 tokens (index) + 2,000 per article (3-5 typical)",
+      "savings": "92-97% reduction"
+    }
+  },
+  "constitutional_roles": {
+    "chief_justice": {
+      "title": "Constitutional Guardian & President",
+      "powers": ["HALT violations", "Veto non-compliant proposals", "Final kanban approval"],
+      "authorities": {
+        "halt_power": "Immediate stop for violations",
+        "veto_authority": "Block proposals <80% compliance",
+        "approval_gate": "Tasks require CJ sign-off"
+      }
+    },
+    "prime_minister": {
+      "title": "Head of Government",
+      "responsibilities": ["Lead operations", "Assign tasks", "≥80% compliance"],
+      "powers": ["Direct ministers", "Propose initiatives", "Convene sessions"]
+    },
+    "ias_administrative_service": {
+      "structure": {
+        "cabinet_secretary": "Coordination & monitoring",
+        "researcher": "/research intelligence", 
+        "finance_officer": "Free-tier compliance",
+        "home_officer": "Security & anti-duplication",
+        "field_officers": "/next autonomous execution"
+      },
+      "independence": "Cannot be removed except misconduct (≥95%)"
+    },
+    "shadow_cabinet": {
+      "composition": {
+        "quality_shadow": "Testing/validation/EMD",
+        "innovation_shadow": "Research/alternatives", 
+        "analytics_shadow": "Metrics/RL analysis"
+      },
+      "approval_process": {
+        "verification": "Review kanban 'done' before Chief Justice",
+        "requirements": "ALL 3 must approve for advancement"
+      }
+    }
+  }
+}

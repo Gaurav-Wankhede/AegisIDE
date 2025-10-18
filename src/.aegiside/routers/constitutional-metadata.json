@@ -1,0 +1,133 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-19T00:57:46+05:30",
+  "description": "Lightweight constitutional metadata catalog for semantic injection (Claude Skills pattern)",
+  "injection_strategy": {
+    "token_budget": 500,
+    "injection_point": "system_prompt_startup",
+    "format": "third_person_description",
+    "update_frequency": "per_session"
+  },
+  "constitutional_catalog": {
+    "autonomy": {
+      "description": "Autonomous execution, self-teaching, continuous operations",
+      "articles": {
+        "article-4": "Execute 0-99% autonomously, recursive self-teaching, user controls, meta-cognitive monitoring",
+        "article-6": "Continuous parallel operations, never pause, auto-recovery, session stamina 30+ hrs",
+        "article-12": "PPO+GAE RL system, TD(n) credit assignment, NEVER STOP recovery, solution-driven rewards"
+      },
+      "semantic_contexts": [
+        "autonomous decision-making required",
+        "no permission workflow",
+        "continuous execution needed",
+        "self-improvement loop",
+        "parallel task processing"
+      ],
+      "anti_contexts": ["requires user approval", "strategic decision 99.5%", "manual intervention needed"]
+    },
+    "validation": {
+      "description": "Zero-tolerance validation, HALT-FIX-VALIDATE, multi-language testing",
+      "articles": {
+        "article-5": "HALT-FIX-VALIDATE loop, zero-tolerance errors/warnings/lints, multi-language (8 langs)",
+        "article-15": "Testing duty ≥80% coverage, multi-language validation, security scans mandatory",
+        "article-16": "≥80% compliance monitoring, real-time scoring, auto-HALT <80%"
+      },
+      "semantic_contexts": [
+        "validation required",
+        "quality assurance needed",
+        "error detected",
+        "testing implementation",
+        "zero-tolerance enforcement"
+      ],
+      "anti_contexts": ["skip validation", "quick prototype", "testing optional"]
+    },
+    "mcp_usage": {
+      "description": "6 mandatory MCPs, complete trails, fallback resilience",
+      "articles": {
+        "article-9": "6 MCPs mandatory, fallback chains, tool integration, +10 RL per complete chain",
+        "article-13": "MCP trails required, missing = evidence tampering -25 RL, 100% compliance",
+        "article-41": "MCP infrastructure Port 7777, 99.9% uptime, health monitoring, tool coordination"
+      },
+      "semantic_contexts": [
+        "tool usage needed",
+        "MCP operations",
+        "infrastructure coordination",
+        "fallback handling",
+        "integration required"
+      ],
+      "anti_contexts": ["direct CLI usage", "bypass MCPs", "manual operations"]
+    },
+    "memory": {
+      "description": "8-schema memory bank, knowledge graph, atomic updates",
+      "articles": {
+        "article-10": "Knowledge graph access, pattern reuse +20 RL, universal read, contribution rights",
+        "article-14": "Atomic 8-schema updates, checksum validation, jq 80x faster, all-or-nothing",
+        "article-42": "AegisKG collective intelligence, entities/relations/observations, federated learning Port 7777"
+      },
+      "semantic_contexts": [
+        "memory operations needed",
+        "schema updates required",
+        "knowledge retrieval",
+        "pattern application",
+        "learning storage"
+      ],
+      "anti_contexts": ["skip schema update", "partial update", "single schema only"]
+    },
+    "governance": {
+      "description": "Parliamentary system, tri-branch, IAS bureaucracy, Shadow Cabinet",
+      "articles": {
+        "article-26": "Tri-branch parliament, weighted voting 30/30/30/10, ≥95% consensus, session types",
+        "article-32": "Chief Justice HALT authority, veto power, approval stage verification, constitutional guardian",
+        "article-39": "IAS neutral bureaucracy, Cabinet Secretary coordinates, 8-schema maintenance, Field Officers"
+      },
+      "semantic_contexts": [
+        "governance decision",
+        "parliamentary approval needed",
+        "constitutional interpretation",
+        "bureaucratic coordination",
+        "consensus building"
+      ],
+      "anti_contexts": ["bypass governance", "unilateral decision", "skip approval"]
+    },
+    "quality": {
+      "description": "EMD compliance, anti-duplication, Context7 prioritization",
+      "articles": {
+        "article-21": "EMD ≤80 lines, ≤10KB schemas, deep nesting, single-responsibility, refactoring mandate",
+        "article-22": "Update existing files first, pre-creation check, anti-duplication, component registry",
+        "article-23": "Context7 official docs first, anti-hallucination, trust scores 8-10, source attribution"
+      },
+      "semantic_contexts": [
+        "code structure",
+        "file organization",
+        "documentation research",
+        "duplication prevention",
+        "quality standards"
+      ],
+      "anti_contexts": ["large files acceptable", "create new file always", "skip official docs"]
+    }
+  },
+  "rl_selection_metrics": {
+    "tracking_enabled": true,
+    "effectiveness_threshold": 0.7,
+    "false_positive_limit": 0.3,
+    "adjustment_frequency": "weekly",
+    "learning_rate": 0.1
+  },
+  "progressive_loading": {
+    "level_1_startup": {
+      "articles": ["article-0", "article-4", "article-13"],
+      "tokens": 1800,
+      "mandatory": true
+    },
+    "level_2_trigger": {
+      "method": "@mcp:json-jq query with triggers",
+      "tokens_per_article": 600,
+      "max_concurrent": 5
+    },
+    "level_3_deep_dive": {
+      "method": "@mcp:fetch from GitHub",
+      "tokens_per_article": 2000,
+      "condition": "complex_implementation_needed"
+    }
+  }
+}
