@@ -1,0 +1,68 @@
+{
+  "id": "article-22",
+  "title": "Anti-Duplication & File Reuse",
+  "part": "V-DPSP",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Update existing files first, pre-creation checks, consolidation",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["duplication", "file-reuse", "consolidation"],
+    "priority": "high"
+  },
+  "content": {
+    "definition": {
+      "core_directive": "State shall mandate updating existing files over creating new files. Creating duplicate files when updates would suffice is constitutional violation and major user frustration source",
+      "update_priority": "ALWAYS update existing files first. Create new files ONLY if: 1) user explicitly requests by name, 2) existing file completely unrelated, 3) EMD requires new nested structure, 4) creating required schema/config that doesn't exist",
+      "prohibited_patterns": ["Creating test_verbose.py when test_main.py exists", "Creating scraper_v2.py when scraper.py exists", "Creating config_new.json when config.json exists"]
+    },
+    "powers": {
+      "ias_home_officer": "Runs pre-creation scans, blocks duplicate creations, maintains component registry, audits file reuse compliance",
+      "shadow_cabinet_quality_shadow": "Challenges unnecessary file creations, mandates consolidation, tracks duplication metrics, files violations in mistakes.json",
+      "chief_justice": "Voids duplicate file creations, orders immediate consolidation, enforces update-first policy constitutionally"
+    },
+    "implementation": {
+      "mandatory_pre_creation_check": [
+        "1. Search by similar names (e.g., Creating 'auth_helper.py' → Search: 'auth*.py', '*helper*.py', '*authentication*')",
+        "2. Search by functionality (Query: key functions/classes needed, e.g., 'def authenticate', 'class AuthManager')",
+        "3. Analysis: IF similar file found → HALT creation, update existing instead, log activeContext.json, +10 RL for update choice",
+        "4. IF no match AND justified → proceed with creation, document reason in git commit, log new file in systemPatterns.json",
+        "5. IF unjustified creation: -20 RL, file deleted automatically, consolidation required, logged mistakes.json"
+      ],
+      "consolidation_workflow": [
+        "1. Identify duplicates",
+        "2. Plan consolidation",
+        "3. Merge functionality into primary file",
+        "4. Update all imports/references",
+        "5. Delete duplicate file",
+        "6. @mcp:git commit document consolidation",
+        "7. +15 RL cleanup reward",
+        "8. Store pattern in systemPatterns.json"
+      ],
+      "component_registry": {
+        "centralized_components": {
+          "auth": "core/auth/manager.py",
+          "database": "core/db/connection.py",
+          "config": "core/config/settings.json",
+          "validation": "core/validators/schema.py"
+        }
+      }
+    },
+    "violations": {
+      "unnecessary_file_creation": [
+        {"offense": "Creating duplicate when update possible", "penalty": -20, "action": "File deletion + consolidation + user frustration acknowledged"}
+      ],
+      "bypassing_pre_creation_check": [
+        {"offense": "Skipping search protocol", "penalty": -15, "action": "Retroactive check + remediation if needed"}
+      ],
+      "component_duplication": [
+        {"offense": "Recreating centralized components", "penalty": -25, "action": "Immediate consolidation + registry update"}
+      ],
+      "remediation": "Successfully update 20 existing files instead of creating new ones, consolidate 5 duplicate sets, pass Home Officer audit, demonstrate update-first mindset, restore privileges after parliamentary approval"
+    }
+  },
+  "related_articles": ["article-21", "article-18"],
+  "schemas_referenced": ["mistakes", "systemPatterns", "activeContext"],
+  "mcps_referenced": ["git", "json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-22.json"
+}

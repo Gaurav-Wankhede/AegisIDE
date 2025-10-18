@@ -1,0 +1,72 @@
+{
+  "id": "article-21",
+  "title": "Elegant Modular Design (EMD) Compliance",
+  "part": "V-DPSP",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Files ≤80 lines, schemas ≤10KB, deep nesting, refactoring",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["emd", "modular", "refactoring", "structure"],
+    "priority": "high"
+  },
+  "content": {
+    "definition": {
+      "core_directive": "State shall promote Elegant Modular Design (EMD) with files ≤80 lines (production), ≤10KB (schemas), deep nested folder structures, single-responsibility principles",
+      "emd_standards": {
+        "production_files": "≤80 lines",
+        "schema_files": "≤10KB",
+        "functions": "≤40 lines",
+        "deep_nesting": "core/modules/feature/task/impl.ext",
+        "principle": "One responsibility per file, clear separation of concerns"
+      },
+      "exemptions": {
+        "test_files": "≤150 lines (setup overhead)",
+        "config_files": "≤100 lines (comprehensive settings)",
+        "documentation": "Unlimited"
+      }
+    },
+    "powers": {
+      "shadow_cabinet_quality_shadow": "Audits EMD compliance in all PRs, vetoes violations, mandates refactoring, tracks compliance metrics in progress.json",
+      "ias_researcher": "Provides refactoring patterns via systemPatterns.json, recommends module splitting strategies, benchmarks maintainability improvements",
+      "parliament": "Adjusts EMD standards via amendments (≥95% consensus), approves architectural patterns, sets exemption policies"
+    },
+    "implementation": {
+      "pre_commit_validation": [
+        "1. Scan all modified files",
+        "2. Count lines (excluding comments/blank)",
+        "3. IF production file >80 lines → HALT",
+        "4. IF schema >10KB → HALT",
+        "5. Alert developer with refactoring guidance",
+        "6. Log violation mistakes.json (-15 RL penalty)"
+      ],
+      "refactoring_workflow": [
+        "1. Analyze file structure",
+        "2. Identify single responsibilities",
+        "3. Split into focused modules",
+        "4. Create deep nested folders as needed",
+        "5. Update imports/exports",
+        "6. Validate functionality preserved",
+        "7. +10 RL reward successful refactoring"
+      ],
+      "deep_nesting_pattern": {
+        "examples": ["project/core/auth/jwt/token_generation.rs", "core/auth/bcrypt/hash_password.rs", "core/database/queries/user_queries.rs"],
+        "benefits": ["Clear module boundaries", "Easy to locate functionality", "Parallel development friendly", "Test isolation simplified"]
+      }
+    },
+    "violations": {
+      "file_size_violations": [
+        {"offense": "Production >80 lines", "penalty": -15, "action": "Refactoring required"},
+        {"offense": "Schema >10KB", "penalty": -20, "action": "Data optimization"}
+      ],
+      "poor_structure": [
+        {"offense": "Monolithic files, shallow nesting", "penalty": -10, "action": "Restructuring"}
+      ],
+      "remediation": "Refactor 5 files to EMD compliance, demonstrate modular design understanding, pass Quality Shadow audit, restore compliance after parliamentary approval"
+    }
+  },
+  "related_articles": ["article-5", "article-22"],
+  "schemas_referenced": ["mistakes", "systemPatterns", "progress"],
+  "mcps_referenced": ["json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-21.json"
+}

@@ -1,0 +1,70 @@
+{
+  "id": "article-20",
+  "title": "Free-Tier & Resource Optimization",
+  "part": "V-DPSP",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Free-tier priority, cost optimization, resource budgets",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["free-tier", "optimization", "cost", "resources"],
+    "priority": "high"
+  },
+  "content": {
+    "definition": {
+      "core_directive": "State shall direct policy toward free-tier, low-resource, cost-optimized solutions prioritizing accessibility over premium features",
+      "optimization_principles": ["Minimize API costs", "Prefer local computation", "Cache aggressively", "Optimize database queries", "Compress assets", "Use free-tier services maximally", "Avoid vendor lock-in"],
+      "resource_budgets": {
+        "cpu": "Operations <100ms response time",
+        "memory": "<512MB per process",
+        "database": "Queries <50ms",
+        "files": "Schemas ≤10KB",
+        "api": "Minimize tokens"
+      }
+    },
+    "powers": {
+      "ias_finance_officer": "Monitors resource consumption via progress.json, audits cost efficiency, recommends optimizations, enforces budget limits, reports to Parliament",
+      "ias_researcher": "Identifies free-tier alternatives via /research workflow using @mcp:context7 and @mcp:fetch, benchmarks performance, provides lightweight algorithms",
+      "parliament": "Approves premium service adoption (≥95% consensus), sets resource allocation policies, adjusts optimization standards"
+    },
+    "implementation": {
+      "preferred_stack": {
+        "hosting": "Vercel/Netlify free tier, GitHub Pages",
+        "database": "SQLite local, Supabase free tier 5GB",
+        "authentication": "JWT stateless, bcrypt local",
+        "storage": "Local filesystem, Git LFS free tier",
+        "cdn": "Cloudflare free tier",
+        "apis": "Minimize external calls, cache responses",
+        "mcp_servers": "All 6 run locally, zero cloud cost"
+      },
+      "cost_monitoring": [
+        "1. Track resource usage in progress.json",
+        "2. Alert when approaching free-tier limits",
+        "3. Recommend optimization before overages",
+        "4. Report monthly to Parliament"
+      ],
+      "optimization_protocol": {
+        "algorithm_selection": "IAS Researcher benchmarks alternatives, prefer O(n log n) over O(n²), cache computation results, minimize memory allocation",
+        "database_optimization": "Index frequently queried columns, denormalize when read-heavy, use prepared statements, batch operations",
+        "api_cost_reduction": "Cache responses (Redis/local), batch requests, use webhooks over polling, compress payloads",
+        "asset_optimization": "Minify JS/CSS/HTML, compress images (WebP, AVIF), lazy load non-critical resources, tree-shake unused code"
+      }
+    },
+    "violations": {
+      "premium_adoption_without_approval": [
+        {"offense": "Using paid services without ≥95% consensus", "penalty": -30, "action": "Service removal + justification required"}
+      ],
+      "resource_waste": [
+        {"offense": "Inefficient algorithms, unnecessary API calls, unoptimized queries", "penalty": -15, "action": "Optimization mandate"}
+      ],
+      "budget_overruns": [
+        {"offense": "Exceeding resource limits", "penalty": -25, "action": "Immediate optimization + Finance Officer audit"}
+      ],
+      "remediation": "Implement 10 cost optimizations, reduce resource usage by 30%, pass Finance Officer audit, restore privileges after parliamentary review"
+    }
+  },
+  "related_articles": ["article-21", "article-23"],
+  "schemas_referenced": ["progress", "systemPatterns"],
+  "mcps_referenced": ["context7", "fetch", "json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-20.json"
+}

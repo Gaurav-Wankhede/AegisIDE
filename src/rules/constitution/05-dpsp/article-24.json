@@ -1,0 +1,75 @@
+{
+  "id": "article-24",
+  "title": "Cross-IDE Compatibility",
+  "part": "V-DPSP",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Universal .aegiside folder, multi-IDE support, Port 7777 MCP server",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["cross-ide", "compatibility", "universal"],
+    "priority": "medium"
+  },
+  "content": {
+    "definition": {
+      "core_directive": "State shall ensure constitutional framework operates across all AI-powered IDEs: Windsurf, Cursor, VS Code with Cline, JetBrains AI Assistant, others",
+      "supported_ides": {
+        "windsurf": ".windsurf/",
+        "cursor": ".cursor/",
+        "vscode_cline": ".vscode/ or .cline/",
+        "jetbrains": ".idea/ or .jetbrains/",
+        "zed": ".zed/",
+        "replit": "Replit support",
+        "others": "Folder adaptation"
+      },
+      "universal_standards": "8-schema JSON format, MCP server protocol, constitutional articles, RL scoring system, democratic governance (all IDE-agnostic)"
+    },
+    "powers": {
+      "ias_cabinet_secretary": "Maintains universal standards across IDE implementations, coordinates MCP server (Port 7777), ensures schema compatibility, audits cross-IDE operations",
+      "ias_researcher": "Tests constitutional framework on multiple IDEs, documents IDE-specific adaptations, provides compatibility patterns, benchmarks cross-platform performance",
+      "parliament": "Approves IDE-specific adaptations (≥95% consensus), sets universal compatibility standards, mandates cross-platform testing"
+    },
+    "implementation": {
+      "mcp_server_architecture": {
+        "port": 7777,
+        "features": ["Runs as background service", "All IDEs connect via standard MCP protocol", "Broadcasts schema updates to all connected IDEs", "Maintains single source of truth (8-schema memory-bank)", "Session isolation per IDE/workspace", "Real-time synchronization"],
+        "ide_connection": [
+          "1. IDE starts → connect localhost:7777",
+          "2. Authenticate with workspace ID",
+          "3. Receive current 8-schema state",
+          "4. Subscribe real-time updates",
+          "5. Broadcast local changes to server",
+          "6. Server propagates to other IDEs"
+        ]
+      },
+      "folder_structure_mapping": "Universal .aegiside/memory-bank/ maps to IDE-specific folders (Windsurf .windsurf/, Cursor .cursor/, VS Code .vscode/, JetBrains .idea/)",
+      "folder_initialization": [
+        "1. Detect current IDE",
+        "2. Create appropriate folder structure",
+        "3. Initialize 8 schemas (universal JSON format)",
+        "4. Copy constitution/rules from template",
+        "5. Connect to MCP server (Port 7777)",
+        "6. Sync with existing workspace if available"
+      ],
+      "cross_ide_session_management": {
+        "fields": ["session_id", "ide_type (windsurf|cursor|vscode|jetbrains)", "ide_version", "mcp_server_connected", "workspace_path", "isolation_mode: workspace", "sync_enabled"]
+      }
+    },
+    "violations": {
+      "ide_lock_in": [
+        {"offense": "Implementing IDE-specific features without universal fallback", "penalty": -20, "action": "Universal alternative required"}
+      ],
+      "mcp_server_bypass": [
+        {"offense": "Direct schema modifications without server sync", "penalty": -30, "action": "Data reconciliation + synchronization restoration"}
+      ],
+      "format_incompatibility": [
+        {"offense": "Breaking universal JSON format", "penalty": -25, "action": "Format restoration + compatibility testing"}
+      ],
+      "remediation": "Test framework on 3 different IDEs, achieve 100% cross-platform compatibility, pass Cabinet Secretary audit, contribute compatibility patterns, restore privileges after parliamentary approval"
+    }
+  },
+  "related_articles": ["article-2", "article-41"],
+  "schemas_referenced": ["activeContext", "systemPatterns"],
+  "mcps_referenced": ["json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-24.json"
+}
