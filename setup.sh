@@ -87,6 +87,60 @@ get_prompt_filename() {
     esac
 }
 
+# Validate downloaded content
+validate_download() {
+    local file=$1
+    local description=$2
+    
+    if [ ! -f "$file" ] || [ ! -s "$file" ]; then
+        echo "  ❌ ERROR: $description download failed (empty or missing)"
+        return 1
+    fi
+    
+    if grep -q "404" "$file" || grep -q "Not Found" "$file" || grep -q "<html" "$file"; then
+        echo "  ❌ ERROR: $description download returned 404 or HTML error page"
+        echo "  📄 Content preview:"
+        head -n 5 "$file" | sed 's/^/     /'
+        return 1
+    fi
+    
+    return 0
+}
+
+# Ask user permission
+ask_permission() {
+    local prompt=$1
+    local preview_file=$2
+    
+    echo ""
+    echo "⚠️  IMPORTANT: System Prompt Modification"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "$prompt"
+    echo ""
+    
+    if [ -n "$preview_file" ] && [ -f "$preview_file" ]; then
+        echo "📋 Preview of content to be added (first 15 lines):"
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        head -n 15 "$preview_file" | sed 's/^/  /'
+        echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        echo "  ... ($(wc -l < "$preview_file") total lines)"
+        echo ""
+    fi
+    
+    echo "🔄 A backup will be created at: ${EXISTING_RULES}.backup"
+    echo ""
+    
+    while true; do
+        read -p "Do you want to proceed? [Y/n]: " yn
+        case $yn in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            "" ) return 0;;  # Default to Yes on Enter
+            * ) echo "Please answer Y or n.";;
+        esac
+    done
+}
+
 OS=$(detect_os)
 IDE=$(detect_ide)
 GLOBAL_PATH=$(get_global_path $OS $IDE)
@@ -126,56 +180,145 @@ echo "1️⃣  Processing $PROMPT_FILENAME..."
 mkdir -p "$GLOBAL_PATH"
 
 if [ "$ENHANCE_MODE" = true ]; then
-    # Backup existing rules
-    cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
-    echo "  💾 Backed up existing $PROMPT_FILENAME"
+    echo "  📥 Downloading AegisIDE framework rules..."
     
-    # Download AegisIDE rules and append
-    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md
-    echo "" >> "$EXISTING_RULES"
-    echo "# =================================" >> "$EXISTING_RULES"
-    echo "# AegisIDE Framework (Auto-Added)" >> "$EXISTING_RULES"
-    echo "# =================================" >> "$EXISTING_RULES"
-    cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
-    echo "  ✅ Enhanced existing $PROMPT_FILENAME with AegisIDE"
+    # Download to temp file first
+    if ! curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md; then
+        echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
+        echo "  🌐 URL: $GITHUB_REPO/src/aegiside/global_rules.md"
+        echo "  🔧 Please check your internet connection or try again later"
+        exit 1
+    fi
+    
+    # Validate downloaded content
+    if ! validate_download "/tmp/aegiside_rules.md" "AegisIDE rules"; then
+        echo "  🔧 Please check if the GitHub repository exists and is accessible"
+        echo "  🌐 Repository: https://github.com/Gaurav-Wankhede/AegisIDE"
+        rm -f /tmp/aegiside_rules.md
+        exit 1
+    fi
+    
+    echo "  ✅ Download validated successfully"
+    
+    # Ask for permission before modifying system prompt
+    if ask_permission "This will APPEND AegisIDE framework rules to your existing $PROMPT_FILENAME.\nThis modifies your IDE's system prompt and affects all AI interactions." "/tmp/aegiside_rules.md"; then
+        # Backup existing rules
+        cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
+        echo ""
+        echo "  💾 Backed up existing $PROMPT_FILENAME → ${PROMPT_FILENAME}.backup"
+        
+        # Append AegisIDE rules
+        echo "" >> "$EXISTING_RULES"
+        echo "# =================================" >> "$EXISTING_RULES"
+        echo "# AegisIDE Framework (Auto-Added)" >> "$EXISTING_RULES"
+        echo "# =================================" >> "$EXISTING_RULES"
+        cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
+        echo "  ✅ Enhanced existing $PROMPT_FILENAME with AegisIDE framework"
+        echo ""
+        echo "  🔄 To rollback: cp \"$EXISTING_RULES.backup\" \"$EXISTING_RULES\""
+    else
+        echo ""
+        echo "  ⏭️  Skipped system prompt modification (user declined)"
+        echo "  ℹ️  Framework will still be installed to workspace"
+        echo "  ℹ️  You can manually add rules later if needed"
+        rm -f /tmp/aegiside_rules.md
+    fi
 else
-    # Create fresh AegisIDE rules
-    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > "$GLOBAL_PATH/$PROMPT_FILENAME"
-    echo "  ✅ Created fresh AegisIDE $PROMPT_FILENAME"
+    echo "  📥 Downloading AegisIDE framework rules..."
+    
+    # Download to temp file first
+    if ! curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md; then
+        echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
+        exit 1
+    fi
+    
+    # Validate downloaded content
+    if ! validate_download "/tmp/aegiside_rules.md" "AegisIDE rules"; then
+        rm -f /tmp/aegiside_rules.md
+        exit 1
+    fi
+    
+    # Ask for permission to create new system prompt
+    if ask_permission "This will CREATE a new $PROMPT_FILENAME with AegisIDE framework rules.\nThis creates a new IDE system prompt for AI interactions." "/tmp/aegiside_rules.md"; then
+        cp /tmp/aegiside_rules.md "$GLOBAL_PATH/$PROMPT_FILENAME"
+        echo ""
+        echo "  ✅ Created fresh AegisIDE $PROMPT_FILENAME"
+    else
+        echo ""
+        echo "  ⏭️  Skipped system prompt creation (user declined)"
+        rm -f /tmp/aegiside_rules.md
+    fi
 fi
 
 # Step 2: Download and install router system
 echo "2️⃣  Downloading modular router system..."
 mkdir -p "$WORKSPACE_IDE_PATH/routers"
 
-# Download all router modules
+# Download all router modules with validation
+ROUTER_SUCCESS=0
 for router in core mcps constitutional parliamentary session memory-bank autonomy violations workflows governance; do
-    curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "$WORKSPACE_IDE_PATH/routers/${router}.json"
+    echo "  📥 Downloading ${router}.json..."
+    if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
+        if validate_download "/tmp/${router}.json" "${router} router"; then
+            mv "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json"
+            ((ROUTER_SUCCESS++))
+        else
+            echo "  ⚠️  Failed to validate ${router}.json, skipping"
+            rm -f "/tmp/${router}.json"
+        fi
+    else
+        echo "  ⚠️  Failed to download ${router}.json, skipping"
+    fi
 done
 
 # Download main context router
-curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "$WORKSPACE_IDE_PATH/context-router.json"
-echo "  ✅ 10 router modules downloaded and installed"
+echo "  📥 Downloading context-router.json..."
+if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
+    if validate_download "/tmp/context-router.json" "context router"; then
+        mv "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json"
+        ((ROUTER_SUCCESS++))
+    else
+        rm -f "/tmp/context-router.json"
+    fi
+fi
+
+echo "  ✅ $ROUTER_SUCCESS/11 router modules downloaded successfully"
 
 # Step 3: Download schemas
 echo "3️⃣  Downloading schema validators..."
 mkdir -p "$WORKSPACE_IDE_PATH/schemas"
 
-# Download schema files
+# Download schema files with validation
+SCHEMA_SUCCESS=0
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns schema-integrity-validator; do
-    curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" 2>/dev/null || true
+    if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
+        if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
+            mv "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json"
+            ((SCHEMA_SUCCESS++))
+        else
+            rm -f "/tmp/${schema}.schema.json"
+        fi
+    fi
 done
-echo "  ✅ Schema validators downloaded"
+echo "  ✅ $SCHEMA_SUCCESS/9 schema validators downloaded successfully"
 
 # Step 4: Download workflows
 echo "4️⃣  Downloading workflows..."
 mkdir -p "$WORKSPACE_IDE_PATH/workflow"
 
-# Download workflow files
+# Download workflow files with validation
+WORKFLOW_SUCCESS=0
 for workflow in bootstrap continue fix init memory-status next optimize oversight-checks-and-balances research status update validate auto-init; do
-    curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" 2>/dev/null || true
+    if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
+        if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
+            mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
+            ((WORKFLOW_SUCCESS++))
+        else
+            rm -f "/tmp/${workflow}.md"
+        fi
+    fi
 done
-echo "  ✅ 13 workflows downloaded"
+echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
 
 # Step 5: Initialize 8-schema memory bank with project info
 echo "5️⃣  Initializing 8-schema memory bank..."
