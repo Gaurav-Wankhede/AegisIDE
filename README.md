@@ -3,7 +3,7 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.2.0-blue.svg)](CHANGELOG.md)
 [![9 Supported IDEs](https://img.shields.io/badge/IDEs-9%20Tested-success)](docs/IDE_COMPATIBILITY.md)
 [![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](docs/IDE_COMPATIBILITY.md)
 [![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
