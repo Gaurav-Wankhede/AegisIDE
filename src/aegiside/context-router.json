@@ -13,6 +13,20 @@
       "contains": "6 mandatory MCPs (context7, exa, fetch, git, json-jq, sequential-thinking)",
       "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json' (6 MCPs)"
     },
+    "constitutional_index": {
+      "file": "routers/constitutional-index.json",
+      "contains": "42 articles metadata, GitHub URLs, progressive loading triggers",
+      "query": "@mcp:json-jq query '.articles[] | select(.triggers[] | contains(\"autonomy\"))' from 'routers/constitutional-index.json'",
+      "loading": "progressive (500 tokens index, 2000 tokens per article on-demand)",
+      "startup_load": ["article-0", "article-4", "article-13"]
+    },
+    "skills": {
+      "file": "routers/skills.json",
+      "contains": "External best practices: documentation, languages (Python/Rust/TS), frameworks (React/Next.js), testing, security",
+      "query": "@mcp:json-jq query '.skills.{skill_name}.github_repos[]' from 'routers/skills.json'",
+      "fetch": "@mcp:fetch url '{github_url}' from skill metadata",
+      "cache": ".aegiside/skills/cache/"
+    },
     "constitutional": {
       "file": "routers/constitutional.json",
       "contains": "Chief Justice, PM, IAS, Shadow Cabinet",

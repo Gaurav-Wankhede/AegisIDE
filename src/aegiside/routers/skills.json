@@ -1,0 +1,223 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-19T00:08:30+05:30",
+  "description": "External skill repositories for best practices and context",
+  "loading_strategy": "progressive_disclosure",
+  "skills": {
+    "documentation": {
+      "name": "Technical Documentation Writing",
+      "description": "Best practices for technical documentation, API docs, README files",
+      "github_repos": [
+        {
+          "source": "google/styleguide",
+          "path": "docguide",
+          "url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/docguide/README.md",
+          "priority": "high",
+          "triggers": ["documentation", "readme", "api-docs", "technical-writing"]
+        },
+        {
+          "source": "microsoft/api-guidelines",
+          "path": "Guidelines.md",
+          "url": "https://raw.githubusercontent.com/microsoft/api-guidelines/vNext/Guidelines.md",
+          "priority": "medium",
+          "triggers": ["api", "rest", "guidelines"]
+        }
+      ]
+    },
+    "presentations": {
+      "name": "Presentation & Slide Design",
+      "description": "Best practices for creating effective presentations and slide decks",
+      "github_repos": [
+        {
+          "source": "hakimel/reveal.js",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/hakimel/reveal.js/master/README.md",
+          "priority": "medium",
+          "triggers": ["presentation", "slides", "ppt", "reveal"]
+        }
+      ],
+      "guidelines": {
+        "structure": "Problem → Solution → Impact",
+        "slides_per_minute": 1,
+        "max_bullets": 5,
+        "font_size_min": 24
+      }
+    },
+    "python": {
+      "name": "Python Best Practices",
+      "description": "PEP 8, type hints, testing, project structure",
+      "github_repos": [
+        {
+          "source": "google/styleguide",
+          "path": "pyguide.md",
+          "url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/pyguide.md",
+          "priority": "high",
+          "triggers": ["python", "pep8", "type-hints"]
+        },
+        {
+          "source": "python/typeshed",
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/python/typeshed/main/README.md",
+          "priority": "medium",
+          "triggers": ["python-types", "mypy", "type-checking"]
+        }
+      ]
+    },
+    "rust": {
+      "name": "Rust Best Practices",
+      "description": "Rust API guidelines, error handling, performance",
+      "github_repos": [
+        {
+          "source": "rust-lang/api-guidelines",
+          "path": "src",
+          "url": "https://raw.githubusercontent.com/rust-lang/api-guidelines/master/src/about.md",
+          "priority": "high",
+          "triggers": ["rust", "cargo", "ownership"]
+        }
+      ]
+    },
+    "typescript": {
+      "name": "TypeScript Best Practices",
+      "description": "Type safety, React patterns, Node.js best practices",
+      "github_repos": [
+        {
+          "source": "microsoft/TypeScript",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/microsoft/TypeScript/main/README.md",
+          "priority": "high",
+          "triggers": ["typescript", "ts", "type-safety"]
+        },
+        {
+          "source": "airbnb/javascript",
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/airbnb/javascript/master/README.md",
+          "priority": "high",
+          "triggers": ["javascript", "js", "airbnb"]
+        }
+      ]
+    },
+    "react": {
+      "name": "React Best Practices",
+      "description": "Component patterns, hooks, performance optimization",
+      "github_repos": [
+        {
+          "source": "facebook/react",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/facebook/react/main/README.md",
+          "priority": "high",
+          "triggers": ["react", "hooks", "components"]
+        }
+      ]
+    },
+    "nextjs": {
+      "name": "Next.js Best Practices",
+      "description": "App Router, Server Components, optimization",
+      "github_repos": [
+        {
+          "source": "vercel/next.js",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/vercel/next.js/canary/README.md",
+          "priority": "high",
+          "triggers": ["nextjs", "next", "vercel", "app-router"]
+        }
+      ]
+    },
+    "go": {
+      "name": "Go Best Practices",
+      "description": "Effective Go, project layout, concurrency patterns",
+      "github_repos": [
+        {
+          "source": "golang/go",
+          "path": "doc/effective_go.md",
+          "url": "https://raw.githubusercontent.com/golang/go/master/doc/effective_go.md",
+          "priority": "high",
+          "triggers": ["go", "golang", "goroutines"]
+        }
+      ]
+    },
+    "docker": {
+      "name": "Docker Best Practices",
+      "description": "Dockerfile optimization, multi-stage builds, security",
+      "github_repos": [
+        {
+          "source": "docker/docker",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/docker/docker/master/README.md",
+          "priority": "medium",
+          "triggers": ["docker", "dockerfile", "containers"]
+        }
+      ]
+    },
+    "git": {
+      "name": "Git Best Practices",
+      "description": "Commit messages, branching strategies, workflows",
+      "github_repos": [
+        {
+          "source": "git/git",
+          "path": "Documentation",
+          "url": "https://raw.githubusercontent.com/git/git/master/README.md",
+          "priority": "medium",
+          "triggers": ["git", "commits", "branching"]
+        }
+      ]
+    },
+    "testing": {
+      "name": "Testing Best Practices",
+      "description": "Unit testing, integration testing, TDD principles",
+      "github_repos": [
+        {
+          "source": "testdouble/contributing-tests",
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/testdouble/contributing-tests/master/README.md",
+          "priority": "high",
+          "triggers": ["testing", "tdd", "unit-tests"]
+        }
+      ]
+    },
+    "security": {
+      "name": "Security Best Practices",
+      "description": "OWASP guidelines, secure coding, vulnerability prevention",
+      "github_repos": [
+        {
+          "source": "OWASP/CheatSheetSeries",
+          "path": "cheatsheets",
+          "url": "https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/README.md",
+          "priority": "high",
+          "triggers": ["security", "owasp", "vulnerabilities"]
+        }
+      ]
+    },
+    "architecture": {
+      "name": "Software Architecture Patterns",
+      "description": "Clean architecture, microservices, design patterns",
+      "github_repos": [
+        {
+          "source": "DovAmir/awesome-design-patterns",
+          "path": "README.md",
+          "url": "https://raw.githubusercontent.com/DovAmir/awesome-design-patterns/master/README.md",
+          "priority": "high",
+          "triggers": ["architecture", "design-patterns", "clean-code"]
+        }
+      ]
+    },
+    "performance": {
+      "name": "Performance Optimization",
+      "description": "Web performance, database optimization, caching strategies",
+      "github_repos": [
+        {
+          "source": "GoogleChrome/lighthouse",
+          "path": "docs",
+          "url": "https://raw.githubusercontent.com/GoogleChrome/lighthouse/main/README.md",
+          "priority": "medium",
+          "triggers": ["performance", "optimization", "lighthouse"]
+        }
+      ]
+    }
+  },
+  "usage": {
+    "query_pattern": "@mcp:json-jq query '.skills.{skill_name}' from 'routers/skills.json'",
+    "fetch_pattern": "@mcp:fetch url '{github_url}'",
+    "cache_location": ".aegiside/skills/cache/",
+    "update_frequency": "weekly"
+  }
+}
