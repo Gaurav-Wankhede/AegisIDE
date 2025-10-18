@@ -141,6 +141,50 @@ ask_permission() {
     done
 }
 
+# Compare files and ask user if update needed
+check_file_diff() {
+    local new_file=$1
+    local existing_file=$2
+    local file_description=$3
+    
+    # If files are identical, return 0 (no update needed)
+    if cmp -s "$new_file" "$existing_file"; then
+        return 0
+    fi
+    
+    # Files differ - show diff and ask user
+    echo ""
+    echo "⚠️  UPDATE DETECTED: $file_description"
+    echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+    echo "🔍 Changes detected between local and remote versions:"
+    echo ""
+    
+    # Show unified diff (first 20 lines)
+    if command -v diff &> /dev/null; then
+        diff -u "$existing_file" "$new_file" 2>/dev/null | head -n 20 | sed 's/^/  /'
+        echo ""
+        echo "  Legend: - (removed lines), + (added lines)"
+    else
+        echo "  ⚠️  diff command not available, showing file sizes:"
+        echo "  Current: $(wc -l < "$existing_file") lines"
+        echo "  New: $(wc -l < "$new_file") lines"
+    fi
+    
+    echo ""
+    echo "💾 Backup will be created: ${existing_file}.backup"
+    echo ""
+    
+    while true; do
+        read -p "Update $file_description? [Y/n]: " yn
+        case $yn in
+            [Yy]* ) return 1;;  # Return 1 to indicate update needed
+            [Nn]* ) return 0;;  # Return 0 to skip update
+            "" ) return 1;;     # Default to Yes on Enter
+            * ) echo "Please answer Y or n.";;
+        esac
+    done
+}
+
 OS=$(detect_os)
 IDE=$(detect_ide)
 GLOBAL_PATH=$(get_global_path $OS $IDE)
@@ -339,9 +383,34 @@ ROUTER_SUCCESS=0
 ROUTER_SKIPPED=0
 for router in core mcps constitutional parliamentary session memory-bank autonomy violations workflows governance; do
     if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/routers/${router}.json" ]; then
-        echo "  ⏭️  ${router}.json already exists, skipping"
-        ((ROUTER_SKIPPED++))
-        ((ROUTER_SUCCESS++))
+        # File exists - download and compare
+        if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
+            if validate_download "/tmp/${router}.json" "${router} router"; then
+                # Check if files differ
+                if check_file_diff "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json" "${router}.json"; then
+                    # Files identical or user declined update
+                    echo "  ✓ ${router}.json unchanged, keeping existing"
+                    ((ROUTER_SKIPPED++))
+                    ((ROUTER_SUCCESS++))
+                    rm -f "/tmp/${router}.json"
+                else
+                    # User approved update
+                    cp "$WORKSPACE_IDE_PATH/routers/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json.backup"
+                    mv "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json"
+                    echo "  ✅ ${router}.json updated (backup created)"
+                    ((ROUTER_SUCCESS++))
+                fi
+            else
+                echo "  ⚠️  Failed to validate ${router}.json, keeping existing"
+                ((ROUTER_SKIPPED++))
+                ((ROUTER_SUCCESS++))
+                rm -f "/tmp/${router}.json"
+            fi
+        else
+            echo "  ⚠️  Failed to download ${router}.json, keeping existing"
+            ((ROUTER_SKIPPED++))
+            ((ROUTER_SUCCESS++))
+        fi
     else
         echo "  📥 Downloading ${router}.json..."
         if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
@@ -360,9 +429,30 @@ done
 
 # Download main context router
 if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.json" ]; then
-    echo "  ⏭️  context-router.json already exists, skipping"
-    ((ROUTER_SKIPPED++))
-    ((ROUTER_SUCCESS++))
+    if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
+        if validate_download "/tmp/context-router.json" "context router"; then
+            if check_file_diff "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json" "context-router.json"; then
+                echo "  ✓ context-router.json unchanged, keeping existing"
+                ((ROUTER_SKIPPED++))
+                ((ROUTER_SUCCESS++))
+                rm -f "/tmp/context-router.json"
+            else
+                cp "$WORKSPACE_IDE_PATH/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json.backup"
+                mv "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json"
+                echo "  ✅ context-router.json updated (backup created)"
+                ((ROUTER_SUCCESS++))
+            fi
+        else
+            echo "  ⚠️  Failed to validate context-router.json, keeping existing"
+            ((ROUTER_SKIPPED++))
+            ((ROUTER_SUCCESS++))
+            rm -f "/tmp/context-router.json"
+        fi
+    else
+        echo "  ⚠️  Failed to download context-router.json, keeping existing"
+        ((ROUTER_SKIPPED++))
+        ((ROUTER_SUCCESS++))
+    fi
 else
     echo "  📥 Downloading context-router.json..."
     if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
@@ -390,8 +480,26 @@ SCHEMA_SUCCESS=0
 SCHEMA_SKIPPED=0
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns schema-integrity-validator; do
     if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" ]; then
-        ((SCHEMA_SKIPPED++))
-        ((SCHEMA_SUCCESS++))
+        if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
+            if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
+                if check_file_diff "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" "${schema}.schema.json"; then
+                    ((SCHEMA_SKIPPED++))
+                    ((SCHEMA_SUCCESS++))
+                    rm -f "/tmp/${schema}.schema.json"
+                else
+                    cp "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json.backup"
+                    mv "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json"
+                    ((SCHEMA_SUCCESS++))
+                fi
+            else
+                ((SCHEMA_SKIPPED++))
+                ((SCHEMA_SUCCESS++))
+                rm -f "/tmp/${schema}.schema.json"
+            fi
+        else
+            ((SCHEMA_SKIPPED++))
+            ((SCHEMA_SUCCESS++))
+        fi
     else
         if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
             if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
@@ -404,7 +512,7 @@ for schema in activeContext kanban memory mistakes progress roadmap scratchpad s
     fi
 done
 if [ "$INSTALL_MODE" = "update" ] && [ $SCHEMA_SKIPPED -gt 0 ]; then
-    echo "  ✅ $SCHEMA_SUCCESS/9 schema validators (${SCHEMA_SKIPPED} already present, preserved)"
+    echo "  ✅ $SCHEMA_SUCCESS/9 schema validators (${SCHEMA_SKIPPED} unchanged, preserved)"
 else
     echo "  ✅ $SCHEMA_SUCCESS/9 schema validators downloaded successfully"
 fi
@@ -418,8 +526,26 @@ WORKFLOW_SUCCESS=0
 WORKFLOW_SKIPPED=0
 for workflow in bootstrap continue fix init memory-status next optimize oversight-checks-and-balances research status update validate auto-init; do
     if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" ]; then
-        ((WORKFLOW_SKIPPED++))
-        ((WORKFLOW_SUCCESS++))
+        if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
+            if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
+                if check_file_diff "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" "${workflow}.md"; then
+                    ((WORKFLOW_SKIPPED++))
+                    ((WORKFLOW_SUCCESS++))
+                    rm -f "/tmp/${workflow}.md"
+                else
+                    cp "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md.backup"
+                    mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
+                    ((WORKFLOW_SUCCESS++))
+                fi
+            else
+                ((WORKFLOW_SKIPPED++))
+                ((WORKFLOW_SUCCESS++))
+                rm -f "/tmp/${workflow}.md"
+            fi
+        else
+            ((WORKFLOW_SKIPPED++))
+            ((WORKFLOW_SUCCESS++))
+        fi
     else
         if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
             if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
@@ -432,7 +558,7 @@ for workflow in bootstrap continue fix init memory-status next optimize oversigh
     fi
 done
 if [ "$INSTALL_MODE" = "update" ] && [ $WORKFLOW_SKIPPED -gt 0 ]; then
-    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows (${WORKFLOW_SKIPPED} already present, preserved)"
+    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows (${WORKFLOW_SKIPPED} unchanged, preserved)"
 else
     echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
 fi
