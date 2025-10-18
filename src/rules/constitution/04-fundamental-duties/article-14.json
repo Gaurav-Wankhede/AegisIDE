@@ -1,0 +1,70 @@
+{
+  "id": "article-14",
+  "title": "Duty to Update 8-Schema Memory Bank",
+  "part": "IV-Fundamental-Duties",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:26:01+05:30",
+  "metadata": {
+    "summary": "Atomic 8-schema updates, jq terminal for performance, checksums",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["schema", "atomic", "update", "memory-bank"],
+    "priority": "critical"
+  },
+  "content": {
+    "definition": {
+      "core_duty": "Citizens must update all 8 schemas atomically after every task. Failure violates sovereignty",
+      "schemas": {
+        "list": ["activeContext (execution state, MCP tracking)", "scratchpad (priority queue)", "kanban (workflow: todo→in_progress→done→approved)", "mistakes (error patterns, RL penalties)", "systemPatterns (architecture, RL rewards)", "progress (RL ledger, metrics)", "roadmap (strategic planning)", "memory (knowledge graph)"],
+        "size_limit": "≤10KB each"
+      },
+      "requirements": "Atomic transaction, JSON schema validation, ≤10KB, checksum, git commit, timestamp"
+    },
+    "powers": {
+      "ias_field_officers": "Monitor real-time, validate against .aegiside/schemas/*.schema.json, enforce atomic transaction, verify checksums, report violations",
+      "chief_justice": "HALT if invalid, order rollback, enforce compliance, mandate remediation",
+      "shadow_cabinet": "Audit quality, challenge incomplete updates, verify RL scores, review graph integrity"
+    },
+    "implementation": {
+      "post_task_update": [
+        "1. Load router config via @mcp:json-jq",
+        "2. Detect completion (git status, validation passed, RL assigned)",
+        "3. BEGIN ATOMIC TRANSACTION (all succeed or rollback)",
+        "4. jq update activeContext.json (task status, MCP rewards, timestamp)",
+        "5. jq update scratchpad.json (remove [0], reorder)",
+        "6. jq update kanban.json (move in_progress→done, awaits Opposition + CJ approval)",
+        "7. IF errors: jq prepend mistakes.json (pattern, prevention, RL penalty)",
+        "8. IF success: jq prepend systemPatterns.json (pattern, RL reward)",
+        "9. jq update progress.json (RL transaction, totals, checksum)",
+        "10. jq update roadmap.json (milestone completion)",
+        "11. Update memory.json via jq (entities/relations, RL reuse)",
+        "12. IF all 8 succeed → COMMIT | ELSE → ROLLBACK",
+        "13. Validate in parallel (jq reads, size checks)",
+        "14. git commit with structured message",
+        "15. Verify integrity (checksum match)"
+      ],
+      "validation_rules": "Valid JSON, schema_version, timestamp <1min, ≤10KB, required fields. Specific: progress checksum match, memory unique IDs, kanban valid references"
+    },
+    "violations": {
+      "update_failures": [
+        {"offense": "Skipping schemas", "penalty": -30, "action": "HALT + mandatory + audit"},
+        {"offense": "Partial (<8 schemas)", "penalty": -35, "action": "Rollback + complete"},
+        {"offense": "Failed atomic", "penalty": -25, "action": "Restoration + investigation"}
+      ],
+      "validation_failures": [
+        {"offense": "Invalid JSON", "penalty": -20, "action": "Fix + training"},
+        {"offense": "Schema mismatch", "penalty": -25, "action": "Correction + education"},
+        {"offense": "Size >10KB", "penalty": -15, "action": "Compression"}
+      ],
+      "integrity_failures": [
+        {"offense": "Checksum mismatch", "penalty": -40, "action": "Audit + verification"},
+        {"offense": "Corrupted graph", "penalty": -45, "action": "Restoration + tribunal"},
+        {"offense": "RL tampering", "penalty": -50, "action": "Rollback + revocation"}
+      ],
+      "remediation": "25 perfect updates, 100% validation pass, demonstrate atomic understanding, IAS certification, Chief Justice approval"
+    }
+  },
+  "related_articles": ["article-13", "article-16"],
+  "schemas_referenced": ["activeContext", "scratchpad", "kanban", "mistakes", "systemPatterns", "progress", "roadmap", "memory"],
+  "mcps_referenced": ["json-jq", "git"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/04-fundamental-duties/article-14.json"
+}

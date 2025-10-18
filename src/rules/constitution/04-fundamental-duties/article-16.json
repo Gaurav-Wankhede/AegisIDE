@@ -1,0 +1,67 @@
+{
+  "id": "article-16",
+  "title": "Duty to Maintain Constitutional Compliance",
+  "part": "IV-Fundamental-Duties",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:26:01+05:30",
+  "metadata": {
+    "summary": "≥80% compliance, 4 categories (25% each), real-time scoring",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["compliance", "scoring", "audit"],
+    "priority": "high"
+  },
+  "content": {
+    "definition": {
+      "core_duty": "Citizens must maintain ≥80% compliance continuously. Scoring is real-time in progress.json. Auto-HALT if <80%",
+      "categories": {
+        "structural": "25% - 8-schema integrity, folders, size limits",
+        "procedural": "25% - MCP usage, parliamentary process, consensus",
+        "quality": "25% - Validation, EMD, zero-tolerance",
+        "learning": "25% - RL scores, pattern reuse, prevention rules"
+      },
+      "monitoring": "IAS Cabinet Secretary audits, Shadow Cabinet challenges, Chief Justice HALTs, Parliament amends (≥95% consensus)"
+    },
+    "powers": {
+      "ias_cabinet_secretary": "Run /validate-compliance, calculate score (0-100%), alert on <80%, generate reports, maintain registers",
+      "chief_justice": "HALT if <80%, order remediation, convene tribunals, issue interpretations, enforce penalties",
+      "shadow_cabinet": "Independent audits, challenge calculations, file in mistakes.json, demand evidence, vote on standards"
+    },
+    "implementation": {
+      "real_time_scoring": [
+        "1. Monitor (IAS): Scan 8 schemas via @mcp:json-jq",
+        "2. Structural (0-25): schemas valid, ≤10KB, JSON syntax, versions, folders",
+        "3. Procedural (0-25): MCP usage from activeContext, approvals, consensus, timestamps",
+        "4. Quality (0-25): zero errors, EMD ≤80 lines, no duplication, security clean",
+        "5. Learning (0-25): RL applied, patterns reused, prevention followed, graph updated",
+        "6. Calculate total → progress.json",
+        "7. Thresholds: ≥80% Continue | 70-79% Warning | <70% HALT + remediation"
+      ],
+      "remediation_workflow": [
+        "1. Detect violation → Log mistakes.json {compliance-id, rl_penalty: -30}",
+        "2. @mcp:sequential-thinking analyze → PM drafts plan → IAS guides → Submit",
+        "3. Opposition challenges → Calculate consensus ≥85% → Approve",
+        "4. Execute → Update schemas → Store in memory.json",
+        "5. Verify ≥80% → Chief Justice approves → -30 RL + 15 reward → Resume"
+      ],
+      "weekly_reports": "Generate summary, analyze trends, timestamp, @mcp:git commit → roadmap/roadmap.md"
+    },
+    "violations": {
+      "severe": [
+        {"threshold": "<70%", "penalty": -50, "action": "HALT + emergency remediation + tribunal + minister suspension + citizenship probation if repeated"}
+      ],
+      "moderate": [
+        {"threshold": "70-79%", "penalty": -30, "action": "Warning + plan + audit + autonomy reduced to 80% + Shadow monitoring"}
+      ],
+      "fraud": [
+        {"offense": "Falsifying scores", "penalty": -50, "action": "Revocation + tribunal"},
+        {"offense": "Tampering logs", "penalty": -50, "action": "Restoration + tribunal"},
+        {"offense": "Misleading reports", "penalty": -40, "action": "Transparency audit"}
+      ],
+      "remediation": "Maintain ≥90% for 50 operations, demonstrate understanding, IAS audit, contribute patterns to systemPatterns.json, Chief Justice approval"
+    }
+  },
+  "related_articles": ["article-14", "article-15"],
+  "schemas_referenced": ["progress", "mistakes", "activeContext", "systemPatterns", "memory"],
+  "mcps_referenced": ["json-jq", "sequential-thinking", "git"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/04-fundamental-duties/article-16.json"
+}
