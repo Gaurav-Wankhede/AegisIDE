@@ -617,8 +617,8 @@ if [ "$ENHANCE_MODE" = true ]; then
 else
     echo "  ✅ Created fresh AegisIDE $PROMPT_FILENAME"
 fi
-echo "  ✅ Downloaded 10 router modules from GitHub"
-echo "  ✅ Downloaded 13 workflows from GitHub"
+echo "  ✅ Downloaded 11 router modules from GitHub"
+echo "  ✅ Downloaded 8 workflows from GitHub"
 echo "  ✅ Initialized 8-schema memory bank"
 echo "  ✅ Framework is now self-contained"
 echo ""

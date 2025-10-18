@@ -3,10 +3,10 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.2.1-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.2.2-blue.svg)](CHANGELOG.md)
 [![6 Mandatory MCPs](https://img.shields.io/badge/MCPs-6%20Core-success)](src/mcp_servers.json)
 [![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](setup.sh)
-[![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
+[![Business Ready](https://img.shields.io/badge/business-ready-success)](docs/archive/BUSINESS_MODEL_MONETIZATION_STRATEGY.md)
 
 ## What Problem Does This Solve? 🎯
 
@@ -122,7 +122,7 @@ cd .windsurf/aegiside  # or .cursor/aegiside or .vscode/aegiside
 - 🚀 **[Quick Start Demo](docs/QUICK_START_DEMO.md)** - 30-second autonomous flow
 - 🧠 **[NLU/NLP Overview](docs/NLU_NLP_OVERVIEW.md)** - Intent recognition guide
 - 📖 **[Setup Guide](src/.aegiside/README.md)** - Detailed instructions
-- 🔧 **[Technical Details](TECHNICAL_ROADMAP.md)** - How it works
+- 🔧 **[Technical Details](docs/planning/TECHNICAL_ROADMAP.md)** - How it works
 - 🤝 **[Contributing](CONTRIBUTING.md)** - Join the project
 
 ---
@@ -131,7 +131,7 @@ cd .windsurf/aegiside  # or .cursor/aegiside or .vscode/aegiside
 
 MIT License - Free for personal and commercial use.
 
-**Questions?** [Open an issue](https://github.com/your-username/AegisIDE/issues) or check the [documentation](src/.aegiside/README.md).
+**Questions?** [Open an issue](https://github.com/Gaurav-Wankhede/AegisIDE/issues) or check the [documentation](src/README.md).
 
 ---
 
@@ -163,6 +163,6 @@ If AegisIDE makes your development faster and better:
 
 **Made with ❤️ by developers, for developers**
 
-[⭐ Star](https://github.com/Gaurav-Wankhede/AegisIDE) · [🐛 Report Bug](https://github.com/Gaurav-Wankhede/AegisIDE/issues) · [💡 Request Feature](https://github.com/Gaurav-Wankhede/AegisIDE/issues) · [📖 Documentation](core/README.md)
+[⭐ Star](https://github.com/Gaurav-Wankhede/AegisIDE) · [🐛 Report Bug](https://github.com/Gaurav-Wankhede/AegisIDE/issues) · [💡 Request Feature](https://github.com/Gaurav-Wankhede/AegisIDE/issues) · [📖 Documentation](src/README.md)
 
 </div>

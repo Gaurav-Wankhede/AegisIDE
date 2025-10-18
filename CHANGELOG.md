@@ -24,7 +24,7 @@
 ### Changed
 - MCP count corrected: 6 mandatory MCPs (json-jq, sequential-thinking, git, context7, exa, fetch)
 - `@mcp:json-jq` mandate strengthened: -25 RL penalty for using IDE tools on JSON
-- Progress counters added: "10/10 routers", "9/9 schemas", "13/13 workflows"
+- Progress counters added: "11 router modules", "9 schemas", "8 workflows"
 
 ### Fixed
 - Installation errors from corrupted downloads

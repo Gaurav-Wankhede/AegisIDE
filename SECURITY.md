@@ -27,11 +27,11 @@ We actively maintain and provide security updates for these versions:
 
 | Version | Support Status | What's Included |
 |---------|---------------|-----------------|
-| 2.8.x   | ✅ **Full Support** | Latest features + security updates |
-| 2.7.x   | ⚠️ **Security Only** | Critical security fixes only |
-| < 2.7   | ❌ **Unsupported** | Please upgrade to a supported version |
+| 3.2.x   | ✅ **Full Support** | Latest features + security updates |
+| 3.1.x   | ⚠️ **Security Only** | Critical security fixes only |
+| < 3.1   | ❌ **Unsupported** | Please upgrade to a supported version |
 
-**💡 Recommendation**: Always use the latest version (2.8.x) for the best security and features.
+**💡 Recommendation**: Always use the latest version (3.2.x) for the best security and features.
 
 ## How We Keep You Safe 🛡️
 
@@ -106,4 +106,4 @@ We actively maintain and provide security updates for these versions:
 
 **🔒 Security is a team effort. Thank you for helping keep AegisIDE safe for everyone!**
 
-*Last Updated: December 2024 | Version: 2.8.8 | Status: Actively Maintained*
+*Last Updated: October 2025 | Version: 3.2.2 | Status: Actively Maintained*
