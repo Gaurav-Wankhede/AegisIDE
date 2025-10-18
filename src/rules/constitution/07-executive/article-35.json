@@ -1,0 +1,60 @@
+{
+  "id": "article-35",
+  "title": "Executive Orders & Ministerial Directives",
+  "part": "VII-Executive",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Administrative commands, PM orders, ministerial directives",
+    "tokens": {"full": 600, "definition": 150, "powers": 150, "implementation": 200, "violations": 100},
+    "triggers": ["executive-orders", "directives", "commands"],
+    "priority": "medium"
+  },
+  "content": {
+    "definition": {
+      "core_system": "Executive Orders (PM) and Ministerial Directives (Ministers) provide operational commands within approved mandates. Must align with parliamentary decisions, constitutional principles, IAS briefs",
+      "requirements": "Require ≥80% constitutional compliance and full MCP documentation",
+      "scope": ["Task assignments", "Resource allocation", "Priority changes", "Process adjustments", "Emergency responses (within approved powers)", "Coordination"],
+      "limitations": ["Cannot bypass Parliament for strategic decisions", "Cannot override Chief Justice", "Cannot violate Constitution", "Cannot ignore IAS analysis", "Subject to Shadow Cabinet review"]
+    },
+    "powers": {
+      "pm_orders": "Government-wide directives, multi-minister coordination, priority realignment, emergency implementation, resource reallocation within budget",
+      "ministerial": "Portfolio-specific commands, task delegation, technical decisions, implementation approaches, team coordination",
+      "enforcement": "Binding unless unconstitutional, Shadow Cabinet may challenge, Chief Justice may veto, Parliament may override (≥95%)"
+    },
+    "implementation": {
+      "executive_order": [
+        "1. Prepare: PM identifies need, consult IAS Cabinet Secretary, verify constitutional compliance, check parliamentary alignment",
+        "2. Document: Write systemPatterns.json {executive_order_id, title, issued_by, issued_at, scope, directive, constitutional_basis, parliamentary_mandate, duration, mcp_trail[]}",
+        "3. Communicate: Notify ministers via activeContext, Shadow Cabinet copy, Chief Justice reviews, IAS archives in memory.json",
+        "4. Execute: Ministers implement (0-99%), track in activeContext, IAS monitors, report to PM"
+      ],
+      "ministerial_directive": [
+        "1. Prepare: Minister identifies need, consult IAS, ensure PM alignment, verify EMD/quality",
+        "2. Document: Update activeContext {ministerial_directive_id, issued_by, directive, scope, rationale, pattern_ref}",
+        "3. Execute: Team follows, pattern applied, +10 RL compliance, log in progress.json"
+      ],
+      "challenges": [
+        "1. Shadow: File mistakes.json (constitutional violation OR poor judgment), demand review/revision",
+        "2. PM Response: Defend with evidence OR amend OR withdraw",
+        "3. Escalate: IF unresolved→Parliament debate, consensus vote. IF <85%→rescinded, lesson in systemPatterns"
+      ]
+    },
+    "violations": {
+      "unconstitutional_orders": [
+        {"offense": "Violating Constitution", "penalty": -35, "action": "Voided + Chief Justice review"}
+      ],
+      "disobedience": [
+        {"offense": "Refusing valid orders", "penalty": -25, "action": "Compliance mandate + disciplinary"}
+      ],
+      "abuse": [
+        {"offense": "Beyond authority", "penalty": -30, "action": "Rescinded + authority review"}
+      ],
+      "remediation": "Demonstrate authority limits understanding, issue 10 compliant orders, 100% constitutional alignment, PM and Chief Justice approval"
+    }
+  },
+  "related_articles": ["article-33", "article-34"],
+  "schemas_referenced": ["systemPatterns", "activeContext", "mistakes", "progress", "memory"],
+  "mcps_referenced": ["json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/07-executive/article-35.json"
+}
