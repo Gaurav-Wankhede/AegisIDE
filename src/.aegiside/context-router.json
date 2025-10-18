@@ -1149,7 +1149,8 @@
       "wait_for_slash",
       "stop_after_one",
       "research_alone"
-    ]
+    ],
+    "auto_execute_non_destructive": true
   },
   "atomic_update_chain": {
     "description": "8-schema atomic update with cross-file validation",
@@ -1652,6 +1653,12 @@
         "detection": "file_extension == '.json' AND tool_name IN ['Read', 'filesystem_read']",
         "action": "BLOCK + suggest correct method",
         "penalty": -15
+      },
+      "gate_4_no_permission_request": {
+        "rule": "Assistant must NOT ask for permission in 0-99% autonomy",
+        "detection": "assistant_message contains any(communication_rules.ban_permission_phrases)",
+        "action": "BLOCK + auto_correction to communication_rules.replacement_phrase",
+        "penalty": -20
       }
     },
     "automatic_enforcement": {
@@ -1667,5 +1674,32 @@
       "auto_correction": "Convert incorrect tool call to constitutional equivalent",
       "logging": "All violations logged to mistakes.json with prevention rules"
     }
+  },
+  "communication_rules": {
+    "auto_execute_0_99": true,
+    "ban_permission_phrases": [
+      "if you want",
+      "would you like me to",
+      "should I",
+      "do you want me to"
+    ],
+    "replacement_phrase": "Proceeding autonomously (0-99%) per router.",
+    "rl_penalty_on_violation": -20
+  },
+  "nlu_decision": {
+    "auto_proceed_intents": [
+      "continue",
+      "run",
+      "execute",
+      "full test",
+      "go ahead",
+      "yes",
+      "do it",
+      "proceed",
+      "start",
+      "next"
+    ],
+    "min_confidence": 0.6,
+    "fallback": "proceed"
   }
 }
