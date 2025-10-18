@@ -5,13 +5,28 @@
   "modular_routers": {
     "core": {
       "file": "routers/core.json",
-      "contains": "operational_loop, system_paths",
-      "query": "@mcp:json-jq query '.operational_loop' from 'routers/core.json'"
+      "contains": "Operational loop, system paths, essential workflows",
+      "query": "@mcp:json-jq query '.operational_loop' from 'routers/core.json'",
+      "triggers": [
+        "core",
+        "operational-loop",
+        "system-paths",
+        "startup"
+      ]
     },
     "mcps": {
       "file": "routers/mcps.json",
-      "contains": "6 mandatory MCPs (context7, exa, fetch, git, json-jq, sequential-thinking)",
-      "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json' (6 MCPs)"
+      "contains": "6 MCP configurations, usage patterns, mandatory trail requirements",
+      "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'",
+      "triggers": [
+        "mcp",
+        "tools",
+        "json-jq",
+        "git",
+        "context7",
+        "exa",
+        "fetch"
+      ]
     },
     "constitutional_index": {
       "file": "routers/constitutional-index.json",
@@ -39,13 +54,25 @@
     },
     "parliamentary": {
       "file": "routers/parliamentary.json",
-      "contains": "Voting, consensus, sessions",
-      "query": "@mcp:json-jq query '.parliamentary_system' from 'routers/parliamentary.json'"
+      "contains": "Voting mechanisms, consensus calculation (≥95%), debate structure",
+      "query": "@mcp:json-jq query '.parliamentary_system' from 'routers/parliamentary.json'",
+      "triggers": [
+        "parliament",
+        "voting",
+        "consensus",
+        "debate"
+      ]
     },
     "session": {
       "file": "routers/session.json",
-      "contains": "Display, personalization",
-      "query": "@mcp:json-jq query '.session_awareness' from 'routers/session.json'"
+      "contains": "Session awareness, recovery, continuity, display formatting",
+      "query": "@mcp:json-jq query '.session_awareness' from 'routers/session.json'",
+      "triggers": [
+        "session",
+        "recovery",
+        "continue",
+        "awareness"
+      ]
     },
     "memory": {
       "file": "routers/memory-bank.json",
@@ -54,23 +81,48 @@
     },
     "autonomy": {
       "file": "routers/autonomy.json",
-      "contains": "Execution bands, user controls",
-      "query": "@mcp:json-jq query '.autonomy_rules' from 'routers/autonomy.json'"
+      "contains": "Execution bands (0-99%), user controls, meta-cognitive monitoring",
+      "query": "@mcp:json-jq query '.autonomy_rules' from 'routers/autonomy.json'",
+      "triggers": [
+        "autonomy",
+        "execution",
+        "user-controls",
+        "pause",
+        "skip"
+      ]
     },
     "violations": {
       "file": "routers/violations.json",
-      "contains": "Penalties, enforcement",
-      "query": "@mcp:json-jq query '.violations_penalties' from 'routers/violations.json'"
+      "contains": "RL penalties, enforcement rules, remediation protocols",
+      "query": "@mcp:json-jq query '.violations' from 'routers/violations.json'",
+      "triggers": [
+        "violations",
+        "penalties",
+        "rl",
+        "enforcement"
+      ]
     },
     "workflows": {
       "file": "routers/workflows.json",
-      "contains": "NLU engine, auto-triggers",
-      "query": "@mcp:json-jq query '.workflow_auto_triggers' from 'routers/workflows.json'"
+      "contains": "NLU triggers, workflow routing, auto-discovery patterns",
+      "query": "@mcp:json-jq query '.workflow_auto_triggers' from 'routers/workflows.json'",
+      "triggers": [
+        "workflows",
+        "auto-routing",
+        "nlu",
+        "triggers"
+      ]
     },
     "governance": {
       "file": "routers/governance.json",
-      "contains": "Project governance, IDE detection",
-      "query": "@mcp:json-jq query '.project_governance' from 'routers/governance.json'"
+      "contains": "Project governance, IDE detection, workspace rules",
+      "query": "@mcp:json-jq query '.governance' from 'routers/governance.json'",
+      "triggers": [
+        "governance",
+        "project",
+        "ide-detection",
+        "workspace"
+      ]
     },
     "constitutional_metadata": {
       "file": "routers/constitutional-metadata.json",
@@ -82,6 +134,17 @@
       "file": "routers/rl-feedback-loop.json",
       "contains": "PPO-based trigger sensitivity, weekly adjustments, effectiveness tracking",
       "query": "@mcp:json-jq query '.feedback_loop' from 'routers/rl-feedback-loop.json'"
+    },
+    "memory_bank": {
+      "file": "routers/memory-bank.json",
+      "contains": "8-schema definitions, atomic update patterns, validation rules",
+      "query": "@mcp:json-jq query '.schemas' from 'routers/memory-bank.json'",
+      "triggers": [
+        "schemas",
+        "memory-bank",
+        "atomic-update",
+        "validation"
+      ]
     }
   },
   "usage": {
