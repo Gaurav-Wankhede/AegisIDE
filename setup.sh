@@ -239,9 +239,9 @@ if [ "$ENHANCE_MODE" = true ]; then
     echo "  📥 Downloading AegisIDE framework rules..."
     
     # Download to temp file first
-    if ! curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md; then
+    if ! curl -sL "$GITHUB_REPO/src/global-rules.md" > /tmp/aegiside_rules.md; then
         echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
-        echo "  🌐 URL: $GITHUB_REPO/src/aegiside/global_rules.md"
+        echo "  🌐 URL: $GITHUB_REPO/src/global-rules.md"
         echo "  🔧 Please check your internet connection or try again later"
         exit 1
     fi
@@ -283,7 +283,7 @@ else
     echo "  📥 Downloading AegisIDE framework rules..."
     
     # Download to temp file first
-    if ! curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md; then
+    if ! curl -sL "$GITHUB_REPO/src/global-rules.md" > /tmp/aegiside_rules.md; then
         echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
         exit 1
     fi
