@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-17T22:16:40+05:30",
+  "columns": {
+    "todo": [],
+    "in_progress": [],
+    "done": [],
+    "approved": []
+  },
+  "task_references": {},
+  "approval_metadata": {
+    "pending_approvals": [],
+    "approved_by_chief_justice": [],
+    "approved_by_shadow_cabinet": []
+  },
+  "metrics": {
+    "total_tasks": 0,
+    "completed_tasks": 0,
+    "approved_tasks": 0,
+    "cycle_time_avg_hours": 0
+  },
+  "timestamp": "2025-10-18T17:26:46+0530"
+}

@@ -1,0 +1,15 @@
+# Memory Bank Directory
+
+This directory is intentionally empty.
+
+The 8 core JSON files will be auto-generated when you run `/init`:
+- activeContext.json
+- scratchpad.json
+- kanban.json
+- mistakes.json
+- systemPatterns.json
+- progress.json
+- roadmap.json
+- memory.json
+
+**Do not create these files manually.** The AI will generate them from schemas/ templates.

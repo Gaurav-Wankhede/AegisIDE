@@ -1,0 +1,27 @@
+{
+  "session_awareness": {
+    "dynamic_display": {
+      "header": "🚀 AegisIDE Session Starting...",
+      "constitutional_frame": "═══════════════════════════════════════════════════════════\n  🛡️  CONSTITUTIONAL MCP COMPLIANCE - MANDATORY RULES\n═══════════════════════════════════════════════════════════",
+      "core_mcps": {
+        "description": "📜 6 MANDATORY MCPs (Article 13):",
+        "reference": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'"
+      },
+      "memory_operations": {
+        "description": "🧠 MEMORY OPERATIONS (Manual JSON):",
+        "reference": "@mcp:json-jq query '.mcps.memory_operations' from 'routers/mcps.json'"
+      },
+      "violations_penalties": {
+        "description": "❌ CRITICAL VIOLATIONS & PENALTIES:",
+        "reference": "@mcp:json-jq query '.violations_penalties.rules[]' from 'routers/violations.json'"
+      },
+      "footer": "✅ Constitutional framework ACTIVE"
+    },
+    "personalization": {
+      "show_recent_violations": "Display from mistakes.json",
+      "highlight_workflows": "Show relevant workflows based on context",
+      "rl_score_display": "Show current RL score from progress.json",
+      "memory_bank_status": "Display 8-schema health"
+    }
+  }
+}

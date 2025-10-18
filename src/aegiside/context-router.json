@@ -1,0 +1,82 @@
+{
+  "system_description": "AegisIDE Modular Router Index",
+  "version": "3.0.0",
+  "last_updated": "2025-10-18T21:32:51+05:30",
+  
+  "modular_routers": {
+    "core": {
+      "file": "routers/core.json",
+      "contains": "operational_loop, system_paths",
+      "query": "@mcp:json-jq query '.operational_loop' from 'routers/core.json'"
+    },
+    "mcps": {
+      "file": "routers/mcps.json",
+      "contains": "6 mandatory MCPs, memory operations",
+      "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'"
+    },
+    "constitutional": {
+      "file": "routers/constitutional.json",
+      "contains": "Chief Justice, PM, IAS, Shadow Cabinet",
+      "query": "@mcp:json-jq query '.constitutional_roles' from 'routers/constitutional.json'"
+    },
+    "parliamentary": {
+      "file": "routers/parliamentary.json",
+      "contains": "Voting, consensus, sessions",
+      "query": "@mcp:json-jq query '.parliamentary_system' from 'routers/parliamentary.json'"
+    },
+    "session": {
+      "file": "routers/session.json",
+      "contains": "Display, personalization",
+      "query": "@mcp:json-jq query '.session_awareness' from 'routers/session.json'"
+    },
+    "memory": {
+      "file": "routers/memory-bank.json",
+      "contains": "8 schemas, atomic updates",
+      "query": "@mcp:json-jq query '.memory_bank' from 'routers/memory-bank.json'"
+    },
+    "autonomy": {
+      "file": "routers/autonomy.json",
+      "contains": "Execution bands, user controls",
+      "query": "@mcp:json-jq query '.autonomy_rules' from 'routers/autonomy.json'"
+    },
+    "violations": {
+      "file": "routers/violations.json",
+      "contains": "Penalties, enforcement",
+      "query": "@mcp:json-jq query '.violations_penalties' from 'routers/violations.json'"
+    },
+    "workflows": {
+      "file": "routers/workflows.json",
+      "contains": "NLU engine, auto-triggers",
+      "query": "@mcp:json-jq query '.workflow_auto_triggers' from 'routers/workflows.json'"
+    },
+    "governance": {
+      "file": "routers/governance.json",
+      "contains": "Project governance, IDE detection",
+      "query": "@mcp:json-jq query '.project_governance' from 'routers/governance.json'"
+    }
+  },
+
+  "usage": {
+    "startup": [
+      "@mcp:json-jq query '.operational_loop' from 'routers/core.json'",
+      "@mcp:json-jq query '.session_awareness' from 'routers/session.json'"
+    ],
+    "examples": {
+      "mcps": "@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json'",
+      "roles": "@mcp:json-jq query '.constitutional_roles.chief_justice' from 'routers/constitutional.json'"
+    }
+  },
+
+  "quick_reference": {
+    "operational_loop": "routers/core.json → .operational_loop",
+    "mcps": "routers/mcps.json → .mcps",
+    "roles": "routers/constitutional.json → .constitutional_roles",
+    "parliament": "routers/parliamentary.json → .parliamentary_system",
+    "session": "routers/session.json → .session_awareness",
+    "memory": "routers/memory-bank.json → .memory_bank",
+    "autonomy": "routers/autonomy.json → .autonomy_rules",
+    "violations": "routers/violations.json → .violations_penalties",
+    "workflows": "routers/workflows.json → .workflow_auto_triggers",
+    "governance": "routers/governance.json → .project_governance"
+  }
+}

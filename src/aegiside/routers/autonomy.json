@@ -1,0 +1,19 @@
+{
+  "autonomy_rules": {
+    "execution_bands": {
+      "autonomous": "0-99% - Execute immediately, no permission",
+      "strategic": "99.5% - IAS brief required", 
+      "eliminated": "100% - Now auto-executes with documentation"
+    },
+    "user_controls": {
+      "pause_requested": "User can pause current task",
+      "stop_current_task": "User can stop current execution",
+      "skip_to_next": "User can skip to next task in queue"
+    },
+    "meta_cognitive_monitoring": {
+      "effectiveness_threshold": 0.8,
+      "auto_adapt": "Switch strategy when effectiveness < 0.8",
+      "no_permission_required": true
+    }
+  }
+}

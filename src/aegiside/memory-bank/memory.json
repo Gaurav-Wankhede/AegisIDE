@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-18T20:11:36+05:30",
+  "entities": [
+    {
+      "name": "AegisIDE_Production_Test",
+      "entityType": "project",
+      "observations": [
+        "Manual memory system implemented",
+        "6 mandatory MCPs operational",
+        "Memory MCP dependency removed"
+      ]
+    }
+  ],
+  "relations": [],
+  "metadata": {
+    "total_entities": 0,
+    "total_relations": 0,
+    "last_query": null
+  },
+  "timestamp": "2025-10-18T17:28:23+0530",
+  "metrics": {
+    "entities_count": 1
+  }
+}

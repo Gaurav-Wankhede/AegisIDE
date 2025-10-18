@@ -1,0 +1,45 @@
+{
+  "project_governance": {
+    "description": "Workspace-specific constitutional adaptation",
+    "governance_levels": {
+      "federal": "Cross-workspace constitutional framework",
+      "state": "Workspace-specific governance via local memory bank",
+      "local": "Project-level task management"
+    },
+    "adaptation_mechanisms": {
+      "technology_stack": "Rules adapt to Rust/Python/TypeScript/etc",
+      "project_scale": "EMD standards adjust for small/large codebases",
+      "domain_expertise": "Specialized ministerial roles per project",
+      "compliance_scoring": "Project-specific RL weighting"
+    },
+    "workspace_autonomy": {
+      "local_decisions": [
+        "Technology choices",
+        "Task priorities",
+        "Resource allocation"
+      ],
+      "federal_compliance": [
+        "Constitutional articles",
+        "MCP usage",
+        "Schema integrity"
+      ],
+      "knowledge_sharing": "Cross-workspace pattern federation"
+    },
+    "ide_detection": {
+      "supported_ides": {
+        "windsurf": ".windsurf",
+        "cursor": ".cursor",
+        "vscode": ".vscode",
+        "cline": ".cline",
+        "jetbrains": ".idea",
+        "zed": ".zed"
+      },
+      "platform_paths": {
+        "windows": "%USERPROFILE%/.codeium/windsurf-next",
+        "macos": "~/Library/Application Support/Codeium/windsurf-next",
+        "linux": "~/.codeium/windsurf-next"
+      },
+      "auto_detection": "Query environment for current IDE and platform"
+    }
+  }
+}

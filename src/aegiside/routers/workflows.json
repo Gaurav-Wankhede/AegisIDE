@@ -1,0 +1,69 @@
+{
+  "workflow_auto_triggers": {
+    "description": "NLU/NLP-based intelligent workflow execution",
+    "nlu_engine": {
+      "intent_recognition": {
+        "bootstrap": ["setup", "initialize", "create project", "start fresh"],
+        "fix": ["error", "bug", "failed", "broken", "not working", "debug"],
+        "research": ["how to", "documentation", "examples", "best practices"],
+        "status": ["status", "health", "check", "overview", "summary"],
+        "optimize": ["improve", "faster", "optimize", "performance"],
+        "validate": ["test", "validate", "check quality", "verify"]
+      },
+      "memory_analysis": {
+        "pattern_matching": "systemPatterns.json for successful workflows",
+        "error_prevention": "mistakes.json for recurring issues",
+        "context_awareness": "activeContext.json for session state",
+        "rl_optimization": "progress.json for effectiveness"
+      },
+      "recommendation": {
+        "confidence_threshold": 0.7,
+        "fallback_workflow": "/status",
+        "learning_enabled": true
+      }
+    },
+    "triggers": [
+      {
+        "type": "bootstrap",
+        "condition": "schema_count < 8 || user_mentions('setup')",
+        "workflow": "/bootstrap",
+        "confidence": 0.8
+      },
+      {
+        "type": "error_context",
+        "condition": "validation_failure || error_in_context",
+        "workflow": "/fix",
+        "confidence": 0.9
+      },
+      {
+        "type": "research",
+        "condition": "research_intents && memory_gap_detected",
+        "workflow": "/research",
+        "confidence": 0.7
+      },
+      {
+        "type": "status",
+        "condition": "status_intents || rl_negative || compliance_low",
+        "workflow": "/status",
+        "confidence": 0.6
+      },
+      {
+        "type": "optimize",
+        "condition": "optimize_intents && performance_issues",
+        "workflow": "/optimize",
+        "confidence": 0.8
+      },
+      {
+        "type": "session_intelligence",
+        "condition": "new_session && no_recent_activity",
+        "workflow": "/auto-init",
+        "confidence": 1.0
+      }
+    ],
+    "execution_rules": {
+      "autonomy": "0-99% band only",
+      "prevent_loops": "Max 1 auto-trigger per condition per session",
+      "nlu_learning": "Track preferences and effectiveness"
+    }
+  }
+}

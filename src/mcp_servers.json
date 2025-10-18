@@ -19,16 +19,6 @@
         "mcp-server-git"
       ]
     },
-    "memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "env": {
-        "MEMORY_FILE_PATH": "/home/gaurav-wankhede/.codeium/windsurf-next/memory.json"
-      }
-    },
     "sequential-thinking": {
       "command": "npx",
       "args": [
