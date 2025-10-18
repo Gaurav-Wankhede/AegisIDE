@@ -250,6 +250,74 @@ else
     fi
 fi
 
+# Step 1.5: Handle mcp_servers.json configuration
+echo "1️⃣.5 Processing mcp_servers.json..."
+
+# Download AegisIDE's 6 MCP configuration
+if ! curl -sL "$GITHUB_REPO/src/mcp_servers.json" > /tmp/aegiside_mcp_servers.json; then
+    echo "  ⚠️  Failed to download mcp_servers.json, skipping MCP configuration"
+else
+    if validate_download "/tmp/aegiside_mcp_servers.json" "mcp_servers.json"; then
+        # Check if mcp_servers.json exists in project
+        if [ -f "$WORKSPACE_PATH/mcp_servers.json" ]; then
+            echo ""
+            echo "  📋 Existing mcp_servers.json detected"
+            echo ""
+            echo "  🔧 AegisIDE uses 6 mandatory MCPs:"
+            echo "     • json-jq (JSON operations)"
+            echo "     • sequential-thinking (reasoning)"
+            echo "     • git (version control)"
+            echo "     • context7 (documentation)"
+            echo "     • exa (code research)"
+            echo "     • fetch (web content)"
+            echo ""
+            echo "  Options:"
+            echo "    R) Replace entire file with AegisIDE configuration"
+            echo "    A) Append AegisIDE MCPs to existing file"
+            echo "    N) No changes (keep your current configuration)"
+            echo ""
+            
+            while true; do
+                read -p "  Your choice [R/A/N]: " choice
+                case $choice in
+                    [Rr]* )
+                        cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
+                        cp /tmp/aegiside_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+                        echo ""
+                        echo "  ✅ Replaced mcp_servers.json with AegisIDE configuration"
+                        echo "  💾 Backup: mcp_servers.json.backup"
+                        break;;
+                    [Aa]* )
+                        cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
+                        # Merge MCPs using jq
+                        jq -s '.[0].mcpServers * .[1].mcpServers | {mcpServers: .}' \
+                            "$WORKSPACE_PATH/mcp_servers.json" /tmp/aegiside_mcp_servers.json \
+                            > /tmp/merged_mcp_servers.json
+                        mv /tmp/merged_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+                        echo ""
+                        echo "  ✅ Appended AegisIDE MCPs to existing configuration"
+                        echo "  💾 Backup: mcp_servers.json.backup"
+                        break;;
+                    [Nn]* )
+                        echo ""
+                        echo "  ⏭️  Skipped mcp_servers.json modification"
+                        echo "  ℹ️  You can manually add MCPs from /tmp/aegiside_mcp_servers.json"
+                        break;;
+                    * ) echo "  Please answer R, A, or N.";;
+                esac
+            done
+        else
+            echo "  🆕 No existing mcp_servers.json found"
+            cp /tmp/aegiside_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+            echo "  ✅ Created mcp_servers.json with AegisIDE's 6 MCPs"
+        fi
+    else
+        echo "  ⚠️  Failed to validate mcp_servers.json, skipping"
+    fi
+    rm -f /tmp/aegiside_mcp_servers.json
+fi
+echo ""
+
 # Step 2: Download and install router system
 echo "2️⃣  Downloading modular router system..."
 mkdir -p "$WORKSPACE_IDE_PATH/routers"

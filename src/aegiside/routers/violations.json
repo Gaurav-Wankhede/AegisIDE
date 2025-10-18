@@ -42,6 +42,12 @@
         "penalty": -25,
         "fix": "@mcp:json-jq ONLY for JSON",
         "article": "Article 13"
+      },
+      {
+        "violation": "Creating unnecessary files (research/docs/summaries)",
+        "penalty": -30,
+        "fix": "Provide content in TEXT/chat format",
+        "article": "Global Rules"
       }
     ]
   }
