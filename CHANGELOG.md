@@ -1,351 +1,99 @@
-# AegisIDE Release History
+# Changelog
 
-Track the evolution of AegisIDE from a simple AI framework to the world's most advanced autonomous development system.
+*[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
-*Following [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) format with [Semantic Versioning](https://semver.org/spec/v2.0.0.html)*
+## [3.2.2] - 2025-10-18
+
+### Fixed
+- **Installation 404 Error**: Corrected `global_rules.md` download path (was `src/aegiside/global_rules.md`, now `src/global-rules.md`)
+- **README Dashboard Path**: Updated to show IDE-specific paths (`.windsurf/aegiside` or `.cursor/aegiside`)
+- **Diff Verification**: Added file comparison before updates - shows diff and asks permission
+
+### Changed  
+- **README Simplification**: Removed 50% duplicate content, plain language for non-technical users
+- **Dashboard Command**: Changed from `python3 -m http.server` to `npx serve` for better portability
 
 ## [3.2.1] - 2025-10-18
 
 ### Added
-- **User Permission System for Installation**
-  - Y/N prompt before modifying system prompt (shows 15-line preview)
-  - Shows what will be added, total line count, and backup location
-  - User can decline modifications while still installing workspace framework
-  - Clear rollback instructions provided automatically
-  
-- **mcp_servers.json Management**
-  - R)eplace: Complete replacement with AegisIDE 6 MCPs + automatic backup
-  - A)ppend: Intelligent jq merge of existing + AegisIDE MCPs + backup
-  - N)o changes: Keep current configuration
-  - Shows MCP list preview before asking for choice
-  - Validates downloads before any modifications
-
-- **404 Download Validation**
-  - `validate_download()` function checks all downloads
-  - Detects "404", "Not Found", "<html" in downloaded content
-  - Shows error preview if validation fails
-  - Prevents corrupted files from being installed
-  - Applied to: global_rules.md, mcp_servers.json, 11 routers, 9 schemas, 13 workflows
-
-- **File Creation UX Rule (Critical)**
-  - Added to global_rules.md: NEVER create files for research/docs/summaries
-  - Penalty increased: -20 RL → -30 RL for unnecessary file creation
-  - Added to violations.json router: Explicit file creation penalty
-  - Added to autonomy.json: Default output guideline (TEXT only)
-  - Clear examples: MCP_SETUP_GUIDE.md, ARCHITECTURE_NOTES.md → provide in TEXT
-  - Rule: If uncertain whether user wants file → PROVIDE IN TEXT
+- Y/N permission prompts before modifying system files (shows preview)
+- `mcp_servers.json` management: R)eplace/A)ppend/N)o options
+- 404 download validation for all curl operations
+- File creation penalty: -30 RL for unnecessary markdown files
 
 ### Changed
-- **MCP Architecture Correction (6 MCPs)**
-  - Updated from incorrect 7/9 MCP count to actual 6 mandatory MCPs
-  - Correct list: json-jq, sequential-thinking, git, context7, exa, fetch
-  - Updated routers/mcps.json with accurate MCP descriptions
-  - Updated activeContext.json active_mcps array
-  - Updated context-router.json with correct MCP count
-  - Updated all documentation to reflect 6-MCP architecture
-
-- **@mcp:json-jq Constitutional Mandate**
-  - Strengthened global_rules.md with prominent ⚠️ CRITICAL section
-  - Updated violations.json: -25 RL for using IDE tools on JSON
-  - All routers updated to reference @mcp:json-jq ALWAYS rule
-  - Emphasized 100x performance advantage over Read tool
-  - Added examples: ✅ `@mcp:json-jq query` vs ❌ `Read(file.json)`
-
-- **Setup Script Enhancement (setup.sh)**
-  - Added validate_download() function for all curl operations
-  - Added ask_permission() function with preview and Y/N prompt
-  - All downloads now: download → validate → ask permission → install
-  - Progress counters: "✅ 11/11 routers", "✅ 9/9 schemas", "✅ 13/13 workflows"
-  - Better error messages with URLs and troubleshooting hints
-  - Automatic cleanup of failed downloads
-  - Graceful exit on critical failures
+- MCP count corrected: 6 mandatory MCPs (json-jq, sequential-thinking, git, context7, exa, fetch)
+- `@mcp:json-jq` mandate strengthened: -25 RL penalty for using IDE tools on JSON
+- Progress counters added: "10/10 routers", "9/9 schemas", "13/13 workflows"
 
 ### Fixed
-- **404 Installation Error**
-  - Issue: Previous setup.sh blindly appended curl output
-  - Result: "404: Not Found" HTML got added to global_rules.md 4 times
-  - Solution: validate_download() prevents corrupted content installation
-  - Impact: Zero installation errors, clean global_rules.md
-
-- **Unnecessary File Creation (Worst UX Issue)**
-  - Issue: AI creating markdown files for research/explanations
-  - User feedback: "TOTALLY WORST UX" - cluttered workspace
-  - Solution: Strengthened rules in global_rules.md and routers
-  - Impact: All research/explanations now provided in TEXT format only
-
-### Technical Details
-**MCP Research Conducted:**
-- Windsurf: `mcp_servers.json` (project root or global)
-- Cursor: `~/.cursor/mcp.json` (global only)
-- VS Code + Cline: Embedded in `settings.json` under `cline.mcpServers`
-- Continue: `~/.continue/config.json`
-
-**Setup Improvements:**
-- Download validation prevents 404 errors
-- User permission prevents unwanted modifications
-- Automatic backups for all changes
-- Clear feedback with progress counters
-- Rollback instructions provided
-
-**Constitutional Compliance:**
-- Used @mcp:json-jq for ALL JSON operations (Article 13)
-- Used shell jq commands for updates (no IDE tools)
-- All changes committed with structured messages
-- RL Score: +70 (compliance + UX + validation)
-
-### Impact
-- **Installation Safety**: 100% (404 errors eliminated)
-- **User Control**: Enhanced (Y/N prompts, preview, choices)
-- **Documentation Accuracy**: 100% (6 MCPs correctly documented)
-- **UX**: Dramatically improved (no unnecessary files created)
-- **Setup Success Rate**: Near 100% (validation prevents failures)
+- Installation errors from corrupted downloads
+- Unnecessary file creation (workspace clutter)
 
 ## [3.2.0] - 2025-10-18
 
 ### Added
-- **Router-First NLU/NLP Autonomy**
-  - `nlu_intent_patterns`, `nlu_action_map`, `nlu_confidence`, `nlu_ambiguity_policy`, `intent_priority_order`
-  - Multilingual intent patterns (es/fr/de/hi) for affirmation, proceed, continue, next, status
-  - Runtime NLU logging to `activeContext.json.nlu` with `{intent, confidence, matched_pattern, selected_workflow, timestamp}`
-- **Autonomous Workflow Activation**
-  - `workflow_activation.enable = true`, `auto_run_for` core workflows
-  - Auto-triggers: `task_present → /next`, `queue_empty → /status`, `bootstrap_needed → /bootstrap`, `nlu_intent_detected`
-- **Richer Chaining**
-  - `/full_test` chain → `/status` → `/validate` → `/update` → `/memory-status` with retry/backoff and on-fail logging
-- **Risk Classifier**
-  - `nlu_risk_classifier` enables high/low risk decisions with `execution_rules.risk_policy` safeguards
+- NLU/NLP intent recognition (multilingual: en/es/fr/de/hi)
+- Auto-workflow triggers: task present → `/next`, queue empty → `/status`
+- Risk classifier for high/low risk decisions
+- Workflow chaining: `/full_test` chains multiple workflows
 
 ### Changed
-- **No Permission Asking (0–99%)**
-  - `communication_rules` with banned phrases and replacement
-  - Enforcement gate `gate_4_no_permission_request` (BLOCK + auto-correct + RL penalty)
-- **Workflow Hardening**
-  - All 12 workflows use router-first `@mcp:json-jq` reads and `jq | sponge` atomic writes
-  - Validations use `memory_bank_files` (data), not `.schema.json` names
-  - Removed zero-padded article paths; removed `bc` dependency (Python used instead)
-
-### Repository Policy
-- **Memory Bank Policy**
-  - Memory-bank JSON files are autogenerated at runtime and ignored in git
-  - Schemas in `src/.aegiside/schemas/` are the tracked source of truth
-  - README updated with Router-First + NLU/NLP autonomy and memory bank policy
-
-### Impact
-- **Autonomy**: True 0–99% autonomous execution without permission prompts
-- **UX**: NLU/NLP-driven, multilingual, intent-based slash-command activation
-- **Safety**: High-risk operations gated by risk classifier + enforcement rules
+- 0-99% autonomy enforced (no permission prompts)
+- All workflows use `@mcp:json-jq` + `jq | sponge` atomic writes
+- Memory-bank JSON auto-generated (not tracked in git)
 
 ## [3.1.2] - 2025-10-18
 
 ### Fixed
-- **Critical Architecture Documentation Gap**
-  - Removed false `@mcp:filesystem` claim from global_rules.md (never existed in mcp_servers.json)
-  - Corrected MCP count: 8 → **7 mandatory MCPs**
-  - Updated context-router.json: `"core_count": 8` → `7`
-  - Clarified hybrid architecture: **7 MCPs + CLI pipeline** (not pure MCP)
-  
-- **Workflow Constitutional Compliance (34 violations fixed)**
-  - Fixed all 12 workflows: Replaced `jq` CLI reads with `@mcp:json-jq` (constitutional mandate)
-  - Removed `cat | glow -` inefficiency → Direct `glow` file reads
-  - Fixed undefined variable `$valid_count` in `/update.md`
-  - Added proper error handling: `set -euo pipefail` and `trap` signals
-  - Removed `$ROUTER_JSON` cache variables (query router dynamically)
-
-- **MCP Server Configuration Cleanup**
-  - Removed non-existent MCPs from `mcp_servers.json`:
-    - `@mcp:filesystem` (never installed, system uses `jq | sponge` instead)
-    - `@mcp:time` (not needed, use CLI `date` command)
-    - `@mcp:math` (not needed, use CLI `python3 -c` for calculations)
-  - Final count: **7 active MCPs** (json-jq, memory, git, sequential-thinking, context7, exa, fetch)
+- Removed false `@mcp:filesystem` claim (doesn't exist)
+- MCP count corrected: 7 mandatory MCPs (json-jq, memory, git, sequential-thinking, context7, exa, fetch)
+- 34 workflow violations fixed: Now use `@mcp:json-jq` for reads
+- Undefined variables and error handling in workflows
 
 ### Changed
-- **Documentation Accuracy**
-  - Updated README.md: Added "Hybrid Architecture" section explaining 7 MCPs + CLI pipeline
-  - Updated global_rules.md: Complete rewrite to router-first architecture
-  - Clarified AegisIDE-desktop as **separate project** (not part of this repo)
-  - Added installation instructions for CLI tools: `jq`, `moreutils`, `glow`
-
-### Impact
-- **Documentation Accuracy**: 75% → 100% (all claims now match actual implementation)
-- **Constitutional Compliance**: 42% → 98% (workflows now follow Article 13 MCP mandate)
-- **Performance**: 10-100x faster with hybrid approach vs pure MCP
-- **RL Penalties Avoided**: +1,110 RL (34 violations × -30 RL each)
-
-### Technical Details
-**Why Hybrid Architecture?**
-- **MCPs** for reliability: Sequential thinking, knowledge graph, git operations, documentation
-- **CLI** for performance: JSON writes (267x faster with `jq | sponge`), markdown rendering, timestamps
-- **Best of both worlds**: Constitutional compliance + execution speed
-
-**Workflow Files Fixed**: `/next.md`, `/validate.md`, `/continue.md`, `/fix.md`, `/init.md`, `/bootstrap.md`, `/research.md`, `/status.md`, `/memory-status.md`, `/optimize.md`, `/oversight-checks-and-balances.md`, `/update.md`
+- Hybrid architecture: 7 MCPs + CLI pipeline (`jq | sponge` for writes)
+- Documentation updated to match actual implementation
 
 ## [3.1.1] - 2025-10-17
 
 ### Fixed
-- **Production Deployment Blockers (Critical)**
-  - Cleaned memory-bank: Removed 8 JSON files containing live project data
-  - Fixed mcp_servers.json: Replaced hard-coded paths with `${HOME}` variables
-  - Security: Removed personal file paths and user-specific data from templates
-  - Data hygiene: Memory-bank now properly empty for clean user initialization
+- Cleaned memory-bank (removed live project data)
+- Removed hard-coded paths from `mcp_servers.json`
+- Security: No personal data in templates
 
 ### Added
-- **INSTALLATION.md** - Complete step-by-step setup guide
-  - IDE-specific instructions (Windsurf, Cursor, VS Code)
-  - MCP server configuration guide
-  - Troubleshooting section with common issues
-  - Advanced configuration options
-- **setup.sh** - Automated installation script
-  - Auto-detects IDE (Windsurf/Cursor/VS Code)
-  - Creates proper directory structure
-  - Copies framework files (safe, no symlinks)
-  - Validates prerequisites (Node.js, Python, uvx)
-  - Tests MCP servers
-- **validate-setup.sh** - Installation verification script
-  - Validates directory structure
-  - Checks all required files present
-  - Detects hard-coded paths in config
-  - Verifies prerequisites installed
-
-### Changed
-- **README.md Quick Start** - Updated with safe setup instructions
-  - Replaced dangerous `ln -s` (symlink) with `cp -r` (copy)
-  - Added warning about cross-project contamination from symlinks
-  - Enhanced with 3-step automated setup process
-  - Added reference to detailed INSTALLATION.md
-
-### Breaking Changes
-- Users must now configure `mcp_servers.json` paths manually
-- Memory-bank no longer pre-populated (generates on `/init`)
-
-### Impact
-- **Production Readiness**: 55% → 100%
-- **User Experience**: Automated setup reduces installation time
-- **Security**: No personal data in repository
-- **Cross-Project Safety**: Copy-based approach prevents contamination
+- `setup.sh`: Automated installation (auto-detects IDE)
+- `validate-setup.sh`: Verifies installation
+- `INSTALLATION.md`: Step-by-step guide
 
 ## [3.1.0] - 2025-10-17
 
 ### Added
-- **Constitutional Mappings System**
-  - Added `constitutional_mappings` section to `schema-integrity-validator.json`
-  - Maps 20 schema fields to their implementing constitutional articles
-  - Enables traceability between schemas and governance framework
-  - Gap 46 fix: Explicit schema→article documentation
-
-- **Helper Schema Documentation**
-  - Clarified 8 core + 5 helper schema structure in global_rules.md
-  - Helper schemas: common-mistakes, error-recovery, tool-usage-patterns, constitutional-governance, schema-evolution
-  - Updated Article 11, 30, 37 to reference helper schemas
-  - Gap 43 fixes: Helper schema integration
-
-### Changed
-- **Constitutional Framework Refinements (Gaps 34-47)**
-  - Fixed Article 4: `activeContext.rl_runtime` → `progress.rl_runtime_controls`
-  - Extended Article 4: Added `user_controls` (pause/stop/skip) documentation
-  - Extended Article 8: Added `user_feedback` rights and RL influence
-  - Extended Article 9: Added `mcp_fallback_chain` resilience details
-  - Fixed Article 11: Corrected duplicate step 6 → proper 9-step workflow
-  - Updated Article 30: Added emergency succession protocol reference
-  - Updated Article 37: Added constitutional-governance.json reference
-  - Bulk updated timestamps on all 43 articles to 2025-10-17
-
-- **Global Rules Structure**
-  - Fixed Section V duplicate numbering → proper I-IX sequence
-  - Added Memory Bank section (IV) explicitly listing 8 core + 5 helper schemas
-  - Clarified schema count in update protocol (8 core schemas)
-  - Gap 44, 47 fixes: Documentation accuracy
+- Constitutional mappings in schema validator
+- Helper schema documentation (5 helpers + 8 core schemas)
 
 ### Fixed
-- Gap 34: GitHub auto-bootstrap workflow in global_rules.md
-- Gap 40: Schema field reference correction in Article 4
-- Gap 41a-c: UX schema fields documented in Articles 4, 8, 9
-- Gap 42: Timestamp synchronization across all 43 constitution files
-- Gap 43a-c: Helper schema references in Articles 11, 30, 37
-- Gap 44: Schema count clarification (8 core + 5 helper)
-- Gap 45: Article 11 step numbering (8→9 steps)
-- Gap 46: Constitutional mappings added to validator
-- Gap 47: Global rules section numbering (V→VI, VI→VII, etc.)
-
-### Verified
-- ✅ All 43 constitution files present (1 preamble + 42 articles)
-- ✅ All 8 core + 5 helper + 1 validator schemas present
-- ✅ All 12 workflows exist and documented
-- ✅ Cross-references validated between all components
-- ✅ Zero gaps remaining in constitutional framework
+- 14 documentation gaps in constitutional framework
+- Article references and field mappings
+- Section numbering in global_rules.md
 
 ## [3.0.0] - 2025-10-13
 
 ### Added
-- **Reinforcement Learning Framework**
-  - Comprehensive RL reward/penalty system across all workflows
-  - Automatic scoring: +5 to +50 for rewards, -10 to -50 for penalties
-  - Transaction log in `progress.json` (max 1000 entries with auto-trim)
-  - Checksum validation for RL ledger integrity
-  - Category-based tracking: constitutional_compliance, validation, consensus, pattern_reuse, etc.
-  - Session and lifetime score accumulation
-  
-- **Top-Append Strategy**
-  - All 8 schemas prepend new entries at array[0] for latest-first access
-  - 65% faster context retrieval (no array scanning needed)
-  - Scratchpad priority routing with `top_append_metadata` validation
-  - Optimized for LLM context window efficiency
-  - Automatic array trimming (scratchpad: 10 items, progress: 1000 transactions)
-  
-- **Selective Article Loading**
-  - Load 3 base articles (Preliminary) always instead of all 42
-  - On-demand loading: Quality→Article 5, Decision→Articles 26-31, Error→Article 36
-  - 80% reduction in constitutional load time
-  - Context-aware article selection by scenario type
-  - Reduced token usage from 42 articles to 3-10 articles per workflow
-  
-- **MCP Error Learning Protocol**
-  - Automatic error pattern extraction and prevention rule generation
-  - Prevention rules logged to `mistakes.json` with confidence scores
-  - Third occurrence escalation: -30 RL → -50 RL penalty
-  - `@mcp:context7` instant remediation with official documentation
-  - Cross-workflow pattern sharing via `systemPatterns.json`
-  
-- **Workflow Optimization**
-  - All 12 workflows compressed to <6000 characters
-  - Autonomous MCP selection based on task type
-  - Zero-tolerance HALT-FIX-VALIDATE loop enforcement
-  - Continuous execution mandate (asking permission = -20 RL penalty)
-  - RL reward/penalty matrices integrated in each workflow
+- Reinforcement Learning: +5 to +50 rewards, -10 to -50 penalties
+- Top-append strategy: Latest entries at array[0] (65% faster retrieval)
+- Selective article loading: Load 3-10 articles instead of all 42 (80% faster)
+- MCP error learning: Auto-generate prevention rules in `mistakes.json`
 
 ### Changed
-- **Schema Enhancements**
-  - `progress.schema.json`: Added `reinforcement_learning_ledger` with rewards/penalties by category, checksum validation, and transaction log
-  - `scratchpad.schema.json`: Added `top_append_metadata` for latest-first validation
-  - `systemPatterns.schema.json`: Added `rl_reward_ledger` with sync verification to `progress.json`
-  - All schemas: Enforced top-append array structure
-  
-- **Workflow Updates**
-  - `/bootstrap.md`: +10 RL for success, -15 for validation fails, selective article loading
-  - `/continue.md`: +5 RL for recovery, -10 for context corruption, top-append restoration
-  - `/fix.md`: +15 RL when resolved, -30 for failures (escalates -50 on 3rd occurrence)
-  - `/init.md`: +10 RL for initialization, selective article loading (3 base articles)
-  - `/memory-status.md`: +5 RL for healthy graph, -10 for integrity issues
-  - `/next.md`: Full RL matrix, selective articles (NOT all 42), top-append priority queue
-  - `/optimize.md`: +20 RL for improvements, -25 for regressions, benchmarking required
-  - `/oversight.md`: +25 RL if consensus ≥95%, -20 if fails, democratic review
-  - `/research.md`: +10 RL for complete dossier, -15 for unverified sources
-  - `/status.md`: +5 RL for comprehensive report, auto-remediation triggers
-  - `/update.md`: +8 RL for successful sync (1 per schema), -20 for validation fails
-  - `/validate.md`: +15 RL for passing, -30 for failures + HALT-FIX loop
+- All 12 workflows: RL scoring + HALT-FIX-VALIDATE + <6000 chars
+- Schemas enhanced: RL ledger, top-append validation, checksum integrity
 
-### Performance Improvements
-- **65% faster context assembly** through top-append strategy
-- **80% faster constitutional loading** via selective article loading
-- **33% faster schema validation** with optimized structure
-- **91% reduction in repeated errors** through RL learning and pattern extraction
-- **2.6x faster JSON parsing** with structured data integrity
-
-### Technical Details
-- Workflow sizes: All ≤5694 chars (target: <6000)
-- Global rules: 9,757 chars (target: <10,000) ✓
-- RL ledger: Checksum-validated with discrepancy tracking
-- Top-append: Enforced via schema validation at runtime
-- MCP chains: Autonomous selection by task complexity
+### Performance
+- 91% reduction in repeated errors
+- 65% faster context assembly
+- 80% faster constitutional loading
 
 ## [2.8.8] - 2025-10-09 🚀 **Stakeholder-Ready Documentation**
 
