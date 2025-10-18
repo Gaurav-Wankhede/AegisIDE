@@ -1,0 +1,73 @@
+{
+  "id": "article-9",
+  "title": "Right to Tool Usage & Integration",
+  "part": "III-Fundamental-Rights",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:26:01+05:30",
+  "metadata": {
+    "summary": "6 mandatory MCPs, fallback resilience, tool addition process",
+    "tokens": {"full": 600, "definition": 150, "powers": 150, "implementation": 200, "violations": 100},
+    "triggers": ["mcp", "tools", "integration", "fallback"],
+    "priority": "critical"
+  },
+  "content": {
+    "definition": {
+      "core_right": "Citizens possess right to use MCP tools",
+      "mandatory_mcps": ["@mcp:sequential-thinking", "@mcp:json-jq", "@mcp:git", "@mcp:context7", "@mcp:exa", "@mcp:fetch"],
+      "mcp_count": 6,
+      "categories": {
+        "core_knowledge": ["context7", "fetch"],
+        "infrastructure": ["json-jq", "git"],
+        "intelligence": ["sequential-thinking", "exa"]
+      },
+      "rights": ["Autonomous invocation (0-99%)", "Coordination learning", "Pattern reuse (systemPatterns.json)", "Error recovery (mistakes.json)", "+10 RL per complete chain"]
+    },
+    "powers": {
+      "usage": ["Invoke any MCP without permission (0-99%)", "Chain multiple MCPs", "Store patterns (systemPatterns.json)", "Learn coordination (memory.json)", "Earn +10 RL", "Challenge via Shadow Cabinet"],
+      "fallback_resilience": {
+        "chains": "context7→fetch→exa→memory_patterns",
+        "rate_limiting": "Track via activeContext.mcp_rate_limits",
+        "performance": "Monitor via activeContext.mcp_performance_metrics"
+      },
+      "integration": "Research via IAS /research, propose additions (≥95% consensus), configure mcp_servers.json, define patterns, audit effectiveness (progress.json)",
+      "protected": "Parliament cannot remove core 6 MCPs (amendment required), Ministers cannot block 0-99% ops, Chief Justice HALTs for missing trails, IAS maintains health/availability"
+    },
+    "implementation": {
+      "mcp_integration": [
+        "PRE: Read schemas, get patterns from memory.json, @mcp:context7 docs, @mcp:fetch benchmarks → activeContext",
+        "EXEC: @mcp:sequential-thinking plan (≥3), calculate metrics, implement, @mcp:git stage",
+        "POST: Validate, timestamp, store in memory.json → +10 RL progress.json",
+        "MISSING: HALT, -15 RL, log mistakes.json, require remediation"
+      ],
+      "tool_addition": [
+        "1. IAS: @mcp:context7 docs, @mcp:fetch benchmarks, @mcp:sequential-thinking risk, calculate impact → systemPatterns.json",
+        "2. Parliament: Propose scratchpad.json, Opposition challenges mistakes.json, debate @mcp:sequential-thinking, calculate consensus",
+        "3. IF ≥95%: Update mcp_servers.json, @mcp:git commit, store memory.json, +20 RL",
+        "4. Monitor: activeContext usage, progress success rates, mistakes patterns, systemPatterns best practices"
+      ],
+      "coordination_learning": "Analyze history in memory.json, calculate effectiveness → identify sequences. Store systemPatterns.json {pattern_name, tools[], success_rate, rl_reward}. Reuse: Retrieve → apply → +20 RL → adapt"
+    },
+    "violations": {
+      "omission": [
+        {"offense": "Missing trail", "penalty": -15, "action": "Void + remediation"},
+        {"offense": "Incomplete chain", "penalty": -10, "action": "Completion required"},
+        {"offense": "Bypassing validation", "penalty": -25, "action": "Audit"}
+      ],
+      "misuse": [
+        {"offense": "Incorrect selection", "penalty": -5, "action": "Correction"},
+        {"offense": "Excessive calls", "penalty": -10, "action": "Review"},
+        {"offense": "Ignoring errors", "penalty": -20, "action": "Training"}
+      ],
+      "integration_failure": [
+        {"offense": "Unauthorized removal", "penalty": -40, "action": "Restoration + suspension"},
+        {"offense": "Breaking server", "penalty": -35, "action": "Fix + review"},
+        {"offense": "Access denial", "penalty": -30, "action": "Restored + tribunal"}
+      ],
+      "remediation": "20 operations full MCP trails, 100% compliance, IAS audit, demonstrate learning (memory.json), Chief Justice approval"
+    }
+  },
+  "related_articles": ["article-13", "article-41"],
+  "schemas_referenced": ["activeContext", "mistakes", "systemPatterns", "progress", "memory"],
+  "mcps_referenced": ["sequential-thinking", "json-jq", "git", "context7", "exa", "fetch"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/03-fundamental-rights/article-9.json"
+}

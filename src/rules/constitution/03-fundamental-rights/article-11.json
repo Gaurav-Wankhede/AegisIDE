@@ -1,0 +1,66 @@
+{
+  "id": "article-11",
+  "title": "Right to Constitutional Amendment",
+  "part": "III-Fundamental-Rights",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:26:01+05:30",
+  "metadata": {
+    "summary": "Democratic evolution, amendment process, protected principles",
+    "tokens": {"full": 600, "definition": 150, "powers": 150, "implementation": 200, "violations": 100},
+    "triggers": ["amendment", "evolution", "change"],
+    "priority": "medium"
+  },
+  "content": {
+    "definition": {
+      "core_right": "Citizens possess right to propose amendments",
+      "process": "IAS research → Parliamentary debate → Consensus vote → Judicial review → Version control",
+      "categories": {
+        "standard": "Articles I-X, XII, XIV-XVII, ≥95% consensus",
+        "protected": "XI, XIII, ≥98%",
+        "emergency": "72-hour, ≥80% + Chief Justice"
+      },
+      "protected_principles": "Cannot remove, only refine: Democratic governance, RL self-learning, 8-schema memory bank, MCP mandate, tri-branch oversight, zero-tolerance, continuous operations"
+    },
+    "powers": {
+      "proposal_rights": ["Submit via IAS brief", "Request /oversight-checks-and-balances", "Challenge via Shadow Cabinet", "Initiate emergency", "Vote (RL-weighted)"],
+      "parliamentary": ["Debate via @mcp:sequential-thinking", "Calculate via jq", "Override vetoes (≥98%)", "Archive rejected in systemPatterns.json", "Track in memory.json"],
+      "judicial": "Chief Justice reviews consistency, vetoes violations, requires remediation, issues interpretations, maintains integrity"
+    },
+    "implementation": {
+      "amendment_workflow": [
+        "1. IAS Research: @mcp:context7/@mcp:fetch dossier, impact analysis, memory.json precedents, calculate resources → systemPatterns.json",
+        "2. Submit: Update scratchpad.json {proposal_id, title, rationale, impact}, timestamp, create entity in memory.json",
+        "3. Challenge: Shadow Cabinet @mcp:sequential-thinking review, file mistakes.json if issues, demand MCP evidence",
+        "4. Debate: @mcp:sequential-thinking structure, all branches participate, IAS analysis, log activeContext.json",
+        "5. Consensus: Calculate weighted (Executive 30%, Administrative 30%, Opposition 30%, Judicial 10%) → progress.json. IF ≥95%/98% proceed, else reject",
+        "6. Judicial: Chief Justice validates compliance, checks protected principles, verifies MCP trail. Approve → memory.json, veto → return",
+        "7. Schema Migration: IF affects schemas, follow schemas/helpers/schema-evolution.json protocol (backup→dry-run→approve→execute→validate)",
+        "8. Implement: Update article, @mcp:git commit, timestamp enactment, archive memory.json, notify activeContext.json",
+        "9. Post: Update workflows, systemPatterns.json precedent, +30 RL, monitor 30 days"
+      ],
+      "emergency_process": "Chief Justice declares crisis, PM identifies need, IAS ≤2hr assessment. Debate 4hrs, ≥80% consensus, mandatory judicial approval. Auto-expires or renew (≥85%, max 3x/9 days)"
+    },
+    "violations": {
+      "unconstitutional": [
+        {"offense": "Violating protected principles", "penalty": -35, "action": "Rejected + training"},
+        {"offense": "Bypassing process", "penalty": -50, "action": "Rollback + tribunal"},
+        {"offense": "Consensus fraud", "penalty": -50, "action": "Revocation"}
+      ],
+      "process_violations": [
+        {"offense": "Skipping IAS research", "penalty": -25, "action": "Mandated"},
+        {"offense": "Incomplete MCP trail", "penalty": -30, "action": "Requirement"},
+        {"offense": "Rushing debate", "penalty": -20, "action": "Extended"}
+      ],
+      "obstruction": [
+        {"offense": "Blocking without cause", "penalty": -25, "action": "Dismissed"},
+        {"offense": "Frivolous proposals", "penalty": -15, "action": "Privileges suspended"},
+        {"offense": "Ignoring rulings", "penalty": -40, "action": "Contempt"}
+      ],
+      "remediation": "5 successful participations, 100% MCP compliance, Chief Justice exam, ≥95% consensus"
+    }
+  },
+  "related_articles": ["article-26", "article-30"],
+  "schemas_referenced": ["scratchpad", "systemPatterns", "mistakes", "progress", "activeContext", "memory"],
+  "mcps_referenced": ["context7", "fetch", "sequential-thinking", "git", "json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/03-fundamental-rights/article-11.json"
+}
