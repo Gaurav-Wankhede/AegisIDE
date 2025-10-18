@@ -1,0 +1,103 @@
+{
+  "workflow_name": "update",
+  "description": "Atomic 8-schema memory bank update (Article 14)",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "event": "task_completed",
+      "description": "Auto-triggered after every task completion"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ UPDATE: Atomic 8-schema sync starting"
+    },
+    {
+      "step": 2,
+      "action": "atomic_update",
+      "description": "Update all 8 schemas in single transaction",
+      "schemas": [
+        {
+          "file": ".aegiside/memory-bank/activeContext.json",
+          "updates": {
+            "last_activity": "now",
+            "current_task": "completed"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/scratchpad.json",
+          "updates": {
+            "priority_queue": "shift_first"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/kanban.json",
+          "updates": {
+            "columns.in_progress": "move_to_done"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/progress.json",
+          "updates": {
+            "total_rl_score": "increment",
+            "transactions": "prepend_current"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/systemPatterns.json",
+          "updates": {
+            "patterns": "append_if_success"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/mistakes.json",
+          "updates": {
+            "error_log": "append_if_error"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/roadmap.json",
+          "updates": {
+            "milestone_progress": "recalculate"
+          }
+        },
+        {
+          "file": ".aegiside/memory-bank/memory.json",
+          "updates": {
+            "entities": "append_observations"
+          }
+        }
+      ],
+      "tool": "run_command",
+      "atomic": true,
+      "rollback_on_failure": true
+    },
+    {
+      "step": 3,
+      "action": "validate",
+      "workflow": "validate.json",
+      "description": "Validate all schemas after update"
+    },
+    {
+      "step": 4,
+      "action": "commit",
+      "tool": "@mcp:git",
+      "message": "chore: Atomic 8-schema update (Article 14 compliance)",
+      "files": [".aegiside/memory-bank/*.json"]
+    },
+    {
+      "step": 5,
+      "action": "display",
+      "message": "✅ Atomic update complete - 8/8 schemas synchronized"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 14 (8-Schema Update Duty)"],
+    "mcps_used": ["@mcp:json-jq", "@mcp:git"],
+    "autonomy_band": "0-99%",
+    "atomic_transaction": true
+  }
+}
