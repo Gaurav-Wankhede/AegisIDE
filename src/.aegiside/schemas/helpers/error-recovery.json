@@ -18,8 +18,8 @@
           "verify": "Compare working tree with expected state"
         },
         "step_2": {
-          "mcp": "@mcp:filesystem",
-          "action": "read_text_file to verify current content",
+          "cli": "cat",
+          "action": "Read file to verify current content",
           "compare": "Against intended final state"
         },
         "step_3": {
@@ -43,13 +43,13 @@
         },
         {
           "strategy": "Manual Verification",
-          "mcp": "@mcp:filesystem",
+          "cli": "cat",
           "action": "Read exact TargetContent location before retry",
           "ensure": "Whitespace and encoding match perfectly"
         }
       ],
       "prevention_next_time": {
-        "pre_edit": "@mcp:filesystem read file to verify TargetContent exists",
+        "pre_edit": "cat file to verify TargetContent exists",
         "during_edit": "@mcp:time track execution duration for timeout detection",
         "post_edit": "@mcp:git diff to verify changes immediately",
         "learning": "@mcp:memory store successful pattern for reuse"

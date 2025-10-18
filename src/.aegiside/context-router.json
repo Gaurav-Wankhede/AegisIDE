@@ -161,15 +161,15 @@
       "never_use": "cat or less for markdown (always pipe to glow)"
     },
     "delete_json": {
-      "method": "@mcp:filesystem",
+      "method": "rm (CLI)",
       "purpose": "Delete entire JSON files only",
-      "usage": "@mcp:filesystem delete 'file.json'",
+      "usage": "rm file.json",
       "note": "For deleting JSON keys, use jq terminal with del() function"
     },
     "write_json": {
-      "method": "@mcp:filesystem",
+      "method": "echo + redirection (CLI)",
       "purpose": "Create new JSON files from scratch only",
-      "usage": "@mcp:filesystem write 'file.json' with content",
+      "usage": "echo '{\"key\": \"value\"}' > file.json",
       "note": "For modifications, ALWAYS use jq terminal update pattern"
     },
     "forbidden": {
@@ -644,7 +644,8 @@
       "workflows": ["/fix"],
       "articles": [5, 15],
       "priority": 1,
-      "mcps_required": ["filesystem", "context7", "sequential-thinking", "git"],
+      "mcps_required": ["context7", "sequential-thinking", "git"],
+      "cli_required": ["jq", "sponge", "glow"],
       "rl_base_reward": 15,
       "rl_penalty": -30
     },
@@ -652,7 +653,8 @@
       "workflows": ["/research", "/next"],
       "articles": [4, 17, 23],
       "priority": 2,
-      "mcps_required": ["context7", "exa", "filesystem", "memory", "git"],
+      "mcps_required": ["context7", "exa", "memory", "git"],
+      "cli_required": ["jq", "sponge"],
       "rl_base_reward": 30,
       "rl_penalty": -10
     },
@@ -660,7 +662,8 @@
       "workflows": ["/validate"],
       "articles": [5, 15],
       "priority": 1,
-      "mcps_required": ["filesystem", "git"],
+      "mcps_required": ["git"],
+      "cli_required": ["jq", "sponge"],
       "rl_base_reward": 15,
       "rl_penalty": -30
     },
@@ -668,7 +671,8 @@
       "workflows": ["/optimize"],
       "articles": [20, 25],
       "priority": 3,
-      "mcps_required": ["sequential-thinking", "filesystem"],
+      "mcps_required": ["sequential-thinking"],
+      "cli_required": ["jq", "python3"],
       "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 25,
       "rl_penalty": -15
@@ -677,7 +681,8 @@
       "workflows": ["/status"],
       "articles": [16],
       "priority": 3,
-      "mcps_required": ["filesystem"],
+      "mcps_required": [],
+      "cli_required": ["jq"],
       "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 10,
       "rl_penalty": 0
@@ -686,7 +691,8 @@
       "workflows": ["/init"],
       "articles": [1, 2, 3],
       "priority": 1,
-      "mcps_required": ["filesystem", "memory"],
+      "mcps_required": ["memory"],
+      "cli_required": ["jq", "sponge", "date"],
       "manual_functions": ["time: terminal date", "math: Python eval()"],
       "rl_base_reward": 10,
       "rl_penalty": -15
@@ -695,7 +701,8 @@
       "workflows": ["/continue"],
       "articles": [6, 14],
       "priority": 1,
-      "mcps_required": ["filesystem", "memory"],
+      "mcps_required": ["memory"],
+      "cli_required": ["jq", "sponge", "date"],
       "manual_functions": ["time: terminal date"],
       "rl_base_reward": 5,
       "rl_penalty": -10
@@ -704,7 +711,8 @@
       "workflows": ["/bootstrap"],
       "articles": [14],
       "priority": 1,
-      "mcps_required": ["filesystem", "git", "memory"],
+      "mcps_required": ["git", "memory"],
+      "cli_required": ["jq", "sponge", "date"],
       "manual_functions": ["time: terminal date"],
       "rl_base_reward": 10,
       "rl_penalty": -15
@@ -713,7 +721,8 @@
       "workflows": ["/update"],
       "articles": [14],
       "priority": 2,
-      "mcps_required": ["filesystem", "git"],
+      "mcps_required": ["git"],
+      "cli_required": ["jq", "sponge"],
       "manual_functions": ["time: terminal date", "math: Python eval()"],
       "rl_base_reward": 8,
       "rl_penalty": -20
@@ -722,7 +731,8 @@
       "workflows": ["/oversight-checks-and-balances"],
       "articles": [26, 27, 28, 29],
       "priority": 2,
-      "mcps_required": ["sequential-thinking", "memory", "filesystem"],
+      "mcps_required": ["sequential-thinking", "memory"],
+      "cli_required": ["jq", "python3"],
       "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 25,
       "rl_penalty": -20
@@ -731,7 +741,8 @@
       "workflows": ["/memory-status"],
       "articles": [10, 42],
       "priority": 3,
-      "mcps_required": ["memory", "filesystem"],
+      "mcps_required": ["memory"],
+      "cli_required": ["jq", "python3"],
       "manual_functions": ["math: Python eval()"],
       "rl_base_reward": 5,
       "rl_penalty": -10
@@ -839,7 +850,7 @@
     "read_operations": {
       "tool": "@mcp:json-jq",
       "rule": "ALWAYS use @mcp:json-jq for reading memory bank files",
-      "forbidden": ["@mcp:filesystem read", "direct file read", "other MCPs"],
+      "forbidden": ["direct file read without @mcp:json-jq", "other MCPs"],
       "examples": [
         "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
         "@mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
@@ -847,10 +858,10 @@
       ]
     },
     "write_operations": {
-      "tool": "@mcp:filesystem",
-      "rule": "ALWAYS use @mcp:filesystem for editing memory bank files",
+      "tool": "jq + sponge (CLI)",
+      "rule": "ALWAYS use jq + sponge for editing memory bank files",
       "forbidden": ["@mcp:json-jq write", "direct file write", "other MCPs"],
-      "methods": ["write", "edit", "update"],
+      "methods": ["jq '.field = value' file.json | sponge file.json"],
       "validation": "Schema validation required after every write"
     },
     "enforcement": {
@@ -979,8 +990,7 @@
     "fallback_chains": {
       "context7": ["fetch", "memory_patterns", "halt_if_critical"],
       "fetch": ["context7", "memory_patterns", "continue_with_degraded"],
-      "memory": ["filesystem_json_read", "halt_if_critical"],
-      "filesystem": ["halt_immediately"],
+      "memory": ["json-jq_read", "halt_if_critical"],
       "git": ["manual_commit_required", "continue_workflow"]
     },
     "error_handling": {
@@ -988,7 +998,7 @@
       "timeout": "Retry once, then fallback",
       "unavailable": "Load error-recovery.json for alternative approach"
     },
-    "critical_mcps": ["filesystem", "memory"],
+    "critical_mcps": ["memory", "json-jq", "git"],
     "degraded_mode": "Continue with available MCPs, log issues to mistakes.json"
   },
   "approval_gate_flow": {
@@ -1109,8 +1119,7 @@
       "@mcp:sequential-thinking",
       "@mcp:memory",
       "@mcp:json-jq",
-      "@mcp:git",
-      "@mcp:filesystem"
+      "@mcp:git"
     ],
     "on_demand_mcps": [
       "@mcp:context7",
@@ -1130,7 +1139,6 @@
         "@mcp:json-jq": "query '.meta_version' from 'context-router.json'",
         "@mcp:memory": "search_nodes with query='health_check'",
         "@mcp:git": "status command",
-        "@mcp:filesystem": "read_file on known file",
         "@mcp:sequential-thinking": "simple 1-step thought"
       },
       "expected_response": "Any valid response within timeout = healthy"

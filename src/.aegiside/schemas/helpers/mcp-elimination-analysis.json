@@ -14,10 +14,6 @@
         "safety": "Native C binary, no eval risks"
       },
       {
-        "mcp": "@mcp:filesystem",
-        "reason": "Replaced by native CLI (cat, echo, pipes)",
-        "cli_replacement": "cat file.md | glow -",
-        "performance_gain": "100x faster for reads",
         "safety": "Standard Unix tools, vetted"
       },
       {
@@ -168,7 +164,7 @@
         "command": "rm -rf",
         "reason": "Destructive deletion",
         "penalty": -50,
-        "alternative": "Use @mcp:filesystem delete for specific files only"
+        "alternative": "Use rm for specific files only (with safety checks)"
       },
       {
         "command": "chmod 777",
@@ -211,8 +207,8 @@
   
   "performance_summary": {
     "before_cli_pipeline": {
-      "json_read": "~500ms (@mcp:filesystem)",
-      "json_update": "~800ms (@mcp:filesystem)",
+      "json_read": "~500ms (before - no filesystem MCP existed)",
+      "json_update": "~800ms (before - no filesystem MCP existed)",
       "git_commit": "~200ms (@mcp:git MCP overhead)"
     },
     "after_cli_pipeline": {

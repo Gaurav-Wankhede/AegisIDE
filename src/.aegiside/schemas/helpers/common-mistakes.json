@@ -3,6 +3,32 @@
   "last_updated": "2025-10-17T16:11:18+05:30",
   "description": "Common LLM mistakes when calling tools - learned from real failures",
   
+  "critical_hallucination_warnings": {
+    "filesystem_mcp_does_not_exist": {
+      "severity": "CRITICAL",
+      "description": "@mcp:filesystem is a HALLUCINATION - this MCP does not exist",
+      "reality": "All file operations use CLI tools: jq, sponge, cat, ls, rm, echo, glow",
+      "prevention": "NEVER reference @mcp:filesystem in any code or documentation",
+      "if_mentioned": "Immediately replace with CLI equivalent",
+      "examples": {
+        "wrong": "@mcp:filesystem read file.json",
+        "correct": "@mcp:json-jq query '.field' from 'file.json' OR cat file.json"
+      }
+    },
+    "only_7_real_mcps": {
+      "list": [
+        "@mcp:json-jq (JSON read operations)",
+        "@mcp:memory (knowledge graph)",
+        "@mcp:git (version control)",
+        "@mcp:sequential-thinking (reasoning)",
+        "@mcp:context7 (official docs)",
+        "@mcp:exa (code research)",
+        "@mcp:fetch (web scraping)"
+      ],
+      "enforcement": "Any other @mcp:* reference is a hallucination"
+    }
+  },
+  
   "user_friendly_error_translation": {
     "description": "UX Gap 4 fix: Translate technical errors to plain English for non-technical users",
     "schema_validation_failed": {
@@ -55,7 +81,7 @@
       "mcp_prevention": {
         "pre_call": "@mcp:memory check if similar mistake logged",
         "validation": "@mcp:sequential-thinking verify parameter types",
-        "logging": "@mcp:filesystem update mistakes.json on occurrence"
+        "logging": "jq + sponge update mistakes.json on occurrence"
       }
     },
 
@@ -64,7 +90,7 @@
       "description": "Tool claims success but changes not applied",
       "detection_protocol": [
         "@mcp:git diff immediately after edit",
-        "@mcp:filesystem read file to verify content",
+        "cat file to verify content",
         "@mcp:time timestamp comparison before/after",
         "@mcp:memory log discrepancy for pattern analysis"
       ],
@@ -76,7 +102,7 @@
       ],
       "mandatory_verification": {
         "step_1": "@mcp:git status after ANY file modification",
-        "step_2": "@mcp:filesystem get_file_info check mtime",
+        "step_2": "ls -la check mtime",
         "step_3": "@mcp:context7 if mismatch, research failure cause"
       }
     },
@@ -89,7 +115,7 @@
           "intended": "Replace function name in one location",
           "actual": "Replaced in wrong file or wrong function",
           "cause": "Ambiguous TargetContent match",
-          "prevention": "@mcp:filesystem read exact context before edit"
+          "prevention": "cat read exact context before edit"
         }
       ],
       "recovery": {
@@ -142,17 +168,54 @@
       "severity": "MEDIUM",
       "description": "Relative paths instead of absolute, or wrong directory",
       "prevention": {
-        "validation": "@mcp:filesystem always verify path exists before use",
-        "normalization": "Convert relative to absolute with @mcp:filesystem",
+        "validation": "ls always verify path exists before use",
+        "normalization": "Convert relative to absolute with pwd + path",
         "verification": "@mcp:git check working directory before operations"
       },
       "common_patterns": [
         {
           "wrong": "./src/file.ts (relative)",
           "correct": "/absolute/path/to/src/file.ts",
-          "tool": "@mcp:filesystem list_directory to get absolute paths"
+          "tool": "ls or find to get absolute paths"
         }
       ]
+    }
+  },
+
+  "mcp_usage_patterns": {
+    "json_jq_mcp": {
+      "purpose": "Read JSON fields from files (memory bank schemas, config files)",
+      "correct_usage": [
+        "@mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
+        "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
+        "@mcp:json-jq query '.mcps' from 'context-router.json'"
+      ],
+      "when_to_use": "Reading specific JSON fields from files",
+      "when_not_to_use": "Writing/updating JSON (use jq + sponge CLI instead)",
+      "common_mistakes": [
+        {
+          "wrong": "Using @mcp:json-jq to write JSON",
+          "correct": "Use jq + sponge: jq '.field = value' file.json | sponge file.json"
+        },
+        {
+          "wrong": "Reading entire large JSON file",
+          "correct": "Query specific field: @mcp:json-jq query '$.specific.field' from 'file.json'"
+        }
+      ]
+    },
+    "memory_mcp": {
+      "purpose": "Knowledge graph operations (entities, relations, patterns)",
+      "correct_usage": [
+        "@mcp:memory create_entities with pattern data",
+        "@mcp:memory search_nodes with query='error pattern'",
+        "@mcp:memory add_observations to existing entities"
+      ],
+      "integration": "Store all learned patterns for reuse (+20 RL per reuse)"
+    },
+    "sequential_thinking_mcp": {
+      "purpose": "MANDATORY before every action (≥3 thoughts)",
+      "correct_usage": "Break down task into validation → execution → verification steps",
+      "violation_penalty": "-15 RL if skipped"
     }
   },
 
@@ -257,7 +320,7 @@
 
   "learning_integration": {
     "on_mistake": {
-      "immediate": "@mcp:filesystem append to mistakes.json",
+      "immediate": "jq + sponge append to mistakes.json",
       "analysis": "@mcp:context7 research root cause",
       "storage": "@mcp:memory store pattern with metadata",
       "prevention": "@mcp:sequential-thinking add validation step"
@@ -273,6 +336,6 @@
   "constitutional_compliance": {
     "article_reference": "Article XV: Tool Usage & Error Prevention",
     "mistake_tolerance": "ZERO - All mistakes must be logged and learned from",
-    "enforcement": "@mcp:filesystem blocks next task until mistake documented"
+    "enforcement": "System blocks next task until mistake documented via jq"
   }
 }

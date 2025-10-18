@@ -11,7 +11,7 @@
     },
     "validation_mcps": {
       "pre_call": ["@mcp:sequential-thinking", "@mcp:memory"],
-      "execution": ["@mcp:filesystem", "@mcp:git"],
+      "execution": ["@mcp:git"],
       "post_call": ["@mcp:context7", "@mcp:memory"],
       "fallback": ["@mcp:fetch", "@mcp:time"]
     }
@@ -41,11 +41,11 @@
           "mistake": "Partial whitespace match",
           "wrong": "TargetContent missing leading/trailing spaces",
           "correct": "Include ALL whitespace in exact match",
-          "prevention": "@mcp:filesystem read_text_file to verify exact content"
+          "prevention": "cat file to verify exact content, then use jq if JSON"
         }
       ],
       "mcp_validation": {
-        "pre_call": "@mcp:filesystem read file to verify TargetContent exists",
+        "pre_call": "cat file to verify TargetContent exists",
         "post_call": "@mcp:git diff to verify changes applied correctly",
         "on_error": "@mcp:context7 resolve-library-id for tool documentation"
       }
@@ -65,7 +65,7 @@
       "validation": {
         "type_check": "edits MUST be array of objects, not string",
         "pre_call": "@mcp:memory retrieve previous edit patterns",
-        "execution": "@mcp:filesystem validates path exists",
+        "execution": "ls validates path exists",
         "post_call": "@mcp:git status to confirm changes"
       }
     },
@@ -81,7 +81,7 @@
         "Must create parent directories first with mcp3_create_directory"
       ],
       "mcp_safety": {
-        "pre_call": "@mcp:filesystem get_file_info to check if file exists",
+        "pre_call": "ls -la to check if file exists",
         "on_exists": "HALT and switch to mcp3_edit_file instead",
         "post_call": "@mcp:memory store creation pattern for future reference"
       }
@@ -97,7 +97,7 @@
       "validation_flow": [
         "@mcp:sequential-thinking decompose command safety",
         "@mcp:memory check if command pattern previously failed",
-        "@mcp:filesystem verify Cwd exists",
+        "ls verify Cwd exists",
         "@mcp:time timestamp for execution tracking"
       ],
       "error_recovery": {
@@ -117,7 +117,7 @@
       },
       "mcp_optimization": {
         "pre_search": "@mcp:memory check if similar query cached",
-        "execution": "@mcp:filesystem validates SearchPath",
+        "execution": "ls validates SearchPath",
         "post_search": "@mcp:memory cache results for 5 minutes",
         "pattern_learning": "@mcp:context7 improve regex patterns over time"
       }
@@ -145,14 +145,14 @@
       ]
     },
     "step_3_execution": {
-      "mcp": "@mcp:filesystem or tool-specific MCP",
+      "mcp": "tool-specific MCP or CLI",
       "action": "Execute tool call with validated parameters",
       "monitoring": "@mcp:time track execution duration"
     },
     "step_4_verification": {
       "mcp": "@mcp:git",
       "action": "Verify changes applied correctly",
-      "fallback": "@mcp:filesystem re-read to confirm"
+      "fallback": "cat re-read to confirm"
     },
     "step_5_learning": {
       "mcp": "@mcp:memory",
@@ -168,12 +168,12 @@
     "problem": "Tool claims success but edit not applied",
     "detection_strategy": {
       "step_1": "@mcp:git diff to verify actual file changes",
-      "step_2": "@mcp:filesystem read_text_file to confirm content",
+      "step_2": "cat to confirm content",
       "step_3": "@mcp:context7 if mismatch, query why edit failed"
     },
     "prevention": [
       "Always verify edits with @mcp:git status after tool call",
-      "Use @mcp:filesystem get_file_info to check modification time",
+      "Use ls -la to check modification time",
       "Store verification pattern in @mcp:memory for consistency"
     ]
   },
@@ -201,7 +201,7 @@
       "symptoms": "Wrong edit applied without error message",
       "recovery": [
         "@mcp:git revert to last known good state",
-        "@mcp:filesystem read correct content from backup",
+        "cat to read correct content from backup",
         "@mcp:memory log incorrect pattern to avoid repetition",
         "@mcp:context7 analyze why wrong match occurred"
       ]
@@ -213,7 +213,7 @@
     "enforcement": {
       "pre_call_validation": "MANDATORY before ANY tool call",
       "post_call_verification": "MANDATORY after ANY file modification",
-      "failure_logging": "mistakes.json updated via @mcp:filesystem",
+      "failure_logging": "mistakes.json updated via jq + sponge CLI",
       "pattern_storage": "systemPatterns.json updated via @mcp:memory"
     },
     "compliance_threshold": "100% - Zero tolerance for tool formatting errors"
