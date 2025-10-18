@@ -62,5 +62,5 @@
   "related_articles": ["article-5", "article-15"],
   "schemas_referenced": ["activeContext", "mistakes", "systemPatterns", "progress", "memory"],
   "mcps_referenced": ["git", "context7", "json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/03-fundamental-rights/article-7.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/03-fundamental-rights/article-7.json"
 }

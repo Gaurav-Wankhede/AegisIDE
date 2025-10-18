@@ -72,5 +72,5 @@
   "related_articles": ["article-9", "article-17"],
   "schemas_referenced": ["systemPatterns", "mistakes", "activeContext", "memory"],
   "mcps_referenced": ["context7", "fetch", "json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-23.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/05-dpsp/article-23.json"
 }

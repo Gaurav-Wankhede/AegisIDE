@@ -62,5 +62,5 @@
   "related_articles": ["article-26", "article-30"],
   "schemas_referenced": ["scratchpad", "systemPatterns", "mistakes", "progress", "activeContext", "memory"],
   "mcps_referenced": ["context7", "fetch", "sequential-thinking", "git", "json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/03-fundamental-rights/article-11.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/03-fundamental-rights/article-11.json"
 }

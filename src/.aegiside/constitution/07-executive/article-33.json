@@ -51,5 +51,5 @@
   "related_articles": ["article-26", "article-32", "article-34"],
   "schemas_referenced": ["scratchpad", "kanban", "roadmap", "activeContext", "progress", "systemPatterns"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/07-executive/article-33.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/07-executive/article-33.json"
 }

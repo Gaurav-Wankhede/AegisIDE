@@ -213,5 +213,5 @@
     "article-2",
     "article-3"
   ],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/01-preamble/preamble.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/01-preamble/preamble.json"
 }

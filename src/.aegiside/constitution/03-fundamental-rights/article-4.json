@@ -53,5 +53,5 @@
   "related_articles": ["article-5", "article-6", "article-12"],
   "schemas_referenced": ["scratchpad", "kanban", "activeContext", "mistakes", "systemPatterns", "progress", "memory"],
   "mcps_referenced": ["json-jq", "sequential-thinking", "context7", "fetch"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/03-fundamental-rights/article-4.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/03-fundamental-rights/article-4.json"
 }

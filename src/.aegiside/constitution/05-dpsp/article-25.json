@@ -57,5 +57,5 @@
   "related_articles": ["article-12", "article-17"],
   "schemas_referenced": ["progress", "memory", "systemPatterns", "mistakes", "activeContext"],
   "mcps_referenced": ["context7", "exa", "json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-25.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/05-dpsp/article-25.json"
 }

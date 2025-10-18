@@ -283,8 +283,8 @@ else
     echo "  📥 Downloading AegisIDE framework rules..."
     
     # Download to temp file first
-    if ! curl -sL "$GITHUB_REPO/src/global-rules.md" > /tmp/aegiside_rules.md; then
-        echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
+    if ! curl -sL "$GITHUB_REPO/src/system-prompt.md" > /tmp/aegiside_rules.md; then
+        echo "  ❌ ERROR: Failed to download AegisIDE system prompt from GitHub"
         exit 1
     fi
     

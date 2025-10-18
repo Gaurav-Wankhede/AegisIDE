@@ -56,5 +56,5 @@
   "related_articles": ["article-33", "article-34"],
   "schemas_referenced": ["systemPatterns", "activeContext", "mistakes", "progress", "memory"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/07-executive/article-35.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/07-executive/article-35.json"
 }

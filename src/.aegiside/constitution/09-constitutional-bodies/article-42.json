@@ -74,5 +74,5 @@
   "related_articles": ["article-10", "article-17"],
   "schemas_referenced": ["memory", "systemPatterns", "progress"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/09-constitutional-bodies/article-42.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/09-constitutional-bodies/article-42.json"
 }

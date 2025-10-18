@@ -63,5 +63,5 @@
   "related_articles": ["article-10", "article-12", "article-25"],
   "schemas_referenced": ["systemPatterns", "memory", "mistakes", "progress"],
   "mcps_referenced": ["json-jq", "context7", "exa", "sequential-thinking"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/04-fundamental-duties/article-17.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/04-fundamental-duties/article-17.json"
 }

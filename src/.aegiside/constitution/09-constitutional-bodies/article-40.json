@@ -53,5 +53,5 @@
   "related_articles": ["article-29", "article-5"],
   "schemas_referenced": ["mistakes", "kanban", "progress", "systemPatterns", "memory"],
   "mcps_referenced": ["context7", "fetch", "json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/09-constitutional-bodies/article-40.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/09-constitutional-bodies/article-40.json"
 }

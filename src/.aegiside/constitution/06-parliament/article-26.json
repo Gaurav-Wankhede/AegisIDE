@@ -54,5 +54,5 @@
   "related_articles": ["article-27", "article-28", "article-32", "article-33"],
   "schemas_referenced": ["progress", "activeContext", "scratchpad", "mistakes", "systemPatterns", "kanban", "memory"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/06-parliament/article-26.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/06-parliament/article-26.json"
 }

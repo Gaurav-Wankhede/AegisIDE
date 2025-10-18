@@ -49,5 +49,5 @@
   "related_articles": ["article-8", "article-13"],
   "schemas_referenced": ["activeContext", "systemPatterns", "mistakes", "progress", "memory"],
   "mcps_referenced": ["json-jq", "git"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/04-fundamental-duties/article-18.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/04-fundamental-duties/article-18.json"
 }

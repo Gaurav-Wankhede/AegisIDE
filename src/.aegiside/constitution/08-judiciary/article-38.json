@@ -55,5 +55,5 @@
   "related_articles": ["article-32", "article-37"],
   "schemas_referenced": ["memory", "progress", "systemPatterns"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/08-judiciary/article-38.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/08-judiciary/article-38.json"
 }

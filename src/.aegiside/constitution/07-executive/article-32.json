@@ -57,5 +57,5 @@
   "related_articles": ["article-5", "article-26", "article-30", "article-36"],
   "schemas_referenced": ["activeContext", "mistakes", "memory", "kanban"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/07-executive/article-32.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/07-executive/article-32.json"
 }

@@ -68,5 +68,5 @@
   "related_articles": ["article-5", "article-22"],
   "schemas_referenced": ["mistakes", "systemPatterns", "progress"],
   "mcps_referenced": ["json-jq"],
-  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/05-dpsp/article-21.json"
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/05-dpsp/article-21.json"
 }
