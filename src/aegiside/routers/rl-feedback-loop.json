@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-19T00:57:46+05:30",
+  "description": "RL feedback loop for constitutional article selection optimization",
+  "feedback_loop": {
+    "execution_frequency": "after_each_task",
+    "adjustment_frequency": "weekly",
+    "learning_rate": 0.1,
+    "effectiveness_threshold": 0.7,
+    "false_positive_limit": 0.3
+  },
+  "tracking_workflow": {
+    "on_article_load": [
+      "1. Record timestamp, user_request, articles_loaded",
+      "2. Increment article invocation counter",
+      "3. Calculate semantic_match_score from trigger overlap",
+      "4. Estimate token_cost (600 per article)"
+    ],
+    "on_task_complete": [
+      "1. Determine which articles were actually applied",
+      "2. Calculate selection_accuracy = applied / loaded",
+      "3. Record RL reward from task outcome",
+      "4. Update article_effectiveness metrics",
+      "5. Store selection_history entry in progress.json"
+    ]
+  },
+  "adjustment_algorithm": {
+    "description": "PPO-based trigger sensitivity adjustment",
+    "formula": "new_sensitivity = old_sensitivity + learning_rate × (effectiveness - threshold)",
+    "rules": [
+      "IF effectiveness < 0.6: Reduce sensitivity by 0.1 (fewer false positives)",
+      "IF false_positive_rate > 0.3: Reduce sensitivity by 0.15",
+      "IF effectiveness > 0.85: Increase sensitivity by 0.05 (broader coverage)",
+      "IF rl_net_contribution consistently negative: Flag article for review"
+    ],
+    "bounds": {
+      "min_sensitivity": 0.5,
+      "max_sensitivity": 0.95
+    }
+  },
+  "optimization_targets": {
+    "selection_accuracy": {"target": 0.85, "current": 0.0},
+    "false_positive_rate": {"target": 0.15, "current": 0.0},
+    "token_efficiency": {"target": 0.90, "description": "90% savings vs full load"},
+    "rl_contribution_positive": {"target": 0.80, "description": "80% of selections yield positive RL"}
+  },
+  "weekly_review_process": [
+    "1. Aggregate article_selection_history from past week",
+    "2. Calculate per-article effectiveness metrics",
+    "3. Identify underperforming articles (effectiveness < 0.6)",
+    "4. Adjust trigger_sensitivity in progress.json",
+    "5. Update semantic_contexts in constitutional-index.json if needed",
+    "6. Store adjustment rationale in systemPatterns.json"
+  ]
+}

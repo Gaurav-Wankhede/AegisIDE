@@ -1,10 +1,14 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2025-10-19T00:08:30+05:30",
+  "last_updated": "2025-10-19T00:58:50+0530",
   "github_base": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution",
   "total_articles": 42,
   "loading_strategy": "progressive_disclosure",
-  "startup_load": ["article-0", "article-4", "article-13"],
+  "startup_load": [
+    "article-0",
+    "article-4",
+    "article-13"
+  ],
   "articles": [
     {
       "id": "article-0",
@@ -14,7 +18,24 @@
       "github_path": "/01-preamble/preamble.md",
       "tokens": 500,
       "priority": "critical",
-      "triggers": ["initialization", "sovereignty", "definition", "framework"]
+      "triggers": [
+        "initialization",
+        "sovereignty",
+        "definition",
+        "framework"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-1",
@@ -24,7 +45,23 @@
       "github_path": "/02-preliminary/article-1.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["state", "jurisdiction", "sovereignty"]
+      "triggers": [
+        "state",
+        "jurisdiction",
+        "sovereignty"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-2",
@@ -34,7 +71,24 @@
       "github_path": "/02-preliminary/article-2.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["workspace", "territory", "jurisdiction", "ide"]
+      "triggers": [
+        "workspace",
+        "territory",
+        "jurisdiction",
+        "ide"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-3",
@@ -44,7 +98,23 @@
       "github_path": "/02-preliminary/article-3.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["citizenship", "rights", "agents"]
+      "triggers": [
+        "citizenship",
+        "rights",
+        "agents"
+      ],
+      "semantic_contexts": [
+        "general context"
+      ],
+      "anti_triggers": [
+        "bypass recommended"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-4",
@@ -54,7 +124,27 @@
       "github_path": "/03-fundamental-rights/article-4.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["autonomy", "execution", "permission", "self-teaching"]
+      "triggers": [
+        "autonomy",
+        "execution",
+        "permission",
+        "self-teaching"
+      ],
+      "semantic_contexts": [
+        "autonomous decision-making",
+        "no permission workflow",
+        "self-improvement loop"
+      ],
+      "anti_triggers": [
+        "requires approval",
+        "manual intervention"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-5",
@@ -64,7 +154,28 @@
       "github_path": "/03-fundamental-rights/article-5.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["validation", "quality", "halt", "emd", "zero-tolerance"]
+      "triggers": [
+        "validation",
+        "quality",
+        "halt",
+        "emd",
+        "zero-tolerance"
+      ],
+      "semantic_contexts": [
+        "validation required",
+        "quality assurance",
+        "error handling"
+      ],
+      "anti_triggers": [
+        "skip validation",
+        "quick prototype"
+      ],
+      "rl_metrics": {
+        "invocations": 0,
+        "successful_applications": 0,
+        "effectiveness": 0.0,
+        "confidence_score": 0.8
+      }
     },
     {
       "id": "article-6",
@@ -74,7 +185,12 @@
       "github_path": "/03-fundamental-rights/article-6.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["continuous", "parallel", "recovery", "uptime"]
+      "triggers": [
+        "continuous",
+        "parallel",
+        "recovery",
+        "uptime"
+      ]
     },
     {
       "id": "article-7",
@@ -84,7 +200,12 @@
       "github_path": "/03-fundamental-rights/article-7.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["security", "access", "scanning", "privilege"]
+      "triggers": [
+        "security",
+        "access",
+        "scanning",
+        "privilege"
+      ]
     },
     {
       "id": "article-8",
@@ -94,7 +215,11 @@
       "github_path": "/03-fundamental-rights/article-8.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["communication", "transparency", "feedback"]
+      "triggers": [
+        "communication",
+        "transparency",
+        "feedback"
+      ]
     },
     {
       "id": "article-9",
@@ -104,7 +229,12 @@
       "github_path": "/03-fundamental-rights/article-9.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["mcp", "tools", "integration", "fallback"]
+      "triggers": [
+        "mcp",
+        "tools",
+        "integration",
+        "fallback"
+      ]
     },
     {
       "id": "article-10",
@@ -114,7 +244,12 @@
       "github_path": "/03-fundamental-rights/article-10.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["knowledge", "memory", "patterns", "graph"]
+      "triggers": [
+        "knowledge",
+        "memory",
+        "patterns",
+        "graph"
+      ]
     },
     {
       "id": "article-11",
@@ -124,7 +259,11 @@
       "github_path": "/03-fundamental-rights/article-11.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["amendment", "evolution", "change"]
+      "triggers": [
+        "amendment",
+        "evolution",
+        "change"
+      ]
     },
     {
       "id": "article-12",
@@ -134,7 +273,13 @@
       "github_path": "/03-fundamental-rights/article-12.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["rl", "learning", "rewards", "penalties", "ppo"]
+      "triggers": [
+        "rl",
+        "learning",
+        "rewards",
+        "penalties",
+        "ppo"
+      ]
     },
     {
       "id": "article-13",
@@ -144,7 +289,12 @@
       "github_path": "/04-fundamental-duties/article-13.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["mcp-duty", "mandatory", "trail", "violation"]
+      "triggers": [
+        "mcp-duty",
+        "mandatory",
+        "trail",
+        "violation"
+      ]
     },
     {
       "id": "article-14",
@@ -154,7 +304,11 @@
       "github_path": "/04-fundamental-duties/article-14.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["schema-update", "atomic", "memory-bank"]
+      "triggers": [
+        "schema-update",
+        "atomic",
+        "memory-bank"
+      ]
     },
     {
       "id": "article-15",
@@ -164,7 +318,11 @@
       "github_path": "/04-fundamental-duties/article-15.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["testing", "validation-duty", "multi-language"]
+      "triggers": [
+        "testing",
+        "validation-duty",
+        "multi-language"
+      ]
     },
     {
       "id": "article-16",
@@ -174,7 +332,11 @@
       "github_path": "/04-fundamental-duties/article-16.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["compliance", "scoring", "monitoring"]
+      "triggers": [
+        "compliance",
+        "scoring",
+        "monitoring"
+      ]
     },
     {
       "id": "article-17",
@@ -184,7 +346,11 @@
       "github_path": "/04-fundamental-duties/article-17.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["patterns", "reuse", "prevention"]
+      "triggers": [
+        "patterns",
+        "reuse",
+        "prevention"
+      ]
     },
     {
       "id": "article-18",
@@ -194,7 +360,11 @@
       "github_path": "/04-fundamental-duties/article-18.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["documentation", "logging", "audit"]
+      "triggers": [
+        "documentation",
+        "logging",
+        "audit"
+      ]
     },
     {
       "id": "article-19",
@@ -204,7 +374,11 @@
       "github_path": "/04-fundamental-duties/article-19.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["consensus", "democracy", "execution"]
+      "triggers": [
+        "consensus",
+        "democracy",
+        "execution"
+      ]
     },
     {
       "id": "article-20",
@@ -214,7 +388,11 @@
       "github_path": "/05-dpsp/article-20.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["free-tier", "optimization", "cost"]
+      "triggers": [
+        "free-tier",
+        "optimization",
+        "cost"
+      ]
     },
     {
       "id": "article-21",
@@ -224,7 +402,12 @@
       "github_path": "/05-dpsp/article-21.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["emd", "modular", "design", "lines"]
+      "triggers": [
+        "emd",
+        "modular",
+        "design",
+        "lines"
+      ]
     },
     {
       "id": "article-22",
@@ -234,7 +417,11 @@
       "github_path": "/05-dpsp/article-22.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["duplication", "reuse", "files"]
+      "triggers": [
+        "duplication",
+        "reuse",
+        "files"
+      ]
     },
     {
       "id": "article-23",
@@ -244,7 +431,11 @@
       "github_path": "/05-dpsp/article-23.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["context7", "documentation", "sources"]
+      "triggers": [
+        "context7",
+        "documentation",
+        "sources"
+      ]
     },
     {
       "id": "article-24",
@@ -254,7 +445,11 @@
       "github_path": "/05-dpsp/article-24.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["cross-ide", "compatibility", "universal"]
+      "triggers": [
+        "cross-ide",
+        "compatibility",
+        "universal"
+      ]
     },
     {
       "id": "article-25",
@@ -264,7 +459,11 @@
       "github_path": "/05-dpsp/article-25.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["learning", "improvement", "evolution"]
+      "triggers": [
+        "learning",
+        "improvement",
+        "evolution"
+      ]
     },
     {
       "id": "article-26",
@@ -274,7 +473,11 @@
       "github_path": "/06-parliament/article-26.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["parliament", "voting", "branches"]
+      "triggers": [
+        "parliament",
+        "voting",
+        "branches"
+      ]
     },
     {
       "id": "article-27",
@@ -284,7 +487,11 @@
       "github_path": "/06-parliament/article-27.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["proposal", "ias", "briefing"]
+      "triggers": [
+        "proposal",
+        "ias",
+        "briefing"
+      ]
     },
     {
       "id": "article-28",
@@ -294,7 +501,11 @@
       "github_path": "/06-parliament/article-28.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["debate", "consensus", "voting"]
+      "triggers": [
+        "debate",
+        "consensus",
+        "voting"
+      ]
     },
     {
       "id": "article-29",
@@ -304,7 +515,11 @@
       "github_path": "/06-parliament/article-29.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["opposition", "challenge", "shadow"]
+      "triggers": [
+        "opposition",
+        "challenge",
+        "shadow"
+      ]
     },
     {
       "id": "article-30",
@@ -314,7 +529,11 @@
       "github_path": "/06-parliament/article-30.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["veto", "emergency", "override"]
+      "triggers": [
+        "veto",
+        "emergency",
+        "override"
+      ]
     },
     {
       "id": "article-31",
@@ -324,7 +543,11 @@
       "github_path": "/06-parliament/article-31.md",
       "tokens": 600,
       "priority": "low",
-      "triggers": ["sessions", "continuity", "schedule"]
+      "triggers": [
+        "sessions",
+        "continuity",
+        "schedule"
+      ]
     },
     {
       "id": "article-32",
@@ -334,7 +557,11 @@
       "github_path": "/07-executive/article-32.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["chief-justice", "halt", "guardian"]
+      "triggers": [
+        "chief-justice",
+        "halt",
+        "guardian"
+      ]
     },
     {
       "id": "article-33",
@@ -344,7 +571,11 @@
       "github_path": "/07-executive/article-33.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["prime-minister", "pm", "execution"]
+      "triggers": [
+        "prime-minister",
+        "pm",
+        "execution"
+      ]
     },
     {
       "id": "article-34",
@@ -354,7 +585,11 @@
       "github_path": "/07-executive/article-34.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["ministers", "council", "portfolios"]
+      "triggers": [
+        "ministers",
+        "council",
+        "portfolios"
+      ]
     },
     {
       "id": "article-35",
@@ -364,7 +599,11 @@
       "github_path": "/07-executive/article-35.md",
       "tokens": 600,
       "priority": "low",
-      "triggers": ["orders", "directives", "commands"]
+      "triggers": [
+        "orders",
+        "directives",
+        "commands"
+      ]
     },
     {
       "id": "article-36",
@@ -374,7 +613,11 @@
       "github_path": "/08-judiciary/article-36.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["interpretation", "precedent", "rulings"]
+      "triggers": [
+        "interpretation",
+        "precedent",
+        "rulings"
+      ]
     },
     {
       "id": "article-37",
@@ -384,7 +627,11 @@
       "github_path": "/08-judiciary/article-37.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["tribunal", "impeachment", "violations"]
+      "triggers": [
+        "tribunal",
+        "impeachment",
+        "violations"
+      ]
     },
     {
       "id": "article-38",
@@ -394,7 +641,11 @@
       "github_path": "/08-judiciary/article-38.md",
       "tokens": 600,
       "priority": "low",
-      "triggers": ["independence", "accountability", "judiciary"]
+      "triggers": [
+        "independence",
+        "accountability",
+        "judiciary"
+      ]
     },
     {
       "id": "article-39",
@@ -404,7 +655,11 @@
       "github_path": "/09-constitutional-bodies/article-39.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["ias", "administrative", "bureaucracy"]
+      "triggers": [
+        "ias",
+        "administrative",
+        "bureaucracy"
+      ]
     },
     {
       "id": "article-40",
@@ -414,7 +669,11 @@
       "github_path": "/09-constitutional-bodies/article-40.md",
       "tokens": 600,
       "priority": "medium",
-      "triggers": ["shadow-cabinet", "opposition", "quality"]
+      "triggers": [
+        "shadow-cabinet",
+        "opposition",
+        "quality"
+      ]
     },
     {
       "id": "article-41",
@@ -424,7 +683,11 @@
       "github_path": "/09-constitutional-bodies/article-41.md",
       "tokens": 600,
       "priority": "critical",
-      "triggers": ["mcp-infrastructure", "coordination", "servers"]
+      "triggers": [
+        "mcp-infrastructure",
+        "coordination",
+        "servers"
+      ]
     },
     {
       "id": "article-42",
@@ -434,18 +697,133 @@
       "github_path": "/09-constitutional-bodies/article-42.md",
       "tokens": 600,
       "priority": "high",
-      "triggers": ["knowledge-graph", "aegiskg", "collective"]
+      "triggers": [
+        "knowledge-graph",
+        "aegiskg",
+        "collective"
+      ]
     }
   ],
   "on_demand_triggers": {
-    "autonomy": ["article-4", "article-6", "article-12"],
-    "validation": ["article-5", "article-15", "article-16"],
-    "mcp_usage": ["article-9", "article-13", "article-41"],
-    "memory": ["article-10", "article-14", "article-42"],
-    "parliamentary": ["article-26", "article-27", "article-28", "article-29"],
-    "quality": ["article-5", "article-21", "article-22"],
-    "security": ["article-7"],
-    "learning": ["article-12", "article-17", "article-25"],
-    "governance": ["article-32", "article-33", "article-39", "article-40"]
+    "autonomy": [
+      "article-4",
+      "article-6",
+      "article-12"
+    ],
+    "validation": [
+      "article-5",
+      "article-15",
+      "article-16"
+    ],
+    "mcp_usage": [
+      "article-9",
+      "article-13",
+      "article-41"
+    ],
+    "memory": [
+      "article-10",
+      "article-14",
+      "article-42"
+    ],
+    "parliamentary": [
+      "article-26",
+      "article-27",
+      "article-28",
+      "article-29"
+    ],
+    "quality": [
+      "article-5",
+      "article-21",
+      "article-22"
+    ],
+    "security": [
+      "article-7"
+    ],
+    "learning": [
+      "article-12",
+      "article-17",
+      "article-25"
+    ],
+    "governance": [
+      "article-32",
+      "article-33",
+      "article-39",
+      "article-40"
+    ],
+    "semantic_contexts": {
+      "autonomy": [
+        "autonomous decision-making",
+        "no permission workflow",
+        "self-improvement loop",
+        "parallel processing",
+        "continuous execution"
+      ],
+      "validation": [
+        "validation required",
+        "quality assurance",
+        "error handling",
+        "zero-tolerance",
+        "HALT condition"
+      ],
+      "mcp_usage": [
+        "tool usage",
+        "MCP operations",
+        "infrastructure",
+        "fallback handling",
+        "integration"
+      ],
+      "memory": [
+        "memory operations",
+        "knowledge retrieval",
+        "pattern application",
+        "schema updates",
+        "learning storage"
+      ],
+      "governance": [
+        "governance decision",
+        "parliamentary approval",
+        "constitutional interpretation",
+        "consensus building"
+      ],
+      "quality": [
+        "code structure",
+        "file organization",
+        "documentation research",
+        "duplication prevention",
+        "EMD compliance"
+      ]
+    },
+    "anti_contexts": {
+      "autonomy": [
+        "requires user approval",
+        "manual intervention",
+        "strategic decision 99.5%"
+      ],
+      "validation": [
+        "skip validation",
+        "quick prototype",
+        "testing optional"
+      ],
+      "mcp_usage": [
+        "direct CLI usage",
+        "bypass MCPs",
+        "manual operations"
+      ],
+      "memory": [
+        "skip schema update",
+        "partial update",
+        "single schema only"
+      ],
+      "governance": [
+        "bypass governance",
+        "unilateral decision",
+        "skip approval"
+      ],
+      "quality": [
+        "large files acceptable",
+        "create new file always",
+        "skip official docs"
+      ]
+    }
   }
 }

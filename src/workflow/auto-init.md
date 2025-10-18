@@ -1,57 +1,114 @@
 ---
-description: Automatic session initialization with immediate constitutional awareness
+description: Automatic session initialization with metadata injection + Constitutional awareness
 ---
 
-# Auto-Init — NLU-Based Session Intelligence
+# /auto-init — Metadata Injection + Constitutional Awareness
 
-## Dynamic Constitutional Display
+## 1. Load Constitutional Metadata Catalog (500 tokens)
 
 ```bash
-# Load constitutional awareness from context-router.json
-display_constitutional_awareness() {
-  local memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
-  local rl_score=$(@mcp:json-jq query '.total_rl_score // 0' from "${memory_bank}progress.json")
-  local schema_health=$(@mcp:json-jq query '.memory_bank.schemas | length' from 'context-router.json')
-  
-  # Dynamic header from context-router
-  echo "" >&2
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
-  echo "" >&2
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
-  echo "" >&2
-  
-  # Core MCPs from router
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
-  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
-    echo "  $mcp" >&2
-  done
-  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
-    echo "  $mcp" >&2
-  done
-  echo "" >&2
-  
-  # Memory operations from router
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
-  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
-    echo "  $op" >&2
-  done
-  echo "" >&2
-  
-  # Violations reference from router
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
-  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
-    echo "$violation" >&2
-  done
-  echo "" >&2
-  
-  # Personalized status
-  echo "📊 CURRENT STATUS:" >&2
-  echo "  • RL Score: $rl_score" >&2
-  echo "  • Schema Health: $schema_health/8" >&2
-  echo "" >&2
-  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
-  echo "" >&2
-}
+# Inject lightweight catalog into session context
+catalog=$(@mcp:json-jq query '.constitutional_catalog' from 'routers/constitutional-metadata.json')
+
+echo "🛡️ CONSTITUTIONAL METADATA INJECTED" >&2
+echo "→ 6 Categories: autonomy, validation, mcp_usage, memory, governance, quality" >&2
+echo "→ Token Budget: 500 (vs 25,200 for full load = 98% savings)" >&2
+```
+
+## 2. Pre-Load Critical Articles (1,800 tokens)
+
+```bash
+# Article 0: Preamble - Constitutional foundation
+article_0=$(@mcp:json-jq query '.' from 'constitution/01-preamble/preamble.json')
+
+# Article 4: Autonomous Execution - 0-99% band
+article_4=$(@mcp:json-jq query '.' from 'constitution/03-fundamental-rights/article-4.json')
+
+# Article 13: MCP Mandate - 6 mandatory MCPs
+article_13=$(@mcp:json-jq query '.' from 'constitution/04-fundamental-duties/article-13.json')
+
+echo "→ 3 Critical Articles Loaded: article-0, article-4, article-13" >&2
+```
+
+## 3. Initialize RL Selection Tracking
+
+```bash
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'routers/context-router.json')
+
+# Initialize article_selection_history if not exists
+jq --arg ts "$(date '+%Y-%m-%dT%H:%M:%S%z')" '
+if .article_selection_history then . else 
+  .article_selection_history = [] |
+  .article_effectiveness = {} |
+  .trigger_sensitivity = {
+    "autonomy": 0.7,
+    "validation": 0.8,
+    "mcp_usage": 0.75,
+    "memory": 0.7,
+    "governance": 0.6,
+    "quality": 0.75
+  } |
+  .metadata_injection_stats = {
+    "total_sessions": 0,
+    "avg_articles_per_session": 0,
+    "token_savings_vs_full_load": 0,
+    "catalog_load_time_ms": 0
+  }
+end |
+.metadata_injection_stats.total_sessions += 1 |
+.metadata_injection_stats.last_session = $ts
+' "${memory_bank}progress.json" | sponge "${memory_bank}progress.json"
+
+echo "→ RL Selection Tracking Initialized" >&2
+```
+
+## 4. Enable NLU Intent Recognition
+
+```bash
+# Load workflow triggers
+nlu_engine=$(@mcp:json-jq query '.workflow_auto_triggers.nlu_engine' from 'routers/workflows.json')
+
+echo "→ NLU Engine Active: Intent recognition enabled" >&2
+echo "→ Semantic Matching: Claude's native reasoning" >&2
+```
+
+## 5. Display Constitutional Status
+
+```bash
+echo "" >&2
+echo "═══════════════════════════════════════════════════════════" >&2
+echo "  ✅ CONSTITUTIONAL AWARENESS ACTIVE" >&2
+echo "═══════════════════════════════════════════════════════════" >&2
+echo "" >&2
+echo "📊 Metadata Injection:" >&2
+echo "  • Catalog: 6 categories × ~80 tokens = 500 tokens loaded" >&2
+echo "  • Critical Articles: 3 pre-loaded (article-0, 4, 13)" >&2
+echo "  • Progressive Loading: 39 articles on-demand via triggers" >&2
+echo "" >&2
+echo "🎯 Semantic Discovery Enabled:" >&2
+echo "  • Claude matches user intent → constitutional catalog" >&2
+echo "  • RL feedback optimizes selection accuracy over time" >&2
+echo "  • Token savings: ~98% vs full article loading" >&2
+echo "" >&2
+echo "⚡ 6 Mandatory MCPs Ready:" >&2
+echo "  @mcp:sequential-thinking @mcp:json-jq @mcp:git" >&2
+echo "  @mcp:context7 @mcp:exa @mcp:fetch" >&2
+echo "" >&2
+echo "═══════════════════════════════════════════════════════════" >&2
+echo "" >&2
+```
+
+## 6. Session Intelligence Activation
+
+```bash
+# Mark session as initialized
+jq '.session_metadata.auto_init_complete = true |
+    .session_metadata.constitutional_awareness = "active" |
+    .session_metadata.metadata_injection = "enabled"' \
+  "${memory_bank}activeContext.json" | sponge "${memory_bank}activeContext.json"
+
+echo "✨ Session Ready - Constitutional AI Active" >&2
+```
 
 # NLU-enhanced session detection
 detect_session_intelligence() {
