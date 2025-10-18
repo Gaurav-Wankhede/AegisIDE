@@ -1,8 +1,51 @@
 ---
-description: Autonomous execution with CLI pipeline (zero MCP filesystem)
+description: Autonomous execution with CLI pipeline + Constitutional Awareness
 ---
 
-# /next — Autonomous Execution Loop
+# /next — Autonomous Execution Loop with Constitutional Enforcement
+
+## 0. DYNAMIC CONSTITUTIONAL DISPLAY (ROUTER-FIRST)
+
+```bash
+# Load constitutional display from context-router.json (single source of truth)
+load_constitutional_display() {
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
+  echo "" >&2
+  
+  # Dynamic MCP display from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  echo "" >&2
+  
+  # Memory operations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
+    echo "  $op" >&2
+  done
+  echo "" >&2
+  
+  # Dynamic violations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
+    echo "$violation" >&2
+  done
+  echo "" >&2
+  
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
+  echo "" >&2
+}
+
+# Execute constitutional display
+load_constitutional_display
+```
 
 ## 1. Query Router via MCP
 
@@ -28,7 +71,7 @@ fi
 
 ## 2. Execute Task (Autonomous)
 
-1. `@mcp:memory` → Search patterns (confidence ≥0.9)
+1. Manual memory.json → Search patterns (confidence ≥0.9)
 2. `@mcp:sequential-thinking` → Plan (≥3 steps)
 3. Execute with MCPs (code/research/analysis)
 4. Auto-validation → `/validate` (HALT if errors)
@@ -112,4 +155,4 @@ fi
 **Performance**: 125x faster parallel reads, 267x faster atomic updates
 
 ---
-**Lines**: ~78 | **CLI**: jq + sponge + glow (zero MCP filesystem)
+**Lines**: ~111 | **CLI**: jq + sponge + glow (zero MCP filesystem, constitutionally compliant)

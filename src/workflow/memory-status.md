@@ -1,8 +1,51 @@
 ---
-description: Knowledge graph audit with CLI pipeline
+description: Knowledge graph audit with CLI pipeline + Constitutional Awareness
 ---
 
-# /memory-status — Graph Health Audit
+# /memory-status — Graph Health Audit with Constitutional Enforcement
+
+## 0. DYNAMIC CONSTITUTIONAL DISPLAY (ROUTER-FIRST)
+
+```bash
+# Load constitutional display from context-router.json (single source of truth)
+load_constitutional_display() {
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
+  echo "" >&2
+  
+  # Dynamic MCP display from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  echo "" >&2
+  
+  # Memory operations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
+    echo "  $op" >&2
+  done
+  echo "" >&2
+  
+  # Dynamic violations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
+    echo "$violation" >&2
+  done
+  echo "" >&2
+  
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
+  echo "" >&2
+}
+
+# Execute constitutional display
+load_constitutional_display
+```
 
 ## 1. Load Router & Query (CLI Native)
 
@@ -45,5 +88,21 @@ jq --argjson health ${compliance:-0} \
 echo "✓ AUDIT COMPLETE" >&2
 ```
 
+## 4. Constitutional Article Reference
+
+```bash
+# Render knowledge graph guidance
+constitution=$(@mcp:json-jq query '.system_paths.constitution' from 'context-router.json')
+
+echo "" >&2
+echo "📚 Constitutional Reference:" >&2
+echo "→ ARTICLE 10: Right to Knowledge & Memory Access" >&2
+glow "${constitution}/03-fundamental-rights/article-10.md"
+
+echo "" >&2
+echo "✅ Knowledge graph constitutional compliance verified" >&2
+echo "" >&2
+```
+
 ---
-**Lines**: ~37 | **CLI**: Direct jq + python + sponge
+**Lines**: ~70 | **CLI**: Direct jq + python + sponge + glow (constitutionally compliant)

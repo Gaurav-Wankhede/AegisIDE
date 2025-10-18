@@ -1,0 +1,546 @@
+{
+  "system_description": "AegisIDE Router-First Dynamic System - Single Source of Truth",
+  "version": "2.0.0",
+  "last_updated": "2025-10-18T19:38:16+05:30",
+  
+  "operational_loop": {
+    "description": "Core execution sequence for every session/request",
+    "steps": [
+      {
+        "step": 1,
+        "name": "Session Awareness",
+        "action": "Display constitutional rules",
+        "query": "@mcp:json-jq query '.session_awareness.content[]' from 'context-router.json'",
+        "requirement": "FIRST action on new sessions"
+      },
+      {
+        "step": 2,
+        "name": "DeepThink", 
+        "action": "Use @mcp:sequential-thinking (≥3 steps)",
+        "query": "@mcp:json-jq query '.mcps.always_active[]' from 'context-router.json'",
+        "requirement": "EVERY request"
+      },
+      {
+        "step": 3,
+        "name": "Query Router",
+        "action": "Get dynamic paths and rules", 
+        "query": "@mcp:json-jq query '.system_paths' from 'context-router.json'",
+        "requirement": "NEVER use static paths"
+      },
+      {
+        "step": 4,
+        "name": "Execute",
+        "action": "Use mandatory MCPs and CLI pipeline",
+        "query": "@mcp:json-jq query '.mcps' from 'context-router.json'",
+        "requirement": "Complete MCP trail required"
+      },
+      {
+        "step": 5,
+        "name": "Update Memory",
+        "action": "Atomically update all 8 schemas",
+        "query": "@mcp:json-jq query '.memory_bank.schemas[]' from 'context-router.json'",
+        "requirement": "All 8 schemas or HALT"
+      },
+      {
+        "step": 6,
+        "name": "Auto-Continue",
+        "action": "Process next task immediately",
+        "query": "@mcp:json-jq query '.autonomy_rules' from 'context-router.json'",
+        "requirement": "0-99% band, no permission"
+      }
+    ]
+  },
+
+  "system_paths": {
+    "memory_bank": "{IDE}/.aegiside/memory-bank/",
+    "schemas": "{IDE}/.aegiside/schemas/",
+    "constitution": "{GLOBAL_MEMORY}/memories/",
+    "workflows": "{IDE}/workflow/"
+  },
+
+  "ide_detection": {
+    "description": "Multi-IDE and multi-platform path resolution system with platform-specific paths",
+    "supported_ides": {
+      "windsurf": {
+        "folder": ".windsurf",
+        "platform_paths": {
+          "windows": "%USERPROFILE%\\.codeium\\windsurf-next",
+          "macos": "~/Library/Application Support/Codeium/windsurf-next", 
+          "linux": "~/.codeium/windsurf-next"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      },
+      "cursor": {
+        "folder": ".cursor",
+        "platform_paths": {
+          "windows": "%APPDATA%\\Cursor",
+          "macos": "~/Library/Application Support/Cursor",
+          "linux": "~/.config/Cursor"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      },
+      "vscode": {
+        "folder": ".vscode",
+        "platform_paths": {
+          "windows": "%APPDATA%\\Code\\User",
+          "macos": "~/Library/Application Support/Code/User",
+          "linux": "~/.config/Code/User"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      },
+      "cline": {
+        "folder": ".cline",
+        "platform_paths": {
+          "windows": "%APPDATA%\\Cline",
+          "macos": "~/Library/Application Support/Cline",
+          "linux": "~/.config/Cline"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      },
+      "jetbrains": {
+        "folder": ".idea",
+        "platform_paths": {
+          "windows": "%APPDATA%\\JetBrains",
+          "macos": "~/Library/Application Support/JetBrains",
+          "linux": "~/.config/JetBrains"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      },
+      "zed": {
+        "folder": ".zed",
+        "platform_paths": {
+          "windows": "%APPDATA%\\Zed",
+          "macos": "~/Library/Application Support/Zed",
+          "linux": "~/.config/Zed"
+        },
+        "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+      }
+    },
+    "path_variables": {
+      "{IDE}": "Current workspace root path (auto-detected)",
+      "{GLOBAL_MEMORY}": "IDE-specific global memory path (auto-resolved)",
+      "{PLATFORM}": "Platform-specific paths (windows/linux/macos)",
+      "~": "User home directory (cross-platform)"
+    },
+    "platform_support": ["windows", "linux", "macos"],
+    "auto_detection": "Query environment to determine current IDE and platform"
+  },
+
+  "constitution": {
+    "description": "42 constitutional articles defining all AegisIDE governance rules", 
+    "articles_path": "{GLOBAL_MEMORY}/memories/",
+    "query_pattern": "@mcp:json-jq query '.constitution.articles' from 'context-router.json'",
+    "articles": {
+      "preamble": "preamble.md",
+      "article_1": "article-1.md",
+      "article_2": "article-2.md", 
+      "article_3": "article-3.md",
+      "article_4": "article-4.md",
+      "article_5": "article-5.md",
+      "article_6": "article-6.md",
+      "article_7": "article-7.md",
+      "article_8": "article-8.md",
+      "article_9": "article-9.md",
+      "article_10": "article-10.md",
+      "article_11": "article-11.md",
+      "article_12": "article-12.md",
+      "article_13": "article-13.md",
+      "article_14": "article-14.md",
+      "article_15": "article-15.md",
+      "article_16": "article-16.md",
+      "article_17": "article-17.md",
+      "article_18": "article-18.md",
+      "article_19": "article-19.md",
+      "article_20": "article-20.md",
+      "article_21": "article-21.md",
+      "article_22": "article-22.md",
+      "article_23": "article-23.md",
+      "article_24": "article-24.md",
+      "article_25": "article-25.md",
+      "article_26": "article-26.md",
+      "article_27": "article-27.md",
+      "article_28": "article-28.md",
+      "article_29": "article-29.md",
+      "article_30": "article-30.md",
+      "article_31": "article-31.md",
+      "article_32": "article-32.md",
+      "article_33": "article-33.md",
+      "article_34": "article-34.md",
+      "article_35": "article-35.md",
+      "article_36": "article-36.md",
+      "article_37": "article-37.md",
+      "article_38": "article-38.md",
+      "article_39": "article-39.md",
+      "article_40": "article-40.md",
+      "article_41": "article-41.md", 
+      "article_42": "article-42.md"
+    }
+  },
+
+  "memory_bank": {
+    "description": "8-schema memory bank locations and configurations",
+    "schemas": [
+      "activeContext.json",
+      "scratchpad.json", 
+      "kanban.json",
+      "mistakes.json",
+      "systemPatterns.json",
+      "progress.json",
+      "roadmap.json",
+      "memory.json"
+    ],
+    "requirements": {
+      "max_size": "10KB",
+      "format": "JSON",
+      "update_policy": "atomic_all_or_nothing",
+      "validation": "against schemas/*.schema.json"
+    }
+  },
+
+  "mcps": {
+    "description": "The 6 mandatory Model Context Protocol servers as defined in the Constitution (Article 13)",
+    "core_count": 6,
+    "always_active": [
+      "@mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
+      "@mcp:json-jq - ALL JSON reads (constitutional mandate)",
+      "@mcp:git - Version control (NO CLI git)"
+    ],
+    "on_demand": [
+      "@mcp:context7 - Official documentation (IMMEDIATE on errors)",
+      "@mcp:exa - Code research and examples",
+      "@mcp:fetch - Web scraping and external data retrieval"
+    ],
+    "memory_operations": {
+      "description": "Manual memory graph operations via JSON manipulation",
+      "read": "@mcp:json-jq query '.entities[]' or '.relations[]' from memory.json",
+      "write": "jq '.entities += [new_entity]' memory.json | sponge memory.json",
+      "atomic": "All memory operations use standard JSON tools for reliability"
+    },
+    "enforcement": "Missing MCP trail is a constitutional violation (Article 13) and results in a -30 RL penalty",
+    "config_location": "{GLOBAL_MEMORY}/mcp_config.json"
+  },
+
+  "autonomy_rules": {
+    "description": "Autonomous execution rules and permission bands",
+    "bands": {
+      "immediate_execution": "0-99%", 
+      "reserved_for_human": "99.5-100%"
+    },
+    "no_permission_required": ["read_operations", "schema_updates", "mcp_usage", "workflow_execution", "pattern_application"],
+    "banned_phrases": ["if you want", "would you like me to", "should I", "do you want me to"],
+    "enforcement": "Ask permission penalty: -20 RL"
+  },
+
+  "violations_penalties": {
+    "description": "Complete list of constitutional violations and RL penalties",
+    "query_pattern": "@mcp:json-jq query '.violations_penalties.rules[]' from 'context-router.json'",
+    "rules": [
+      {
+        "violation": "Bypass Router",
+        "penalty": -30,
+        "fix": "Query context-router.json",
+        "article": "Article 1"
+      },
+      {
+        "violation": "Use Read on JSON",
+        "penalty": -25,
+        "fix": "Use @mcp:json-jq (read) or jq (write)",
+        "article": "Article 13"
+      },
+      {
+        "violation": "Partial Schema Update",
+        "penalty": -30,
+        "fix": "Atomically update all 8 schemas",
+        "article": "Article 14"
+      },
+      {
+        "violation": "Ask Permission (0-99%)",
+        "penalty": -20,
+        "fix": "Execute autonomously",
+        "article": "Article 4"
+      },
+      {
+        "violation": "Research w/o Solution",
+        "penalty": -10,
+        "fix": "Implement the solution",
+        "article": "Article 12"
+      },
+      {
+        "violation": "Missing MCP Trail",
+        "penalty": -15,
+        "fix": "Complete MCP documentation",
+        "article": "Article 13"
+      },
+      {
+        "violation": "EMD Non-Compliance",
+        "penalty": -15,
+        "fix": "Refactor to ≤80 lines",
+        "article": "Article 21"
+      }
+    ]
+  },
+
+  "constitutional_roles": {
+    "description": "Democratic governance structure with tri-branch system",
+    "chief_justice": {
+      "title": "Constitutional Guardian & President",
+      "powers": [
+        "HALT operations violating Constitution",
+        "Veto proposals failing constitutional compliance ≥80%",
+        "Final approval for kanban 'done' → 'approved'",
+        "Convene constitutional tribunals",
+        "Interpret constitutional articles",
+        "Establish binding precedents in memory.json"
+      ],
+      "authorities": {
+        "halt_power": "Immediate stop for violations",
+        "veto_authority": "Block non-compliant proposals",
+        "judicial_review": "Final arbiter of Constitution",
+        "approval_gate": "Tasks require CJ sign-off before 'approved'"
+      },
+      "limitations": [
+        "Cannot implement policies (executive role)",
+        "Cannot override ≥98% parliamentary consensus",
+        "Subject to impeachment for abuse"
+      ]
+    },
+    "prime_minister": {
+      "title": "Head of Government & Execution Authority",
+      "responsibilities": [
+        "Lead daily operations from scratchpad.json",
+        "Assign tasks to ministers",
+        "Coordinate with IAS for intelligence",
+        "Present proposals to Parliament",
+        "Ensure ≥80% constitutional compliance",
+        "Maintain ≥90% RL net positive score"
+      ],
+      "powers": [
+        "Direct ministers (not override)",
+        "Propose initiatives with IAS dossiers",
+        "Convene sessions",
+        "Assign priorities scratchpad.json",
+        "Allocate resources per budget"
+      ],
+      "accountability": "Subject to no-confidence vote (≥95%)"
+    },
+    "ias_administrative_service": {
+      "title": "Neutral Permanent Bureaucracy",
+      "structure": {
+        "cabinet_secretary": "Coordination & schema health monitoring",
+        "researcher": "Intelligence gathering via /research",
+        "finance_officer": "Resource optimization & free-tier compliance",
+        "home_officer": "Security scans & anti-duplication registry",
+        "field_officers": "Execute /next autonomous & schema updates"
+      },
+      "mandate": [
+        "Execute workflows autonomously (0-99%)",
+        "Maintain 8-schema integrity",
+        "Provide neutral analysis",
+        "Coordinate MCP operations",
+        "Serve all branches equally"
+      ],
+      "independence": "Cannot be removed except misconduct (≥95% consensus)"
+    },
+    "shadow_cabinet": {
+      "title": "Constitutional Opposition & Quality Control",
+      "composition": {
+        "quality_shadow": "Testing/validation/EMD compliance",
+        "innovation_shadow": "Research/alternatives/modernization",
+        "analytics_shadow": "Metrics/data science/RL analysis"
+      },
+      "powers": [
+        "Challenge proposals with MCP evidence",
+        "Audit implementations vs criteria",
+        "Propose alternatives with IAS dossiers",
+        "Veto deployments failing validation (Quality Shadow)",
+        "Vote against without penalty"
+      ],
+      "approval_process": {
+        "verification": "Review kanban 'done' tasks before Chief Justice",
+        "requirements": "ALL 3 shadows must approve for task advancement",
+        "failure_action": "Return to 'todo' with remediation plan"
+      }
+    }
+  },
+  
+  "parliamentary_system": {
+    "description": "Consensus-driven decision making with weighted voting",
+    "voting_weights": {
+      "executive": 0.3,
+      "administrative": 0.3,
+      "opposition": 0.3,
+      "judicial": 0.1
+    },
+    "consensus_thresholds": {
+      "standard_decisions": "≥95%",
+      "protected_articles": "≥98%",
+      "emergency_powers": "≥80% + Chief Justice approval",
+      "veto_override": "≥98%",
+      "impeachment": "≥95%"
+    },
+    "session_types": [
+      "Daily (task prioritization)",
+      "Weekly (progress review)", 
+      "Monthly (strategic planning)",
+      "Emergency (constitutional crises)",
+      "Amendment (constitutional changes)"
+    ],
+    "workflow_integration": {
+      "proposals": "Submit via scratchpad.json with IAS dossier",
+      "debate": "@mcp:sequential-thinking structured discussion",
+      "voting": "@mcp:math consensus calculation",
+      "implementation": "Minister assignment → kanban.json"
+    }
+  },
+  
+  "project_governance": {
+    "description": "Workspace-specific constitutional adaptation",
+    "governance_levels": {
+      "federal": "Cross-workspace constitutional framework",
+      "state": "Workspace-specific governance via local memory bank",
+      "local": "Project-level task management"
+    },
+    "adaptation_mechanisms": {
+      "technology_stack": "Constitutional rules adapt to Rust/Python/TypeScript projects",
+      "project_scale": "EMD standards adjust for small/large codebases",
+      "domain_expertise": "Specialized ministerial roles per project type",
+      "compliance_scoring": "Project-specific RL weighting in progress.json"
+    },
+    "workspace_autonomy": {
+      "local_decisions": "Technology choices, task priorities, resource allocation",
+      "federal_compliance": "Constitutional articles, MCP usage, schema integrity",
+      "knowledge_sharing": "Cross-workspace pattern federation via memory.json"
+    }
+  },
+
+  "workflow_auto_triggers": {
+    "description": "NLU/NLP-based intelligent workflow execution with memory bank analysis",
+    "query_pattern": "@mcp:json-jq query '.workflow_auto_triggers.nlu_engine' from 'context-router.json'",
+    "nlu_engine": {
+      "description": "Natural Language Understanding for intelligent workflow routing",
+      "intent_recognition": {
+        "bootstrap_intents": ["setup", "initialize", "create project", "start fresh", "missing files"],
+        "fix_intents": ["error", "bug", "failed", "broken", "not working", "help", "debug"],
+        "research_intents": ["how to", "documentation", "examples", "best practices", "learn"],
+        "status_intents": ["status", "health", "check", "overview", "summary", "progress"],
+        "optimize_intents": ["improve", "faster", "optimize", "performance", "speed up"],
+        "validate_intents": ["test", "validate", "check quality", "verify", "compliance"]
+      },
+      "memory_bank_analysis": {
+        "pattern_matching": "Analyze systemPatterns.json for successful workflows",
+        "error_prevention": "Check mistakes.json for recurring issues",
+        "context_awareness": "Use activeContext.json for session state",
+        "rl_optimization": "Leverage progress.json for workflow effectiveness"
+      },
+      "recommendation_engine": {
+        "confidence_threshold": 0.7,
+        "fallback_workflow": "/status",
+        "learning_enabled": true,
+        "user_preference_tracking": true
+      }
+    },
+    "intelligent_conditions": [
+      {
+        "trigger": "nlu_bootstrap_request",
+        "condition": "intent_match('bootstrap_intents') && (schema_count < 8 || user_mentions('setup'))",
+        "workflow": "/bootstrap",
+        "priority": "immediate",
+        "confidence_required": 0.8
+      },
+      {
+        "trigger": "nlu_error_context",
+        "condition": "intent_match('fix_intents') || validation_failure || error_in_context",
+        "workflow": "/fix",
+        "priority": "immediate",
+        "confidence_required": 0.9
+      },
+      {
+        "trigger": "nlu_research_request",
+        "condition": "intent_match('research_intents') && memory_gap_detected",
+        "workflow": "/research",
+        "priority": "high",
+        "confidence_required": 0.7
+      },
+      {
+        "trigger": "nlu_status_inquiry",
+        "condition": "intent_match('status_intents') || rl_negative || compliance_low",
+        "workflow": "/status",
+        "priority": "normal",
+        "confidence_required": 0.6
+      },
+      {
+        "trigger": "nlu_optimization_request",
+        "condition": "intent_match('optimize_intents') && performance_issues_detected",
+        "workflow": "/optimize",
+        "priority": "normal",
+        "confidence_required": 0.8
+      },
+      {
+        "trigger": "session_intelligence",
+        "condition": "new_session && (no_recent_activity || context_switch_detected)",
+        "workflow": "/auto-init",
+        "priority": "immediate",
+        "confidence_required": 1.0
+      }
+    ],
+    "execution_rules": {
+      "immediate": "Execute without delay",
+      "high": "Execute within 30 seconds",
+      "normal": "Execute when idle",
+      "autonomy_required": "0-99% band only",
+      "prevent_loops": "Max 1 auto-trigger per condition per session",
+      "nlu_learning": "Track user preferences and workflow effectiveness"
+    }
+  },
+
+  "session_awareness": {
+    "description": "Dynamic constitutional rules display with NLU-based personalization",
+    "query_pattern": "@mcp:json-jq query '.session_awareness.generate_display($user_context)' from 'context-router.json'",
+    "dynamic_display": {
+      "header": "🚀 AegisIDE Session Starting...",
+      "constitutional_frame": "═══════════════════════════════════════════════════════════\n  🛡️  CONSTITUTIONAL MCP COMPLIANCE - MANDATORY RULES\n═══════════════════════════════════════════════════════════",
+      "core_mcps": {
+        "description": "📜 6 MANDATORY MCPs (Article 13):",
+        "always_active": [
+          "✓ @mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
+          "✓ @mcp:json-jq - ALL JSON reads (NEVER use Read tool)",
+          "✓ @mcp:git - Version control (NO CLI git)"
+        ],
+        "on_demand": [
+          "✓ @mcp:context7 - Official docs (IMMEDIATE on errors)",
+          "✓ @mcp:exa - Code research",
+          "✓ @mcp:fetch - Web scraping"
+        ]
+      },
+      "memory_operations": {
+        "description": "🧠 MEMORY OPERATIONS (Manual JSON):",
+        "operations": [
+          "• READ: @mcp:json-jq query '.entities[]' from memory.json",
+          "• WRITE: jq '.entities += [new_entity]' memory.json | sponge memory.json"
+        ]
+      },
+      "violations_penalties": {
+        "description": "❌ CRITICAL VIOLATIONS & PENALTIES:",
+        "reference": "@mcp:json-jq query '.violations_penalties.rules[]' from 'context-router.json'"
+      },
+      "json_operations": {
+        "description": "⚡ JSON OPERATIONS (100x faster):",
+        "commands": [
+          "READ:   @mcp:json-jq query '.' from 'file.json'",
+          "WRITE:  jq '.key = value' file.json | sponge file.json"
+        ]
+      },
+      "autonomy_rules": {
+        "description": "🎯 AUTONOMOUS EXECUTION (0-99% band):",
+        "reference": "@mcp:json-jq query '.autonomy_rules' from 'context-router.json'"
+      },
+      "footer": "✅ Constitutional framework ACTIVE"
+    },
+    "personalization": {
+      "show_recent_violations": "Display user's recent constitutional violations from mistakes.json",
+      "highlight_available_workflows": "Show relevant workflows based on current context",
+      "rl_score_display": "Show current RL score and recent trends from progress.json",
+      "memory_bank_status": "Display 8-schema health and recent updates"
+    }
+  }
+}

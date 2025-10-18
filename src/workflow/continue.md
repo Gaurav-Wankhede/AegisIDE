@@ -1,8 +1,51 @@
 ---
-description: Session recovery with CLI pipeline
+description: Session recovery with CLI pipeline + Constitutional Awareness
 ---
 
-# /continue — Session Recovery
+# /continue — Session Recovery with Constitutional Enforcement
+
+## 0. DYNAMIC CONSTITUTIONAL DISPLAY (ROUTER-FIRST)
+
+```bash
+# Load constitutional display from context-router.json (single source of truth)
+load_constitutional_display() {
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
+  echo "" >&2
+  
+  # Dynamic MCP display from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  echo "" >&2
+  
+  # Memory operations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
+    echo "  $op" >&2
+  done
+  echo "" >&2
+  
+  # Dynamic violations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
+    echo "$violation" >&2
+  done
+  echo "" >&2
+  
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
+  echo "" >&2
+}
+
+# Execute constitutional display
+load_constitutional_display
+```
 
 ## 1. Query Router & Restore via MCP
 
@@ -54,9 +97,30 @@ jq '.transactions = [{"workflow": "continue", "rl_reward": 5}] + .transactions |
 @mcp:git commit -m "continue: Session restored - RL: $rl_score"
 
 echo "✓ CONTINUE COMPLETE" >&2
+```
+
+## 3. Constitutional Article Awareness
+
+```bash
+# Query articles via MCP
+articles=$(@mcp:json-jq query '.auto_triggers.session_start.load_articles.always[]' from 'context-router.json')
+constitution=$(@mcp:json-jq query '.system_paths.constitution' from 'context-router.json')
+
+echo "" >&2
+echo "📚 Loading Constitutional Articles..." >&2
+
+# Render with glow (direct file read for markdown)
+for article in $articles; do
+  echo "→ ARTICLE $article: Loaded" >&2
+  glow "${constitution}/02-preliminary/article-${article}.md"
+done
+
+echo "" >&2
+echo "✅ Constitutional framework activated" >&2
 echo "→ TIP: Run '/next' to resume operations" >&2
+echo "" >&2
 exit 0
 ```
 
 ---
-**Lines**: ~39 | **CLI**: Parallel jq + sponge
+**Lines**: ~72 | **CLI**: Parallel jq + sponge + glow (constitutionally compliant)

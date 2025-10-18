@@ -1,8 +1,51 @@
 ---
-description: Parliamentary review with CLI pipeline
+description: Parliamentary review with CLI pipeline + Constitutional Awareness
 ---
 
-# /oversight — Parliamentary Review
+# /oversight — Parliamentary Review with Constitutional Enforcement
+
+## 0. DYNAMIC CONSTITUTIONAL DISPLAY (ROUTER-FIRST)
+
+```bash
+# Load constitutional display from context-router.json (single source of truth)
+load_constitutional_display() {
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
+  echo "" >&2
+  
+  # Dynamic MCP display from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  echo "" >&2
+  
+  # Memory operations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
+    echo "  $op" >&2
+  done
+  echo "" >&2
+  
+  # Dynamic violations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
+    echo "$violation" >&2
+  done
+  echo "" >&2
+  
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
+  echo "" >&2
+}
+
+# Execute constitutional display
+load_constitutional_display
+```
 
 ## 1. Load Router & Proposal (CLI Native)
 
@@ -24,7 +67,7 @@ echo "→ PROPOSAL: Loaded for review" >&2
 
 1. `@mcp:context7` → Load relevant articles
 2. `@mcp:sequential-thinking` → Orchestrate debate
-3. `@mcp:memory` → Retrieve precedents
+3. Manual memory.json → Retrieve precedents
 4. Render with glow for transparency
 
 ```bash
@@ -75,5 +118,20 @@ fi
 echo "✓ OVERSIGHT COMPLETE" >&2
 ```
 
+## 4. Constitutional Article Awareness
+
+```bash
+echo "" >&2
+echo "📚 Parliamentary Framework Articles:" >&2
+echo "→ ARTICLE 28: Structured Debate & Consensus Calculation" >&2
+glow "${constitution}/06-parliament/article-28.md"
+echo "→ ARTICLE 29: Opposition Challenge & Review" >&2
+glow "${constitution}/06-parliament/article-29.md"
+
+echo "" >&2
+echo "✅ Parliamentary constitutional framework enforced" >&2
+echo "" >&2
+```
+
 ---
-**Lines**: ~50 | **CLI**: jq + python + glow + sponge
+**Lines**: ~83 | **CLI**: jq + python + glow + sponge (constitutionally compliant)

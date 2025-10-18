@@ -1,8 +1,51 @@
 ---
-description: Memory bank initialization with CLI pipeline
+description: Memory bank initialization with CLI pipeline + Constitutional Awareness
 ---
 
-# /bootstrap — Schema Regeneration
+# /bootstrap — Schema Regeneration with Constitutional Enforcement
+
+## 0. DYNAMIC CONSTITUTIONAL DISPLAY (ROUTER-FIRST)
+
+```bash
+# Load constitutional display from context-router.json (single source of truth)
+load_constitutional_display() {
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.header' from 'context-router.json')" >&2
+  echo "" >&2
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.constitutional_frame' from 'context-router.json')" >&2
+  echo "" >&2
+  
+  # Dynamic MCP display from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.always_active[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  @mcp:json-jq query '.session_awareness.dynamic_display.core_mcps.on_demand[]' from 'context-router.json' | while read -r mcp; do
+    echo "  $mcp" >&2
+  done
+  echo "" >&2
+  
+  # Memory operations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.session_awareness.dynamic_display.memory_operations.operations[]' from 'context-router.json' | while read -r op; do
+    echo "  $op" >&2
+  done
+  echo "" >&2
+  
+  # Dynamic violations from router
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.violations_penalties.description' from 'context-router.json')" >&2
+  @mcp:json-jq query '.violations_penalties.rules[] | "  • \(.violation) → \(.penalty) RL | Fix: \(.fix)"' from 'context-router.json' | while read -r violation; do
+    echo "$violation" >&2
+  done
+  echo "" >&2
+  
+  echo "$(@mcp:json-jq query '.session_awareness.dynamic_display.footer' from 'context-router.json')" >&2
+  echo "" >&2
+}
+
+# Execute constitutional display
+load_constitutional_display
+```
 
 ## 1. Load Router & Scan (CLI Native)
 
@@ -86,11 +129,33 @@ jq '.transactions = [{
 echo "✓ BOOTSTRAP COMPLETE" >&2
 ```
 
-## 4. Auto-Chain
+## 4. Constitutional Article Awareness
 
 ```bash
+# Query articles via MCP
+articles=$(@mcp:json-jq query '.auto_triggers.session_start.load_articles.always[]' from 'context-router.json')
+constitution=$(@mcp:json-jq query '.system_paths.constitution' from 'context-router.json')
+
+echo "" >&2
+echo "📚 Loading Constitutional Articles..." >&2
+
+# Render with glow (direct file read for markdown)
+for article in $articles; do
+  echo "→ ARTICLE $article: Loaded" >&2
+  glow "${constitution}/02-preliminary/article-${article}.md"
+done
+
+echo "" >&2
+echo "✅ Constitutional framework activated" >&2
+echo "" >&2
+```
+
+## 5. Auto-Chain
+
+```bash
+echo "→ CHAIN: Proceeding to /next autonomously (0-99% band)" >&2
 invoke_workflow "/next"  # NO permission
 ```
 
 ---
-**Lines**: ~52 | **CLI**: jq + sponge (267x faster, fully transparent)
+**Lines**: ~85 | **CLI**: jq + sponge + glow (267x faster, fully transparent, constitutionally compliant)
