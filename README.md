@@ -1,6 +1,6 @@
 # 🤖 AegisIDE - AI That Actually Finishes Your Projects
 
-> **Transform any AI coding assistant into a smart, autonomous development team that remembers everything and works independently.**
+> **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
 [![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)](CHANGELOG.md)
@@ -10,86 +10,47 @@
 
 ## Why AegisIDE? 🎯
 
-### The Challenge Every Developer Faces
-**Current AI assistants are like forgetful interns:**
-- 🤔 "What were we working on again?"
-- 🛑 "Should I continue or wait for permission?"
-- 🔄 "I keep making the same mistakes..."
-- 📝 "Can you remind me of the project requirements?"
+**The problem**
+- 🤔 AI forgets context and repeats mistakes
+- 🛑 Keeps asking for permission and stalls
+- 🧩 Hard to coordinate across IDEs, tools and rules
 
-### AegisIDE: Your AI Development Team
-**Transform any AI into a professional development team:**
+**What AegisIDE gives you**
+- 🧠 Persistent memory that survives sessions
+- 🚀 0–99% autonomous execution (no permission prompts)
+- ✅ Built‑in quality checks with learn‑and‑improve loops
+- 🔌 Works across popular IDEs with zero manual setup
 
-🧠 **Persistent Memory System**
-- Remembers every decision, pattern, and lesson learned
-- Maintains complete project context across sessions
-- Never loses track of requirements or architecture decisions
+## 🌐 Works Where You Work
 
-🚀 **Autonomous Execution**
-- Works independently without constant supervision
-- Completes entire features from start to finish
-- Makes decisions based on learned project patterns
+AegisIDE detects your IDE and sets itself up automatically (Windsurf, Cursor, VS Code/Cline, JetBrains, and more).
 
-✅ **Built-in Quality Assurance**
-- Validates code before proceeding to next task
-- Learns from mistakes to prevent repetition
-- Maintains consistent coding standards
+See details in [IDE_COMPATIBILITY.md](docs/IDE_COMPATIBILITY.md).
 
-📊 **Proven Results**
-- **91% fewer AI mistakes** through validation systems
-- **3x faster development** with continuous autonomous work
-- **40% higher project completion rate** 
-- **9 tested IDEs** with automatic detection and setup
+## 🔧 Under the Hood (simple view)
 
-## 🌐 Universal IDE Support (v2.9.0)
-
-**Works automatically with 9 AI-powered development environments:**
-
-### **Tier 1: Native MCP Support** (99-96% Autonomous)
-| IDE | Autonomy | Folder | Auto-Setup |
-|-----|----------|--------|------------|
-| **Windsurf** ⭐ | 99% | `.windsurf/` | ✅ Yes |
-| **Cursor** | 96% | `.cursor/` | ✅ Yes |
-
-### **Tier 2: Extension Support** (95-90% Autonomous)
-| IDE | Autonomy | Folder | Auto-Setup |
-|-----|----------|--------|------------|
-| **Roo-Cline** | 95% | `.roo-cline/` | ✅ Yes |
-| **Continue.dev** | 93% | `.continue/` | ✅ Yes |
-| **Cline** | 95% | `.cline/` | ✅ Yes |
-| **VS Code** | 90% | `.vscode/` | ✅ Yes |
-
-### **Tier 3: CLI & JetBrains** (85-70% Autonomous)
-| IDE | Autonomy | Folder | Auto-Setup |
-|-----|----------|--------|------------|
-| **Aider** | 85% | `.aider/` | ✅ Yes |
-| **GitHub Copilot** | 70% | `.jetbrains/` | ✅ Yes |
-
-**✨ Zero Configuration**: Framework automatically detects your IDE and creates the appropriate folder structure.
-
-**📚 Full Documentation**: See [IDE_COMPATIBILITY.md](docs/IDE_COMPATIBILITY.md) for detection paths, features, and adding new IDEs.
-
-## 🔧 Hybrid Architecture (7 MCPs + CLI Pipeline)
-
-**AegisIDE uses 7 mandatory MCPs with CLI pipeline for optimal performance:**
-
-### **Core MCPs**
-1. **@mcp:json-jq** - All JSON read operations (memory bank, router, schemas)
-2. **@mcp:memory** - Knowledge graph operations (patterns, entities, relations)  
-3. **@mcp:git** - All version control (add, commit, checkout, log)
-4. **@mcp:sequential-thinking** - Mandatory before every action (≥3 thoughts)
-5. **@mcp:context7** - Official documentation (errors, new features)
-6. **@mcp:exa** - Code context research (real-world examples)
-7. **@mcp:fetch** - External research (fallback for context7)
-
-### **CLI Pipeline (Performance)**
-- **jq + sponge** - Atomic JSON writes (267x faster than MCP)
-- **glow** - Markdown rendering for constitutional articles
-- **python3/date** - Calculations and timestamps
-
-**Why Hybrid?** Best of both worlds - MCP reliability + CLI speed.
+- **Router‑First**: A single file, `src/.aegiside/context-router.json`, controls paths, rules, and workflows
+- **7 MCPs + CLI**: MCPs for reliable reads; `jq | sponge` for fast, atomic writes
+- **No Permission Prompts**: The router enforces 0–99% autonomous execution
+- **NLU/NLP Built‑in**: “yes / go ahead / run next / full test” (and multilingual variants) auto‑run the right workflow
 
 ---
+
+## 🛡️ Autonomy You Can Trust
+
+- **No permission asks** in the 0–99% autonomy band
+- **Intent recognition** (NLU/NLP) runs the correct workflow automatically
+- **Auto‑triggers** keep work moving (e.g., queue → `/next`, empty → `/status`)
+- **Risk classifier** asks only when actions are truly high‑risk
+- **NLU logs** recorded in `activeContext.json` for transparency
+
+---
+
+## 🗄️ Memory Bank (simple policy)
+
+- **Schemas are tracked** (`src/.aegiside/schemas/`) and define the structure
+- **Memory‑bank JSON is generated** on your machine and **ignored** by git
+- Generate locally via `/init`; share schemas, not live state
 
 ## 🧠 Reinforcement Learning Intelligence (v3.0)
 
@@ -125,7 +86,7 @@ All memory files store latest data at position [0]:
 - ✅ **Priority routing** for urgent tasks
 - ✅ **RL tracking** with recent scores visible first
 
-## 🚀 Get Started in 3 Steps
+## 🚀 Get Started (3 steps)
 
 ### Step 1: Download AegisIDE
 ```bash
@@ -158,7 +119,7 @@ The framework **automatically detects** your IDE and creates the appropriate str
 # 6. ✅ Ready in 30 seconds!
 ```
 
-**Manual Setup** (only if needed):
+**Manual setup** (only if needed):
 ```bash
 # Windsurf
 cp -r src/.aegiside .windsurf/aegiside
@@ -176,7 +137,7 @@ cp -r src/rules ~/.vscode/rules
 cp -r src/workflow ~/.vscode/workflow
 ```
 
-**⚠️ Important:** Use `cp` (copy) NOT `ln -s` (symlink) to avoid cross-project contamination.
+**⚠️ Tip:** Use `cp` (copy) not `ln -s` (symlink) to avoid cross‑project mix‑ups.
 
 ### Step 3: Configure & Activate
 ```bash
