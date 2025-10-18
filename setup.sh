@@ -65,6 +65,7 @@ OS=$(detect_os)
 IDE=$(detect_ide)
 GLOBAL_PATH=$(get_global_path $OS $IDE)
 WORKSPACE_PATH=$(pwd)
+WORKSPACE_IDE_PATH="$WORKSPACE_PATH/.${IDE}/aegiside"
 GITHUB_REPO="https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main"
 
 echo "📋 System Detection"
@@ -72,6 +73,7 @@ echo "  OS: $OS"
 echo "  IDE: $IDE"
 echo "  Global Memory: $GLOBAL_PATH"
 echo "  Workspace: $WORKSPACE_PATH"
+echo "  Framework Path: $WORKSPACE_IDE_PATH"
 echo ""
 
 # Check for existing global_rules.md
@@ -101,7 +103,7 @@ if [ "$ENHANCE_MODE" = true ]; then
     echo "  💾 Backed up existing rules"
     
     # Download AegisIDE rules and append
-    curl -sL "$GITHUB_REPO/src/.aegiside/global_rules.md" > /tmp/aegiside_rules.md
+    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md
     echo "" >> "$EXISTING_RULES"
     echo "# =================================" >> "$EXISTING_RULES"
     echo "# AegisIDE Framework (Auto-Added)" >> "$EXISTING_RULES"
@@ -110,51 +112,51 @@ if [ "$ENHANCE_MODE" = true ]; then
     echo "  ✅ Enhanced existing global_rules.md with AegisIDE"
 else
     # Create fresh AegisIDE rules
-    curl -sL "$GITHUB_REPO/src/.aegiside/global_rules.md" > "$GLOBAL_PATH/global_rules.md"
+    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > "$GLOBAL_PATH/global_rules.md"
     echo "  ✅ Created fresh AegisIDE global_rules.md"
 fi
 
 # Step 2: Download and install router system
 echo "2️⃣  Downloading modular router system..."
-mkdir -p "$WORKSPACE_PATH/.aegiside/routers"
+mkdir -p "$WORKSPACE_IDE_PATH/routers"
 
 # Download all router modules
 for router in core mcps constitutional parliamentary session memory-bank autonomy violations workflows governance; do
-    curl -sL "$GITHUB_REPO/src/.aegiside/routers/${router}.json" > "$WORKSPACE_PATH/.aegiside/routers/${router}.json"
+    curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "$WORKSPACE_IDE_PATH/routers/${router}.json"
 done
 
 # Download main context router
-curl -sL "$GITHUB_REPO/src/.aegiside/context-router.json" > "$WORKSPACE_PATH/.aegiside/context-router.json"
+curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "$WORKSPACE_IDE_PATH/context-router.json"
 echo "  ✅ 10 router modules downloaded and installed"
 
 # Step 3: Download schemas
 echo "3️⃣  Downloading schema validators..."
-mkdir -p "$WORKSPACE_PATH/.aegiside/schemas"
+mkdir -p "$WORKSPACE_IDE_PATH/schemas"
 
 # Download schema files
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns schema-integrity-validator; do
-    curl -sL "$GITHUB_REPO/src/.aegiside/schemas/${schema}.schema.json" > "$WORKSPACE_PATH/.aegiside/schemas/${schema}.schema.json" 2>/dev/null || true
+    curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" 2>/dev/null || true
 done
 echo "  ✅ Schema validators downloaded"
 
 # Step 4: Download workflows
 echo "4️⃣  Downloading workflows..."
-mkdir -p "$WORKSPACE_PATH/.aegiside/workflow"
+mkdir -p "$WORKSPACE_IDE_PATH/workflow"
 
 # Download workflow files
 for workflow in bootstrap continue fix init memory-status next optimize oversight-checks-and-balances research status update validate auto-init; do
-    curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "$WORKSPACE_PATH/.aegiside/workflow/${workflow}.md" 2>/dev/null || true
+    curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" 2>/dev/null || true
 done
 echo "  ✅ 13 workflows downloaded"
 
 # Step 5: Initialize memory bank
 echo "5️⃣  Initializing 8-schema memory bank..."
-mkdir -p "$WORKSPACE_PATH/.aegiside/memory-bank"
+mkdir -p "$WORKSPACE_IDE_PATH/memory-bank"
 
 # Create empty schemas if they don't exist
 for schema in activeContext scratchpad kanban mistakes systemPatterns progress roadmap memory; do
-    if [ ! -f "$WORKSPACE_PATH/.aegiside/memory-bank/${schema}.json" ]; then
-        echo "{}" > "$WORKSPACE_PATH/.aegiside/memory-bank/${schema}.json"
+    if [ ! -f "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json" ]; then
+        echo "{}" > "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
     fi
 done
 echo "  ✅ Memory bank initialized"
