@@ -1,7 +1,6 @@
 {
   "meta_version": "1.0.0",
   "description": "Lazy-Loading Hierarchical Context Tree (LLHCT) Router - Single Source of Truth",
-  
   "constitution": {
     "description": "Supreme law - ALL operations governed by constitutional framework",
     "location": "{IDE}/rules/constitution/",
@@ -71,7 +70,6 @@
     "total_articles": 42,
     "parts": 9
   },
-  
   "workflows": {
     "description": "Slash commands for autonomous operations",
     "location": "{IDE}/workflow/",
@@ -88,7 +86,6 @@
     "auto_chain": "Each workflow auto-continues to next (NO loops, ONE execution)",
     "execution_model": "Atomic commands via Cascade run_command tool"
   },
-  
   "mcps": {
     "description": "The 7 mandatory Model Context Protocol servers as defined in the Constitution (Article 13).",
     "core_count": 7,
@@ -104,9 +101,8 @@
       "@mcp:fetch - Web scraping and external data retrieval"
     ],
     "enforcement": "Missing MCP trail is a constitutional violation (Article 13) and results in a -30 RL penalty.",
-    "config_location": "~/.config/windsurf/mcp_config.json"
+    "config_location": "~/.codeium/windsurf-next/mcp_config.json"
   },
-  
   "memory_bank": {
     "description": "8 core schemas - Single source of runtime state",
     "location": "{IDE}/.aegiside/memory-bank/",
@@ -124,10 +120,9 @@
     "update_frequency": "Atomic updates after every task",
     "validation": "All schemas validated against {IDE}/.aegiside/schemas/*.schema.json"
   },
-  
   "json_access_rules": {
     "description": "CRITICAL: CLI Pipeline approach - Zero filesystem MCP dependency",
-    "philosophy": "Everything is a stream (stdin → stdout). No MCP calls for JSON/Markdown.",
+    "philosophy": "Read JSON via @mcp:json-jq; Write JSON via jq | sponge; Render Markdown via glow.",
     "read_json": {
       "method": "@mcp:json-jq (constitutional mandate)",
       "purpose": "Query JSON via MCP for ALL reads (no exceptions)",
@@ -160,7 +155,7 @@
       "pattern": "glow article.md (direct file read)",
       "transparency_pattern": "echo '→ RENDER: article-name' >&2 && glow article.md",
       "examples": [
-        "glow constitution/02-preliminary/article-01.md",
+        "glow constitution/02-preliminary/article-1.md",
         "echo '# Title\n\nContent' | glow -",
         "curl API/docs | jq -r '.content' | glow -"
       ],
@@ -254,7 +249,15 @@
   "command_safety": {
     "description": "Safe command whitelist and forbidden commands",
     "safe_commands": {
-      "read_only": ["jq -r", "cat", "ls", "grep", "find", "date", "echo"],
+      "read_only": [
+        "jq -r",
+        "cat",
+        "ls",
+        "grep",
+        "find",
+        "date",
+        "echo"
+      ],
       "safe_to_autorun": true,
       "note": "These commands can execute without user approval"
     },
@@ -333,34 +336,154 @@
     "ide_detection": {
       "method": "Check MCP config paths and environment (platform-aware)",
       "windows_paths": [
-        {"ide": "windsurf", "check": "%USERPROFILE%\\.codeium\\windsurf-next\\mcp_config.json", "folder": ".windsurf", "priority": 1},
-        {"ide": "cursor", "check": "%USERPROFILE%\\.cursor\\mcp_config.json", "folder": ".cursor", "priority": 2},
-        {"ide": "roo-cline", "check": "%APPDATA%\\Code\\User\\globalStorage\\rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
-        {"ide": "continue", "check": "%USERPROFILE%\\.continue\\config.json", "folder": ".continue", "priority": 4},
-        {"ide": "aider", "check": "%APPDATA%\\Aider\\config.yaml", "folder": ".aider", "priority": 5},
-        {"ide": "github-copilot-jetbrains", "check": "%APPDATA%\\JetBrains\\IntelliJIdea\\options\\github-copilot.xml", "folder": ".jetbrains", "priority": 6},
-        {"ide": "vscode", "check": "%USERPROFILE%\\.vscode\\extensions", "folder": ".vscode", "priority": 7},
-        {"ide": "cline", "check": "%USERPROFILE%\\.cline", "folder": ".cline", "priority": 8}
+        {
+          "ide": "windsurf",
+          "check": "%USERPROFILE%\\.codeium\\windsurf-next\\mcp_config.json",
+          "folder": ".windsurf",
+          "priority": 1
+        },
+        {
+          "ide": "cursor",
+          "check": "%USERPROFILE%\\.cursor\\mcp_config.json",
+          "folder": ".cursor",
+          "priority": 2
+        },
+        {
+          "ide": "roo-cline",
+          "check": "%APPDATA%\\Code\\User\\globalStorage\\rooveterinaryinc.roo-cline",
+          "folder": ".roo-cline",
+          "priority": 3
+        },
+        {
+          "ide": "continue",
+          "check": "%USERPROFILE%\\.continue\\config.json",
+          "folder": ".continue",
+          "priority": 4
+        },
+        {
+          "ide": "aider",
+          "check": "%APPDATA%\\Aider\\config.yaml",
+          "folder": ".aider",
+          "priority": 5
+        },
+        {
+          "ide": "github-copilot-jetbrains",
+          "check": "%APPDATA%\\JetBrains\\IntelliJIdea\\options\\github-copilot.xml",
+          "folder": ".jetbrains",
+          "priority": 6
+        },
+        {
+          "ide": "vscode",
+          "check": "%USERPROFILE%\\.vscode\\extensions",
+          "folder": ".vscode",
+          "priority": 7
+        },
+        {
+          "ide": "cline",
+          "check": "%USERPROFILE%\\.cline",
+          "folder": ".cline",
+          "priority": 8
+        }
       ],
       "linux_paths": [
-        {"ide": "windsurf", "check": "~/.codeium/windsurf-next/mcp_config.json", "folder": ".windsurf", "priority": 1},
-        {"ide": "cursor", "check": "~/.cursor/mcp_config.json", "folder": ".cursor", "priority": 2},
-        {"ide": "roo-cline", "check": "~/.config/Code/User/globalStorage/rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
-        {"ide": "continue", "check": "~/.continue/config.json", "folder": ".continue", "priority": 4},
-        {"ide": "aider", "check": "~/.config/aider/config.yml", "folder": ".aider", "priority": 5},
-        {"ide": "github-copilot-jetbrains", "check": "~/.config/JetBrains/IntelliJIdea/options/github-copilot.xml", "folder": ".jetbrains", "priority": 6},
-        {"ide": "vscode", "check": "~/.vscode/extensions", "folder": ".vscode", "priority": 7},
-        {"ide": "cline", "check": "~/.cline", "folder": ".cline", "priority": 8}
+        {
+          "ide": "windsurf",
+          "check": "~/.codeium/windsurf-next/mcp_config.json",
+          "folder": ".windsurf",
+          "priority": 1
+        },
+        {
+          "ide": "cursor",
+          "check": "~/.cursor/mcp_config.json",
+          "folder": ".cursor",
+          "priority": 2
+        },
+        {
+          "ide": "roo-cline",
+          "check": "~/.config/Code/User/globalStorage/rooveterinaryinc.roo-cline",
+          "folder": ".roo-cline",
+          "priority": 3
+        },
+        {
+          "ide": "continue",
+          "check": "~/.continue/config.json",
+          "folder": ".continue",
+          "priority": 4
+        },
+        {
+          "ide": "aider",
+          "check": "~/.config/aider/config.yml",
+          "folder": ".aider",
+          "priority": 5
+        },
+        {
+          "ide": "github-copilot-jetbrains",
+          "check": "~/.config/JetBrains/IntelliJIdea/options/github-copilot.xml",
+          "folder": ".jetbrains",
+          "priority": 6
+        },
+        {
+          "ide": "vscode",
+          "check": "~/.vscode/extensions",
+          "folder": ".vscode",
+          "priority": 7
+        },
+        {
+          "ide": "cline",
+          "check": "~/.cline",
+          "folder": ".cline",
+          "priority": 8
+        }
       ],
       "macos_paths": [
-        {"ide": "windsurf", "check": "~/Library/Application Support/Codeium/windsurf-next/mcp_config.json", "folder": ".windsurf", "priority": 1},
-        {"ide": "cursor", "check": "~/Library/Application Support/Cursor/mcp_config.json", "folder": ".cursor", "priority": 2},
-        {"ide": "roo-cline", "check": "~/Library/Application Support/Code/User/globalStorage/rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
-        {"ide": "continue", "check": "~/.continue/config.json", "folder": ".continue", "priority": 4},
-        {"ide": "aider", "check": "~/Library/Application Support/aider/config.yaml", "folder": ".aider", "priority": 5},
-        {"ide": "github-copilot-jetbrains", "check": "~/Library/Application Support/JetBrains/IntelliJIdea/options/github-copilot.xml", "folder": ".jetbrains", "priority": 6},
-        {"ide": "vscode", "check": "~/Library/Application Support/Code/extensions", "folder": ".vscode", "priority": 7},
-        {"ide": "cline", "check": "~/.cline", "folder": ".cline", "priority": 8}
+        {
+          "ide": "windsurf",
+          "check": "~/Library/Application Support/Codeium/windsurf-next/mcp_config.json",
+          "folder": ".windsurf",
+          "priority": 1
+        },
+        {
+          "ide": "cursor",
+          "check": "~/Library/Application Support/Cursor/mcp_config.json",
+          "folder": ".cursor",
+          "priority": 2
+        },
+        {
+          "ide": "roo-cline",
+          "check": "~/Library/Application Support/Code/User/globalStorage/rooveterinaryinc.roo-cline",
+          "folder": ".roo-cline",
+          "priority": 3
+        },
+        {
+          "ide": "continue",
+          "check": "~/.continue/config.json",
+          "folder": ".continue",
+          "priority": 4
+        },
+        {
+          "ide": "aider",
+          "check": "~/Library/Application Support/aider/config.yaml",
+          "folder": ".aider",
+          "priority": 5
+        },
+        {
+          "ide": "github-copilot-jetbrains",
+          "check": "~/Library/Application Support/JetBrains/IntelliJIdea/options/github-copilot.xml",
+          "folder": ".jetbrains",
+          "priority": 6
+        },
+        {
+          "ide": "vscode",
+          "check": "~/Library/Application Support/Code/extensions",
+          "folder": ".vscode",
+          "priority": 7
+        },
+        {
+          "ide": "cline",
+          "check": "~/.cline",
+          "folder": ".cline",
+          "priority": 8
+        }
       ],
       "fallback": "windsurf",
       "detection_note": "Checks paths in priority order. First match wins. If none match, uses fallback."
@@ -545,142 +668,366 @@
   "constitutional_roles": {
     "chief_justice": {
       "authority": "Constitutional Guardian",
-      "workflows": ["/validate", "/fix"],
-      "powers": ["HALT", "veto", "tribunal", "approval_gate"],
-      "articles": [32, 36, 37, 38]
+      "workflows": [
+        "/validate",
+        "/fix"
+      ],
+      "powers": [
+        "HALT",
+        "veto",
+        "tribunal",
+        "approval_gate"
+      ],
+      "articles": [
+        32,
+        36,
+        37,
+        38
+      ]
     },
     "prime_minister": {
       "authority": "Execution Leader",
-      "workflows": ["/next", "/continue"],
-      "powers": ["task_assignment", "resource_allocation"],
-      "articles": [33]
+      "workflows": [
+        "/next",
+        "/continue"
+      ],
+      "powers": [
+        "task_assignment",
+        "resource_allocation"
+      ],
+      "articles": [
+        33
+      ]
     },
     "ias": {
       "authority": "Administrative Service",
-      "workflows": ["/research", "/status", "/update", "/bootstrap"],
-      "powers": ["intelligence", "schema_management", "compliance_audit"],
-      "articles": [39]
+      "workflows": [
+        "/research",
+        "/status",
+        "/update",
+        "/bootstrap"
+      ],
+      "powers": [
+        "intelligence",
+        "schema_management",
+        "compliance_audit"
+      ],
+      "articles": [
+        39
+      ]
     },
     "shadow_cabinet": {
       "authority": "Constitutional Opposition",
-      "workflows": ["/oversight-checks-and-balances", "/validate"],
-      "powers": ["challenge", "audit", "alternative_proposal"],
-      "articles": [40]
+      "workflows": [
+        "/oversight-checks-and-balances",
+        "/validate"
+      ],
+      "powers": [
+        "challenge",
+        "audit",
+        "alternative_proposal"
+      ],
+      "articles": [
+        40
+      ]
     }
   },
   "nlu_patterns": {
-    "error": ["error", "bug", "broken", "failing", "exception", "crash", "issue"],
-    "feature": ["add", "create", "build", "implement", "new", "feature", "develop"],
-    "validate": ["test", "check", "validate", "verify", "ensure", "confirm"],
-    "optimize": ["slow", "optimize", "faster", "performance", "speed", "improve"],
-    "status": ["status", "health", "progress", "state", "report", "summary"],
-    "research": ["how", "what", "why", "explain", "research", "learn", "understand"]
+    "error": [
+      "error",
+      "bug",
+      "broken",
+      "failing",
+      "exception",
+      "crash",
+      "issue"
+    ],
+    "feature": [
+      "add",
+      "create",
+      "build",
+      "implement",
+      "new",
+      "feature",
+      "develop"
+    ],
+    "validate": [
+      "test",
+      "check",
+      "validate",
+      "verify",
+      "ensure",
+      "confirm"
+    ],
+    "optimize": [
+      "slow",
+      "optimize",
+      "faster",
+      "performance",
+      "speed",
+      "improve"
+    ],
+    "status": [
+      "status",
+      "health",
+      "progress",
+      "state",
+      "report",
+      "summary"
+    ],
+    "research": [
+      "how",
+      "what",
+      "why",
+      "explain",
+      "research",
+      "learn",
+      "understand"
+    ]
   },
   "intent_mapping": {
     "error": {
-      "workflows": ["/fix"],
-      "articles": [5, 15],
+      "workflows": [
+        "/fix"
+      ],
+      "articles": [
+        5,
+        15
+      ],
       "priority": 1,
-      "mcps_required": ["context7", "sequential-thinking", "git"],
-      "cli_required": ["jq", "sponge", "glow"],
+      "mcps_required": [
+        "context7",
+        "sequential-thinking",
+        "git"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge",
+        "glow"
+      ],
       "rl_base_reward": 15,
       "rl_penalty": -30
     },
     "feature": {
-      "workflows": ["/research", "/next"],
-      "articles": [4, 17, 23],
+      "workflows": [
+        "/research",
+        "/next"
+      ],
+      "articles": [
+        4,
+        17,
+        23
+      ],
       "priority": 2,
-      "mcps_required": ["context7", "exa", "memory", "git"],
-      "cli_required": ["jq", "sponge"],
+      "mcps_required": [
+        "context7",
+        "exa",
+        "memory",
+        "git"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge"
+      ],
       "rl_base_reward": 30,
       "rl_penalty": -10
     },
     "validate": {
-      "workflows": ["/validate"],
-      "articles": [5, 15],
+      "workflows": [
+        "/validate"
+      ],
+      "articles": [
+        5,
+        15
+      ],
       "priority": 1,
-      "mcps_required": ["git"],
-      "cli_required": ["jq", "sponge"],
+      "mcps_required": [
+        "git"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge"
+      ],
       "rl_base_reward": 15,
       "rl_penalty": -30
     },
     "optimize": {
-      "workflows": ["/optimize"],
-      "articles": [20, 25],
+      "workflows": [
+        "/optimize"
+      ],
+      "articles": [
+        20,
+        25
+      ],
       "priority": 3,
-      "mcps_required": ["sequential-thinking"],
-      "cli_required": ["jq", "python3"],
-      "manual_functions": ["math: Python eval()"],
+      "mcps_required": [
+        "sequential-thinking"
+      ],
+      "cli_required": [
+        "jq",
+        "python3"
+      ],
+      "manual_functions": [
+        "math: Python eval()"
+      ],
       "rl_base_reward": 25,
       "rl_penalty": -15
     },
     "status": {
-      "workflows": ["/status"],
-      "articles": [16],
+      "workflows": [
+        "/status"
+      ],
+      "articles": [
+        16
+      ],
       "priority": 3,
       "mcps_required": [],
-      "cli_required": ["jq"],
-      "manual_functions": ["math: Python eval()"],
+      "cli_required": [
+        "jq"
+      ],
+      "manual_functions": [
+        "math: Python eval()"
+      ],
       "rl_base_reward": 10,
       "rl_penalty": 0
     },
     "init": {
-      "workflows": ["/init"],
-      "articles": [1, 2, 3],
+      "workflows": [
+        "/init"
+      ],
+      "articles": [
+        1,
+        2,
+        3
+      ],
       "priority": 1,
-      "mcps_required": ["memory"],
-      "cli_required": ["jq", "sponge", "date"],
-      "manual_functions": ["time: terminal date", "math: Python eval()"],
+      "mcps_required": [
+        "memory"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge",
+        "date"
+      ],
+      "manual_functions": [
+        "time: terminal date",
+        "math: Python eval()"
+      ],
       "rl_base_reward": 10,
       "rl_penalty": -15
     },
     "continue": {
-      "workflows": ["/continue"],
-      "articles": [6, 14],
+      "workflows": [
+        "/continue"
+      ],
+      "articles": [
+        6,
+        14
+      ],
       "priority": 1,
-      "mcps_required": ["memory"],
-      "cli_required": ["jq", "sponge", "date"],
-      "manual_functions": ["time: terminal date"],
+      "mcps_required": [
+        "memory"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge",
+        "date"
+      ],
+      "manual_functions": [
+        "time: terminal date"
+      ],
       "rl_base_reward": 5,
       "rl_penalty": -10
     },
     "bootstrap": {
-      "workflows": ["/bootstrap"],
-      "articles": [14],
+      "workflows": [
+        "/bootstrap"
+      ],
+      "articles": [
+        14
+      ],
       "priority": 1,
-      "mcps_required": ["git", "memory"],
-      "cli_required": ["jq", "sponge", "date"],
-      "manual_functions": ["time: terminal date"],
+      "mcps_required": [
+        "git",
+        "memory"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge",
+        "date"
+      ],
+      "manual_functions": [
+        "time: terminal date"
+      ],
       "rl_base_reward": 10,
       "rl_penalty": -15
     },
     "update": {
-      "workflows": ["/update"],
-      "articles": [14],
+      "workflows": [
+        "/update"
+      ],
+      "articles": [
+        14
+      ],
       "priority": 2,
-      "mcps_required": ["git"],
-      "cli_required": ["jq", "sponge"],
-      "manual_functions": ["time: terminal date", "math: Python eval()"],
+      "mcps_required": [
+        "git"
+      ],
+      "cli_required": [
+        "jq",
+        "sponge"
+      ],
+      "manual_functions": [
+        "time: terminal date",
+        "math: Python eval()"
+      ],
       "rl_base_reward": 8,
       "rl_penalty": -20
     },
     "oversight": {
-      "workflows": ["/oversight-checks-and-balances"],
-      "articles": [26, 27, 28, 29],
+      "workflows": [
+        "/oversight-checks-and-balances"
+      ],
+      "articles": [
+        26,
+        27,
+        28,
+        29
+      ],
       "priority": 2,
-      "mcps_required": ["sequential-thinking", "memory"],
-      "cli_required": ["jq", "python3"],
-      "manual_functions": ["math: Python eval()"],
+      "mcps_required": [
+        "sequential-thinking",
+        "memory"
+      ],
+      "cli_required": [
+        "jq",
+        "python3"
+      ],
+      "manual_functions": [
+        "math: Python eval()"
+      ],
       "rl_base_reward": 25,
       "rl_penalty": -20
     },
     "memory_status": {
-      "workflows": ["/memory-status"],
-      "articles": [10, 42],
+      "workflows": [
+        "/memory-status"
+      ],
+      "articles": [
+        10,
+        42
+      ],
       "priority": 3,
-      "mcps_required": ["memory"],
-      "cli_required": ["jq", "python3"],
-      "manual_functions": ["math: Python eval()"],
+      "mcps_required": [
+        "memory"
+      ],
+      "cli_required": [
+        "jq",
+        "python3"
+      ],
+      "manual_functions": [
+        "math: Python eval()"
+      ],
       "rl_base_reward": 5,
       "rl_penalty": -10
     }
@@ -690,19 +1037,25 @@
       "check": "memory_bank_exists",
       "if_false": "/init",
       "load_articles": {
-        "always": [1, 2, 3],
+        "always": [
+          1,
+          2,
+          3
+        ],
         "project_based": "detect_from_manifest",
-        "on_error": [36],
+        "on_error": [
+          36
+        ],
         "description": "Selective loading per init.md - NOT all 42 articles"
       },
       "load_mode": "selective",
       "detection_logic": {
-        "package.json": "load laws/javascript.md",
+        "package.json": "load laws/deployment-platforms.md",
         "Cargo.toml": "load laws/rust.md",
-        "requirements.txt": "load laws/python.md",
-        "go.mod": "load laws/go.md",
-        "pom.xml": "load laws/java.md",
-        "*.csproj": "load laws/csharp.md"
+        "requirements.txt": "load laws/deployment-platforms.md",
+        "go.mod": "load laws/deployment-platforms.md",
+        "pom.xml": "load laws/deployment-platforms.md",
+        "*.csproj": "load laws/deployment-platforms.md"
       }
     },
     "every_5_ops": {
@@ -734,7 +1087,10 @@
     },
     "error_detected": {
       "workflow": "/fix",
-      "articles": [5, 15],
+      "articles": [
+        5,
+        15
+      ],
       "halt": true,
       "rl_penalty": -30
     }
@@ -745,10 +1101,13 @@
       "consensus": "eval(f'({exec} * 0.3) + ({admin} * 0.3) + ({opp} * 0.3) + ({judicial} * 0.1)')",
       "compliance": "eval(f'({structural}/25 + {procedural}/25 + {quality}/25 + {learning}/25) * 100')",
       "autonomy": "min(100, base_autonomy + (success_rate * 10) - (violations * 5))",
-      "total_rl": "sum([tx['reward'] for tx in progress['rl_transactions']])"
+      "total_rl": "sum([tx['rl_reward'] for tx in progress['transactions']])"
     },
     "rewards": {
-      "task_completed": {"min": 20, "max": 50},
+      "task_completed": {
+        "min": 20,
+        "max": 50
+      },
       "validation_passed": 15,
       "pattern_reused": 20,
       "mcp_chain_complete": 10,
@@ -778,8 +1137,19 @@
   },
   "execution_rules": {
     "autonomy_band": "0-99%",
-    "high_risk_requires_approval": ["database_mutations", "production_deploy", "delete_5plus_files", "git_force", "security_changes"],
-    "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"]
+    "high_risk_requires_approval": [
+      "database_mutations",
+      "production_deploy",
+      "delete_5plus_files",
+      "git_force",
+      "security_changes"
+    ],
+    "forbidden_actions": [
+      "ask_permission_0_99",
+      "wait_for_slash",
+      "stop_after_one",
+      "research_alone"
+    ]
   },
   "atomic_update_chain": {
     "description": "8-schema atomic update with cross-file validation",
@@ -806,7 +1176,10 @@
   },
   "workflow_execution": {
     "pre_execution": {
-      "load_helpers": ["common-mistakes.json", "tool-usage-patterns.json"],
+      "load_helpers": [
+        "common-mistakes.json",
+        "tool-usage-patterns.json"
+      ],
       "check_schemas": true,
       "verify_mcp_servers": true
     },
@@ -840,27 +1213,42 @@
   },
   "helper_loading_triggers": {
     "common-mistakes.json": {
-      "when": ["pre_execution", "error_detected"],
+      "when": [
+        "pre_execution",
+        "error_detected"
+      ],
       "purpose": "Prevent known errors before they occur",
       "always_load": true
     },
     "error-recovery.json": {
-      "when": ["error_detected", "validation_failure"],
+      "when": [
+        "error_detected",
+        "validation_failure"
+      ],
       "purpose": "Recovery protocols for specific error types",
       "always_load": false
     },
     "tool-usage-patterns.json": {
-      "when": ["pre_execution"],
+      "when": [
+        "pre_execution"
+      ],
       "purpose": "MCP best practices and usage patterns",
       "always_load": true
     },
     "constitutional-governance.json": {
-      "when": ["parliamentary_decision", "consensus_calculation", "approval_gate"],
+      "when": [
+        "parliamentary_decision",
+        "consensus_calculation",
+        "approval_gate"
+      ],
       "purpose": "Democratic decision-making protocols",
       "always_load": false
     },
     "schema-evolution.json": {
-      "when": ["schema_migration", "version_upgrade"],
+      "when": [
+        "schema_migration",
+        "version_upgrade"
+      ],
       "purpose": "Safe schema migration protocols",
       "always_load": false
     }
@@ -870,27 +1258,47 @@
     "linkage_keys": {
       "proposal_id": {
         "format": "proposal-YYYYMMDD-NNN",
-        "links": ["scratchpad", "systemPatterns", "progress", "memory"],
+        "links": [
+          "scratchpad",
+          "systemPatterns",
+          "progress",
+          "memory"
+        ],
         "purpose": "Track proposals through research, implementation, and RL scoring"
       },
       "kanban_task_id": {
         "format": "task-YYYYMMDD-NNN",
-        "links": ["scratchpad", "kanban", "activeContext", "progress"],
+        "links": [
+          "scratchpad",
+          "kanban",
+          "activeContext",
+          "progress"
+        ],
         "purpose": "Track task lifecycle from todo to approved"
       },
       "error_id": {
         "format": "error-YYYYMMDD-NNN",
-        "links": ["mistakes", "progress", "activeContext"],
+        "links": [
+          "mistakes",
+          "progress",
+          "activeContext"
+        ],
         "purpose": "Link error patterns to RL penalties and prevention"
       },
       "pattern_id": {
         "format": "pattern-YYYYMMDD-NNN",
-        "links": ["systemPatterns", "memory", "progress"],
+        "links": [
+          "systemPatterns",
+          "memory",
+          "progress"
+        ],
         "purpose": "Track pattern usage, reuse count, and RL rewards"
       },
       "tx_id": {
         "format": "tx-TIMESTAMP-NNNNN",
-        "links": ["progress"],
+        "links": [
+          "progress"
+        ],
         "purpose": "Unique RL transaction identifier (single source)"
       }
     },
@@ -899,17 +1307,35 @@
   "mcp_fallback_strategy": {
     "description": "Resilience when MCP servers fail",
     "fallback_chains": {
-      "context7": ["fetch", "memory_patterns", "halt_if_critical"],
-      "fetch": ["context7", "memory_patterns", "continue_with_degraded"],
-      "memory": ["json-jq_read", "halt_if_critical"],
-      "git": ["manual_commit_required", "continue_workflow"]
+      "context7": [
+        "fetch",
+        "memory_patterns",
+        "halt_if_critical"
+      ],
+      "fetch": [
+        "context7",
+        "memory_patterns",
+        "continue_with_degraded"
+      ],
+      "memory": [
+        "json-jq_read",
+        "halt_if_critical"
+      ],
+      "git": [
+        "manual_commit_required",
+        "continue_workflow"
+      ]
     },
     "error_handling": {
       "rate_limit": "Exponential backoff: 1s, 2s, 4s, 8s",
       "timeout": "Retry once, then fallback",
       "unavailable": "Load error-recovery.json for alternative approach"
     },
-    "critical_mcps": ["memory", "json-jq", "git"],
+    "critical_mcps": [
+      "memory",
+      "json-jq",
+      "git"
+    ],
     "degraded_mode": "Continue with available MCPs, log issues to mistakes.json"
   },
   "approval_gate_flow": {
@@ -928,8 +1354,18 @@
       "step_4_fail": "Either fails → kanban.todo + mistakes.json + remediation required"
     },
     "verification_criteria": {
-      "shadow_cabinet": ["code_quality", "EMD_compliance", "test_coverage", "approach_validity"],
-      "chief_justice": ["constitutional_compliance", "mcp_trail_complete", "rl_calculation_correct", "schema_valid"]
+      "shadow_cabinet": [
+        "code_quality",
+        "EMD_compliance",
+        "test_coverage",
+        "approach_validity"
+      ],
+      "chief_justice": [
+        "constitutional_compliance",
+        "mcp_trail_complete",
+        "rl_calculation_correct",
+        "schema_valid"
+      ]
     },
     "timeout": "24 hours in done status triggers auto-escalation to Parliament"
   },
@@ -938,7 +1374,9 @@
     "backup_triggers": {
       "every_5_operations": {
         "action": "@mcp:git commit -m 'checkpoint: [operation_count] operations'",
-        "files": ["{IDE}/.aegiside/memory-bank/*.json"],
+        "files": [
+          "{IDE}/.aegiside/memory-bank/*.json"
+        ],
         "validation": "Verify git commit successful before continuing"
       },
       "schema_update": {
@@ -1198,10 +1636,9 @@
       "cross_schema_sync": "RL references in mistakes/systemPatterns must link to progress.json tx_id"
     }
   },
-  
   "enforcement_layer": {
     "description": "ACTIVE enforcement preventing hallucination and constitutional violations, now fully defined within the router.",
-    "implementation": "Core logic integrated from the now-deleted 'anti-hallucination-protocol.json'.",
+    "implementation": "Consulted via tool-usage-patterns.json",
     "authority": "Articles IV, XIII, XIV - Constitutional mandate",
     "pre_action_gates": {
       "gate_1_sequential_thinking": {
