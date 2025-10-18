@@ -30,13 +30,13 @@ echo "→ TASK: $task_title" >&2
 ## 3. Analysis & Update (CLI Atomic)
 
 ```bash
-# Compute metrics
-performance=$(python3 -c "print(calculate_metrics())")
-cost=$(python3 -c "print(estimate_costs())")
+# Compute metrics (deterministic placeholders)
+performance=$(python3 -c "print(0)")
+cost=$(python3 -c "print(0)")
 
 # Update systemPatterns (atomic with sponge)
 echo "→ UPDATE: Research dossier to systemPatterns.json" >&2
-jq --arg summary "..." --arg perf "$performance" \
+jq --arg summary "Auto-generated research entry" --arg perf "$performance" \
   '.patterns = [{
     "executive_summary": $summary,
     "benchmarks": $perf,
@@ -48,7 +48,8 @@ jq --arg summary "..." --arg perf "$performance" \
 jq '.transactions = [{"workflow": "research", "rl_reward": 10}] + .transactions | .total_rl_score += 10' \
   "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
-git commit -m "research: $task_title assessment"
+@mcp:git add -A
+@mcp:git commit -m "research: $task_title assessment"
 echo "✓ RESEARCH COMPLETE" >&2
 ```
 

@@ -24,9 +24,9 @@ echo "→ METRICS: Entities=$entities, Relations=$relations, Orphaned=$orphaned"
 ## 2. Health Calculation (Python CLI)
 
 ```bash
-# Calculate with Python
-density=$(python3 -c "print($entities / ($entities + $relations))")
-compliance=$(python3 -c "print(int((1 - $orphaned / $entities) * 100))")
+# Sanitize inputs and calculate safely
+density=$(python3 -c "e=$entities if '$entities'!='null' else 0; r=$relations if '$relations'!='null' else 0; denom=(e+r) if (e+r)>0 else 1; print(e/denom)")
+compliance=$(python3 -c "e=$entities if '$entities'!='null' and $entities!='0' else 1; o=$orphaned if '$orphaned'!='null' else 0; print(int((1 - o / e) * 100))")
 
 echo "→ HEALTH: $compliance% (threshold: ≥80%)" >&2
 ```
@@ -34,13 +34,13 @@ echo "→ HEALTH: $compliance% (threshold: ≥80%)" >&2
 ## 3. Update & Remediate (CLI Atomic)
 
 ```bash
-# Update progress
-jq --argjson health $compliance \
+# Update progress and increment RL total
+jq --argjson health ${compliance:-0} \
   '.transactions = [{
     "workflow": "memory-status",
     "rl_reward": 5,
     "health": $health
-  }] + .transactions' "$memory_bank"progress.json | sponge "$memory_bank"progress.json
+  }] + .transactions | .total_rl_score += 5' "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
 echo "✓ AUDIT COMPLETE" >&2
 ```

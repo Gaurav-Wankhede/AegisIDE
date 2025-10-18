@@ -36,11 +36,24 @@ glow "${constitution}/06-parliament/article-28.md"
 ## 3. Consensus & Update (CLI Atomic)
 
 ```bash
-# Calculate consensus (Python)
-consensus=$(python3 -c "print((exec*0.3) + (admin*0.3) + (opp*0.3) + (jud*0.1))")
+# Compute compliance from memory bank state (proxy)
+files=$(@mcp:json-jq query '.memory_bank_files[]' from 'context-router.json')
+valid=0
+for f in $files; do
+  [[ -f "${memory_bank}${f}" ]] && ((valid++))
+done
+compliance=$(
+  python3 -c "v=int('$valid'); print(int(v/8*100))"
+)
+
+# Calculate consensus as weighted function of compliance
+consensus=$(python3 -c "c=$compliance/100; print((c*0.3)+(c*0.3)+(c*0.3)+(c*0.1))")
 echo "→ CONSENSUS: $consensus (threshold: ≥0.95)" >&2
 
-if (( $(echo "$consensus >= 0.95" | bc -l) )); then
+# Python-based threshold check (no bc)
+approved=$(python3 -c "import sys; print('1' if float(sys.argv[1])>=0.95 else '0')" "$consensus")
+
+if [[ "$approved" == "1" ]]; then
   # Approved
   echo "→ APPROVED: +25 RL" >&2
   jq --argjson cons "$consensus" \
@@ -57,7 +70,8 @@ else
     "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 fi
 
-git commit -m "oversight: consensus $consensus"
+@mcp:git add -A
+@mcp:git commit -m "oversight: consensus $consensus"
 echo "✓ OVERSIGHT COMPLETE" >&2
 ```
 

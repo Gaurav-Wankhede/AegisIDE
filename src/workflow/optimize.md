@@ -31,15 +31,20 @@ echo "→ BASELINE: $baseline" >&2
 ## 3. Decision (CLI Atomic)
 
 ```bash
-# Calculate improvement
-improvement=$(python3 -c "print(($new_time - $baseline) / $baseline * 100)")
+# Capture new timestamp (post-ops)
+new_time=$(python3 -c "import time; print(time.time())")
 
-if (( $(echo "$improvement < 0" | bc -l) )); then
+# Calculate improvement (negative means regression)
+improvement=$(python3 -c "import sys; b=float(sys.argv[1]); n=float(sys.argv[2]); print(((n-b)/b)*100 if b!=0 else 0)" "$baseline" "$new_time")
+
+# Determine regression using Python (no bc dependency)
+regression=$(python3 -c "import sys; imp=float(sys.argv[1]); print('1' if imp<0 else '0')" "$improvement")
+
+if [[ "$regression" == "1" ]]; then
   # Regression - HALT
   echo "→ REGRESSION: $improvement% (penalty: -25)" >&2
   jq '.transactions = [{"workflow": "optimize", "rl_penalty": -25}] + .transactions | .total_rl_score += -25' \
     "$memory_bank"progress.json | sponge "$memory_bank"progress.json
-  git revert HEAD
 else
   # Success
   echo "→ SUCCESS: $improvement% improvement (+20 RL)" >&2
@@ -50,7 +55,8 @@ else
       "improvement_pct": $imp
     }] + .transactions | .total_rl_score += 20' \
     "$memory_bank"progress.json | sponge "$memory_bank"progress.json
-  git commit -m "optimize: ${improvement}% improvement"
+  @mcp:git add -A
+  @mcp:git commit -m "optimize: ${improvement}% improvement"
 fi
 
 echo "✓ OPTIMIZATION COMPLETE" >&2

@@ -82,20 +82,18 @@ else
     "timestamp": "'$(date '+%Y-%m-%dT%H:%M:%S%z')'"
   }] + .transactions | .total_rl_score += 15' \
     "$memory_bank"progress.json | sponge "$memory_bank"progress.json
-  
-  # Commit validation success
-  @mcp:git add -A
-  @mcp:git commit -m "validate: All checks passed - RL: +15"
-  
-  echo "✓ VALIDATION COMPLETE" >&2
-  exit 0
-  
+
   # Move to kanban 'done' (awaits approval)
   echo "→ KANBAN: Move to 'done' column" >&2
   jq '.columns.done += [.columns.in_progress[0]] | .columns.in_progress |= .[1:]' \
     "$memory_bank"kanban.json | sponge "$memory_bank"kanban.json
-  
+
+  # Commit validation success
+  @mcp:git add -A
+  @mcp:git commit -m "validate: All checks passed - RL: +15"
+
   echo "✓ VALIDATION COMPLETE" >&2
+  exit 0
 fi
 ```
 

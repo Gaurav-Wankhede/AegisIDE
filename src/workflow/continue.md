@@ -28,15 +28,15 @@ echo "→ STATE: RL=$rl_score, Queue=$queue_length" >&2
 ## 2. Validate & Resume (CLI Transparency)
 
 ```bash
-# Query schema files via MCP
-schema_files=$(@mcp:json-jq query '.schema_files[]' from 'context-router.json')
+# Query memory bank files via MCP (data files, not .schema.json)
+memory_bank_files=$(@mcp:json-jq query '.memory_bank_files[]' from 'context-router.json')
 
-# Validate all 8 schemas
-for schema in $schema_files; do
-  if [[ -f "${memory_bank}${schema}" ]]; then
-    echo "✓ $schema" >&2
+# Validate all 8 data files exist
+for f in $memory_bank_files; do
+  if [[ -f "${memory_bank}${f}" ]]; then
+    echo "✓ $f" >&2
   else
-    echo "❌ $schema MISSING" >&2
+    echo "❌ $f MISSING" >&2
   fi
 done
 

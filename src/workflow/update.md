@@ -14,7 +14,7 @@ set -euo pipefail
 trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
 
 memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
-update_order=$(@mcp:json-jq query '.atomic_update_chain.order[]' from 'context-router.json')
+update_order=$(@mcp:json-jq query '.memory_bank_files[]' from 'context-router.json')
 
 # Validate all 8 schemas exist
 echo "→ VALIDATE: Checking 8 schemas" >&2
@@ -43,7 +43,7 @@ echo "→ COMPLIANCE: ${valid_count}/8 schemas valid (${compliance}%)" >&2
 # Atomic updates with sponge
 for schema in $update_order; do
   echo "→ UPDATE: $schema (atomic)" >&2
-  jq '.timestamp = "'$(date '+%Y-%m-%dT%H:%M:%S%z')'" | .data |= .[:100]' \
+  jq '.timestamp = "'$(date '+%Y-%m-%dT%H:%M:%S%z')'"' \
     "$memory_bank$schema" | sponge "$memory_bank$schema"
 done
 
@@ -51,7 +51,8 @@ done
 jq '.transactions = [{"workflow": "update", "rl_reward": 8}] + .transactions | .total_rl_score += 8' \
   "$memory_bank"progress.json | sponge "$memory_bank"progress.json
 
-git commit -m "update: 8-schema sync"
+@mcp:git add -A
+@mcp:git commit -m "update: 8-schema sync"
 echo "✓ UPDATE COMPLETE" >&2
 ```
 

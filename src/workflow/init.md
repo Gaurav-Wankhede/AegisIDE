@@ -11,12 +11,12 @@ echo "→ INIT: Session initialization" >&2
 
 # Query via MCP (constitutional compliance)
 memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
-schema_files=$(@mcp:json-jq query '.schema_files[]' from 'context-router.json')
+memory_bank_files=$(@mcp:json-jq query '.memory_bank_files[]' from 'context-router.json')
 
 # Check schemas exist (parallel)
 missing=0
-for schema in $schema_files; do
-  [[ ! -f "$memory_bank$schema" ]] && ((missing++)) &
+for f in $memory_bank_files; do
+  [[ ! -f "$memory_bank$f" ]] && ((missing++)) &
 done
 wait
 
@@ -47,7 +47,7 @@ constitution=$(@mcp:json-jq query '.system_paths.constitution' from 'context-rou
 # Render with glow (direct file read)
 for article in $articles; do
   echo "→ RENDER: Article $article" >&2
-  glow "${constitution}/02-preliminary/article-0${article}.md"
+  glow "${constitution}/02-preliminary/article-${article}.md"
 done
 ```
 

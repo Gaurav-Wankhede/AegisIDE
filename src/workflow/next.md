@@ -36,15 +36,15 @@ fi
 ## 3. Update 8 Schemas (Atomic - MCP Read, jq Write)
 
 ```bash
-# Query update order from router (MCP READ)
-update_order=$(@mcp:json-jq query '.atomic_update_chain.order[]' from 'context-router.json')
+# Query list of memory bank files (MCP READ)
+update_order=$(@mcp:json-jq query '.memory_bank_files[]' from 'context-router.json')
 
 for schema in $update_order; do
   echo "→ UPDATE: $schema" >&2
   
-  # Atomic write ONLY (jq | sponge)
+  # Atomic write ONLY (jq | sponge) — set timestamp; avoid touching fields that may not exist
   jq --arg ts "$(date '+%Y-%m-%dT%H:%M:%S%z')" \
-    '.timestamp = $ts | .data |= .[:100]' \
+    '.timestamp = $ts' \
     "${memory_bank}${schema}" | sponge "${memory_bank}${schema}"
 done
 
@@ -71,7 +71,7 @@ trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
 @mcp:git commit -m "task: $task complete - RL: +20"
 
 # Check for next task
-next_task=$(@mcp:json-jq query '.priority_queue[0]' from 'scratchpad.json')
+next_task=$(@mcp:json-jq query '.priority_queue[0]' from "${memory_bank}scratchpad.json")
 
 if [[ -n "$next_task" && "$next_task" != "null" ]]; then
   echo "→ NEXT AVAILABLE: $next_task" >&2
@@ -99,7 +99,7 @@ echo "→ ARTICLES: Loading via @mcp:json-jq" >&2
 # Render with glow (beautiful terminal UI)
 for article_num in $articles_always; do
   echo "→ RENDER: Article $article_num" >&2
-  glow "${constitution}/02-preliminary/article-0${article_num}.md"
+  glow "${constitution}/02-preliminary/article-${article_num}.md"
 done
 
 # On error - render judicial article
