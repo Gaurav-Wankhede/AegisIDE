@@ -1701,5 +1701,186 @@
     ],
     "min_confidence": 0.6,
     "fallback": "proceed"
-  }
+  },
+  "nlu_intent_patterns": {
+    "affirmation": {
+      "patterns": [
+        "^yes$",
+        "yes please",
+        "go ahead",
+        "do it",
+        "proceed",
+        "start",
+        "run it",
+        "full test"
+      ],
+      "weight": 0.9
+    },
+    "proceed": {
+      "patterns": [
+        "proceed",
+        "go ahead",
+        "carry on",
+        "continue"
+      ],
+      "weight": 0.8
+    },
+    "continue": {
+      "patterns": [
+        "continue",
+        "resume",
+        "/continue"
+      ],
+      "weight": 0.85
+    },
+    "next": {
+      "patterns": [
+        "/next",
+        "run next",
+        "execute next",
+        "next"
+      ],
+      "weight": 0.85
+    },
+    "status": {
+      "patterns": [
+        "/status",
+        "status",
+        "health",
+        "report"
+      ],
+      "weight": 0.8
+    },
+    "bootstrap": {
+      "patterns": [
+        "/bootstrap",
+        "bootstrap",
+        "init schemas"
+      ],
+      "weight": 0.8
+    },
+    "validate": {
+      "patterns": [
+        "/validate",
+        "validate",
+        "test"
+      ],
+      "weight": 0.8
+    },
+    "fix": {
+      "patterns": [
+        "/fix",
+        "fix",
+        "remediate"
+      ],
+      "weight": 0.8
+    },
+    "update": {
+      "patterns": [
+        "/update",
+        "update",
+        "sync"
+      ],
+      "weight": 0.8
+    },
+    "research": {
+      "patterns": [
+        "/research",
+        "research",
+        "investigate"
+      ],
+      "weight": 0.8
+    },
+    "full_test": {
+      "patterns": [
+        "full test",
+        "run all tests",
+        "complete workflow test"
+      ],
+      "weight": 0.9
+    }
+  },
+  "nlu_action_map": {
+    "affirmation": {
+      "workflow": "/continue",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "proceed": {
+      "workflow": "/continue",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "continue": {
+      "workflow": "/continue",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "next": {
+      "workflow": "/next",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "status": {
+      "workflow": "/status",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "bootstrap": {
+      "workflow": "/bootstrap",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "validate": {
+      "workflow": "/validate",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "fix": {
+      "workflow": "/fix",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "update": {
+      "workflow": "/update",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "research": {
+      "workflow": "/research",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "full_test": {
+      "workflow": "/status",
+      "autonomy": "0-99%",
+      "risk": "low",
+      "chain": [
+        "/update",
+        "/memory-status"
+      ]
+    }
+  },
+  "nlu_confidence": {
+    "default_min": 0.6,
+    "safe_min": 0.6,
+    "high_risk_min": 0.9
+  },
+  "nlu_ambiguity_policy": {
+    "tie_breaker": "intent_priority_order",
+    "fallback_intent": "proceed"
+  },
+  "intent_priority_order": [
+    "full_test",
+    "next",
+    "continue",
+    "status",
+    "update",
+    "validate",
+    "fix",
+    "bootstrap",
+    "research",
+    "proceed",
+    "affirmation"
+  ]
 }
