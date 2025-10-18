@@ -248,6 +248,8 @@ python3 -m http.server 7777
 
 ## 📚 Learn More
 
+- 🚀 **[Quick Start Demo](docs/QUICK_START_DEMO.md)** - 30-second autonomous flow
+- 🧠 **[NLU/NLP Overview](docs/NLU_NLP_OVERVIEW.md)** - Intent recognition guide
 - 📖 **[Setup Guide](src/.aegiside/README.md)** - Detailed instructions
 - 🔧 **[Technical Details](TECHNICAL_ROADMAP.md)** - How it works
 - 🤝 **[Contributing](CONTRIBUTING.md)** - Join the project
