@@ -4,7 +4,20 @@ description: Automatic session initialization with metadata injection + Constitu
 
 # /auto-init — Metadata Injection + Constitutional Awareness
 
-## 1. Load Constitutional Metadata Catalog (500 tokens)
+## 1. Router Catalog Discovery (Anti-Amnesia)
+
+```bash
+# Step 1: Load router catalog
+echo "→ ROUTER DISCOVERY: Loading catalog" >&2
+router_count=$(@mcp:json-jq query '.modular_routers | length' from 'src/.aegiside/context-router.json')
+echo "  ✓ Discovered $router_count routers" >&2
+
+# Step 2: Load system paths
+system_paths=$(@mcp:json-jq query '.system_paths' from 'src/.aegiside/context-router.json')
+echo "  ✓ System paths loaded" >&2
+```
+
+## 2. Load Constitutional Metadata Catalog (500 tokens)
 
 ```bash
 # Inject lightweight catalog into session context

@@ -1,0 +1,57 @@
+{
+  "workflow_name": "fix",
+  "description": "HALT-FIX-VALIDATE loop for error resolution",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "tool": "@mcp:json-jq",
+      "query": ".error_log | length",
+      "file": ".aegiside/memory-bank/mistakes.json",
+      "greater_than": 0
+    },
+    "auto_execute": false,
+    "requires_approval": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ FIX: HALT-FIX-VALIDATE loop activated"
+    },
+    {
+      "step": 2,
+      "action": "query",
+      "tool": "@mcp:json-jq",
+      "query": ".error_log[0]",
+      "file": ".aegiside/memory-bank/mistakes.json",
+      "store_as": "last_error"
+    },
+    {
+      "step": 3,
+      "action": "research",
+      "tool": "@mcp:context7",
+      "query": "{last_error}",
+      "description": "Fetch official documentation for error resolution"
+    },
+    {
+      "step": 4,
+      "action": "display",
+      "message": "→ Apply fix based on official documentation"
+    },
+    {
+      "step": 5,
+      "action": "validate",
+      "workflow": "validate.json"
+    },
+    {
+      "step": 6,
+      "action": "display",
+      "message": "✅ Fix applied and validated"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 5 (Zero-Tolerance Validation)", "Article 23 (Context7 Priority)"],
+    "mcps_used": ["@mcp:json-jq", "@mcp:context7"],
+    "autonomy_band": "0-99%"
+  }
+}

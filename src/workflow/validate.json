@@ -1,0 +1,36 @@
+{
+  "workflow_name": "validate",
+  "description": "Zero-tolerance validation (Article 5)",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "event": "pre_commit"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ VALIDATE: Running zero-tolerance checks"
+    },
+    {
+      "step": 2,
+      "action": "validate_schemas",
+      "schemas": ["activeContext", "scratchpad", "kanban", "mistakes", "systemPatterns", "progress", "roadmap", "memory"],
+      "base_path": ".aegiside/memory-bank/",
+      "tool": "@mcp:json-jq",
+      "halt_on_error": true
+    },
+    {
+      "step": 3,
+      "action": "display",
+      "message": "✅ VALIDATION PASSED: All schemas valid"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 5 (Zero-Tolerance Validation)"],
+    "mcps_used": ["@mcp:json-jq"],
+    "autonomy_band": "0-99%"
+  }
+}

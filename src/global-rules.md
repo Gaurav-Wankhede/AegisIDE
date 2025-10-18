@@ -1,21 +1,25 @@
 # AegisIDE - Dynamic Modular Router Authority
 
-## 🎯 MODULAR ROUTER ARCHITECTURE: `.aegiside/routers/`
+## 🎯 MODULAR ROUTER ARCHITECTURE: `{IDE}/.aegiside/routers/`
 
 **NEVER use static rules. ALWAYS query modular routers dynamically with efficient loading.**
 
 ### **📁 Router Modules (≤3KB each for performance)**
-- `core.json` - Essential operations & paths (79 lines)
-- `mcps.json` - MCP configurations & usage (22 lines)
-- `constitutional.json` - Roles & governance (95 lines)
-- `parliamentary.json` - Voting & consensus (27 lines)
-- `session.json` - Session awareness & display (28 lines)
-- `violations.json` - Penalties & enforcement (34 lines)
-- `memory-bank.json` - 8-schema definitions (24 lines)
-- `autonomy.json` - Execution bands & controls (19 lines)
-- `workflows.json` - NLU triggers & routing (72 lines)
-- `governance.json` - Project governance & IDE detection (49 lines)
-- `context-router-v3.json` - Lightweight index (67 lines)
+- `context-router.json` - Main router index & system paths
+- `core.json` - Essential operations & paths
+- `mcps.json` - 6 MCP configurations & usage
+- `constitutional.json` - Governance roles (CJ, PM, IAS, Shadow)
+- `constitutional-index.json` - 42 articles metadata, progressive loading
+- `constitutional-metadata.json` - 500-token catalog for metadata injection
+- `parliamentary.json` - Voting & consensus mechanisms
+- `session.json` - Session awareness & display
+- `violations.json` - RL penalties & enforcement
+- `memory-bank.json` - 8-schema definitions
+- `autonomy.json` - Execution bands (0-99%) & user controls
+- `workflows.json` - NLU triggers & workflow routing
+- `governance.json` - Project governance & IDE detection
+- `rl-feedback-loop.json` - PPO-based trigger sensitivity
+- `skills.json` - 23 domains, 131 triggers for dynamic research
 
 ### **⚡ EFFICIENT LOADING PATTERNS**
 

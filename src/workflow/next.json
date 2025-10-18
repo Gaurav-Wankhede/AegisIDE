@@ -1,0 +1,46 @@
+{
+  "workflow_name": "next",
+  "description": "Load and execute next task from scratchpad",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "tool": "@mcp:json-jq",
+      "query": ".priority_queue | length",
+      "file": ".aegiside/memory-bank/scratchpad.json",
+      "greater_than": 0
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "query",
+      "tool": "@mcp:json-jq",
+      "query": ".priority_queue[0]",
+      "file": ".aegiside/memory-bank/scratchpad.json",
+      "store_as": "next_task"
+    },
+    {
+      "step": 2,
+      "action": "display",
+      "message": "→ NEXT: Loading task - {next_task}"
+    },
+    {
+      "step": 3,
+      "action": "update",
+      "tool": "run_command",
+      "command": "jq --arg task \"$next_task\" '.current_task = $task | .last_activity = now' .aegiside/memory-bank/activeContext.json | sponge .aegiside/memory-bank/activeContext.json",
+      "safe_to_auto_run": true
+    },
+    {
+      "step": 4,
+      "action": "display",
+      "message": "✅ Task loaded - execute autonomously (0-99% band)"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Continuous Operations)"],
+    "mcps_used": ["@mcp:json-jq", "run_command"],
+    "autonomy_band": "0-99%"
+  }
+}

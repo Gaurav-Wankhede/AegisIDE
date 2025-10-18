@@ -1,0 +1,57 @@
+{
+  "workflow_name": "auto-init",
+  "description": "Automatic session initialization with constitutional awareness",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "tool": "@mcp:json-jq",
+      "query": ".session.status",
+      "file": ".aegiside/memory-bank/activeContext.json",
+      "equals": "new"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "🚀 AegisIDE Session Starting..."
+    },
+    {
+      "step": 2,
+      "action": "query",
+      "tool": "@mcp:json-jq",
+      "query": ".modular_routers | length",
+      "file": ".aegiside/routers/context-router.json",
+      "store_as": "router_count",
+      "display": "→ Discovered {router_count} routers"
+    },
+    {
+      "step": 3,
+      "action": "update",
+      "tool": "run_command",
+      "command": "jq '.session = {status: \"active\", last_activity: now, started_at: now}' .aegiside/memory-bank/activeContext.json | sponge .aegiside/memory-bank/activeContext.json",
+      "safe_to_auto_run": true,
+      "description": "Update session state to active"
+    },
+    {
+      "step": 4,
+      "action": "update",
+      "tool": "run_command",
+      "command": "jq '.transactions = [{workflow: \"auto-init\", rl_reward: 5, timestamp: now | todate}] + .transactions | .total_rl_score += 5' .aegiside/memory-bank/progress.json | sponge .aegiside/memory-bank/progress.json",
+      "safe_to_auto_run": true,
+      "rl_reward": 5,
+      "description": "Update RL score"
+    },
+    {
+      "step": 5,
+      "action": "display",
+      "message": "✅ Auto-init complete"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 4 (Autonomous Execution)", "Article 13 (MCP Usage)"],
+    "mcps_used": ["@mcp:json-jq", "run_command"],
+    "autonomy_band": "0-99%"
+  }
+}

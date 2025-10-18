@@ -1,11 +1,49 @@
 #!/bin/bash
-# /bootstrap - Memory Bank Initialization
+# AegisIDE Bootstrap - Copy framework + Initialize memory bank
+# Creates project-local .aegiside/ with framework routers and empty schemas
 set -euo pipefail
 
-echo "→ BOOTSTRAP: Initializing AegisIDE memory bank" >&2
+echo "═══════════════════════════════════════════════════════════"
+echo "  🚀 BOOTSTRAP: Initializing AegisIDE Framework"
+echo "═══════════════════════════════════════════════════════════"
+echo ""
 
-# 1. Create directory structure
+# Detect AegisIDE template location
+if [[ -d "src/.aegiside" ]]; then
+  TEMPLATE_DIR="src/.aegiside"
+  echo "  ✓ Template found: ./src/.aegiside/"
+elif [[ -n "${AEGISIDE_TEMPLATE:-}" ]] && [[ -d "$AEGISIDE_TEMPLATE" ]]; then
+  TEMPLATE_DIR="$AEGISIDE_TEMPLATE"
+  echo "  ✓ Template found: $AEGISIDE_TEMPLATE"
+else
+  echo "  ✗ ERROR: AegisIDE template not found"
+  echo "  Run from AegisIDE repo OR set AEGISIDE_TEMPLATE environment variable"
+  exit 1
+fi
+
+# Get current timestamp
+timestamp=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+
+# Create directory structure
+echo "→ Creating .aegiside/ structure..."
 mkdir -p .aegiside/memory-bank
+
+# Copy framework from template
+echo "→ Copying framework routers..."
+cp -r "$TEMPLATE_DIR/routers" .aegiside/
+echo "  ✓ Copied 15 routers"
+
+if [[ -d "$TEMPLATE_DIR/../rules/constitution" ]]; then
+  echo "→ Copying constitutional framework..."
+  cp -r "$TEMPLATE_DIR/../rules/constitution" .aegiside/
+  echo "  ✓ Copied 42 articles"
+fi
+
+if [[ -d "$TEMPLATE_DIR/schemas" ]]; then
+  echo "→ Copying schema definitions..."
+  cp -r "$TEMPLATE_DIR/schemas" .aegiside/
+  echo "  ✓ Copied validation schemas"
+fi
 mkdir -p .aegiside/schemas
 mkdir -p .aegiside/cache/skills
 mkdir -p .aegiside/routers

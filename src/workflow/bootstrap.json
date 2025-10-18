@@ -1,0 +1,38 @@
+{
+  "workflow_name": "bootstrap",
+  "description": "Initialize 8-schema memory bank structure",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "tool": "@mcp:json-jq",
+      "query": ".schemas_initialized // false",
+      "file": ".aegiside/memory-bank/activeContext.json",
+      "equals": false
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ BOOTSTRAP: Initializing memory bank"
+    },
+    {
+      "step": 2,
+      "action": "create_schemas",
+      "schemas": ["activeContext", "scratchpad", "kanban", "mistakes", "systemPatterns", "progress", "roadmap", "memory"],
+      "base_path": ".aegiside/memory-bank/",
+      "template": {"schema_version": "1.0.0", "timestamp": "{{now}}"}
+    },
+    {
+      "step": 3,
+      "action": "display",
+      "message": "✅ Bootstrap complete - 8/8 schemas initialized"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 14 (8-Schema Update)"],
+    "mcps_used": ["@mcp:json-jq", "run_command"],
+    "autonomy_band": "0-99%"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "workflow_name": "continue",
+  "description": "Session recovery after interruption",
+  "version": "1.0.0",
+  "trigger": {
+    "condition": {
+      "tool": "@mcp:json-jq",
+      "query": ".session.interrupted // false",
+      "file": ".aegiside/memory-bank/activeContext.json",
+      "equals": true
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ CONTINUE: Recovering session"
+    },
+    {
+      "step": 2,
+      "action": "query",
+      "tool": "@mcp:json-jq",
+      "query": ".current_task",
+      "file": ".aegiside/memory-bank/activeContext.json",
+      "store_as": "interrupted_task"
+    },
+    {
+      "step": 3,
+      "action": "update",
+      "tool": "run_command",
+      "command": "jq '.session.interrupted = false | .session.recovered_at = now' .aegiside/memory-bank/activeContext.json | sponge .aegiside/memory-bank/activeContext.json",
+      "safe_to_auto_run": true
+    },
+    {
+      "step": 4,
+      "action": "display",
+      "message": "✅ Session recovered - resuming: {interrupted_task}"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Continuous Operations)"],
+    "mcps_used": ["@mcp:json-jq", "run_command"],
+    "autonomy_band": "0-99%"
+  }
+}
