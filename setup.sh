@@ -34,7 +34,7 @@ detect_ide() {
     fi
 }
 
-# Get global memory path
+# Get global memory path and file name
 get_global_path() {
     local os=$1
     local ide=$2
@@ -58,12 +58,39 @@ get_global_path() {
                 macos) echo "$HOME/Library/Application Support/Code/User" ;;
                 windows) echo "$APPDATA/Code/User" ;;
             esac ;;
+        continue)
+            case $os in
+                linux) echo "$HOME/.continue" ;;
+                macos) echo "$HOME/.continue" ;;
+                windows) echo "$USERPROFILE/.continue" ;;
+            esac ;;
+        jetbrains)
+            case $os in
+                linux) echo "$HOME/.config/JetBrains" ;;
+                macos) echo "$HOME/Library/Application Support/JetBrains" ;;
+                windows) echo "$APPDATA/JetBrains" ;;
+            esac ;;
+    esac
+}
+
+# Get system prompt file name
+get_prompt_filename() {
+    local ide=$1
+    
+    case $ide in
+        windsurf) echo "global_rules.md" ;;
+        cursor) echo "global_rules.mdc" ;;
+        vscode) echo "system_prompt.md" ;;
+        continue) echo "system_prompt.md" ;;
+        jetbrains) echo "ai_context.md" ;;
+        *) echo "global_rules.md" ;;
     esac
 }
 
 OS=$(detect_os)
 IDE=$(detect_ide)
 GLOBAL_PATH=$(get_global_path $OS $IDE)
+PROMPT_FILENAME=$(get_prompt_filename $IDE)
 WORKSPACE_PATH=$(pwd)
 WORKSPACE_IDE_PATH="$WORKSPACE_PATH/.${IDE}/aegiside"
 GITHUB_REPO="https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main"
@@ -72,19 +99,20 @@ echo "📋 System Detection"
 echo "  OS: $OS"
 echo "  IDE: $IDE"
 echo "  Global Memory: $GLOBAL_PATH"
+echo "  Prompt File: $PROMPT_FILENAME"
 echo "  Workspace: $WORKSPACE_PATH"
 echo "  Framework Path: $WORKSPACE_IDE_PATH"
 echo ""
 
-# Check for existing global_rules.md
-EXISTING_RULES="$GLOBAL_PATH/global_rules.md"
+# Check for existing system prompt file
+EXISTING_RULES="$GLOBAL_PATH/$PROMPT_FILENAME"
 if [ -f "$EXISTING_RULES" ]; then
-    echo "🔍 Existing global_rules.md detected"
+    echo "🔍 Existing $PROMPT_FILENAME detected"
     echo "  ✅ Will enhance existing rules with AegisIDE framework"
     ENHANCE_MODE=true
 else
-    echo "🆕 No existing global_rules.md found"
-    echo "  ✅ Will create fresh AegisIDE global_rules.md"
+    echo "🆕 No existing $PROMPT_FILENAME found"
+    echo "  ✅ Will create fresh AegisIDE $PROMPT_FILENAME"
     ENHANCE_MODE=false
 fi
 echo ""
@@ -93,14 +121,14 @@ echo "📦 Installing AegisIDE Framework..."
 echo "🌐 Downloading from GitHub (temporary)"
 echo ""
 
-# Step 1: Handle global_rules.md (enhance or create)
-echo "1️⃣  Processing global_rules.md..."
+# Step 1: Handle system prompt file (enhance or create)
+echo "1️⃣  Processing $PROMPT_FILENAME..."
 mkdir -p "$GLOBAL_PATH"
 
 if [ "$ENHANCE_MODE" = true ]; then
     # Backup existing rules
     cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
-    echo "  💾 Backed up existing rules"
+    echo "  💾 Backed up existing $PROMPT_FILENAME"
     
     # Download AegisIDE rules and append
     curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > /tmp/aegiside_rules.md
@@ -109,11 +137,11 @@ if [ "$ENHANCE_MODE" = true ]; then
     echo "# AegisIDE Framework (Auto-Added)" >> "$EXISTING_RULES"
     echo "# =================================" >> "$EXISTING_RULES"
     cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
-    echo "  ✅ Enhanced existing global_rules.md with AegisIDE"
+    echo "  ✅ Enhanced existing $PROMPT_FILENAME with AegisIDE"
 else
     # Create fresh AegisIDE rules
-    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > "$GLOBAL_PATH/global_rules.md"
-    echo "  ✅ Created fresh AegisIDE global_rules.md"
+    curl -sL "$GITHUB_REPO/src/aegiside/global_rules.md" > "$GLOBAL_PATH/$PROMPT_FILENAME"
+    echo "  ✅ Created fresh AegisIDE $PROMPT_FILENAME"
 fi
 
 # Step 2: Download and install router system
@@ -186,9 +214,9 @@ echo "==============================================="
 echo ""
 echo "🤖 Installation Summary:"
 if [ "$ENHANCE_MODE" = true ]; then
-    echo "  ✅ Enhanced existing global_rules.md (backup created)"
+    echo "  ✅ Enhanced existing $PROMPT_FILENAME (backup created)"
 else
-    echo "  ✅ Created fresh AegisIDE global_rules.md"
+    echo "  ✅ Created fresh AegisIDE $PROMPT_FILENAME"
 fi
 echo "  ✅ Downloaded 10 router modules from GitHub"
 echo "  ✅ Downloaded 13 workflows from GitHub"
@@ -197,7 +225,7 @@ echo "  ✅ Framework is now self-contained"
 echo ""
 echo "🚀 Activation Steps:"
 echo "  1. Restart your $IDE IDE"
-echo "  2. Framework auto-activates via global_rules.md"
+echo "  2. Framework auto-activates via $PROMPT_FILENAME"
 echo "  3. Type '/init' to verify activation"
 echo ""
 echo "🌐 GitHub Repository:"
