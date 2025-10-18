@@ -75,5 +75,25 @@
       "success_rate": 0
     }
   },
-  "timestamp": "2025-10-18T17:25:42+0530"
+  "timestamp": "2025-10-18T17:25:42+0530",
+  "nlu": {
+    "last": {
+      "intent": "autonomous_activation",
+      "confidence": 0.95,
+      "selected_workflow": "/status",
+      "matched_pattern": "auto_triggers.queue_empty",
+      "risk": "low",
+      "timestamp": "2025-10-18T17:52:54+0530"
+    },
+    "logs": [
+      {
+        "intent": "autonomous_activation",
+        "confidence": 0.95,
+        "selected_workflow": "/status",
+        "matched_pattern": "auto_triggers.queue_empty",
+        "risk": "low",
+        "timestamp": "2025-10-18T17:52:54+0530"
+      }
+    ]
+  }
 }

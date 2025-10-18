@@ -1093,6 +1093,30 @@
       ],
       "halt": true,
       "rl_penalty": -30
+    },
+    "task_present": {
+      "check": "scratchpad.priority_queue_length > 0",
+      "workflow": "/next",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "queue_empty": {
+      "check": "scratchpad.priority_queue_length == 0",
+      "workflow": "/status",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "bootstrap_needed": {
+      "check": "memory_bank_exists == false",
+      "workflow": "/bootstrap",
+      "autonomy": "0-99%",
+      "risk": "low"
+    },
+    "nlu_intent_detected": {
+      "execute": true,
+      "min_confidence": 0.6,
+      "respect_high_risk": true,
+      "action_map_ref": "nlu_action_map"
     }
   },
   "rl_calculation": {
@@ -1150,7 +1174,11 @@
       "stop_after_one",
       "research_alone"
     ],
-    "auto_execute_non_destructive": true
+    "auto_execute_non_destructive": true,
+    "risk_policy": {
+      "use_nlu_risk_classifier": true,
+      "respect_high_risk": true
+    }
   },
   "atomic_update_chain": {
     "description": "8-schema atomic update with cross-file validation",
@@ -1712,7 +1740,12 @@
         "proceed",
         "start",
         "run it",
-        "full test"
+        "full test",
+        "sí",
+        "oui",
+        "ja",
+        "हाँ",
+        "ठीक है"
       ],
       "weight": 0.9
     },
@@ -1721,7 +1754,11 @@
         "proceed",
         "go ahead",
         "carry on",
-        "continue"
+        "continue",
+        "continuar",
+        "continuer",
+        "weiter",
+        "जारी रखें"
       ],
       "weight": 0.8
     },
@@ -1729,7 +1766,11 @@
       "patterns": [
         "continue",
         "resume",
-        "/continue"
+        "/continue",
+        "continuar",
+        "continuer",
+        "weiter",
+        "जारी रखें"
       ],
       "weight": 0.85
     },
@@ -1738,7 +1779,11 @@
         "/next",
         "run next",
         "execute next",
-        "next"
+        "next",
+        "siguiente",
+        "suivant",
+        "weiter",
+        "अगला"
       ],
       "weight": 0.85
     },
@@ -1747,7 +1792,12 @@
         "/status",
         "status",
         "health",
-        "report"
+        "report",
+        "estado",
+        "statut",
+        "zustand",
+        "स्थिति",
+        "health"
       ],
       "weight": 0.8
     },
@@ -1856,6 +1906,8 @@
       "autonomy": "0-99%",
       "risk": "low",
       "chain": [
+        "/status",
+        "/validate",
         "/update",
         "/memory-status"
       ]
@@ -1882,5 +1934,74 @@
     "research",
     "proceed",
     "affirmation"
-  ]
+  ],
+  "workflow_activation": {
+    "enable": true,
+    "auto_run_for": [
+      "/next",
+      "/status",
+      "/continue",
+      "/update",
+      "/validate",
+      "/fix",
+      "/bootstrap",
+      "/research",
+      "/memory-status",
+      "/oversight-checks-and-balances"
+    ],
+    "chain_enabled": true,
+    "high_risk_check": true,
+    "log_to_activeContext": true
+  },
+  "workflow_chain_policies": {
+    "default": {
+      "retry": {
+        "max_attempts": 2,
+        "delays_ms": [
+          1000,
+          2000
+        ]
+      },
+      "on_fail": {
+        "log_to": "mistakes.json",
+        "action": "halt_chain",
+        "rl_penalty": -5
+      }
+    }
+  },
+  "nlu_risk_classifier": {
+    "high_risk_keywords": [
+      "delete",
+      "rm -rf",
+      "drop table",
+      "production",
+      "prod deploy",
+      "secret",
+      "token",
+      "chmod",
+      "sudo",
+      "force push",
+      "git push --force",
+      "security change"
+    ],
+    "low_risk_keywords": [
+      "status",
+      "next",
+      "continue",
+      "update",
+      "validate",
+      "fix",
+      "bootstrap",
+      "research",
+      "memory-status"
+    ],
+    "thresholds": {
+      "high": 0.9,
+      "default": 0.6
+    },
+    "decision": {
+      "high": "requires_approval",
+      "low": "auto_execute"
+    }
+  }
 }
