@@ -9,14 +9,28 @@ cd /path/to/your/project/src/.aegiside
 ```
 
 ### Step 2: Start Local Server
-```bash
-# Option 1: Using Python (Recommended)
-python3 -m http.server 7777
 
-# Option 2: Using Node.js http-server
-npx http-server -p 7777 -c-1 --cors
+**Quick Launch (Recommended)**:
+```bash
+# Linux/Mac
+./visualize/start-dashboard.sh
+
+# Windows (Command Prompt)
+visualize\start-dashboard.bat
+
+# Windows (PowerShell)
+.\visualize\start-dashboard.ps1
 ```
-**Note**: Press **CTRL+C** to stop the server. Python's HTTP server handles the interrupt signal gracefully.
+
+**Manual Launch**:
+```bash
+# Option 1: Using Node.js http-server (Recommended)
+npx http-server -p 7777 -c-1 --cors
+
+# Option 2: Using Python
+python3 -m http.server 7777
+```
+**Note**: Press **CTRL+C** to stop the server.
 
 ### Step 3: Open Dashboard
 Open browser and navigate to:
