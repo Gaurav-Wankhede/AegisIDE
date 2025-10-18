@@ -87,7 +87,8 @@ curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.s
 
 **Real-Time Dashboard** (optional):
 ```bash
-cd .windsurf/aegiside
+# From your project root:
+cd .windsurf/aegiside  # or .cursor/aegiside or .vscode/aegiside
 ./visualize/start-dashboard.sh
 # Opens at http://localhost:7777/visualize/dashboard.html
 ```
