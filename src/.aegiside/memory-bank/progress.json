@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-17T22:16:40+05:30",
+  "rl_ledger": [],
+  "rl_totals": {
+    "total_score": 0,
+    "rewards": 0,
+    "penalties": 0,
+    "net_score": 0
+  },
+  "rl_architecture": {
+    "algorithm": "PPO",
+    "gae_lambda": 1.0,
+    "gamma": 1.0,
+    "kl_coef": 0.005,
+    "value_network_branches": {
+      "task_success": 0.3,
+      "validation": 0.25,
+      "pattern_reuse": 0.2,
+      "mcp": 0.15,
+      "innovation": 0.1
+    }
+  },
+  "rl_runtime_controls": {
+    "reference_policy": {
+      "policy_snapshot": null,
+      "last_updated": null,
+      "kl_divergence": 0
+    },
+    "exploit_explore_ratio": {
+      "exploitation": 0.7,
+      "exploration": 0.3
+    }
+  },
+  "constitutional_compliance": {
+    "current_score": 0,
+    "min_required": 80,
+    "violations": []
+  },
+  "aegiskg_correlation": {
+    "milestone_entity_links": [],
+    "pattern_success_correlation": []
+  },
+  "checksum": "0",
+  "total_rl_score": 15,
+  "transactions": [
+    {
+      "workflow": "continue-test",
+      "rl_reward": 5,
+      "description": "Simulating session recovery reward.",
+      "timestamp": "2025-10-18T15:57:26+0530"
+    },
+    {
+      "workflow": "status-test",
+      "rl_reward": 5,
+      "description": "Testing RL scoring mechanism.",
+      "timestamp": "2025-10-18T15:51:30+0530"
+    },
+    {
+      "workflow": "status-test",
+      "rl_reward": 5,
+      "description": "Testing RL scoring mechanism.",
+      "timestamp": "2025-10-18T15:47:53+0530"
+    }
+  ]
+}

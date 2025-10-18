@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-17T22:16:40+05:30",
+  "session": {
+    "session_id": "aegiside-init-001",
+    "ide_type": "windsurf",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "operation_counter": 0,
+    "autonomy_level": 99,
+    "status": "resumed",
+    "timestamp": "2025-10-18T15:57:25+0530"
+  },
+  "current_task": {
+    "task_id": null,
+    "workflow": null,
+    "phase": "initialization",
+    "status": "pending"
+  },
+  "mcp_integration": {
+    "active_mcps": [
+      "filesystem",
+      "memory",
+      "git",
+      "time",
+      "sequential-thinking"
+    ],
+    "session_mcp_rewards": 0,
+    "complete_chains": 0,
+    "last_mcp_call": null
+  },
+  "approval_gate": {
+    "status": "none",
+    "requires_approval": false,
+    "chief_justice_approved": false,
+    "shadow_cabinet_approved": false
+  },
+  "user_controls": {
+    "pause_requested": false,
+    "stop_current_task": false,
+    "skip_to_next": false
+  },
+  "mcp_fallback_chain": {
+    "context7": [
+      "fetch",
+      "memory_patterns",
+      "halt_if_critical"
+    ],
+    "filesystem": [
+      "halt"
+    ],
+    "memory": [
+      "filesystem",
+      "halt"
+    ]
+  },
+  "mcp_rate_limits": {
+    "context7": {
+      "calls": 0,
+      "limit": 100,
+      "reset_at": null
+    },
+    "exa": {
+      "calls": 0,
+      "limit": 50,
+      "reset_at": null
+    }
+  },
+  "mcp_performance_metrics": {
+    "context7": {
+      "avg_latency_ms": 0,
+      "success_rate": 0
+    },
+    "filesystem": {
+      "avg_latency_ms": 0,
+      "success_rate": 0
+    }
+  }
+}
