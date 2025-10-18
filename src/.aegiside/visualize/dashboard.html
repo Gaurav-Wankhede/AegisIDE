@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ServeUPSC Memory Bank Dashboard</title>
+    <title>AegisIDE Memory Bank Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-black text-gray-100">
@@ -12,7 +12,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <h1 class="text-3xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">🧠 Memory Bank Dashboard</h1>
-                    <p class="text-sm text-gray-500 mt-1">Real-time visualization of ServeUPSC memory-bank system</p>
+                    <p class="text-sm text-gray-500 mt-1">Real-time visualization of AegisIDE memory-bank system</p>
                 </div>
                 <div class="flex gap-3">
                     <button onclick="loadAll()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition-colors">
@@ -468,8 +468,8 @@
                         <span class="mr-2">🗺️</span> Strategic Roadmap
                     </h3>
                     <div class="space-y-4">
-                        <div class="text-white font-semibold text-lg">ServeUPSC Backend</div>
-                        <div class="text-gray-400 text-sm leading-relaxed">${roadmap.long_term_vision?.['6_months'] || 'Building AI-powered UPSC platform'}</div>
+                        <div class="text-white font-semibold text-lg">${roadmap.project_name || 'Project Roadmap'}</div>
+                        <div class="text-gray-400 text-sm leading-relaxed">${roadmap.long_term_vision?.['6_months'] || 'Strategic development roadmap'}</div>
                         <div class="text-xs text-gray-500">
                             Active Phases: ${phases.length}
                         </div>
