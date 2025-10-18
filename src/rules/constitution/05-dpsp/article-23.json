@@ -48,7 +48,7 @@
       ],
       "trust_score_matrix": {
         "context7_official": {"trust": 10, "type": "Official repos, maintained docs"},
-        "context7_community": {"trust": 8-9, "type": "Community-driven, well-maintained"},
+        "context7_community": {"trust": "8-9", "type": "Community-driven, well-maintained"},
         "official_website": {"trust": 9, "type": "@mcp:fetch"},
         "memory_patterns": {"trust": 8, "type": "Proven in practice"},
         "llm_knowledge": {"trust": 6, "type": "Requires verification"},
