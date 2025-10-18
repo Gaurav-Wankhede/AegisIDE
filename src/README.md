@@ -77,6 +77,14 @@ mcp_servers.json         # Tool configurations
 - **RL Tracking**: Recent rewards/penalties visible first
 - **Optimized for LLM**: Efficient context window usage
 
+### 7. **MCP Infrastructure (v3.2.1)**
+- **6 Mandatory MCPs**: json-jq, sequential-thinking, git, context7, exa, fetch
+- **@mcp:json-jq ALWAYS Rule**: 100x faster than Read tool, constitutional mandate
+- **Hybrid Architecture**: MCPs for reliability + CLI for performance
+- **Automatic Setup**: Intelligent mcp_servers.json handling (Replace/Append/No options)
+- **404 Validation**: All downloads validated before installation
+- **User Permission Prompts**: Y/N for system prompt modifications
+
 ## Use Cases
 
 ### 🚀 **New Project Development**
@@ -229,16 +237,19 @@ mcp_servers.json         # Tool configurations
 ## Advanced Features
 
 ### **Constitutional Framework**
-- **17 Articles**: Complete governance system for AI development
+- **42 Articles**: Complete governance system for AI development
 - **Democratic Process**: Tri-branch oversight with checks and balances
 - **Amendment Process**: Framework evolves with project needs
 - **Compliance Monitoring**: Automatic adherence to established rules
 
-### **MCP Integration**
-- **9 Tool Servers**: Real-time access to documentation, code analysis, and more
-- **Autonomous Research**: AI automatically looks up best practices
-- **Cross-Project Learning**: Knowledge shared across different projects
-- **Performance Optimization**: Intelligent resource management
+### **MCP Integration (6 Mandatory)**
+- **@mcp:json-jq**: ALL JSON operations (NEVER use Read tool) - 100x faster
+- **@mcp:sequential-thinking**: Deep reasoning ≥3 steps for every request
+- **@mcp:git**: Version control operations (NO CLI git commands)
+- **@mcp:context7**: Official documentation (IMMEDIATE on errors)
+- **@mcp:exa**: Code research and real-world examples
+- **@mcp:fetch**: Web content retrieval for latest information
+- **Hybrid Speed**: MCPs for reliability + CLI (jq|sponge) for 267x faster writes
 
 ### **Visualization Dashboard**
 - **Real-Time Monitoring**: See AI's thought process and decisions

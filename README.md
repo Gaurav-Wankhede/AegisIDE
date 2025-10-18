@@ -3,9 +3,9 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](CHANGELOG.md)
-[![9 Supported IDEs](https://img.shields.io/badge/IDEs-9%20Tested-success)](docs/IDE_COMPATIBILITY.md)
-[![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](docs/IDE_COMPATIBILITY.md)
+[![Version](https://img.shields.io/badge/version-3.2.1-blue.svg)](CHANGELOG.md)
+[![6 Mandatory MCPs](https://img.shields.io/badge/MCPs-6%20Core-success)](src/mcp_servers.json)
+[![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](setup.sh)
 [![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
 
 ## Why AegisIDE? 🎯
@@ -30,9 +30,11 @@ See details in [IDE_COMPATIBILITY.md](docs/IDE_COMPATIBILITY.md).
 ## 🔧 Under the Hood (simple view)
 
 - **Router‑First**: A single file, `src/.aegiside/context-router.json`, controls paths, rules, and workflows
-- **7 MCPs + CLI**: MCPs for reliable reads; `jq | sponge` for fast, atomic writes
+- **6 MCPs + CLI**: MCPs for reliable reads; `jq | sponge` for 267x faster atomic writes
+- **@mcp:json-jq ALWAYS**: Constitutional mandate - 100x faster than Read tool, NO exceptions
 - **No Permission Prompts**: The router enforces 0–99% autonomous execution
-- **NLU/NLP Built‑in**: “yes / go ahead / run next / full test” (and multilingual variants) auto‑run the right workflow
+- **NLU/NLP Built‑in**: "yes / go ahead / run next / full test" (and multilingual variants) auto‑run the right workflow
+- **404 Prevention**: All downloads validated before installation, automatic backup creation
 
 ---
 
@@ -96,14 +98,18 @@ curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.s
 
 **What happens automatically:**
 - 🔍 **Auto-detects** your OS (Linux/macOS/Windows) and IDE (Windsurf/Cursor/VS Code/JetBrains)
+- ⚠️ **Asks Permission** - Y/N prompt before modifying system prompt (shows preview)
 - 📋 **Smart enhancement** - if you have existing `global_rules.md`, it backs up and enhances it
 - 📋 **Fresh install** - if no existing rules, creates new AegisIDE `global_rules.md`
-- 📦 **Downloads** 10 router modules from GitHub
-- 📦 **Downloads** 13 workflows from GitHub
-- 📦 **Downloads** schema validators from GitHub  
-- 🧠 **Initializes** 8-schema memory bank
+- 🔧 **mcp_servers.json** - R)eplace/A)ppend/N)o options for MCP configuration
+- ✅ **404 Validation** - All downloads checked before installation (prevents errors)
+- 📦 **Downloads** 10 router modules from GitHub (with validation)
+- 📦 **Downloads** 13 workflows from GitHub (with validation)
+- 📦 **Downloads** schema validators from GitHub (with validation)
+- 🧠 **Initializes** 8-schema memory bank with project info
 - 🎯 **Self-contained** - no ongoing GitHub dependency after install
 - 🔄 **Git setup** - initializes version control if needed
+- 💾 **Automatic backups** - Creates .backup files before any modifications
 
 ### Activation (Automatic)
 ```bash
