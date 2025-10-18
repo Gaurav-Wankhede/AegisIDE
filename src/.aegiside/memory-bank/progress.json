@@ -42,8 +42,24 @@
     "pattern_success_correlation": []
   },
   "checksum": "0",
-  "total_rl_score": 15,
+  "total_rl_score": 33,
   "transactions": [
+    {
+      "workflow": "update",
+      "rl_reward": 8,
+      "timestamp": "2025-10-18T17:28:48+0530"
+    },
+    {
+      "workflow": "status",
+      "rl_reward": 5,
+      "compliance": 100,
+      "timestamp": "2025-10-18T17:23:16+0530"
+    },
+    {
+      "workflow": "continue",
+      "rl_reward": 5,
+      "timestamp": "2025-10-18T17:21:12+0530"
+    },
     {
       "workflow": "continue-test",
       "rl_reward": 5,
@@ -62,5 +78,6 @@
       "description": "Testing RL scoring mechanism.",
       "timestamp": "2025-10-18T15:47:53+0530"
     }
-  ]
+  ],
+  "timestamp": "2025-10-18T17:27:47+0530"
 }

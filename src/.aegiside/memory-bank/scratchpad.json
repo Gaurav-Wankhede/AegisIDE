@@ -1,0 +1,13 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-17T22:16:40+05:30",
+  "priority_queue": [],
+  "next_task_id": 1,
+  "metadata": {
+    "total_tasks": 0,
+    "high_priority": 0,
+    "medium_priority": 0,
+    "low_priority": 0
+  },
+  "timestamp": "2025-10-18T17:26:13+0530"
+}

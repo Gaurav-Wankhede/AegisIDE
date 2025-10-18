@@ -65,5 +65,6 @@
       ],
       "prevention_rule": "Investigate @mcp:memory server-side JSON parsing. All future calls must be wrapped in additional validation until resolved."
     }
-  ]
+  ],
+  "timestamp": "2025-10-18T17:27:17+0530"
 }
