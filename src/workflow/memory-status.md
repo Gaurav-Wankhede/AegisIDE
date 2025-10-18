@@ -7,15 +7,16 @@ description: Knowledge graph audit with CLI pipeline
 ## 1. Load Router & Query (CLI Native)
 
 ```bash
+set -euo pipefail
+trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
+
 echo "→ MEMORY-STATUS: Knowledge graph audit" >&2
 
-ROUTER_JSON=$(cat context-router.json)
-memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
-
-# Query metadata (direct jq - FASTEST)
-entities=$(jq '.entities | length' "$memory_bank"memory.json)
-relations=$(jq '.relations | length' "$memory_bank"memory.json)
-orphaned=$(jq '[.entities[] | select(.relations == null)] | length' "$memory_bank"memory.json)
+# Query via MCP
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
+entities=$(@mcp:json-jq query '.entities | length' from "${memory_bank}memory.json")
+relations=$(@mcp:json-jq query '.relations | length' from "${memory_bank}memory.json")
+orphaned=$(@mcp:json-jq query '[.entities[] | select(.relations == null)] | length' from "${memory_bank}memory.json")
 
 echo "→ METRICS: Entities=$entities, Relations=$relations, Orphaned=$orphaned" >&2
 ```

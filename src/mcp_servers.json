@@ -13,17 +13,6 @@
         "mcp-server-fetch"
       ]
     },
-    "filesystem": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-filesystem",
-        "/mnt/windows_d/Gauravs-Files-and-Folders/"
-      ],
-      "disabledTools": [
-        "write_file"
-      ]
-    },
     "git": {
       "command": "uvx",
       "args": [
@@ -45,19 +34,6 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "time": {
-      "command": "uvx",
-      "args": [
-        "mcp-server-time"
-      ]
-    },
-    "math": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "math-mcp"
       ]
     },
     "exa": {

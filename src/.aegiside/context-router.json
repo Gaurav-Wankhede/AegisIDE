@@ -55,8 +55,8 @@
   },
   
   "mcps": {
-    "description": "8 mandatory Model Context Protocol servers - NO CLI bypasses",
-    "core_count": 8,
+    "description": "7 mandatory Model Context Protocol servers - Hybrid with CLI pipeline for JSON writes",
+    "core_count": 7,
     "always_active": [
       "@mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
       "@mcp:memory - Knowledge graph operations",
@@ -385,24 +385,37 @@
     "ide_detection": {
       "method": "Check MCP config paths and environment (platform-aware)",
       "windows_paths": [
-        {"ide": "windsurf", "check": "%USERPROFILE%\\.codeium\\windsurf-next\\mcp_config.json", "folder": ".windsurf"},
-        {"ide": "cursor", "check": "%USERPROFILE%\\.cursor\\mcp_config.json", "folder": ".cursor"},
-        {"ide": "vscode", "check": "%USERPROFILE%\\.vscode\\extensions", "folder": ".vscode"},
-        {"ide": "cline", "check": "%USERPROFILE%\\.cline", "folder": ".cline"}
+        {"ide": "windsurf", "check": "%USERPROFILE%\\.codeium\\windsurf-next\\mcp_config.json", "folder": ".windsurf", "priority": 1},
+        {"ide": "cursor", "check": "%USERPROFILE%\\.cursor\\mcp_config.json", "folder": ".cursor", "priority": 2},
+        {"ide": "roo-cline", "check": "%APPDATA%\\Code\\User\\globalStorage\\rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
+        {"ide": "continue", "check": "%USERPROFILE%\\.continue\\config.json", "folder": ".continue", "priority": 4},
+        {"ide": "aider", "check": "%APPDATA%\\Aider\\config.yaml", "folder": ".aider", "priority": 5},
+        {"ide": "github-copilot-jetbrains", "check": "%APPDATA%\\JetBrains\\IntelliJIdea\\options\\github-copilot.xml", "folder": ".jetbrains", "priority": 6},
+        {"ide": "vscode", "check": "%USERPROFILE%\\.vscode\\extensions", "folder": ".vscode", "priority": 7},
+        {"ide": "cline", "check": "%USERPROFILE%\\.cline", "folder": ".cline", "priority": 8}
       ],
       "linux_paths": [
-        {"ide": "windsurf", "check": "~/.codeium/windsurf-next/mcp_config.json", "folder": ".windsurf"},
-        {"ide": "cursor", "check": "~/.cursor/mcp_config.json", "folder": ".cursor"},
-        {"ide": "vscode", "check": "~/.vscode/extensions", "folder": ".vscode"},
-        {"ide": "cline", "check": "~/.cline", "folder": ".cline"}
+        {"ide": "windsurf", "check": "~/.codeium/windsurf-next/mcp_config.json", "folder": ".windsurf", "priority": 1},
+        {"ide": "cursor", "check": "~/.cursor/mcp_config.json", "folder": ".cursor", "priority": 2},
+        {"ide": "roo-cline", "check": "~/.config/Code/User/globalStorage/rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
+        {"ide": "continue", "check": "~/.continue/config.json", "folder": ".continue", "priority": 4},
+        {"ide": "aider", "check": "~/.config/aider/config.yml", "folder": ".aider", "priority": 5},
+        {"ide": "github-copilot-jetbrains", "check": "~/.config/JetBrains/IntelliJIdea/options/github-copilot.xml", "folder": ".jetbrains", "priority": 6},
+        {"ide": "vscode", "check": "~/.vscode/extensions", "folder": ".vscode", "priority": 7},
+        {"ide": "cline", "check": "~/.cline", "folder": ".cline", "priority": 8}
       ],
       "macos_paths": [
-        {"ide": "windsurf", "check": "~/Library/Application Support/Codeium/windsurf-next/mcp_config.json", "folder": ".windsurf"},
-        {"ide": "cursor", "check": "~/Library/Application Support/Cursor/mcp_config.json", "folder": ".cursor"},
-        {"ide": "vscode", "check": "~/Library/Application Support/Code/extensions", "folder": ".vscode"},
-        {"ide": "cline", "check": "~/.cline", "folder": ".cline"}
+        {"ide": "windsurf", "check": "~/Library/Application Support/Codeium/windsurf-next/mcp_config.json", "folder": ".windsurf", "priority": 1},
+        {"ide": "cursor", "check": "~/Library/Application Support/Cursor/mcp_config.json", "folder": ".cursor", "priority": 2},
+        {"ide": "roo-cline", "check": "~/Library/Application Support/Code/User/globalStorage/rooveterinaryinc.roo-cline", "folder": ".roo-cline", "priority": 3},
+        {"ide": "continue", "check": "~/.continue/config.json", "folder": ".continue", "priority": 4},
+        {"ide": "aider", "check": "~/Library/Application Support/aider/config.yaml", "folder": ".aider", "priority": 5},
+        {"ide": "github-copilot-jetbrains", "check": "~/Library/Application Support/JetBrains/IntelliJIdea/options/github-copilot.xml", "folder": ".jetbrains", "priority": 6},
+        {"ide": "vscode", "check": "~/Library/Application Support/Code/extensions", "folder": ".vscode", "priority": 7},
+        {"ide": "cline", "check": "~/.cline", "folder": ".cline", "priority": 8}
       ],
-      "fallback": "windsurf"
+      "fallback": "windsurf",
+      "detection_note": "Checks paths in priority order. First match wins. If none match, uses fallback."
     },
     "initialization_workflow": [
       "1. Detect OS platform (Windows/Linux/macOS)",
@@ -998,5 +1011,272 @@
       "chief_justice": ["constitutional_compliance", "mcp_trail_complete", "rl_calculation_correct", "schema_valid"]
     },
     "timeout": "24 hours in done status triggers auto-escalation to Parliament"
+  },
+  "memory_persistence": {
+    "description": "Prevent memory loss through automatic backups and git versioning",
+    "backup_triggers": {
+      "every_5_operations": {
+        "action": "@mcp:git commit -m 'checkpoint: [operation_count] operations'",
+        "files": ["{IDE}/.aegiside/memory-bank/*.json"],
+        "validation": "Verify git commit successful before continuing"
+      },
+      "schema_update": {
+        "action": "Atomic git commit after all 8 schemas updated",
+        "message_format": "feat: [task_title] - RL: [score] - Schemas: 8/8",
+        "integrity_check": "Validate JSON syntax + schema compliance before commit"
+      },
+      "session_end": {
+        "action": "Full backup commit with session summary",
+        "message_format": "session: [duration] - [task_count] tasks - Net RL: [total_score]",
+        "include_metadata": true
+      }
+    },
+    "recovery_protocol": {
+      "on_corruption": {
+        "step_1": "Detect JSON syntax errors or schema validation failures",
+        "step_2": "@mcp:git log --oneline -n 10 to find last valid commit",
+        "step_3": "@mcp:git checkout HEAD~1 [corrupted_file] to restore",
+        "step_4": "Validate restored file against schema",
+        "step_5": "Resume operations from restored state"
+      },
+      "on_data_loss": {
+        "step_1": "Check git history for missing data",
+        "step_2": "Reconstruct from commit messages and diffs",
+        "step_3": "Merge recovered data with current state",
+        "step_4": "Update progress.json with recovery_event metadata"
+      }
+    },
+    "retention_policy": {
+      "git_history": "Keep all commits (infinite retention)",
+      "schema_files": "Never delete, only append or update",
+      "top_append_strategy": "Latest data always at [0] for fast access",
+      "archival": "Old tasks archived in roadmap/completed/ after 90 days"
+    },
+    "integrity_monitoring": {
+      "checksum_validation": "progress.json maintains running checksum of all RL transactions",
+      "cross_reference_check": "Verify linkage keys exist across all referenced schemas",
+      "schema_compliance": "Every update validated against schemas/*.schema.json",
+      "alert_on_mismatch": "Log to mistakes.json + HALT if critical integrity violation"
+    }
+  },
+  "session_continuity": {
+    "description": "Recover gracefully from IDE crashes, timeouts, network failures",
+    "checkpoint_system": {
+      "frequency": "After every task completion",
+      "location": "activeContext.json.session.last_checkpoint",
+      "data": {
+        "timestamp": "ISO8601 timestamp of checkpoint",
+        "task_in_progress": "Current task from scratchpad[0] or null",
+        "workflow_state": "Current workflow being executed",
+        "mcp_chain_position": "Which MCP step in sequence",
+        "schemas_updated": "Array of schema names successfully updated",
+        "git_commit_hash": "Last successful commit SHA",
+        "rl_pending": "RL transactions not yet committed to progress.json"
+      }
+    },
+    "crash_detection": {
+      "indicators": [
+        "activeContext.json.session.status != 'active'",
+        "Timestamp > 30 minutes old with in_progress task",
+        "Git working directory has uncommitted changes",
+        "Schema update incomplete (< 8 files modified)"
+      ],
+      "auto_trigger": "/continue workflow on session_start if crash detected"
+    },
+    "recovery_workflow": {
+      "step_1_detect": "@mcp:json-jq query '$.session' from 'activeContext.json'",
+      "step_2_assess": "Check last_checkpoint timestamp and workflow_state",
+      "step_3_rollback_if_needed": "If schemas partially updated, rollback via git",
+      "step_4_restore_state": "Load task_in_progress back to scratchpad[0]",
+      "step_5_resume": "Re-execute from mcp_chain_position or start fresh",
+      "step_6_log": "Document recovery in mistakes.json for learning"
+    },
+    "timeout_handling": {
+      "mcp_timeout": "30 seconds per MCP call, then fallback chain",
+      "workflow_timeout": "5 minutes per workflow, then checkpoint + pause",
+      "session_timeout": "8 hours max continuous, then force checkpoint"
+    },
+    "state_reconstruction": {
+      "from_git_history": "Reconstruct state from commit messages + diffs",
+      "from_activeContext": "Use last_checkpoint data to resume",
+      "from_scratchpad": "Priority queue preserved across sessions",
+      "from_progress": "RL scores and totals recovered from ledger"
+    }
+  },
+  "mcp_health_monitoring": {
+    "description": "Proactive MCP server health checks to prevent failures",
+    "mandatory_mcps": [
+      "@mcp:sequential-thinking",
+      "@mcp:memory",
+      "@mcp:json-jq",
+      "@mcp:git",
+      "@mcp:filesystem"
+    ],
+    "on_demand_mcps": [
+      "@mcp:context7",
+      "@mcp:exa",
+      "@mcp:fetch",
+      "@mcp:Shuttle"
+    ],
+    "health_check_frequency": {
+      "session_start": "Verify all mandatory MCPs responsive",
+      "every_10_operations": "Ping all active MCPs with lightweight query",
+      "before_critical_operation": "Verify specific MCP available before use"
+    },
+    "health_check_protocol": {
+      "method": "Send test query to each MCP server",
+      "timeout": "5 seconds per check",
+      "test_queries": {
+        "@mcp:json-jq": "query '.meta_version' from 'context-router.json'",
+        "@mcp:memory": "search_nodes with query='health_check'",
+        "@mcp:git": "status command",
+        "@mcp:filesystem": "read_file on known file",
+        "@mcp:sequential-thinking": "simple 1-step thought"
+      },
+      "expected_response": "Any valid response within timeout = healthy"
+    },
+    "failure_handling": {
+      "single_mcp_failure": {
+        "action": "Use fallback chain from mcp_fallback_strategy",
+        "log": "mistakes.json with mcp_name, timestamp, error_message",
+        "retry": "Exponential backoff: 1s, 2s, 4s, 8s",
+        "escalate_after": "4 failed retries → load error-recovery.json"
+      },
+      "mandatory_mcp_failure": {
+        "action": "HALT all operations immediately",
+        "reason": "Cannot proceed without filesystem, memory, or git",
+        "recovery": "Alert user, attempt MCP restart, wait for availability"
+      },
+      "multiple_mcp_failure": {
+        "threshold": "≥3 MCPs unavailable",
+        "action": "Enter degraded mode",
+        "degraded_capabilities": "Continue with available MCPs only",
+        "log_everything": "Full operation log to mistakes.json for post-recovery review"
+      }
+    },
+    "performance_tracking": {
+      "metrics": {
+        "response_time": "Track avg response time per MCP",
+        "success_rate": "Track successful vs failed calls",
+        "availability": "Uptime percentage per MCP"
+      },
+      "storage": "activeContext.json.mcp_performance_metrics",
+      "optimization": "If MCP consistently slow, prefer alternatives in fallback chain"
+    }
+  },
+  "dynamic_context_engineering": {
+    "description": "Adaptive memory management based on RL scores and usage patterns",
+    "memory_sizing": {
+      "base_limit": "10KB per schema file",
+      "dynamic_adjustment": {
+        "high_activity_project": "If task_count > 100, allow up to 15KB",
+        "low_activity_project": "If task_count < 10, shrink to 8KB",
+        "rl_score_based": "If net_rl > 500, allow 12KB (reward good performance)"
+      },
+      "compression_triggers": {
+        "size_threshold": "When file reaches 90% of limit",
+        "action": "Archive old data to roadmap/archive/",
+        "keep_recent": "Keep last 50 items in main file",
+        "preserve_high_value": "Keep patterns with confidence ≥0.9 regardless of age"
+      }
+    },
+    "context_prioritization": {
+      "top_append_strategy": "Latest data always at [0]",
+      "priority_scoring": {
+        "recency": "weight: 0.4 (recent = higher priority)",
+        "rl_impact": "weight: 0.3 (high RL = higher priority)",
+        "reuse_count": "weight: 0.2 (frequently reused = higher priority)",
+        "confidence": "weight: 0.1 (proven patterns = higher priority)"
+      },
+      "eviction_policy": "Lowest priority score gets archived first"
+    },
+    "adaptive_loading": {
+      "intent_based": "Load only articles/helpers relevant to detected intent",
+      "error_context": "On errors, load mistakes.json + error-recovery.json",
+      "research_context": "On /research, load systemPatterns.json + memory.json patterns",
+      "validation_context": "On /validate, load common-mistakes.json + tool-usage-patterns.json"
+    },
+    "memory_health_scoring": {
+      "metrics": {
+        "completeness": "All 8 schemas present and valid",
+        "freshness": "Last update within 24 hours",
+        "integrity": "Checksums match, cross-references valid",
+        "size_efficiency": "Files within size limits",
+        "rl_alignment": "RL scores consistent across schemas"
+      },
+      "health_score": "Sum of metrics (0-100%)",
+      "actions": {
+        "≥90%": "Excellent - no action needed",
+        "70-89%": "Good - schedule cleanup",
+        "50-69%": "Fair - trigger /update workflow",
+        "<50%": "Poor - HALT + mandatory cleanup via /fix"
+      }
+    },
+    "learning_based_optimization": {
+      "track_access_patterns": "Which schemas accessed most frequently",
+      "optimize_layout": "Reorder data within schemas for faster access",
+      "predictive_loading": "Pre-load likely-needed helpers based on intent",
+      "cache_hot_data": "Keep frequently accessed patterns in activeContext.json"
+    }
+  },
+  "rl_memory_integration": {
+    "description": "Explicit RL scoring tied to every memory bank update",
+    "scoring_triggers": {
+      "schema_update_complete": {
+        "when": "All 8 schemas updated atomically",
+        "reward": "+8 RL (1 per schema)",
+        "penalty_if_incomplete": "-30 RL for partial update"
+      },
+      "pattern_stored": {
+        "when": "New pattern added to systemPatterns.json",
+        "reward": "+10 RL for novel pattern",
+        "validation": "Pattern must have confidence score and usage guidelines"
+      },
+      "mistake_learned": {
+        "when": "Prevention rule added to mistakes.json",
+        "reward": "+5 RL for learning from error",
+        "requirement": "Must include error_id, prevention_rule, rl_penalty"
+      },
+      "memory_reuse": {
+        "when": "Pattern retrieved from memory.json and applied",
+        "reward": "+20 RL for successful reuse",
+        "tracking": "Increment reuse_count in pattern metadata"
+      },
+      "cross_reference_valid": {
+        "when": "All linkage keys verified across schemas",
+        "reward": "+5 RL for data integrity",
+        "validation": "All proposal_id, task_id, pattern_id links exist"
+      }
+    },
+    "penalty_enforcement": {
+      "missing_schema_update": "-30 RL logged to progress.json immediately",
+      "corrupted_data": "-25 RL + recovery protocol triggered",
+      "lost_linkage": "-15 RL + cross-reference repair required",
+      "size_limit_exceeded": "-10 RL + mandatory compression"
+    },
+    "rl_driven_memory_management": {
+      "high_rl_patterns": "Patterns earning ≥+50 RL cumulative never archived",
+      "low_rl_patterns": "Patterns with net RL <0 archived after 30 days",
+      "performance_based_retention": "Keep data based on RL contribution",
+      "learning_reinforcement": "More RL rewards for applying high-value patterns"
+    },
+    "memory_anchoring": {
+      "frequency": "Every 5 operations",
+      "action": "Read key context from all 8 schemas",
+      "purpose": "Refresh AI memory with critical project state",
+      "queries": [
+        "@mcp:json-jq query '$.session' from 'activeContext.json'",
+        "@mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
+        "@mcp:json-jq query '$.total_rl_score' from 'progress.json'",
+        "@mcp:json-jq query '$.task_history[-10:]' from 'activeContext.json'"
+      ],
+      "rl_reward": "+2 RL per successful anchor (prevents context loss)"
+    },
+    "progress_ledger_integrity": {
+      "single_source_of_truth": "progress.json is ONLY place for RL transactions",
+      "checksum_validation": "sum(rl_transactions[].reward) must equal total_rl_score",
+      "immutable_history": "Never delete transactions, only append new ones",
+      "cross_schema_sync": "RL references in mistakes/systemPatterns must link to progress.json tx_id"
+    }
   }
 }

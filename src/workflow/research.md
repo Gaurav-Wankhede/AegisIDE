@@ -7,13 +7,15 @@ description: Intelligence gathering with CLI pipeline
 ## 1. Load Router & Task (CLI Native)
 
 ```bash
+set -euo pipefail
+trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
+
 echo "→ RESEARCH: Intelligence gathering" >&2
 
-ROUTER_JSON=$(cat context-router.json)
-memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
+# Query via MCP
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
+task_title=$(@mcp:json-jq query '.priority_queue[0].title' from "${memory_bank}scratchpad.json")
 
-# Read task (direct jq)
-task_title=$(jq -r '.priority_queue[0].title' "$memory_bank"scratchpad.json)
 echo "→ TASK: $task_title" >&2
 ```
 

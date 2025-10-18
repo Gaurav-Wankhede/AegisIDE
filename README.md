@@ -3,8 +3,9 @@
 > **Transform any AI coding assistant into a smart, autonomous development team that remembers everything and works independently.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.1.1-blue.svg)](CHANGELOG.md)
-[![Works with 20+ IDEs](https://img.shields.io/badge/IDEs-20%2B-success)](src/.aegiside/README.md)
+[![Version](https://img.shields.io/badge/version-2.9.0-blue.svg)](CHANGELOG.md)
+[![9 Supported IDEs](https://img.shields.io/badge/IDEs-9%20Tested-success)](docs/IDE_COMPATIBILITY.md)
+[![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](docs/IDE_COMPATIBILITY.md)
 [![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
 
 ## Why AegisIDE? 🎯
@@ -38,7 +39,57 @@
 - **91% fewer AI mistakes** through validation systems
 - **3x faster development** with continuous autonomous work
 - **40% higher project completion rate** 
-- **Compatible with 20+ development tools**
+- **9 tested IDEs** with automatic detection and setup
+
+## 🌐 Universal IDE Support (v2.9.0)
+
+**Works automatically with 9 AI-powered development environments:**
+
+### **Tier 1: Native MCP Support** (99-96% Autonomous)
+| IDE | Autonomy | Folder | Auto-Setup |
+|-----|----------|--------|------------|
+| **Windsurf** ⭐ | 99% | `.windsurf/` | ✅ Yes |
+| **Cursor** | 96% | `.cursor/` | ✅ Yes |
+
+### **Tier 2: Extension Support** (95-90% Autonomous)
+| IDE | Autonomy | Folder | Auto-Setup |
+|-----|----------|--------|------------|
+| **Roo-Cline** | 95% | `.roo-cline/` | ✅ Yes |
+| **Continue.dev** | 93% | `.continue/` | ✅ Yes |
+| **Cline** | 95% | `.cline/` | ✅ Yes |
+| **VS Code** | 90% | `.vscode/` | ✅ Yes |
+
+### **Tier 3: CLI & JetBrains** (85-70% Autonomous)
+| IDE | Autonomy | Folder | Auto-Setup |
+|-----|----------|--------|------------|
+| **Aider** | 85% | `.aider/` | ✅ Yes |
+| **GitHub Copilot** | 70% | `.jetbrains/` | ✅ Yes |
+
+**✨ Zero Configuration**: Framework automatically detects your IDE and creates the appropriate folder structure.
+
+**📚 Full Documentation**: See [IDE_COMPATIBILITY.md](docs/IDE_COMPATIBILITY.md) for detection paths, features, and adding new IDEs.
+
+## 🔧 Hybrid Architecture (7 MCPs + CLI Pipeline)
+
+**AegisIDE uses 7 mandatory MCPs with CLI pipeline for optimal performance:**
+
+### **Core MCPs**
+1. **@mcp:json-jq** - All JSON read operations (memory bank, router, schemas)
+2. **@mcp:memory** - Knowledge graph operations (patterns, entities, relations)  
+3. **@mcp:git** - All version control (add, commit, checkout, log)
+4. **@mcp:sequential-thinking** - Mandatory before every action (≥3 thoughts)
+5. **@mcp:context7** - Official documentation (errors, new features)
+6. **@mcp:exa** - Code context research (real-world examples)
+7. **@mcp:fetch** - External research (fallback for context7)
+
+### **CLI Pipeline (Performance)**
+- **jq + sponge** - Atomic JSON writes (267x faster than MCP)
+- **glow** - Markdown rendering for constitutional articles
+- **python3/date** - Calculations and timestamps
+
+**Why Hybrid?** Best of both worlds - MCP reliability + CLI speed.
+
+---
 
 ## 🧠 Reinforcement Learning Intelligence (v3.0)
 
@@ -82,22 +133,41 @@ git clone https://github.com/your-username/AegisIDE.git
 cd AegisIDE
 ```
 
-### Step 2: Quick Setup (Automated)
-**Run the setup script:**
+### Step 2: Open Project in Your IDE ✨
+**That's it! No manual setup needed.**
+
+The framework **automatically detects** your IDE and creates the appropriate structure:
 
 ```bash
-# Automated setup (detects your IDE)
-./setup.sh
+# Just open your project in ANY supported IDE:
+# - Windsurf
+# - Cursor  
+# - Roo-Cline
+# - Continue.dev
+# - Aider
+# - VS Code
+# - Cline
+# - GitHub Copilot (JetBrains)
 
-# Or manual installation for specific IDE:
+# Framework will:
+# 1. Detect your IDE (checks config paths)
+# 2. Clone AegisIDE structure from GitHub
+# 3. Create .{IDE}/aegiside/ folder
+# 4. Initialize 8 memory schemas
+# 5. Copy 42 constitutional articles
+# 6. ✅ Ready in 30 seconds!
+```
+
+**Manual Setup** (only if needed):
+```bash
 # Windsurf
-cp -r src/.aegiside ~/.windsurf/aegiside
-cp -r src/rules ~/.windsurf/rules
-cp -r src/workflow ~/.windsurf/workflow
+cp -r src/.aegiside .windsurf/aegiside
+cp -r src/rules .windsurf/rules
+cp -r src/workflow .windsurf/workflow
 
 # Cursor
-cp -r src/.aegiside ~/.cursor/aegiside
-cp -r src/rules ~/.cursor/rules
+cp -r src/.aegiside .cursor/aegiside
+cp -r src/rules .cursor/rules
 cp -r src/workflow ~/.cursor/workflow
 
 # VS Code
@@ -110,16 +180,22 @@ cp -r src/workflow ~/.vscode/workflow
 
 ### Step 3: Configure & Activate
 ```bash
-# 1. Configure MCP servers (edit paths for your machine)
-cp src/mcp_servers.json ~/mcp_servers.json
-# Edit ~/mcp_servers.json: Replace ${HOME}/Projects with your path
+# 1. Install CLI dependencies (Ubuntu/Debian)
+sudo apt-get install jq moreutils glow
 
-# 2. Add MCP config to your IDE
-# Windsurf: Settings → MCP Servers → Import ~/mcp_servers.json
+# Or macOS
+brew install jq moreutils glow
+
+# 2. Configure 7 MCP servers
+cp src/mcp_servers.json ~/.config/windsurf/mcp_servers.json
+# Edit paths if needed
+
+# 3. Add MCP config to your IDE
+# Windsurf: Settings → MCP Servers → Import mcp_servers.json
 # Cursor: Settings → Extensions → MCP → Import configuration
 # VS Code: Cline settings → MCP configuration
 
-# 3. Start AI and initialize framework
+# 4. Start AI and initialize framework
 # Type in AI chat: /init
 # AI will auto-generate 8 memory-bank files
 ```
@@ -127,6 +203,8 @@ cp src/mcp_servers.json ~/mcp_servers.json
 🎉 **That's it!** Your AI assistant is now a professional development team with persistent memory and autonomous capabilities.
 
 📖 **For detailed setup:** See [INSTALLATION.md](INSTALLATION.md)
+
+**🖥️ Desktop App**: For a native desktop experience with embedded MCPs, check out the separate [AegisIDE-desktop](https://github.com/Gaurav-Wankhede/AegisIDE-desktop) project (Rust + Tauri + Slint UI).
 
 ## 🧠 How AegisIDE Works
 

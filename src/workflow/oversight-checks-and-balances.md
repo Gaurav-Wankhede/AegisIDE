@@ -7,14 +7,16 @@ description: Parliamentary review with CLI pipeline
 ## 1. Load Router & Proposal (CLI Native)
 
 ```bash
+set -euo pipefail
+trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
+
 echo "→ OVERSIGHT: Parliamentary consensus calculation" >&2
 
-ROUTER_JSON=$(cat context-router.json)
-memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
-constitution=$(echo "$ROUTER_JSON" | jq -r '.system_paths.constitution')
+# Query via MCP
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
+constitution=$(@mcp:json-jq query '.system_paths.constitution' from 'context-router.json')
+proposal=$(@mcp:json-jq query '.' from "${memory_bank}systemPatterns.json")
 
-# Read proposal (direct jq)
-proposal=$(jq '.' "$memory_bank"systemPatterns.json)
 echo "→ PROPOSAL: Loaded for review" >&2
 ```
 
@@ -28,7 +30,7 @@ echo "→ PROPOSAL: Loaded for review" >&2
 ```bash
 # Render constitutional guidance
 echo "→ RENDER: Article 28 (Consensus Calculation)" >&2
-cat "$constitution/06-parliament/article-28.md" | glow -
+glow "${constitution}/06-parliament/article-28.md"
 ```
 
 ## 3. Consensus & Update (CLI Atomic)

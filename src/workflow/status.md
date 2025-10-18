@@ -7,18 +7,16 @@ description: System status with CLI pipeline
 ## 1. Load Router & Query (CLI Native)
 
 ```bash
+set -euo pipefail
+trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
+
 echo "→ STATUS: System health audit" >&2
 
-ROUTER_JSON=$(cat context-router.json)
-memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
-
-# Query metadata (parallel - 125x faster)
-(
-  task_count=$(jq '.priority_queue | length' "$memory_bank"scratchpad.json)
-  rl_score=$(jq -r '.total_rl_score' "$memory_bank"progress.json)
-  error_count=$(jq '.error_log | length' "$memory_bank"mistakes.json)
-) &
-wait
+# Query via MCP
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
+task_count=$(@mcp:json-jq query '.priority_queue | length' from "${memory_bank}scratchpad.json")
+rl_score=$(@mcp:json-jq query '.total_rl_score' from "${memory_bank}progress.json")
+error_count=$(@mcp:json-jq query '.error_log | length' from "${memory_bank}mistakes.json")
 
 echo "→ METRICS: Tasks=$task_count, RL=$rl_score, Errors=$error_count" >&2
 ```

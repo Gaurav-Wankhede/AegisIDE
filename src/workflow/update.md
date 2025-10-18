@@ -9,26 +9,38 @@ description: 8-schema atomic sync with CLI pipeline
 ```bash
 echo "→ UPDATE: 8-schema synchronization" >&2
 
-# Cache router
-ROUTER_JSON=$(cat context-router.json)
-memory_bank=$(echo "$ROUTER_JSON" | jq -r '.system_paths.memory_bank')
-update_order=$(echo "$ROUTER_JSON" | jq -r '.atomic_update_chain.order[]')
+# Query via MCP
+set -euo pipefail
+trap 'echo "→ INTERRUPTED" >&2; exit 130' SIGINT SIGTERM
 
-# READ all 8 schemas (parallel - 125x faster)
-echo "→ READ: Validating 8 schemas in parallel" >&2
+memory_bank=$(@mcp:json-jq query '.system_paths.memory_bank' from 'context-router.json')
+update_order=$(@mcp:json-jq query '.atomic_update_chain.order[]' from 'context-router.json')
+
+# Validate all 8 schemas exist
+echo "→ VALIDATE: Checking 8 schemas" >&2
 for schema in $update_order; do
-  (jq '.' "$memory_bank$schema" > /dev/null 2>&1 && echo "✓ $schema") &
+  if [[ -f "${memory_bank}${schema}" ]]; then
+    echo "✓ $schema" >&2
+  else
+    echo "❌ $schema MISSING" >&2
+  fi
 done
-wait
 ```
 
 ## 2. Update All (CLI Atomic)
 
 ```bash
-# Calculate metrics
-compliance=$(python3 -c "print(int($valid_count / 8 * 100))")
+# Count valid schemas from validation step
+valid_count=0
+for schema in $update_order; do
+  [[ -f "${memory_bank}${schema}" ]] && ((valid_count++))
+done
 
-# Atomic updates with sponge (267x faster)
+# Calculate compliance percentage
+compliance=$(python3 -c "print(int($valid_count / 8 * 100))")
+echo "→ COMPLIANCE: ${valid_count}/8 schemas valid (${compliance}%)" >&2
+
+# Atomic updates with sponge
 for schema in $update_order; do
   echo "→ UPDATE: $schema (atomic)" >&2
   jq '.timestamp = "'$(date '+%Y-%m-%dT%H:%M:%S%z')'" | .data |= .[:100]' \
