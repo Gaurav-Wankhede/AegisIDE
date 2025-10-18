@@ -1,0 +1,51 @@
+{
+  "id": "article-27",
+  "title": "Proposal Submission & IAS Briefing",
+  "part": "VI-Parliament",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "Mandatory IAS briefing, evidence-based proposals, comprehensive dossiers",
+    "tokens": {"full": 600, "definition": 150, "powers": 100, "implementation": 250, "violations": 100},
+    "triggers": ["proposal", "ias-briefing", "research", "dossier"],
+    "priority": "high"
+  },
+  "content": {
+    "definition": {
+      "core_requirement": "All parliamentary proposals require mandatory IAS briefing with MCP-backed evidence, constitutional impact analysis, resource assessment, risk evaluation",
+      "proposal_requirements": ["Clear objective", "Constitutional justification", "IAS research dossier", "Resource estimate", "Risk assessment", "Success criteria", "Rollback plan", "MCP evidence trail"],
+      "ias_dossier_contents": ["Executive summary", "Technical feasibility", "Cost-benefit analysis", "Constitutional compliance check", "Historical precedents (memory.json)", "Alternative approaches", "Implementation timeline"]
+    },
+    "powers": {
+      "proposal_rights": "Any citizen may submit via scratchpad.json, but IAS Researcher must validate and create dossier before parliamentary consideration",
+      "ias_researcher": "Operates /research, gathers evidence via @mcp:context7 and @mcp:fetch, analyzes feasibility, documents findings in systemPatterns.json, presents to Parliament",
+      "parliament": "Reviews dossier, questions IAS, requests additional research if needed, approves/rejects based on evidence quality and constitutional alignment"
+    },
+    "implementation": {
+      "submission_to_approval": [
+        "1. Initial Submission: Citizen writes proposal in scratchpad.json (title, objective, rationale, expected outcome), timestamp, proposal ID assigned (proposal-YYYYMMDD-NNN)",
+        "2. IAS Research Phase: Researcher receives assignment, @mcp:context7 official documentation research, @mcp:fetch external benchmarks/best practices, search historical precedents in memory.json, calculate resource impact, risk assessment",
+        "3. Dossier Creation: Write systemPatterns.json {research_id, proposal_ref, executive_summary, technical_feasibility, cost_estimate, constitutional_compliance, precedents[], alternatives[], risk_level, success_criteria[], rollback_plan, mcp_evidence[]}",
+        "4. Parliamentary Review: IAS presents dossier to Parliament, all branches review simultaneously, questions answered by IAS Researcher, Opposition files challenges if concerns",
+        "5. Enhanced Debate: Evidence-based arguments, IAS clarifies technical points, structured discussion, alternatives evaluated against criteria",
+        "6. Informed Vote: Parliament votes with full information, consensus calculation, decision documented in progress.json, approved proposals move to implementation"
+      ]
+    },
+    "violations": {
+      "bypassing_ias_briefing": [
+        {"offense": "Proposing without research dossier", "penalty": -30, "action": "Research mandate + proposal tabled"}
+      ],
+      "incomplete_dossier": [
+        {"offense": "Missing critical analysis", "penalty": -20, "action": "Completion required"}
+      ],
+      "misleading_evidence": [
+        {"offense": "Falsifying research", "penalty": -50, "action": "Tribunal + citizenship risk"}
+      ],
+      "remediation": "Successfully prepare 10 comprehensive dossiers, demonstrate research rigor, pass IAS quality audit, restore privileges after parliamentary approval"
+    }
+  },
+  "related_articles": ["article-26", "article-28"],
+  "schemas_referenced": ["scratchpad", "systemPatterns", "progress", "memory"],
+  "mcps_referenced": ["context7", "fetch", "json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution/06-parliament/article-27.json"
+}
