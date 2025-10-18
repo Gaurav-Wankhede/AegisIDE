@@ -32,9 +32,7 @@
         "-y",
         "mcp-remote",
         "https://mcp.exa.ai/mcp"
-      ],
-      "env": {},
-      "disabled": false
+      ]
     },
     "json-jq": {
       "command": "npx",

@@ -215,10 +215,10 @@ mcp_servers.json             # 6 MCP server configs
 - Basic understanding of your tech stack
 
 ### **Quick Setup**
-1. Clone AegisIDE repository
-2. Run bootstrap: `bash scripts/bootstrap.sh` (copies .aegiside/ to your project)
-3. Copy `system-prompt.md` content to your IDE's system prompt settings
-4. Configure MCP servers using `mcp_servers.json`
+1. Clone AegisIDE repository: `git clone https://github.com/Gaurav-Wankhede/AegisIDE`
+2. Copy `.aegiside/` to your project: `cp -r AegisIDE/src/.aegiside/ your-project/.aegiside/`
+3. Copy system prompt (Windsurf): `cp AegisIDE/src/system-prompt.md ~/.codeium/windsurf-next/memories/global_rules.md`
+4. Configure MCP servers: Copy `mcp_servers.json` to IDE settings
 5. Restart IDE to load MCPs
 
 ### **First Workflow Triggers**

@@ -239,9 +239,9 @@ if [ "$ENHANCE_MODE" = true ]; then
     echo "  📥 Downloading AegisIDE framework rules..."
     
     # Download to temp file first
-    if ! curl -sL "$GITHUB_REPO/src/global-rules.md" > /tmp/aegiside_rules.md; then
-        echo "  ❌ ERROR: Failed to download AegisIDE rules from GitHub"
-        echo "  🌐 URL: $GITHUB_REPO/src/global-rules.md"
+    if ! curl -sL "$GITHUB_REPO/src/system-prompt.md" > /tmp/aegiside_rules.md; then
+        echo "  ❌ ERROR: Failed to download AegisIDE system prompt from GitHub"
+        echo "  🌐 URL: $GITHUB_REPO/src/system-prompt.md"
         echo "  🔧 Please check your internet connection or try again later"
         exit 1
     fi
@@ -519,7 +519,7 @@ fi
 
 # Step 4: Download workflows
 echo "4️⃣  Downloading workflows..."
-mkdir -p "$WORKSPACE_IDE_PATH/workflow"
+mkdir -p "$WORKSPACE_IDE_PATH/.aegiside/workflows"
 
 # Download workflow files with validation
 WORKFLOW_SUCCESS=0
@@ -531,16 +531,16 @@ for workflow in auto-init bootstrap continue fix next research update validate; 
                 if check_file_diff "/tmp/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json" "${workflow}.json"; then
                     ((WORKFLOW_SKIPPED++))
                     ((WORKFLOW_SUCCESS++))
-                    rm -f "/tmp/${workflow}.md"
+                    rm -f "/tmp/${workflow}.json"
                 else
-                    cp "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md.backup"
-                    mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
+                    cp "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json.backup"
+                    mv "/tmp/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json"
                     ((WORKFLOW_SUCCESS++))
                 fi
             else
                 ((WORKFLOW_SKIPPED++))
                 ((WORKFLOW_SUCCESS++))
-                rm -f "/tmp/${workflow}.md"
+                rm -f "/tmp/${workflow}.json"
             fi
         else
             ((WORKFLOW_SKIPPED++))
@@ -552,13 +552,13 @@ for workflow in auto-init bootstrap continue fix next research update validate; 
                 mv "/tmp/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json"
                 ((WORKFLOW_SUCCESS++))
             else
-                rm -f "/tmp/${workflow}.md"
+                rm -f "/tmp/${workflow}.json"
             fi
         fi
     fi
 done
 if [ "$INSTALL_MODE" = "update" ] && [ $WORKFLOW_SKIPPED -gt 0 ]; then
-    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows (${WORKFLOW_SKIPPED} unchanged, preserved)"
+    echo "  ✅ $WORKFLOW_SUCCESS/8 workflows (${WORKFLOW_SKIPPED} unchanged, preserved)"
 else
     echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
 fi
