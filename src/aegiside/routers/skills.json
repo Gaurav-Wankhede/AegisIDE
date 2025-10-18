@@ -1,187 +1,226 @@
 {
-  "schema_version": "2.0.0",
-  "last_updated": "2025-10-19T01:06:57+05:30",
-  "description": "Curated best practices for /research and /validate workflows - Constitutional framework uses laws, skills provide external expertise",
-  "loading_strategy": "progressive_disclosure",
+  "schema_version": "2.1.0",
+  "last_updated": "2025-10-19T01:10:05+05:30",
+  "description": "Comprehensive best practices catalog for dynamic AI research - Constitutional framework provides governance, skills provide technical expertise across all domains",
+  "loading_strategy": "semantic_discovery",
   "usage": {
-    "research_workflow": "Load relevant skills during IAS /research intelligence gathering",
-    "validate_workflow": "Reference standards during /validate quality checks",
-    "pattern": "@mcp:fetch url from skills metadata OR @mcp:context7 for official docs"
+    "research_workflow": "AI dynamically pulls relevant skills during /research based on semantic matching",
+    "validate_workflow": "AI references standards during /validate quality checks",
+    "pattern": "@mcp:fetch url OR @mcp:context7 based on semantic relevance to query"
   },
   "skills": {
     "rust": {
-      "name": "Rust Best Practices",
-      "description": "API guidelines, error handling, performance, ownership patterns",
       "priority": "critical",
-      "rationale": "AegisIDE core implementation language",
+      "description": "API guidelines, error handling, performance, ownership patterns, memory safety",
       "sources": [
-        {
-          "name": "Rust API Guidelines",
-          "url": "https://rust-lang.github.io/api-guidelines/",
-          "raw_url": "https://raw.githubusercontent.com/rust-lang/api-guidelines/master/src/about.md",
-          "type": "official",
-          "triggers": ["rust", "cargo", "ownership", "error-handling"]
-        },
-        {
-          "name": "Rust Book",
-          "url": "https://doc.rust-lang.org/book/",
-          "type": "official",
-          "triggers": ["rust-fundamentals", "learning"]
-        }
-      ]
+        {"name": "Rust API Guidelines", "url": "https://rust-lang.github.io/api-guidelines/", "raw_url": "https://raw.githubusercontent.com/rust-lang/api-guidelines/master/src/about.md", "type": "official"},
+        {"name": "Rust Book", "url": "https://doc.rust-lang.org/book/", "type": "official"},
+        {"name": "Rust Security Guidelines", "url": "https://anssi-fr.github.io/rust-guide/", "type": "official"},
+        {"name": "Cargo Book", "url": "https://doc.rust-lang.org/cargo/", "type": "official"}
+      ],
+      "triggers": ["rust", "cargo", "ownership", "error-handling", "memory-safety", "borrowing"]
     },
     "python": {
-      "name": "Python Best Practices",
-      "description": "PEP 8, type hints, testing, project structure",
       "priority": "high",
-      "rationale": "Scripting, automation, analysis tools",
+      "description": "PEP 8, type hints, testing, async patterns, project structure",
       "sources": [
-        {
-          "name": "Google Python Style Guide",
-          "url": "https://google.github.io/styleguide/pyguide.html",
-          "raw_url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/pyguide.md",
-          "type": "style-guide",
-          "triggers": ["python", "pep8", "style"]
-        },
-        {
-          "name": "Python Type Hints",
-          "url": "https://docs.python.org/3/library/typing.html",
-          "type": "official",
-          "triggers": ["python-types", "mypy", "type-checking"]
-        }
-      ]
+        {"name": "Google Python Style Guide", "url": "https://google.github.io/styleguide/pyguide.html", "raw_url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/pyguide.md", "type": "style-guide"},
+        {"name": "Python Type Hints", "url": "https://docs.python.org/3/library/typing.html", "type": "official"},
+        {"name": "PEP 8", "url": "https://peps.python.org/pep-0008/", "type": "standard"},
+        {"name": "Python Patterns", "url": "https://python-patterns.guide/", "type": "guide"}
+      ],
+      "triggers": ["python", "pep8", "type-hints", "mypy", "async", "asyncio"]
     },
     "typescript": {
-      "name": "TypeScript Best Practices",
-      "description": "Type safety, modern JavaScript, tooling patterns",
       "priority": "high",
-      "rationale": "CLI tools, IDE extensions, configuration",
+      "description": "Type safety, modern JavaScript ES6+, Node.js patterns",
       "sources": [
-        {
-          "name": "TypeScript Official",
-          "url": "https://www.typescriptlang.org/docs/",
-          "raw_url": "https://raw.githubusercontent.com/microsoft/TypeScript/main/README.md",
-          "type": "official",
-          "triggers": ["typescript", "ts", "type-safety"]
-        },
-        {
-          "name": "Airbnb JavaScript Style Guide",
-          "url": "https://github.com/airbnb/javascript",
-          "raw_url": "https://raw.githubusercontent.com/airbnb/javascript/master/README.md",
-          "type": "style-guide",
-          "triggers": ["javascript", "js", "airbnb", "es6"]
-        }
-      ]
+        {"name": "TypeScript Handbook", "url": "https://www.typescriptlang.org/docs/handbook/", "type": "official"},
+        {"name": "Airbnb JavaScript Style", "url": "https://github.com/airbnb/javascript", "raw_url": "https://raw.githubusercontent.com/airbnb/javascript/master/README.md", "type": "style-guide"},
+        {"name": "Node.js Best Practices", "url": "https://github.com/goldbergyoni/nodebestpractices", "type": "guide"}
+      ],
+      "triggers": ["typescript", "javascript", "ts", "js", "node", "es6", "type-safety"]
+    },
+    "go": {
+      "priority": "medium",
+      "description": "Effective Go, concurrency patterns, project layout",
+      "sources": [
+        {"name": "Effective Go", "url": "https://go.dev/doc/effective_go", "type": "official"},
+        {"name": "Go Code Review Comments", "url": "https://go.dev/wiki/CodeReviewComments", "type": "official"},
+        {"name": "Standard Go Project Layout", "url": "https://github.com/golang-standards/project-layout", "type": "guide"}
+      ],
+      "triggers": ["go", "golang", "goroutines", "concurrency", "channels"]
+    },
+    "react": {
+      "priority": "medium",
+      "description": "Component patterns, hooks, performance optimization, modern React",
+      "sources": [
+        {"name": "React Documentation", "url": "https://react.dev/", "type": "official"},
+        {"name": "React Patterns", "url": "https://reactpatterns.com/", "type": "guide"},
+        {"name": "React TypeScript Cheatsheet", "url": "https://react-typescript-cheatsheet.netlify.app/", "type": "guide"}
+      ],
+      "triggers": ["react", "hooks", "components", "jsx", "state-management", "useEffect"]
+    },
+    "nextjs": {
+      "priority": "medium",
+      "description": "App Router, Server Components, SSR, optimization",
+      "sources": [
+        {"name": "Next.js Documentation", "url": "https://nextjs.org/docs", "type": "official"},
+        {"name": "Next.js Learn", "url": "https://nextjs.org/learn", "type": "official"}
+      ],
+      "triggers": ["nextjs", "next", "app-router", "server-components", "ssr", "vercel"]
+    },
+    "vue": {
+      "priority": "medium",
+      "description": "Vue 3 composition API, reactivity, component design",
+      "sources": [
+        {"name": "Vue 3 Guide", "url": "https://vuejs.org/guide/", "type": "official"},
+        {"name": "Vue Style Guide", "url": "https://vuejs.org/style-guide/", "type": "official"}
+      ],
+      "triggers": ["vue", "vuejs", "composition-api", "reactivity"]
+    },
+    "svelte": {
+      "priority": "medium",
+      "description": "Svelte reactive programming, SvelteKit",
+      "sources": [
+        {"name": "Svelte Tutorial", "url": "https://svelte.dev/tutorial", "type": "official"},
+        {"name": "SvelteKit Documentation", "url": "https://kit.svelte.dev/docs", "type": "official"}
+      ],
+      "triggers": ["svelte", "sveltekit", "reactive-programming"]
     },
     "git": {
-      "name": "Git Best Practices",
-      "description": "Commit conventions, branching strategies, workflows",
       "priority": "critical",
-      "rationale": "Article 13 mandates @mcp:git for all version control",
+      "description": "Commit conventions, branching strategies, workflows, collaboration",
       "sources": [
-        {
-          "name": "Conventional Commits",
-          "url": "https://www.conventionalcommits.org/",
-          "type": "standard",
-          "triggers": ["git", "commits", "semantic-versioning"]
-        },
-        {
-          "name": "Git Documentation",
-          "url": "https://git-scm.com/doc",
-          "raw_url": "https://raw.githubusercontent.com/git/git/master/README.md",
-          "type": "official",
-          "triggers": ["git-fundamentals", "branching"]
-        }
-      ]
+        {"name": "Conventional Commits", "url": "https://www.conventionalcommits.org/", "type": "standard"},
+        {"name": "Git Documentation", "url": "https://git-scm.com/doc", "raw_url": "https://raw.githubusercontent.com/git/git/master/README.md", "type": "official"},
+        {"name": "GitHub Flow", "url": "https://docs.github.com/en/get-started/quickstart/github-flow", "type": "guide"},
+        {"name": "Gitflow Workflow", "url": "https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow", "type": "guide"}
+      ],
+      "triggers": ["git", "commits", "branching", "github", "gitlab", "version-control"]
     },
     "testing": {
-      "name": "Testing Best Practices",
-      "description": "Unit testing, integration testing, TDD, coverage strategies",
       "priority": "critical",
-      "rationale": "Article 15: Duty to validate & test code (≥80% coverage)",
+      "description": "Unit testing, integration, TDD, coverage, mocking strategies",
       "sources": [
-        {
-          "name": "Test Double Patterns",
-          "url": "https://github.com/testdouble/contributing-tests",
-          "raw_url": "https://raw.githubusercontent.com/testdouble/contributing-tests/master/README.md",
-          "type": "guide",
-          "triggers": ["testing", "tdd", "unit-tests", "mocks"]
-        },
-        {
-          "name": "Testing Best Practices",
-          "url": "https://github.com/goldbergyoni/javascript-testing-best-practices",
-          "type": "guide",
-          "triggers": ["testing-patterns", "integration-tests"]
-        }
-      ]
+        {"name": "Test Double Patterns", "url": "https://github.com/testdouble/contributing-tests", "raw_url": "https://raw.githubusercontent.com/testdouble/contributing-tests/master/README.md", "type": "guide"},
+        {"name": "JavaScript Testing Best Practices", "url": "https://github.com/goldbergyoni/javascript-testing-best-practices", "type": "guide"},
+        {"name": "Testing Library", "url": "https://testing-library.com/docs/", "type": "official"}
+      ],
+      "triggers": ["testing", "tdd", "unit-tests", "integration-tests", "mocks", "coverage", "jest", "pytest"]
     },
     "security": {
-      "name": "Security Best Practices",
-      "description": "OWASP guidelines, secure coding, vulnerability prevention",
       "priority": "critical",
-      "rationale": "Article 7: Right to security & access control, mandatory pre-deployment scanning",
+      "description": "OWASP guidelines, secure coding, vulnerability prevention, authentication",
       "sources": [
-        {
-          "name": "OWASP Cheat Sheet Series",
-          "url": "https://cheatsheetseries.owasp.org/",
-          "raw_url": "https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/README.md",
-          "type": "standard",
-          "triggers": ["security", "owasp", "vulnerabilities", "scanning"]
-        },
-        {
-          "name": "Rust Security Guidelines",
-          "url": "https://anssi-fr.github.io/rust-guide/",
-          "type": "official",
-          "triggers": ["rust-security", "memory-safety"]
-        }
-      ]
+        {"name": "OWASP Top 10", "url": "https://owasp.org/www-project-top-ten/", "type": "standard"},
+        {"name": "OWASP Cheat Sheet Series", "url": "https://cheatsheetseries.owasp.org/", "raw_url": "https://raw.githubusercontent.com/OWASP/CheatSheetSeries/master/README.md", "type": "standard"},
+        {"name": "CWE Top 25", "url": "https://cwe.mitre.org/top25/", "type": "standard"}
+      ],
+      "triggers": ["security", "owasp", "vulnerabilities", "xss", "sql-injection", "authentication", "authorization"]
+    },
+    "docker": {
+      "priority": "medium",
+      "description": "Dockerfile optimization, multi-stage builds, container security",
+      "sources": [
+        {"name": "Docker Best Practices", "url": "https://docs.docker.com/develop/dev-best-practices/", "type": "official"},
+        {"name": "Dockerfile Best Practices", "url": "https://docs.docker.com/develop/develop-images/dockerfile_best-practices/", "type": "official"}
+      ],
+      "triggers": ["docker", "dockerfile", "containers", "containerization", "multi-stage"]
+    },
+    "kubernetes": {
+      "priority": "medium",
+      "description": "K8s deployment patterns, pod design, service mesh",
+      "sources": [
+        {"name": "Kubernetes Documentation", "url": "https://kubernetes.io/docs/home/", "type": "official"},
+        {"name": "Kubernetes Best Practices", "url": "https://kubernetes.io/docs/concepts/configuration/overview/", "type": "official"}
+      ],
+      "triggers": ["kubernetes", "k8s", "pods", "deployments", "services", "helm"]
+    },
+    "ci_cd": {
+      "priority": "high",
+      "description": "GitHub Actions, GitLab CI, pipeline optimization, deployment strategies",
+      "sources": [
+        {"name": "GitHub Actions Documentation", "url": "https://docs.github.com/en/actions", "type": "official"},
+        {"name": "GitLab CI/CD", "url": "https://docs.gitlab.com/ee/ci/", "type": "official"}
+      ],
+      "triggers": ["ci-cd", "github-actions", "gitlab-ci", "pipeline", "automation", "deployment"]
+    },
+    "databases": {
+      "priority": "high",
+      "description": "SQL optimization, indexing, transactions, ORM patterns",
+      "sources": [
+        {"name": "PostgreSQL Documentation", "url": "https://www.postgresql.org/docs/", "type": "official"},
+        {"name": "Use The Index Luke", "url": "https://use-the-index-luke.com/", "type": "guide"},
+        {"name": "Database Design Patterns", "url": "https://www.databasedesignbook.com/", "type": "guide"}
+      ],
+      "triggers": ["database", "sql", "postgresql", "mysql", "mongodb", "orm", "prisma", "sqlalchemy"]
+    },
+    "api_design": {
+      "priority": "high",
+      "description": "REST, GraphQL, API versioning, OpenAPI, rate limiting",
+      "sources": [
+        {"name": "Microsoft REST API Guidelines", "url": "https://github.com/microsoft/api-guidelines", "raw_url": "https://raw.githubusercontent.com/microsoft/api-guidelines/vNext/Guidelines.md", "type": "standard"},
+        {"name": "GraphQL Best Practices", "url": "https://graphql.org/learn/best-practices/", "type": "official"},
+        {"name": "OpenAPI Specification", "url": "https://swagger.io/specification/", "type": "standard"}
+      ],
+      "triggers": ["api", "rest", "graphql", "openapi", "swagger", "rate-limiting", "versioning"]
     },
     "architecture": {
-      "name": "Software Architecture Patterns",
-      "description": "Clean architecture, design patterns, governance structures",
       "priority": "high",
-      "rationale": "Constitutional governance design, tri-branch architecture patterns",
+      "description": "Clean architecture, microservices, design patterns, DDD, SOLID",
       "sources": [
-        {
-          "name": "Awesome Design Patterns",
-          "url": "https://github.com/DovAmir/awesome-design-patterns",
-          "raw_url": "https://raw.githubusercontent.com/DovAmir/awesome-design-patterns/master/README.md",
-          "type": "guide",
-          "triggers": ["architecture", "design-patterns", "clean-code"]
-        },
-        {
-          "name": "System Design Primer",
-          "url": "https://github.com/donnemartin/system-design-primer",
-          "type": "guide",
-          "triggers": ["system-design", "scalability"]
-        }
-      ]
+        {"name": "Awesome Design Patterns", "url": "https://github.com/DovAmir/awesome-design-patterns", "raw_url": "https://raw.githubusercontent.com/DovAmir/awesome-design-patterns/master/README.md", "type": "guide"},
+        {"name": "System Design Primer", "url": "https://github.com/donnemartin/system-design-primer", "type": "guide"},
+        {"name": "Patterns.dev", "url": "https://www.patterns.dev/", "type": "guide"}
+      ],
+      "triggers": ["architecture", "design-patterns", "clean-code", "solid", "ddd", "microservices", "monolith"]
+    },
+    "performance": {
+      "priority": "medium",
+      "description": "Web performance, optimization, profiling, caching strategies",
+      "sources": [
+        {"name": "Web.dev Performance", "url": "https://web.dev/performance/", "type": "official"},
+        {"name": "Chrome DevTools", "url": "https://developer.chrome.com/docs/devtools/", "type": "official"}
+      ],
+      "triggers": ["performance", "optimization", "profiling", "caching", "latency", "throughput"]
+    },
+    "accessibility": {
+      "priority": "medium",
+      "description": "WCAG guidelines, ARIA, keyboard navigation, screen readers",
+      "sources": [
+        {"name": "WCAG 2.1", "url": "https://www.w3.org/WAI/WCAG21/quickref/", "type": "standard"},
+        {"name": "MDN Accessibility", "url": "https://developer.mozilla.org/en-US/docs/Web/Accessibility", "type": "official"}
+      ],
+      "triggers": ["accessibility", "a11y", "wcag", "aria", "screen-reader"]
     },
     "documentation": {
-      "name": "Technical Documentation",
-      "description": "API docs, README standards, technical writing",
       "priority": "high",
-      "rationale": "Article 18: Duty to document & log actions, commit message standards",
+      "description": "Technical writing, API docs, README standards, code comments",
       "sources": [
-        {
-          "name": "Google Documentation Guide",
-          "url": "https://developers.google.com/style",
-          "raw_url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/docguide/README.md",
-          "type": "style-guide",
-          "triggers": ["documentation", "readme", "technical-writing"]
-        },
-        {
-          "name": "Microsoft API Guidelines",
-          "url": "https://github.com/microsoft/api-guidelines",
-          "raw_url": "https://raw.githubusercontent.com/microsoft/api-guidelines/vNext/Guidelines.md",
-          "type": "standard",
-          "triggers": ["api", "rest", "documentation-standards"]
-        }
-      ]
+        {"name": "Google Developer Documentation Style Guide", "url": "https://developers.google.com/style", "raw_url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/docguide/README.md", "type": "style-guide"},
+        {"name": "Write The Docs", "url": "https://www.writethedocs.org/guide/", "type": "guide"},
+        {"name": "Documentation System", "url": "https://documentation.divio.com/", "type": "guide"}
+      ],
+      "triggers": ["documentation", "readme", "technical-writing", "api-docs", "comments", "jsdoc"]
+    },
+    "devops": {
+      "priority": "medium",
+      "description": "Infrastructure as code, monitoring, logging, alerting",
+      "sources": [
+        {"name": "The Twelve-Factor App", "url": "https://12factor.net/", "type": "standard"},
+        {"name": "SRE Book", "url": "https://sre.google/sre-book/table-of-contents/", "type": "guide"}
+      ],
+      "triggers": ["devops", "infrastructure", "monitoring", "logging", "terraform", "ansible"]
+    },
+    "agile": {
+      "priority": "low",
+      "description": "Scrum, Kanban, sprint planning, retrospectives",
+      "sources": [
+        {"name": "Agile Manifesto", "url": "https://agilemanifesto.org/", "type": "standard"},
+        {"name": "Scrum Guide", "url": "https://scrumguides.org/", "type": "official"}
+      ],
+      "triggers": ["agile", "scrum", "kanban", "sprint", "retrospective"]
     }
-  },
-  "removed_skills": {
-    "rationale": "Focused on AegisIDE core stack - removed web frameworks (React, Next.js), containerization (Docker), presentation tools, and languages not in use (Go)",
-    "removed": ["presentations", "react", "nextjs", "go", "docker", "performance/lighthouse"]
   }
 }
