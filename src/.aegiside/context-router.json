@@ -31,10 +31,45 @@
         "{IDE}/rules/constitution/04-fundamental-duties/article-17.md",
         "{IDE}/rules/constitution/04-fundamental-duties/article-18.md",
         "{IDE}/rules/constitution/04-fundamental-duties/article-19.md"
+      ],
+      "dpsp": [
+        "{IDE}/rules/constitution/05-dpsp/article-20.md",
+        "{IDE}/rules/constitution/05-dpsp/article-21.md",
+        "{IDE}/rules/constitution/05-dpsp/article-22.md",
+        "{IDE}/rules/constitution/05-dpsp/article-23.md",
+        "{IDE}/rules/constitution/05-dpsp/article-24.md",
+        "{IDE}/rules/constitution/05-dpsp/article-25.md"
+      ],
+      "parliament": [
+        "{IDE}/rules/constitution/06-parliament/article-26.md",
+        "{IDE}/rules/constitution/06-parliament/article-27.md",
+        "{IDE}/rules/constitution/06-parliament/article-28.md",
+        "{IDE}/rules/constitution/06-parliament/article-29.md",
+        "{IDE}/rules/constitution/06-parliament/article-30.md",
+        "{IDE}/rules/constitution/06-parliament/article-31.md"
+      ],
+      "executive": [
+        "{IDE}/rules/constitution/07-executive/article-32.md",
+        "{IDE}/rules/constitution/07-executive/article-33.md",
+        "{IDE}/rules/constitution/07-executive/article-34.md",
+        "{IDE}/rules/constitution/07-executive/article-35.md"
+      ],
+      "judiciary": [
+        "{IDE}/rules/constitution/08-judiciary/article-36.md",
+        "{IDE}/rules/constitution/08-judiciary/article-37.md",
+        "{IDE}/rules/constitution/08-judiciary/article-38.md"
+      ],
+      "constitutional_bodies": [
+        "{IDE}/rules/constitution/09-constitutional-bodies/article-39.md",
+        "{IDE}/rules/constitution/09-constitutional-bodies/article-40.md",
+        "{IDE}/rules/constitution/09-constitutional-bodies/article-41.md",
+        "{IDE}/rules/constitution/09-constitutional-bodies/article-42.md"
       ]
     },
     "lazy_load": "Load articles only when needed via glow CLI",
-    "mandatory_compliance": "≥80% constitutional adherence required"
+    "mandatory_compliance": "≥80% constitutional adherence required",
+    "total_articles": 42,
+    "parts": 9
   },
   
   "workflows": {
@@ -55,22 +90,21 @@
   },
   
   "mcps": {
-    "description": "7 mandatory Model Context Protocol servers - Hybrid with CLI pipeline for JSON writes",
+    "description": "The 7 mandatory Model Context Protocol servers as defined in the Constitution (Article 13).",
     "core_count": 7,
     "always_active": [
       "@mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
       "@mcp:memory - Knowledge graph operations",
-      "@mcp:json-jq - Large JSON read (>10KB files)",
+      "@mcp:json-jq - ALL JSON reads (constitutional mandate)",
       "@mcp:git - Version control (NO CLI git)"
     ],
     "on_demand": [
       "@mcp:context7 - Official documentation (IMMEDIATE on errors)",
-      "@mcp:exa - Research papers",
-      "@mcp:fetch - Web scraping",
-      "@mcp:Shuttle - Rust deployment"
+      "@mcp:exa - Code research and examples",
+      "@mcp:fetch - Web scraping and external data retrieval"
     ],
-    "enforcement": "Missing MCP = -30 RL penalty, CLI bypass = -50 RL penalty",
-    "config_location": "/home/gaurav-wankhede/.codeium/windsurf-next/mcp_config.json"
+    "enforcement": "Missing MCP trail is a constitutional violation (Article 13) and results in a -30 RL penalty.",
+    "config_location": "~/.config/windsurf/mcp_config.json"
   },
   
   "memory_bank": {
@@ -91,40 +125,19 @@
     "validation": "All schemas validated against {IDE}/.aegiside/schemas/*.schema.json"
   },
   
-  "anti_amnesia_protocol": {
-    "before_any_claim": [
-      "Query context-router.json for paths (jq or @mcp:json-jq)",
-      "Verify files exist (cat, ls, jq)",
-      "NEVER assume - ALWAYS verify",
-      "NO hallucinations - only facts from actual files",
-      "NO invented titles/sections - only what exists"
-    ],
-    "transparency_mandate": [
-      "Echo EVERY command before execution: echo '→ ACTION' && command",
-      "User sees exact commands in terminal",
-      "No hidden operations",
-      "All state changes visible"
-    ],
-    "anti_hallucination": [
-      "Reference only actual files/paths from router",
-      "Cite sources for patterns (mistakes.json, systemPatterns.json)",
-      "Use @mcp:context7 for official documentation (no guessing)",
-      "Verify with jq before claiming JSON fields exist"
-    ]
-  },
   "json_access_rules": {
     "description": "CRITICAL: CLI Pipeline approach - Zero filesystem MCP dependency",
     "philosophy": "Everything is a stream (stdin → stdout). No MCP calls for JSON/Markdown.",
     "read_json": {
-      "method": "jq CLI (direct file or pipe)",
-      "purpose": "Query JSON with native parser (100x faster than MCP)",
+      "method": "@mcp:json-jq (constitutional mandate)",
+      "purpose": "Query JSON via MCP for ALL reads (no exceptions)",
       "performance": "~5ms per query",
       "patterns": [
-        "jq -r '.priority_queue[0]' scratchpad.json",
-        "cat progress.json | jq -r '.total_rl_score'",
-        "jq '.session' < activeContext.json"
+        "@mcp:json-jq query '.priority_queue[0]' from 'scratchpad.json'",
+        "@mcp:json-jq query '.total_rl_score' from 'progress.json'",
+        "@mcp:json-jq query '.session' from 'activeContext.json'"
       ],
-      "parallel": "task=$(jq '.field' file.json) & score=$(jq '.score' prog.json) & wait"
+      "parallel": "Use multiple @mcp:json-jq calls (MCP handles efficiently)"
     },
     "update_json": {
       "method": "jq pipe + sponge (atomic)",
@@ -140,14 +153,14 @@
       "safety": "sponge reads entire input, THEN writes atomically (requires moreutils package)"
     },
     "render_markdown": {
-      "method": "glow CLI (stdin pipe)",
+      "method": "glow CLI (for markdown only, NOT JSON)",
       "mandatory": "REQUIRED for ALL markdown rendering",
       "purpose": "Beautiful terminal rendering of constitutional articles, errors, guidance",
       "performance": "Instant (Go binary)",
-      "pattern": "cat article.md | glow -",
-      "transparency_pattern": "echo '→ RENDER: article-name' >&2 && cat article.md | glow -",
+      "pattern": "glow article.md (direct file read)",
+      "transparency_pattern": "echo '→ RENDER: article-name' >&2 && glow article.md",
       "examples": [
-        "cat constitution/02-preliminary/article-01.md | glow -",
+        "glow constitution/02-preliminary/article-01.md",
         "echo '# Title\n\nContent' | glow -",
         "curl API/docs | jq -r '.content' | glow -"
       ],
@@ -158,7 +171,7 @@
         "Workflow documentation",
         "Research dossiers"
       ],
-      "never_use": "cat or less for markdown (always pipe to glow)"
+      "never_use": "cat for JSON (use @mcp:json-jq), less for markdown (use glow)"
     },
     "delete_json": {
       "method": "rm (CLI)",
@@ -173,10 +186,10 @@
       "note": "For modifications, ALWAYS use jq terminal update pattern"
     },
     "forbidden": {
-      "never_use_filesystem_for": [
-        "Reading JSON fields (use @mcp:json-jq instead)",
-        "Updating JSON fields (use jq terminal instead)",
-        "Modifying existing JSON content (use jq terminal instead)"
+      "never_use_cat_for": [
+        "Reading JSON files (use @mcp:json-jq instead)",
+        "Piping JSON to jq (use @mcp:json-jq instead)",
+        "Any JSON operations (constitutional violation)"
       ],
       "penalties": {
         "using_filesystem_for_json_read": -15,
@@ -238,42 +251,6 @@
       "verify": "jq --version && sponge --version && glow --version"
     }
   },
-  "cascade_execution_model": {
-    "description": "How Windsurf Cascade executes workflows",
-    "critical_fact": "Cascade uses run_command tool, NOT direct bash script execution",
-    "execution_flow": [
-      "1. Cascade reads workflow markdown",
-      "2. Extracts commands from code blocks",
-      "3. Executes each via run_command (separate shell sessions)",
-      "4. Variables DON'T persist between commands",
-      "5. State stored in JSON files only"
-    ],
-    "atomic_command_rules": {
-      "one_purpose": "Each command does ONE thing",
-      "no_variables": "No bash variables between run_command calls",
-      "absolute_paths": "Use .windsurf/aegiside/... not $memory_bank",
-      "self_contained": "Each command works independently",
-      "transparent": "Echo action before execution"
-    },
-    "forbidden_patterns": {
-      "infinite_loops": "while true; do ... done (causes IDE hang)",
-      "variable_chains": "task=$(jq ...) && echo $task (variable lost)",
-      "for_loops": "for file in *.json; do ... done (multi-iteration)",
-      "bash_functions": "function name() { ... } (don't persist)",
-      "complex_conditionals": "Multi-line if/then/else (use simple or jq logic)"
-    },
-    "correct_patterns": {
-      "read": "jq -r '.priority_queue[0]' .windsurf/aegiside/memory-bank/scratchpad.json",
-      "update": "jq '.total_rl_score += 20' progress.json | sponge progress.json",
-      "transparency": "echo '→ UPDATE: description' && command",
-      "chaining": "Execute once and exit, user/Cascade calls workflow again"
-    },
-    "workflow_design": {
-      "format": "Markdown with atomic command examples",
-      "not": "Executable bash scripts",
-      "purpose": "Documentation that Cascade reads and executes step-by-step"
-    }
-  },
   "command_safety": {
     "description": "Safe command whitelist and forbidden commands",
     "safe_commands": {
@@ -331,35 +308,6 @@
       "git_operations": "Show commit message before committing",
       "no_silent_operations": "Every state change visible to user"
     }
-  },
-  "mcp_integration": {
-    "core_mcps": 8,
-    "always_active": [
-      "@mcp:sequential-thinking (deep reasoning ≥3 steps - ALWAYS)",
-      "@mcp:memory (knowledge graph operations)",
-      "@mcp:json-jq (READ large JSON files only)",
-      "@mcp:git (version control - autonomous commits)"
-    ],
-    "on_demand": {
-      "research": ["@mcp:context7 (official docs)", "@mcp:exa (research papers)", "@mcp:fetch (web scraping)"],
-      "deployment": ["@mcp:Shuttle (Rust only)"]
-    },
-    "replaced_by_cli": {
-      "filesystem": "jq, sponge, glow, cat (100-267x faster)",
-      "time": "date '+%Y-%m-%dT%H:%M:%S%z'",
-      "math": "python3 -c 'calculation'"
-    },
-    "usage_patterns": {
-      "sequential_thinking": "ALWAYS think deeply (≥3 steps) before action",
-      "context7": "IMMEDIATE on errors, new features, API usage",
-      "exa": "Research papers, cutting-edge solutions",
-      "fetch": "Web scraping, API calls (NOT piping to shell)",
-      "memory": "Create entities, relations, query graph",
-      "json_jq": "READ large JSON (>10KB) only",
-      "git": "Autonomous commits (SafeToAutoRun=true)",
-      "Shuttle": "Deploy Rust backend only"
-    },
-    "mcp_config_location": "/home/gaurav-wankhede/.codeium/windsurf-next/mcp_config.json"
   },
   "bootstrap_initialization": {
     "description": "First-time setup: Auto-download from GitHub, detect IDE, create structure",
@@ -593,17 +541,6 @@
       "security_policies": "security-rules.md"
     },
     "note": "Laws are project-specific, Constitution is universal across all AegisIDE projects"
-  },
-  "constitutional_structure": {
-    "01-preamble": {"file": "preamble.md", "articles": 0},
-    "02-preliminary": {"articles": [1, 2, 3]},
-    "03-fundamental-rights": {"articles": [4, 5, 6, 7, 8, 9, 10, 11, 12]},
-    "04-fundamental-duties": {"articles": [13, 14, 15, 16, 17, 18, 19]},
-    "05-dpsp": {"articles": [20, 21, 22, 23, 24, 25]},
-    "06-parliament": {"articles": [26, 27, 28, 29, 30, 31]},
-    "07-executive": {"articles": [32, 33, 34, 35]},
-    "08-judiciary": {"articles": [36, 37, 38]},
-    "09-constitutional-bodies": {"articles": [39, 40, 41, 42]}
   },
   "constitutional_roles": {
     "chief_justice": {
@@ -842,33 +779,7 @@
   "execution_rules": {
     "autonomy_band": "0-99%",
     "high_risk_requires_approval": ["database_mutations", "production_deploy", "delete_5plus_files", "git_force", "security_changes"],
-    "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"],
-    "mandatory_chain": ["prerequisites", "detect_intent", "load_router", "invoke_workflows", "load_articles", "update_schemas", "git_commit", "rl_scoring", "memory_anchor_check", "immediate_next"]
-  },
-  "memory_bank_management": {
-    "description": "Strict MCP usage rules for memory bank operations",
-    "read_operations": {
-      "tool": "@mcp:json-jq",
-      "rule": "ALWAYS use @mcp:json-jq for reading memory bank files",
-      "forbidden": ["direct file read without @mcp:json-jq", "other MCPs"],
-      "examples": [
-        "@mcp:json-jq query '$.session.autonomy_level' from 'activeContext.json'",
-        "@mcp:json-jq query '$.priority_queue[0]' from 'scratchpad.json'",
-        "@mcp:json-jq query '$.rl_totals' from 'progress.json'"
-      ]
-    },
-    "write_operations": {
-      "tool": "jq + sponge (CLI)",
-      "rule": "ALWAYS use jq + sponge for editing memory bank files",
-      "forbidden": ["@mcp:json-jq write", "direct file write", "other MCPs"],
-      "methods": ["jq '.field = value' file.json | sponge file.json"],
-      "validation": "Schema validation required after every write"
-    },
-    "enforcement": {
-      "violation_penalty": -30,
-      "log_to": "mistakes.json",
-      "constitutional_article": 13
-    }
+    "forbidden_actions": ["ask_permission_0_99", "wait_for_slash", "stop_after_one", "research_alone"]
   },
   "atomic_update_chain": {
     "description": "8-schema atomic update with cross-file validation",
@@ -1285,6 +1196,39 @@
       "checksum_validation": "sum(rl_transactions[].reward) must equal total_rl_score",
       "immutable_history": "Never delete transactions, only append new ones",
       "cross_schema_sync": "RL references in mistakes/systemPatterns must link to progress.json tx_id"
+    }
+  },
+  
+  "enforcement_layer": {
+    "description": "ACTIVE enforcement preventing hallucination and constitutional violations, now fully defined within the router.",
+    "implementation": "Core logic integrated from the now-deleted 'anti-hallucination-protocol.json'.",
+    "authority": "Articles IV, XIII, XIV - Constitutional mandate",
+    "pre_action_gates": {
+      "gate_1_sequential_thinking": {
+        "rule": "BLOCK tool calls if thinking_count < 3",
+        "check_source": "activeContext.json thinking_tracker.current_operation_thoughts",
+        "enforcement": "MANDATORY - no exceptions for 0-99% autonomy",
+        "penalty": -20
+      },
+      "gate_2_json_tool_validation": {
+        "rule": "JSON files MUST use @mcp:json-jq for reads",
+        "detection": "file_extension == '.json' AND tool_name IN ['Read', 'filesystem_read']",
+        "action": "BLOCK + suggest correct method",
+        "penalty": -15
+      }
+    },
+    "automatic_enforcement": {
+      "memory_anchoring": {
+        "trigger_condition": "operation_count % 5 == 0",
+        "mandatory_execution": true,
+        "purpose": "Prevent context loss by refreshing critical state every 5 operations",
+        "rl_reward": 2
+      }
+    },
+    "violation_responses": {
+      "blocking_message": "❌ BLOCKED: {violation_type}. Required: {correct_method}. Penalty: {rl_penalty} RL",
+      "auto_correction": "Convert incorrect tool call to constitutional equivalent",
+      "logging": "All violations logged to mistakes.json with prevention rules"
     }
   }
 }
