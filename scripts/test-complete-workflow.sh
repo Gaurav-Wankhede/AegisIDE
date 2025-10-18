@@ -37,7 +37,7 @@ echo ""
 
 # Test 3: Test metadata injection
 echo "Test 3: Metadata injection simulation"
-catalog=$(jq '.constitutional_catalog' /mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE/src/aegiside/routers/constitutional-metadata.json)
+catalog=$(jq '.constitutional_catalog' /mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE/src/.aegiside/routers/constitutional-metadata.json)
 categories=$(echo "$catalog" | jq -r 'keys | length')
 echo "  ✓ Loaded $categories categories"
 echo ""

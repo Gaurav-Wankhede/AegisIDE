@@ -17,7 +17,7 @@ matched_skills=$(jq -r --arg q "$query" '
 .skills | to_entries[] | 
 select(.value.triggers[] | test($q; "i")) |
 "\(.key)|\(.value.priority)|\(.value.sources[0].url)"
-' src/aegiside/routers/skills.json)
+' src/.aegiside/routers/skills.json)
 
 if [[ -z "$matched_skills" ]]; then
   echo "  ✗ No skills matched for: $query" >&2

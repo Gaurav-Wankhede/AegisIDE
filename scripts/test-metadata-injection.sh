@@ -9,7 +9,7 @@ echo ""
 
 # Test 1: Load constitutional catalog
 echo "Test 1: Load constitutional metadata catalog"
-catalog=$(jq '.constitutional_catalog' src/aegiside/routers/constitutional-metadata.json)
+catalog=$(jq '.constitutional_catalog' src/.aegiside/routers/constitutional-metadata.json)
 categories=$(echo "$catalog" | jq -r 'keys[]')
 echo "  ✓ Loaded 6 categories: $categories"
 echo ""
@@ -29,7 +29,7 @@ matches=$(jq -r --arg q "$query" '
   .constitutional_catalog | to_entries[] | 
   select(.value.semantic_contexts[] | contains("validation")) | 
   .key
-' src/aegiside/routers/constitutional-metadata.json)
+' src/.aegiside/routers/constitutional-metadata.json)
 echo "  Query: '$query'"
 echo "  ✓ Matched category: $matches"
 echo ""
@@ -38,7 +38,7 @@ echo ""
 echo "Test 4: Progressive loading simulation"
 articles=$(jq -r --arg cat "$matches" '
   .constitutional_catalog[$cat].articles | keys[]
-' src/aegiside/routers/constitutional-metadata.json)
+' src/.aegiside/routers/constitutional-metadata.json)
 echo "  ✓ Would load articles: $articles"
 echo ""
 
