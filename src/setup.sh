@@ -524,11 +524,11 @@ mkdir -p "$WORKSPACE_IDE_PATH/workflow"
 # Download workflow files with validation
 WORKFLOW_SUCCESS=0
 WORKFLOW_SKIPPED=0
-for workflow in bootstrap continue fix init memory-status next optimize oversight-checks-and-balances research status update validate auto-init; do
-    if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" ]; then
-        if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
-            if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
-                if check_file_diff "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" "${workflow}.md"; then
+for workflow in auto-init bootstrap continue fix next research update validate; do
+    if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json" ]; then
+        if curl -sL "$GITHUB_REPO/src/.aegiside/workflows/${workflow}.json" > "/tmp/${workflow}.json" 2>/dev/null; then
+            if validate_download "/tmp/${workflow}.json" "${workflow} workflow"; then
+                if check_file_diff "/tmp/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json" "${workflow}.json"; then
                     ((WORKFLOW_SKIPPED++))
                     ((WORKFLOW_SUCCESS++))
                     rm -f "/tmp/${workflow}.md"
@@ -547,9 +547,9 @@ for workflow in bootstrap continue fix init memory-status next optimize oversigh
             ((WORKFLOW_SUCCESS++))
         fi
     else
-        if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
-            if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
-                mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
+        if curl -sL "$GITHUB_REPO/src/.aegiside/workflows/${workflow}.json" > "/tmp/${workflow}.json" 2>/dev/null; then
+            if validate_download "/tmp/${workflow}.json" "${workflow} workflow"; then
+                mv "/tmp/${workflow}.json" "$WORKSPACE_IDE_PATH/.aegiside/workflows/${workflow}.json"
                 ((WORKFLOW_SUCCESS++))
             else
                 rm -f "/tmp/${workflow}.md"
