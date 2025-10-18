@@ -37,6 +37,13 @@
         "article-0",
         "article-4",
         "article-13"
+      ],
+      "triggers": [
+        "constitutional",
+        "articles",
+        "progressive-loading",
+        "metadata",
+        "42-articles"
       ]
     },
     "skills": {
@@ -45,12 +52,26 @@
       "query": "@mcp:json-jq query '.skills.{domain}.sources[]' from 'routers/skills.json'",
       "semantic_matching": "150+ triggers enable dynamic discovery",
       "fetch": "@mcp:fetch url from matched skill sources",
-      "cache": ".aegiside/cache/skills/"
+      "cache": ".aegiside/cache/skills/",
+      "triggers": [
+        "skills",
+        "best-practices",
+        "documentation",
+        "research",
+        "23-domains"
+      ]
     },
     "constitutional": {
       "file": "routers/constitutional.json",
       "contains": "Chief Justice, PM, IAS, Shadow Cabinet",
-      "query": "@mcp:json-jq query '.constitutional_roles' from 'routers/constitutional.json'"
+      "query": "@mcp:json-jq query '.constitutional_roles' from 'routers/constitutional.json'",
+      "triggers": [
+        "roles",
+        "chief-justice",
+        "prime-minister",
+        "ias",
+        "shadow-cabinet"
+      ]
     },
     "parliamentary": {
       "file": "routers/parliamentary.json",
@@ -77,7 +98,14 @@
     "memory": {
       "file": "routers/memory-bank.json",
       "contains": "8 schemas, atomic updates",
-      "query": "@mcp:json-jq query '.memory_bank' from 'routers/memory-bank.json'"
+      "query": "@mcp:json-jq query '.memory_bank' from 'routers/memory-bank.json'",
+      "triggers": [
+        "memory",
+        "knowledge-graph",
+        "entities",
+        "relations",
+        "patterns"
+      ]
     },
     "autonomy": {
       "file": "routers/autonomy.json",
@@ -128,12 +156,26 @@
       "file": "routers/constitutional-metadata.json",
       "contains": "500-token catalog, 6 categories, semantic contexts, anti-triggers",
       "query": "@mcp:json-jq query '.constitutional_catalog' from 'routers/constitutional-metadata.json'",
-      "injection_point": "system_prompt_startup via /auto-init"
+      "injection_point": "system_prompt_startup via /auto-init",
+      "triggers": [
+        "metadata",
+        "catalog",
+        "injection",
+        "500-tokens",
+        "semantic"
+      ]
     },
     "rl_feedback": {
       "file": "routers/rl-feedback-loop.json",
       "contains": "PPO-based trigger sensitivity, weekly adjustments, effectiveness tracking",
-      "query": "@mcp:json-jq query '.feedback_loop' from 'routers/rl-feedback-loop.json'"
+      "query": "@mcp:json-jq query '.feedback_loop' from 'routers/rl-feedback-loop.json'",
+      "triggers": [
+        "rl",
+        "feedback",
+        "ppo",
+        "trigger-sensitivity",
+        "weekly"
+      ]
     },
     "memory_bank": {
       "file": "routers/memory-bank.json",
@@ -168,5 +210,19 @@
     "violations": "routers/violations.json → .violations_penalties",
     "workflows": "routers/workflows.json → .workflow_auto_triggers",
     "governance": "routers/governance.json → .project_governance"
+  },
+  "startup_sequence": {
+    "step_1": "@mcp:json-jq query '.modular_routers | keys' from 'context-router.json' - Load router catalog",
+    "step_2": "@mcp:json-jq query '.system_paths' from 'context-router.json' - Get system paths",
+    "step_3": "@mcp:json-jq query '.operational_loop' from 'routers/core.json' - Load core operations",
+    "step_4": "Semantic matching: When user query contains trigger keywords, load specific router via @mcp:json-jq",
+    "token_budget": "Catalog: ~1,000 tokens | On-demand router: ~600-1,500 tokens each"
+  },
+  "usage_examples": {
+    "query_router_catalog": "@mcp:json-jq query '.modular_routers' from 'context-router.json'",
+    "load_autonomy_rules": "@mcp:json-jq query '.autonomy_rules' from 'routers/autonomy.json'",
+    "load_mcp_configs": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'",
+    "semantic_match": "Query contains 'autonomy' → Load autonomy.json | Contains 'mcp' → Load mcps.json",
+    "lazy_loading": "Only load routers when semantically matched to query, not upfront"
   }
 }
