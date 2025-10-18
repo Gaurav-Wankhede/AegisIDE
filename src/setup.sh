@@ -560,7 +560,7 @@ done
 if [ "$INSTALL_MODE" = "update" ] && [ $WORKFLOW_SKIPPED -gt 0 ]; then
     echo "  ✅ $WORKFLOW_SUCCESS/8 workflows (${WORKFLOW_SKIPPED} unchanged, preserved)"
 else
-    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
+    echo "  ✅ $WORKFLOW_SUCCESS/8 workflows downloaded successfully"
 fi
 
 # Step 5: Initialize 8-schema memory bank with project info
