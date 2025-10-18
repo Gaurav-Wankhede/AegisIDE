@@ -1,6 +1,6 @@
 # AegisIDE - AI Governance Framework
 
-**AegisIDE** is a constitutional framework that transforms AI-powered development through democratic governance, persistent memory, and autonomous workflows. It provides structure, accountability, and continuity for AI development assistants.
+**AegisIDE** is a constitutional framework that transforms AI-powered development through democratic governance, persistent memory, and autonomous workflows. Pure JSON architecture for cross-IDE compatibility and MCP-first execution.
 
 ## What is AegisIDE?
 
@@ -14,24 +14,34 @@ This ensures AI development is reliable, accountable, and maintains high quality
 ## Core Components
 
 ```
-.aegiside/
-├── memory-bank/          # AI's persistent memory (8 core schemas)
-├── schemas/              # Validation rules (8 core + 5 helper + validator)
-├── visualize/            # Real-time dashboard
-└── README.md            # This file
+.aegiside/                    # Single unified tree (bootstrapped per project)
+├── routers/                  # 15 JSON configuration files
+│   ├── context-router.json   # Master catalog
+│   ├── core.json             # Operational loop
+│   ├── mcps.json             # 6 MCP configurations
+│   ├── skills.json           # 23 domains, 131 triggers
+│   └── ... (11 more)
+├── workflows/                # 8 JSON auto-triggered workflows
+│   ├── auto-init.json        # Session startup
+│   ├── research.json         # Auto-research via skills.json
+│   ├── update.json           # Atomic 8-schema sync
+│   └── ... (5 more)
+├── constitution/             # 43 JSON articles (9 parts)
+│   ├── 01-preamble/
+│   ├── 03-fundamental-rights/
+│   └── ... (7 more parts)
+├── schemas/                  # 8 validation + 9 helpers
+│   ├── *.schema.json         # JSON Schema validation
+│   └── helpers/              # Operational patterns
+├── memory-bank/              # 8 runtime schemas (gitignored)
+│   ├── activeContext.json
+│   ├── progress.json
+│   └── ... (6 more)
+└── visualize/                # Real-time dashboard
+    └── dashboard.html
 
-rules/
-├── constitution/         # 42 governance articles + preamble
-└── laws/                # Language-specific implementation rules
-
-workflow/                 # 12 autonomous workflows
-├── init.md              # Initialize project
-├── next.md              # Execute next task
-├── validate.md          # Run quality checks
-└── ... (9 more)
-
-global-rules.md          # System prompt for AI
-mcp_servers.json         # Tool configurations
+system-prompt.md             # IDE-wide system prompt
+mcp_servers.json             # 6 MCP server configs
 ```
 
 ## Key Features
@@ -48,11 +58,12 @@ mcp_servers.json         # Tool configurations
 - **Constitutional Compliance**: All actions follow established rules
 - **Transparent Decision-Making**: >95% consensus required for major changes
 
-### 3. **Autonomous Workflows**
-- **12 Pre-Built Workflows**: From initialization to deployment
+### 3. **Autonomous Workflows** 
+- **8 JSON Workflows**: Auto-triggered via conditions (not manual commands)
+- **Skills.json Integration**: 23 domains with official documentation URLs
 - **Multi-Language Support**: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby
 - **Zero-Tolerance Validation**: Automatic error detection and fixing
-- **Continuous Execution**: AI works autonomously for hours without intervention
+- **Continuous Execution**: AI works autonomously (0-99% band) without permission
 
 ### 4. **Real-Time Monitoring**
 - **Live Dashboard**: See exactly what AI is thinking and doing
@@ -199,20 +210,22 @@ mcp_servers.json         # Tool configurations
 
 ### **Prerequisites**
 - Compatible IDE (Windsurf, Cursor, VS Code, etc.)
+- Node.js + Python (for MCP servers)
 - Project directory
 - Basic understanding of your tech stack
 
 ### **Quick Setup**
-1. Copy AegisIDE files to your project's `.windsurf/` (or IDE) directory
-2. Copy `global-rules.md` to your IDE's system prompt
-3. Configure MCP servers using `mcp_servers.json`
-4. Run `/init` to initialize the system
+1. Clone AegisIDE repository
+2. Run bootstrap: `bash scripts/bootstrap.sh` (copies .aegiside/ to your project)
+3. Copy `system-prompt.md` content to your IDE's system prompt settings
+4. Configure MCP servers using `mcp_servers.json`
+5. Restart IDE to load MCPs
 
-### **First Commands**
-- `/init` - Initialize AegisIDE for your project
-- `/next` - Execute the next priority task
-- `/status` - Check current progress and health
-- `/validate` - Run quality checks on your code
+### **First Workflow Triggers**
+- Auto-init triggers on new session detection
+- Research auto-triggers on errors (via skills.json)
+- Validate auto-triggers before commits
+- Update auto-triggers after task completion
 
 ## Benefits
 

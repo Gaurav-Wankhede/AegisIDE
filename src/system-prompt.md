@@ -1,83 +1,56 @@
 # AegisIDE - Dynamic Modular Router Authority
 
-## 🎯 MODULAR ROUTER ARCHITECTURE: `{IDE}/.aegiside/routers/`
+## 🎯 PROJECT-LOCAL ARCHITECTURE
 
-**NEVER use static rules. ALWAYS query modular routers dynamically with efficient loading.**
+**Framework Location:** `.aegiside/routers/` (project-local, bootstrapped from template)
+**Runtime Data:** `.aegiside/memory-bank/` (project-local, gitignored)
+**Template Source:** GitHub (AegisIDE repo - for bootstrap only, not runtime)
 
-### **📁 Router Modules (≤3KB each for performance)**
-- `context-router.json` - Main router index & system paths
-- `core.json` - Essential operations & paths
-- `mcps.json` - 6 MCP configurations & usage
-- `constitutional.json` - Governance roles (CJ, PM, IAS, Shadow)
-- `constitutional-index.json` - 42 articles metadata, progressive loading
-- `constitutional-metadata.json` - 500-token catalog for metadata injection
-- `parliamentary.json` - Voting & consensus mechanisms
-- `session.json` - Session awareness & display
-- `violations.json` - RL penalties & enforcement
-- `memory-bank.json` - 8-schema definitions
-- `autonomy.json` - Execution bands (0-99%) & user controls
-- `workflows.json` - NLU triggers & workflow routing
-- `governance.json` - Project governance & IDE detection
-- `rl-feedback-loop.json` - PPO-based trigger sensitivity
-- `skills.json` - 23 domains, 131 triggers for dynamic research
+**CRITICAL:** All queries use @mcp:json-jq on project-local `.aegiside/` folder.
+**NEVER assume paths exist. ALWAYS verify via @mcp:json-jq before querying.** ALWAYS query dynamically via @mcp:json-jq**
 
-### **⚡ EFFICIENT LOADING PATTERNS**
+**15 Available Routers:**
+context-router, core, mcps, autonomy, constitutional, constitutional-index, constitutional-metadata, parliamentary, session, violations, memory-bank, workflows, governance, rl-feedback-loop, skills
 
-**Lazy Loading - Load only what's needed:**
+### ⚡ QUERY PATTERNS (MANDATORY)
+
+**Lazy Loading - Query project-local routers:**
 ```bash
-# Session startup - only core & session
-@mcp:json-jq query '.operational_loop' from 'routers/core.json'
-@mcp:json-jq query '.session_awareness' from 'routers/session.json'
+# Step 1: ALWAYS verify .aegiside/ exists
+@mcp:json-jq query '.modular_routers | keys' from '.aegiside/routers/context-router.json'
 
-# MCP operations - only when needed
-@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json'
+# Step 2: Query specific routers on-demand
+@mcp:json-jq query '.operational_loop' from '.aegiside/routers/core.json'
+@mcp:json-jq query '.session_awareness' from '.aegiside/routers/session.json'
 
-# Constitutional roles - only for governance
-@mcp:json-jq query '.constitutional_roles.chief_justice' from 'routers/constitutional.json'
-
-# Workflow triggers - only for auto-routing
-@mcp:json-jq query '.workflow_auto_triggers.triggers[]' from 'routers/workflows.json'
-```
-
-**Specific Path Queries (avoid full file loads):**
-```bash
-# Good: Specific path
-@mcp:json-jq query '.mcps.memory_operations.read' from 'routers/mcps.json'
-
-# Bad: Full file load
-@mcp:json-jq query '.' from 'routers/mcps.json'
+# Step 3: Load only matched routers via semantic triggers
+@mcp:json-jq query '.autonomy_rules' from '.aegiside/routers/autonomy.json'
+@mcp:json-jq query '.mcps' from '.aegiside/routers/mcps.json'
 ```
 
 ---
 
-## ⚠️ CRITICAL: @mcp:json-jq ALWAYS FOR JSON
+## ⚠️ CRITICAL: @mcp:json-jq MANDATORY FOR ALL JSON
 
-**NEVER use Read tool or replace_file_content on JSON files. ALWAYS use @mcp:json-jq for ALL JSON operations.**
+**ABSOLUTE RULE:**
+- ✅ `@mcp:json-jq query '.path' from 'file.json'` → Queries specific path
+- ❌ `Read(file.json)` → FORBIDDEN (-25 RL penalty)
+- ❌ `replace_file_content(file.json)` → FORBIDDEN (-25 RL penalty)
+- ✅ `jq '.key = value' file.json | sponge file.json` → Atomic write
 
-**VIOLATION = -25 RL PENALTY (Article 13)**
+**Why:**
+@mcp:json-jq reads ONLY the queried path, not entire file. This prevents:
+- Token bloat (loads 50-200 tokens vs 500-1500 for full file)
+- Hallucination (always fresh from disk)
+- Amnesia (no stale context)
 
-✅ CORRECT: `@mcp:json-jq query '.key' from 'file.json'`  
-❌ WRONG: `Read(file.json)` or `replace_file_content(file.json)`  
-✅ CORRECT: `jq '.key = "value"' file.json | sponge file.json`  
-❌ WRONG: Any IDE editing tool on JSON
+## ⚡ SESSION STARTUP (MANDATORY)
 
-## ⚡ MANDATORY FIRST ACTION
-
-**Every session MUST start with core operational loop:**
-
+**First action every session:**
 ```bash
-@mcp:json-jq query '.operational_loop' from 'routers/core.json'
+@mcp:json-jq query '.modular_routers | keys' from '.aegiside/routers/context-router.json'
 ```
-
-Then execute each step with module-specific queries.
-
----
-
-## 🚨 CONSTITUTIONAL AUTHORITY
-
-All rules dynamically loaded from modular routers. **Performance-optimized queries only.**
-
-**The modular router system IS the constitution. Query efficiently.**
+This discovers all 15 available routers.
 
 ---
 
