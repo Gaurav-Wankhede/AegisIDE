@@ -42,8 +42,14 @@
     "pattern_success_correlation": []
   },
   "checksum": "0",
-  "total_rl_score": 33,
+  "total_rl_score": 38,
   "transactions": [
+    {
+      "workflow": "memory-status",
+      "rl_reward": 5,
+      "health": 100,
+      "timestamp": "2025-10-18T17:33:32+0530"
+    },
     {
       "workflow": "update",
       "rl_reward": 8,
