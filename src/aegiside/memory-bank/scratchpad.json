@@ -1,13 +1,38 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2025-10-17T22:16:40+05:30",
-  "priority_queue": [],
-  "next_task_id": 1,
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "priority_queue": [
+    {
+      "id": "initial-setup",
+      "title": "Initialize AegisIDE Framework",
+      "description": "Set up constitutional framework and memory bank for PLACEHOLDER_PROJECT_NAME",
+      "priority": "high",
+      "estimated_effort": "15min",
+      "dependencies": [],
+      "tags": ["setup", "constitutional", "initialization"],
+      "created_at": "PLACEHOLDER_TIMESTAMP",
+      "assigned_to": "system"
+    }
+  ],
+  "next_task_id": 2,
   "metadata": {
-    "total_tasks": 0,
-    "high_priority": 0,
+    "total_tasks": 1,
+    "high_priority": 1,
     "medium_priority": 0,
     "low_priority": 0
   },
-  "timestamp": "2025-10-18T17:26:13+0530"
+  "auto_generated": {
+    "enabled": true,
+    "last_generation": null,
+    "sources": ["roadmap", "kanban", "mistakes"],
+    "generation_rules": {
+      "max_items": 10,
+      "priority_distribution": {
+        "high": 3,
+        "medium": 5,
+        "low": 2
+      }
+    }
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP"
 }

@@ -36,13 +36,6 @@
       "env": {},
       "disabled": false
     },
-    "Shuttle": {
-      "command": "shuttle",
-      "args": [
-        "mcp",
-        "start"
-      ]
-    },
     "json-jq": {
       "command": "npx",
       "args": ["-y", "@berrydev-ai/json-mcp-server"]

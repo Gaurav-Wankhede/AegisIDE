@@ -1,14 +1,39 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2025-10-17T22:16:40+05:30",
-  "architecture_patterns": [],
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "project_info": {
+    "name": "PLACEHOLDER_PROJECT_NAME",
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH",
+    "ide_type": "PLACEHOLDER_IDE"
+  },
+  "architecture_patterns": [
+    {
+      "pattern_id": "constitutional-framework",
+      "name": "AegisIDE Constitutional Framework",
+      "description": "Democratic governance with tri-branch system",
+      "rl_reward": 20,
+      "success_rate": 1.0,
+      "confidence": 0.95,
+      "reuse_count": 1,
+      "created_at": "PLACEHOLDER_TIMESTAMP"
+    }
+  ],
   "mcp_enriched_docs": {
     "context7_links": [],
-    "verified_patterns": []
+    "verified_patterns": [],
+    "research_workflow_integration": {
+      "enabled": true,
+      "auto_update_patterns": true,
+      "source_verification": "context7_primary"
+    }
   },
   "aegiskg_pattern_networks": {
     "pattern_relationships": [],
-    "cross_project_patterns": []
+    "cross_project_patterns": [],
+    "federated_learning": {
+      "enabled": true,
+      "port_7777_integration": "planned"
+    }
   },
   "compliance_templates": {
     "emd_compliance": {
@@ -18,13 +43,30 @@
     },
     "constitutional_compliance": {
       "min_score": 80,
-      "required_articles": []
+      "required_articles": [4, 5, 6, 13, 14, 15]
+    },
+    "mcp_compliance": {
+      "mandatory_mcps": 9,
+      "complete_trail_required": true,
+      "context7_on_error": true
     }
   },
   "reuse_metrics": {
-    "total_patterns": 0,
+    "total_patterns": 1,
     "reuse_count": 0,
-    "avg_confidence": 0
+    "avg_confidence": 0.95,
+    "success_rate": 1.0
   },
-  "timestamp": "2025-10-18T17:27:40+0530"
+  "auto_learning": {
+    "enabled": true,
+    "pattern_extraction_threshold": 0.8,
+    "retirement_threshold": 0.6,
+    "reward_guided_evolution": true
+  },
+  "mcp_auto_update": {
+    "enabled": true,
+    "research_workflow_trigger": true,
+    "dynamic_pattern_generation": true
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP"
 }

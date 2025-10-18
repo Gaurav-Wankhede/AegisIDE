@@ -177,17 +177,30 @@ for workflow in bootstrap continue fix init memory-status next optimize oversigh
 done
 echo "  ✅ 13 workflows downloaded"
 
-# Step 5: Initialize memory bank
+# Step 5: Initialize 8-schema memory bank with project info
 echo "5️⃣  Initializing 8-schema memory bank..."
 mkdir -p "$WORKSPACE_IDE_PATH/memory-bank"
 
-# Create empty schemas if they don't exist
-for schema in activeContext scratchpad kanban mistakes systemPatterns progress roadmap memory; do
-    if [ ! -f "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json" ]; then
-        echo "{}" > "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
-    fi
+# Get project information
+PROJECT_NAME=$(basename "$WORKSPACE_PATH")
+CURRENT_TIMESTAMP=$(date '+%Y-%m-%dT%H:%M:%S%z')
+SESSION_ID="aegiside-$(date '+%Y%m%d-%H%M%S')"
+PROMPT_FILENAME=$(get_prompt_filename $IDE)
+
+# Download and customize each schema with project-specific data
+for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns; do
+    curl -sL "$GITHUB_REPO/src/aegiside/memory-bank/${schema}.json" > "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    
+    # Replace placeholders with actual project information
+    sed -i "s/PLACEHOLDER_TIMESTAMP/$CURRENT_TIMESTAMP/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s/PLACEHOLDER_SESSION_ID/$SESSION_ID/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s/PLACEHOLDER_PROJECT_NAME/$PROJECT_NAME/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s|PLACEHOLDER_WORKSPACE_PATH|$WORKSPACE_PATH|g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s/PLACEHOLDER_IDE/$IDE/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s/PLACEHOLDER_PROMPT_FILE/$PROMPT_FILENAME/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    sed -i "s/PLACEHOLDER_DATE/$(date '+%Y-%m-%d')/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
 done
-echo "  ✅ Memory bank initialized"
+echo "  ✅ Memory bank initialized with project: $PROJECT_NAME"
 
 # Step 6: Git initialization
 echo "6️⃣  Setting up version control..."

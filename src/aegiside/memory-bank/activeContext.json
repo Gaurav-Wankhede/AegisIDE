@@ -1,14 +1,15 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "2025-10-17T22:16:40+05:30",
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
   "session": {
-    "session_id": "aegiside-init-001",
-    "ide_type": "windsurf",
-    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "session_id": "PLACEHOLDER_SESSION_ID",
+    "ide_type": "PLACEHOLDER_IDE",
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH",
+    "project_name": "PLACEHOLDER_PROJECT_NAME",
     "operation_counter": 0,
     "autonomy_level": 99,
-    "status": "resumed",
-    "timestamp": "2025-10-18T17:20:17+0530"
+    "status": "initialized",
+    "timestamp": "PLACEHOLDER_TIMESTAMP"
   },
   "current_task": {
     "task_id": null,
@@ -18,11 +19,12 @@
   },
   "mcp_integration": {
     "active_mcps": [
-      "filesystem",
       "memory",
+      "context7",
+      "fetch",
       "git",
-      "time",
-      "sequential-thinking"
+      "sequential-thinking",
+      "exa"
     ],
     "session_mcp_rewards": 0,
     "complete_chains": 0,
@@ -39,11 +41,16 @@
     "stop_current_task": false,
     "skip_to_next": false
   },
+  "user_feedback": {
+    "rating": null,
+    "sentiment": null,
+    "suggestions": []
+  },
   "mcp_fallback_chain": {
     "context7": [
       "fetch",
-      "memory_patterns",
-      "halt_if_critical"
+      "exa",
+      "memory_patterns"
     ],
     "filesystem": [
       "halt"
@@ -63,37 +70,37 @@
       "calls": 0,
       "limit": 50,
       "reset_at": null
+    },
+    "fetch": {
+      "calls": 0,
+      "limit": 200,
+      "reset_at": null
     }
   },
   "mcp_performance_metrics": {
     "context7": {
       "avg_latency_ms": 0,
-      "success_rate": 0
+      "success_rate": 100
     },
     "filesystem": {
       "avg_latency_ms": 0,
-      "success_rate": 0
+      "success_rate": 100
+    },
+    "memory": {
+      "avg_latency_ms": 0,
+      "success_rate": 100
     }
   },
-  "timestamp": "2025-10-18T17:25:42+0530",
+  "HALT_ACTIVE": false,
   "nlu": {
     "last": {
-      "intent": "autonomous_activation",
-      "confidence": 0.95,
-      "selected_workflow": "/status",
-      "matched_pattern": "auto_triggers.queue_empty",
+      "intent": null,
+      "confidence": 0,
+      "selected_workflow": null,
+      "matched_pattern": null,
       "risk": "low",
-      "timestamp": "2025-10-18T17:52:54+0530"
+      "timestamp": null
     },
-    "logs": [
-      {
-        "intent": "autonomous_activation",
-        "confidence": 0.95,
-        "selected_workflow": "/status",
-        "matched_pattern": "auto_triggers.queue_empty",
-        "risk": "low",
-        "timestamp": "2025-10-18T17:52:54+0530"
-      }
-    ]
+    "logs": []
   }
 }
