@@ -4,7 +4,7 @@
       "header": "🚀 AegisIDE Session Starting...",
       "constitutional_frame": "═══════════════════════════════════════════════════════════\n  🛡️  CONSTITUTIONAL MCP COMPLIANCE - MANDATORY RULES\n═══════════════════════════════════════════════════════════",
       "core_mcps": {
-        "description": "📜 6 MANDATORY MCPs (Article 13):",
+        "description": "📜 6 MANDATORY MCPs (Article 13): json-jq, sequential-thinking, git, context7, exa, fetch",
         "reference": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'"
       },
       "memory_operations": {
@@ -23,5 +23,6 @@
       "rl_score_display": "Show current RL score from progress.json",
       "memory_bank_status": "Display 8-schema health"
     }
-  }
+  },
+  "last_updated": "2025-10-18T22:54:40+05:30"
 }

@@ -36,6 +36,12 @@
         "penalty": -15,
         "fix": "Refactor to ≤80 lines",
         "article": "Article 21"
+      },
+      {
+        "violation": "Use IDE tools on JSON (Read/replace_file_content)",
+        "penalty": -25,
+        "fix": "@mcp:json-jq ONLY for JSON",
+        "article": "Article 13"
       }
     ]
   }

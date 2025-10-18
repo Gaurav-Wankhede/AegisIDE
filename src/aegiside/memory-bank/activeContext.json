@@ -19,7 +19,7 @@
   },
   "mcp_integration": {
     "active_mcps": [
-      "memory",
+      "json-jq",
       "context7",
       "fetch",
       "git",

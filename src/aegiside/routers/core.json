@@ -1,8 +1,7 @@
 {
   "system_description": "AegisIDE Core Router - Essential Operations",
   "version": "2.0.0",
-  "last_updated": "2025-10-18T21:11:07+05:30",
-  
+  "last_updated": "2025-10-18T22:54:40+05:30",
   "operational_loop": {
     "description": "Core execution sequence for every session/request",
     "steps": [
@@ -15,7 +14,7 @@
       },
       {
         "step": 2,
-        "name": "DeepThink", 
+        "name": "DeepThink",
         "action": "Use @mcp:sequential-thinking (≥3 steps)",
         "query": "@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json'",
         "requirement": "EVERY request"
@@ -23,14 +22,14 @@
       {
         "step": 3,
         "name": "Query Router",
-        "action": "Get dynamic paths and rules", 
+        "action": "Get dynamic paths and rules",
         "query": "@mcp:json-jq query '.system_paths' from 'routers/core.json'",
         "requirement": "NEVER use static paths"
       },
       {
         "step": 4,
         "name": "Execute",
-        "action": "Use mandatory MCPs and CLI pipeline",
+        "action": "Use 6 mandatory MCPs (json-jq, sequential-thinking, git, context7, exa, fetch)",
         "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'",
         "requirement": "Complete MCP trail required"
       },
@@ -50,7 +49,6 @@
       }
     ]
   },
-
   "system_paths": {
     "memory_bank": "{IDE}/.aegiside/memory-bank/",
     "schemas": "{IDE}/.aegiside/schemas/",
@@ -58,10 +56,9 @@
     "workflows": "{IDE}/workflow/",
     "routers": "{IDE}/.aegiside/routers/"
   },
-
   "router_modules": {
     "core": "Essential operations and paths",
-    "mcps": "MCP configurations and mandatory usage",
+    "mcps": "6 MCP configurations: json-jq (ALWAYS), sequential-thinking, git, context7, exa, fetch",
     "constitutional": "Constitutional roles and governance",
     "parliamentary": "Parliamentary system and voting",
     "session": "Session awareness and display",
@@ -69,7 +66,6 @@
     "autonomy": "Autonomy rules and execution bands",
     "violations": "Violations, penalties, and enforcement"
   },
-
   "loading_strategy": {
     "lazy_loading": "Load modules only when needed",
     "caching": "Cache frequently accessed modules per session",

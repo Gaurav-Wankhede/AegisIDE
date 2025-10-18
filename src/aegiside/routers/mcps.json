@@ -3,13 +3,13 @@
     "description": "6 MANDATORY MCPs - Constitutional Article 13",
     "always_active": [
       "@mcp:sequential-thinking - Deep reasoning ≥3 steps (EVERY request)",
-      "@mcp:json-jq - ALL JSON reads (NEVER use Read tool)",
+      "@mcp:json-jq - ALL JSON operations (NEVER use Read/edit tools)",
       "@mcp:git - Version control (NO CLI git)"
     ],
     "on_demand": [
       "@mcp:context7 - Official docs (IMMEDIATE on errors)",
-      "@mcp:exa - Code research",
-      "@mcp:fetch - Web scraping"
+      "@mcp:exa - Code research and examples",
+      "@mcp:fetch - Web content retrieval"
     ],
     "memory_operations": {
       "description": "Manual JSON operations (100x faster)",
@@ -17,5 +17,6 @@
       "write": "jq '.entities += [new_entity]' memory.json | sponge memory.json"
     },
     "trails_required": "Complete MCP chain mandatory or -15 RL penalty"
-  }
+  },
+  "last_updated": "2025-10-18T22:54:40+05:30"
 }

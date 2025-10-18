@@ -1,8 +1,7 @@
 {
   "system_description": "AegisIDE Modular Router Index",
   "version": "3.0.0",
-  "last_updated": "2025-10-18T21:32:51+05:30",
-  
+  "last_updated": "2025-10-18T22:54:40+05:30",
   "modular_routers": {
     "core": {
       "file": "routers/core.json",
@@ -11,8 +10,8 @@
     },
     "mcps": {
       "file": "routers/mcps.json",
-      "contains": "6 mandatory MCPs, memory operations",
-      "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json'"
+      "contains": "6 mandatory MCPs (context7, exa, fetch, git, json-jq, sequential-thinking)",
+      "query": "@mcp:json-jq query '.mcps' from 'routers/mcps.json' (6 MCPs)"
     },
     "constitutional": {
       "file": "routers/constitutional.json",
@@ -55,18 +54,16 @@
       "query": "@mcp:json-jq query '.project_governance' from 'routers/governance.json'"
     }
   },
-
   "usage": {
     "startup": [
       "@mcp:json-jq query '.operational_loop' from 'routers/core.json'",
       "@mcp:json-jq query '.session_awareness' from 'routers/session.json'"
     ],
     "examples": {
-      "mcps": "@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json'",
+      "mcps": "@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json' (6 MCPs total)",
       "roles": "@mcp:json-jq query '.constitutional_roles.chief_justice' from 'routers/constitutional.json'"
     }
   },
-
   "quick_reference": {
     "operational_loop": "routers/core.json → .operational_loop",
     "mcps": "routers/mcps.json → .mcps",
