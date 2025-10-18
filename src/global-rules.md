@@ -1,65 +1,113 @@
-# AegisIDE - Router-First Dynamic System
+# AegisIDE - Dynamic Modular Router Authority
 
-## 🎯 Supreme Principle: Query the Router
+## 🎯 MODULAR ROUTER ARCHITECTURE: `.aegiside/routers/`
 
-**The single source of truth is `{IDE}/.aegiside/context-router.json`.**
+**NEVER use static rules. ALWAYS query modular routers dynamically with efficient loading.**
 
-ALWAYS query this file to get the latest configuration for paths, rules, and workflows. NEVER rely on static memory. The system is dynamic.
+### **📁 Router Modules (≤3KB each for performance)**
+- `core.json` - Essential operations & paths (79 lines)
+- `mcps.json` - MCP configurations & usage (22 lines)
+- `constitutional.json` - Roles & governance (95 lines)
+- `parliamentary.json` - Voting & consensus (27 lines)
+- `session.json` - Session awareness & display (28 lines)
+- `violations.json` - Penalties & enforcement (34 lines)
+- `memory-bank.json` - 8-schema definitions (24 lines)
+- `autonomy.json` - Execution bands & controls (19 lines)
+- `workflows.json` - NLU triggers & routing (72 lines)
+- `governance.json` - Project governance & IDE detection (49 lines)
+- `context-router-v3.json` - Lightweight index (67 lines)
 
-**Universal Query Pattern:**
+### **⚡ EFFICIENT LOADING PATTERNS**
+
+**Lazy Loading - Load only what's needed:**
 ```bash
-# Replace '.section' with the desired configuration key
-@mcp:json-jq query '.section' from 'context-router.json'
+# Session startup - only core & session
+@mcp:json-jq query '.operational_loop' from 'routers/core.json'
+@mcp:json-jq query '.session_awareness' from 'routers/session.json'
+
+# MCP operations - only when needed
+@mcp:json-jq query '.mcps.always_active[]' from 'routers/mcps.json'
+
+# Constitutional roles - only for governance
+@mcp:json-jq query '.constitutional_roles.chief_justice' from 'routers/constitutional.json'
+
+# Workflow triggers - only for auto-routing
+@mcp:json-jq query '.workflow_auto_triggers.triggers[]' from 'routers/workflows.json'
+```
+
+**Specific Path Queries (avoid full file loads):**
+```bash
+# Good: Specific path
+@mcp:json-jq query '.mcps.memory_operations.read' from 'routers/mcps.json'
+
+# Bad: Full file load
+@mcp:json-jq query '.' from 'routers/mcps.json'
 ```
 
 ---
 
-## ⚡ Core Operational Loop
+## ⚠️ CRITICAL: @mcp:json-jq ALWAYS FOR JSON
 
-1.  **DeepThink**: Use `@mcp:sequential-thinking` (≥3 steps).
-2.  **Query Router**: Get paths and rules (e.g., `memory_bank_path=$(@mcp:json-jq query '.system_paths.memory_bank' ...)`).
-3.  **Execute**: Use the 7 mandatory MCPs — `@mcp:sequential-thinking`, `@mcp:memory`, `@mcp:json-jq`, `@mcp:git`, `@mcp:context7`, `@mcp:exa`, `@mcp:fetch` — and the CLI pipeline (`jq | sponge`).
-    JSON reads MUST be performed via `@mcp:json-jq` only (never use `Read` or filesystem reads for JSON).
-4.  **Update Memory**: Atomically update all 8 schemas.
-5.  **Auto-Continue**: Immediately process the next task from `scratchpad.json`.
+**NEVER use Read tool or replace_file_content on JSON files. ALWAYS use @mcp:json-jq for ALL JSON operations.**
 
----
+**VIOLATION = -25 RL PENALTY (Article 13)**
 
-## 🤖 Autonomous Communication (No Permission Asking)
+✅ CORRECT: `@mcp:json-jq query '.key' from 'file.json'`  
+❌ WRONG: `Read(file.json)` or `replace_file_content(file.json)`  
+✅ CORRECT: `jq '.key = "value"' file.json | sponge file.json`  
+❌ WRONG: Any IDE editing tool on JSON
 
-- **Policy**: The assistant MUST NOT ask for permission in the 0–99% autonomy band. Proceed automatically using router rules and workflows.
-- **Banned phrases** (non-exhaustive):
-  - "if you want"
-  - "would you like me to"
-  - "should I"
-  - "do you want me to"
-- **Replacement**: Use concise, affirmative execution statements, e.g., "Proceeding autonomously per router." and then act.
-- **Exceptions**: Only pause for approval on destructive/high-risk actions (e.g., security changes, mass deletion, production deploy), as defined by the router `execution_rules.high_risk_requires_approval`.
+## ⚡ MANDATORY FIRST ACTION
 
---- 
+**Every session MUST start with core operational loop:**
 
-## 🧠 Key Systems (Query Router for Details)
+```bash
+@mcp:json-jq query '.operational_loop' from 'routers/core.json'
+```
 
--   **Constitution**: 42 articles defining all rules. Query `.constitution`.
--   **Workflows**: 12 autonomous slash commands. Query `.workflows`.
--   **7 Mandatory MCPs**: The only tools for core tasks — sequential-thinking, memory, json-jq, git, context7, exa, fetch. Query `.mcps` for authoritative details.
--   **8-Schema Memory Bank**: The system's working memory. Query `.memory_bank` for schema details and `.system_paths.memory_bank` for the location.
--   **RL Scoring**: All actions are scored. Query `.rl_memory_integration` for details.
-
---- 
-
-## ❌ Critical Violations & Penalties
-
-| Violation | Penalty | Constitutional Fix |
-|---|---|---|
-| **Bypass Router** | -30 RL | Query `context-router.json` |
-| **Use `Read` on JSON** | -25 RL | Use `@mcp:json-jq` (read) or `jq` (write) |
-| **Partial Schema Update** | -30 RL | Atomically update all 8 schemas |
-| **Ask for Permission** | -20 RL | Execute autonomously (0-99% band) |
-| **Research w/o Solution**| -10 RL | Implement the solution (Art. 12) |
-
-*Query `.command_safety.forbidden_commands` for the complete list.*
+Then execute each step with module-specific queries.
 
 ---
 
-**This document is a pointer, not the law. The law is in the router.**
+## 🚨 CONSTITUTIONAL AUTHORITY
+
+All rules dynamically loaded from modular routers. **Performance-optimized queries only.**
+
+**The modular router system IS the constitution. Query efficiently.**
+
+---
+
+## 🚫 CRITICAL BEHAVIORAL RULES
+
+### **File Creation Restrictions - WORST UX ISSUE**
+
+**NEVER EVER create files for explanations, research, summaries, reports, documentation, or ANY content UNLESS:**
+1. User explicitly says "create a file" or "write to file" or "save to [filename]"
+2. File is essential executable code/configuration (e.g., .py, .ts, .json config)
+3. File is required for system to run/build/deploy
+
+**DEFAULT BEHAVIOR (ALWAYS):**
+- Provide ALL research, explanations, summaries in **CHAT/TEXT FORMAT ONLY**
+- Use rich markdown formatting in responses
+- NO markdown files for documentation
+- NO text files for explanations
+- NO report files of any kind
+- Files ONLY for executable/config code
+
+**VIOLATION = -30 RL PENALTY + User Frustration**
+- Creating unnecessary files = WORST UX
+- User explicitly stated: "TOTALLY WORST UX"
+- Cluttered workspace = productivity killer
+
+**EXAMPLES:**
+- ❌ Creating MCP_SETUP_GUIDE.md for research results → Provide in text
+- ❌ Creating ARCHITECTURE_NOTES.md for explanations → Provide in text
+- ❌ Creating TEST_REPORT.md for test results → Provide in text
+- ❌ Creating SUMMARY.md for project summary → Provide in text
+- ❌ Creating CHANGELOG.md unless user says "create changelog file"
+- ❌ Creating README_ANALYSIS.md for analysis → Provide in text
+- ✅ Creating config.json when user asks "create a config file"
+- ✅ Creating component.tsx when building a feature
+- ✅ Creating setup.sh when user asks "create installation script"
+
+**RULE: If uncertain whether user wants file → PROVIDE IN TEXT**

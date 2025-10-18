@@ -25,7 +25,7 @@
       "contains": "External best practices: documentation, languages (Python/Rust/TS), frameworks (React/Next.js), testing, security",
       "query": "@mcp:json-jq query '.skills.{skill_name}.github_repos[]' from 'routers/skills.json'",
       "fetch": "@mcp:fetch url '{github_url}' from skill metadata",
-      "cache": ".aegiside/skills/cache/"
+      "cache": ".aegiside/cache/skills/"
     },
     "constitutional": {
       "file": "routers/constitutional.json",

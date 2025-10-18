@@ -217,7 +217,7 @@
   "usage": {
     "query_pattern": "@mcp:json-jq query '.skills.{skill_name}' from 'routers/skills.json'",
     "fetch_pattern": "@mcp:fetch url '{github_url}'",
-    "cache_location": ".aegiside/skills/cache/",
+    "cache_location": ".aegiside/cache/skills/",
     "update_frequency": "weekly"
   }
 }
