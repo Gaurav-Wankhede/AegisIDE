@@ -1,10 +1,10 @@
 #!/bin/bash
-# AegisIDE Framework Auto-Installer v3.0.0
+# AegisIDE Framework Auto-Installer v3.2.1
 # Autonomous dynamic installation with global_rules.md detection
 
 set -e
 
-echo "🤖 AegisIDE Framework Auto-Installer v3.0.0"
+echo "🤖 AegisIDE Framework Auto-Installer v3.2.1"
 echo "================================================="
 echo "🎆 Autonomous Dynamic Installation"
 echo ""
@@ -171,6 +171,18 @@ else
 fi
 echo ""
 
+# Detect installation mode
+if [ -d "$WORKSPACE_IDE_PATH" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.json" ]; then
+    INSTALL_MODE="update"
+    echo "🔄 UPDATE MODE: AegisIDE framework detected"
+    echo "  ℹ️  Existing files will be preserved"
+    echo "  ✨ Only missing components will be added"
+else
+    INSTALL_MODE="fresh"
+    echo "🆕 FRESH INSTALL: Setting up AegisIDE framework"
+fi
+echo ""
+
 echo "📦 Installing AegisIDE Framework..."
 echo "🌐 Downloading from GitHub (temporary)"
 echo ""
@@ -324,33 +336,50 @@ mkdir -p "$WORKSPACE_IDE_PATH/routers"
 
 # Download all router modules with validation
 ROUTER_SUCCESS=0
+ROUTER_SKIPPED=0
 for router in core mcps constitutional parliamentary session memory-bank autonomy violations workflows governance; do
-    echo "  📥 Downloading ${router}.json..."
-    if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
-        if validate_download "/tmp/${router}.json" "${router} router"; then
-            mv "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json"
-            ((ROUTER_SUCCESS++))
-        else
-            echo "  ⚠️  Failed to validate ${router}.json, skipping"
-            rm -f "/tmp/${router}.json"
-        fi
+    if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/routers/${router}.json" ]; then
+        echo "  ⏭️  ${router}.json already exists, skipping"
+        ((ROUTER_SKIPPED++))
+        ((ROUTER_SUCCESS++))
     else
-        echo "  ⚠️  Failed to download ${router}.json, skipping"
+        echo "  📥 Downloading ${router}.json..."
+        if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
+            if validate_download "/tmp/${router}.json" "${router} router"; then
+                mv "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json"
+                ((ROUTER_SUCCESS++))
+            else
+                echo "  ⚠️  Failed to validate ${router}.json, skipping"
+                rm -f "/tmp/${router}.json"
+            fi
+        else
+            echo "  ⚠️  Failed to download ${router}.json, skipping"
+        fi
     fi
 done
 
 # Download main context router
-echo "  📥 Downloading context-router.json..."
-if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
-    if validate_download "/tmp/context-router.json" "context router"; then
-        mv "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json"
-        ((ROUTER_SUCCESS++))
-    else
-        rm -f "/tmp/context-router.json"
+if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.json" ]; then
+    echo "  ⏭️  context-router.json already exists, skipping"
+    ((ROUTER_SKIPPED++))
+    ((ROUTER_SUCCESS++))
+else
+    echo "  📥 Downloading context-router.json..."
+    if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
+        if validate_download "/tmp/context-router.json" "context router"; then
+            mv "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json"
+            ((ROUTER_SUCCESS++))
+        else
+            rm -f "/tmp/context-router.json"
+        fi
     fi
 fi
 
-echo "  ✅ $ROUTER_SUCCESS/11 router modules downloaded successfully"
+if [ "$INSTALL_MODE" = "update" ] && [ $ROUTER_SKIPPED -gt 0 ]; then
+    echo "  ✅ $ROUTER_SUCCESS/11 router modules (${ROUTER_SKIPPED} already present, preserved)"
+else
+    echo "  ✅ $ROUTER_SUCCESS/11 router modules downloaded successfully"
+fi
 
 # Step 3: Download schemas
 echo "3️⃣  Downloading schema validators..."
@@ -358,17 +387,27 @@ mkdir -p "$WORKSPACE_IDE_PATH/schemas"
 
 # Download schema files with validation
 SCHEMA_SUCCESS=0
+SCHEMA_SKIPPED=0
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns schema-integrity-validator; do
-    if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
-        if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
-            mv "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json"
-            ((SCHEMA_SUCCESS++))
-        else
-            rm -f "/tmp/${schema}.schema.json"
+    if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" ]; then
+        ((SCHEMA_SKIPPED++))
+        ((SCHEMA_SUCCESS++))
+    else
+        if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
+            if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
+                mv "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json"
+                ((SCHEMA_SUCCESS++))
+            else
+                rm -f "/tmp/${schema}.schema.json"
+            fi
         fi
     fi
 done
-echo "  ✅ $SCHEMA_SUCCESS/9 schema validators downloaded successfully"
+if [ "$INSTALL_MODE" = "update" ] && [ $SCHEMA_SKIPPED -gt 0 ]; then
+    echo "  ✅ $SCHEMA_SUCCESS/9 schema validators (${SCHEMA_SKIPPED} already present, preserved)"
+else
+    echo "  ✅ $SCHEMA_SUCCESS/9 schema validators downloaded successfully"
+fi
 
 # Step 4: Download workflows
 echo "4️⃣  Downloading workflows..."
@@ -376,17 +415,27 @@ mkdir -p "$WORKSPACE_IDE_PATH/workflow"
 
 # Download workflow files with validation
 WORKFLOW_SUCCESS=0
+WORKFLOW_SKIPPED=0
 for workflow in bootstrap continue fix init memory-status next optimize oversight-checks-and-balances research status update validate auto-init; do
-    if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
-        if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
-            mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
-            ((WORKFLOW_SUCCESS++))
-        else
-            rm -f "/tmp/${workflow}.md"
+    if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/workflow/${workflow}.md" ]; then
+        ((WORKFLOW_SKIPPED++))
+        ((WORKFLOW_SUCCESS++))
+    else
+        if curl -sL "$GITHUB_REPO/src/workflow/${workflow}.md" > "/tmp/${workflow}.md" 2>/dev/null; then
+            if validate_download "/tmp/${workflow}.md" "${workflow} workflow"; then
+                mv "/tmp/${workflow}.md" "$WORKSPACE_IDE_PATH/workflow/${workflow}.md"
+                ((WORKFLOW_SUCCESS++))
+            else
+                rm -f "/tmp/${workflow}.md"
+            fi
         fi
     fi
 done
-echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
+if [ "$INSTALL_MODE" = "update" ] && [ $WORKFLOW_SKIPPED -gt 0 ]; then
+    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows (${WORKFLOW_SKIPPED} already present, preserved)"
+else
+    echo "  ✅ $WORKFLOW_SUCCESS/13 workflows downloaded successfully"
+fi
 
 # Step 5: Initialize 8-schema memory bank with project info
 echo "5️⃣  Initializing 8-schema memory bank..."
