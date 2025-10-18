@@ -3,7 +3,7 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.2.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](CHANGELOG.md)
 [![9 Supported IDEs](https://img.shields.io/badge/IDEs-9%20Tested-success)](docs/IDE_COMPATIBILITY.md)
 [![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](docs/IDE_COMPATIBILITY.md)
 [![Business Ready](https://img.shields.io/badge/business-ready-success)](BUSINESS_MODEL.md)
@@ -86,79 +86,53 @@ All memory files store latest data at position [0]:
 - ✅ **Priority routing** for urgent tasks
 - ✅ **RL tracking** with recent scores visible first
 
-## 🚀 Get Started (3 steps)
+## 🚀 Get Started (One Command)
 
-### Step 1: Download AegisIDE
+### Autonomous Installation ✨
 ```bash
-git clone https://github.com/your-username/AegisIDE.git
-cd AegisIDE
+# Single command installs everything automatically
+curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.sh | bash
 ```
 
-### Step 2: Open Project in Your IDE ✨
-**That's it! No manual setup needed.**
+**What happens automatically:**
+- 🔍 **Auto-detects** your OS (Linux/macOS/Windows) and IDE (Windsurf/Cursor/VS Code/JetBrains)
+- 📋 **Smart enhancement** - if you have existing `global_rules.md`, it backs up and enhances it
+- 📋 **Fresh install** - if no existing rules, creates new AegisIDE `global_rules.md`
+- 📦 **Downloads** 10 router modules from GitHub
+- 📦 **Downloads** 13 workflows from GitHub
+- 📦 **Downloads** schema validators from GitHub  
+- 🧠 **Initializes** 8-schema memory bank
+- 🎯 **Self-contained** - no ongoing GitHub dependency after install
+- 🔄 **Git setup** - initializes version control if needed
 
-The framework **automatically detects** your IDE and creates the appropriate structure:
-
+### Activation (Automatic)
 ```bash
-# Just open your project in ANY supported IDE:
-# - Windsurf
-# - Cursor  
-# - Roo-Cline
-# - Continue.dev
-# - Aider
-# - VS Code
-# - Cline
-# - GitHub Copilot (JetBrains)
+# Just restart your IDE - that's it!
+# Framework auto-activates via enhanced global_rules.md
 
-# Framework will:
-# 1. Detect your IDE (checks config paths)
-# 2. Clone AegisIDE structure from GitHub
-# 3. Create .{IDE}/aegiside/ folder
-# 4. Initialize 8 memory schemas
-# 5. Copy 42 constitutional articles
-# 6. ✅ Ready in 30 seconds!
-```
-
-**Manual setup** (only if needed):
-```bash
-# Windsurf
-cp -r src/.aegiside .windsurf/aegiside
-cp -r src/rules .windsurf/rules
-cp -r src/workflow .windsurf/workflow
-
-# Cursor
-cp -r src/.aegiside .cursor/aegiside
-cp -r src/rules .cursor/rules
-cp -r src/workflow ~/.cursor/workflow
-
-# VS Code
-cp -r src/.aegiside ~/.vscode/aegiside
-cp -r src/rules ~/.vscode/rules
-cp -r src/workflow ~/.vscode/workflow
-```
-
-**⚠️ Tip:** Use `cp` (copy) not `ln -s` (symlink) to avoid cross‑project mix‑ups.
-
-### Step 3: Configure & Activate
-```bash
-# 1. Install CLI dependencies (Ubuntu/Debian)
-sudo apt-get install jq moreutils glow
-
-# Or macOS
-brew install jq moreutils glow
-
-# 2. Configure 7 MCP servers
-cp src/mcp_servers.json ~/.config/windsurf/mcp_servers.json
-# Edit paths if needed
-
-# 3. Add MCP config to your IDE
-# Windsurf: Settings → MCP Servers → Import mcp_servers.json
-# Cursor: Settings → Extensions → MCP → Import configuration
-# VS Code: Cline settings → MCP configuration
-
-# 4. Start AI and initialize framework
+# Verify it's working:
 # Type in AI chat: /init
-# AI will auto-generate 8 memory-bank files
+# You'll see: "🛡️ AegisIDE Framework Activated"
+```
+
+**Supported Platforms:**
+- 🐧 **Linux** (Ubuntu, Debian, Arch, Fedora, etc.)
+- 🍎 **macOS** (Intel & Apple Silicon)
+- 🪟 **Windows** (WSL, Git Bash, MSYS2, PowerShell)
+
+**Supported IDEs:**
+- **Windsurf** (Primary support)
+- **Cursor** (Full compatibility)
+- **VS Code / Cline** (Full compatibility)
+- **JetBrains** (IntelliJ, PyCharm, WebStorm)
+
+### Alternative: Manual Installation
+```bash
+# If you prefer manual control:
+git clone https://github.com/Gaurav-Wankhede/AegisIDE.git
+cd AegisIDE
+chmod +x setup.sh
+./setup.sh
 ```
 
 🎉 **That's it!** Your AI assistant is now a professional development team with persistent memory and autonomous capabilities.
