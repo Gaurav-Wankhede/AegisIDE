@@ -88,7 +88,7 @@ curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.s
 **Real-Time Dashboard** (optional):
 ```bash
 cd .windsurf/aegiside/visualize
-python3 -m http.server 7777
+npx serve -p 7777
 # Watch AI work at http://localhost:7777
 ```
 
