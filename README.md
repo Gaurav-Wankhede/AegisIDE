@@ -96,6 +96,36 @@ All memory files store latest data at position [0]:
 curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.sh | bash
 ```
 
+### 🎯 Better UX: What to Expect
+
+**First-Time Install:**
+- Setup script detects no existing framework
+- Shows "🆕 FRESH INSTALL" mode
+- Downloads all components from scratch
+- Asks Y/N permission before modifying system prompt (shows 15-line preview)
+- For `mcp_servers.json`: Shows list of 6 MCPs, asks to create file
+
+**Re-running (Update Mode):**
+- Detects existing `context-router.json` → "🔄 UPDATE MODE"
+- Compares each file with remote version
+- **If identical**: Silent skip ✓ (no spam)
+- **If different**: Shows unified diff + asks "Update file.json? [Y/n]"
+- Creates `.backup` files before any updates
+- Only downloads missing components
+
+**Interactive Prompts You'll See:**
+1. **System Prompt**: "This will APPEND AegisIDE rules to global_rules.md" → Y/n
+2. **MCP Configuration**: "R)eplace/A)ppend/N)o changes to mcp_servers.json?" → Choose
+3. **File Updates** (if changed): "Update core.json? [Y/n]" → See diff first
+
+**Safe to Run Multiple Times:**
+- ✅ Preserves your customizations
+- ✅ Only updates what's different
+- ✅ Automatic backups for all changes
+- ✅ Clear feedback on what's happening
+
+---
+
 **What happens automatically:**
 - 🔍 **Auto-detects** your OS (Linux/macOS/Windows) and IDE (Windsurf/Cursor/VS Code/JetBrains)
 - ⚠️ **Asks Permission** - Y/N prompt before modifying system prompt (shows preview)
