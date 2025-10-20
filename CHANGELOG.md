@@ -2,6 +2,32 @@
 
 *[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
+## [3.3.0] - 2025-10-20
+
+### Added
+- **2 Installation Methods**: CURL (full automation) vs System Prompt-Only (lightweight)
+- **4-Scenario Bootstrap**: Fresh project, existing project, framework update, up-to-date detection
+- **Git Diff Verification**: Automatic cross-checking of local vs GitHub framework versions
+- **Constitution Download**: 43 JSON articles (preamble + 42 articles across 9 parts)
+- **Smart Update Detection**: Uses `diff -r` to detect differences, skips downloads if identical
+
+### Changed
+- **setup.sh v3.3.0**: Now 8 steps (was 7) with constitution download as Step 2
+- **system-prompt.md**: Synchronized 100% with global_rules.md (237 lines identical)
+- **Installation Workflow**: Method 2 enables one-time global install, works across all projects
+- **Version Checking**: Automatic framework updates via git diff on every session
+
+### Documentation
+- **src/README.md**: Expanded Quick Setup with both methods clearly explained
+- **IDE-Specific Paths**: Listed for Windsurf, Cursor, VS Code, JetBrains
+- **Method Comparison**: CURL for new users, System Prompt for experienced users
+
+### Technical
+- **Scenario 1**: No `.aegiside/` → Bootstrap from GitHub
+- **Scenario 2**: System prompt exists, no framework → Auto-install
+- **Scenario 3**: Framework outdated → Backup memory-bank, update, restore
+- **Scenario 4**: Framework up-to-date (0 differences) → Skip download
+
 ## [3.2.2] - 2025-10-18
 
 ### Fixed

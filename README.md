@@ -3,10 +3,10 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.2.2-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.3.0-blue.svg)](CHANGELOG.md)
 [![6 Mandatory MCPs](https://img.shields.io/badge/MCPs-6%20Core-success)](src/mcp_servers.json)
-[![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](setup.sh)
-[![Business Ready](https://img.shields.io/badge/business-ready-success)](docs/archive/BUSINESS_MODEL_MONETIZATION_STRATEGY.md)
+[![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](src/setup.sh)
+[![2 Install Methods](https://img.shields.io/badge/install-CURL%20%7C%20Prompt-blue)](src/README.md)
 
 ## What Problem Does This Solve? 🎯
 
@@ -29,13 +29,38 @@
 4. **AI learns** from every mistake (+91% fewer repeated errors)
 5. **You stay in control** with smart safety checks for risky stuff
 
-## 🚀 Get Started (One Command)
+## 🚀 Get Started - Choose Your Method
 
-### Autonomous Installation ✨
+### Method 1: CURL Installation (Full Automation) ✨
 ```bash
-# Single command installs everything automatically
-curl -sL https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/setup.sh | bash
+# One command - complete setup in 2 minutes
+bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
 ```
+**What it does:**
+- Installs system prompt + framework to your project
+- Handles all 4 scenarios automatically (fresh, existing, update, up-to-date)
+- Configures 6 MCP servers
+- Best for: New users, quick project setup
+
+### Method 2: System Prompt Only (Lightweight) 🎯
+```bash
+# Copy system prompt to IDE global rules
+# Windsurf:
+cp src/system-prompt.md ~/.codeium/windsurf-next/memories/global_rules.md
+
+# Cursor:
+cp src/system-prompt.md ~/.cursor/memories/global_rules.mdc
+
+# VS Code:
+cp src/system-prompt.md ~/.vscode/system_prompt.md
+
+# Restart IDE
+```
+**What it does:**
+- One-time global install across ALL your projects
+- Framework auto-initializes per project when you work on it
+- Uses git diff to detect and update framework automatically
+- Best for: Experienced users, multi-project workflows
 
 ### 🎯 Better UX: What to Expect
 
