@@ -54,10 +54,10 @@ graph TB
     
     MB -.-> CR
     
-    style U fill:#e1f5ff
-    style CR fill:#fff3cd
-    style MB fill:#d4edda
-    style RESP fill:#d4edda
+    style U fill:#4a9eff,stroke:#333,stroke-width:2px,color:#fff
+    style CR fill:#ff9800,stroke:#333,stroke-width:3px,color:#fff
+    style MB fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
+    style RESP fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
 ```
 
 **The System (Simplified):**
