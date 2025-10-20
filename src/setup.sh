@@ -1,12 +1,12 @@
 #!/bin/bash
-# AegisIDE Framework Auto-Installer v3.2.1
-# Autonomous dynamic installation with global_rules.md detection
+# AegisIDE Framework Auto-Installer v3.3.0
+# 4-Scenario Bootstrap with Git Diff Verification
 
 set -e
 
-echo "🤖 AegisIDE Framework Auto-Installer v3.2.1"
+echo "🤖 AegisIDE Framework Auto-Installer v3.3.0"
 echo "================================================="
-echo "🎆 Autonomous Dynamic Installation"
+echo "🎆 4-Scenario Smart Bootstrap with Version Checking"
 echo ""
 
 # Detect OS
@@ -215,17 +215,58 @@ else
 fi
 echo ""
 
-# Detect installation mode
-if [ -d "$WORKSPACE_IDE_PATH" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.json" ]; then
-    INSTALL_MODE="update"
-    echo "🔄 UPDATE MODE: AegisIDE framework detected"
-    echo "  ℹ️  Existing files will be preserved"
-    echo "  ✨ Only missing components will be added"
+# Detect installation scenario
+if [ ! -d ".aegiside" ]; then
+    INSTALL_MODE="scenario1"
+    echo "📦 SCENARIO 1: Project from Scratch"
+    echo "  ✨ Bootstrapping complete framework from GitHub"
+elif [ ! -f ".aegiside/routers/context-router.json" ] && [ -f "$EXISTING_RULES" ]; then
+    INSTALL_MODE="scenario2"
+    echo "📦 SCENARIO 2: System Prompt Detected, No Framework"
+    echo "  ✨ Installing framework for existing project"
+elif [ -f ".aegiside/routers/context-router.json" ]; then
+    INSTALL_MODE="scenario3_4"
+    echo "📦 SCENARIO 3/4: Framework Exists - Checking Updates"
+    echo "  🔍 Running git diff verification..."
 else
-    INSTALL_MODE="fresh"
-    echo "🆕 FRESH INSTALL: Setting up AegisIDE framework"
+    INSTALL_MODE="scenario1"
+    echo "📦 SCENARIO 1: Fresh Install"
 fi
 echo ""
+
+# Git Diff Version Check (Scenario 3/4)
+if [ "$INSTALL_MODE" = "scenario3_4" ]; then
+    echo "🔍 Cloning latest GitHub version for comparison..."
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegis_check 2>/dev/null || true
+    git -C /tmp/aegis_check sparse-checkout set src/.aegiside 2>/dev/null || true
+    
+    if [ -d "/tmp/aegis_check/src/.aegiside" ]; then
+        DIFF_COUNT=$(diff -r .aegiside/ /tmp/aegis_check/src/.aegiside/ \
+            --exclude='memory-bank' \
+            --exclude='.gitignore' \
+            -q 2>/dev/null | wc -l)
+        
+        if [ "$DIFF_COUNT" -gt 0 ]; then
+            echo "⚠️  SCENARIO 3: Framework outdated - $DIFF_COUNT differences detected"
+            echo "Differences found:"
+            diff -r .aegiside/ /tmp/aegis_check/src/.aegiside/ \
+                --exclude='memory-bank' \
+                --exclude='.gitignore' \
+                -q 2>/dev/null | head -10
+            echo ""
+            NEEDS_UPDATE=true
+        else
+            echo "✅ SCENARIO 4: Framework up-to-date (0 differences)"
+            NEEDS_UPDATE=false
+        fi
+    else
+        echo "⚠️  Could not verify - will perform fresh download"
+        NEEDS_UPDATE=true
+    fi
+    echo ""
+else
+    NEEDS_UPDATE=true
+fi
 
 echo "📦 Installing AegisIDE Framework..."
 echo "🌐 Downloading from GitHub (temporary)"
@@ -374,8 +415,26 @@ else
 fi
 echo ""
 
-# Step 2: Download and install router system
-echo "2️⃣  Downloading modular router system..."
+# Step 2: Download constitution articles (43 JSON files)
+echo "2️⃣  Downloading constitutional articles..."
+mkdir -p "$WORKSPACE_IDE_PATH/constitution"
+
+if [ "$INSTALL_MODE" = "scenario3_4" ] && [ "$NEEDS_UPDATE" = false ]; then
+    echo "  ✅ Constitution up-to-date, skipping download"
+else
+    echo "  📥 Downloading 43 JSON articles (preamble + 42 articles)..."
+    # Download entire constitution folder structure from GitHub
+    if [ -d "/tmp/aegis_check/src/.aegiside/constitution" ]; then
+        cp -r /tmp/aegis_check/src/.aegiside/constitution/* "$WORKSPACE_IDE_PATH/constitution/"
+        echo "  ✅ 43 constitutional articles installed"
+    else
+        echo "  ⚠️  Constitution download failed, framework may be incomplete"
+    fi
+fi
+echo ""
+
+# Step 3: Download and install router system
+echo "3️⃣  Downloading modular router system..."
 mkdir -p "$WORKSPACE_IDE_PATH/routers"
 
 # Download all router modules with validation
@@ -471,8 +530,8 @@ else
     echo "  ✅ $ROUTER_SUCCESS/11 router modules downloaded successfully"
 fi
 
-# Step 3: Download schemas
-echo "3️⃣  Downloading schema validators..."
+# Step 4: Download schemas
+echo "4️⃣  Downloading schema validators..."
 mkdir -p "$WORKSPACE_IDE_PATH/schemas"
 
 # Download schema files with validation
@@ -517,8 +576,8 @@ else
     echo "  ✅ $SCHEMA_SUCCESS/9 schema validators downloaded successfully"
 fi
 
-# Step 4: Download workflows
-echo "4️⃣  Downloading workflows..."
+# Step 5: Download workflows
+echo "5️⃣  Downloading workflows..."
 mkdir -p "$WORKSPACE_IDE_PATH/.aegiside/workflows"
 
 # Download workflow files with validation
@@ -563,8 +622,8 @@ else
     echo "  ✅ $WORKFLOW_SUCCESS/8 workflows downloaded successfully"
 fi
 
-# Step 5: Initialize 8-schema memory bank with project info
-echo "5️⃣  Initializing 8-schema memory bank..."
+# Step 6: Initialize 8-schema memory bank with project info
+echo "6️⃣  Initializing 8-schema memory bank..."
 mkdir -p "$WORKSPACE_IDE_PATH/memory-bank"
 
 # Get project information
@@ -588,8 +647,8 @@ for schema in activeContext kanban memory mistakes progress roadmap scratchpad s
 done
 echo "  ✅ Memory bank initialized with project: $PROJECT_NAME"
 
-# Step 6: Git initialization
-echo "6️⃣  Setting up version control..."
+# Step 7: Git initialization
+echo "7️⃣  Setting up version control..."
 if [ ! -d "$WORKSPACE_PATH/.git" ]; then
     git init
     echo "  ✅ Git initialized"
@@ -597,8 +656,8 @@ else
     echo "  ℹ️  Git already initialized"
 fi
 
-# Step 7: Self-contained setup complete
-echo "7️⃣  Making framework self-contained..."
+# Step 8: Self-contained setup complete
+echo "8️⃣  Making framework self-contained..."
 echo "  ✅ All components downloaded from GitHub"
 echo "  ✅ Framework now operates independently"
 echo "  ✅ No further GitHub dependency required"

@@ -26,10 +26,16 @@ This ensures AI development is reliable, accountable, and maintains high quality
 │   ├── research.json         # Auto-research via skills.json
 │   ├── update.json           # Atomic 8-schema sync
 │   └── ... (5 more)
-├── constitution/             # 43 JSON articles (9 parts)
-│   ├── 01-preamble/
-│   ├── 03-fundamental-rights/
-│   └── ... (7 more parts)
+├── constitution/             # 43 JSON files (preamble + 42 articles)
+│   ├── 01-preamble/preamble.json
+│   ├── 02-preliminary/ (Articles 1-3)
+│   ├── 03-fundamental-rights/ (Articles 4-12)
+│   ├── 04-fundamental-duties/ (Articles 13-19)
+│   ├── 05-dpsp/ (Articles 20-25)
+│   ├── 06-parliament/ (Articles 26-31)
+│   ├── 07-executive/ (Articles 32-35)
+│   ├── 08-judiciary/ (Articles 36-38)
+│   └── 09-constitutional-bodies/ (Articles 39-42)
 ├── schemas/                  # 8 validation + 9 helpers
 │   ├── *.schema.json         # JSON Schema validation
 │   └── helpers/              # Operational patterns
@@ -211,15 +217,60 @@ mcp_servers.json             # 6 MCP server configs
 ### **Prerequisites**
 - Compatible IDE (Windsurf, Cursor, VS Code, etc.)
 - Node.js + Python (for MCP servers)
+- Git (for framework updates)
 - Project directory
 - Basic understanding of your tech stack
 
+### **4 Installation Scenarios**
+
+AegisIDE automatically detects your project state and applies the appropriate bootstrap:
+
+**Scenario 1: Fresh Project** (No `.aegiside/` folder)
+- Downloads complete framework from GitHub
+- Initializes 8-schema memory-bank
+- Creates project-specific configuration
+
+**Scenario 2: Existing Project + System Prompt** (System prompt detected, no framework)
+- Installs framework into existing project
+- Preserves existing code and structure
+- Integrates with current workflow
+
+**Scenario 3: Framework Needs Update** (Git diff detects differences)
+- Compares local vs GitHub using `diff -r`
+- Backs up memory-bank (your project data)
+- Updates routers, constitution, schemas, workflows
+- Restores memory-bank (preserves your work)
+
+**Scenario 4: Framework Up-to-Date** (0 differences detected)
+- Skips download (saves time)
+- Uses existing framework
+- Session continues normally
+
 ### **Quick Setup**
+
+**Automatic (Recommended):**
+```bash
+# Run setup script - auto-detects scenario
+bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
+```
+
+**Manual:**
 1. Clone AegisIDE repository: `git clone https://github.com/Gaurav-Wankhede/AegisIDE`
 2. Copy `.aegiside/` to your project: `cp -r AegisIDE/src/.aegiside/ your-project/.aegiside/`
 3. Copy system prompt (Windsurf): `cp AegisIDE/src/system-prompt.md ~/.codeium/windsurf-next/memories/global_rules.md`
 4. Configure MCP servers: Copy `mcp_servers.json` to IDE settings
 5. Restart IDE to load MCPs
+
+### **Version Verification**
+
+Every session automatically checks for updates:
+```bash
+# Framework compares local vs GitHub
+diff -r .aegiside/ /tmp/github_latest/.aegiside/ --exclude='memory-bank'
+
+# If differences found → Scenario 3 (auto-update)
+# If identical → Scenario 4 (ready to use)
+```
 
 ### **First Workflow Triggers**
 - Auto-init triggers on new session detection
