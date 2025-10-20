@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "description": "Master router for dynamic NLU/NLP-based context loading",
+  "last_updated": "2025-10-20T15:54:00+05:30",
+  "system_paths": {
+    "memory_bank": ".aegiside/memory-bank/",
+    "constitution": ".aegiside/constitution/",
+    "routers": ".aegiside/routers/",
+    "schemas": ".aegiside/schemas/"
+  },
+  "modular_routers": {
+    "autonomy": {
+      "path": "autonomy.json",
+      "purpose": "Execution bands, user controls, meta-cognitive monitoring",
+      "triggers": ["autonomy", "execution", "user controls", "pause", "stop"]
+    },
+    "constitutional": {
+      "path": "constitutional.json",
+      "purpose": "Constitutional roles (Chief Justice, PM, IAS, Shadow Cabinet)",
+      "triggers": ["roles", "chief justice", "prime minister", "ias", "shadow cabinet"]
+    },
+    "constitutional_index": {
+      "path": "constitutional-index.json",
+      "purpose": "Index of all 42 constitutional articles with lazy loading strategy",
+      "triggers": ["articles", "constitution", "preamble", "fundamental rights"]
+    },
+    "constitutional_metadata": {
+      "path": "constitutional-metadata.json",
+      "purpose": "Lightweight metadata catalog for semantic injection (Claude Skills)",
+      "triggers": ["metadata", "catalog", "rl selection"]
+    },
+    "core": {
+      "path": "core.json",
+      "purpose": "Operational loop, core workflows, execution patterns",
+      "triggers": ["operational", "core", "loop", "execution flow"]
+    },
+    "governance": {
+      "path": "governance.json",
+      "purpose": "Tri-branch authority, parliamentary processes, consensus rules",
+      "triggers": ["governance", "parliament", "consensus", "voting"]
+    },
+    "mcps": {
+      "path": "mcps.json",
+      "purpose": "9 mandatory MCPs and integration patterns",
+      "triggers": ["mcp", "tools", "filesystem", "memory", "context7"]
+    },
+    "memory_bank": {
+      "path": "memory-bank.json",
+      "purpose": "8-schema system architecture and atomic update protocols",
+      "triggers": ["memory bank", "schemas", "activeContext", "scratchpad", "kanban"]
+    },
+    "parliamentary": {
+      "path": "parliamentary.json",
+      "purpose": "Parliamentary structure, debate protocols, consensus calculation",
+      "triggers": ["parliamentary", "debate", "proposal", "opposition"]
+    },
+    "rl_feedback": {
+      "path": "rl-feedback-loop.json",
+      "purpose": "PPO+GAE reinforcement learning system and scoring",
+      "triggers": ["rl", "reinforcement learning", "rewards", "penalties", "progress"]
+    },
+    "session": {
+      "path": "session.json",
+      "purpose": "Session management, state recovery, continuity protocols",
+      "triggers": ["session", "recovery", "continue", "state management"]
+    },
+    "skills": {
+      "path": "skills.json",
+      "purpose": "Capability matrix, skill definitions, autonomous operations",
+      "triggers": ["skills", "capabilities", "autonomous", "operations"]
+    },
+    "violations": {
+      "path": "violations.json",
+      "purpose": "Violation tracking, penalty enforcement, remediation protocols",
+      "triggers": ["violations", "penalties", "enforcement", "remediation"]
+    },
+    "workflows": {
+      "path": "workflows.json",
+      "purpose": "8 JSON workflows (auto-init, bootstrap, continue, fix, next, research, update, validate)",
+      "triggers": ["workflow", "init", "bootstrap", "validate", "research"]
+    }
+  },
+  "nlu_routing": {
+    "description": "User queries analyzed via NLU/NLP to route to relevant routers, articles, and workflows",
+    "routing_pattern": "User Query → NLU Analysis → context-router.json → Route to specific routers/articles/workflows",
+    "lazy_loading": "Query ONLY needed routers per task via @mcp:json-jq",
+    "priority": "Load constitutional articles on-demand based on semantic triggers"
+  },
+  "total_routers": 14,
+  "integration": {
+    "constitutional_articles": 42,
+    "workflows": 8,
+    "schemas": 8
+  }
+}
