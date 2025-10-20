@@ -33,32 +33,15 @@
 
 **How Your Message Becomes Action:**
 
-```mermaid
-graph TB
-    U[👤 Your Message] --> NLU[NLU Analysis]
-    NLU --> CR[🎯 Context Router<br/>Master Tunnel]
-    
-    CR --> GOV[Governance Routers<br/>Constitutional, Parliamentary]
-    CR --> OPS[Operations Routers<br/>Core, Session, Workflows]
-    CR --> LEARN[Learning Routers<br/>RL Feedback, Skills, Memory]
-    CR --> INFRA[Infrastructure Routers<br/>MCPs, Violations, Autonomy]
-    
-    GOV --> EXEC[⚡ Task Execution]
-    OPS --> EXEC
-    LEARN --> EXEC
-    INFRA --> EXEC
-    
-    EXEC --> MB[🧠 Memory Bank<br/>8 Schemas]
-    MB --> RL[📊 RL Scoring]
-    RL --> RESP[✅ Response to You]
-    
-    MB -.-> CR
-    
-    style U fill:#4a9eff,stroke:#333,stroke-width:2px,color:#fff
-    style CR fill:#ff9800,stroke:#333,stroke-width:3px,color:#fff
-    style MB fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
-    style RESP fill:#4caf50,stroke:#333,stroke-width:2px,color:#fff
-```
+<div align="center">
+
+[![AegisIDE Architecture](src/.aegiside/architecture/architecture.png)](https://github.com/Gaurav-Wankhede/AegisIDE/blob/main/src/.aegiside/architecture/architecture.png?raw=true)
+
+*Click image to view full-size • Zoom & drag supported*
+
+[View Interactive Architecture Diagram →](src/.aegiside/architecture/architecture.mmd)
+
+</div>
 
 **The System (Simplified):**
 
