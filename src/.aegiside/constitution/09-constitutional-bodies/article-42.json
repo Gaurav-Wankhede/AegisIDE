@@ -1,0 +1,78 @@
+{
+  "id": "article-42",
+  "title": "Knowledge Graph (AegisKG) - Collective Intelligence",
+  "part": "IX-Constitutional-Bodies",
+  "version": "1.0.0",
+  "last_updated": "2025-10-19T00:42:31+05:30",
+  "metadata": {
+    "summary": "memory.json collective intelligence, entities/relations/observations, federated learning",
+    "tokens": {"full": 600, "definition": 150, "powers": 150, "implementation": 200, "violations": 100},
+    "triggers": ["knowledge-graph", "aegiskg", "memory"],
+    "priority": "critical"
+  },
+  "content": {
+    "definition": {
+      "core_system": "AegisKG in memory.json: collective intelligence via entities (citizens, patterns, precedents), relations (dependencies, influences), observations (outcomes, learnings). Public, reusable, enriched via manual jq operations",
+      "structure": {
+        "entities": "Typed nodes",
+        "relations": "Labeled edges",
+        "observations": "Attributes",
+        "confidence": "0-1 reliability",
+        "rl_scores": "Effectiveness"
+      },
+      "types": ["Constitutional precedents", "Technical patterns", "Error prevention", "Cross-project intelligence", "Historical decisions"],
+      "operations": "Create entities, establish relations, add observations, search nodes, retrieve patterns, calculate confidence, federate across workspaces"
+    },
+    "powers": {
+      "curation": "IAS Researcher maintains health, archives >180 days stale, optimizes monthly, ensures <10KB compression",
+      "contribution": "Citizens contribute entities/observations, IAS reviews quality, Parliament approves ≥85%, +20 RL reward",
+      "retrieval": "Universal read access, @mcp:json-jq query matching, automatic retrieval, confidence-based recommendations",
+      "federation": "MCP server (Port 7777) broadcasts across workspaces, deduplicates fingerprints, aggregates observations, calculates federated confidence"
+    },
+    "implementation": {
+      "entity_management": [
+        "CREATE: jq '.entities += [{name, entityType, observations[]}]' memory.json | sponge memory.json",
+        "RELATIONS: jq '.relations += [{from, to, relationType}]' memory.json | sponge memory.json",
+        "OBSERVATIONS: jq '.entities[] | select(.name == $entity) | .observations += [$new]' memory.json | sponge memory.json"
+      ],
+      "pattern_retrieval": [
+        "1. @mcp:json-jq read scratchpad → categorize → @mcp:json-jq search memory.json (confidence ≥0.8)",
+        "2. Match top 5, calculate applicability, filter threshold",
+        "3. Confidence ≥0.9 → Auto-apply | 0.75-0.89 → Recommend | <0.75 → Reference",
+        "4. Track outcome → jq update observations (reuse_count, success_rate, confidence, RL_reward)",
+        "5. +20 RL → progress.json, track effectiveness"
+      ],
+      "federation_port_7777": [
+        "1. Extract: @mcp:json-jq read memory.json, calculate success rates, filter (confidence ≥0.9, reuse ≥5)",
+        "2. Broadcast: Deduplicate hashes, merge observations, recalculate confidence",
+        "3. Distribute: Workspaces subscribe, receive high-confidence, enrich local memory.json",
+        "4. Aggregate: Merge workspace patterns, weighted confidence, accumulate RL"
+      ],
+      "monthly_maintenance": [
+        "1. Archive >180 days stale entries",
+        "2. Merge duplicates, compress, recalculate confidence, ensure <10KB",
+        "3. Calculate metrics (count, density, avg confidence, reuse) → Parliament report",
+        "4. Recommend improvements, vote ≥85%"
+      ]
+    },
+    "violations": {
+      "hoarding": [
+        {"offense": "Refusing to share", "penalty": -30, "action": "Mandatory contribution + audit"}
+      ],
+      "pollution": [
+        {"offense": "False/low-quality entities", "penalty": -40, "action": "Cleanup + review"}
+      ],
+      "manipulation": [
+        {"offense": "Falsifying scores", "penalty": -50, "action": "Tribunal + citizenship risk"}
+      ],
+      "federation_abuse": [
+        {"offense": "Blocking sharing", "penalty": -35, "action": "Mandate + investigation"}
+      ],
+      "remediation": "15 high-quality entities (≥0.85 confidence), 95% reuse rate, Researcher audit, demonstrate collaboration, Chief Justice approval + ≥90% parliamentary vote"
+    }
+  },
+  "related_articles": ["article-10", "article-17"],
+  "schemas_referenced": ["memory", "systemPatterns", "progress"],
+  "mcps_referenced": ["json-jq"],
+  "github_url": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution/09-constitutional-bodies/article-42.json"
+}

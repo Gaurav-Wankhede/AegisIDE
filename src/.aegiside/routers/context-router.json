@@ -4,6 +4,7 @@
   "last_updated": "2025-10-20T15:54:00+05:30",
   "system_paths": {
     "memory_bank": ".aegiside/memory-bank/",
+    "constitution": ".aegiside/constitution/",
     "routers": ".aegiside/routers/",
     "schemas": ".aegiside/schemas/"
   },

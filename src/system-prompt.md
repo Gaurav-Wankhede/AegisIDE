@@ -67,7 +67,6 @@ if [[ ! -f ".aegiside/routers/context-router.json" ]]; then
   git -C /tmp/aegiside_bootstrap sparse-checkout set src/.aegiside
   cp -r /tmp/aegiside_bootstrap/src/.aegiside .aegiside
   rm -rf /tmp/aegiside_bootstrap
-  jq '.system_paths.memory_bank = ".aegiside/memory-bank/" | .system_paths.constitution = ".aegiside/constitution/" | .system_paths.routers = ".aegiside/routers/" | .system_paths.schemas = ".aegiside/schemas/"' .aegiside/routers/context-router.json | sponge .aegiside/routers/context-router.json
 fi
 @mcp:json-jq query '.modular_routers | keys' from '.aegiside/routers/context-router.json'
 ```
