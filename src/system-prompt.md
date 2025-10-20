@@ -23,31 +23,6 @@ bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/s
 **Both methods use the same 4-scenario verification logic below.**
 
 ---
-
-## 📦 INSTALLATION METHODS
-
-### **Method 1: Automated CURL Installation**
-```bash
-# Run setup script - handles all scenarios automatically
-bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
-```
-- Downloads framework from GitHub
-- Detects scenario (1-4) automatically
-- Installs system prompt + framework
-- Initializes memory-bank
-- **Best for**: First-time users, complete setup
-
-### **Method 2: System Prompt Copy-Paste (Auto-Bootstrap)**
-```bash
-# 1. Copy this entire system-prompt.md to your IDE's global system prompt:
-# Windsurf: ~/.codeium/windsurf-next/memories/global_rules.md
-# Cursor: ~/.config/Cursor/User/global_rules.mdc
-# VS Code: ~/.vscode/system_prompt.md
-
-# 2. Start working on your project - framework auto-initializes
-```
-- **AI detects** missing .aegiside/ folder automatically
-- **Auto-downloads** framework from GitHub via git diff verification
 - **Preserves** existing work (memory-bank protected)
 - **Best for**: Existing projects, IDE-first workflow
 
