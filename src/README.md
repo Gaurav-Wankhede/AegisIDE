@@ -246,20 +246,51 @@ AegisIDE automatically detects your project state and applies the appropriate bo
 - Uses existing framework
 - Session continues normally
 
-### **Quick Setup**
+### **Quick Setup - Choose Your Method**
 
-**Automatic (Recommended):**
+#### **Method 1: CURL Installation (Full Automation)**
 ```bash
-# Run setup script - auto-detects scenario
+# One command - complete setup
 bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
 ```
+**What it does:**
+- Installs system prompt to IDE global rules
+- Downloads framework to project
+- Configures MCP servers
+- Handles all 4 scenarios automatically
 
-**Manual:**
-1. Clone AegisIDE repository: `git clone https://github.com/Gaurav-Wankhede/AegisIDE`
-2. Copy `.aegiside/` to your project: `cp -r AegisIDE/src/.aegiside/ your-project/.aegiside/`
-3. Copy system prompt (Windsurf): `cp AegisIDE/src/system-prompt.md ~/.codeium/windsurf-next/memories/global_rules.md`
-4. Configure MCP servers: Copy `mcp_servers.json` to IDE settings
-5. Restart IDE to load MCPs
+**Best for:** First-time users, quick project setup
+
+---
+
+#### **Method 2: System Prompt Only (Lightweight)**
+```bash
+# Just copy system prompt to IDE
+cp AegisIDE/src/system-prompt.md ~/.codeium/windsurf-next/memories/global_rules.md
+# Restart IDE
+```
+**What it does:**
+- Adds AegisIDE rules to your IDE globally
+- Auto-initializes framework when you work on ANY project
+- Uses git diff to detect and update framework automatically
+- No manual framework installation needed
+
+**Best for:** Experienced users, multi-project workflows, continuous updates
+
+**IDE-Specific Paths:**
+- Windsurf: `~/.codeium/windsurf-next/memories/global_rules.md`
+- Cursor: `~/.cursor/memories/global_rules.mdc`
+- VS Code: `~/.vscode/system_prompt.md`
+- JetBrains: `~/.config/JetBrains/ai_context.md`
+
+---
+
+#### **Manual (Advanced Users)**
+1. Clone: `git clone https://github.com/Gaurav-Wankhede/AegisIDE`
+2. Copy framework: `cp -r AegisIDE/src/.aegiside/ your-project/.aegiside/`
+3. Copy system prompt: (see Method 2 paths above)
+4. Configure MCPs: Copy `mcp_servers.json` to IDE settings
+5. Restart IDE
 
 ### **Version Verification**
 

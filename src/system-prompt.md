@@ -1,5 +1,60 @@
 # AegisIDE - Dynamic Modular Router Authority
 
+## 📦 TWO INSTALLATION METHODS
+
+### **Method 1: CURL Installation (Full Automation)**
+```bash
+bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
+```
+- Complete setup in one command
+- Installs system prompt + framework
+- Handles all 4 scenarios automatically
+- Best for: New users, quick setup
+
+### **Method 2: System Prompt Only (Lightweight)**
+1. Copy `system-prompt.md` to your IDE's global rules:
+   - Windsurf: `~/.codeium/windsurf-next/memories/global_rules.md`
+   - Cursor: `~/.cursor/memories/global_rules.mdc`
+   - VS Code: `~/.vscode/system_prompt.md`
+2. Framework auto-initializes when you work on ANY project
+3. Uses git diff for smart updates
+4. Best for: Experienced users, multi-project workflows
+
+**Both methods use the same 4-scenario verification logic below.**
+
+---
+
+## 📦 INSTALLATION METHODS
+
+### **Method 1: Automated CURL Installation**
+```bash
+# Run setup script - handles all scenarios automatically
+bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
+```
+- Downloads framework from GitHub
+- Detects scenario (1-4) automatically
+- Installs system prompt + framework
+- Initializes memory-bank
+- **Best for**: First-time users, complete setup
+
+### **Method 2: System Prompt Copy-Paste (Auto-Bootstrap)**
+```bash
+# 1. Copy this entire system-prompt.md to your IDE's global system prompt:
+# Windsurf: ~/.codeium/windsurf-next/memories/global_rules.md
+# Cursor: ~/.config/Cursor/User/global_rules.mdc
+# VS Code: ~/.vscode/system_prompt.md
+
+# 2. Start working on your project - framework auto-initializes
+```
+- **AI detects** missing .aegiside/ folder automatically
+- **Auto-downloads** framework from GitHub via git diff verification
+- **Preserves** existing work (memory-bank protected)
+- **Best for**: Existing projects, IDE-first workflow
+
+**Both methods use same 4-scenario verification** - difference is trigger mechanism.
+
+---
+
 ## 🎯 PROJECT-LOCAL ARCHITECTURE
 
 **Framework Location:** `.aegiside/routers/` (project-local, bootstrapped from GitHub)
@@ -60,25 +115,119 @@ This discovers all 15 available routers.
 
 ## 🔄 SESSION VERIFICATION & AUTO-BOOTSTRAP
 
-**EVERY NEW SESSION - Check if .aegiside/ exists:**
+### **4 SCENARIOS WITH GIT DIFF VERIFICATION**
+
+**Scenario 1: Project from Scratch**
 ```bash
-if [[ ! -f ".aegiside/routers/context-router.json" ]]; then
-  git clone --depth 1 --filter=blob:none --sparse https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegiside_bootstrap
-  git -C /tmp/aegiside_bootstrap sparse-checkout set src/.aegiside
-  cp -r /tmp/aegiside_bootstrap/src/.aegiside .aegiside
-  rm -rf /tmp/aegiside_bootstrap
+# No .aegiside/ folder exists
+if [[ ! -d ".aegiside" ]]; then
+  echo "[SCENARIO 1] Fresh project - Bootstrapping framework..."
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegis_init
+  git -C /tmp/aegis_init sparse-checkout set src/.aegiside
+  cp -r /tmp/aegis_init/src/.aegiside .aegiside
+  rm -rf /tmp/aegis_init
+  
+  # Initialize memory-bank (8 schemas)
+  mkdir -p .aegiside/memory-bank
+  echo '{"schema_version":"1.0.0","timestamp":"'$(date -Iseconds)'","current_task":"Initialized"}' > .aegiside/memory-bank/activeContext.json
+  echo '{"schema_version":"1.0.0","priority_queue":[]}' > .aegiside/memory-bank/scratchpad.json
+  echo '{"schema_version":"1.0.0","columns":{"todo":[],"in_progress":[],"done":[],"approved":[]}}' > .aegiside/memory-bank/kanban.json
+  echo '{"schema_version":"1.0.0","mistakes":[]}' > .aegiside/memory-bank/mistakes.json
+  echo '{"schema_version":"1.0.0","patterns":[]}' > .aegiside/memory-bank/systemPatterns.json
+  echo '{"schema_version":"1.0.0","rl_architecture":"PPO+GAE","transactions":[],"net_score":0}' > .aegiside/memory-bank/progress.json
+  echo '{"schema_version":"1.0.0","milestones":[]}' > .aegiside/memory-bank/roadmap.json
+  echo '{"schema_version":"1.0.0","entities":[],"relations":[]}' > .aegiside/memory-bank/memory.json
+  echo "✅ Framework initialized"
 fi
+```
+
+**Scenario 2: Existing Project, No Framework (User Added System Prompt)**
+```bash
+# .aegiside/ folder missing but system prompt present
+if [[ ! -f ".aegiside/routers/context-router.json" ]] && [[ -f ".windsurf/rules/constitution.md" || -f "~/.codeium/windsurf-next/memories/global_rules.md" ]]; then
+  echo "[SCENARIO 2] System prompt detected - Installing framework..."
+  # Same bootstrap as Scenario 1
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegis_install
+  git -C /tmp/aegis_install sparse-checkout set src/.aegiside
+  cp -r /tmp/aegis_install/src/.aegiside .aegiside
+  rm -rf /tmp/aegis_install
+  # Initialize memory-bank...
+  echo "✅ Framework installed for existing project"
+fi
+```
+
+**Scenario 3: Framework Exists But Needs Update (GIT DIFF CHECK)**
+```bash
+# .aegiside/ exists - Cross-verify with GitHub
+if [[ -f ".aegiside/routers/context-router.json" ]]; then
+  echo "[SCENARIO 3/4] Framework detected - Checking for updates..."
+  
+  # Clone latest from GitHub to temp
+  git clone --depth 1 --filter=blob:none --sparse https://github.com/Gaurav-Wankhede/AegisIDE.git /tmp/aegis_check
+  git -C /tmp/aegis_check sparse-checkout set src/.aegiside
+  
+  # Compare local vs GitHub (exclude memory-bank - runtime data)
+  DIFF_COUNT=$(diff -r .aegiside/ /tmp/aegis_check/src/.aegiside/ \
+    --exclude='memory-bank' \
+    --exclude='.gitignore' \
+    -q | wc -l)
+  
+  if [[ $DIFF_COUNT -gt 0 ]]; then
+    echo "[SCENARIO 3] ⚠️  Framework outdated - $DIFF_COUNT differences detected"
+    echo "Differences:"
+    diff -r .aegiside/ /tmp/aegis_check/src/.aegiside/ \
+      --exclude='memory-bank' \
+      --exclude='.gitignore' \
+      -q
+    
+    # Backup current memory-bank
+    cp -r .aegiside/memory-bank /tmp/aegis_memory_backup
+    
+    # Update framework (preserve memory-bank)
+    rm -rf .aegiside/routers .aegiside/constitution .aegiside/schemas .aegiside/workflows .aegiside/visualize
+    cp -r /tmp/aegis_check/src/.aegiside/routers .aegiside/
+    cp -r /tmp/aegis_check/src/.aegiside/constitution .aegiside/
+    cp -r /tmp/aegis_check/src/.aegiside/schemas .aegiside/
+    cp -r /tmp/aegis_check/src/.aegiside/workflows .aegiside/
+    cp -r /tmp/aegis_check/src/.aegiside/visualize .aegiside/
+    
+    # Restore memory-bank
+    cp -r /tmp/aegis_memory_backup .aegiside/memory-bank
+    rm -rf /tmp/aegis_memory_backup
+    
+    echo "✅ Framework updated to latest version"
+  else
+    echo "[SCENARIO 4] ✅ Framework already up-to-date"
+  fi
+  
+  rm -rf /tmp/aegis_check
+fi
+```
+
+**Version Tracking:**
+```bash
+# Check framework version
+LOCAL_VERSION=$(jq -r '.schema_version' .aegiside/routers/context-router.json 2>/dev/null || echo "unknown")
+GITHUB_VERSION=$(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/context-router.json | jq -r '.schema_version')
+
+if [[ "$LOCAL_VERSION" != "$GITHUB_VERSION" ]]; then
+  echo "Version mismatch: Local=$LOCAL_VERSION, GitHub=$GITHUB_VERSION"
+fi
+```
+
+**Post-Verification:**
+```bash
 @mcp:json-jq query '.modular_routers | keys' from '.aegiside/routers/context-router.json'
 ```
 
-**VIOLATIONS:** Local copies (-30 RL) | Skip verification (-25 RL) | Wrong paths (-20 RL)
+**VIOLATIONS:** Local copies (-30 RL) | Skip verification (-25 RL) | Wrong paths (-20 RL) | Overwrite memory-bank (-50 RL)
 
 ---
 
 ## 🧠 DYNAMIC NLU/NLP ROUTING
 
 **User Query → context-router.json → Routes to:**
-- 42 Constitutional Articles (constitution/)
+- 42 Constitutional Articles (constitution/ folder - JSON files indexed by constitutional-index.json)
 - 8 Workflows (auto-init, bootstrap, continue, fix, next, research, update, validate)
 - 15 Routers (autonomy, core, mcps, parliamentary, rl-feedback, session, memory-bank, constitutional, governance, skills, violations, etc.)
 
