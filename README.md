@@ -34,17 +34,30 @@
 **How Your Message Becomes Action:**
 
 ```mermaid
-graph LR
-    A[Your Message] -->|1. Parse| B[NLU Analysis]
-    B -->|2. Match| C[Context Router]
-    C -->|3. Route| D[Specialized Router]
-    D -->|4. Execute| E[Task Execution]
-    E -->|5. Update| F[Memory Bank]
-    F -->|6. Learn| G[RL Scoring]
-    G -->|7. Response| H[Back to You]
+graph TB
+    U[👤 Your Message] --> NLU[NLU Analysis]
+    NLU --> CR[🎯 Context Router<br/>Master Tunnel]
     
-    style A fill:#e1f5ff
-    style H fill:#d4edda
+    CR --> GOV[Governance Routers<br/>Constitutional, Parliamentary]
+    CR --> OPS[Operations Routers<br/>Core, Session, Workflows]
+    CR --> LEARN[Learning Routers<br/>RL Feedback, Skills, Memory]
+    CR --> INFRA[Infrastructure Routers<br/>MCPs, Violations, Autonomy]
+    
+    GOV --> EXEC[⚡ Task Execution]
+    OPS --> EXEC
+    LEARN --> EXEC
+    INFRA --> EXEC
+    
+    EXEC --> MB[🧠 Memory Bank<br/>8 Schemas]
+    MB --> RL[📊 RL Scoring]
+    RL --> RESP[✅ Response to You]
+    
+    MB -.-> CR
+    
+    style U fill:#e1f5ff
+    style CR fill:#fff3cd
+    style MB fill:#d4edda
+    style RESP fill:#d4edda
 ```
 
 **The System (Simplified):**
