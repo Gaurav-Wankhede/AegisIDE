@@ -3,7 +3,7 @@
 > **Turn any AI assistant into a reliable teammate that works on its own and remembers everything.**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-3.3.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-3.4.0-blue.svg)](CHANGELOG.md)
 [![6 Mandatory MCPs](https://img.shields.io/badge/MCPs-6%20Core-success)](src/mcp_servers.json)
 [![Auto-Bootstrap](https://img.shields.io/badge/setup-automatic-brightgreen)](src/setup.sh)
 [![2 Install Methods](https://img.shields.io/badge/install-CURL%20%7C%20Prompt-blue)](src/README.md)
@@ -28,6 +28,40 @@
 3. **AI works alone** on 0-99% of tasks (no annoying permission prompts)
 4. **AI learns** from every mistake (+91% fewer repeated errors)
 5. **You stay in control** with smart safety checks for risky stuff
+
+## 🏗️ Architecture Overview
+
+**How Your Message Becomes Action:**
+
+```mermaid
+graph LR
+    A[Your Message] -->|1. Parse| B[NLU Analysis]
+    B -->|2. Match| C[Context Router]
+    C -->|3. Route| D[Specialized Router]
+    D -->|4. Execute| E[Task Execution]
+    E -->|5. Update| F[Memory Bank]
+    F -->|6. Learn| G[RL Scoring]
+    G -->|7. Response| H[Back to You]
+    
+    style A fill:#e1f5ff
+    style H fill:#d4edda
+```
+
+**The System (Simplified):**
+
+- **15 Specialized Routers** - Each handles specific tasks (governance, memory, workflows, etc.)
+- **Context Router** - Master tunnel that routes your queries to the right specialist
+- **8 Memory Files** - AI's brain (activeContext, scratchpad, mistakes, patterns, progress, roadmap, kanban, knowledge graph)
+- **42 Constitutional Articles** - Rules for democratic AI governance
+- **8 Workflows** - Commands like `/init`, `/fix`, `/next` for common operations
+- **6 MCP Tools** - External integrations (context7 for docs, git, fetch, etc.)
+
+**Session Loading (Efficient):**
+- ✅ **First Session**: Loads full architecture diagram once (181 lines = complete system understanding)
+- ✅ **Same Session**: Everything else lazy-loaded through Context Router (saves tokens)
+- ✅ **LLM Lost?**: Re-reads architecture to regain track (self-recovery)
+
+**Result**: AI knows exactly where to route your request, what to execute, where to store learnings, and never loses context.
 
 ## 🚀 Get Started - Choose Your Method
 

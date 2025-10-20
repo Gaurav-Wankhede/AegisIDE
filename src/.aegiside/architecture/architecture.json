@@ -1,0 +1,22 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-20T18:26:00+05:30",
+  "mermaid_diagram": ".aegiside/architecture/architecture.mmd",
+  "description": "Comprehensive AegisIDE architecture with user flow, NLU processing, and system components",
+  "components": {
+    "user_flow": "7-step end-to-end interaction flow (Input → NLU → Router → Execution → Update → Response)",
+    "routers": "15 specialized routers grouped by function (Governance, Operations, Learning, Infrastructure)",
+    "constitution": "42 articles across 9 parts (lazy loaded)",
+    "workflows": "8 commands (auto-init, bootstrap, continue, fix, next, research, update, validate)",
+    "memory_bank": "8 runtime schemas (activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory)",
+    "schemas": "10 validation schemas with integrity checking",
+    "mcp_tools": "6 mandatory tools (context7, fetch, git, sequential-thinking, exa, json-jq)"
+  },
+  "benefits": [
+    "Complete user interaction flow visualization",
+    "Semantic NLU routing visible",
+    "All system interconnections shown",
+    "Grouped functional organization",
+    "Continuous execution loop clear"
+  ]
+}

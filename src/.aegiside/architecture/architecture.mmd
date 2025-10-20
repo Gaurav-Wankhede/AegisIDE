@@ -1,0 +1,181 @@
+graph TB
+    subgraph USER_FLOW["User Interaction Flow - End to End"]
+        U1[User Message Input]
+        U2[NLU Analysis<br/>Extract Intent + Context]
+        U3[Semantic Matching<br/>Query Context Router]
+        U4[Router Selection<br/>Pick Best Match]
+        U5[Task Execution<br/>Via Selected Router]
+        U6[Memory Bank Update<br/>8-Schema Atomic Write]
+        U7[Response Generation<br/>Return to User]
+    end
+
+    subgraph SYS["System Entry"]
+        A[global_rules.md<br/>Session Startup]
+        B[architecture.mmd<br/>BEST Awareness]
+        C[architecture.json<br/>Metadata]
+    end
+
+    subgraph HUB["Context Router Hub - Master Tunnel"]
+        CR[context-router.json<br/>Semantic NLU<br/>Routes to 15 Routers]
+    end
+
+    subgraph GOV["Governance Routers - 4 Routers"]
+        R1[constitutional.json<br/>CJ, PM, IAS, Shadow]
+        R2[constitutional-index.json<br/>42 Articles Lazy Load]
+        R3[constitutional-metadata.json<br/>Article Catalog]
+        R4[governance.json<br/>Tri-Branch System]
+    end
+
+    subgraph OPS["Operations Routers - 4 Routers"]
+        R5[core.json<br/>HALT-FIX-VALIDATE]
+        R6[session.json<br/>State Management]
+        R7[autonomy.json<br/>Execution Bands]
+        R8[workflows.json<br/>8 Commands Router]
+    end
+
+    subgraph LEARN["Learning & Quality - 3 Routers"]
+        R9[rl-feedback-loop.json<br/>PPO+GAE Scoring]
+        R10[violations.json<br/>Penalty Enforcement]
+        R11[skills.json<br/>Tech Stack Patterns]
+    end
+
+    subgraph INFRA["Infrastructure Routers - 4 Routers"]
+        R12[memory-bank.json<br/>8-Schema Operations]
+        R13[mcps.json<br/>6 Mandatory Tools]
+        R14[parliamentary.json<br/>Consensus Voting]
+    end
+
+    subgraph CONST["Constitution - Supreme Law"]
+        C1[42 Articles<br/>9 Parts]
+        C2[Preamble<br/>Preliminary<br/>Rights]
+        C3[Duties<br/>DPSP<br/>Parliament]
+        C4[Executive<br/>Judiciary<br/>Bodies]
+    end
+
+    subgraph WF["Workflows - 8 Commands"]
+        W1[auto-init<br/>bootstrap]
+        W2[continue<br/>fix]
+        W3[next<br/>research]
+        W4[update<br/>validate]
+    end
+
+    subgraph MB["Memory Bank - 8 Runtime Files"]
+        M1[activeContext.json<br/>Session State]
+        M2[scratchpad.json<br/>Priority Queue]
+        M3[kanban.json<br/>Task Workflow]
+        M4[mistakes.json<br/>Error Patterns]
+        M5[systemPatterns.json<br/>Reusable Solutions]
+        M6[progress.json<br/>RL Central Ledger]
+        M7[roadmap.json<br/>Strategic Planning]
+        M8[memory.json<br/>Knowledge Graph]
+    end
+
+    subgraph SCH["Schemas - 10 Validation Files"]
+        S1[activeContext.schema<br/>13,610 bytes]
+        S2[progress.schema<br/>10,718 bytes]
+        S3[kanban.schema<br/>scratchpad.schema]
+        S4[memory.schema<br/>mistakes.schema]
+        S5[systemPatterns.schema<br/>roadmap.schema]
+        S6[schema-integrity-validator<br/>progress-rl-selection]
+    end
+
+    subgraph MCP["MCP Tools - 6 Mandatory"]
+        T1[context7<br/>Official Docs]
+        T2[fetch<br/>Web Content]
+        T3[git<br/>Version Control]
+        T4[sequential-thinking<br/>Structured Reasoning]
+        T5[exa<br/>Code Search]
+        T6[json-jq<br/>JSON Query]
+    end
+
+    U1 -->|1. Parse Query| U2
+    U2 -->|2. Analyze Intent| U3
+    U3 -->|3. Match Triggers| CR
+    CR -->|4. Route Selection| U4
+    U4 -->|5. Execute| U5
+    U5 -->|6. Update State| U6
+    U6 -->|7. Respond| U7
+    U7 -.->|Loop Next Task| U1
+
+    A -->|Session Start| B
+    A -->|Load Metadata| C
+    A -->|Initialize| CR
+    
+    CR -->|NLU Trigger Match| R1
+    CR -->|NLU Trigger Match| R2
+    CR -->|NLU Trigger Match| R3
+    CR -->|NLU Trigger Match| R4
+    CR -->|NLU Trigger Match| R5
+    CR -->|NLU Trigger Match| R6
+    CR -->|NLU Trigger Match| R7
+    CR -->|NLU Trigger Match| R8
+    CR -->|NLU Trigger Match| R9
+    CR -->|NLU Trigger Match| R10
+    CR -->|NLU Trigger Match| R11
+    CR -->|NLU Trigger Match| R12
+    CR -->|NLU Trigger Match| R13
+    CR -->|NLU Trigger Match| R14
+
+    R1 -.->|Constitutional Authority| C1
+    R2 -.->|Lazy Load Articles| C1
+    R3 -.->|Article Metadata| C1
+    R4 -.->|Governance Rules| C1
+
+    R5 -->|Execute Loop| WF
+    R6 <-->|State Persist| MB
+    R7 <-->|User Controls| MB
+    R8 -->|Command Dispatch| WF
+
+    R9 <-->|Score Actions| M6
+    R10 <-->|Log Penalties| M4
+    R11 <-->|Store Patterns| M5
+
+    R12 <-->|Read/Write| MB
+    R13 -->|Enforce Usage| MCP
+    R14 <-->|Voting Data| M6
+
+    C1 -.->|Supreme Authority| GOV
+    C1 -.->|Supreme Authority| OPS
+    C1 -.->|Supreme Authority| LEARN
+    C1 -.->|Supreme Authority| INFRA
+
+    WF -->|Execute Tasks| MB
+    WF -.->|Via Routers| CR
+
+    MB <-->|Validate Before Update| SCH
+    M2 -->|Next Task Loop| CR
+
+    MCP -.->|Used by ALL| SYS
+    MCP -.->|Used by ALL| HUB
+    MCP -.->|Used by ALL| GOV
+    MCP -.->|Used by ALL| OPS
+    MCP -.->|Used by ALL| LEARN
+    MCP -.->|Used by ALL| INFRA
+
+    style A fill:transparent,stroke:#407edd,stroke-width:2px
+    style B fill:transparent,stroke:#407edd,stroke-width:3px
+    style C fill:transparent,stroke:#407edd,stroke-width:2px
+    style CR fill:transparent,stroke:#ec2c40,stroke-width:3px
+    style R1 fill:transparent,stroke:#ffd700,stroke-width:2px
+    style R2 fill:transparent,stroke:#ffd700,stroke-width:2px
+    style R3 fill:transparent,stroke:#ffd700,stroke-width:2px
+    style R4 fill:transparent,stroke:#ffd700,stroke-width:2px
+    style R5 fill:transparent,stroke:#00a9e5,stroke-width:2px
+    style R6 fill:transparent,stroke:#00a9e5,stroke-width:2px
+    style R7 fill:transparent,stroke:#00a9e5,stroke-width:2px
+    style R8 fill:transparent,stroke:#00a9e5,stroke-width:2px
+    style R9 fill:transparent,stroke:#32cd32,stroke-width:2px
+    style R10 fill:transparent,stroke:#32cd32,stroke-width:2px
+    style R11 fill:transparent,stroke:#32cd32,stroke-width:2px
+    style R12 fill:transparent,stroke:#9370db,stroke-width:2px
+    style R13 fill:transparent,stroke:#9370db,stroke-width:2px
+    style R14 fill:transparent,stroke:#9370db,stroke-width:2px
+    style C1 fill:transparent,stroke:#ff6347,stroke-width:2px
+    style M1 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M2 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M3 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M4 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M5 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M6 fill:transparent,stroke:#ff8c00,stroke-width:3px
+    style M7 fill:transparent,stroke:#ff8c00,stroke-width:2px
+    style M8 fill:transparent,stroke:#ff8c00,stroke-width:2px

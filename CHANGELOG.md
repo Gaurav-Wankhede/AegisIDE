@@ -2,6 +2,33 @@
 
 *[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
+## [3.4.0] - 2025-10-20
+
+### Added
+- **Comprehensive Architecture Diagram**: 181-line Mermaid diagram (`architecture.mmd`) with complete system visualization
+- **User Flow Visualization**: 7-step end-to-end interaction flow (Input → NLU → Context Router → Execution → Memory Bank → Response)
+- **Functional Router Grouping**: 15 routers organized by function (Governance, Operations, Learning, Infrastructure)
+- **LLM Self-Recovery**: Architecture reload trigger when LLM loses track or feels uncertain
+- **Session-Based Loading**: Architecture loads once per session, not continuously (optimized token usage)
+- **architecture.json**: Minimal metadata file referencing architecture.mmd (no content duplication)
+
+### Changed
+- **Session Startup**: Clarified 4-step startup vs subsequent requests (architecture loaded once, then lazy loading)
+- **Reload Triggers**: 3 scenarios - first session | context window near end | LLM loses track
+- **global_rules.md**: Removed duplicacy with routers (single source of truth via context-router.json)
+- **system-prompt.md**: Synchronized with global_rules.md (both 5,358 characters, zero duplicacy)
+
+### Improved
+- **Architecture Awareness**: From simplified 8-layer to comprehensive 11-subgraph visualization
+- **Token Efficiency**: Architecture loaded once (181 lines preserved in context), everything else lazy loaded
+- **Error Prevention**: Complete system understanding visible prevents routing mistakes
+- **Visual Clarity**: Subgraphs for User Flow, System Entry, Router Hub, Constitution, Workflows, Memory Bank, Schemas, MCPs
+
+### Technical
+- **Diagram Size**: 181 lines, 6,592 bytes showing ~50 connections across all components
+- **Context-Router**: Master tunnel for all lazy loading (routers, constitution, workflows)
+- **Zero Duplicacy**: Router names only in context-router.json, architecture only in architecture.mmd
+
 ## [3.3.0] - 2025-10-20
 
 ### Added
