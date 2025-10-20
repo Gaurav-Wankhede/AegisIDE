@@ -12,10 +12,7 @@ bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/s
 - Best for: New users, quick setup
 
 ### **Method 2: System Prompt Only (Lightweight)**
-1. Copy `system-prompt.md` to your IDE's global rules:
-   - Windsurf: `~/.codeium/windsurf-next/memories/global_rules.md`
-   - Cursor: `~/.cursor/memories/global_rules.mdc`
-   - VS Code: `~/.vscode/system_prompt.md`
+1. Copy this file to your IDE's global rules location
 2. Framework auto-initializes when you work on ANY project
 3. Uses git diff for smart updates (Scenarios 1-4 below)
 4. Best for: Experienced users, multi-project workflows
