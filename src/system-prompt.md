@@ -23,12 +23,6 @@ bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/s
 **Both methods use the same 4-scenario verification logic below.**
 
 ---
-- **Preserves** existing work (memory-bank protected)
-- **Best for**: Existing projects, IDE-first workflow
-
-**Both methods use same 4-scenario verification** - difference is trigger mechanism.
-
----
 
 ## 🎯 PROJECT-LOCAL ARCHITECTURE
 
