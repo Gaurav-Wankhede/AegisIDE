@@ -17,7 +17,7 @@ bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/s
    - Cursor: `~/.cursor/memories/global_rules.mdc`
    - VS Code: `~/.vscode/system_prompt.md`
 2. Framework auto-initializes when you work on ANY project
-3. Uses git diff for smart updates
+3. Uses git diff for smart updates (Scenarios 1-4 below)
 4. Best for: Experienced users, multi-project workflows
 
 **Both methods use the same 4-scenario verification logic below.**
