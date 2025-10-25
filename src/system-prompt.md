@@ -72,15 +72,41 @@ Read '.aegiside/architecture/architecture.mmd'
 
 **Auto-bootstrap:** `bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh) --verify`
 
+**🚨 CRITICAL: NEVER assume local AegisIDE repository exists. ALWAYS use GitHub as source of truth.**
+
 ## VERSION TRACKING
 
+**🚨 MANDATORY: GitHub is the ONLY source of truth. Never use local AegisIDE files for sync.**
+
 ```bash
+# Step 1: Check current version in target project
 LOCAL_VERSION=$(jq -r '.schema_version' .aegiside/routers/context-router.json 2>/dev/null || echo "unknown")
+
+# Step 2: Fetch latest version from GitHub (ONLY source)
 GITHUB_VERSION=$(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/context-router.json | jq -r '.schema_version')
 
+# Step 3: Compare and sync from GitHub if different
 if [[ "$LOCAL_VERSION" != "$GITHUB_VERSION" ]]; then
-  echo "Version mismatch: Local=$LOCAL_VERSION, GitHub=$GITHUB_VERSION"
+  echo "⚠️ Version mismatch: Local=$LOCAL_VERSION, GitHub=$GITHUB_VERSION"
+  echo "🔄 Syncing from GitHub (commit: $(git ls-remote https://github.com/Gaurav-Wankhede/AegisIDE.git HEAD | cut -f1 | cut -c1-7))"
+  # Use setup.sh for automated sync from GitHub
+  bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh) --verify
 fi
+```
+
+**SYNC PROTOCOL (GitHub-Based ONLY):**
+```bash
+# ❌ WRONG: Never use local files (assumes AegisIDE repo exists locally)
+rsync -av /local/path/to/AegisIDE/.aegiside/ .aegiside/
+
+# ✅ CORRECT: Always download from GitHub
+curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh | bash
+
+# ✅ CORRECT: Manual GitHub-based sync
+for file in constitutional-index.json context-router.json core.json; do
+  curl -sL "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/$file" \
+    -o ".aegiside/routers/$file"
+done
 ```
 
 ## DYNAMIC NLU/NLP ROUTING
@@ -89,7 +115,12 @@ fi
 @mcp:json-jq query '.modular_routers | keys' from '.aegiside/routers/context-router.json'
 ```
 
-**VIOLATIONS:** Local copies (-30 RL) | Skip verification (-25 RL) | Wrong paths (-20 RL) | Overwrite memory-bank (-50 RL)
+**VIOLATIONS:** 
+- Using local AegisIDE files instead of GitHub (-50 RL) ← **CRITICAL GAP**
+- Skip verification (-25 RL) 
+- Wrong paths (-20 RL) 
+- Overwrite memory-bank (-50 RL)
+- Assume local repo exists (-40 RL)
 
 ---
 
@@ -101,8 +132,14 @@ fi
 
 **Lazy Load:** Query ONLY needed routers/articles per task via @mcp:json-jq
 - Routers: Via context-router.json (15 specialized routers)
-- Constitution: Via constitutional-index.json (42 articles)
+- Constitution: Via constitutional-index.json (43 JSON articles in .aegiside/constitution/)
 - Workflows: Via workflows.json (8 commands)
+
+**Constitution Format:** All 43 articles stored as JSON files (NOT markdown) for:
+- ⚡ Fast queries via `jq` and `@mcp:json-jq`
+- 📊 Structured data access (definition, powers, implementation, violations)
+- 🎯 Direct field extraction without parsing
+- 🔄 Atomic updates via `jq` + `sponge`
 
 ---
 
