@@ -190,7 +190,7 @@ IDE=$(detect_ide)
 GLOBAL_PATH=$(get_global_path $OS $IDE)
 PROMPT_FILENAME=$(get_prompt_filename $IDE)
 WORKSPACE_PATH=$(pwd)
-WORKSPACE_IDE_PATH="$WORKSPACE_PATH/.${IDE}/aegiside"
+WORKSPACE_IDE_PATH="$WORKSPACE_PATH/.aegiside"
 GITHUB_REPO="https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main"
 
 echo "📋 System Detection"
