@@ -443,7 +443,7 @@ ROUTER_SKIPPED=0
 for router in core mcps constitutional parliamentary session memory-bank autonomy violations workflows governance; do
     if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/routers/${router}.json" ]; then
         # File exists - download and compare
-        if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
+        if curl -sL "$GITHUB_REPO/src/.aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
             if validate_download "/tmp/${router}.json" "${router} router"; then
                 # Check if files differ
                 if check_file_diff "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json" "${router}.json"; then
@@ -472,7 +472,7 @@ for router in core mcps constitutional parliamentary session memory-bank autonom
         fi
     else
         echo "  📥 Downloading ${router}.json..."
-        if curl -sL "$GITHUB_REPO/src/aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
+        if curl -sL "$GITHUB_REPO/src/.aegiside/routers/${router}.json" > "/tmp/${router}.json" 2>/dev/null; then
             if validate_download "/tmp/${router}.json" "${router} router"; then
                 mv "/tmp/${router}.json" "$WORKSPACE_IDE_PATH/routers/${router}.json"
                 ((ROUTER_SUCCESS++))
@@ -488,7 +488,7 @@ done
 
 # Download main context router
 if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.json" ]; then
-    if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
+    if curl -sL "$GITHUB_REPO/src/.aegiside/routers/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
         if validate_download "/tmp/context-router.json" "context router"; then
             if check_file_diff "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json" "context-router.json"; then
                 echo "  ✓ context-router.json unchanged, keeping existing"
@@ -514,7 +514,7 @@ if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/context-router.js
     fi
 else
     echo "  📥 Downloading context-router.json..."
-    if curl -sL "$GITHUB_REPO/src/aegiside/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
+    if curl -sL "$GITHUB_REPO/src/.aegiside/routers/context-router.json" > "/tmp/context-router.json" 2>/dev/null; then
         if validate_download "/tmp/context-router.json" "context router"; then
             mv "/tmp/context-router.json" "$WORKSPACE_IDE_PATH/context-router.json"
             ((ROUTER_SUCCESS++))
@@ -539,7 +539,7 @@ SCHEMA_SUCCESS=0
 SCHEMA_SKIPPED=0
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns schema-integrity-validator; do
     if [ "$INSTALL_MODE" = "update" ] && [ -f "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" ]; then
-        if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
+        if curl -sL "$GITHUB_REPO/src/.aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
             if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
                 if check_file_diff "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json" "${schema}.schema.json"; then
                     ((SCHEMA_SKIPPED++))
@@ -560,7 +560,7 @@ for schema in activeContext kanban memory mistakes progress roadmap scratchpad s
             ((SCHEMA_SUCCESS++))
         fi
     else
-        if curl -sL "$GITHUB_REPO/src/aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
+        if curl -sL "$GITHUB_REPO/src/.aegiside/schemas/${schema}.schema.json" > "/tmp/${schema}.schema.json" 2>/dev/null; then
             if validate_download "/tmp/${schema}.schema.json" "${schema} schema"; then
                 mv "/tmp/${schema}.schema.json" "$WORKSPACE_IDE_PATH/schemas/${schema}.schema.json"
                 ((SCHEMA_SUCCESS++))
@@ -634,7 +634,7 @@ PROMPT_FILENAME=$(get_prompt_filename $IDE)
 
 # Download and customize each schema with project-specific data
 for schema in activeContext kanban memory mistakes progress roadmap scratchpad systemPatterns; do
-    curl -sL "$GITHUB_REPO/src/aegiside/memory-bank/${schema}.json" > "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
+    curl -sL "$GITHUB_REPO/src/.aegiside/memory-bank/${schema}.json" > "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
     
     # Replace placeholders with actual project information
     sed -i "s/PLACEHOLDER_TIMESTAMP/$CURRENT_TIMESTAMP/g" "$WORKSPACE_IDE_PATH/memory-bank/${schema}.json"
