@@ -2,304 +2,141 @@
 
 *[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
-## [3.4.0] - 2025-10-20
+## [3.4.0] - 2025-10-25
 
-### Added
-- **Comprehensive Architecture Diagram**: 181-line Mermaid diagram (`architecture.mmd`) with complete system visualization
-- **User Flow Visualization**: 7-step end-to-end interaction flow (Input → NLU → Context Router → Execution → Memory Bank → Response)
-- **Functional Router Grouping**: 15 routers organized by function (Governance, Operations, Learning, Infrastructure)
-- **LLM Self-Recovery**: Architecture reload trigger when LLM loses track or feels uncertain
-- **Session-Based Loading**: Architecture loads once per session, not continuously (optimized token usage)
-- **architecture.json**: Minimal metadata file referencing architecture.mmd (no content duplication)
-
-### Changed
-- **Session Startup**: Clarified 4-step startup vs subsequent requests (architecture loaded once, then lazy loading)
-- **Reload Triggers**: 3 scenarios - first session | context window near end | LLM loses track
-- **global_rules.md**: Removed duplicacy with routers (single source of truth via context-router.json)
-- **system-prompt.md**: Synchronized with global_rules.md (both 5,358 characters, zero duplicacy)
-
-### Improved
-- **Architecture Awareness**: From simplified 8-layer to comprehensive 11-subgraph visualization
-- **Token Efficiency**: Architecture loaded once (181 lines preserved in context), everything else lazy loaded
-- **Error Prevention**: Complete system understanding visible prevents routing mistakes
-- **Visual Clarity**: Subgraphs for User Flow, System Entry, Router Hub, Constitution, Workflows, Memory Bank, Schemas, MCPs
-
-### Technical
-- **Diagram Size**: 181 lines, 6,592 bytes showing ~50 connections across all components
-- **Context-Router**: Master tunnel for all lazy loading (routers, constitution, workflows)
-- **Zero Duplicacy**: Router names only in context-router.json, architecture only in architecture.mmd
+- 182-line Mermaid architecture diagram + DIFF-FIRST verification (global_rules.md, mcp_servers.json)
+- 6 mandatory MCPs (json-jq, sequential-thinking, git, context7, exa, fetch)
+- Session-based loading (architecture once, lazy load routers via context-router.json)
 
 ## [3.3.0] - 2025-10-20
 
-### Added
-- **2 Installation Methods**: CURL (full automation) vs System Prompt-Only (lightweight)
-- **4-Scenario Bootstrap**: Fresh project, existing project, framework update, up-to-date detection
-- **Git Diff Verification**: Automatic cross-checking of local vs GitHub framework versions
-- **Constitution Download**: 43 JSON articles (preamble + 42 articles across 9 parts)
-- **Smart Update Detection**: Uses `diff -r` to detect differences, skips downloads if identical
-
-### Changed
-- **setup.sh v3.3.0**: Now 8 steps (was 7) with constitution download as Step 2
-- **system-prompt.md**: Synchronized 100% with global_rules.md (237 lines identical)
-- **Installation Workflow**: Method 2 enables one-time global install, works across all projects
-- **Version Checking**: Automatic framework updates via git diff on every session
-
-### Documentation
-- **src/README.md**: Expanded Quick Setup with both methods clearly explained
-- **IDE-Specific Paths**: Listed for Windsurf, Cursor, VS Code, JetBrains
-- **Method Comparison**: CURL for new users, System Prompt for experienced users
-
-### Technical
-- **Scenario 1**: No `.aegiside/` → Bootstrap from GitHub
-- **Scenario 2**: System prompt exists, no framework → Auto-install
-- **Scenario 3**: Framework outdated → Backup memory-bank, update, restore
-- **Scenario 4**: Framework up-to-date (0 differences) → Skip download
+- 2 installation methods (CURL / System Prompt-Only)
+- 4-scenario bootstrap with git diff verification
+- 43 JSON constitutional articles download
 
 ## [3.2.2] - 2025-10-18
 
-### Fixed
-- **Installation 404 Error**: Corrected `global_rules.md` download path (was `src/aegiside/global_rules.md`, now `src/global-rules.md`)
-- **README Dashboard Path**: Updated to show IDE-specific paths (`.windsurf/aegiside` or `.cursor/aegiside`)
-- **Diff Verification**: Added file comparison before updates - shows diff and asks permission
-
-### Changed  
-- **README Simplification**: Removed 50% duplicate content, plain language for non-technical users
-- **Dashboard Command**: Changed from `python3 -m http.server` to `npx serve` for better portability
+- Fixed 404 errors + diff verification before updates
+- README simplification for non-technical users
 
 ## [3.2.1] - 2025-10-18
 
-### Added
-- Y/N permission prompts before modifying system files (shows preview)
-- `mcp_servers.json` management: R)eplace/A)ppend/N)o options
-- 404 download validation for all curl operations
-- File creation penalty: -30 RL for unnecessary markdown files
-
-### Changed
-- MCP count corrected: 6 mandatory MCPs (json-jq, sequential-thinking, git, context7, exa, fetch)
-- `@mcp:json-jq` mandate strengthened: -25 RL penalty for using IDE tools on JSON
-- Progress counters added: "11 router modules", "9 schemas", "8 workflows"
-
-### Fixed
-- Installation errors from corrupted downloads
-- Unnecessary file creation (workspace clutter)
+- Y/N permission prompts + mcp_servers.json management (R/A/N)
+- 6 mandatory MCPs corrected + @mcp:json-jq mandate strengthened
 
 ## [3.2.0] - 2025-10-18
 
-### Added
-- NLU/NLP intent recognition (multilingual: en/es/fr/de/hi)
-- Auto-workflow triggers: task present → `/next`, queue empty → `/status`
-- Risk classifier for high/low risk decisions
-- Workflow chaining: `/full_test` chains multiple workflows
-
-### Changed
+- NLU/NLP intent recognition + auto-workflow triggers
 - 0-99% autonomy enforced (no permission prompts)
-- All workflows use `@mcp:json-jq` + `jq | sponge` atomic writes
-- Memory-bank JSON auto-generated (not tracked in git)
 
 ## [3.1.2] - 2025-10-18
 
-### Fixed
-- Removed false `@mcp:filesystem` claim (doesn't exist)
-- MCP count corrected: 7 mandatory MCPs (json-jq, memory, git, sequential-thinking, context7, exa, fetch)
-- 34 workflow violations fixed: Now use `@mcp:json-jq` for reads
-- Undefined variables and error handling in workflows
-
-### Changed
-- Hybrid architecture: 7 MCPs + CLI pipeline (`jq | sponge` for writes)
-- Documentation updated to match actual implementation
+- Fixed @mcp:filesystem false claim + 34 workflow violations
+- Hybrid architecture: MCPs + CLI pipeline
 
 ## [3.1.1] - 2025-10-17
 
-### Fixed
-- Cleaned memory-bank (removed live project data)
-- Removed hard-coded paths from `mcp_servers.json`
+- Cleaned memory-bank + automated setup.sh
 - Security: No personal data in templates
-
-### Added
-- `setup.sh`: Automated installation (auto-detects IDE)
-- `validate-setup.sh`: Verifies installation
-- `INSTALLATION.md`: Step-by-step guide
 
 ## [3.1.0] - 2025-10-17
 
-### Added
-- Constitutional mappings in schema validator
-- Helper schema documentation (5 helpers + 8 core schemas)
-
-### Fixed
-- 14 documentation gaps in constitutional framework
-- Article references and field mappings
-- Section numbering in global_rules.md
+- Constitutional mappings + helper schema docs
+- Fixed 14 documentation gaps
 
 ## [3.0.0] - 2025-10-13
 
-### Added
-- Reinforcement Learning: +5 to +50 rewards, -10 to -50 penalties
-- Top-append strategy: Latest entries at array[0] (65% faster retrieval)
-- Selective article loading: Load 3-10 articles instead of all 42 (80% faster)
-- MCP error learning: Auto-generate prevention rules in `mistakes.json`
-
-### Changed
-- All 12 workflows: RL scoring + HALT-FIX-VALIDATE + <6000 chars
-- Schemas enhanced: RL ledger, top-append validation, checksum integrity
-
-### Performance
-- 91% reduction in repeated errors
-- 65% faster context assembly
-- 80% faster constitutional loading
+- RL system (PPO+GAE, +5 to +50 rewards, -5 to -50 penalties)
+- Top-append strategy (65% faster) + selective loading (80% faster)
+- 91% error reduction
 
 ## [2.8.8] - 2025-10-09
 
-### Changed
-- Documentation rewritten for non-technical stakeholders
-- README/BUSINESS_MODEL/TECHNICAL_ROADMAP simplified
-- Constitutional framework: AI never asks permission (strengthened)
+- Documentation rewritten for non-technical users
+- AI autonomy strengthened (never asks permission)
 
 ## [2.8.7] - 2025-10-09
 
-### Changed
-- Single `src/.aegiside/` directory for 20+ IDEs
-- Automatic IDE detection
+- Single .aegiside/ for 20+ IDEs
 - Setup time: 15min → 2min
 
 ## [2.8.6] - 2025-10-08
 
-### Changed
-- 2.6x faster JSON parsing (markdown → JSON)
-- Documentation rewritten for beginners
-- File counts corrected: 17 articles, 37 laws, 12 workflows
-
-### Performance
-- 40% faster AI processing
-- 91% error reduction
-- 3x development speed
+- 2.6x faster JSON parsing
+- 40% faster processing + 91% error reduction
 
 ## [2.8.5] - 2025-10-08
 
-### Added
-- `memory.json`: 8th schema for knowledge graph (entities/relations/observations)
-- Helper schemas: tool-usage-patterns, common-mistakes, error-recovery
-
-### Changed
+- 8th schema: memory.json (knowledge graph)
 - 7-schema → 8-schema architecture
-- All articles interlinked
-- JSON-only (removed SQLite references)
 
 ## [2.8.4] - 2025-10-07
 
-### Added
 - Ajv schema validator + CI integration
-- Cross-file linkage validator
-- `additionalProperties: false` for schemas
 
 ## [2.8.3] - 2025-10-06
 
-### Changed
-- Slash-command workflows: `/init`, `/next`, `/fix`, `/validate`, `/update`, `/status`
-- README rewritten (workflow specs only)
+- Slash-command workflows (/init, /next, /fix, /validate, /update, /status)
 
 ## [2.8.2] - 2025-10-05
 
-### Added
-- 3-tier update system: Tier 1 (3 files/task), Tier 2 (2 files/5 tasks), Tier 3 (13 files/milestone)
-
-### Performance
-- 82% fewer file operations
-- 72% faster execution
-- 74% faster per task (93ms vs 360ms)
+- 3-tier update system
+- 82% fewer file ops + 74% faster per task
 
 ## [2.8.1] - 2025-10-05
 
-### Fixed
-- MCP server callability issues
-- @mcp:context7 retrieval failures
-- Cross-platform MCP integration
+- Fixed MCP callability + @mcp:context7 retrieval
 
 ## [2.8.0] - 2025-10-05
 
-### Added
-- Dashboard UI improvements: removed scroll constraints, better typography
-- Auto-refresh optimized: 5s → 5min
-
-### Changed
-- Browser memory: 50MB → 40MB
-- Load time: 500ms → 300ms
+- Dashboard UI improvements
+- Browser memory: 50MB → 40MB, load: 500ms → 300ms
 
 ## [2.7.0] - 2025-10-04
 
-### Added
-- Real-time dashboard: `visualize/dashboard.html` (271 lines, zero dependencies)
-- Markdown → JSON migration: 16 JSON files + roadmap.md
-- Schema validation system
-
-### Performance
-- 2.6x faster parsing
-- 40% faster AI processing
+- Real-time dashboard (visualize/dashboard.html)
+- Markdown → JSON migration + 2.6x faster parsing
 
 ## [2.6.2] - 2025-10-04
 
-### Changed
-- Commands: 40+ → 8 unified (`init`, `next`, `update`, `fix`, `status`, `validate`, `optimize`, `health`)
-- Auto-detects JSON/markdown
+- Commands: 40+ → 8 unified
 
 ## [2.6.1] - 2025-10-04
 
-### Added
-- 6-pillar validation framework for projects
-- Blueprint/userflow/kanban/bugfix JSON files
-- `adapt existing project` workflow
+- 6-pillar validation framework
+- Adapt existing project workflow
 
 ## [2.6.0] - 2025-10-01
 
-### Added
-- Multi-language validation: Python, Rust, TypeScript, Go, Java, C#, PHP, Ruby
-- HALT-FIX-VALIDATE loop
-- Zero-tolerance error enforcement
+- Multi-language validation (8 languages)
+- HALT-FIX-VALIDATE loop + zero-tolerance
 
 ## [2.5.0] - 2025-10-01
 
-### Added
-- Auto-execution of AI recommendations
-- 8 platform configurations (93-98% autonomy)
-
-### Removed
-- Duplicate documentation files
+- Auto-execution + 8 platform configs (93-98% autonomy)
 
 ## [2.1.0] - 2025-09-28
 
-### Added
-- Democratic parliamentary governance (3-branch, >95% consensus)
-- Multi-language health checks
-- 8 production-ready platforms
-
-### Changed
+- Democratic governance (3-branch, >95% consensus)
 - Autonomy: 95% → 99%
-- Memory-bank: template → AI-generated
-- 30-hour continuous operation
 
 ## [2.0.0] - 2025-09-25
 
-### Added
-- Universal constitutional framework (95% autonomy)
+- Universal constitutional framework
 - Cross-platform compatibility
 
 ## [1.5.0] - 2025-09-22
 
-### Added
 - Language-specific rules
 
 ## [1.2.0] - 2025-09-05
 
-### Changed
-- Standardized `rules/constitution.md` structure
-- Removed XML reliance
+- Standardized constitution.md structure
 
 ## [1.1.0] - 2025-09-04
 
-### Added
 - Constitutional commands
 
 ## [1.0.0] - 2025-09-03
 
-### Added
-- Initial constitutional framework
+- Initial release
