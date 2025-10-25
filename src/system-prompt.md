@@ -76,37 +76,32 @@ Read '.aegiside/architecture/architecture.mmd'
 
 ## VERSION TRACKING
 
-**🚨 MANDATORY: GitHub is the ONLY source of truth. Never use local AegisIDE files for sync.**
+**🚨 MANDATORY: GitHub is ONLY source. DIFF-FIRST verification (check before download).**
 
 ```bash
-# Step 1: Check current version in target project
-LOCAL_VERSION=$(jq -r '.schema_version' .aegiside/routers/context-router.json 2>/dev/null || echo "unknown")
+# Step 1: Check local version
+LOCAL=$(jq -r '.schema_version' .aegiside/routers/context-router.json 2>/dev/null || echo "none")
 
-# Step 2: Fetch latest version from GitHub (ONLY source)
-GITHUB_VERSION=$(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/context-router.json | jq -r '.schema_version')
+# Step 2: Fetch GitHub version (header-only, no full download)
+GITHUB=$(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/context-router.json | jq -r '.schema_version')
 
-# Step 3: Compare and sync from GitHub if different
-if [[ "$LOCAL_VERSION" != "$GITHUB_VERSION" ]]; then
-  echo "⚠️ Version mismatch: Local=$LOCAL_VERSION, GitHub=$GITHUB_VERSION"
-  echo "🔄 Syncing from GitHub (commit: $(git ls-remote https://github.com/Gaurav-Wankhede/AegisIDE.git HEAD | cut -f1 | cut -c1-7))"
-  # Use setup.sh for automated sync from GitHub
+# Step 3: DIFF FIRST - Compare, download ONLY if different
+if [[ "$LOCAL" != "$GITHUB" ]]; then
+  echo "⚠️ Diff: Local=$LOCAL, GitHub=$GITHUB"
+  echo "🔄 Sync: $(git ls-remote https://github.com/Gaurav-Wankhede/AegisIDE.git HEAD | cut -f1 | cut -c1-7))"
   bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh) --verify
+else
+  echo "✅ Up-to-date ($LOCAL)"
 fi
 ```
 
-**SYNC PROTOCOL (GitHub-Based ONLY):**
+**DIFF-FIRST PROTOCOL:**
 ```bash
-# ❌ WRONG: Never use local files (assumes AegisIDE repo exists locally)
-rsync -av /local/path/to/AegisIDE/.aegiside/ .aegiside/
+# ❌ WRONG: Download first, compare later (wasteful)
+curl -o /tmp/f.json URL && diff /tmp/f.json local.json
 
-# ✅ CORRECT: Always download from GitHub
-curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh | bash
-
-# ✅ CORRECT: Manual GitHub-based sync
-for file in constitutional-index.json context-router.json core.json; do
-  curl -sL "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/routers/$file" \
-    -o ".aegiside/routers/$file"
-done
+# ✅ CORRECT: Compare metadata first, download only if needed  
+curl -sI URL | grep ETag != cat local.etag && curl -o local.json URL
 ```
 
 ## DYNAMIC NLU/NLP ROUTING
