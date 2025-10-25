@@ -125,10 +125,24 @@ curl -sI URL | grep ETag != cat local.etag && curl -o local.json URL
 
 **Context-Router (Semantic Routing):** User queries → NLU analysis → context-router.json → Routes to specialized routers
 
-**Lazy Load:** Query ONLY needed routers/articles per task via @mcp:json-jq
-- Routers: Via context-router.json (15 specialized routers)
-- Constitution: Via constitutional-index.json (43 JSON articles in .aegiside/constitution/)
-- Workflows: Via workflows.json (8 commands)
+**Lazy Load:** @mcp:json-jq via context-router.json tunnel
+- 15 routers: core, mcps, constitutional, parliamentary, session, memory-bank, autonomy, violations, workflows, governance, skills, rl-feedback-loop, constitutional-metadata, constitutional-index
+- 43 constitution articles (JSON format)
+- 8 workflows: auto-init, bootstrap, continue, fix, next, research, update, validate
+
+**Router Categories:**
+- **Governance:** constitutional, parliamentary, governance
+- **Operations:** core, session, memory-bank, workflows
+- **Learning:** rl-feedback-loop, skills, autonomy
+- **Infrastructure:** mcps, violations, constitutional-metadata
+
+**NLU/NLP Query Processing:**
+```bash
+# User query analyzed for intent/context
+# context-router.json maps to appropriate specialized router
+# Specialized router loads only needed articles/workflows
+# Response with constitutional compliance
+```
 
 **Constitution Format:** All 43 articles stored as JSON files (NOT markdown) for:
 - ⚡ Fast queries via `jq` and `@mcp:json-jq`
