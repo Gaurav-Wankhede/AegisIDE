@@ -54,6 +54,21 @@ curl -o /tmp/f.json URL && diff /tmp/f.json local.json
 curl -sI URL | grep ETag != cat local.etag && curl -o local.json URL
 ```
 
+---
+
+## 🔧 MANDATORY MCPs (6 Required)
+
+1. **@mcp:sequential-thinking** - Structured reasoning (≥3 steps)
+2. **@mcp:json-jq** - JSON operations (100x faster than Read)
+3. **@mcp:git** - Version control
+4. **@mcp:context7** - Official documentation
+5. **@mcp:exa** - Code search & examples
+6. **@mcp:fetch** - Web content retrieval
+
+**Note**: Memory operations use manual jq (no @mcp:memory needed)
+
+---
+
 ## 📊 JSON OPERATIONS
 
 **Read:** `@mcp:json-jq query '.path' from 'file.json'` | ❌ Read() (-25 RL)
@@ -93,6 +108,31 @@ git add .aegiside/memory-bank/ && git commit -m "..."
 ```
 
 **Schemas:** activeContext, scratchpad, kanban, mistakes, systemPatterns, progress, roadmap, memory
+
+---
+
+## 🚀 BOOTSTRAP & WORKFLOWS
+
+**Bootstrap** (if .aegiside/ missing):
+```bash
+bash <(curl -s https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/setup.sh)
+# Auto-creates: constitution/, routers/, schemas/, workflows/, memory-bank/
+```
+
+**8 Workflows:**
+- **auto-init**: Auto-generate memory-bank from templates
+- **bootstrap**: Initialize .aegiside/ structure from GitHub
+- **continue**: Resume interrupted session state
+- **fix**: HALT-FIX-VALIDATE error recovery loop
+- **next**: Load next task from scratchpad queue
+- **research**: IAS intelligence gathering via MCPs
+- **update**: Atomic 8-schema memory-bank sync
+- **validate**: Zero-tolerance quality checks
+
+**RL System** (Reinforcement Learning):
+- Rewards: +5 to +50 (pattern reuse +20, MCP chain +10, validation +15)
+- Penalties: -5 to -50 (violations, missing MCPs, schema errors)
+- Ledger: progress.json tracks all scores with PPO+GAE algorithm
 
 ---
 
