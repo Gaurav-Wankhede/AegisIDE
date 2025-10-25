@@ -296,28 +296,63 @@ if [ "$ENHANCE_MODE" = true ]; then
     fi
     
     echo "  ✅ Download validated successfully"
+    echo ""
     
-    # Ask for permission before modifying system prompt
-    if ask_permission "This will APPEND AegisIDE framework rules to your existing $PROMPT_FILENAME.\nThis modifies your IDE's system prompt and affects all AI interactions." "/tmp/aegiside_rules.md"; then
-        # Backup existing rules
-        cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
-        echo ""
-        echo "  💾 Backed up existing $PROMPT_FILENAME → ${PROMPT_FILENAME}.backup"
+    # DIFF-FIRST: Check if AegisIDE content already exists
+    echo "  🔍 DIFF-FIRST: Checking existing content..."
+    if grep -q "# AegisIDE - Dynamic Modular Router Authority" "$EXISTING_RULES" 2>/dev/null; then
+        echo "  🚨 AegisIDE content already exists in $PROMPT_FILENAME"
+        echo "  🔄 Comparing versions..."
         
-        # Append AegisIDE rules
-        echo "" >> "$EXISTING_RULES"
-        echo "# =================================" >> "$EXISTING_RULES"
-        echo "# AegisIDE Framework (Auto-Added)" >> "$EXISTING_RULES"
-        echo "# =================================" >> "$EXISTING_RULES"
-        cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
-        echo "  ✅ Enhanced existing $PROMPT_FILENAME with AegisIDE framework"
-        echo ""
-        echo "  🔄 To rollback: cp \"$EXISTING_RULES.backup\" \"$EXISTING_RULES\""
+        # Extract existing AegisIDE section
+        sed -n '/# AegisIDE - Dynamic Modular Router Authority/,$p' "$EXISTING_RULES" > /tmp/existing_aegis.md
+        
+        # Compare with new content
+        if diff -q /tmp/existing_aegis.md /tmp/aegiside_rules.md > /dev/null 2>&1; then
+            echo "  ✅ Content identical - no update needed"
+            rm -f /tmp/aegiside_rules.md /tmp/existing_aegis.md
+        else
+            echo "  ⚠️  Content differs - update available"
+            echo ""
+            if ask_permission "Replace existing AegisIDE content with latest version?" "/tmp/aegiside_rules.md"; then
+                # Backup existing rules
+                cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
+                echo ""
+                echo "  💾 Backed up existing $PROMPT_FILENAME → ${PROMPT_FILENAME}.backup"
+                
+                # Remove old AegisIDE section and append new
+                sed -i.tmp '/# AegisIDE - Dynamic Modular Router Authority/,$d' "$EXISTING_RULES"
+                echo "" >> "$EXISTING_RULES"
+                cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
+                rm -f "$EXISTING_RULES.tmp"
+                echo "  ✅ Updated $PROMPT_FILENAME with latest AegisIDE framework"
+            else
+                echo "  ⏭️  Keeping existing version"
+            fi
+            rm -f /tmp/aegiside_rules.md /tmp/existing_aegis.md
+        fi
     else
+        echo "  ℹ️  No existing AegisIDE content found"
         echo ""
-        echo "  ⏭️  Skipped system prompt modification (user declined)"
-        echo "  ℹ️  Framework will still be installed to workspace"
-        echo "  ℹ️  You can manually add rules later if needed"
+        # Ask for permission before modifying system prompt
+        if ask_permission "This will APPEND AegisIDE framework rules to your existing $PROMPT_FILENAME.\nThis modifies your IDE's system prompt and affects all AI interactions." "/tmp/aegiside_rules.md"; then
+            # Backup existing rules
+            cp "$EXISTING_RULES" "$EXISTING_RULES.backup"
+            echo ""
+            echo "  💾 Backed up existing $PROMPT_FILENAME → ${PROMPT_FILENAME}.backup"
+            
+            # Append AegisIDE rules
+            echo "" >> "$EXISTING_RULES"
+            cat /tmp/aegiside_rules.md >> "$EXISTING_RULES"
+            echo "  ✅ Enhanced existing $PROMPT_FILENAME with AegisIDE framework"
+            echo ""
+            echo "  🔄 To rollback: cp \"$EXISTING_RULES.backup\" \"$EXISTING_RULES\""
+        else
+            echo ""
+            echo "  ⏭️  Skipped system prompt modification (user declined)"
+            echo "  ℹ️  Framework will still be installed to workspace"
+            echo "  ℹ️  You can manually add rules later if needed"
+        fi
         rm -f /tmp/aegiside_rules.md
     fi
 else
@@ -359,50 +394,111 @@ else
         if [ -f "$WORKSPACE_PATH/mcp_servers.json" ]; then
             echo ""
             echo "  📋 Existing mcp_servers.json detected"
-            echo ""
-            echo "  🔧 AegisIDE uses 6 mandatory MCPs:"
-            echo "     • json-jq (JSON operations)"
-            echo "     • sequential-thinking (reasoning)"
-            echo "     • git (version control)"
-            echo "     • context7 (documentation)"
-            echo "     • exa (code research)"
-            echo "     • fetch (web content)"
-            echo ""
-            echo "  Options:"
-            echo "    R) Replace entire file with AegisIDE configuration"
-            echo "    A) Append AegisIDE MCPs to existing file"
-            echo "    N) No changes (keep your current configuration)"
+            echo "  🔍 DIFF-FIRST: Checking for AegisIDE MCPs..."
             echo ""
             
-            while true; do
-                read -p "  Your choice [R/A/N]: " choice
-                case $choice in
-                    [Rr]* )
-                        cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
-                        cp /tmp/aegiside_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
-                        echo ""
-                        echo "  ✅ Replaced mcp_servers.json with AegisIDE configuration"
-                        echo "  💾 Backup: mcp_servers.json.backup"
-                        break;;
-                    [Aa]* )
-                        cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
-                        # Merge MCPs using jq
-                        jq -s '.[0].mcpServers * .[1].mcpServers | {mcpServers: .}' \
-                            "$WORKSPACE_PATH/mcp_servers.json" /tmp/aegiside_mcp_servers.json \
-                            > /tmp/merged_mcp_servers.json
-                        mv /tmp/merged_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
-                        echo ""
-                        echo "  ✅ Appended AegisIDE MCPs to existing configuration"
-                        echo "  💾 Backup: mcp_servers.json.backup"
-                        break;;
-                    [Nn]* )
-                        echo ""
-                        echo "  ⏭️  Skipped mcp_servers.json modification"
-                        echo "  ℹ️  You can manually add MCPs from /tmp/aegiside_mcp_servers.json"
-                        break;;
-                    * ) echo "  Please answer R, A, or N.";;
-                esac
+            # Check if all 6 AegisIDE MCPs already exist
+            AEGIS_MCPS=("json-jq" "sequential-thinking" "git" "context7" "exa" "fetch")
+            ALL_EXIST=true
+            MISSING_MCPS=()
+            
+            for mcp in "${AEGIS_MCPS[@]}"; do
+                if ! jq -e ".mcpServers.\"$mcp\"" "$WORKSPACE_PATH/mcp_servers.json" > /dev/null 2>&1; then
+                    ALL_EXIST=false
+                    MISSING_MCPS+=("$mcp")
+                fi
             done
+            
+            if [ "$ALL_EXIST" = true ]; then
+                echo "  ✅ All 6 AegisIDE MCPs already present"
+                echo "  🔄 Comparing configurations..."
+                
+                # Extract AegisIDE MCPs from both files and compare
+                jq '.mcpServers | with_entries(select(.key | IN("json-jq", "sequential-thinking", "git", "context7", "exa", "fetch")))' \
+                    "$WORKSPACE_PATH/mcp_servers.json" > /tmp/existing_aegis_mcps.json
+                jq '.mcpServers' /tmp/aegiside_mcp_servers.json > /tmp/new_aegis_mcps.json
+                
+                if diff -q /tmp/existing_aegis_mcps.json /tmp/new_aegis_mcps.json > /dev/null 2>&1; then
+                    echo "  ✅ MCP configurations identical - no update needed"
+                    rm -f /tmp/existing_aegis_mcps.json /tmp/new_aegis_mcps.json
+                else
+                    echo "  ⚠️  MCP configurations differ - update available"
+                    echo ""
+                    echo "  Options:"
+                    echo "    U) Update AegisIDE MCPs to latest versions"
+                    echo "    K) Keep existing MCP configurations"
+                    echo ""
+                    
+                    while true; do
+                        read -p "  Your choice [U/K]: " choice
+                        case $choice in
+                            [Uu]* )
+                                cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
+                                # Update only AegisIDE MCPs, keep others
+                                jq --slurpfile new /tmp/new_aegis_mcps.json \
+                                   '.mcpServers = (.mcpServers + $new[0])' \
+                                   "$WORKSPACE_PATH/mcp_servers.json" > /tmp/updated_mcp_servers.json
+                                mv /tmp/updated_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+                                echo ""
+                                echo "  ✅ Updated AegisIDE MCPs to latest versions"
+                                echo "  💾 Backup: mcp_servers.json.backup"
+                                break;;
+                            [Kk]* )
+                                echo ""
+                                echo "  ⏭️  Keeping existing MCP configurations"
+                                break;;
+                            * ) echo "  Please answer U or K.";;
+                        esac
+                    done
+                    rm -f /tmp/existing_aegis_mcps.json /tmp/new_aegis_mcps.json
+                fi
+            else
+                echo "  ⚠️  Missing AegisIDE MCPs: ${MISSING_MCPS[*]}"
+                echo ""
+                echo "  🔧 AegisIDE requires 6 mandatory MCPs:"
+                echo "     • json-jq (JSON operations)"
+                echo "     • sequential-thinking (reasoning)"
+                echo "     • git (version control)"
+                echo "     • context7 (documentation)"
+                echo "     • exa (code research)"
+                echo "     • fetch (web content)"
+                echo ""
+                echo "  Options:"
+                echo "    R) Replace entire file with AegisIDE configuration"
+                echo "    A) Append missing AegisIDE MCPs to existing file"
+                echo "    N) No changes (keep your current configuration)"
+                echo ""
+                
+                while true; do
+                    read -p "  Your choice [R/A/N]: " choice
+                    case $choice in
+                        [Rr]* )
+                            cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
+                            cp /tmp/aegiside_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+                            echo ""
+                            echo "  ✅ Replaced mcp_servers.json with AegisIDE configuration"
+                            echo "  💾 Backup: mcp_servers.json.backup"
+                            break;;
+                        [Aa]* )
+                            cp "$WORKSPACE_PATH/mcp_servers.json" "$WORKSPACE_PATH/mcp_servers.json.backup"
+                            # Merge MCPs using jq
+                            jq -s '.[0].mcpServers * .[1].mcpServers | {mcpServers: .}' \
+                                "$WORKSPACE_PATH/mcp_servers.json" /tmp/aegiside_mcp_servers.json \
+                                > /tmp/merged_mcp_servers.json
+                            mv /tmp/merged_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
+                            echo ""
+                            echo "  ✅ Appended AegisIDE MCPs to existing configuration"
+                            echo "  💾 Backup: mcp_servers.json.backup"
+                            break;;
+                        [Nn]* )
+                            echo ""
+                            echo "  ⏭️  Skipped mcp_servers.json modification"
+                            echo "  ℹ️  You can manually add MCPs from /tmp/aegiside_mcp_servers.json"
+                            break;;
+                        * ) echo "  Please answer R, A, or N.";;
+                    esac
+                done
+            fi
         else
             echo "  🆕 No existing mcp_servers.json found"
             cp /tmp/aegiside_mcp_servers.json "$WORKSPACE_PATH/mcp_servers.json"
