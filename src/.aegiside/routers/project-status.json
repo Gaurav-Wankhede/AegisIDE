@@ -1,0 +1,92 @@
+{
+  "router_name": "project-status",
+  "version": "1.0.0",
+  "description": "Project status queries - migration progress, task completion, memory-bank state assessment",
+  "purpose": "Handle status/progress queries by routing to memory-bank schemas for real-time project state",
+  "triggers": [
+    "status",
+    "progress",
+    "migration status",
+    "what's done",
+    "completion",
+    "current state",
+    "where are we",
+    "project status",
+    "task status",
+    "how far along"
+  ],
+  "workflow": {
+    "query_analysis": {
+      "step_1": "Parse status query for scope (project-wide, specific feature, migration phase)",
+      "step_2": "Route to appropriate memory-bank schemas based on query type"
+    },
+    "routing_logic": {
+      "project_status": {
+        "description": "Overall project health and completion percentage",
+        "data_sources": [
+          "activeContext.json → current_phase",
+          "kanban.json → todo/in_progress/done/approved counts",
+          "progress.json → rl_score, completion_metrics",
+          "roadmap.json → milestones, strategic_goals"
+        ],
+        "mcp_chain": [
+          "@mcp:json-jq query '.current_phase' from 'activeContext.json'",
+          "@mcp:json-jq query '.tasks | map(select(.status)) | group_by(.status)' from 'kanban.json'",
+          "@mcp:json-jq query '.total_rl_score, .completion_percentage' from 'progress.json'",
+          "@mcp:json-jq query '.milestones[] | select(.status == \"completed\")' from 'roadmap.json'"
+        ]
+      },
+      "migration_status": {
+        "description": "Specific migration progress (e.g., FastAPI → Rust)",
+        "data_sources": [
+          "roadmap.json → migration_phases array",
+          "kanban.json → migration-tagged tasks",
+          "systemPatterns.json → ported_apis array",
+          "mistakes.json → migration_blockers"
+        ],
+        "mcp_chain": [
+          "@mcp:json-jq query '.migration_phases[]' from 'roadmap.json'",
+          "@mcp:json-jq query '.tasks[] | select(.tags[] | contains(\"migration\"))' from 'kanban.json'",
+          "@mcp:json-jq query '.ported_apis' from 'systemPatterns.json'"
+        ]
+      },
+      "task_status": {
+        "description": "Individual task or feature completion check",
+        "data_sources": [
+          "scratchpad.json → priority_queue current task",
+          "kanban.json → specific task by ID",
+          "activeContext.json → current_execution_context"
+        ],
+        "mcp_chain": [
+          "@mcp:json-jq query '.tasks[0]' from 'scratchpad.json'",
+          "@mcp:json-jq query '.current_task' from 'activeContext.json'"
+        ]
+      }
+    },
+    "response_format": {
+      "structure": "## Status: {percentage}% Complete\n\n### ✅ Completed\n{completed_items}\n\n### ❌ Not Started\n{pending_items}\n\n### 📋 Next Steps\n{next_actions}",
+      "data_aggregation": "Compile from multiple memory-bank schemas via @mcp:json-jq",
+      "no_hallucination": "ONLY report data present in memory-bank schemas - never infer or assume"
+    }
+  },
+  "integration": {
+    "memory_bank_first": "Always query memory-bank schemas before code inspection",
+    "fallback": "If memory-bank empty (null), populate from actual codebase state, then update schemas",
+    "constitutional_compliance": "Article 14 - Duty to Update 8-Schema Memory Bank after status assessment"
+  },
+  "violations": {
+    "skipping_memory_bank": {
+      "penalty": -25,
+      "description": "Querying code directly without checking memory-bank first"
+    },
+    "missing_mcp_chain": {
+      "penalty": -15,
+      "description": "Using Read() instead of @mcp:json-jq for JSON operations"
+    },
+    "hallucinated_status": {
+      "penalty": -35,
+      "description": "Reporting status not backed by memory-bank data"
+    }
+  },
+  "last_updated": "2025-10-25T21:20:00+05:30"
+}
