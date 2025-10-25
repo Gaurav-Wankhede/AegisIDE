@@ -88,7 +88,18 @@ cp src/system-prompt.md ~/.cursor/memories/global_rules.mdc
 
 **License**: MIT | **Status**: Production Ready
 
+## Connect
+
 <div align="center">
+
+### 👨‍💻 Created by Gaurav Wankhede
+
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-blue?style=for-the-badge&logo=vercel)](https://gaurav-wankhede.vercel.app/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Follow-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wankhede-gaurav/)
+[![X/Twitter](https://img.shields.io/badge/X-Follow-000000?style=for-the-badge&logo=x&logoColor=white)](https://x.com/GTechverse16703)
+[![YouTube](https://img.shields.io/badge/YouTube-Subscribe-red?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@GauravWankhede-TECHVERSE)
+
+---
 
 [⭐ Star](https://github.com/Gaurav-Wankhede/AegisIDE) · [🐛 Report](https://github.com/Gaurav-Wankhede/AegisIDE/issues) · [💡 Feature](https://github.com/Gaurav-Wankhede/AegisIDE/issues)
 
