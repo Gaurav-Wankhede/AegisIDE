@@ -36,7 +36,7 @@
         "3. Challenge: Shadow reviews, log mistakes.json if issues, get memory.json precedents, @mcp:sequential-thinking counterargument",
         "4. Debate: @mcp:sequential-thinking facilitate, log activeContext, archive memory.json, track time",
         "5. Consensus: Calculate weighted votes, update progress. IF ≥95% approve, <95% reject + reason",
-        "6. Publish: Update roadmap.md, store memory.json, @mcp:git commit, notify activeContext"
+        "6. Publish: Update roadmap.json, store memory.json, @mcp:git commit, notify activeContext"
       ],
       "conflict_resolution": "IAS logs mistakes → Cabinet Secretary mediates via @mcp:sequential-thinking → MCP-backed evidence → Chief Justice ruling in memory.json → Appeal ≥98%"
     },

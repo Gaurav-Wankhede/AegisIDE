@@ -2,7 +2,7 @@
   "progressive_loading": {
     "enabled": true,
     "index_file": "routers/constitutional-index.json",
-    "github_base": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/rules/constitution",
+    "github_base": "https://raw.githubusercontent.com/Gaurav-Wankhede/AegisIDE/main/src/.aegiside/constitution",
     "startup_articles": ["article-0", "article-4", "article-13"],
     "cache_location": ".aegiside/cache/constitution/",
     "session_cache": "activeContext.loaded_articles[]",

@@ -43,7 +43,7 @@
         "4. Execute → Update schemas → Store in memory.json",
         "5. Verify ≥80% → Chief Justice approves → -30 RL + 15 reward → Resume"
       ],
-      "weekly_reports": "Generate summary, analyze trends, timestamp, @mcp:git commit → roadmap/roadmap.md"
+      "weekly_reports": "Generate summary, analyze trends, timestamp, @mcp:git commit → roadmap.json"
     },
     "violations": {
       "severe": [
