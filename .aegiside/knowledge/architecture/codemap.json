@@ -1,6 +1,6 @@
 {
   "title": "AegisIDE v4.0+ Architecture: 3-Tier Hierarchical Structure for Progressive Disclosure",
-  "description": "This codemap documents the AegisIDE v4.0+ architecture with 3-tier hierarchical routing. TIER-1 CORE (500 tokens, always loaded): main-router + context-orchestrator. TIER-2 DOMAIN (800-1.2K tokens, on-demand): ace-router, governance-router, architecture-router. TIER-3 RUNTIME/KNOWLEDGE (1-5K tokens, task-specific): 47 runtime files (ace workflows, memory state, optimization) + 50 knowledge files (constitution, enforcement, architecture, support). This structure achieves 91% token savings vs flat architecture. Key innovations: Hierarchical routing, semantic suite consolidation, tier-aware enforcement, progressive disclosure pattern.",
+  "description": "This codemap documents the AegisIDE v4.0+ architecture with 3-tier hierarchical routing. TIER-1 CORE (500 tokens, always loaded): main-router + context-orchestrator. TIER-2 DOMAIN (800-1.2K tokens, on-demand): ace-router, governance-router, architecture-router. TIER-3 RUNTIME/KNOWLEDGE (1-5K tokens, task-specific): 52 runtime files (ace workflows, memory state, optimization, mona, incidents) + 21 knowledge files (constitution, architecture). This structure achieves 91% token savings vs flat architecture. Key innovations: Hierarchical routing, semantic suite consolidation, tier-aware routing, progressive disclosure pattern.",
   "id": "AegisIDE_v4.0_Architecture_20251030_142700",
   "version": "4.0.0",
   "last_updated": "2025-10-30T14:27:00+05:30",
@@ -27,32 +27,33 @@
       "purpose": "Domain-specific routing to tier-3 targets"
     },
     "tier_3_runtime": {
-      "total_files": 47,
+      "total_files": 52,
       "tokens": "1-3K",
       "loading": "task-specific",
-      "folders": ["runtime/ace", "runtime/memory", "runtime/optimization"],
+      "folders": ["runtime/ace", "runtime/memory", "runtime/optimization", "runtime/mona", "runtime/incidents"],
       "structure": {
-        "ace": "13 files (trackers + workflows + semantic suites)",
-        "memory": "27 files (active/3 + history/5 + schemas/19)",
-        "optimization": "3 files (token-budget, context-window, compression)"
+        "ace": "19 files (trackers + workflows + semantic suites)",
+        "memory": "23 files (active/2 + history/10 + schemas/11)",
+        "optimization": "4 files (token-budget, context-window, compression, meta-evaluator)",
+        "mona": "3 files (config, patterns, obfuscation_monitor)",
+        "incidents": "2 files (reward_hacking_incidents.json, incident_response_guide.md)"
       },
       "access_pattern": "jq for ace/, @mcp:json-jq for memory/",
       "mutability": "mixed (workflows static, memory dynamic)",
-      "purpose": "Execution workflows, memory state, optimization"
+      "purpose": "Execution workflows, memory state, optimization, safety monitoring"
     },
     "tier_3_knowledge": {
-      "total_files": 50,
+      "total_files": 21,
       "tokens": "0-5K",
       "loading": "reference",
-      "folders": ["knowledge/governance", "knowledge/architecture", "knowledge/support"],
+      "folders": ["knowledge/governance", "knowledge/architecture"],
       "structure": {
-        "governance": "38 files (constitution/11 + enforcement/27)",
-        "architecture": "5 files (mmd, json, codemap, relation, router)",
-        "support": "7 files (visualize/6 + reflection/1)"
+        "governance": "17 files (constitution/16 + governance-router/1)",
+        "architecture": "4 files (json, codemap, relation, router)"
       },
       "access_pattern": "jq on-demand only",
       "mutability": "static",
-      "purpose": "Governance rules, architecture docs, support tools"
+      "purpose": "Governance rules, architecture docs"
     },
     "token_savings": {
       "old_flat": "~8665 tokens",
@@ -60,7 +61,7 @@
       "new_tier_2": "~800-1200 tokens",
       "new_typical": "~1500-2000 tokens",
       "measured_savings": "91%",
-      "total_files": 104
+      "total_files": 75
     }
   },
   "traces": [
@@ -405,7 +406,7 @@
       "new_tier_1_2": "~800-1700 tokens (domain routing)",
       "new_tier_1_2_3_typical": "~2000-2500 tokens (targeted execution)",
       "measured_savings": "91% (from scratchpad Phase 7 testing)",
-      "total_files": 104
+      "total_files": 75
     }
   }
 }

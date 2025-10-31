@@ -1,0 +1,342 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "usearch_config", "embedding_metadata", "similarity_threshold", "index_statistics"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_info": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "workspace_path": {"type": "string"},
+        "ide_type": {"type": "string"}
+      }
+    },
+    "usearch_config": {
+      "type": "object",
+      "description": "USearch embedded vector index configuration",
+      "properties": {
+        "index_type": {
+          "type": "string",
+          "enum": ["hnsw", "ivf", "brute_force"],
+          "default": "hnsw"
+        },
+        "dimensions": {
+          "type": "integer",
+          "default": 1536,
+          "description": "Vector dimensionality (e.g., text-embedding-ada-002)"
+        },
+        "metric": {
+          "type": "string",
+          "enum": ["cosine", "euclidean", "dot_product"],
+          "default": "cosine"
+        },
+        "connectivity": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 64,
+          "default": 16,
+          "description": "HNSW connectivity parameter"
+        },
+        "expansion_add": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 200,
+          "default": 40,
+          "description": "HNSW expansion factor for additions"
+        },
+        "expansion_search": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 200,
+          "default": 16,
+          "description": "HNSW expansion factor for searches"
+        },
+        "max_elements": {
+          "type": "integer",
+          "minimum": 1000,
+          "default": 100000,
+          "description": "Maximum number of vectors in index"
+        }
+      }
+    },
+    "embedding_metadata": {
+      "type": "object",
+      "description": "Comprehensive embedding metadata for semantic search",
+      "properties": {
+        "embeddings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["embedding_id", "vector_id", "source_type", "created_at"],
+            "properties": {
+              "embedding_id": {
+                "type": "string",
+                "description": "Unique identifier for the embedding"
+              },
+              "vector_id": {
+                "type": "integer",
+                "description": "USearch internal vector ID"
+              },
+              "source_type": {
+                "type": "string",
+                "enum": ["episodic_event", "semantic_node", "procedural_pattern", "skill", "document", "code_snippet"],
+                "description": "Type of source that generated this embedding"
+              },
+              "source_id": {
+                "type": "string",
+                "description": "ID of the source object"
+              },
+              "text_content": {
+                "type": "string",
+                "description": "Original text that was embedded"
+              },
+              "token_count": {
+                "type": "integer",
+                "minimum": 0,
+                "description": "Number of tokens in original text"
+              },
+              "embedding_model": {
+                "type": "string",
+                "default": "text-embedding-ada-002"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "last_accessed": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "access_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "tags": {
+                "type": "array",
+                "items": {"type": "string"}
+              },
+              "metadata": {
+                "type": "object",
+                "properties": {
+                  "language": {"type": "string"},
+                  "domain": {"type": "string"},
+                  "complexity": {"type": "string"},
+                  "quality_score": {"type": "number", "minimum": 0, "maximum": 1}
+                }
+              }
+            }
+          }
+        },
+        "model_info": {
+          "type": "object",
+          "properties": {
+            "current_model": {"type": "string"},
+            "model_version": {"type": "string"},
+            "max_tokens": {"type": "integer"},
+            "embedding_dimensions": {"type": "integer"},
+            "model_provider": {"type": "string"}
+          }
+        }
+      }
+    },
+    "similarity_threshold": {
+      "type": "object",
+      "description": "Dynamic similarity thresholds for different contexts",
+      "properties": {
+        "default_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8
+        },
+        "contextual_thresholds": {
+          "type": "object",
+          "properties": {
+            "episodic_search": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.7,
+              "description": "Threshold for episodic memory retrieval"
+            },
+            "semantic_reasoning": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.85,
+              "description": "Threshold for semantic graph reasoning"
+            },
+            "procedural_matching": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.75,
+              "description": "Threshold for procedural pattern matching"
+            },
+            "skill_assessment": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "default": 0.8,
+              "description": "Threshold for skill competency assessment"
+            }
+          }
+        },
+        "adaptive_thresholding": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "learning_rate": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.01},
+            "feedback_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.3},
+            "performance_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7}
+          }
+        }
+      }
+    },
+    "index_statistics": {
+      "type": "object",
+      "properties": {
+        "total_embeddings": {"type": "integer", "minimum": 0},
+        "indexed_vectors": {"type": "integer", "minimum": 0},
+        "index_size_bytes": {"type": "integer", "minimum": 0},
+        "index_utilization": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Percentage of index capacity used"
+        },
+        "average_query_time_ms": {"type": "number"},
+        "average_index_time_ms": {"type": "number"},
+        "cache_hit_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_compaction": {"type": "string", "format": "date-time"},
+        "fragmentation_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "search_configuration": {
+      "type": "object",
+      "description": "Search and retrieval configuration",
+      "properties": {
+        "default_k": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100,
+          "default": 10,
+          "description": "Default number of results to return"
+        },
+        "max_k": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000,
+          "default": 100,
+          "description": "Maximum number of results allowed"
+        },
+        "search_strategies": {
+          "type": "object",
+          "properties": {
+            "exact_match": {
+              "type": "boolean",
+              "default": false
+            },
+            "hybrid_search": {
+              "type": "boolean",
+              "default": true,
+              "description": "Combine semantic and keyword search"
+            },
+            "reranking": {
+              "type": "boolean",
+              "default": true
+            },
+            "diversification": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "performance_optimization": {
+          "type": "object",
+          "properties": {
+            "query_cache_size": {"type": "integer", "default": 1000},
+            "result_cache_ttl_seconds": {"type": "integer", "default": 300},
+            "parallel_search": {"type": "boolean", "default": true},
+            "early_termination": {"type": "boolean", "default": true}
+          }
+        }
+      }
+    },
+    "maintenance": {
+      "type": "object",
+      "properties": {
+        "auto_compaction": {
+          "type": "boolean",
+          "default": true
+        },
+        "compaction_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8
+        },
+        "cleanup_old_embeddings": {
+          "type": "boolean",
+          "default": true
+        },
+        "embedding_ttl_days": {
+          "type": "integer",
+          "default": 365
+        },
+        "last_maintenance": {"type": "string", "format": "date-time"},
+        "maintenance_schedule": {
+          "type": "string",
+          "enum": ["daily", "weekly", "monthly"],
+          "default": "weekly"
+        }
+      }
+    },
+    "integration_points": {
+      "type": "object",
+      "description": "Integration with other memory components",
+      "properties": {
+        "episodic_events": {
+          "type": "object",
+          "properties": {
+            "auto_index": {"type": "boolean", "default": true},
+            "batch_size": {"type": "integer", "default": 100},
+            "indexing_frequency": {"type": "string", "enum": ["real-time", "batch"], "default": "real-time"}
+          }
+        },
+        "semantic_graph": {
+          "type": "object",
+          "properties": {
+            "node_indexing": {"type": "boolean", "default": true},
+            "edge_indexing": {"type": "boolean", "default": false},
+            "relationship_embeddings": {"type": "boolean", "default": true}
+          }
+        },
+        "procedural_patterns": {
+          "type": "object",
+          "properties": {
+            "pattern_indexing": {"type": "boolean", "default": true},
+            "skill_indexing": {"type": "boolean", "default": true},
+            "quality_weighted_search": {"type": "boolean", "default": true}
+          }
+        }
+      }
+    }
+  }
+}

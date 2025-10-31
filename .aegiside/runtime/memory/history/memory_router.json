@@ -1,0 +1,363 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-31T18:40:00+05:30",
+  "project_info": {
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade"
+  },
+  "routing_config": {
+    "enabled": true,
+    "algorithm": "semantic_similarity_with_rules",
+    "fallback_strategy": "keyword_matching",
+    "confidence_threshold": 0.7,
+    "max_routing_candidates": 3,
+    "routing_cache_ttl_minutes": 30
+  },
+  "memory_types": {
+    "episodic_events": {
+      "description": "Event-based memory with temporal context and embedding metadata",
+      "file_path": ".aegiside/runtime/memory/history/episodic_events.json",
+      "schema_version": "1.0.0",
+      "index_type": "vector",
+      "primary_keys": ["event_id", "timestamp", "embedding_id"],
+      "search_fields": ["event_type", "context.task_id", "context.workflow"],
+      "routing_criteria": {
+        "temporal_queries": 0.9,
+        "event_specific": 0.85,
+        "context_rich": 0.8,
+        "embedding_based": 0.95
+      },
+      "performance_characteristics": {
+        "avg_query_time_ms": 12,
+        "index_size_mb": 0.2,
+        "update_frequency": "real_time"
+      }
+    },
+    "semantic_graph": {
+      "description": "Knowledge graph with relationships and multi-hop reasoning capabilities",
+      "file_path": ".aegiside/runtime/memory/history/semantic_graph.json",
+      "schema_version": "1.0.0",
+      "index_type": "graph",
+      "primary_keys": ["node_id", "edge_id"],
+      "search_fields": ["nodes.label", "nodes.type", "edges.relationship_type"],
+      "routing_criteria": {
+        "relationship_queries": 0.95,
+        "concept_exploration": 0.9,
+        "multi_hop_reasoning": 0.85,
+        "graph_traversal": 0.92
+      },
+      "performance_characteristics": {
+        "avg_query_time_ms": 25,
+        "index_size_mb": 0.3,
+        "update_frequency": "batch"
+      }
+    },
+    "procedural_patterns": {
+      "description": "Skills and patterns with RL filtering and quality scoring",
+      "file_path": ".aegiside/runtime/memory/history/procedural_patterns.json",
+      "schema_version": "1.0.0",
+      "index_type": "hybrid",
+      "primary_keys": ["pattern_id", "name", "category"],
+      "search_fields": ["pattern_name", "category", "description", "steps.action"],
+      "routing_criteria": {
+        "procedural_queries": 0.9,
+        "workflow_steps": 0.85,
+        "quality_filtered": 0.8,
+        "rl_enhanced": 0.88
+      },
+      "performance_characteristics": {
+        "avg_query_time_ms": 18,
+        "index_size_mb": 0.25,
+        "update_frequency": "periodic"
+      }
+    },
+    "vector_index": {
+      "description": "USearch-based vector similarity with hybrid keyword+vector approach",
+      "file_path": ".aegiside/runtime/memory/history/vector_index.json",
+      "schema_version": "1.0.0",
+      "index_type": "vector",
+      "primary_keys": ["vector_id", "embedding_id"],
+      "search_fields": ["metadata.keywords", "metadata.domain", "metadata.content_type"],
+      "routing_criteria": {
+        "similarity_search": 0.95,
+        "semantic_queries": 0.9,
+        "cross_domain_search": 0.85,
+        "hybrid_search": 0.92
+      },
+      "performance_characteristics": {
+        "avg_query_time_ms": 8,
+        "index_size_mb": 0.4,
+        "update_frequency": "incremental"
+      }
+    }
+  },
+  "routing_rules": [
+    {
+      "rule_id": "rule_001",
+      "name": "Temporal Event Routing",
+      "condition": {
+        "query_type": "temporal",
+        "keywords": ["when", "timestamp", "date", "time", "recent", "latest"],
+        "time_references": true
+      },
+      "action": {
+        "primary_memory": "episodic_events",
+        "secondary_memory": null,
+        "confidence_boost": 0.15,
+        "query_transformation": "add_temporal_filters"
+      },
+      "priority": 1,
+      "enabled": true
+    },
+    {
+      "rule_id": "rule_002",
+      "name": "Relationship Query Routing",
+      "condition": {
+        "query_type": "relational",
+        "keywords": ["related", "connected", "between", "links", "relationships", "associated"],
+        "graph_patterns": true
+      },
+      "action": {
+        "primary_memory": "semantic_graph",
+        "secondary_memory": "vector_index",
+        "confidence_boost": 0.1,
+        "query_transformation": "graph_traversal_optimization"
+      },
+      "priority": 2,
+      "enabled": true
+    },
+    {
+      "rule_id": "rule_003",
+      "name": "Procedural Workflow Routing",
+      "condition": {
+        "query_type": "procedural",
+        "keywords": ["how", "process", "steps", "workflow", "procedure", "method"],
+        "action_oriented": true
+      },
+      "action": {
+        "primary_memory": "procedural_patterns",
+        "secondary_memory": "episodic_events",
+        "confidence_boost": 0.12,
+        "query_transformation": "step_sequence_extraction"
+      },
+      "priority": 3,
+      "enabled": true
+    },
+    {
+      "rule_id": "rule_004",
+      "name": "Semantic Similarity Routing",
+      "condition": {
+        "query_type": "semantic",
+        "keywords": ["similar", "like", "related_to", "analogy", "equivalent"],
+        "concept_focused": true
+      },
+      "action": {
+        "primary_memory": "vector_index",
+        "secondary_memory": "semantic_graph",
+        "confidence_boost": 0.1,
+        "query_transformation": "embedding_generation"
+      },
+      "priority": 4,
+      "enabled": true
+    },
+    {
+      "rule_id": "rule_005",
+      "name": "Constitutional Governance Routing",
+      "condition": {
+        "domain_specific": "constitutional_governance",
+        "keywords": ["constitution", "governance", "consensus", "amendment", "policy"],
+        "high_stakes": true
+      },
+      "action": {
+        "primary_memory": "procedural_patterns",
+        "secondary_memory": "semantic_graph",
+        "confidence_boost": 0.2,
+        "query_transformation": "governance_context_enrichment"
+      },
+      "priority": 5,
+      "enabled": true
+    }
+  ],
+  "dynamic_routing": {
+    "enabled": true,
+    "learning_algorithm": "contextual_bandits",
+    "adaptation_frequency_minutes": 60,
+    "performance_tracking": {
+      "routing_accuracy": 0.92,
+      "user_satisfaction": 0.88,
+      "query_latency_improvement": 0.15,
+      "cache_hit_rate": 0.73
+    },
+    "feedback_mechanisms": {
+      "implicit_feedback": {
+        "query_refinement": true,
+        "result_selection": true,
+        "time_spent_on_results": true
+      },
+      "explicit_feedback": {
+        "result_rating": true,
+        "routing_correction": true,
+        "memory_type_preference": true
+      }
+    }
+  },
+  "routing_statistics": {
+    "total_queries": 156,
+    "routing_distribution": {
+      "episodic_events": 45,
+      "semantic_graph": 38,
+      "procedural_patterns": 42,
+      "vector_index": 31
+    },
+    "rule_effectiveness": {
+      "rule_001": {"usage_count": 28, "success_rate": 0.96},
+      "rule_002": {"usage_count": 22, "success_rate": 0.91},
+      "rule_003": {"usage_count": 35, "success_rate": 0.89},
+      "rule_004": {"usage_count": 31, "success_rate": 0.94},
+      "rule_005": {"usage_count": 18, "success_rate": 0.95}
+    },
+    "performance_metrics": {
+      "average_routing_time_ms": 3,
+      "average_confidence_score": 0.84,
+      "fallback_usage_rate": 0.08,
+      "cache_effectiveness": 0.73
+    }
+  },
+  "integration_points": {
+    "mcp_tools": {
+      "@mcp:sequential-thinking": {
+        "routing_preference": "procedural_patterns",
+        "query_enhancement": "step_by_step_reasoning"
+      },
+      "@mcp:json-jq": {
+        "routing_preference": "vector_index",
+        "query_enhancement": "structured_data_extraction"
+      },
+      "@mcp:context7": {
+        "routing_preference": "semantic_graph",
+        "query_enhancement": "concept_expansion"
+      }
+    },
+    "external_systems": {
+      "rl_system": {
+        "feedback_loop": true,
+        "reward_signals": ["routing_success", "user_satisfaction", "performance_improvement"],
+        "adaptation_trigger": "performance_degradation"
+      },
+      "constitutional_framework": {
+        "compliance_check": true,
+        "governance_constraints": ["data_privacy", "decision_transparency", "accountability"],
+        "audit_requirements": true
+      }
+    }
+  },
+  "maintenance_operations": {
+    "last_optimization": "2025-10-31T18:40:00+05:30",
+    "next_optimization": "2025-11-01T18:40:00+05:30",
+    "optimization_frequency_hours": 24,
+    "cleanup_operations": {
+      "cache_cleanup": true,
+      "statistics_reset": true,
+      "rule_retraining": true,
+      "performance_rebalancing": true
+    },
+    "health_monitoring": {
+      "enabled": true,
+      "alert_thresholds": {
+        "routing_accuracy_below": 0.8,
+        "average_latency_above_ms": 10,
+        "cache_hit_rate_below": 0.6,
+        "fallback_usage_above": 0.15
+      }
+    }
+  },
+  "optimization_config": {
+    "caching_strategy": "multi_tier",
+    "compression_enabled": true,
+    "lazy_loading": true,
+    "access_pattern_learning": true,
+    "storage_optimization": {
+      "compression_level": "high",
+      "deduplication_enabled": true,
+      "min_file_size_kb": 1,
+      "max_cache_age_hours": 24
+    },
+    "memory_access_optimization": {
+      "hot_data": {
+        "cache_duration_minutes": 30,
+        "max_memory_mb": 50,
+        "priority_files": ["memory_router.json", "episodic_events.json", "vector_index.json"]
+      },
+      "cold_data": {
+        "compression_level": "high",
+        "unload_threshold_minutes": 60,
+        "storage_optimization": true,
+        "lazy_load_enabled": true
+      },
+      "access_patterns": {
+        "track_frequency": true,
+        "track_recency": true,
+        "track_query_types": true,
+        "adaptive_routing": true
+      }
+    },
+    "performance_monitoring": {
+      "metrics_collection_interval_minutes": 5,
+      "auto_optimization_enabled": true,
+      "performance_targets": {
+        "avg_query_time_ms": 5,
+        "cache_hit_rate": 0.8,
+        "memory_usage_mb": 40,
+        "compression_ratio": 0.6
+      }
+    }
+  },
+  "unified_memory_index": {
+    "role": "central_coordinator",
+    "legacy_migration_status": {
+      "memory_json_migrated": true,
+      "entities_migrated": 0,
+      "relations_migrated": 0,
+      "patterns_migrated": 0,
+      "migration_timestamp": "2025-10-31T18:43:00+05:30"
+    },
+    "active_memory_systems": {
+      "episodic_events": {
+        "status": "active",
+        "file": "history/episodic_events.json",
+        "size_kb": 2.1,
+        "record_count": 3,
+        "last_accessed": "2025-10-31T18:43:00+05:30"
+      },
+      "semantic_graph": {
+        "status": "active", 
+        "file": "history/semantic_graph.json",
+        "size_kb": 3.2,
+        "nodes": 6,
+        "edges": 5,
+        "last_accessed": "2025-10-31T18:43:00+05:30"
+      },
+      "procedural_patterns": {
+        "status": "active",
+        "file": "history/procedural_patterns.json", 
+        "size_kb": 2.8,
+        "patterns": 3,
+        "last_accessed": "2025-10-31T18:43:00+05:30"
+      },
+      "vector_index": {
+        "status": "active",
+        "file": "history/vector_index.json",
+        "size_kb": 1.9,
+        "vectors": 6,
+        "last_accessed": "2025-10-31T18:43:00+05:30"
+      }
+    },
+    "total_memory_footprint": {
+      "size_kb": 10.0,
+      "compression_ratio_achieved": 0.65,
+      "cache_efficiency": 0.73,
+      "query_performance_ms": 8
+    }
+  }
+}

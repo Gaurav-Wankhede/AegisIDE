@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.0.0",
+  "compression_metadata": {
+    "original_tokens": 1800,
+    "compressed_tokens": 1080,
+    "compression_ratio": 0.6,
+    "method": "llmlingua-2",
+    "preserve_keywords": ["community", "participation", "democratic", "proposals", "legitimacy", "voting"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-31T18:40:00+05:30"
+  },
+  "priority": "high",
+  "load_frequency": "on_demand",
+  "ace_role": "facilitator",
+  "token_budget": 1080,
+  "id": "article-community-1",
+  "title": "Community Participation Framework",
+  "part": "I-Community-Governance",
+  "version": "1.0.0",
+  "last_updated": "2025-10-31T18:40:00+05:30",
+  "research_source": "Public Constitutional AI (Georgia Law Review 2025)",
+  "metadata": {
+    "summary": "External stakeholder amendment proposals with democratic legitimacy scoring and expert review",
+    "tokens": {
+      "full": 1800,
+      "overview": 350,
+      "proposal_framework": 500,
+      "voting_mechanisms": 450,
+      "expert_review": 300,
+      "legitimacy_scoring": 200
+    },
+    "triggers": [
+      "community_proposal",
+      "stakeholder_amendment",
+      "democratic_participation",
+      "external_input",
+      "legitimacy_assessment"
+    ],
+    "priority": "high"
+  },
+  "content": {
+    "overview": {
+      "declaration": "This framework enables external stakeholders to participate in the constitutional amendment process through structured proposals, democratic voting mechanisms, expert review panels, and legitimacy scoring to ensure inclusive governance while maintaining constitutional integrity.",
+      "scope": "Applies to all external stakeholder proposals for constitutional amendments, policy changes, and governance improvements",
+      "principles": [
+        "Inclusive participation",
+        "Transparent deliberation",
+        "Expert validation",
+        "Democratic legitimacy",
+        "Constitutional compliance"
+      ]
+    },
+    "proposal_framework": {
+      "proposal_types": {
+        "constitutional_amendment": {
+          "description": "Proposals to modify constitutional articles or principles",
+          "threshold": "supermajority_required",
+          "expert_review": "mandatory",
+          "public_consultation": "required"
+        },
+        "policy_enhancement": {
+          "description": "Proposals for new policies or governance improvements",
+          "threshold": "majority_required",
+          "expert_review": "optional",
+          "public_consultation": "recommended"
+        },
+        "operational_change": {
+          "description": "Proposals for operational or procedural changes",
+          "threshold": "simple_majority",
+          "expert_review": "optional",
+          "public_consultation": "optional"
+        }
+      },
+      "submission_requirements": {
+        "stakeholder_verification": {
+          "individual": "identity_verification + reputation_score",
+          "organization": "legal_registration + governance_structure",
+          "community_group": "membership_verification + charter_documentation"
+        },
+        "proposal_content": {
+          "title": "clear_descriptive_title",
+          "abstract": "executive_summary_500_words",
+          "problem_statement": "current_issue_analysis",
+          "proposed_solution": "detailed_implementation_plan",
+          "impact_assessment": "benefits_and_risks_analysis",
+          "constitutional_compliance": "article_alignment_analysis",
+          "resource_requirements": "implementation_cost_and_timeline"
+        },
+        "supporting_evidence": {
+          "research_citations": "academic_or_industry_references",
+          "stakeholder_support": "endorsement_letters",
+          "feasibility_study": "technical_or_economic_analysis",
+          "public_consultation": "community_feedback_summary"
+        }
+      },
+      "proposal_lifecycle": {
+        "submission": "initial_review_and_verification",
+        "preliminary_assessment": "completeness_and_eligibility_check",
+        "public_disclosure": "community_notification_and_comment_period",
+        "expert_review": "technical_and_legal_evaluation",
+        "democratic_deliberation": "community_discussion_and_debate",
+        "voting_phase": "structured_voting_process",
+        "decision_implementation": "approval_and_execution"
+      }
+    },
+    "voting_mechanisms": {
+      "voting_eligibility": {
+        "individual_stakeholders": {
+          "minimum_reputation": 0.7,
+          "active_participation": "30_days_minimum",
+          "constitutional_knowledge": "basic_assessment_required"
+        },
+        "organizational_stakeholders": {
+          "legal_status": "verified_registration",
+          "governance_compliance": "democratic_structure_required",
+          "community_impact": "demonstrable_stakeholder_interest"
+        },
+        "expert_reviewers": {
+          "domain_expertise": "verified_credentials",
+          "impartiality": "conflict_of_interest_disclosure",
+          "professional_standing": "good_professional_reputation"
+        }
+      },
+      "voting_methods": {
+        "weighted_voting": {
+          "description": "Votes weighted by stakeholder type and reputation",
+          "weight_distribution": {
+            "individual_expert": 3.0,
+            "individual_regular": 1.0,
+            "organization_large": 5.0,
+            "organization_small": 2.0,
+            "community_group": 2.5
+          },
+          "applicability": "constitutional_amendments"
+        },
+        "quorum_based_voting": {
+          "description": "Requires minimum participation threshold",
+          "quorum_requirements": {
+            "constitutional_amendment": "0.6_participation",
+            "policy_enhancement": "0.4_participation",
+            "operational_change": "0.3_participation"
+          },
+          "applicability": "all_proposal_types"
+        },
+        "delegated_voting": {
+          "description": "Stakeholders can delegate votes to trusted representatives",
+          "delegation_rules": {
+            "maximum_delegations": 3,
+            "delegation_revocation": "anytime_before_voting_deadline",
+            "delegate_transparency": "public_declaration_required"
+          },
+          "applicability": "complex_technical_proposals"
+        }
+      },
+      "voting_process": {
+        "announcement_period": "7_days_public_notice",
+        "deliberation_period": "14_days_community_discussion",
+        "voting_window": "72_hours_continuous_voting",
+        "result_calculation": "real_time_aggregation_with_audit_trail",
+        "appeal_mechanism": "48_hours_contest_period"
+      }
+    },
+    "expert_review_panel": {
+      "panel_composition": {
+        "technical_experts": {
+          "count": "3-5_members",
+          "specialization": "ai_governance, constitutional_law, democratic_systems",
+          "selection_criteria": "peer_recognition, publication_record, practical_experience"
+        },
+        "legal_experts": {
+          "count": "2-3_members",
+          "specialization": "constitutional_law, administrative_law, regulatory_compliance",
+          "selection_criteria": "legal_practice_experience, academic_credentials, impartiality"
+        },
+        "community_representatives": {
+          "count": "2-4_members",
+          "specialization": "stakeholder_advocacy, community_organizing, public_policy",
+          "selection_criteria": "community_trust, advocacy_experience, diverse_perspective"
+        }
+      },
+      "review_process": {
+        "initial_assessment": {
+          "completeness_check": "all_required_sections_present",
+          "eligibility_verification": "stakeholder_and_proposal_type_validation",
+          "preliminary_score": "initial_legitimacy_assessment"
+        },
+        "detailed_evaluation": {
+          "technical_analysis": "feasibility_and_implementation_assessment",
+          "legal_compliance": "constitutional_alignment_review",
+          "impact_assessment": "benefits_risks_and_stakeholder_effects",
+          "recommendation": "approve_condition_approve_or_reject"
+        },
+        "review_report": {
+          "executive_summary": "key_findings_and_recommendations",
+          "detailed_analysis": "comprehensive_evaluation_documentation",
+          "concerns_and_conditions": "issues_to_address_before_approval",
+          "final_recommendation": "panel_position_with_rationale"
+        }
+      },
+      "panel_governance": {
+        "conflict_of_interest": "mandatory_disclosure_and_recusal",
+        "deliberation_rules": "structured_discussion_with_evidence_based_reasoning",
+        "decision_making": "consensus_or_supermajority_requirement",
+        "accountability": "public_reporting_and_performance_evaluation"
+      }
+    },
+    "democratic_legitimacy_score": {
+      "scoring_components": {
+        "participation_score": {
+          "weight": 0.25,
+          "metrics": [
+            "voter_turnout_percentage",
+            "stakeholder_diversity_index",
+            "geographic_representation",
+            "demographic_inclusivity"
+          ],
+          "calculation": "weighted_average_of_participation_metrics"
+        },
+        "deliberation_quality": {
+          "weight": 0.20,
+          "metrics": [
+            "discussion_depth_score",
+            "evidence_based_reasoning",
+            "constructive_dialogue_ratio",
+            "minority_view_consideration"
+          ],
+          "calculation": "qualitative_assessment_by_moderators"
+        },
+        "expert_validation": {
+          "weight": 0.25,
+          "metrics": [
+            "expert_panel_approval_rate",
+            "technical_feasibility_score",
+            "legal_compliance_rating",
+            "implementation_readiness"
+          ],
+          "calculation": "composite_expert_assessment_score"
+        },
+        "consensus_strength": {
+          "weight": 0.20,
+          "metrics": [
+            "approval_margin_percentage",
+            "cross_stakeholder_support",
+            "opposition_intensity_score",
+            "compromise_achievement"
+          ],
+          "calculation": "consensus_strength_index"
+        },
+        "transparency_score": {
+          "weight": 0.10,
+          "metrics": [
+            "process_documentation_completeness",
+            "decision_rationale_clarity",
+            "stakeholder_communication_effectiveness",
+            "audit_trail_integrity"
+          ],
+          "calculation": "transparency_compliance_index"
+        }
+      },
+      "scoring_thresholds": {
+        "high_legitimacy": {
+          "minimum_score": 0.85,
+          "description": "Strong democratic mandate, immediate implementation",
+          "requirements": "all_components_above_threshold"
+        },
+        "moderate_legitimacy": {
+          "minimum_score": 0.70,
+          "description": "Adequate democratic support, implementation with conditions",
+          "requirements": "core_components_above_threshold"
+        },
+        "low_legitimacy": {
+          "minimum_score": 0.55,
+          "description": "Limited democratic support, revision required",
+          "requirements": "basic_participation_met"
+        },
+        "insufficient_legitimacy": {
+          "minimum_score": 0.0,
+          "maximum_score": 0.55,
+          "description": "Insufficient democratic support, rejection or major revision",
+          "requirements": "resubmission_after_addressing_concerns"
+        }
+      },
+      "score_calculation": {
+        "formula": "weighted_sum_of_all_components",
+        "normalization": "0-1_scale_standardization",
+        "validation": "cross_checked_with_multiple_evaluators",
+        "appeal_process": "independent_review_available"
+      }
+    },
+    "implementation_and_oversight": {
+      "approval_conditions": {
+        "legitimacy_threshold": "minimum_0.70_score_required",
+        "expert_approval": "positive_recommendation_from_panel",
+        "constitutional_compliance": "full_alignment_with_existing_framework",
+        "resource_availability": "implementation_resources_identified"
+      },
+      "implementation_timeline": {
+        "immediate_implementation": "high_legitimacy_proposals",
+        "conditional_implementation": "moderate_legitimacy_with_conditions",
+        "revision_period": "30_days_for_low_legitimacy_proposals",
+        "resubmission_timeline": "60_days_for_rejected_proposals"
+      },
+      "ongoing_oversight": {
+        "implementation_monitoring": "progress_tracking_and_milestone_reporting",
+        "impact_assessment": "post_implementation_effectiveness_evaluation",
+        "community_feedback": "continuous_stakeholder_input_mechanism",
+        "periodic_review": "annual_legitimacy_and_effectiveness_assessment"
+      }
+    }
+  },
+  "triggers": ["community", "participation", "democratic", "proposals", "voting", "legitimacy", "stakeholder"],
+  "semantic_index": {
+    "participation": ["proposal_framework", "voting_mechanisms"],
+    "legitimacy": ["democratic_legitimacy_score", "expert_validation"],
+    "governance": ["implementation_oversight", "panel_composition"]
+  }
+}

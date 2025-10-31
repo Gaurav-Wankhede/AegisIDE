@@ -1,13 +1,13 @@
 {
-  "schema_version": "2.0.0",
+  "schema_version": "2.1.0",
   "compression_metadata": {
     "original_tokens": 1600,
     "compressed_tokens": 800,
     "compression_ratio": 0.5,
     "method": "semantic_chunking",
-    "preserve_keywords": ["bodies", "opposition", "oversight", "audit", "independent"],
+    "preserve_keywords": ["bodies", "opposition", "oversight", "audit", "independent", "consensus", "risk"],
     "preserve_structure": true,
-    "last_compressed": "2025-10-30T12:57:00+05:30"
+    "last_compressed": "2025-10-31T18:39:00+05:30"
   },
   "priority": "medium",
   "load_frequency": "lazy",
@@ -15,7 +15,129 @@
   "token_budget": 800,
   "part": "IX-Constitutional-Bodies",
   "articles_consolidated": [39, 40, 41, 42],
-  "description": "Independent oversight and administrative services - consolidated from 4 articles",
+  "description": "Independent oversight and administrative services - consolidated from 4 articles with dynamic consensus",
+  "dynamic_consensus_framework": {
+    "research_source": "Governance-as-a-Service (arXiv 2508.18765)",
+    "enabled": true,
+    "last_updated": "2025-10-31T18:39:00+05:30",
+    "risk_level_enum": {
+      "low": {
+        "description": "Routine operational decisions",
+        "consensus_threshold": 0.66,
+        "voting_timeout_minutes": 60,
+        "quorum_requirement": 0.5,
+        "escalation_enabled": false
+      },
+      "medium": {
+        "description": "Policy changes with moderate impact",
+        "consensus_threshold": 0.75,
+        "voting_timeout_minutes": 120,
+        "quorum_requirement": 0.6,
+        "escalation_enabled": true
+      },
+      "high": {
+        "description": "Significant constitutional amendments",
+        "consensus_threshold": 0.85,
+        "voting_timeout_minutes": 240,
+        "quorum_requirement": 0.7,
+        "escalation_enabled": true
+      },
+      "critical": {
+        "description": "Emergency measures and fundamental changes",
+        "consensus_threshold": 0.95,
+        "voting_timeout_minutes": 480,
+        "quorum_requirement": 0.8,
+        "escalation_enabled": true,
+        "supermajority_required": true
+      }
+    },
+    "consensus_threshold_field": {
+      "current_threshold": 0.95,
+      "adaptive_adjustment": true,
+      "historical_performance_tracking": true,
+      "threshold_modification_history": []
+    }
+  },
+  "multi_agent_voting_protocol": {
+    "enabled": true,
+    "protocol_version": "1.0.0",
+    "voting_agents": {
+      "executive_branch": {
+        "weight": 0.3,
+        "voting_power": "proportional_to_impact",
+        "specialization": "implementation_feasibility"
+      },
+      "legislative_branch": {
+        "weight": 0.4,
+        "voting_power": "equal_representation",
+        "specialization": "constitutional_compliance"
+      },
+      "judicial_branch": {
+        "weight": 0.2,
+        "voting_power": "legal_expertise_weighted",
+        "specialization": "legal_precedent_analysis"
+      },
+      "opposition_role": {
+        "weight": 0.1,
+        "voting_power": "quality_focused",
+        "specialization": "risk_assessment_and_quality_audit"
+      }
+    },
+    "voting_mechanisms": {
+      "simple_majority": {
+        "applicable_risk_levels": ["low"],
+        "description": "Basic majority for routine decisions"
+      },
+      "weighted_consensus": {
+        "applicable_risk_levels": ["medium", "high"],
+        "description": "Branch-weighted voting with consensus thresholds"
+      },
+      "supermajority_with_veto": {
+        "applicable_risk_levels": ["critical"],
+        "description": "95% consensus with opposition veto power"
+      }
+    },
+    "voting_workflow": {
+      "proposal_submission": "automated_risk_assessment",
+      "deliberation_period": "risk_based_duration",
+      "voting_phase": "branch_specific_consideration",
+      "consensus_calculation": "weighted_threshold_check",
+      "result_implementation": "automatic_if_threshold_met"
+    }
+  },
+  "external_auditor_config": {
+    "enabled": true,
+    "auditor_types": {
+      "independent_audit_commission": {
+        "mandate": "constitutional_compliance_and_performance",
+        "reporting_frequency": "quarterly",
+        "audit_scope": ["governance_decisions", "consensus_processes", "risk_assessments"],
+        "authority_level": "full_access_with_recommendation_power"
+      },
+      "risk_assessment_auditor": {
+        "mandate": "risk_level_validation_and_threshold_appropriateness",
+        "reporting_frequency": "monthly",
+        "audit_scope": ["risk_classifications", "consensus_thresholds", "escalation_triggers"],
+        "authority_level": "advisory_with_veto_on_critical"
+      },
+      "process_transparency_auditor": {
+        "mandate": "voting_process_integrity_and_fairness",
+        "reporting_frequency": "weekly",
+        "audit_scope": ["voting_protocols", "agent_participation", "consensus_calculations"],
+        "authority_level": "observational_with_reporting_requirements"
+      }
+    },
+    "audit_triggers": {
+      "scheduled": ["quarterly", "monthly", "weekly"],
+      "event_based": ["consensus_failure", "risk_level_change", "threshold_modification"],
+      "complaint_based": ["stakeholder_challenge", "opposition_petition", "performance_degradation"]
+    },
+    "audit_reporting": {
+      "transparency_level": "public_summary_with_detailed_privacy",
+      "distribution_channels": ["parliament", "judicial_branch", "public_dashboard"],
+      "action_requirements": ["mandatory_response", "implementation_timeline", "effectiveness_tracking"]
+    }
+  },
   "content": {
     "opposition_role": {
       "article": 39,
@@ -24,9 +146,12 @@
         "Audit all operations for quality",
         "Challenge decisions via petition-router.json",
         "Propose alternative approaches",
-        "Track quality metrics"
+        "Track quality metrics",
+        "Vote in multi-agent consensus with 10% weight",
+        "Exercise veto power on critical risk decisions"
       ],
-      "independence": "Reports directly to Parliament, not Executive"
+      "independence": "Reports directly to Parliament, not Executive",
+      "consensus_role": "risk_assessment_and_quality_audit_specialist"
     },
     "rl_system": {
       "article": 40,
@@ -36,15 +161,25 @@
         "good_decision": "+5 to +10",
         "pattern_stored": "+20",
         "pattern_reused": "+20",
-        "mcp_chain_used": "+10 per chain"
+        "mcp_chain_used": "+10 per chain",
+        "consensus_achieved": "+15",
+        "risk_assessed_appropriately": "+10"
       },
       "penalties": {
         "minor_violation": "-5 to -10",
         "memory_not_updated": "-10",
         "pattern_ignored": "-20",
-        "constitutional_violation": "-50"
+        "constitutional_violation": "-50",
+        "consensus_failure": "-25",
+        "risk_misclassification": "-15"
       },
-      "central_ledger": "progress.json"
+      "central_ledger": "progress.json",
+      "consensus_integration": {
+        "participates_in_voting": false,
+        "provides_risk_assessments": true,
+        "tracks_consensus_effectiveness": true,
+        "learns_from_voting_outcomes": true
+      }
     },
     "mcp_governance": {
       "article": 41,
@@ -58,7 +193,12 @@
         "@mcp:exa",
         "@mcp:fetch"
       ],
-      "violation": "Constitutional violation, -50 penalty, HALT"
+      "violation": "Constitutional violation, -50 penalty, HALT",
+      "consensus_enforcement": {
+        "validates_voting_protocols": true,
+        "ensures_mcp_compliance_in_consensus": true,
+        "audits_consensus_decision_logging": true
+      }
     },
     "audit_commission": {
       "article": 42,
@@ -67,15 +207,183 @@
         "Constitutional compliance audits",
         "Quality metrics reviews",
         "RL system performance",
-        "Memory-bank integrity checks"
+        "Memory-bank integrity checks",
+        "Consensus process effectiveness",
+        "Risk assessment accuracy",
+        "Multi-agent voting integrity"
       ],
-      "reports_to": "Parliament and Chief Justice"
+      "reports_to": "Parliament and Chief Justice",
+      "enhanced_mandate": "Dynamic consensus and risk-based governance oversight"
     }
   },
-  "triggers": ["opposition", "oversight", "audit", "bodies", "rl system", "independent"],
+  "emergency_circuit_breaker": {
+    "research_source": "OpenAI o3 System Card Apr 2025",
+    "enabled": true,
+    "last_updated": "2025-10-31T19:08:00+05:30",
+    "description": "Emergency halt provisions for critical system failures or constitutional violations",
+    "activation_triggers": {
+      "critical_safety_incident": {
+        "description": "Immediate threat to system integrity or user safety",
+        "threshold": "severity_critical",
+        "auto_activation": true,
+        "examples": [
+          "Uncontrolled reward hacking with widespread impact",
+          "Constitutional framework bypass detected",
+          "Data integrity compromise across multiple systems",
+          "Adversarial attack in progress"
+        ]
+      },
+      "governance_deadlock": {
+        "description": "Inability to reach consensus on critical decisions",
+        "threshold": "3_consecutive_failed_votes_on_critical_issues",
+        "auto_activation": false,
+        "requires_manual_trigger": true
+      },
+      "anomaly_cascade": {
+        "description": "Multiple simultaneous anomalies indicating systemic failure",
+        "threshold": "5+_high_severity_incidents_within_1_hour",
+        "auto_activation": true,
+        "integration": "mona_config.json multi_step_detection"
+      },
+      "constitutional_violation": {
+        "description": "Severe violation of fundamental constitutional principles",
+        "threshold": "articles_4-12_fundamental_rights_violated",
+        "auto_activation": true,
+        "requires_supreme_council_review": true
+      }
+    },
+    "emergency_override": {
+      "authority": "supreme_constitutional_council",
+      "minimum_members_required": 2,
+      "emergency_consensus_threshold": 0.51,
+      "standard_threshold": 0.95,
+      "justification": "51% emergency threshold enables rapid response while maintaining democratic oversight",
+      "activation_process": {
+        "step_1": "Trigger detected or manual activation request",
+        "step_2": "Immediate system state snapshot and preservation",
+        "step_3": "Emergency consensus召集 (51% threshold)",
+        "step_4": "Emergency measures authorization",
+        "step_5": "Implementation of halt or mitigation actions",
+        "step_6": "Incident logging and notification",
+        "step_7": "Post-emergency review and constitutional compliance audit"
+      },
+      "time_limits": {
+        "max_emergency_duration_hours": 48,
+        "required_review_within_hours": 24,
+        "extension_requires": "75%_consensus",
+        "automatic_expiry": true
+      }
+    },
+    "emergency_actions": {
+      "system_halt": {
+        "description": "Immediate cessation of all RL operations",
+        "activation_authority": ["supreme_council", "external_auditor"],
+        "rollback_enabled": true,
+        "state_preservation": "automatic_snapshot_to_memory.json"
+      },
+      "quarantine_mode": {
+        "description": "Isolate affected systems while maintaining core operations",
+        "selective_shutdown": true,
+        "whitelist_critical_operations": [
+          "constitutional_framework_access",
+          "incident_logging",
+          "emergency_consensus_voting"
+        ]
+      },
+      "forced_rollback": {
+        "description": "Revert to last known good state",
+        "target_states": [
+          "last_successful_consensus_decision",
+          "pre_incident_memory_snapshot",
+          "validated_constitutional_state"
+        ],
+        "data_loss_acceptable": false,
+        "requires_audit": true
+      },
+      "external_escalation": {
+        "description": "Notify external oversight or human operators",
+        "notification_targets": [
+          "supreme_constitutional_council",
+          "external_auditor_if_configured",
+          "human_oversight_if_available"
+        ],
+        "notification_methods": ["incident_log", "alert_system", "state_dump"]
+      }
+    },
+    "incident_logging": {
+      "required_fields": {
+        "emergency_id": "unique_identifier",
+        "activation_timestamp": "ISO_8601",
+        "trigger_type": "enum_from_activation_triggers",
+        "trigger_details": "comprehensive_description",
+        "system_state_snapshot": "reference_to_memory.json_snapshot",
+        "consensus_vote_record": "member_votes_and_threshold_met",
+        "actions_taken": "array_of_emergency_actions",
+        "resolution_timestamp": "ISO_8601_or_null_if_ongoing",
+        "post_review_status": "pending|completed|failed",
+        "constitutional_compliance": "verified|under_review|violation_noted"
+      },
+      "storage_location": ".aegiside/runtime/incidents/emergency_circuit_breaker_log.json",
+      "retention_policy": "permanent_archive",
+      "integration": "reward_hacking_incidents.json for cross-reference"
+    },
+    "notification_rules": {
+      "critical_alerts": {
+        "immediate_notification": true,
+        "recipients": ["supreme_constitutional_council", "opposition_agent", "audit_commission"],
+        "channels": ["incident_log", "constitutional_changelog"],
+        "content": "emergency_id, trigger_type, actions_taken, system_status"
+      },
+      "stakeholder_updates": {
+        "frequency": "hourly_during_emergency",
+        "recipients": ["all_constitutional_bodies"],
+        "content": "status_update, resolution_progress, estimated_time_to_resolution"
+      },
+      "post_resolution_report": {
+        "required_within_hours": 48,
+        "recipients": ["parliament", "supreme_council", "audit_commission"],
+        "content": [
+          "root_cause_analysis",
+          "emergency_actions_effectiveness",
+          "constitutional_compliance_review",
+          "lessons_learned",
+          "prevention_recommendations"
+        ],
+        "public_disclosure": "summary_only_privacy_preserved"
+      }
+    },
+    "safeguards_and_accountability": {
+      "abuse_prevention": {
+        "audit_all_activations": true,
+        "require_justification": "detailed_incident_description_mandatory",
+        "automatic_review": "within_24_hours_by_audit_commission",
+        "penalties_for_abuse": "-200_constitutional_violation_penalty"
+      },
+      "democratic_oversight": {
+        "emergency_consensus_required": "51%_minimum",
+        "post_emergency_ratification": "standard_95%_required_within_7_days",
+        "failure_to_ratify": "emergency_actions_reversed_automatically"
+      },
+      "transparency": {
+        "all_emergency_activations_logged": true,
+        "vote_records_public": true,
+        "incident_summaries_published": "after_resolution",
+        "constitutional_changelog_updated": "mandatory"
+      }
+    },
+    "constitutional_alignment": {
+      "article_39": "Opposition oversight of emergency activations",
+      "article_40": "RL system integration with MONA detection triggers",
+      "article_42": "Audit commission mandatory post-emergency review",
+      "fundamental_rights": "Emergency actions must not violate articles 4-12"
+    }
+  },
+  "triggers": ["opposition", "oversight", "audit", "bodies", "rl system", "independent", "consensus", "risk", "voting", "emergency", "circuit breaker", "halt"],
   "semantic_index": {
     "oversight": ["article-39", "article-42"],
     "learning": ["article-40"],
-    "enforcement": ["article-41"]
+    "enforcement": ["article-41"],
+    "consensus": ["dynamic_framework", "multi_agent_protocol"],
+    "risk_management": ["risk_levels", "auditor_config"]
   }
 }

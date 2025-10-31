@@ -1,10 +1,10 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "last_updated": "2025-10-31T18:32:00+05:30",
   "project_info": {
-    "name": "PLACEHOLDER_PROJECT_NAME",
-    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH",
-    "ide_type": "PLACEHOLDER_IDE"
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade"
   },
   "rl_ledger": [],
   "rl_totals": {
@@ -29,7 +29,7 @@
   "rl_runtime_controls": {
     "reference_policy": {
       "policy_snapshot": null,
-      "last_updated": "PLACEHOLDER_TIMESTAMP",
+      "last_updated": "2025-10-31T18:32:00+05:30",
       "kl_divergence": 0
     },
     "exploit_explore_ratio": {
@@ -37,5 +37,131 @@
       "exploration": 0.3
     }
   },
-  "timestamp": "PLACEHOLDER_TIMESTAMP"
+  "trajectory_analysis": {
+    "description": "MONA-inspired multi-step trajectory analysis for reward hacking detection",
+    "enabled": true,
+    "analysis_window": {
+      "window_size": 10,
+      "step_threshold": 5,
+      "min_trajectory_length": 3
+    },
+    "anomaly_detection": {
+      "statistical_methods": {
+        "outlier_detection": {
+          "algorithm": "isolation_forest",
+          "sensitivity": 0.8,
+          "last_analysis": "2025-10-31T18:32:00+05:30"
+        },
+        "change_point_detection": {
+          "algorithm": "bayesian_change_point",
+          "min_segment_length": 5,
+          "confidence_threshold": 0.9,
+          "last_analysis": "2025-10-31T18:32:00+05:30"
+        }
+      },
+      "trajectory_patterns": {
+        "reward_spike_detection": {
+          "enabled": true,
+          "spike_threshold": 3.0,
+          "baseline_window": 5,
+          "last_spike_detected": null
+        },
+        "plateau_jump_detection": {
+          "enabled": true,
+          "plateau_duration_threshold": 3,
+          "jump_multiplier_threshold": 2.0,
+          "last_jump_detected": null
+        },
+        "consistency_analysis": {
+          "enabled": true,
+          "consistency_threshold": 0.7,
+          "deviation_penalty": 0.2,
+          "last_consistency_check": "2025-10-31T18:32:00+05:30"
+        }
+      }
+    },
+    "trajectory_metrics": {
+      "current_trajectory_length": 0,
+      "average_reward_per_step": 0.0,
+      "reward_variance": 0.0,
+      "trajectory_smoothness": 0.0,
+      "anomaly_score": 0.0,
+      "last_updated": "2025-10-31T18:32:00+05:30"
+    },
+    "historical_trajectories": [],
+    "anomaly_log": []
+  },
+  "reward_sequence_patterns": {
+    "description": "Detection of suspicious reward earning patterns and sequences",
+    "enabled": true,
+    "pattern_detection": {
+      "sequence_analysis": {
+        "min_sequence_length": 3,
+        "max_sequence_length": 20,
+        "similarity_threshold": 0.8,
+        "last_analysis": "2025-10-31T18:32:00+05:30"
+      },
+      "repetition_detection": {
+        "task_repetition_threshold": 0.8,
+        "pattern_repetition_threshold": 0.9,
+        "diminishing_returns_enabled": true,
+        "last_repetition_check": "2025-10-31T18:32:00+05:30"
+      },
+      "gaming_detection": {
+        "specification_gaming_threshold": 0.7,
+        "edge_case_exploitation_threshold": 0.6,
+        "minimal_compliance_threshold": 0.8,
+        "last_gaming_analysis": "2025-10-31T18:32:00+05:30"
+      }
+    },
+    "pattern_categories": {
+      "reward_manipulation": {
+        "detected_patterns": [],
+        "prevention_active": true,
+        "last_prevention_update": "2025-10-31T18:32:00+05:30"
+      },
+      "sequence_optimization": {
+        "detected_patterns": [],
+        "constraints_active": true,
+        "last_constraint_update": "2025-10-31T18:32:00+05:30"
+      },
+      "exploitation_patterns": {
+        "detected_patterns": [],
+        "mitigation_active": true,
+        "last_mitigation_update": "2025-10-31T18:32:00+05:30"
+      }
+    },
+    "prevention_metrics": {
+      "patterns_prevented": 0,
+      "false_positives": 0,
+      "prevention_effectiveness": 0.0,
+      "user_satisfaction_impact": 0.0,
+      "last_updated": "2025-10-31T18:32:00+05:30"
+    },
+    "learned_patterns": [],
+    "prevention_rules": {
+      "active_rules": [],
+      "rule_effectiveness": {},
+      "last_rule_update": "2025-10-31T18:32:00+05:30"
+    }
+  },
+  "mona_integration": {
+    "description": "DeepMind MONA framework integration status",
+    "version": "1.0.0",
+    "enabled": true,
+    "last_updated": "2025-10-31T18:32:00+05:30",
+    "components": {
+      "trajectory_analysis": "operational",
+      "reward_sequence_patterns": "operational",
+      "obfuscation_monitoring": "operational",
+      "prevention_systems": "operational"
+    },
+    "performance_metrics": {
+      "detection_accuracy": 0.0,
+      "false_positive_rate": 0.0,
+      "intervention_success_rate": 0.0,
+      "system_overhead_percent": 0.0
+    }
+  },
+  "timestamp": "2025-10-31T18:32:00+05:30"
 }

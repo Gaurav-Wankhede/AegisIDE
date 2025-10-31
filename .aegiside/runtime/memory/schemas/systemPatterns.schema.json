@@ -21,9 +21,10 @@
         "tasks_failed": {"type": "integer", "minimum": 0},
         "commits": {"type": "integer", "minimum": 0},
         "rl_reward": {"type": "number"},
-        "success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "process_reward": {"type": "number", "minimum": 0, "maximum": 100, "description": "Agentic RL: +2(step)+10(insight)+25(milestone)+100(complete)"},
+        "alignment_bonus": {"type": "number", "minimum": 0, "maximum": 20, "description": "Moral alignment reward (ICLR'25)"},
         "gae_advantage": {"type": "number", "description": "GAE advantage at time of reward"},
-        "value_branch": {"type": "string", "enum": ["task_success", "validation", "pattern_reuse", "mcp_integration", "innovation"]},
+        "value_branch": {"type": "string", "enum": ["task_success", "safety", "alignment", "efficiency", "learning"]},
         "timestamp": {"type": "string", "format": "date-time"}
       }
     },
@@ -37,7 +38,7 @@
           "description": {"type": "string"},
           "implementation": {"type": "string"},
           "status": {"type": "string"},
-          "rl_reward": {"type": "number", "minimum": 0}
+          "pattern_reward": {"type": "number", "minimum": 0, "maximum": 25, "description": "Pattern reuse milestone reward"}
         }
       }
     },

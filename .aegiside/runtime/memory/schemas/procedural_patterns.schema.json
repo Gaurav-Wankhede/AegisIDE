@@ -1,0 +1,290 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "patterns", "skills", "quality_metrics", "rl_filtering"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_info": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "workspace_path": {"type": "string"},
+        "ide_type": {"type": "string"}
+      }
+    },
+    "patterns": {
+      "type": "array",
+      "description": "Reusable procedural patterns with RL-enhanced quality scoring",
+      "items": {
+        "type": "object",
+        "required": ["pattern_id", "name", "category", "embedding_id", "quality_score"],
+        "properties": {
+          "pattern_id": {
+            "type": "string",
+            "description": "Unique identifier for the procedural pattern"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable pattern name"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["architecture", "algorithm", "workflow", "error_handling", "optimization", "testing", "deployment", "communication"],
+            "description": "Pattern category"
+          },
+          "embedding_id": {
+            "type": "string",
+            "description": "Reference to vector embedding for semantic similarity"
+          },
+          "quality_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "RL-calculated quality score based on success rates"
+          },
+          "pattern_definition": {
+            "type": "object",
+            "properties": {
+              "description": {"type": "string"},
+              "context": {"type": "string"},
+              "problem_statement": {"type": "string"},
+              "solution_approach": {"type": "string"},
+              "preconditions": {"type": "array", "items": {"type": "string"}},
+              "postconditions": {"type": "array", "items": {"type": "string"}},
+              "invariants": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "implementation": {
+            "type": "object",
+            "properties": {
+              "steps": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "step_number": {"type": "integer"},
+                    "action": {"type": "string"},
+                    "parameters": {"type": "object"},
+                    "expected_outcome": {"type": "string"},
+                    "duration_estimate_ms": {"type": "integer"}
+                  }
+                }
+              },
+              "tools_required": {"type": "array", "items": {"type": "string"}},
+              "dependencies": {"type": "array", "items": {"type": "string"}},
+              "variations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "variation_id": {"type": "string"},
+                    "description": {"type": "string"},
+                    "adaptation": {"type": "string"},
+                    "quality_delta": {"type": "number"}
+                  }
+                }
+              }
+            }
+          },
+          "performance_metrics": {
+            "type": "object",
+            "properties": {
+              "success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "average_execution_time_ms": {"type": "number"},
+              "error_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "resource_efficiency": {"type": "number", "minimum": 0, "maximum": 1},
+              "scalability_score": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          },
+          "usage_statistics": {
+            "type": "object",
+            "properties": {
+              "usage_count": {"type": "integer", "minimum": 0},
+              "success_count": {"type": "integer", "minimum": 0},
+              "failure_count": {"type": "integer", "minimum": 0},
+              "last_used": {"type": "string", "format": "date-time"},
+              "user_satisfaction": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "created_at": {"type": "string", "format": "date-time"},
+              "created_by": {"type": "string"},
+              "last_modified": {"type": "string", "format": "date-time"},
+              "version": {"type": "string"},
+              "tags": {"type": "array", "items": {"type": "string"}},
+              "complexity_level": {"type": "string", "enum": ["basic", "intermediate", "advanced", "expert"]},
+              "learning_curve": {"type": "string", "enum": ["shallow", "moderate", "steep"]}
+            }
+          }
+        }
+      }
+    },
+    "skills": {
+      "type": "array",
+      "description": "Learned procedural skills with RL-based competency assessment",
+      "items": {
+        "type": "object",
+        "required": ["skill_id", "name", "domain", "competency_score", "embedding_id"],
+        "properties": {
+          "skill_id": {
+            "type": "string",
+            "description": "Unique identifier for the procedural skill"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable skill name"
+          },
+          "domain": {
+            "type": "string",
+            "enum": ["programming", "system_design", "debugging", "optimization", "communication", "analysis", "synthesis", "evaluation"],
+            "description": "Skill domain"
+          },
+          "embedding_id": {
+            "type": "string",
+            "description": "Reference to vector embedding for semantic similarity"
+          },
+          "competency_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "RL-assessed competency level"
+          },
+          "skill_definition": {
+            "type": "object",
+            "properties": {
+              "description": {"type": "string"},
+              "learning_objectives": {"type": "array", "items": {"type": "string"}},
+              "prerequisites": {"type": "array", "items": {"type": "string"}},
+              "assessment_criteria": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "learning_progress": {
+            "type": "object",
+            "properties": {
+              "practice_sessions": {"type": "integer", "minimum": 0},
+              "successful_applications": {"type": "integer", "minimum": 0},
+              "failed_attempts": {"type": "integer", "minimum": 0},
+              "improvement_rate": {"type": "number"},
+              "mastery_level": {"type": "string", "enum": ["novice", "apprentice", "competent", "proficient", "expert"]}
+            }
+          },
+          "application_contexts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "context_id": {"type": "string"},
+                "scenario": {"type": "string"},
+                "success_rate": {"type": "number"},
+                "adaptations": {"type": "array", "items": {"type": "string"}}
+              }
+            }
+          }
+        }
+      }
+    },
+    "quality_metrics": {
+      "type": "object",
+      "description": "Memory-R1 2025 compliant quality assessment metrics",
+      "properties": {
+        "pattern_quality_distribution": {
+          "type": "object",
+          "properties": {
+            "excellent": {"type": "integer", "minimum": 0},
+            "good": {"type": "integer", "minimum": 0},
+            "average": {"type": "integer", "minimum": 0},
+            "poor": {"type": "integer", "minimum": 0}
+          }
+        },
+        "skill_competency_distribution": {
+          "type": "object",
+          "properties": {
+            "expert": {"type": "integer", "minimum": 0},
+            "proficient": {"type": "integer", "minimum": 0},
+            "competent": {"type": "integer", "minimum": 0},
+            "apprentice": {"type": "integer", "minimum": 0},
+            "novice": {"type": "integer", "minimum": 0}
+          }
+        },
+        "overall_quality_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "improvement_trends": {
+          "type": "object",
+          "properties": {
+            "quality_trend": {"type": "string", "enum": ["improving", "stable", "declining"]},
+            "learning_rate": {"type": "number"},
+            "retention_rate": {"type": "number", "minimum": 0, "maximum": 1}
+          }
+        }
+      }
+    },
+    "rl_filtering": {
+      "type": "object",
+      "description": "PPO+GAE based filtering and prioritization system",
+      "properties": {
+        "enabled": {"type": "boolean", "default": true},
+        "algorithm": {"type": "string", "default": "PPO+GAE"},
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "quality_threshold": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7},
+            "competency_threshold": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.6},
+            "success_rate_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.4},
+            "efficiency_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.3},
+            "user_satisfaction_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.3}
+          }
+        },
+        "filtering_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "rule_id": {"type": "string"},
+              "condition": {"type": "string"},
+              "action": {"type": "string", "enum": ["include", "exclude", "prioritize", "demote"]},
+              "weight": {"type": "number"}
+            }
+          }
+        },
+        "learning_signals": {
+          "type": "object",
+          "properties": {
+            "positive_feedback": {"type": "integer", "minimum": 0},
+            "negative_feedback": {"type": "integer", "minimum": 0},
+            "adaptation_count": {"type": "integer", "minimum": 0},
+            "last_model_update": {"type": "string", "format": "date-time"}
+          }
+        }
+      }
+    },
+    "usage_analytics": {
+      "type": "object",
+      "properties": {
+        "total_patterns": {"type": "integer", "minimum": 0},
+        "total_skills": {"type": "integer", "minimum": 0},
+        "active_patterns": {"type": "integer", "minimum": 0},
+        "active_skills": {"type": "integer", "minimum": 0},
+        "pattern_usage_frequency": {
+          "type": "object",
+          "additionalProperties": {"type": "integer"}
+        },
+        "skill_application_frequency": {
+          "type": "object",
+          "additionalProperties": {"type": "integer"}
+        }
+      }
+    }
+  }
+}

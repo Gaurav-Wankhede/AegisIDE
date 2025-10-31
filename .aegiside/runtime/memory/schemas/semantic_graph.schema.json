@@ -1,0 +1,258 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "nodes", "edges", "relationship_types", "multi_hop_config"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_info": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "workspace_path": {"type": "string"},
+        "ide_type": {"type": "string"}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "description": "Knowledge graph nodes representing concepts, entities, and patterns",
+      "items": {
+        "type": "object",
+        "required": ["node_id", "type", "label", "embedding_id"],
+        "properties": {
+          "node_id": {
+            "type": "string",
+            "description": "Unique identifier for the semantic node"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["concept", "entity", "pattern", "skill", "artifact", "principle", "workflow", "tool"],
+            "description": "Type of semantic node"
+          },
+          "label": {
+            "type": "string",
+            "description": "Human-readable label for the node"
+          },
+          "embedding_id": {
+            "type": "string",
+            "description": "Reference to vector embedding for semantic similarity"
+          },
+          "properties": {
+            "type": "object",
+            "description": "Node-specific properties",
+            "properties": {
+              "definition": {"type": "string"},
+              "category": {"type": "string"},
+              "domain": {"type": "string"},
+              "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+              "source": {"type": "string"},
+              "created_at": {"type": "string", "format": "date-time"},
+              "last_accessed": {"type": "string", "format": "date-time"},
+              "access_count": {"type": "integer", "minimum": 0},
+              "quality_score": {"type": "number", "minimum": 0, "maximum": 1}
+            }
+          },
+          "metadata": {
+            "type": "object",
+            "properties": {
+              "tags": {"type": "array", "items": {"type": "string"}},
+              "aliases": {"type": "array", "items": {"type": "string"}},
+              "cross_references": {"type": "array", "items": {"type": "string"}},
+              "external_links": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "url": {"type": "string", "format": "uri"},
+                    "title": {"type": "string"},
+                    "reliability": {"type": "number", "minimum": 0, "maximum": 1}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "description": "Relationships between semantic nodes",
+      "items": {
+        "type": "object",
+        "required": ["edge_id", "source_node", "target_node", "relationship_type", "weight"],
+        "properties": {
+          "edge_id": {
+            "type": "string",
+            "description": "Unique identifier for the edge"
+          },
+          "source_node": {
+            "type": "string",
+            "description": "ID of the source node"
+          },
+          "target_node": {
+            "type": "string",
+            "description": "ID of the target node"
+          },
+          "relationship_type": {
+            "type": "string",
+            "description": "Type of relationship (must be defined in relationship_types)"
+          },
+          "weight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Strength of the relationship"
+          },
+          "properties": {
+            "type": "object",
+            "properties": {
+              "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+              "bidirectional": {"type": "boolean"},
+              "temporal": {"type": "boolean"},
+              "conditional": {"type": "boolean"},
+              "evidence": {"type": "array", "items": {"type": "string"}},
+              "created_at": {"type": "string", "format": "date-time"},
+              "last_validated": {"type": "string", "format": "date-time"}
+            }
+          }
+        }
+      }
+    },
+    "relationship_types": {
+      "type": "object",
+      "description": "ACL 2025 compliant relationship type definitions",
+      "properties": {
+        "hierarchical": {
+          "type": "object",
+          "properties": {
+            "is_a": {"description": "Taxonomic relationship"},
+            "part_of": {"description": "Meronymic relationship"},
+            "contains": {"description": "Holonymic relationship"},
+            "instance_of": {"description": "Class membership"}
+          }
+        },
+        "functional": {
+          "type": "object",
+          "properties": {
+            "enables": {"description": "Enabling relationship"},
+            "requires": {"description": "Dependency relationship"},
+            "implements": {"description": "Implementation relationship"},
+            "optimizes": {"description": "Optimization relationship"}
+          }
+        },
+        "semantic": {
+          "type": "object",
+          "properties": {
+            "similar_to": {"description": "Semantic similarity"},
+            "related_to": {"description": "General relatedness"},
+            "contradicts": {"description": "Contradiction"},
+            "supports": {"description": "Supporting evidence"}
+          }
+        },
+        "temporal": {
+          "type": "object",
+          "properties": {
+            "precedes": {"description": "Temporal ordering"},
+            "causes": {"description": "Causal relationship"},
+            "triggers": {"description": "Event triggering"},
+            "evolves_to": {"description": "Evolution relationship"}
+          }
+        },
+        "spatial": {
+          "type": "object",
+          "properties": {
+            "located_in": {"description": "Spatial containment"},
+            "adjacent_to": {"description": "Spatial adjacency"},
+            "connects_to": {"description": "Spatial connection"}
+          }
+        }
+      }
+    },
+    "multi_hop_config": {
+      "type": "object",
+      "description": "Enterprise Semantic Model 2025 multi-hop reasoning configuration",
+      "properties": {
+        "max_hop_distance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 3,
+          "description": "Maximum hops for semantic reasoning"
+        },
+        "path_weighting": {
+          "type": "string",
+          "enum": ["uniform", "distance_decay", "confidence_weighted", "relevance_weighted"],
+          "default": "confidence_weighted"
+        },
+        "pruning_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.1,
+          "description": "Minimum edge weight to include in reasoning"
+        },
+        "cycle_detection": {
+          "type": "boolean",
+          "default": true
+        },
+        "semantic_cache": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "max_paths": {"type": "integer", "default": 1000},
+            "ttl_seconds": {"type": "integer", "default": 3600}
+          }
+        }
+      }
+    },
+    "graph_statistics": {
+      "type": "object",
+      "properties": {
+        "total_nodes": {"type": "integer", "minimum": 0},
+        "total_edges": {"type": "integer", "minimum": 0},
+        "average_degree": {"type": "number"},
+        "connected_components": {"type": "integer", "minimum": 0},
+        "graph_density": {"type": "number", "minimum": 0, "maximum": 1},
+        "clustering_coefficient": {"type": "number", "minimum": 0, "maximum": 1},
+        "last_full_traversal": {"type": "string", "format": "date-time"}
+      }
+    },
+    "query_patterns": {
+      "type": "object",
+      "description": "Common semantic query patterns",
+      "properties": {
+        "pattern_matching": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pattern_id": {"type": "string"},
+              "description": {"type": "string"},
+              "node_types": {"type": "array", "items": {"type": "string"}},
+              "relationship_constraints": {"type": "object"},
+              "usage_count": {"type": "integer", "minimum": 0}
+            }
+          }
+        },
+        "frequent_queries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "query": {"type": "string"},
+              "frequency": {"type": "integer"},
+              "avg_result_count": {"type": "number"},
+              "avg_execution_time_ms": {"type": "number"}
+            }
+          }
+        }
+      }
+    }
+  }
+}

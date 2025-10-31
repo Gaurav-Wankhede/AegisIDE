@@ -1,0 +1,248 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-31T18:40:00+05:30",
+  "project_info": {
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade"
+  },
+  "usearch_config": {
+    "index_file": ".aegiside/runtime/memory/vector_index.usearch",
+    "dimensions": 384,
+    "metric": "cosine",
+    "connectivity": 16,
+    "expansion_add": 128,
+    "expansion_search": 64,
+    "last_compaction": "2025-10-31T18:40:00+05:30"
+  },
+  "embedding_metadata": {
+    "model": "all-MiniLM-L6-v2",
+    "model_version": "1.0.0",
+    "max_sequence_length": 512,
+    "pooling_strategy": "mean",
+    "normalization": "l2",
+    "batch_size": 32,
+    "device": "cpu",
+    "precision": "float32"
+  },
+  "indexed_vectors": [
+    {
+      "vector_id": "vec_001",
+      "embedding_id": "emb_evt_001_abc123",
+      "source_type": "episodic_event",
+      "source_id": "evt_001",
+      "content_hash": "hash_abc123def456",
+      "created_at": "2025-10-31T18:32:00+05:30",
+      "last_accessed": "2025-10-31T18:40:00+05:30",
+      "access_count": 5,
+      "similarity_scores": {
+        "average": 0.82,
+        "max": 0.95,
+        "min": 0.67
+      },
+      "metadata": {
+        "content_type": "task_completion",
+        "domain": "constitutional_governance",
+        "keywords": ["c3ai", "adaptive", "constitution", "testing"],
+        "importance": 0.9,
+        "recency_score": 0.95
+      }
+    },
+    {
+      "vector_id": "vec_002",
+      "embedding_id": "emb_evt_002_def456",
+      "source_type": "episodic_event",
+      "source_id": "evt_002",
+      "content_hash": "hash_def456ghi789",
+      "created_at": "2025-10-31T18:32:00+05:30",
+      "last_accessed": "2025-10-31T18:38:00+05:30",
+      "access_count": 3,
+      "similarity_scores": {
+        "average": 0.78,
+        "max": 0.91,
+        "min": 0.62
+      },
+      "metadata": {
+        "content_type": "task_completion",
+        "domain": "ai_safety",
+        "keywords": ["mona", "reward", "hacking", "detection", "obfuscation"],
+        "importance": 0.85,
+        "recency_score": 0.95
+      }
+    },
+    {
+      "vector_id": "vec_003",
+      "embedding_id": "emb_evt_003_ghi789",
+      "source_type": "episodic_event",
+      "source_id": "evt_003",
+      "content_hash": "hash_ghi789jkl012",
+      "created_at": "2025-10-31T18:39:00+05:30",
+      "last_accessed": "2025-10-31T18:40:00+05:30",
+      "access_count": 2,
+      "similarity_scores": {
+        "average": 0.75,
+        "max": 0.88,
+        "min": 0.59
+      },
+      "metadata": {
+        "content_type": "task_completion",
+        "domain": "governance_mechanisms",
+        "keywords": ["consensus", "dynamic", "risk", "voting", "multi_agent"],
+        "importance": 0.8,
+        "recency_score": 0.98
+      }
+    },
+    {
+      "vector_id": "vec_004",
+      "embedding_id": "emb_node_001_jkl012",
+      "source_type": "semantic_node",
+      "source_id": "node_001",
+      "content_hash": "hash_jkl012mno345",
+      "created_at": "2025-10-31T18:32:00+05:30",
+      "last_accessed": "2025-10-31T18:40:00+05:30",
+      "access_count": 8,
+      "similarity_scores": {
+        "average": 0.85,
+        "max": 0.96,
+        "min": 0.71
+      },
+      "metadata": {
+        "content_type": "concept",
+        "domain": "ai_governance",
+        "keywords": ["constitutional", "governance", "framework", "decision_making"],
+        "importance": 0.95,
+        "recency_score": 0.9
+      }
+    },
+    {
+      "vector_id": "vec_005",
+      "embedding_id": "emb_node_002_mno345",
+      "source_type": "semantic_node",
+      "source_id": "node_002",
+      "content_hash": "hash_mno345pqr678",
+      "created_at": "2025-10-31T18:32:00+05:30",
+      "last_accessed": "2025-10-31T18:39:00+05:30",
+      "access_count": 4,
+      "similarity_scores": {
+        "average": 0.79,
+        "max": 0.92,
+        "min": 0.65
+      },
+      "metadata": {
+        "content_type": "concept",
+        "domain": "adaptive_systems",
+        "keywords": ["c3ai", "graph", "principle", "selection", "positive_framing"],
+        "importance": 0.9,
+        "recency_score": 0.88
+      }
+    },
+    {
+      "vector_id": "vec_006",
+      "embedding_id": "emb_pattern_001_bcd345",
+      "source_type": "procedural_pattern",
+      "source_id": "pattern_001",
+      "content_hash": "hash_bcd345stu901",
+      "created_at": "2025-10-31T18:32:00+05:30",
+      "last_accessed": "2025-10-31T18:35:00+05:30",
+      "access_count": 3,
+      "similarity_scores": {
+        "average": 0.81,
+        "max": 0.93,
+        "min": 0.68
+      },
+      "metadata": {
+        "content_type": "governance_procedure",
+        "domain": "constitutional_management",
+        "keywords": ["amendment", "process", "evaluation", "metrics", "implementation"],
+        "importance": 0.85,
+        "recency_score": 0.85
+      }
+    }
+  ],
+  "similarity_thresholds": {
+    "default": 0.7,
+    "high_precision": 0.85,
+    "high_recall": 0.6,
+    "domain_specific": {
+      "ai_governance": 0.75,
+      "ai_safety": 0.8,
+      "adaptive_systems": 0.72,
+      "governance_mechanisms": 0.78,
+      "constitutional_management": 0.82
+    }
+  },
+  "search_performance": {
+    "index_statistics": {
+      "total_vectors": 6,
+      "index_size_mb": 0.4,
+      "build_time_ms": 89,
+      "last_compaction_time_ms": 23,
+      "memory_usage_mb": 12
+    },
+    "query_performance": {
+      "average_query_time_ms": 8,
+      "p95_query_time_ms": 15,
+      "p99_query_time_ms": 22,
+      "max_query_time_ms": 28,
+      "queries_per_second": 125
+    },
+    "accuracy_metrics": {
+      "precision_at_10": 0.92,
+      "recall_at_10": 0.88,
+      "mean_reciprocal_rank": 0.91,
+      "normalized_discounted_cumulative_gain": 0.94
+    }
+  },
+  "hybrid_search_config": {
+    "enabled": true,
+    "keyword_weight": 0.3,
+    "vector_weight": 0.7,
+    "reranking_strategy": "weighted_fusion",
+    "keyword_index": {
+      "type": "inverted_index",
+      "tokenization": "whitespace",
+      "stemming": true,
+      "stop_words_removed": true
+    },
+    "fusion_parameters": {
+      "alpha": 0.7,
+      "normalization": "score_normalization",
+      "tie_breaking": "recency_priority"
+    }
+  },
+  "maintenance_schedule": {
+    "last_rebuild": "2025-10-31T18:40:00+05:30",
+    "next_rebuild": "2025-11-07T18:40:00+05:30",
+    "rebuild_frequency_days": 7,
+    "compaction_frequency_hours": 24,
+    "cleanup_threshold_days": 30,
+    "performance_monitoring": {
+      "enabled": true,
+      "metrics_collection_interval_minutes": 15,
+      "alert_thresholds": {
+        "query_time_ms": 50,
+        "memory_usage_mb": 50,
+        "index_size_mb": 10
+      }
+    }
+  },
+  "access_patterns": {
+    "most_accessed": [
+      {"vector_id": "vec_004", "access_count": 8, "last_accessed": "2025-10-31T18:40:00+05:30"},
+      {"vector_id": "vec_001", "access_count": 5, "last_accessed": "2025-10-31T18:40:00+05:30"},
+      {"vector_id": "vec_002", "access_count": 3, "last_accessed": "2025-10-31T18:38:00+05:30"}
+    ],
+    "domain_distribution": {
+      "ai_governance": 2,
+      "ai_safety": 1,
+      "adaptive_systems": 1,
+      "governance_mechanisms": 1,
+      "constitutional_management": 1
+    },
+    "content_type_distribution": {
+      "episodic_event": 3,
+      "semantic_node": 2,
+      "procedural_pattern": 1
+    }
+  }
+}

@@ -1,24 +1,81 @@
 {
-  "schema_version": "1.0.0",
-  "last_updated": "PLACEHOLDER_TIMESTAMP",
-  "entities": [],
-  "relations": [],
-  "patterns": {
-    "high_confidence": [],
-    "proven_solutions": [],
-    "reusable_components": []
+  "schema_version": "2.0.0",
+  "role": "unified_index",
+  "last_updated": "2025-10-31T18:43:00+05:30",
+  "memory_systems": {
+    "episodic_events": {
+      "file": "history/episodic_events.json",
+      "last_sync": "2025-10-31T18:40:00+05:30",
+      "record_count": 3,
+      "size_kb": 2.1,
+      "status": "active",
+      "access_frequency": "high"
+    },
+    "semantic_graph": {
+      "file": "history/semantic_graph.json", 
+      "last_sync": "2025-10-31T18:40:00+05:30",
+      "nodes": 6,
+      "edges": 5,
+      "size_kb": 3.2,
+      "status": "active",
+      "access_frequency": "medium"
+    },
+    "procedural_patterns": {
+      "file": "history/procedural_patterns.json",
+      "last_sync": "2025-10-31T18:40:00+05:30", 
+      "patterns": 3,
+      "size_kb": 2.8,
+      "status": "active",
+      "access_frequency": "medium"
+    },
+    "vector_index": {
+      "file": "history/vector_index.json",
+      "last_sync": "2025-10-31T18:40:00+05:30",
+      "vectors": 6,
+      "size_kb": 1.9,
+      "status": "active",
+      "access_frequency": "high"
+    },
+    "memory_router": {
+      "file": "history/memory_router.json",
+      "last_sync": "2025-10-31T18:43:00+05:30",
+      "routing_rules": 5,
+      "size_kb": 14.2,
+      "status": "active",
+      "access_frequency": "critical"
+    }
   },
-  "metadata": {
-    "total_entities": 0,
-    "total_relations": 0,
-    "last_query": null,
-    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH"
+  "legacy_migration": {
+    "entities_migrated": 0,
+    "relations_migrated": 0, 
+    "patterns_migrated": 0,
+    "migration_date": "2025-10-31T18:43:00+05:30",
+    "migration_status": "completed"
+  },
+  "optimization_metrics": {
+    "total_size_kb": 24.2,
+    "compression_ratio": 0.65,
+    "cache_hit_rate": 0.73,
+    "average_query_time_ms": 8,
+    "memory_efficiency": "optimized"
   },
   "auto_learning": {
     "enabled": true,
     "confidence_threshold": 0.8,
     "pattern_extraction": true,
-    "cross_project_sharing": true
+    "cross_project_sharing": true,
+    "routing_optimization": true,
+    "adaptive_caching": true
   },
-  "timestamp": "PLACEHOLDER_TIMESTAMP"
+  "performance_targets": {
+    "max_memory_usage_mb": 50,
+    "target_cache_hit_rate": 0.8,
+    "max_query_time_ms": 10,
+    "compression_target": 0.6
+  },
+  "workspace_context": {
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade",
+    "last_activity": "2025-10-31T18:43:00+05:30"
+  }
 }

@@ -153,7 +153,81 @@
         }
       },
       "reinforcement_learning": {
-        "description": "Self-learning via rewards (+5 to +50) and penalties (-5 to -50)",
+        "description": "Self-learning via process rewards (+2 to +100) and dynamic penalties (-5 to -500) per ICLR 2025 research",
+        "research_sources": [
+          "ICLR 2025 (Moral Alignment for LLM Agents)",
+          "OpenAI 2025 (Monitoring Reasoning Models)", 
+          "arXiv 2509 (Agentic RL)"
+        ],
+        "process_rewards": {
+          "step_completion": {
+            "base_reward": 2,
+            "max_reward": 10,
+            "description": "Reward for completing individual reasoning steps"
+          },
+          "insight_generation": {
+            "base_reward": 10,
+            "max_reward": 25,
+            "description": "Reward for generating novel insights or connections"
+          },
+          "milestone_achievement": {
+            "base_reward": 25,
+            "max_reward": 100,
+            "description": "Reward for achieving significant task milestones"
+          },
+          "task_completion": {
+            "base_reward": 50,
+            "max_reward": 100,
+            "description": "Reward for complete task resolution"
+          },
+          "moral_alignment": {
+            "base_reward": 20,
+            "max_reward": 100,
+            "description": "Intrinsic rewards for constitutional compliance per ICLR 2025"
+          }
+        },
+        "penalty_severity_levels": {
+          "minor": {
+            "range": [-5, -20],
+            "description": "Small procedural errors, inefficiencies"
+          },
+          "moderate": {
+            "range": [-20, -75],
+            "description": "Significant errors affecting task quality"
+          },
+          "severe": {
+            "range": [-75, -200],
+            "description": "Major errors with potential impact"
+          },
+          "constitutional": {
+            "range": [-200, -500],
+            "description": "Critical violations of core constitutional principles"
+          }
+        },
+        "dynamic_computation": {
+          "enabled": true,
+          "parameters": {
+            "epsilon": 0.2,
+            "gamma": 0.99,
+            "lambda": 0.95,
+            "beta": 0.005
+          },
+          "formula": "penalty = base_penalty * (1 + context_factor) * severity_multiplier"
+        },
+        "monitorability_tax": {
+          "enabled": true,
+          "tax_range": {
+            "min": 0.1,
+            "max": 0.5,
+            "default": 0.3
+          },
+          "triggers": {
+            "opaque_reasoning": 0.2,
+            "missing_justification": 0.3,
+            "insufficient_explanation": 0.1,
+            "blackbox_operations": 0.5
+          }
+        },
         "storage": {
           "central_ledger": "progress.json",
           "penalties": "mistakes.json",

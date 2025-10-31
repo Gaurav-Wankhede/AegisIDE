@@ -17,6 +17,12 @@
     "phase": "initialization",
     "status": "pending"
   },
+  "task_queue": {
+    "todo": [],
+    "in_progress": [],
+    "done": [],
+    "approved": []
+  },
   "mcp_integration": {
     "active_mcps": [
       "json-jq",

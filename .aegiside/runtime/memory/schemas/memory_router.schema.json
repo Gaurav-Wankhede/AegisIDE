@@ -1,0 +1,387 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "routing_config", "memory_types", "routing_rules", "performance_metrics"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_info": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "workspace_path": {"type": "string"},
+        "ide_type": {"type": "string"}
+      }
+    },
+    "routing_config": {
+      "type": "object",
+      "description": "Enterprise Semantic Model 2025 compliant routing configuration",
+      "properties": {
+        "routing_strategy": {
+          "type": "string",
+          "enum": ["semantic", "rule_based", "hybrid", "ml_driven"],
+          "default": "hybrid"
+        },
+        "default_memory_type": {
+          "type": "string",
+          "enum": ["episodic", "semantic", "procedural"],
+          "default": "semantic"
+        },
+        "fallback_enabled": {"type": "boolean", "default": true},
+        "parallel_querying": {"type": "boolean", "default": true},
+        "result_merging": {
+          "type": "string",
+          "enum": ["union", "intersection", "weighted", "ranked"],
+          "default": "weighted"
+        },
+        "max_query_depth": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "default": 3
+        }
+      }
+    },
+    "memory_types": {
+      "type": "object",
+      "description": "Configuration for each memory type",
+      "properties": {
+        "episodic": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "priority": {"type": "integer", "minimum": 1, "maximum": 10, "default": 3},
+            "query_patterns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["temporal", "event_based", "contextual", "experiential"]
+              }
+            },
+            "access_frequency": {
+              "type": "string",
+              "enum": ["high", "medium", "low"],
+              "default": "medium"
+            },
+            "cache_policy": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "ttl_seconds": {"type": "integer", "default": 3600},
+                "max_entries": {"type": "integer", "default": 1000}
+              }
+            }
+          }
+        },
+        "semantic": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "priority": {"type": "integer", "minimum": 1, "maximum": 10, "default": 5},
+            "query_patterns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["conceptual", "relational", "hierarchical", "analogical"]
+              }
+            },
+            "access_frequency": {
+              "type": "string",
+              "enum": ["high", "medium", "low"],
+              "default": "high"
+            },
+            "cache_policy": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "ttl_seconds": {"type": "integer", "default": 7200},
+                "max_entries": {"type": "integer", "default": 2000}
+              }
+            }
+          }
+        },
+        "procedural": {
+          "type": "object",
+          "properties": {
+            "enabled": {"type": "boolean", "default": true},
+            "priority": {"type": "integer", "minimum": 1, "maximum": 10, "default": 4},
+            "query_patterns": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["pattern_matching", "skill_assessment", "workflow", "algorithmic"]
+              }
+            },
+            "access_frequency": {
+              "type": "string",
+              "enum": ["high", "medium", "low"],
+              "default": "medium"
+            },
+            "cache_policy": {
+              "type": "object",
+              "properties": {
+                "enabled": {"type": "boolean", "default": true},
+                "ttl_seconds": {"type": "integer", "default": 1800},
+                "max_entries": {"type": "integer", "default": 500}
+              }
+            }
+          }
+        }
+      }
+    },
+    "routing_rules": {
+      "type": "array",
+      "description": "Dynamic routing rules based on query characteristics",
+      "items": {
+        "type": "object",
+        "required": ["rule_id", "condition", "action", "priority"],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "description": "Unique identifier for the routing rule"
+          },
+          "condition": {
+            "type": "object",
+            "description": "Conditions that trigger this rule",
+            "properties": {
+              "query_type": {
+                "type": "string",
+                "enum": ["temporal", "conceptual", "procedural", "mixed"]
+              },
+              "confidence_threshold": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "time_constraint_ms": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "result_count_limit": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "user_context": {
+                "type": "object",
+                "properties": {
+                  "expertise_level": {"type": "string", "enum": ["novice", "intermediate", "expert"]},
+                  "task_complexity": {"type": "string", "enum": ["simple", "moderate", "complex"]},
+                  "preferred_memory_type": {"type": "string", "enum": ["episodic", "semantic", "procedural"]}
+                }
+              },
+              "keywords": {
+                "type": "array",
+                "items": {"type": "string"}
+              }
+            }
+          },
+          "action": {
+            "type": "object",
+            "properties": {
+              "primary_memory_type": {
+                "type": "string",
+                "enum": ["episodic", "semantic", "procedural"]
+              },
+              "secondary_memory_types": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": ["episodic", "semantic", "procedural"]
+                }
+              },
+              "query_transformation": {
+                "type": "object",
+                "properties": {
+                  "expand_query": {"type": "boolean"},
+                  "add_synonyms": {"type": "boolean"},
+                  "include_context": {"type": "boolean"},
+                  "weight_adjustment": {"type": "object"}
+                }
+              },
+              "result_processing": {
+                "type": "object",
+                "properties": {
+                  "filter_by_quality": {"type": "boolean"},
+                  "sort_by_relevance": {"type": "boolean"},
+                  "apply_reranking": {"type": "boolean"},
+                  "limit_results": {"type": "integer"}
+                }
+              }
+            }
+          },
+          "priority": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10,
+            "description": "Rule priority (higher = more important)"
+          },
+          "enabled": {"type": "boolean", "default": true},
+          "performance_metrics": {
+            "type": "object",
+            "properties": {
+              "usage_count": {"type": "integer", "minimum": 0},
+              "success_rate": {"type": "number", "minimum": 0, "maximum": 1},
+              "avg_execution_time_ms": {"type": "number"},
+              "last_used": {"type": "string", "format": "date-time"}
+            }
+          }
+        }
+      }
+    },
+    "query_analyzer": {
+      "type": "object",
+      "description": "ACL 2025 compliant query analysis for routing decisions",
+      "properties": {
+        "intent_classification": {
+          "type": "object",
+          "properties": {
+            "model": {"type": "string"},
+            "confidence_threshold": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.8},
+            "supported_intents": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["recall_experience", "understand_concept", "find_pattern", "assess_skill", "explore_relationships", "solve_problem"]
+              }
+            }
+          }
+        },
+        "context_analysis": {
+          "type": "object",
+          "properties": {
+            "temporal_analysis": {"type": "boolean", "default": true},
+            "semantic_analysis": {"type": "boolean", "default": true},
+            "procedural_analysis": {"type": "boolean", "default": true},
+            "user_modeling": {"type": "boolean", "default": true}
+          }
+        },
+        "complexity_estimation": {
+          "type": "object",
+          "properties": {
+            "query_length_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.3},
+            "keyword_complexity_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.4},
+            "semantic_density_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.3}
+          }
+        }
+      }
+    },
+    "performance_metrics": {
+      "type": "object",
+      "properties": {
+        "total_queries": {"type": "integer", "minimum": 0},
+        "queries_by_memory_type": {
+          "type": "object",
+          "properties": {
+            "episodic": {"type": "integer", "minimum": 0},
+            "semantic": {"type": "integer", "minimum": 0},
+            "procedural": {"type": "integer", "minimum": 0},
+            "multi_type": {"type": "integer", "minimum": 0}
+          }
+        },
+        "average_query_time_ms": {"type": "number"},
+        "cache_hit_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "routing_accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How often the router chooses the optimal memory type"
+        },
+        "rule_effectiveness": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "trigger_count": {"type": "integer"},
+              "success_rate": {"type": "number"},
+              "avg_time_saved_ms": {"type": "number"}
+            }
+          }
+        },
+        "learning_metrics": {
+          "type": "object",
+          "properties": {
+            "rules_created": {"type": "integer", "minimum": 0},
+            "rules_retired": {"type": "integer", "minimum": 0},
+            "model_updates": {"type": "integer", "minimum": 0},
+            "last_optimization": {"type": "string", "format": "date-time"}
+          }
+        }
+      }
+    },
+    "adaptive_learning": {
+      "type": "object",
+      "description": "Memory-R1 2025 adaptive learning for routing optimization",
+      "properties": {
+        "enabled": {"type": "boolean", "default": true},
+        "learning_algorithm": {
+          "type": "string",
+          "enum": ["reinforcement_learning", "genetic_algorithm", "bayesian_optimization"],
+          "default": "reinforcement_learning"
+        },
+        "feedback_mechanism": {
+          "type": "object",
+          "properties": {
+            "explicit_feedback": {"type": "boolean", "default": true},
+            "implicit_feedback": {"type": "boolean", "default": true},
+            "feedback_weight": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7}
+          }
+        },
+        "adaptation_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.1
+        },
+        "exploration_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.05
+        }
+      }
+    },
+    "integration_status": {
+      "type": "object",
+      "properties": {
+        "episodic_events": {
+          "type": "object",
+          "properties": {
+            "connected": {"type": "boolean"},
+            "last_sync": {"type": "string", "format": "date-time"},
+            "sync_status": {"type": "string", "enum": ["healthy", "degraded", "failed"]}
+          }
+        },
+        "semantic_graph": {
+          "type": "object",
+          "properties": {
+            "connected": {"type": "boolean"},
+            "last_sync": {"type": "string", "format": "date-time"},
+            "sync_status": {"type": "string", "enum": ["healthy", "degraded", "failed"]}
+          }
+        },
+        "procedural_patterns": {
+          "type": "object",
+          "properties": {
+            "connected": {"type": "boolean"},
+            "last_sync": {"type": "string", "format": "date-time"},
+            "sync_status": {"type": "string", "enum": ["healthy", "degraded", "failed"]}
+          }
+        },
+        "vector_index": {
+          "type": "object",
+          "properties": {
+            "connected": {"type": "boolean"},
+            "last_sync": {"type": "string", "format": "date-time"},
+            "sync_status": {"type": "string", "enum": ["healthy", "degraded", "failed"]}
+          }
+        }
+      }
+    }
+  }
+}

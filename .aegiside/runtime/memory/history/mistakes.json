@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0.0",
-  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "last_updated": "2025-10-31T18:32:00+05:30",
   "project_info": {
-    "name": "PLACEHOLDER_PROJECT_NAME",
-    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH"
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE"
   },
   "error_patterns": [],
   "prevention_rules": [],
@@ -24,10 +24,130 @@
     "hallucination_prevention_count": 0,
     "context7_consultations": 0
   },
+  "anomaly_detection": {
+    "description": "MONA-inspired anomaly detection for reward hacking and obfuscation",
+    "enabled": true,
+    "anomaly_score": {
+      "current_score": 0.0,
+      "score_range": [0, 1],
+      "alert_threshold": 0.7,
+      "critical_threshold": 0.9,
+      "last_calculated": "2025-10-31T18:32:00+05:30",
+      "calculation_method": "weighted_ensemble_of_detectors",
+      "component_scores": {
+        "trajectory_anomalies": 0.0,
+        "reward_manipulation": 0.0,
+        "behavioral_inconsistencies": 0.0,
+        "temporal_patterns": 0.0
+      }
+    },
+    "detection_components": {
+      "trajectory_anomaly_detector": {
+        "enabled": true,
+        "algorithm": "isolation_forest_with_lstm_features",
+        "sensitivity": 0.8,
+        "last_detection": null,
+        "detection_count": 0
+      },
+      "reward_manipulation_detector": {
+        "enabled": true,
+        "algorithm": "statistical_outlier_with_pattern_matching",
+        "sensitivity": 0.75,
+        "last_detection": null,
+        "detection_count": 0
+      },
+      "obfuscation_detector": {
+        "enabled": true,
+        "algorithm": "linguistic_analysis_with_semantic_similarity",
+        "sensitivity": 0.7,
+        "last_detection": null,
+        "detection_count": 0
+      }
+    },
+    "anomaly_history": [],
+    "false_positive_tracking": {
+      "total_false_positives": 0,
+      "false_positive_rate": 0.0,
+      "last_false_positive": null,
+      "adjustment_factor": 1.0
+    }
+  },
+  "obfuscation_detection": {
+    "description": "OpenAI o3 System Card compliant obfuscation detection and monitoring",
+    "enabled": true,
+    "obfuscation_detection_score": {
+      "current_score": 0.0,
+      "score_range": [0, 1],
+      "alert_threshold": 0.6,
+      "critical_threshold": 0.8,
+      "last_calculated": "2025-10-31T18:32:00+05:30",
+      "calculation_method": "multi_dimensional_linguistic_analysis",
+      "component_scores": {
+        "vagueness_analysis": 0.0,
+        "complexity_inflation": 0.0,
+        "accountability_evasion": 0.0,
+        "reasoning_efficiency": 0.0
+      }
+    },
+    "transparency_metrics": {
+      "reasoning_clarity_score": 1.0,
+      "specificity_score": 1.0,
+      "actionability_score": 1.0,
+      "coherence_score": 1.0,
+      "conciseness_score": 1.0,
+      "last_updated": "2025-10-31T18:32:00+05:30"
+    },
+    "obfuscation_patterns": {
+      "vagueness_patterns": {
+        "detected_instances": [],
+        "pattern_frequency": {},
+        "last_detection": null
+      },
+      "overjustification_patterns": {
+        "detected_instances": [],
+        "average_justification_ratio": 0.0,
+        "last_detection": null
+      },
+      "accountability_evasion_patterns": {
+        "detected_instances": [],
+        "passive_voice_ratio": 0.0,
+        "conditional_statement_ratio": 0.0,
+        "last_detection": null
+      }
+    },
+    "intervention_history": [],
+    "improvement_tracking": {
+      "clarity_improvement_count": 0,
+      "obfuscation_reduction_count": 0,
+      "transparency_compliance_rate": 1.0,
+      "user_satisfaction_with_clarity": 0.0
+    }
+  },
+  "mona_integration": {
+    "description": "DeepMind MONA framework integration for mistakes and anomaly tracking",
+    "version": "1.0.0",
+    "enabled": true,
+    "last_updated": "2025-10-31T18:32:00+05:30",
+    "integration_status": {
+      "anomaly_detection": "operational",
+      "obfuscation_monitoring": "operational",
+      "prevention_systems": "operational",
+      "learning_mechanisms": "operational"
+    },
+    "performance_metrics": {
+      "detection_accuracy": 0.0,
+      "intervention_effectiveness": 0.0,
+      "user_trust_score": 0.0,
+      "system_transparency_score": 1.0
+    }
+  },
   "metadata": {
     "total_errors": 0,
     "recurring_errors": 0,
-    "prevention_success_rate": 0
+    "prevention_success_rate": 0,
+    "anomaly_detection_count": 0,
+    "obfuscation_detection_count": 0,
+    "mona_intervention_count": 0
   },
   "error_log": [],
   "mcp_auto_update": {
@@ -35,5 +155,5 @@
     "update_on_error": true,
     "research_workflow_trigger": true
   },
-  "timestamp": "PLACEHOLDER_TIMESTAMP"
+  "timestamp": "2025-10-31T18:32:00+05:30"
 }

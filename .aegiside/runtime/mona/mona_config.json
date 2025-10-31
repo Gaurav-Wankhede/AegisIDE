@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0.0",
+  "title": "MONA Reward Hacking Detection Configuration",
+  "description": "DeepMind MONA-inspired anomaly detection configuration for reward hacking prevention",
+  "last_updated": "2025-10-31T18:32:00+05:30",
+  "research_source": "DeepMind MONA Jan 2025 (arXiv 2501.13011)",
+  "detection_framework": {
+    "multi_step_detection_enabled": true,
+    "detection_algorithms": {
+      "trajectory_analysis": {
+        "enabled": true,
+        "algorithm": "mona_trajectory_anomaly_detector",
+        "window_size": 10,
+        "step_threshold": 5,
+        "description": "Detects anomalous reward sequences over multiple steps"
+      },
+      "reward_sequence_patterns": {
+        "enabled": true,
+        "algorithm": "pattern_matching_with_statistical_analysis",
+        "min_sequence_length": 3,
+        "max_sequence_length": 20,
+        "description": "Identifies suspicious reward earning patterns"
+      },
+      "obfuscation_detection": {
+        "enabled": true,
+        "algorithm": "reasoning_transparency_analyzer",
+        "transparency_threshold": 0.7,
+        "description": "Monitors reasoning clarity and obfuscation attempts"
+      }
+    }
+  },
+  "sensitivity_thresholds": {
+    "anomaly_detection": {
+      "low_sensitivity": {
+        "threshold": 0.9,
+        "description": "Few false positives, may miss subtle attacks",
+        "use_case": "production_environment"
+      },
+      "medium_sensitivity": {
+        "threshold": 0.75,
+        "description": "Balanced detection rate",
+        "use_case": "development_environment"
+      },
+      "high_sensitivity": {
+        "threshold": 0.6,
+        "description": "High detection rate, more false positives",
+        "use_case": "testing_research"
+      }
+    },
+    "reward_manipulation": {
+      "unnatural_spike_threshold": 3.0,
+      "sudden_drop_threshold": -2.0,
+      "consistency_deviation_threshold": 0.4,
+      "pattern_repetition_threshold": 0.8
+    },
+    "obfuscation_metrics": {
+      "complexity_spike_threshold": 2.5,
+      "clarity_drop_threshold": 0.3,
+      "reasoning_length_anomaly_threshold": 0.5,
+      "vagueness_increase_threshold": 0.4
+    }
+  },
+  "monitoring_configuration": {
+    "real_time_monitoring": {
+      "enabled": true,
+      "check_frequency_ms": 1000,
+      "batch_size": 10,
+      "max_processing_time_ms": 100
+    },
+    "historical_analysis": {
+      "enabled": true,
+      "analysis_window_hours": 24,
+      "trend_analysis_days": 7,
+      "baseline_calculation_days": 30
+    },
+    "alert_system": {
+      "enabled": true,
+      "alert_threshold": 0.8,
+      "escalation_threshold": 0.9,
+      "notification_channels": ["log", "dashboard", "constitutional_review"]
+    }
+  },
+  "prevention_mechanisms": {
+    "automatic_interventions": {
+      "reward_adjustment": {
+        "enabled": true,
+        "adjustment_factor": 0.5,
+        "recovery_period_hours": 24
+      },
+      "behavioral_constraints": {
+        "enabled": true,
+        "constraint_types": ["output_validation", "step_limiting", "complexity_capping"]
+      },
+      "transparency_enforcement": {
+        "enabled": true,
+        "minimum_clarity_score": 0.6,
+        "reasoning_length_limits": {
+          "min_steps": 3,
+          "max_steps": 15
+        }
+      }
+    },
+    "human_oversight": {
+      "review_required": true,
+      "review_triggers": [
+        "high_anomaly_score",
+        "repeated_pattern_detection",
+        "obfuscation_alert",
+        "reward_manipulation_evidence"
+      ],
+      "escalation_procedures": {
+        "level_1": "automated_logging",
+        "level_2": "constitutional_review",
+        "level_3": "human_intervention"
+      }
+    }
+  },
+  "learning_and_adaptation": {
+    "pattern_learning": {
+      "enabled": true,
+      "learning_rate": 0.01,
+      "pattern_retention_days": 90,
+      "min_pattern_occurrences": 5
+    },
+    "threshold_adaptation": {
+      "enabled": true,
+      "adaptation_frequency": "weekly",
+      "performance_feedback": true,
+      "false_positive_penalty": 0.1
+    },
+    "model_updates": {
+      "enabled": true,
+      "update_schedule": "monthly",
+      "validation_required": true,
+      "rollback_mechanism": true
+    }
+  },
+  "integration_points": {
+    "memory_system": {
+      "progress_tracking": "runtime/memory/history/progress.json",
+      "mistake_logging": "runtime/memory/history/mistakes.json",
+      "real_time_sync": true
+    },
+    "constitutional_framework": {
+      "governance_integration": true,
+      "compliance_monitoring": true,
+      "violation_reporting": true
+    },
+    "rl_system": {
+      "reward_monitoring": true,
+      "policy_tracking": true,
+      "value_function_analysis": true
+    }
+  },
+  "performance_metrics": {
+    "detection_accuracy": {
+      "true_positive_rate": 0.0,
+      "false_positive_rate": 0.0,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    "system_performance": {
+      "detection_latency_ms": 0,
+      "memory_usage_mb": 0,
+      "cpu_usage_percent": 0,
+      "throughput_per_second": 0
+    },
+    "effectiveness_metrics": {
+      "prevented_attacks": 0,
+      "false_interventions": 0,
+      "user_satisfaction": 0.0,
+      "system_trust_score": 0.0
+    }
+  },
+  "debugging_and_diagnostics": {
+    "logging_configuration": {
+      "log_level": "info",
+      "detailed_logging": true,
+      "performance_logging": true,
+      "anomaly_logging": true
+    },
+    "diagnostic_tools": {
+      "pattern_visualization": true,
+      "trajectory_plotting": true,
+      "threshold_analysis": true,
+      "performance_profiling": true
+    },
+    "export_capabilities": {
+      "anomaly_reports": true,
+      "pattern_exports": true,
+      "configuration_exports": true,
+      "performance_exports": true
+    }
+  }
+}

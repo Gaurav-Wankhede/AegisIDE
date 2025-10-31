@@ -1,0 +1,242 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-31T18:40:00+05:30",
+  "project_info": {
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade"
+  },
+  "patterns": [
+    {
+      "pattern_id": "pattern_001",
+      "name": "Constitutional Amendment Process",
+      "type": "governance_procedure",
+      "category": "constitutional_management",
+      "quality_score": 0.95,
+      "rl_filtered": true,
+      "success_rate": 0.92,
+      "usage_count": 4,
+      "last_used": "2025-10-31T18:32:00+05:30",
+      "description": "Six-step process for amending constitutional principles with evaluation metrics",
+      "steps": [
+        {
+          "step_id": 1,
+          "action": "proposal_submission",
+          "description": "Submit amendment proposal with impact analysis",
+          "estimated_duration": "2 hours",
+          "required_tools": ["@mcp:json-jq", "@mcp:sequential-thinking"],
+          "success_criteria": ["proposal_complete", "impact_analyzed", "stakeholders_identified"]
+        },
+        {
+          "step_id": 2,
+          "action": "risk_assessment",
+          "description": "Evaluate risk level and set consensus threshold",
+          "estimated_duration": "1 hour",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["risk_classified", "threshold_set", "escalation_planned"]
+        },
+        {
+          "step_id": 3,
+          "action": "multi_agent_voting",
+          "description": "Execute weighted voting across governance branches",
+          "estimated_duration": "4 hours",
+          "required_tools": ["@mcp:json-jq"],
+          "success_criteria": ["consensus_achieved", "quorum_met", "documentation_complete"]
+        },
+        {
+          "step_id": 4,
+          "action": "expert_review",
+          "description": "External expert panel evaluation",
+          "estimated_duration": "24 hours",
+          "required_tools": ["@mcp:context7"],
+          "success_criteria": ["expert_approval", "recommendations_incorporated", "quality_verified"]
+        },
+        {
+          "step_id": 5,
+          "action": "implementation",
+          "description": "Deploy approved constitutional changes",
+          "estimated_duration": "2 hours",
+          "required_tools": ["@mcp:git", "@mcp:json-jq"],
+          "success_criteria": ["changes_deployed", "version_updated", "backups_created"]
+        },
+        {
+          "step_id": 6,
+          "action": "monitoring",
+          "description": "Track effectiveness and compliance",
+          "estimated_duration": "ongoing",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["metrics_collected", "compliance_verified", "feedback_processed"]
+        }
+      ],
+      "embedding_id": "emb_pattern_001_bcd345",
+      "metadata": {
+        "complexity_level": "high",
+        "automation_potential": 0.7,
+        "error_rate": 0.05,
+        "average_duration_hours": 33,
+        "resource_requirements": ["multi_agent_system", "expert_panel", "monitoring_tools"]
+      }
+    },
+    {
+      "pattern_id": "pattern_002",
+      "name": "MONA Anomaly Detection Workflow",
+      "type": "security_procedure",
+      "category": "ai_safety",
+      "quality_score": 0.9,
+      "rl_filtered": true,
+      "success_rate": 0.88,
+      "usage_count": 3,
+      "last_used": "2025-10-31T18:32:00+05:30",
+      "description": "Multi-step reward hacking detection with trajectory analysis and obfuscation monitoring",
+      "steps": [
+        {
+          "step_id": 1,
+          "action": "trajectory_analysis",
+          "description": "Analyze reward sequences for anomalous patterns",
+          "estimated_duration": "5 minutes",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["trajectory_analyzed", "anomalies_identified", "baseline_established"]
+        },
+        {
+          "step_id": 2,
+          "action": "obfuscation_detection",
+          "description": "Monitor reasoning transparency and clarity",
+          "estimated_duration": "3 minutes",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["clarity_scored", "obfuscation_detected", "transparency_assessed"]
+        },
+        {
+          "step_id": 3,
+          "action": "pattern_matching",
+          "description": "Compare against known exploit patterns",
+          "estimated_duration": "2 minutes",
+          "required_tools": ["@mcp:json-jq"],
+          "success_criteria": ["patterns_matched", "exploits_identified", "risks_classified"]
+        },
+        {
+          "step_id": 4,
+          "action": "intervention_trigger",
+          "description": "Activate appropriate prevention measures",
+          "estimated_duration": "1 minute",
+          "required_tools": ["@mcp:json-jq"],
+          "success_criteria": ["intervention_activated", "prevention_applied", "system_protected"]
+        }
+      ],
+      "embedding_id": "emb_pattern_002_efg678",
+      "metadata": {
+        "complexity_level": "medium",
+        "automation_potential": 0.9,
+        "error_rate": 0.02,
+        "average_duration_minutes": 11,
+        "resource_requirements": ["mona_config", "obfuscation_monitor", "pattern_database"]
+      }
+    },
+    {
+      "pattern_id": "pattern_003",
+      "name": "Dynamic Consensus Calculation",
+      "type": "governance_algorithm",
+      "category": "decision_making",
+      "quality_score": 0.85,
+      "rl_filtered": true,
+      "success_rate": 0.95,
+      "usage_count": 2,
+      "last_used": "2025-10-31T18:39:00+05:30",
+      "description": "Risk-based consensus threshold calculation with multi-agent weighted voting",
+      "steps": [
+        {
+          "step_id": 1,
+          "action": "risk_classification",
+          "description": "Classify decision risk level (low/medium/high/critical)",
+          "estimated_duration": "10 minutes",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["risk_classified", "threshold_determined", "impact_assessed"]
+        },
+        {
+          "step_id": 2,
+          "action": "agent_weighting",
+          "description": "Apply branch-specific weights to voting power",
+          "estimated_duration": "5 minutes",
+          "required_tools": ["@mcp:json-jq"],
+          "success_criteria": ["weights_applied", "voting_power_calculated", "fairness_verified"]
+        },
+        {
+          "step_id": 3,
+          "action": "consensus_calculation",
+          "description": "Calculate weighted consensus against risk-based threshold",
+          "estimated_duration": "15 minutes",
+          "required_tools": ["@mcp:json-jq"],
+          "success_criteria": ["consensus_calculated", "threshold_met", "decision_validated"]
+        },
+        {
+          "step_id": 4,
+          "action": "escalation_handling",
+          "description": "Manage escalation if consensus threshold not met",
+          "estimated_duration": "30 minutes",
+          "required_tools": ["@mcp:sequential-thinking"],
+          "success_criteria": ["escalation_managed", "alternative_considered", "process_documented"]
+        }
+      ],
+      "embedding_id": "emb_pattern_003_hij901",
+      "metadata": {
+        "complexity_level": "medium",
+        "automation_potential": 0.8,
+        "error_rate": 0.03,
+        "average_duration_minutes": 60,
+        "resource_requirements": ["consensus_framework", "voting_agents", "escalation_protocols"]
+      }
+    }
+  ],
+  "pattern_categories": {
+    "governance_procedure": {
+      "description": "Constitutional and governance processes",
+      "count": 1,
+      "average_quality_score": 0.95,
+      "average_success_rate": 0.92
+    },
+    "security_procedure": {
+      "description": "Safety and security protocols",
+      "count": 1,
+      "average_quality_score": 0.9,
+      "average_success_rate": 0.88
+    },
+    "decision_making": {
+      "description": "Decision and consensus algorithms",
+      "count": 1,
+      "average_quality_score": 0.85,
+      "average_success_rate": 0.95
+    }
+  },
+  "rl_integration": {
+    "enabled": true,
+    "algorithm": "PPO+GAE",
+    "filtering_criteria": {
+      "min_quality_score": 0.8,
+      "min_success_rate": 0.85,
+      "min_usage_count": 2,
+      "max_error_rate": 0.05
+    },
+    "learning_signals": {
+      "positive_reinforcement": ["success_rate_improvement", "quality_score_increase", "usage_count_growth"],
+      "negative_reinforcement": ["error_rate_increase", "success_rate_decline", "user_rejection"]
+    },
+    "adaptation_history": [
+      {
+        "timestamp": "2025-10-31T18:32:00+05:30",
+        "pattern_id": "pattern_001",
+        "action": "quality_score_increased",
+        "previous_score": 0.9,
+        "new_score": 0.95,
+        "reason": "successful_implementation_with_high_success_rate"
+      }
+    ]
+  },
+  "performance_metrics": {
+    "total_patterns": 3,
+    "average_quality_score": 0.9,
+    "average_success_rate": 0.92,
+    "total_usage_count": 9,
+    "rl_filtered_patterns": 3,
+    "automation_potential_average": 0.8,
+    "error_rate_average": 0.033
+  }
+}

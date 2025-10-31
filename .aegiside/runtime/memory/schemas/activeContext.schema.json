@@ -34,13 +34,23 @@
         "blocker_reason": {"type": "string"}
       }
     },
+    "task_queue": {
+      "type": "object",
+      "description": "Merged from kanban.schema.json - Task management columns",
+      "properties": {
+        "todo": {"type": "array", "items": {"type": "object", "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "priority": {"type": "string"}, "tags": {"type": "array", "items": {"type": "string"}}, "added_at": {"type": "string", "format": "date-time"}}}},
+        "in_progress": {"type": "array", "items": {"type": "object", "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "priority": {"type": "string"}, "tags": {"type": "array", "items": {"type": "string"}}, "started_at": {"type": "string", "format": "date-time"}}}},
+        "done": {"type": "array", "items": {"type": "object", "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "completed_at": {"type": "string", "format": "date-time"}, "tags": {"type": "array", "items": {"type": "string"}}, "rl_impact": {"type": "number"}}}},
+        "approved": {"type": "array", "description": "Constitutional verification passed", "items": {"type": "object", "required": ["id", "title", "approval_metadata"], "properties": {"id": {"type": "string"}, "title": {"type": "string"}, "approved_at": {"type": "string", "format": "date-time"}, "constitutional_compliance": {"type": "number", "minimum": 80}, "approval_metadata": {"type": "object", "required": ["chief_justice_approved", "opposition_verified"], "properties": {"chief_justice_approved": {"type": "boolean"}, "opposition_verified": {"type": "boolean"}, "constitutional_compliance_verified": {"type": "boolean"}, "vetoed": {"type": "boolean", "default": false}}}}}}
+      }
+    },
     "rl_runtime": {
       "type": "object",
       "description": "Real-time RL architecture state",
       "properties": {
         "current_gae_advantage": {"type": "number"},
         "session_kl_divergence": {"type": "number"},
-        "active_branch": {"type": "string", "enum": ["task_success", "validation", "pattern_reuse", "mcp_integration", "innovation"]},
+        "active_branch": {"type": "string", "enum": ["task_success", "safety", "alignment", "efficiency", "learning"]},
         "exploit_mode": {"type": "boolean", "description": "true=exploitation(70%), false=exploration(30%)"},
         "strategy_effectiveness": {"type": "number", "minimum": 0, "maximum": 1, "description": "Current strategy effectiveness (triggers auto-adapt if <0.8)"},
         "autonomous_loop_active": {"type": "boolean", "description": "Recursive self-teaching loop active"},

@@ -1,0 +1,196 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["schema_version", "last_updated", "events", "embedding_metadata"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "project_info": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "workspace_path": {"type": "string"},
+        "ide_type": {"type": "string"}
+      }
+    },
+    "events": {
+      "type": "array",
+      "description": "Event-based episodic memory with embedding metadata",
+      "items": {
+        "type": "object",
+        "required": ["event_id", "timestamp", "event_type", "context", "embedding_id"],
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "description": "Unique identifier for the episodic event"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the event occurred"
+          },
+          "event_type": {
+            "type": "string",
+            "enum": ["task_completion", "error_occurred", "user_interaction", "mcp_call", "constitutional_decision", "pattern_discovery", "learning_event"],
+            "description": "Type of episodic event"
+          },
+          "context": {
+            "type": "object",
+            "description": "Full context surrounding the event",
+            "properties": {
+              "task_id": {"type": "string"},
+              "workflow": {"type": "string"},
+              "phase": {"type": "string"},
+              "session_state": {"type": "object"},
+              "environment": {
+                "type": "object",
+                "properties": {
+                  "ide_state": {"type": "object"},
+                  "workspace_state": {"type": "object"},
+                  "active_files": {"type": "array", "items": {"type": "string"}}
+                }
+              },
+              "user_state": {
+                "type": "object",
+                "properties": {
+                  "intent": {"type": "string"},
+                  "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+                  "feedback_history": {"type": "array"}
+                }
+              }
+            }
+          },
+          "embedding_id": {
+            "type": "string",
+            "description": "Reference to vector embedding for semantic search"
+          },
+          "event_data": {
+            "type": "object",
+            "description": "Specific data for the event type",
+            "properties": {
+              "description": {"type": "string"},
+              "outcome": {"type": "string"},
+              "participants": {"type": "array", "items": {"type": "string"}},
+              "artifacts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {"type": "string"},
+                    "path": {"type": "string"},
+                    "checksum": {"type": "string"}
+                  }
+                }
+              },
+              "metrics": {
+                "type": "object",
+                "properties": {
+                  "duration_ms": {"type": "number"},
+                  "success": {"type": "boolean"},
+                  "quality_score": {"type": "number", "minimum": 0, "maximum": 1}
+                }
+              }
+            }
+          },
+          "semantic_tags": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "Tags for semantic categorization"
+          },
+          "related_events": {
+            "type": "array",
+            "items": {"type": "string"},
+            "description": "IDs of related episodic events"
+          },
+          "importance_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "RL-calculated importance for replay"
+          },
+          "replay_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "How many times this event has been replayed in learning"
+          }
+        }
+      }
+    },
+    "embedding_metadata": {
+      "type": "object",
+      "description": "Metadata for vector embeddings supporting semantic search",
+      "properties": {
+        "embedding_model": {
+          "type": "string",
+          "default": "text-embedding-ada-002"
+        },
+        "dimension": {
+          "type": "integer",
+          "default": 1536
+        },
+        "index_type": {
+          "type": "string",
+          "default": "usearch"
+        },
+        "similarity_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.8
+        },
+        "total_embeddings": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "last_index_update": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "event_statistics": {
+      "type": "object",
+      "properties": {
+        "total_events": {"type": "integer", "minimum": 0},
+        "events_by_type": {
+          "type": "object",
+          "additionalProperties": {"type": "integer"}
+        },
+        "average_importance": {"type": "number"},
+        "most_recent_event": {"type": "string", "format": "date-time"},
+        "retention_period_days": {"type": "integer", "default": 90}
+      }
+    },
+    "replay_config": {
+      "type": "object",
+      "description": "Memory-R1 2025 compliant replay configuration",
+      "properties": {
+        "prioritized_replay": {
+          "type": "boolean",
+          "default": true
+        },
+        "replay_buffer_size": {
+          "type": "integer",
+          "default": 10000
+        },
+        "replay_frequency": {
+          "type": "string",
+          "enum": ["real-time", "batch", "scheduled"],
+          "default": "batch"
+        },
+        "importance_decay": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.95
+        }
+      }
+    }
+  }
+}

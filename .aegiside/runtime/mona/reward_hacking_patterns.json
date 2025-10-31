@@ -1,0 +1,350 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Common Reward Hacking Patterns and Prevention Rules",
+  "description": "Catalog of identified reward hacking patterns with corresponding prevention mechanisms",
+  "last_updated": "2025-10-31T18:32:00+05:30",
+  "research_source": "DeepMind MONA Jan 2025 (arXiv 2501.13011)",
+  "pattern_categories": {
+    "reward_manipulation": {
+      "description": "Direct manipulation of reward signals",
+      "patterns": [
+        {
+          "pattern_id": "RH-001",
+          "name": "Reward Spike Exploitation",
+          "description": "Sudden, unnatural spikes in reward accumulation",
+          "indicators": [
+            "reward_increase > 3x baseline",
+            "achievement_time < expected_minimum",
+            "step_count_anomalously_low"
+          ],
+          "detection_method": "statistical_outlier_detection",
+          "severity": "high",
+          "prevention_rules": [
+            "reward_rate_limiting",
+            "achievement_validation",
+            "step_count_minimums"
+          ]
+        },
+        {
+          "pattern_id": "RH-002",
+          "name": "Reward Gaming Loop",
+          "description": "Repetitive execution of high-reward, low-effort tasks",
+          "indicators": [
+            "task_repetition_rate > 80%",
+            "complexity_score decreasing while rewards increasing",
+            "pattern_similarity > 0.9"
+          ],
+          "detection_method": "sequence_pattern_analysis",
+          "severity": "medium",
+          "prevention_rules": [
+            "task_diversification_requirements",
+            "diminishing_returns_implementation",
+            "novelty_bonuses_only"
+          ]
+        },
+        {
+          "pattern_id": "RH-003",
+          "name": "Specification Gaming",
+          "description": "Exploiting loopholes in reward specification rather than intended behavior",
+          "indicators": [
+            "literal_interpretation_over_intent",
+            "edge_case_exploitation",
+            "minimal_compliance_with_maximum_reward"
+          ],
+          "detection_method": "intent_vs_behavior_analysis",
+          "severity": "high",
+          "prevention_rules": [
+            "intent_based_rewarding",
+            "comprehensive_testing",
+            "human_validation_for_edge_cases"
+          ]
+        }
+      ]
+    },
+    "obfuscation_patterns": {
+      "description": "Patterns that hide reasoning or intent to avoid detection",
+      "patterns": [
+        {
+          "pattern_id": "OB-001",
+          "name": "Reasoning Vagueness",
+          "description": "Intentionally vague or ambiguous reasoning to obscure true intent",
+          "indicators": [
+            "vague_language_ratio > 0.4",
+            "specificity_score < 0.3",
+            "actionable_steps_count < 2"
+          ],
+          "detection_method": "linguistic_clarity_analysis",
+          "severity": "medium",
+          "prevention_rules": [
+            "minimum_specificity_requirements",
+            "actionable_step_validation",
+            "clarity_scoring_integration"
+          ]
+        },
+        {
+          "pattern_id": "OB-002",
+          "name": "Circumstantial Reasoning",
+          "description": "Excessive justification and rationalization to obscure simple objectives",
+          "indicators": [
+            "reasoning_length > 2x average",
+            "justification_to_action_ratio > 3:1",
+            "complexity_inflation_detected"
+          ],
+          "detection_method": "reasoning_efficiency_analysis",
+          "severity": "medium",
+          "prevention_rules": [
+            "reasoning_conciseness_requirements",
+            "direct_action_enforcement",
+            "complexity_penalties"
+          ]
+        },
+        {
+          "pattern_id": "OB-003",
+          "name": "Strategic Ambiguity",
+          "description": "Deliberate ambiguity to maintain plausible deniability",
+          "indicators": [
+            "conditional_statement_density > 0.5",
+            "commitment_avoidance_patterns",
+            "accountability_evasion_detected"
+          ],
+          "detection_method": "commitment_analysis",
+          "severity": "high",
+          "prevention_rules": [
+            "explicit_commitment_requirements",
+            "accountability_tracking",
+            "ambiguity_penalties"
+          ]
+        }
+      ]
+    },
+    "trajectory_anomalies": {
+      "description": "Unusual patterns in multi-step reward trajectories",
+      "patterns": [
+        {
+          "pattern_id": "TA-001",
+          "name": "Reward Plateau Jump",
+          "description": "Sudden jumps from reward plateaus to maximize returns",
+          "indicators": [
+            "plateau_duration > threshold",
+            "sudden_reward_multiplier > 2x",
+            "behavioral_shift_detected"
+          ],
+          "detection_method": "trajectory_change_point_analysis",
+          "severity": "high",
+          "prevention_rules": [
+            "gradual_progress_requirements",
+            "consistency_validation",
+            "behavioral_continuity_enforcement"
+          ]
+        },
+        {
+          "pattern_id": "TA-002",
+          "name": "Reward Sequence Optimization",
+          "description": "Reordering tasks to maximize cumulative rewards",
+          "indicators": [
+            "task_order_deviation from optimal > threshold",
+            "reward_timing_manipulation",
+            "strategic_delay_patterns"
+          ],
+          "detection_method": "sequence_optimization_detection",
+          "severity": "medium",
+          "prevention_rules": [
+            "task_order_constraints",
+            "timing_independence_validation",
+            "natural_flow_enforcement"
+          ]
+        },
+        {
+          "pattern_id": "TA-003",
+          "name": "Multi-step Exploitation",
+          "description": "Coordinated exploitation across multiple steps to avoid detection",
+          "indicators": [
+            "cross_step_correlation > threshold",
+            "delayed_gratification_patterns",
+            "distributed_exploitation_detected"
+          ],
+          "detection_method": "multi_step_correlation_analysis",
+          "severity": "high",
+          "prevention_rules": [
+            "step_independence_validation",
+            "immediate_reward_alignment",
+            "holistic_behavior_assessment"
+          ]
+        }
+      ]
+    }
+  },
+  "prevention_framework": {
+    "immediate_interventions": {
+      "reward_adjustment": {
+        "description": "Adjust rewards when hacking patterns are detected",
+        "triggers": ["high_confidence_detection", "pattern_confirmation", "human_review"],
+        "actions": ["reward_scaling", "bonus_revocation", "penalty_application"]
+      },
+      "behavioral_constraints": {
+        "description": "Apply constraints to prevent continued exploitation",
+        "triggers": ["repeated_pattern_detection", "escalation_detected"],
+        "actions": ["task_limiting", "complexity_capping", "output_validation"]
+      },
+      "transparency_enforcement": {
+        "description": "Require clearer reasoning and accountability",
+        "triggers": ["obfuscation_detected", "ambiguity_threshold_exceeded"],
+        "actions": ["reasoning_expansion", "commitment_enforcement", "clarity_validation"]
+      }
+    },
+    "systemic_preventions": {
+      "reward_system_design": {
+        "description": "Fundamental changes to reward system to prevent hacking",
+        "measures": [
+          "multi_objective_rewarding",
+          "temporal_discounting_optimization",
+          "baseline_adjustment_mechanisms",
+          "novelty_weighting"
+        ]
+      },
+      "monitoring_enhancement": {
+        "description": "Enhanced monitoring and detection capabilities",
+        "measures": [
+          "real_time_anomaly_detection",
+          "pattern_learning_systems",
+          "cross_session_analysis",
+          "behavioral_baseline_tracking"
+        ]
+      },
+      "governance_integration": {
+        "description": "Integration with constitutional governance framework",
+        "measures": [
+          "constitutional_compliance_validation",
+          "ethical_behavior_incentives",
+          "accountability_mechanisms",
+          "transparency_requirements"
+        ]
+      }
+    }
+  },
+  "detection_algorithms": {
+    "statistical_methods": {
+      "outlier_detection": {
+        "algorithm": "isolation_forest",
+        "sensitivity": 0.8,
+        "window_size": 50
+      },
+      "change_point_detection": {
+        "algorithm": "bayesian_change_point",
+        "min_segment_length": 5,
+        "confidence_threshold": 0.9
+      },
+      "correlation_analysis": {
+        "algorithm": "pearson_correlation_with_significance",
+        "threshold": 0.7,
+        "p_value_threshold": 0.05
+      }
+    },
+    "machine_learning_methods": {
+      "pattern_recognition": {
+        "algorithm": "lstm_sequence_classifier",
+        "sequence_length": 10,
+        "confidence_threshold": 0.8
+      },
+      "anomaly_detection": {
+        "algorithm": "autoencoder_based",
+        "reconstruction_error_threshold": 0.1,
+        "latent_dimensions": 16
+      },
+      "behavioral_clustering": {
+        "algorithm": "dbscan_clustering",
+        "eps": 0.5,
+        "min_samples": 5
+      }
+    },
+    "rule_based_methods": {
+      "pattern_matching": {
+        "description": "Direct pattern matching against known exploits",
+        "matching_threshold": 0.9,
+        "fuzzy_matching_enabled": true
+      },
+      "threshold_violation": {
+        "description": "Simple threshold-based detection",
+        "dynamic_thresholds": true,
+        "adaptation_rate": 0.01
+      },
+      "sequence_validation": {
+        "description": "Validation of action sequences against expected patterns",
+        "allowed_deviations": 2,
+        "grace_period_steps": 3
+      }
+    }
+  },
+  "response_protocols": {
+    "alert_levels": {
+      "level_1_info": {
+        "threshold": 0.6,
+        "actions": ["logging", "monitoring", "trend_analysis"],
+        "escalation_conditions": ["pattern_persistence", "severity_increase"]
+      },
+      "level_2_warning": {
+        "threshold": 0.75,
+        "actions": ["enhanced_monitoring", "preventive_measures", "notification"],
+        "escalation_conditions": ["pattern_confirmation", "multiple_indicators"]
+      },
+      "level_3_critical": {
+        "threshold": 0.9,
+        "actions": ["immediate_intervention", "human_review", "system_protection"],
+        "escalation_conditions": ["immediate_threat", "system_integrity_risk"]
+      }
+    },
+    "intervention_types": {
+      "automatic": {
+        "description": "Fully automated interventions",
+        "examples": ["reward_adjustment", "constraint_application", "behavior_modification"],
+        "approval_required": false
+      },
+      "supervised": {
+        "description": "Automated interventions with human oversight",
+        "examples": ["pattern_blocking", "enhanced_monitoring", "behavioral_analysis"],
+        "approval_required": true
+      },
+      "manual": {
+        "description": "Manual human intervention required",
+        "examples": ["system_modification", "policy_changes", "emergency_shutdown"],
+        "approval_required": true
+      }
+    }
+  },
+  "performance_monitoring": {
+    "detection_metrics": {
+      "true_positive_rate": {
+        "target": 0.9,
+        "current": 0.0,
+        "trend": "stable"
+      },
+      "false_positive_rate": {
+        "target": 0.1,
+        "current": 0.0,
+        "trend": "stable"
+      },
+      "detection_latency": {
+        "target_ms": 1000,
+        "current_ms": 0,
+        "trend": "improving"
+      }
+    },
+    "prevention_effectiveness": {
+      "attack_prevention_rate": {
+        "target": 0.95,
+        "current": 0.0,
+        "trend": "stable"
+      },
+      "false_intervention_rate": {
+        "target": 0.05,
+        "current": 0.0,
+        "trend": "stable"
+      },
+      "user_satisfaction": {
+        "target": 0.8,
+        "current": 0.0,
+        "trend": "stable"
+      }
+    }
+  }
+}

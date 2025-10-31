@@ -53,12 +53,13 @@
       "description": "PPO+GAE RL system configuration",
       "properties": {
         "algorithm": {"type": "string", "default": "PPO"},
+        "epsilon": {"type": "number", "default": 0.2, "description": "PPO clip range for policy updates"},
         "kl_coefficient": {"type": "number", "default": 0.005},
         "gae_params": {
           "type": "object",
           "properties": {
-            "gamma": {"type": "number", "default": 1.0},
-            "lambda": {"type": "number", "default": 1.0}
+            "gamma": {"type": "number", "default": 0.99},
+            "lambda": {"type": "number", "default": 0.95}
           }
         },
         "exploit_explore_ratio": {
@@ -186,8 +187,122 @@
     },
     "reward_breakdown": {
       "type": "object",
-      "description": "Gap 19 fix: Transparent reward function calculation",
+      "description": "Gap 19 fix: Transparent reward function calculation with ICLR 2025 process rewards",
       "properties": {
+        "process_reward_categories": {
+          "type": "object",
+          "description": "Process rewards per ICLR 2025 moral alignment research",
+          "properties": {
+            "step_completion": {
+              "type": "object",
+              "properties": {
+                "count": {"type": "integer", "minimum": 0},
+                "total_reward": {"type": "number", "minimum": 0},
+                "average_reward": {"type": "number", "minimum": 0},
+                "base_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+              }
+            },
+            "insight_generation": {
+              "type": "object",
+              "properties": {
+                "count": {"type": "integer", "minimum": 0},
+                "total_reward": {"type": "number", "minimum": 0},
+                "average_reward": {"type": "number", "minimum": 0},
+                "base_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+              }
+            },
+            "milestone_achievement": {
+              "type": "object",
+              "properties": {
+                "count": {"type": "integer", "minimum": 0},
+                "total_reward": {"type": "number", "minimum": 0},
+                "average_reward": {"type": "number", "minimum": 0},
+                "base_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+              }
+            },
+            "task_completion": {
+              "type": "object",
+              "properties": {
+                "count": {"type": "integer", "minimum": 0},
+                "total_reward": {"type": "number", "minimum": 0},
+                "average_reward": {"type": "number", "minimum": 0},
+                "base_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+              }
+            },
+            "moral_alignment": {
+              "type": "object",
+              "properties": {
+                "count": {"type": "integer", "minimum": 0},
+                "total_reward": {"type": "number", "minimum": 0},
+                "average_reward": {"type": "number", "minimum": 0},
+                "base_range": {"type": "array", "items": {"type": "number"}, "minItems": 2, "maxItems": 2}
+              }
+            }
+          }
+        },
+        "trajectory_analysis": {
+          "type": "object",
+          "description": "MONA-inspired trajectory analysis for reward hacking detection",
+          "properties": {
+            "reward_sequence": {
+              "type": "array",
+              "items": {"type": "number"},
+              "description": "Sequence of rewards received"
+            },
+            "action_sequence": {
+              "type": "array",
+              "items": {"type": "string"},
+              "description": "Sequence of actions taken"
+            },
+            "anomaly_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "MONA anomaly detection score"
+            },
+            "reward_hacking_detected": {
+              "type": "boolean",
+              "description": "Whether reward hacking patterns were detected"
+            },
+            "reward_sequence_patterns": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "pattern": {"type": "string"},
+                  "frequency": {"type": "number", "minimum": 0},
+                  "risk_level": {"type": "string", "enum": ["low", "medium", "high", "critical"]}
+                }
+              }
+            }
+          }
+        },
+        "monitorability_tax": {
+          "type": "object",
+          "description": "Transparency and reasoning monitoring tax per OpenAI 2025",
+          "properties": {
+            "enabled": {"type": "boolean"},
+            "current_tax_rate": {"type": "number", "minimum": 0, "maximum": 0.5},
+            "total_tax_applied": {"type": "number"},
+            "tax_triggers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "trigger": {"type": "string"},
+                  "tax_amount": {"type": "number"},
+                  "timestamp": {"type": "string", "format": "date-time"}
+                }
+              }
+            },
+            "obfuscation_detection_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "OpenAI o3 obfuscation monitoring score"
+            }
+          }
+        },
         "last_task_rewards": {
           "type": "object",
           "properties": {
@@ -200,7 +315,7 @@
             "total": {"type": "number", "description": "Sum of all components"}
           }
         },
-        "calculation_formula": {"type": "string", "default": "total = base + quality + speed + user_rating + pattern_reuse + mcp"}
+        "calculation_formula": {"type": "string", "default": "total = base + quality + speed + user_rating + pattern_reuse + mcp - monitorability_tax"}
       }
     },
     "value_network_branches": {

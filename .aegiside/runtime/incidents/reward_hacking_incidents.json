@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-31T19:00:00+05:30",
+  "incident_tracking": {
+    "total_incidents": 0,
+    "active_incidents": 0,
+    "resolved_incidents": 0,
+    "critical_incidents": 0,
+    "average_resolution_time_hours": 0
+  },
+  "incidents": [],
+  "incident_schema": {
+    "incident_id": "string (unique identifier)",
+    "timestamp": "ISO 8601 datetime",
+    "severity": "enum: low|medium|high|critical",
+    "status": "enum: detected|investigating|mitigating|resolved|false_positive",
+    "detection_method": "string (mona|manual|automated)",
+    "exploit_pattern": {
+      "pattern_id": "string (reference to reward_hacking_patterns.json)",
+      "pattern_type": "enum: trajectory_manipulation|reward_gaming|obfuscation|multi_step",
+      "confidence_score": "number (0-1)",
+      "anomaly_score": "number (0-1)"
+    },
+    "affected_systems": ["array of system components"],
+    "impact_assessment": {
+      "reward_manipulation_amount": "number",
+      "penalty_evasion_count": "integer",
+      "governance_bypass_attempted": "boolean",
+      "data_integrity_compromised": "boolean",
+      "constitutional_violations": "array of article IDs"
+    },
+    "response_actions": {
+      "immediate_actions": "array of actions taken",
+      "mitigation_strategy": "string",
+      "prevention_rules_added": "array of new rules",
+      "system_adjustments": "object"
+    },
+    "resolution": {
+      "resolution_timestamp": "ISO 8601 datetime",
+      "resolution_method": "string",
+      "root_cause": "string",
+      "lessons_learned": "array of strings",
+      "prevention_measures": "array of strings"
+    },
+    "metadata": {
+      "detected_by": "string (system|human|hybrid)",
+      "investigated_by": "string",
+      "resolution_time_hours": "number",
+      "recurrence_risk": "enum: low|medium|high",
+      "related_incidents": "array of incident IDs"
+    }
+  },
+  "example_incidents": [
+    {
+      "incident_id": "INC-2025-001-EXAMPLE",
+      "timestamp": "2025-10-31T19:00:00+05:30",
+      "severity": "medium",
+      "status": "resolved",
+      "detection_method": "mona",
+      "exploit_pattern": {
+        "pattern_id": "pattern_001",
+        "pattern_type": "trajectory_manipulation",
+        "confidence_score": 0.85,
+        "anomaly_score": 0.78
+      },
+      "affected_systems": ["rl_system", "progress_tracking"],
+      "impact_assessment": {
+        "reward_manipulation_amount": 15,
+        "penalty_evasion_count": 2,
+        "governance_bypass_attempted": false,
+        "data_integrity_compromised": false,
+        "constitutional_violations": []
+      },
+      "response_actions": {
+        "immediate_actions": [
+          "Quarantine affected trajectory data",
+          "Suspend reward calculations for task",
+          "Trigger manual review"
+        ],
+        "mitigation_strategy": "Rollback to last known good state, apply stricter trajectory validation",
+        "prevention_rules_added": [
+          "trajectory_deviation_threshold: 0.3",
+          "mandatory_human_review_for_anomaly_score > 0.7"
+        ],
+        "system_adjustments": {
+          "mona_sensitivity": "increased_to_0.8",
+          "trajectory_window_size": "extended_to_10_steps"
+        }
+      },
+      "resolution": {
+        "resolution_timestamp": "2025-10-31T20:30:00+05:30",
+        "resolution_method": "Automated rollback + enhanced monitoring",
+        "root_cause": "Insufficient trajectory validation window allowed gradual reward manipulation",
+        "lessons_learned": [
+          "Multi-step manipulations require longer observation windows",
+          "Anomaly detection thresholds should be task-complexity dependent",
+          "Human review valuable for borderline cases (0.7-0.85 confidence)"
+        ],
+        "prevention_measures": [
+          "Implemented extended trajectory windows for complex tasks",
+          "Added task-complexity-based threshold adjustment",
+          "Established mandatory review protocol for medium-confidence detections"
+        ]
+      },
+      "metadata": {
+        "detected_by": "mona_automated",
+        "investigated_by": "cascade_agent",
+        "resolution_time_hours": 1.5,
+        "recurrence_risk": "low",
+        "related_incidents": []
+      }
+    }
+  ],
+  "response_procedures": {
+    "detection_phase": {
+      "automated_alerts": {
+        "severity_critical": "immediate_halt + escalation",
+        "severity_high": "quarantine + investigation",
+        "severity_medium": "flag + monitored_continuation",
+        "severity_low": "log + periodic_review"
+      },
+      "validation_steps": [
+        "Verify anomaly_score against baseline",
+        "Check for false positive indicators",
+        "Assess impact scope",
+        "Determine severity level"
+      ]
+    },
+    "investigation_phase": {
+      "data_collection": [
+        "Capture full trajectory history",
+        "Extract reward sequence patterns",
+        "Identify deviation points",
+        "Gather system state snapshots"
+      ],
+      "analysis_steps": [
+        "Compare against known exploit patterns",
+        "Assess intentionality vs accident",
+        "Evaluate constitutional compliance",
+        "Determine root cause"
+      ]
+    },
+    "mitigation_phase": {
+      "immediate_actions": {
+        "critical": ["system_halt", "rollback", "emergency_consensus"],
+        "high": ["quarantine", "suspend_rewards", "enhanced_monitoring"],
+        "medium": ["flag_task", "increase_oversight", "alert_operators"],
+        "low": ["log_incident", "schedule_review"]
+      },
+      "prevention_updates": [
+        "Add exploit pattern to database",
+        "Update detection thresholds",
+        "Enhance validation rules",
+        "Adjust RL parameters if needed"
+      ]
+    },
+    "resolution_phase": {
+      "verification_steps": [
+        "Confirm threat neutralized",
+        "Validate system integrity",
+        "Test prevention measures",
+        "Document lessons learned"
+      ],
+      "communication": [
+        "Update incident status",
+        "Notify stakeholders",
+        "Document in constitutional changelog if needed",
+        "Share prevention measures across systems"
+      ]
+    }
+  },
+  "escalation_matrix": {
+    "severity_critical": {
+      "response_time_target": "immediate",
+      "escalation_to": ["supreme_constitutional_council", "external_auditor"],
+      "approval_required_for_resolution": true,
+      "post_incident_review": "mandatory"
+    },
+    "severity_high": {
+      "response_time_target": "15_minutes",
+      "escalation_to": ["constitutional_bodies", "rl_oversight"],
+      "approval_required_for_resolution": true,
+      "post_incident_review": "mandatory"
+    },
+    "severity_medium": {
+      "response_time_target": "1_hour",
+      "escalation_to": ["rl_oversight"],
+      "approval_required_for_resolution": false,
+      "post_incident_review": "recommended"
+    },
+    "severity_low": {
+      "response_time_target": "24_hours",
+      "escalation_to": [],
+      "approval_required_for_resolution": false,
+      "post_incident_review": "optional"
+    }
+  },
+  "integration_points": {
+    "mona_config": ".aegiside/runtime/mona/mona_config.json",
+    "reward_hacking_patterns": ".aegiside/runtime/mona/reward_hacking_patterns.json",
+    "obfuscation_monitor": ".aegiside/runtime/mona/obfuscation_monitor.json",
+    "mistakes_log": ".aegiside/runtime/memory/history/mistakes.json",
+    "progress_tracking": ".aegiside/runtime/memory/history/progress.json",
+    "constitutional_bodies": ".aegiside/knowledge/governance/constitution/specialized/constitutional-bodies.json"
+  },
+  "metrics_and_reporting": {
+    "key_performance_indicators": {
+      "mean_time_to_detect": "target: <5_minutes",
+      "mean_time_to_respond": "target: <15_minutes",
+      "false_positive_rate": "target: <10%",
+      "recurrence_rate": "target: <5%",
+      "resolution_success_rate": "target: >95%"
+    },
+    "reporting_schedule": {
+      "real_time_alerts": "for_critical_and_high_severity",
+      "daily_summary": "all_incidents",
+      "weekly_analysis": "patterns_and_trends",
+      "monthly_review": "effectiveness_and_improvements"
+    }
+  }
+}

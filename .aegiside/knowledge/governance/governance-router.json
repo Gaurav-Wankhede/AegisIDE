@@ -1,19 +1,24 @@
 {
-  "schema_version": "3.0.0",
-  "description": "Tier-2 Governance Domain Router - Routes to Constitution and Enforcement",
-  "last_updated": "2025-10-30T13:46:00+05:30",
+  "schema_version": "5.0.0-constitutional",
+  "description": "Tier-2 Governance Domain Router - Routes to Constitution with C3AI Adaptive Framework",
+  "last_updated": "2025-10-31T18:32:00+05:30",
   "domain": "governance",
   "constitutional_flow": {
     "index": "knowledge/governance/constitution/index.json",
     "core_articles": {
       "preamble": "knowledge/governance/constitution/core/preamble.json",
       "fundamental_rights": "knowledge/governance/constitution/core/fundamental-rights.json",
-      "fundamental_duties": "knowledge/governance/constitution/core/fundamental-duties.json"
+      "fundamental_duties": "knowledge/governance/constitution/core/fundamental-duties.json",
+      "community_proposals": "knowledge/governance/constitution/core/community-proposals.json"
     },
     "operational": {
       "parliament": "knowledge/governance/constitution/operational/parliament.json",
       "executive": "knowledge/governance/constitution/operational/executive.json",
-      "judiciary": "knowledge/governance/constitution/operational/judiciary.json"
+      "judiciary": "knowledge/governance/constitution/operational/judiciary.json",
+      "amendment_process": "knowledge/governance/constitution/operational/amendment-process.json",
+      "constitutional_changelog": "knowledge/governance/constitution/operational/constitutional_changelog.json",
+      "principle_evaluation": "knowledge/governance/constitution/operational/principle_evaluation.json",
+      "ab_test_framework": "knowledge/governance/constitution/operational/ab_test_framework.json"
     },
     "specialized": {
       "dpsp": "knowledge/governance/constitution/specialized/dpsp.json",
@@ -23,35 +28,61 @@
       "mini_publics": "knowledge/governance/constitution/governance/mini-publics.json"
     }
   },
-  "enforcement_validators": {
-    "shell_validators": "knowledge/governance/enforcement/shell/validators/",
-    "count": 18,
-    "validators": [
-      "audit-trail-verifier.sh",
-      "confidence-auto-scorer.sh",
-      "constitutional-flow.sh",
-      "cross-schema-validator.sh",
-      "error-recovery.sh",
-      "file-operation-guard.sh",
-      "git-commit-validator.sh",
-      "harmful-command-validator.sh",
-      "intent-auto-detector.sh",
-      "json-tool-enforcement.sh",
-      "mcp-chain-validator.sh",
-      "mcp-tool-enforcer.sh",
-      "memory-leak-detector.sh",
-      "output-validator.sh",
-      "response-size-limiter.sh",
-      "safe-command-auto-approver.sh",
-      "schema-validator.sh",
-      "timeout-enforcer.sh"
-    ]
+  "c3ai_adaptive_framework": {
+    "description": "C3AI Adaptive Constitution with graph-based principle selection",
+    "research_source": "C3AI Framework (arXiv 2502.15861 Feb 2025)",
+    "principle_selection": {
+      "graph_based_routing": {
+        "description": "Dynamic principle selection using semantic graph analysis",
+        "algorithm": "multi_hop_reasoning_with_weighted_edges",
+        "max_hop_distance": 3,
+        "similarity_threshold": 0.8,
+        "selection_criteria": {
+          "context_relevance": 0.4,
+          "positive_framing_score": 0.3,
+          "evaluation_score": 0.2,
+          "historical_effectiveness": 0.1
+        }
+      },
+      "adaptive_mechanisms": {
+        "learning_from_feedback": true,
+        "continuous_evaluation": true,
+        "stakeholder_input_integration": true,
+        "performance_based_adjustment": true
+      }
+    },
+    "amendment_process": {
+      "six_step_process": "operational/amendment-process.json",
+      "evaluation_metrics": "operational/principle_evaluation.json",
+      "ab_testing": "operational/ab_test_framework.json",
+      "change_tracking": "operational/constitutional_changelog.json"
+    },
+    "constitutional_amendments": "knowledge/governance/constitution/constitutional_amendments.json"
   },
   "query_routing": {
-    "article_lookup": "Search constitutional_flow by article number or keyword",
-    "rights_query": "Route to fundamental_rights",
-    "duties_query": "Route to fundamental_duties",
-    "validator_query": "Route to enforcement_validators",
-    "legal_petition": "Route to operational/judiciary"
+    "constitutional_queries": {
+      "article_lookup": "Search constitutional_flow by article number or keyword",
+      "rights_query": "Route to fundamental_rights",
+      "duties_query": "Route to fundamental_duties",
+      "legal_petition": "Route to operational/judiciary"
+    },
+    "c3ai_adaptive_queries": {
+      "principle_selection": "Route to c3ai_adaptive_framework/principle_selection",
+      "amendment_proposal": "Route to operational/amendment_process",
+      "principle_evaluation": "Route to operational/principle_evaluation",
+      "ab_testing_request": "Route to operational/ab_test_framework",
+      "change_tracking": "Route to operational/constitutional_changelog"
+    },
+    "governance_queries": {
+      "compliance_check": "Route to constitutional_flow with validation",
+      "graph_based_reasoning": "Route to c3ai_adaptive_framework/graph_based_routing",
+      "amendment_tracking": "Route to constitutional_amendments"
+    },
+    "routing_algorithm": {
+      "semantic_analysis": "Natural language processing for intent detection",
+      "context_matching": "Graph-based similarity matching",
+      "priority_scoring": "Multi-criteria decision making",
+      "fallback_mechanisms": "Hierarchical fallback routing"
+    }
   }
 }

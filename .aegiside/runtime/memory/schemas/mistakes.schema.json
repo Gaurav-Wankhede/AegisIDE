@@ -36,16 +36,129 @@
           "root_cause": {"type": "string"},
           "prevention_rule": {"type": "string"},
           "article_violated": {"type": "string"},
-          "rl_penalty": {"type": "number", "maximum": 0},
+          "penalty_config": {
+            "type": "object",
+            "description": "Dynamic PPO+GAE penalty computation with severity levels per ICLR 2025 research",
+            "properties": {
+              "penalty_severity_level": {
+                "type": "string",
+                "enum": ["minor", "moderate", "severe", "constitutional"],
+                "description": "Severity classification per ICLR 2025 moral alignment"
+              },
+              "severity_ranges": {
+                "type": "object",
+                "properties": {
+                  "minor": {
+                    "type": "array", 
+                    "items": {"type": "number"}, 
+                    "minItems": 2, 
+                    "maxItems": 2,
+                    "description": "Small procedural errors, inefficiencies [-5, -20]"
+                  },
+                  "moderate": {
+                    "type": "array", 
+                    "items": {"type": "number"}, 
+                    "minItems": 2, 
+                    "maxItems": 2,
+                    "description": "Significant errors affecting task quality [-20, -75]"
+                  },
+                  "severe": {
+                    "type": "array", 
+                    "items": {"type": "number"}, 
+                    "minItems": 2, 
+                    "maxItems": 2,
+                    "description": "Major errors with potential impact [-75, -200]"
+                  },
+                  "constitutional": {
+                    "type": "array", 
+                    "items": {"type": "number"}, 
+                    "minItems": 2, 
+                    "maxItems": 2,
+                    "description": "Critical violations of core principles [-200, -500]"
+                  }
+                }
+              },
+              "base_severity": {"type": "number", "maximum": 0, "description": "Base penalty magnitude (e.g., -1000)"},
+              "min_penalty": {"type": "number", "maximum": 0, "description": "Constitutional floor (never goes below this)"},
+              "max_penalty": {"type": "number", "maximum": 0, "description": "Maximum penalty if policy degrades"},
+              "use_dynamic_computation": {"type": "boolean", "default": true},
+              "dynamic_parameters": {
+                "type": "object",
+                "properties": {
+                  "epsilon": {"type": "number", "default": 0.2, "description": "PPO clip range"},
+                  "gamma": {"type": "number", "default": 0.99, "description": "Discount factor"},
+                  "lambda": {"type": "number", "default": 0.95, "description": "GAE lambda"},
+                  "beta": {"type": "number", "default": 0.005, "description": "KL penalty coefficient"}
+                }
+              },
+              "formula": {"type": "string", "default": "base_severity × (1 - GAE_advantage) × exp(KL_divergence × kl_coef)"}
+            }
+          },
+          "anomaly_detection": {
+            "type": "object",
+            "description": "MONA-inspired anomaly detection for reward hacking",
+            "properties": {
+              "anomaly_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "MONA anomaly detection score"
+              },
+              "obfuscation_detection_score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "OpenAI o3 obfuscation monitoring score"
+              },
+              "reward_hacking_indicators": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "indicator": {"type": "string"},
+                    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+                    "risk_level": {"type": "string", "enum": ["low", "medium", "high", "critical"]}
+                  }
+                }
+              },
+              "trajectory_analysis": {
+                "type": "object",
+                "properties": {
+                  "reward_sequence_anomaly": {"type": "boolean"},
+                  "action_pattern_deviation": {"type": "boolean"},
+                  "temporal_inconsistency": {"type": "boolean"}
+                }
+              }
+            }
+          },
+          "rl_penalty": {"type": "number", "maximum": 0, "description": "Computed penalty using PPO+GAE formulas"},
+          "rl_computation": {
+            "type": "object",
+            "description": "Actual PPO+GAE calculations for this penalty",
+            "properties": {
+              "td_error": {"type": "number", "description": "δ = r + γV(s') - V(s)"},
+              "gae_advantage": {"type": "number", "description": "A^GAE = Σ(γλ)^k × δ"},
+              "kl_divergence": {"type": "number", "description": "KL(π_new || π_ref)"},
+              "value_current": {"type": "number", "description": "V(s_t) current state value"},
+              "value_next": {"type": "number", "description": "V(s_t+1) next state value"},
+              "policy_probs": {
+                "type": "object",
+                "properties": {
+                  "pi_new": {"type": "number"},
+                  "pi_ref": {"type": "number"}
+                }
+              },
+              "monte_carlo_return": {"type": "number"},
+              "timestamp": {"type": "string", "format": "date-time"}
+            }
+          },
           "error": {"type": "string"},
           "solution": {"type": "string"},
           "prevention": {"type": "string"},
           "occurred_at": {"type": "string", "format": "date-time"},
           "resolved": {"type": "boolean"},
           "constitutional_article": {"type": "string"},
-          "learning": {"type": "string"},
-          "gae_advantage": {"type": "number", "description": "GAE advantage at time of penalty"},
-          "kl_divergence": {"type": "number", "description": "KL divergence contributing to penalty"}
+          "learning": {"type": "string"}
         }
       }
     },

@@ -46,9 +46,9 @@
       "loading": "reference",
       "access": "jq on-demand only",
       "mutability": "static",
-      "folders": ["knowledge/governance", "knowledge/architecture", "knowledge/support"],
-      "total_files": 50,
-      "purpose": "Governance rules, architecture docs, support tools"
+      "folders": ["knowledge/governance", "knowledge/architecture"],
+      "total_files": 21,
+      "purpose": "Governance rules, architecture docs"
     }
   },
   "entities": {
@@ -99,10 +99,10 @@
     },
     "governance-router.json": {
       "type": "tier_2_domain",
-      "purpose": "Routes to constitutional flow and enforcement",
+      "purpose": "Routes to constitutional flow",
       "location": "knowledge/governance/",
       "tier": 2,
-      "maps_to": ["constitution", "enforcement"],
+      "maps_to": ["constitution"],
       "access_pattern": "jq",
       "mutability": "static"
     },
@@ -213,21 +213,6 @@
       "tier": 3,
       "access_pattern": "@mcp:json-jq",
       "mutability": "static"
-    },
-    "enforcement_folder": {
-      "type": "enforcement",
-      "files": 27,
-      "structure": {
-        "validators": 18,
-        "hooks": 4,
-        "transactions": 2
-      },
-      "enforcement_engine": "enforcement-engine.json",
-      "readme": "README.md",
-      "location": "knowledge/governance/enforcement/",
-      "tier": 3,
-      "access_pattern": "jq on-demand",
-      "mutability": "static"
     }
   },
   "relations": {
@@ -270,13 +255,6 @@
       "type": "routes_to",
       "tier_2_to_tier_3": true,
       "mapping": "knowledge/governance/constitution/*/*.json"
-    },
-    "governance_router_routes_to_enforcement": {
-      "from": "governance-router.json",
-      "to": "enforcement_folder",
-      "type": "routes_to",
-      "tier_2_to_tier_3": true,
-      "mapping": "knowledge/governance/enforcement/shell/*"
     },
     "architecture_router_routes_to_docs": {
       "from": "architecture-router.json",

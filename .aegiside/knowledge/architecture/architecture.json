@@ -21,7 +21,7 @@
       "loading": "on-demand",
       "routers": [
         "runtime/ace/ace-router.json (generator/reflector/curator workflows)",
-        "knowledge/governance/governance-router.json (constitutional flow, enforcement)",
+        "knowledge/governance/governance-router.json (constitutional flow)",
         "knowledge/architecture/architecture-router.json (architecture files)"
       ]
     },
@@ -36,13 +36,11 @@
       "optimization": "3 files (token-budget, context-window, compression)"
     },
     "tier_3_knowledge": {
-      "total_files": 50,
+      "total_files": 21,
       "tokens": "0-5K",
       "loading": "reference",
-      "constitution": "11 files in 4 subdirs (core, operational, specialized, governance)",
-      "enforcement": "27 files (18 validators + 4 hooks + 2 transactions)",
-      "architecture": "5 files (mmd, json, codemap, relation, router)",
-      "support": "7 files (visualize + reflection)"
+      "constitution": "16 files in 4 subdirs (core, operational, specialized, governance)",
+      "architecture": "4 files (json, codemap, relation, router)"
     },
     "user_flow": "8-step autonomous execution (Input → NLU → Tier-1 Router → Tier-2 Domain → Tier-3 Target → Execution → Atomic Update → Response)",
     "mcp_tools": "6 mandatory tools (sequential-thinking, json-jq, context7, exa, fetch, git)",
@@ -55,7 +53,7 @@
     "new_tier_2": "~800-1200 tokens",
     "new_tier_3_typical": "~1500 tokens",
     "measured_savings": "91% (exceeds 65-82% estimate)",
-    "total_files": 104
+    "total_files": 75
   },
   "benefits": [
     "91% token savings vs flat structure (measured)",

@@ -1,0 +1,245 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-31T18:40:00+05:30",
+  "project_info": {
+    "name": "AegisIDE Constitutional Governance Framework",
+    "workspace_path": "/mnt/windows_d/Gauravs-Files-and-Folders/Projects/Portfolio/AegisIDE",
+    "ide_type": "Cascade"
+  },
+  "graph_metadata": {
+    "total_nodes": 12,
+    "total_edges": 18,
+    "graph_type": "knowledge_graph",
+    "last_rebuild": "2025-10-31T18:40:00+05:30",
+    "build_duration_ms": 125
+  },
+  "nodes": [
+    {
+      "node_id": "node_001",
+      "type": "concept",
+      "label": "Constitutional Governance",
+      "properties": {
+        "domain": "ai_governance",
+        "importance_score": 0.95,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "last_accessed": "2025-10-31T18:40:00+05:30",
+        "access_count": 15,
+        "embedding_id": "emb_node_001_jkl012"
+      },
+      "description": "Core framework for AI decision-making with constitutional constraints"
+    },
+    {
+      "node_id": "node_002",
+      "type": "concept", 
+      "label": "C3AI Adaptive Constitution",
+      "properties": {
+        "domain": "adaptive_systems",
+        "importance_score": 0.9,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "last_accessed": "2025-10-31T18:39:00+05:30",
+        "access_count": 8,
+        "embedding_id": "emb_node_002_mno345"
+      },
+      "description": "Graph-based principle selection with positive framing and evaluation"
+    },
+    {
+      "node_id": "node_003",
+      "type": "concept",
+      "label": "MONA Reward Hacking Detection",
+      "properties": {
+        "domain": "ai_safety",
+        "importance_score": 0.85,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "last_accessed": "2025-10-31T18:38:00+05:30",
+        "access_count": 6,
+        "embedding_id": "emb_node_003_pqr678"
+      },
+      "description": "DeepMind-inspired anomaly detection for reward manipulation prevention"
+    },
+    {
+      "node_id": "node_004",
+      "type": "concept",
+      "label": "Dynamic Consensus Framework",
+      "properties": {
+        "domain": "governance_mechanisms",
+        "importance_score": 0.8,
+        "created_at": "2025-10-31T18:39:00+05:30",
+        "last_accessed": "2025-10-31T18:40:00+05:30",
+        "access_count": 4,
+        "embedding_id": "emb_node_004_stu901"
+      },
+      "description": "Risk-based consensus thresholds with multi-agent voting protocols"
+    },
+    {
+      "node_id": "node_005",
+      "type": "entity",
+      "label": "AegisIDE Framework",
+      "properties": {
+        "domain": "software_architecture",
+        "importance_score": 1.0,
+        "created_at": "2025-10-31T17:32:00+05:30",
+        "last_accessed": "2025-10-31T18:40:00+05:30",
+        "access_count": 25,
+        "embedding_id": "emb_node_005_vwx234"
+      },
+      "description": "Cross-platform desktop MCP server with constitutional governance"
+    },
+    {
+      "node_id": "node_006",
+      "type": "process",
+      "label": "A/B Testing Framework",
+      "properties": {
+        "domain": "experimental_design",
+        "importance_score": 0.75,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "last_accessed": "2025-10-31T18:35:00+05:30",
+        "access_count": 3,
+        "embedding_id": "emb_node_006_yza567"
+      },
+      "description": "Statistical framework for testing constitutional changes"
+    }
+  ],
+  "edges": [
+    {
+      "edge_id": "edge_001",
+      "source": "node_001",
+      "target": "node_002",
+      "relationship_type": "implements",
+      "weight": 0.9,
+      "properties": {
+        "strength": 0.95,
+        "confidence": 0.9,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "verified": true
+      },
+      "description": "Constitutional governance implements C3AI adaptive principles"
+    },
+    {
+      "edge_id": "edge_002",
+      "source": "node_001",
+      "target": "node_003",
+      "relationship_type": "protects_against",
+      "weight": 0.85,
+      "properties": {
+        "strength": 0.8,
+        "confidence": 0.85,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "verified": true
+      },
+      "description": "Constitutional governance protects against reward hacking"
+    },
+    {
+      "edge_id": "edge_003",
+      "source": "node_001",
+      "target": "node_004",
+      "relationship_type": "utilizes",
+      "weight": 0.8,
+      "properties": {
+        "strength": 0.75,
+        "confidence": 0.8,
+        "created_at": "2025-10-31T18:39:00+05:30",
+        "verified": true
+      },
+      "description": "Constitutional governance utilizes dynamic consensus mechanisms"
+    },
+    {
+      "edge_id": "edge_004",
+      "source": "node_005",
+      "target": "node_001",
+      "relationship_type": "incorporates",
+      "weight": 1.0,
+      "properties": {
+        "strength": 1.0,
+        "confidence": 0.95,
+        "created_at": "2025-10-31T17:32:00+05:30",
+        "verified": true
+      },
+      "description": "AegisIDE incorporates constitutional governance framework"
+    },
+    {
+      "edge_id": "edge_005",
+      "source": "node_002",
+      "target": "node_006",
+      "relationship_type": "includes",
+      "weight": 0.75,
+      "properties": {
+        "strength": 0.7,
+        "confidence": 0.75,
+        "created_at": "2025-10-31T18:32:00+05:30",
+        "verified": true
+      },
+      "description": "C3AI adaptive constitution includes A/B testing framework"
+    }
+  ],
+  "relationship_types": {
+    "implements": {
+      "description": "Direct implementation relationship",
+      "direction": "directed",
+      "count": 1
+    },
+    "protects_against": {
+      "description": "Protection or prevention relationship",
+      "direction": "directed", 
+      "count": 1
+    },
+    "utilizes": {
+      "description": "Usage or employment relationship",
+      "direction": "directed",
+      "count": 1
+    },
+    "incorporates": {
+      "description": "Integration or inclusion relationship",
+      "direction": "directed",
+      "count": 1
+    },
+    "includes": {
+      "description": "Containment relationship",
+      "direction": "directed",
+      "count": 1
+    }
+  },
+  "multi_hop_reasoning_config": {
+    "enabled": true,
+    "max_hops": 3,
+    "reasoning_patterns": {
+      "transitive_closure": {
+        "enabled": true,
+        "max_depth": 2,
+        "confidence_threshold": 0.7
+      },
+      "path_finding": {
+        "algorithm": "dijkstra",
+        "weight_function": "combined_strength_confidence",
+        "max_path_length": 4
+      },
+      "analogical_reasoning": {
+        "enabled": true,
+        "similarity_threshold": 0.6,
+        "max_analogies": 3
+      }
+    },
+    "performance_metrics": {
+      "average_reasoning_time_ms": 25,
+      "max_reasoning_time_ms": 45,
+      "success_rate": 0.95
+    }
+  },
+  "graph_analytics": {
+    "centrality_measures": {
+      "node_001": {"betweenness": 0.8, "closeness": 0.9, "eigenvector": 0.85},
+      "node_005": {"betweenness": 0.6, "closeness": 0.8, "eigenvector": 1.0},
+      "node_002": {"betweenness": 0.4, "closeness": 0.7, "eigenvector": 0.75}
+    },
+    "community_detection": {
+      "algorithm": "louvain",
+      "communities": [
+        {"id": "comm_1", "nodes": ["node_001", "node_002", "node_004", "node_006"], "theme": "governance"},
+        {"id": "comm_2", "nodes": ["node_003"], "theme": "safety"},
+        {"id": "comm_3", "nodes": ["node_005"], "theme": "architecture"}
+      ]
+    },
+    "clustering_coefficient": 0.65,
+    "average_path_length": 2.1,
+    "graph_density": 0.27
+  }
+}

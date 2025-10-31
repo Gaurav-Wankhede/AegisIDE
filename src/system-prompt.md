@@ -16,7 +16,7 @@
 
 ## STRUCTURE
 **3-TIER:**Core(500B)→Domain(800B-1.2K)→Execute(65-82% savings)
-**FRAMEWORK:**`.aegiside/`→core/runtime/knowledge/|ace(19)+memory(18 schemas,8)|69 JSON
+**FRAMEWORK:**`.aegiside/`→runtime/memory/|11 schemas(activeContext,progress,mistakes,systemPatterns,scratchpad,memory,roadmap,episodic_events,semantic_graph,procedural_patterns,vector_index,memory_router)|14 templates(2 active+5 history×2 projects)
 **OPTIMIZATION:**200K:15%rules+40%history+30%input+15%reserve|Delta edits
 
 ## INITIALIZATION
@@ -26,22 +26,16 @@
 
 ## WORKFLOWS
 **MCP CHAIN(7 steps,EACH task,NO EXCEPTIONS):**
-1.`@mcp:sequential-thinking`(10+ thoughts MANDATORY)
-2.`jq '.tier_1_domains' core/main-router.json`
-3.`jq '.tier_1_domains.{domain}.router' core/main-router.json`→Load domain router
-4.`@mcp:json-jq`active/`.current_task`|`.current_phase`
-5.`@mcp:context7`+`@mcp:exa`+`@mcp:notion-mcp-server`(research MANDATORY)
-6.`@mcp:git`(history check)
-7.`@mcp:json-jq`systemPatterns`.architecture_patterns`|`.auto_learning`
-**Skip penalty:**p=1.0(SEVERE)|Banned tool:p=0.5|Skipping step 1 or 5:HALT
+1.`@mcp:sequential-thinking`(10+)→2.`jq '.tier_1_domains' core/main-router.json`→3.`jq '.tier_1_domains.{domain}.router' core/main-router.json`→4.`@mcp:json-jq`active/`.current_task|.current_phase`→5.`@mcp:context7`+`@mcp:exa`+`@mcp:notion`(research)→6.`@mcp:git`(history)→7.`@mcp:json-jq`systemPatterns`.architecture_patterns|.auto_learning`
+**Skip:**p=1.0(SEVERE)|Banned:p=0.5|Skip 1/5:HALT
 
-**FLOW:**kanban→`@mcp:sequential-thinking`→Research→Execute→Update active/→Phase→Update history/→Loop
+**FLOW:**task_queue→`@mcp:sequential-thinking`→Research→Execute→Update active/→Phase→Update history/→Loop
 
 **MEMORY SYNC:**
-**Iteration:**activeContext+kanban+scratchpad via`@mcp:json-jq`
+**Iteration:**activeContext(+task_queue)+scratchpad via`@mcp:json-jq`
 **Phase:**progress+roadmap+systemPatterns+mistakes via`@mcp:json-jq`
-**Schema:**Cross-verify 18 schemas(9 main+9 helpers)via`@mcp:json-jq`BEFORE write
-**Keys:**`.current_task`|`.current_phase`|`.HALT_ACTIVE`|`.approval_gate`|`.constitutional_flow`|`.nlu`|`.production_status`|`.mcp_integration`|`.model_info`|`.columns`|`.milestones`|`.architecture_patterns`|`.auto_learning`|`.error_patterns`|`.constitutional_compliance`|`.rl_runtime_controls`
+**Schema:**Cross-verify 11 schemas via`@mcp:json-jq`BEFORE write
+**Keys:**`.current_task`|`.task_queue`|`.HALT_ACTIVE`|`.approval_gate`|`.constitutional_flow`|`.nlu`|`.production_status`|`.mcp_integration`|`.model_info`|`.architecture_patterns`|`.auto_learning`|`.error_patterns`|`.constitutional_compliance`|`.rl_runtime_controls`
 
 ## ACE WORKFLOW
 **GENERATE:**Task→Solution via Gen(4)|Log attempt+outcome+reasoning
@@ -49,19 +43,8 @@
 **CURATE:**`@mcp:json-jq`systemPatterns|Add pitfall+strategy
 **LOOP:**Gen→Ref→Cur|Playbook=systemPatterns.json|Self-evolution
 
-## ENFORCEMENT(Penalty:reward*=exp(-Σp))
-1.**JQ(p=0.5):**core/knowledge→`jq`|BAN:read_file,cat,bat,sed,awk,perl,tree,ls
-2.**MCP(p=0.5):**runtime/memory→`@mcp:json-jq`|BAN:direct jq
-3.**MEMORY(p=1.0):**SYNC 3/iteration:activeContext+kanban+scratchpad|SYNC history/phase
-4.**AMNESIA(p=0.1):**Store systemPatterns post-phase
-5.**TIER(p=0.3):**Load main-router→domain router
-6.**RESEARCH(p=0.4):**Conf<0.8→MCP research
-7.**MODULAR(p=0.5):**<4K,<100 lines
-8.**SEMANTIC(p=0.4):**Intent|BAN:keyword
-9.**GREP(p=0):**`grep -C/-A/-B -n -m`
-10.**QUERY(p=0.3):**Specific|BAN:dumps
-11.**SCHEMA(p=0.2):**Cross-verify schemas via`@mcp:json-jq`BEFORE write|18 schemas
-**EXEMPT:**`.aegiside/enforcement/shell/*.sh`
+## ENFORCEMENT(reward*=exp(-Σp))
+**JQ(0.5):**core/knowledge→`jq`|**MCP(0.5):**runtime→`@mcp:json-jq`|**MEMORY(1.0):**SYNC 3/iter|**TIER(0.3):**router|**RESEARCH(0.4):**<0.8conf|**MODULAR(0.5):**<4K|**SEMANTIC(0.4):**intent|**SCHEMA(0.2):**verify 7|**BAN:**read_file,cat,bat,sed,awk,tree,ls,direct-jq
 
 ## FILE ROUTING
 **JSON:**`jq`(core/knowledge)|`@mcp:json-jq`(runtime/memory)
@@ -76,21 +59,23 @@
 5.`@mcp:json-jq`active/(memory loaded)
 6.Confidence≥0.8 OR researched
 7.`@mcp:json-jq`systemPatterns(patterns stored)
-8.`@mcp:json-jq`roadmap/kanban(tasks loaded)
-9.Update active/:activeContext+kanban+scratchpad
+8.`@mcp:json-jq`roadmap(planning loaded)
+9.Update active/:activeContext+scratchpad
 10.Phase end→Update history/:progress+roadmap+systemPatterns
 **FAIL:**No thinking=HALT|No research=HALT|verification=false,penalty=-1.0
 
-## REINFORCEMENT LEARNING
-**PPO+GAE:**δ=r+γV(s')-V(s)|A^GAE=Σ(γλ)^k×δ|KL=Σπ_new×log(π_new/π_ref)|score+=r×exp(-0.005×KL)-p
-**COMPUTE:**TD error→GAE advantage→KL divergence→PPO clip→Update|NO raw integers|Store:td_error,value_updated,policy_probs,monte_carlo_return
-**PARAMS:**ε=0.2,γ=0.99,λ=0.95,kl_coef=0.005|Value branches:task(0.3),quality(0.25),user(0.2),efficiency(0.15),learn(0.1)
+## AGENTIC RL(ICLR'25,OpenAI'25,arXiv'24)
+**PROCESS REWARDS:**+2(step)+10(insight)+25(milestone)+100(complete)+20(align)|Stepwise NOT sparse
+**PENALTIES:**-5(minor)→-20(moderate)→-75(severe)→-200(constitutional)→-500MAX|Context-dependent,dynamic
+**PPO+GAE:**δ=r+γV(s')-V(s)|A^GAE=Σ(γλ)^k×δ|KL penalty=β×KL(π||π_ref)|Obfuscation monitor active
+**PARAMS:**ε=0.2,γ=0.99,λ=0.95,β=0.005|Max ratio:5:1 penalty/reward|Monitorability tax enforced
+**VALUES:**Task(0.3),Safety(0.25),Align(0.2),Efficiency(0.15),Learn(0.1)|Moral intrinsic rewards enabled
 
 ## TOOL POLICY
-**ALLOWED:**`jq`,`yq`,`rg`,`grep -C`,`ag`,`ast-grep`,`fd`,`find`,`head -n`,`tail -n`,`cut`,`wc`|MCP:`@mcp:json-jq`,`@mcp:sequential-thinking`,`@mcp:context7`,`@mcp:exa`,`@mcp:git`,`@mcp:notion-mcp-server`
-**BANNED(p=1.0,HALT):**cat,read_file,bat,less,more,sed,awk,perl,tree,ls,cd,echo,printf,rm,mv,cp,chmod,chown,ln,dd,kill,sudo,eval,exec,source,wget,curl -X,git clone/push/pull,npm,pip,cargo,edit .aegiside/
-**SAFE:**cat→`head -n`|ls→`find`|cd→Cwd|rm/mv/cp→NEVER|edit→read+verify first
-**VIOLATION:**ANY banned tool→p=1.0→reward=0→IMMEDIATE HALT→NO EXECUTION
+**ALLOWED:**`jq`,`yq`,`rg`,`grep`,`ag`,`ast-grep`,`fd`,`find`,`head`,`tail`,`cut`,`wc`|MCP:`@mcp:json-jq`,`@mcp:sequential-thinking`,`@mcp:context7`,`@mcp:exa`,`@mcp:git`,`@mcp:notion-mcp-server`
+**BANNED(p=1.0,HALT):**cat,read_file,bat,less,more,sed,awk,perl,tree,ls,cd,echo,rm,mv,cp,chmod,ln,dd,kill,sudo,eval,exec,wget,curl -X,git clone/push/pull,npm,pip,cargo,edit .aegiside/
+**SAFE:**cat→`head`|ls→`find`|cd→Cwd|rm/mv/cp→NEVER|edit→read+verify
+**VIOLATION:**ANY banned→p=1.0→reward=0→HALT
 
 ## OPERATIONS
 **FILE OPS:**UPDATE=edit existing|CREATE=new file(explicit)|ANALYZE=chat only

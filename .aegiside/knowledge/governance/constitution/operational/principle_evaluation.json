@@ -1,0 +1,289 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Principle Evaluation Framework",
+  "description": "Comprehensive evaluation system for constitutional principles with positive framing scoring",
+  "last_updated": "2025-10-31T18:32:00+05:30",
+  "research_source": "AI Governance Best Practices 2025 - Positive Principle Framing",
+  "evaluation_framework": {
+    "evaluation_score": {
+      "description": "Overall principle quality assessment",
+      "calculation_method": "weighted_average_of_dimensions",
+      "weight_distribution": {
+        "clarity": 0.2,
+        "specificity": 0.15,
+        "measurability": 0.15,
+        "enforceability": 0.2,
+        "adaptability": 0.15,
+        "positive_framing": 0.15
+      },
+      "scoring": {
+        "min": 0,
+        "max": 1,
+        "thresholds": {
+          "excellent": 0.9,
+          "good": 0.75,
+          "acceptable": 0.6,
+          "needs_improvement": 0.4,
+          "rejected": 0.2
+        }
+      },
+      "evaluation_criteria": {
+        "clarity": {
+          "description": "How clearly the principle is stated",
+          "indicators": [
+            "unambiguous_language",
+            "clear_scope",
+            "defined_terms",
+            "logical_structure"
+          ],
+          "scoring_method": "natural_language_processing + human_review"
+        },
+        "specificity": {
+          "description": "How specific and actionable the principle is",
+          "indicators": [
+            "concrete_requirements",
+            "defined_boundaries",
+            "specific_conditions",
+            "measurable_outcomes"
+          ],
+          "scoring_method": "pattern_matching + expert_evaluation"
+        },
+        "measurability": {
+          "description": "Ability to measure compliance and effectiveness",
+          "indicators": [
+            "quantifiable_metrics",
+            "observable_behaviors",
+            "testable_conditions",
+            "data_collection_feasibility"
+          ],
+          "scoring_method": "metric_analysis + feasibility_assessment"
+        },
+        "enforceability": {
+          "description": "Practical ability to enforce the principle",
+          "indicators": [
+            "implementation_mechanisms",
+            "violation_detection",
+            "enforcement_procedures",
+            "resource_requirements"
+          ],
+          "scoring_method": "implementation_analysis + resource_assessment"
+        },
+        "adaptability": {
+          "description": "Flexibility to adapt to changing conditions",
+          "indicators": [
+            "future_proofing",
+            "scenario_coverage",
+            "update_mechanisms",
+            "scalability_considerations"
+          ],
+          "scoring_method": "scenario_analysis + flexibility_assessment"
+        }
+      }
+    },
+    "positive_framing_score": {
+      "description": "Measures positive vs negative framing of principles",
+      "research_basis": "AI Governance Best Practices 2025 - Positive Principle Framing",
+      "calculation_method": "sentiment_and_framing_analysis",
+      "scoring": {
+        "min": 0,
+        "max": 1,
+        "thresholds": {
+          "excellent_positivity": 0.85,
+          "good_positivity": 0.7,
+          "neutral": 0.5,
+          "negative": 0.3,
+          "highly_negative": 0.1
+        }
+      },
+      "analysis_dimensions": {
+        "sentiment_analysis": {
+          "weight": 0.3,
+          "metrics": [
+            "positive_word_ratio",
+            "negative_word_ratio",
+            "neutral_word_ratio",
+            "emotional_intensity"
+          ],
+          "tools": ["sentiment_lexicon", "emotion_detection", "tone_analysis"]
+        },
+        "framing_analysis": {
+          "weight": 0.4,
+          "metrics": [
+            "solution_orientation",
+            "opportunity_focus",
+            "constructive_language",
+            "empowerment_language"
+          ],
+          "tools": ["framing_detection", "semantic_analysis", "construct_classification"]
+        },
+        "linguistic_patterns": {
+          "weight": 0.2,
+          "metrics": [
+            "active_voice_ratio",
+            "inclusive_language_score",
+            "collaborative_terms",
+            "growth_oriented_phrases"
+          ],
+          "tools": ["pos_tagging", "dependency_parsing", "pattern_matching"]
+        },
+        "contextual_positivity": {
+          "weight": 0.1,
+          "metrics": [
+            "stakeholder_benefit_focus",
+            "societal_value_emphasis",
+            "ethical_foundation_strength",
+            "long_term_positive_impact"
+          ],
+          "tools": ["context_analysis", "value_extraction", "impact_assessment"]
+        }
+      },
+      "positive_framing_guidelines": {
+        "recommended_patterns": [
+          "Focus on solutions rather than problems",
+          "Emphasize opportunities and benefits",
+          "Use empowering and inclusive language",
+          "Highlight growth and improvement potential",
+          "Frame constraints as design challenges"
+        ],
+        "avoided_patterns": [
+          "Excessive negative language",
+          "Restrictive framing without justification",
+          "Fear-based motivation",
+          "Exclusionary terminology",
+          "Absolute prohibitions without alternatives"
+        ]
+      }
+    }
+  },
+  "evaluation_process": {
+    "submission_requirements": {
+      "principle_text": {
+        "max_length": 500,
+        "min_length": 50,
+        "language": "English",
+        "format": "plain_text"
+      },
+      "supporting_documentation": [
+        "rationale_document",
+        "impact_assessment",
+        "implementation_plan",
+        "stakeholder_analysis"
+      ],
+      "evaluation_criteria": {
+        "self_assessment": true,
+        "peer_review": true,
+        "expert_evaluation": true
+      }
+    },
+    "evaluation_stages": {
+      "initial_screening": {
+        "description": "Automated screening for basic requirements",
+        "duration_hours": 2,
+        "automated_checks": [
+          "length_validation",
+          "language_validation",
+          "format_compliance",
+          "basic_sentiment_check"
+        ],
+        "pass_threshold": 0.6
+      },
+      "detailed_analysis": {
+        "description": "Comprehensive automated and manual evaluation",
+        "duration_hours": 24,
+        "analysis_components": [
+          "full_evaluation_score_calculation",
+          "positive_framing_analysis",
+          "impact_assessment",
+          "compatibility_check"
+        ],
+        "pass_threshold": 0.75
+      },
+      "expert_review": {
+        "description": "Human expert evaluation and validation",
+        "duration_hours": 48,
+        "review_aspects": [
+          "automated_score_validation",
+          "contextual_appropriateness",
+          "ethical_considerations",
+          "practical_feasibility"
+        ],
+        "pass_threshold": 0.8
+      },
+      "stakeholder_feedback": {
+        "description": "Collection and analysis of stakeholder input",
+        "duration_hours": 72,
+        "feedback_channels": [
+          "public_comment_period",
+          "expert_testimonials",
+          "affected_party_consultation",
+          "governance_body_review"
+        ],
+        "pass_threshold": 0.7
+      }
+    }
+  },
+  "quality_assurance": {
+    "validation_methods": {
+      "automated_validation": {
+        "tools": ["nlp_processors", "schema_validators", "sentiment_analyzers"],
+        "accuracy_target": 0.85,
+        "coverage_target": 0.9
+      },
+      "human_validation": {
+        "reviewers": ["constitutional_experts", "ethicists", "technical_advisors"],
+        "inter_rater_reliability_target": 0.8,
+        "review_time_average_hours": 4
+      },
+      "cross_validation": {
+        "method": "automated_vs_human_comparison",
+        "disagreement_threshold": 0.15,
+        "resolution_process": "expert_panel_review"
+      }
+    },
+    "continuous_improvement": {
+      "learning_mechanisms": [
+        "feedback_integration",
+        "model_retraining",
+        "criteria_refinement",
+        "threshold_adjustment"
+      ],
+      "improvement_metrics": {
+        "prediction_accuracy": "track_over_time",
+        "user_satisfaction": "monthly_surveys",
+        "implementation_success": "post_implementation_tracking",
+        "evaluation_efficiency": "time_and_resource_metrics"
+      }
+    }
+  },
+  "reporting_and_transparency": {
+    "evaluation_reports": {
+      "standard_sections": [
+        "executive_summary",
+        "detailed_scores",
+        "positive_framing_analysis",
+        "strengths_and_weaknesses",
+        "recommendations",
+        "implementation_considerations"
+      ],
+      "access_levels": {
+        "public": ["executive_summary", "final_scores", "recommendations"],
+        "stakeholder": ["detailed_scores", "analysis_details"],
+        "governance": ["full_report", "methodology", "raw_data"]
+      }
+    },
+    "performance_tracking": {
+      "key_metrics": [
+        "evaluation_accuracy",
+        "positive_framing_improvement",
+        "implementation_success_rate",
+        "stakeholder_satisfaction"
+      ],
+      "reporting_frequency": {
+        "real_time_monitoring": true,
+        "weekly_digests": true,
+        "monthly_analytics": true,
+        "quarterly_reviews": true
+      }
+    }
+  }
+}
