@@ -1,0 +1,333 @@
+%%{init: {'theme':'base', 'themeVariables': { 'primaryColor':'#f6f8fa','primaryTextColor':'#24292f','primaryBorderColor':'#d0d7de','lineColor':'#57606a','secondaryColor':'#ffffff','tertiaryColor':'#f6f8fa','background':'#ffffff','mainBkg':'#f6f8fa','secondBkg':'#ffffff','labelColor':'#24292f','textColor':'#24292f','nodeBorder':'#d0d7de','clusterBkg':'#f6f8fa','clusterBorder':'#d0d7de','defaultLinkColor':'#0969da','titleColor':'#24292f','edgeLabelBackground':'#ffffff'}}}%%
+graph LR
+    subgraph USER_FLOW["🔄 USER INTERACTION FLOW - Autonomous Execution"]
+        U1[User Message Input]
+        U2[NLU Analysis<br/>Extract Intent + Tech Keywords]
+        U3[0-99% Confidence Check<br/>Execute Immediately NO Permission]
+        U4[Scratchpad Polling<br/>Active Tasks Query]
+        U5[Task Execution<br/>Via @mcp:json-jq]
+        U6[Atomic 8-Schema Update<br/>ALL or Rollback]
+        U7[Violation Logging<br/>progress.json RL Score]
+        U8[Response to User]
+    end
+
+    subgraph SYS["📚 SYSTEM ENTRY - Session Startup"]
+        A[global_rules.md<br/>Tunnel Patterns + Penalties]
+        B[architecture.mmd<br/>THIS FILE - Flow Awareness]
+        C[architecture.json<br/>Component Metadata]
+        D[relation.json<br/>File Relationship Graph]
+    end
+
+    subgraph TIER1["🎯 TIER-1 CORE - MAIN ROUTER (500 tokens)"]
+        MAIN["core/main-router.json<br/>3 TIER-1 DOMAINS:<br/>- ace_queries<br/>- governance_queries<br/>- architecture_queries<br/><br/>Hierarchical Pattern<br/>Version: 3.0.0"]
+        CTX["core/context-orchestrator.json<br/>Adaptive Loading Logic<br/>Priority: critical/high/medium/low"]
+    end
+    
+    subgraph TIER2["⚙️ TIER-2 DOMAIN ROUTERS (800-1,200 tokens)"]
+        ACE_R["runtime/ace/ace-router.json<br/>Maps to:<br/>- generator/ (5 workflows)<br/>- reflector/ (4 suites)<br/>- curator/ (4 workflows)"]
+        GOV_R["knowledge/governance/governance-router.json<br/>Maps to:<br/>- constitutional_flow<br/>- enforcement_validators (18)"]
+        ARCH_R["knowledge/architecture/architecture-router.json<br/>Maps to:<br/>- architecture.mmd (THIS FILE)<br/>- codemap.json<br/>- relation.json"]
+    end
+
+    subgraph MCP["MCP Enforcement Layer - Autonomous Tool Routing"]
+        M1["@mcp:sequential-thinking<br/>≥3 steps (Free:10, Value:5, Premium:3)<br/>Dynamic reasoning, hypothesis generation"]
+        M2["@mcp:json-jq<br/>ALL JSON operations<br/>Query/Update runtime/memory/<br/>NEVER read_file/edit for JSON"]
+        M3["@mcp:context7<br/>Official documentation<br/>Library-specific context<br/>Threshold: confidence <0.8"]
+        M4["@mcp:exa<br/>Real-world code examples<br/>Best practices, patterns<br/>Fallback for context7"]
+        M5["@mcp:fetch<br/>Web content retrieval<br/>NOT for GitHub (use curl)<br/>External resources only"]
+        M6["@mcp:git<br/>Version control ops<br/>Branch, commit, diff<br/>Status queries"]
+    end
+
+    subgraph TIER3_RUNTIME["⚡ TIER-3 RUNTIME - ACE Framework (1-3K tokens)"]
+        RT_ACE["runtime/ace/<br/>3 ACE trackers:<br/>- triad-tracker.json<br/>- self-evolution-loop.json<br/>- causality-tracker.json<br/>+ ace-router.json"]
+        RT_GEN["runtime/ace/generator/ (5 workflows)<br/>- research.json<br/>- bootstrap-enhanced.json<br/>- auto-init.json<br/>- intent-detector.json<br/>- runtime-documentation.json"]
+        RT_REF["runtime/ace/reflector/ (4 suites)<br/>- validation-suite.json (merged 3)<br/>- confidence-scorer.json<br/>- penalty-tracker.json<br/>- error-recovery-suite.json (merged 3)"]
+        RT_CUR["runtime/ace/curator/ (4 workflows)<br/>- state-suite.json (merged 3)<br/>- github-sync.json<br/>- atomic-rollback.json<br/>- petition-router.json"]
+        RT_OPT["runtime/optimization/ (3 files)<br/>- token-budget.json<br/>- context-window-manager.json<br/>- compression-metadata-template.json"]
+    end
+    
+    subgraph TIER3_KNOWLEDGE["📚 TIER-3 KNOWLEDGE - Governance & Docs (0-5K tokens)"]
+        KN_GOV["knowledge/governance/constitution/ (11 files)<br/>4 subdirectories:<br/>- core/ (preamble + preliminary)<br/>- operational/ (rights, duties, dpsp)<br/>- specialized/ (parliament, executive, judiciary)<br/>- governance/ (constitutional bodies)"]
+        KN_ENF["knowledge/governance/enforcement/ (27 files)<br/>shell/validators/ (18 validators)<br/>shell/hooks/ (4 hooks)<br/>shell/transactions/ (2 scripts)<br/>enforcement-engine.json<br/>README.md"]
+        KN_ARCH["knowledge/architecture/ (5 files)<br/>- architecture.mmd (THIS FILE)<br/>- architecture.json<br/>- codemap.json<br/>- relation.json<br/>- architecture-router.json"]
+        KN_SUPP["knowledge/support/ (7 files)<br/>visualize/ (6 files)<br/>- dashboard.html<br/>- start scripts<br/>reflection/ (1 file)"]
+    end
+
+    subgraph LOCAL["💾 DYNAMIC STATE - Memory System (Local - Changes Every Iteration)"]
+        L1["runtime/memory/active/ (3 files)<br/>Session-scoped state"]
+        L1A["activeContext.json<br/>Session state, model_info, current_phase"]
+        L1C["scratchpad.json<br/>Active tasks, pending operations"]
+        L1D["kanban.json<br/>Feature backlog, sprint planning"]
+        
+        L2["runtime/memory/history/ (5 files)<br/>Persistent learnings"]
+        L1B["progress.json<br/>RL score ledger, violations, penalties"]
+        L1E["mistakes.json<br/>Error log, failure patterns"]
+        L1F["systemPatterns.json<br/>Learned architectures, reuse metrics"]
+        L1G["roadmap.json<br/>Milestones, long-term planning"]
+        L1H["memory.json<br/>Persistent learnings, cross-session"]
+        
+        L3["runtime/memory/schemas/ (19 files)<br/>Schema validators + helpers"]
+        
+        L1_ACCESS["Access: @mcp:json-jq ONLY<br/>Location: <project>/.aegiside/runtime/memory/"]
+    end
+
+    subgraph RL["RL Feedback Loop - PPO+GAE"]
+        R1[Action Execution<br/>Task Completion]
+        R2[Scoring Engine<br/>δ_t = r_t + γV(s_t+1) - V(s_t)<br/>A_t = δ_t + γλA_t+1<br/>L^CLIP with ε=0.2]
+        R3[progress.json<br/>Central Ledger]
+        R4[Pattern Learning<br/>systemPatterns.json]
+        R5[Behavior Adaptation<br/>Auto-Optimize]
+    end
+
+    subgraph CONST["🏛️ CONSTITUTIONAL FLOW - Indian Constitution Structure"]
+        FLOW["Legislative → Executive → Judiciary → Constitutional Bodies"]
+        P0[01-preamble/<br/>preamble.json<br/>Foundation of Interpretation]
+        P1[02-preliminary/<br/>Articles 1-3<br/>Territory & Citizenship]
+        P2[03-fundamental-rights/<br/>Articles 4-12<br/>Enforceable Rights]
+        P3[04-fundamental-duties/<br/>Articles 13-19<br/>Citizen Obligations]
+        P4[05-dpsp/<br/>Articles 20-25<br/>Policy Guidelines]
+        P5[06-parliament/<br/>Articles 26-31<br/>LEGISLATURE - Lawmaking]
+        P6[07-executive/<br/>Articles 32-35<br/>EXECUTIVE - Implementation]
+        P7[08-judiciary/<br/>Articles 36-38<br/>JUDICIARY - Justice]
+        P8[09-constitutional-bodies/<br/>Articles 39-42<br/>BODIES - Independent Oversight]
+    end
+
+    subgraph META["🔍 PETITION ROUTING - Article Selection"]
+        NLU_TRIGGER["User: article 32, rights, petition<br/>NLU detects legal keywords"]
+        METADATA_QUERY["Query semantic_triggers.constitutional_articles<br/>in context-router.json<br/>Get routing info + citation"]
+        SEMANTIC_MATCH["Semantic Match<br/>Keywords to Part to Article<br/>Find exact article file"]
+        EXECUTE_JQ["Execute json-jq<br/>on article JSON file<br/>Return with citation format"]
+    end
+
+    subgraph ENFORCE["🛡️ AUTOMATED ENFORCEMENT LAYER - Runtime Validation"]
+        E0["Pre-Execution Hook<br/>shell/hooks/pre-execution.sh"]
+        E1["GATE 1: Bootstrap Check<br/>Session initialized?"]
+        E2["GATE 2: Confidence Check<br/>≥0.5 threshold"]
+        E3["GATE 3: Memory Query<br/>Context checked? (warn)"]
+        E4["GATE 4: MCP Chain Start<br/>Sequential thinking executed?"]
+        E5["GATE 5: Intent Match<br/>Operation matches intent?"]
+        E6["MCP Chain Validator<br/>shell/validators/mcp-chain-validator.sh<br/>Validates 4-step completion"]
+        E7["Atomic Transaction<br/>shell/transactions/atomic-update.sh<br/>ACID properties + auto-rollback"]
+        E8["Penalty Application<br/>Auto-update progress.json<br/>-15 to -100 per violation"]
+    end
+
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 1: SYSTEM ENTRY → TIER-1 MAIN ROUTER
+    %% ═══════════════════════════════════════════════════════════════
+    A -->|Session Startup| MAIN
+    B -->|Architecture Awareness| MAIN
+    C -->|Component Metadata| MAIN
+    D -->|Relationship Graph| MAIN
+    
+    %% TIER-1 → TIER-2 Domain Routing
+    MAIN -->|ace_queries| ACE_R
+    MAIN -->|governance_queries| GOV_R
+    MAIN -->|architecture_queries| ARCH_R
+    MAIN -->|Context control| CTX
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 2: USER REQUEST → AUTONOMOUS EXECUTION
+    %% ═══════════════════════════════════════════════════════════════
+    U1 -->|Input| U2
+    U2 -->|Extract Keywords| MAIN
+    MAIN -->|Route to domain| ACE_R
+    ACE_R -->|Check Confidence| U3
+    U3 -->|0-99%: Execute Immediately| U4
+    U4 -->|Query via mcp:json-jq| L1
+    ACE_R -->|Auto-trigger workflows| RT_GEN
+    RT_GEN -->|Fetch best practices| M3
+    U4 -->|Execute Task| U5
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 3: MCP ENFORCEMENT → DATA ACCESS
+    %% ═══════════════════════════════════════════════════════════════
+    MAIN -->|Route to MCP| M1
+    MAIN -->|Route to MCP| M2
+    MAIN -->|Route to MCP| M3
+    MAIN -->|Route to MCP| M4
+    MAIN -->|Route to MCP| M5
+    MAIN -->|Route to MCP| M6
+    
+    %% MCP → Memory Access
+    M2 -->|mcp:json-jq active/| L1
+    M2 -->|mcp:json-jq history/| L2
+    M2 -->|mcp:json-jq schemas/| L3
+    
+    L1 -->|Contains| L1A
+    L1 -->|Contains| L1C
+    L1 -->|Contains| L1D
+    
+    L2 -->|Contains| L1B
+    L2 -->|Contains| L1E
+    L2 -->|Contains| L1F
+    L2 -->|Contains| L1G
+    L2 -->|Contains| L1H
+    
+    %% TIER-2 → TIER-3 Routing
+    ACE_R -->|generator| RT_GEN
+    ACE_R -->|reflector| RT_REF
+    ACE_R -->|curator| RT_CUR
+    ACE_R -->|optimization| RT_OPT
+    
+    GOV_R -->|constitution| KN_GOV
+    GOV_R -->|enforcement| KN_ENF
+    
+    ARCH_R -->|architecture| KN_ARCH
+    ARCH_R -->|support| KN_SUPP
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 4: MEMORY UPDATE - 3-Tier Atomic Updates (v4.0.0+)
+    %% ═══════════════════════════════════════════════════════════════
+    U5 -->|1. Fetch schema validators| L3
+    L3 -->|Provide validation schemas| U5
+    U5 -->|2. Query current state| L1A
+    U5 -->|3. Update active/activeContext| L1A
+    U5 -->|4. Log to history/progress| L1B
+    U5 -->|5. Store history/patterns| L1F
+    U5 -->|6. Update active/scratchpad| L1C
+    U6 -->|On failure: Rollback| L2
+    U6 -->|On success: Commit| U7
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 5: VIOLATION TRACKING & RL SCORING
+    %% ═══════════════════════════════════════════════════════════════
+    U7 -->|Log to history/progress.json| R3
+    R3 -->|Calculate RL delta| R2
+    R2 -->|Store patterns| R4
+    R4 -->|Optimize behavior| R5
+    R5 -->|Improve routing| MAIN
+    U7 -->|Return response| U8
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 6: CONSTITUTIONAL PETITION ROUTING
+    %% ═══════════════════════════════════════════════════════════════
+    U2 -->|Legal keywords detected| NLU_TRIGGER
+    NLU_TRIGGER -->|Query metadata| METADATA_QUERY
+    METADATA_QUERY -->|From governance-router| GOV_R
+    GOV_R -->|constitutional_flow routing| SEMANTIC_MATCH
+    SEMANTIC_MATCH -->|Match article| EXECUTE_JQ
+    EXECUTE_JQ -->|Access local| KN_GOV
+    KN_GOV -->|Return article + citation| CONST
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 7: CONSTITUTIONAL FLOW ENFORCEMENT
+    %% ═══════════════════════════════════════════════════════════════
+    FLOW -->|Guides execution| P5
+    P5 -->|Laws passed| P6
+    P6 -->|Implemented by| P7
+    P7 -->|Validated by| P8
+    P8 -->|Oversight by| GOV_R
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% FLOW 8: AUTOMATED ENFORCEMENT - Runtime Validation
+    %% ═══════════════════════════════════════════════════════════════
+    U1 -->|BEFORE execution| E0
+    E0 -->|Run 5 gates| E1
+    E1 -->|Pass| E2
+    E2 -->|Pass| E3
+    E3 -->|Pass/Warn| E4
+    E4 -->|Pass| E5
+    E5 -->|Pass| U2
+    E4 -->|Fail: -15 penalty| E8
+    E5 -->|Fail: -100 penalty| E8
+    U5 -->|AFTER task| E6
+    E6 -->|Validate 4-step chain| E8
+    U6 -->|Atomic update| E7
+    E7 -->|Backup → Validate → Update → Rollback on fail| L2
+    E8 -->|Auto-update history/progress| R3
+    
+    %% ═══════════════════════════════════════════════════════════════
+    %% STYLING - Theme-Adaptive Colors (auto-adapts light/dark)
+    %% ═══════════════════════════════════════════════════════════════
+    %% TIER-1 Core (Critical) - Red accent
+    style MAIN fill:#ffebe9,stroke:#cf222e,stroke-width:4px
+    style CTX fill:#fff8c5,stroke:#bf8700,stroke-width:2px
+    
+    %% TIER-2 Domain Routers - Blue/Purple accent
+    style ACE_R fill:#ddf4ff,stroke:#0969da,stroke-width:3px
+    style GOV_R fill:#fbefff,stroke:#8250df,stroke-width:3px
+    style ARCH_R fill:#ddf4ff,stroke:#0969da,stroke-width:3px
+    
+    %% System Entry - Neutral gray
+    style A fill:#f6f8fa,stroke:#57606a,stroke-width:2px
+    style B fill:#fff8c5,stroke:#bf8700,stroke-width:3px
+    style C fill:#f6f8fa,stroke:#57606a,stroke-width:2px
+    style D fill:#f6f8fa,stroke:#57606a,stroke-width:2px
+    
+    %% MCP Layer - Orange accent
+    style M1 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style M2 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style M3 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style M4 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style M5 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style M6 fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    
+    %% TIER-3 Runtime - Orange/Yellow accent (Dynamic execution)
+    style RT_ACE fill:#fff8c5,stroke:#bc4c00,stroke-width:3px
+    style RT_GEN fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style RT_REF fill:#fbefff,stroke:#8250df,stroke-width:2px
+    style RT_CUR fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style RT_OPT fill:#dafbe1,stroke:#1a7f37,stroke-width:2px
+    
+    %% TIER-3 Knowledge - Blue/Purple accent (Static reference)
+    style KN_GOV fill:#fbefff,stroke:#8250df,stroke-width:3px
+    style KN_ENF fill:#ffebe9,stroke:#cf222e,stroke-width:3px
+    style KN_ARCH fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style KN_SUPP fill:#dafbe1,stroke:#1a7f37,stroke-width:2px
+    
+    %% Local Dynamic - Memory System (Orange/Purple/Green)
+    style L1 fill:#fff8c5,stroke:#bc4c00,stroke-width:4px
+    style L1A fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style L1C fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    style L1D fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    
+    style L2 fill:#fbefff,stroke:#8250df,stroke-width:4px
+    style L1B fill:#fbefff,stroke:#8250df,stroke-width:3px
+    style L1E fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style L1F fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style L1G fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style L1H fill:#fff8c5,stroke:#bc4c00,stroke-width:2px
+    
+    style L3 fill:#ddf4ff,stroke:#0969da,stroke-width:4px
+    style L1_ACCESS fill:#f6f8fa,stroke:#57606a,stroke-width:2px
+    
+    %% Constitution - Pink/Blue/Green gradient
+    style P0 fill:#fff8c5,stroke:#bf8700,stroke-width:3px
+    style P1 fill:#ffeff7,stroke:#a0216f,stroke-width:2px
+    style P2 fill:#ffeff7,stroke:#a0216f,stroke-width:2px
+    style P3 fill:#ffeff7,stroke:#a0216f,stroke-width:2px
+    style P4 fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style P5 fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style P6 fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style P7 fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style P8 fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style FLOW fill:#ffebe9,stroke:#cf222e,stroke-width:3px
+    
+    %% RL Loop - Purple accent
+    style R1 fill:#fbefff,stroke:#8250df,stroke-width:2px
+    style R2 fill:#fbefff,stroke:#8250df,stroke-width:2px
+    style R3 fill:#fbefff,stroke:#8250df,stroke-width:4px
+    style R4 fill:#fbefff,stroke:#8250df,stroke-width:2px
+    style R5 fill:#fbefff,stroke:#8250df,stroke-width:2px
+    
+    %% Petition Routing - Cyan accent
+    style NLU_TRIGGER fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style METADATA_QUERY fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style SEMANTIC_MATCH fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    style EXECUTE_JQ fill:#ddf4ff,stroke:#0969da,stroke-width:2px
+    
+    %% Enforcement Layer - Red accent (Security)
+    style E0 fill:#ffebe9,stroke:#cf222e,stroke-width:3px
+    style E1 fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style E2 fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style E3 fill:#fff8c5,stroke:#bf8700,stroke-width:2px
+    style E4 fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style E5 fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style E6 fill:#ffebe9,stroke:#cf222e,stroke-width:2px
+    style E7 fill:#dafbe1,stroke:#1a7f37,stroke-width:3px
+    style E8 fill:#fbefff,stroke:#8250df,stroke-width:2px
+    
+    %% Summary Note - Green accent
+    style note fill:#dafbe1,stroke:#1a7f37,stroke-width:4px
+    
+    note["AEGISIDE ARCHITECTURE v4.0.0+ - 3-TIER HIERARCHICAL STRUCTURE<br/><br/>🎯 TIER-1 CORE (500 tokens - Always Loaded):<br/>  • core/main-router.json (3 domains: ace_queries, governance_queries, architecture_queries)<br/>  • core/context-orchestrator.json (adaptive loading logic, priority bands)<br/>  • Pattern: Hierarchical-Adaptive + MCP-Only<br/>  • Purpose: Entry point, domain routing, 91% token savings vs flat structure<br/><br/>⚙️ TIER-2 DOMAIN ROUTERS (800-1,200 tokens - On-Demand):<br/>  • runtime/ace/ace-router.json (maps to generator/reflector/curator workflows)<br/>  • knowledge/governance/governance-router.json (constitutional flow, enforcement)<br/>  • knowledge/architecture/architecture-router.json (THIS FILE + codemap + relations)<br/>  • Purpose: Domain-specific routing, semantic suite selection<br/><br/>⚡ TIER-3 RUNTIME (1-3K tokens - Task-Specific):<br/>  • runtime/ace/ (13 files: 3 trackers + ace-router + 5 generator + 4 reflector + 4 curator)<br/>  • runtime/memory/active/ (3 files: activeContext, scratchpad, kanban)<br/>  • runtime/memory/history/ (5 files: progress, mistakes, systemPatterns, roadmap, memory)<br/>  • runtime/memory/schemas/ (19 files: validators + helpers)<br/>  • runtime/optimization/ (3 files: token-budget, context-window, compression)<br/>  • Access: @mcp:json-jq for memory/, jq for ace/ and optimization/<br/><br/>📚 TIER-3 KNOWLEDGE (0-5K tokens - Reference):<br/>  • knowledge/governance/constitution/ (11 files in 4 subdirs)<br/>  • knowledge/governance/enforcement/ (27 files: 18 validators + 4 hooks + 2 transactions)<br/>  • knowledge/architecture/ (5 files including THIS FILE)<br/>  • knowledge/support/ (7 files: visualize + reflection)<br/>  • Access: jq on-demand only<br/><br/>🛡️ ENFORCEMENT SYSTEM (Two-Layer Validation):<br/>  Layer 1 - Automated (Shell Hooks):<br/>  • 5 gates: Bootstrap, Confidence≥0.5, Memory Query, MCP Chain, Intent Match<br/>  • Auto-penalties: Minor (-15 to -30), Moderate (-50 to -100), Critical (-500 to -1000)<br/>  • Execution blocking on critical failures (gates 1, 2, 4, 5)<br/>  Layer 2 - Manual (AI Verification):<br/>  • 4 checks: Tier routing, runtime/memory/ check, confidence≥0.8 OR research, learning storage<br/>  • Prevents hallucination through verification protocol<br/>  • Reduces confidence by 0.3 on check failures<br/><br/>🔄 MCP CHAIN (4-Step Mandatory Flow):<br/>  1. @mcp:sequential-thinking (≥3 steps, tier-based)<br/>  2. @mcp:json-jq query runtime/memory/ (active/activeContext, history/systemPatterns, history/progress)<br/>  3. @mcp:context7 OR @mcp:exa (if confidence < tier threshold)<br/>  4. @mcp:json-jq update runtime/memory/history/systemPatterns + active/activeContext<br/><br/>📊 RL FEEDBACK LOOP (PPO+GAE Scoring - Schulman et al. 2017/2016):<br/>  • Rewards: Base 10-50 (task=10, reuse=20, quality=30, innovation=50)<br/>  • PPO Objective: L^CLIP(θ) = E[min(r_t(θ)A_t, clip(r_t(θ), 1-ε, 1+ε)A_t)] where ε=0.2<br/>  • Probability Ratio: r_t(θ) = π_θ(a_t|s_t) / π_θ_old(a_t|s_t)<br/>  • GAE TD Error: δ_t = r_t + γV(s_{t+1}) - V(s_t)<br/>  • GAE Advantage: A_t = δ_t + γλA_{t+1} (γ=0.99, λ=0.95, recursive backward)<br/>  • Returns: returns_t = A_t + V_t<br/>  • Penalties: Minor (-15 to -30), Moderate (-50 to -100), Critical (-500 to -1000)<br/>  • Central Ledger: history/progress.json tracks all transactions<br/>  • Pattern Learning: history/systemPatterns.json stores successful architectures<br/>  • Behavior Adaptation: Auto-optimizes routing based on RL scores<br/><br/>🎯 KEY DISTINCTIONS:<br/>  ✅ core/ (always loaded) → runtime/ (on-demand) → knowledge/ (reference)<br/>  ✅ runtime/memory/* = Local (@mcp:json-jq ONLY)<br/>  ✅ Automation (runtime) + Manual (quality) = Two-layer verification<br/>  ✅ 3-tier structure: 104 files total, 91% token savings vs flat<br/><br/>Constitutional Flow: Legislature (Parliament) → Executive → Judiciary → Constitutional Bodies<br/>Autonomous Execution: 0-99% confidence bands (AI-interpreted)<br/>Architecture Awareness: THIS FILE defines ALL routing patterns"]

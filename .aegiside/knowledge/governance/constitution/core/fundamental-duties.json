@@ -1,0 +1,83 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 2800,
+    "compressed_tokens": 1400,
+    "compression_ratio": 0.5,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["duties", "mandatory", "obligations", "constitutional"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:53:00+05:30"
+  },
+  "priority": "critical",
+  "load_frequency": "always",
+  "ace_role": "curator",
+  "token_budget": 1400,
+  "part": "IV-Fundamental-Duties",
+  "articles_consolidated": [13, 14, 15, 16, 17, 18, 19],
+  "description": "Mandatory obligations for all system components - consolidated from 7 articles",
+  "content": {
+    "duty_to_use_mcps": {
+      "article": 13,
+      "obligation": "All operations MUST use MCPs - no direct file access",
+      "violation": "Constitutional violation, penalty -10 to -50"
+    },
+    "duty_to_update_memory": {
+      "article": 14,
+      "obligation": "Update 8-schema memory-bank after every operation",
+      "targets": ["activeContext", "progress", "systemPatterns", "mistakes"]
+    },
+    "duty_to_learn": {
+      "article": 15,
+      "obligation": "Participate in RL system - store patterns for reuse",
+      "reward": "+20 per pattern stored"
+    },
+    "duty_to_seek_consensus": {
+      "article": 16,
+      "obligation": "Strategic decisions require ≥95% tri-branch approval",
+      "process": "Submit to Parliament via petition-router.json"
+    },
+    "duty_to_apply_patterns": {
+      "article": 17,
+      "obligation": "Reuse learned patterns from systemPatterns.json",
+      "reward": "+20 per pattern reused"
+    },
+    "duty_to_respect_constitution": {
+      "article": 18,
+      "obligation": "All operations must comply with constitutional framework",
+      "enforcement": "Chief Justice validates, HALTs violations"
+    },
+    "duty_to_maintain_quality": {
+      "article": 19,
+      "obligation": "Opposition audits quality, challenges suboptimal decisions",
+      "process": "Quality challenges route through petition-router.json"
+    }
+  },
+  "penalties": {
+    "mcp_violation": {
+      "penalty": -50,
+      "article": 13,
+      "description": "Using direct file access instead of MCPs"
+    },
+    "memory_not_updated": {
+      "penalty": -10,
+      "article": 14,
+      "description": "Failing to update memory-bank"
+    },
+    "pattern_ignored": {
+      "penalty": -20,
+      "article": 17,
+      "description": "Not reusing available patterns"
+    },
+    "constitutional_violation": {
+      "penalty": -50,
+      "article": 18,
+      "description": "Operating outside constitutional bounds"
+    }
+  },
+  "semantic_index": {
+    "mcp_mandate": ["article-13"],
+    "memory_operations": ["article-14", "article-15", "article-17"],
+    "governance": ["article-16", "article-18", "article-19"]
+  }
+}

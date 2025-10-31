@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T12:50:00+05:30",
+  "description": "ACE Framework Triad - Generator/Reflector/Curator roles for self-improving system",
+  "generator": {
+    "role": "Creates new context items based on model interactions",
+    "sources": [
+      "workflows/*.json",
+      "runtime/memory/systemPatterns.json",
+      "runtime/memory/scratchpad.json"
+    ],
+    "responsibilities": [
+      "Generate new workflow scripts from patterns",
+      "Create context items from user interactions",
+      "Expand knowledge base with research findings"
+    ],
+    "metrics": {
+      "contexts_generated": 0,
+      "avg_quality_score": 0.0,
+      "generation_rate": "0/hour",
+      "last_generation": null
+    },
+    "output_targets": [
+      "runtime/memory/systemPatterns.json",
+      "workflows/*.json"
+    ]
+  },
+  "reflector": {
+    "role": "Evaluates what works and what doesn't, learns from experience",
+    "sources": [
+      "runtime/memory/mistakes.json",
+      "runtime/memory/progress.json",
+      "enforcement/penalty-tracker.json"
+    ],
+    "responsibilities": [
+      "Analyze success and failure patterns",
+      "Identify optimization opportunities",
+      "Recommend rule improvements",
+      "Track penalty trends"
+    ],
+    "metrics": {
+      "evaluations_count": 0,
+      "success_rate": 0.0,
+      "patterns_identified": 0,
+      "improvements_suggested": 0,
+      "last_reflection": null
+    },
+    "output_targets": [
+      "reflection/success-patterns.json",
+      "runtime/memory/mistakes.json"
+    ]
+  },
+  "curator": {
+    "role": "Maintains and merges useful context items into evolving playbook",
+    "sources": [
+      "routers/context-router.json",
+      "runtime/memory/activeContext.json",
+      "constitution/**/*.json"
+    ],
+    "responsibilities": [
+      "Merge duplicate context items",
+      "Archive outdated information",
+      "Maintain semantic index",
+      "Optimize context routing"
+    ],
+    "metrics": {
+      "contexts_curated": 0,
+      "merge_conflicts": 0,
+      "contexts_archived": 0,
+      "index_size": 0,
+      "last_curation": null
+    },
+    "output_targets": [
+      "routers/context-router.json",
+      "runtime/memory/activeContext.json"
+    ]
+  },
+  "triad_coordination": {
+    "cycle_frequency": "every_response",
+    "priority_order": ["generator", "reflector", "curator"],
+    "conflict_resolution": "reflector_arbitrates",
+    "quality_threshold": 0.85
+  },
+  "self_evolution": {
+    "enabled": true,
+    "refinement_cycle": "self-evolution-loop.json",
+    "evolution_frequency": "every_10_iterations",
+    "quality_improvement_target": 0.10,
+    "last_evolution": null
+  },
+  "causality_awareness": {
+    "enabled": true,
+    "causality_tracking": "causality-tracker.json",
+    "high_impact_prioritization": true,
+    "entropy_threshold": 0.7,
+    "dormancy_detection": true
+  },
+  "democratic_oversight": {
+    "enabled": false,
+    "mini_publics": "constitution/governance/mini-publics.json",
+    "validation_required": ["constitutional_changes", "policy_updates"],
+    "future_implementation": true
+  },
+  "research_alignment": {
+    "stanford_ace": "self-evolution-loop.json",
+    "ace_rl_icml2024": "causality-tracker.json",
+    "constitutional_ai_springer2025": "mini-publics.json",
+    "implementation_date": "2025-10-30",
+    "compliance_level": "95%"
+  }
+}

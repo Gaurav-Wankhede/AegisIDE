@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T13:15:00+05:30",
+  "description": "Agentic context refinement without retraining (Stanford/Berkeley 2025)",
+  "research_source": "https://arxiv.org/abs/2510.04618 - ACE Framework",
+  "evolution_cycle": {
+    "frequency": "every_10_iterations",
+    "enabled": true,
+    "phases": ["generate", "evaluate", "refine", "integrate"],
+    "quality_threshold": 0.85,
+    "min_confidence_for_evolution": 0.80
+  },
+  "refinement_process": {
+    "step_1_generate": {
+      "action": "Collect new context from Generator role",
+      "sources": [
+        "runtime/memory/systemPatterns.json",
+        "workflows/*.json",
+        "reflection/success-patterns.json"
+      ],
+      "output": "candidate_contexts"
+    },
+    "step_2_evaluate": {
+      "action": "Reflector evaluates quality of candidate contexts",
+      "metrics": ["relevance", "accuracy", "utility", "novelty"],
+      "threshold": 0.85,
+      "output": "scored_contexts"
+    },
+    "step_3_refine": {
+      "action": "Improve low-scoring contexts via iteration",
+      "max_refinement_attempts": 3,
+      "improvement_required": 0.10,
+      "output": "refined_contexts"
+    },
+    "step_4_integrate": {
+      "action": "Curator merges approved contexts into knowledge base",
+      "merge_strategy": "semantic_deduplication",
+      "conflict_resolution": "reflector_arbitrates",
+      "output": "updated_knowledge_base"
+    }
+  },
+  "refinement_metrics": {
+    "contexts_generated": 0,
+    "contexts_evaluated": 0,
+    "contexts_refined": 0,
+    "contexts_integrated": 0,
+    "quality_delta": 0.0,
+    "refinement_rate": "0/hour",
+    "avg_improvement": 0.0
+  },
+  "integration_targets": {
+    "triad_tracker": ".aegiside/ace-framework/triad-tracker.json",
+    "context_router": ".aegiside/routers/context-router.json",
+    "system_patterns": ".aegiside/runtime/memory/systemPatterns.json"
+  },
+  "constitutional_compliance": {
+    "articles": [
+      "Article 5 (Right to Knowledge - Continuous Learning)",
+      "Article 19 (Quality Standards)"
+    ],
+    "democratic_oversight": "mini-publics.json validation required for framework changes"
+  }
+}

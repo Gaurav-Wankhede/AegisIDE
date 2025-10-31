@@ -1,0 +1,74 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 1600,
+    "compressed_tokens": 960,
+    "compression_ratio": 0.6,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["executive", "minister", "ias", "implementation", "execution"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:57:00+05:30"
+  },
+  "priority": "high",
+  "load_frequency": "on_demand",
+  "ace_role": "generator",
+  "token_budget": 960,
+  "part": "VII-The-Executive",
+  "articles_consolidated": [32, 33, 34, 35],
+  "description": "Executive powers and implementation authority - consolidated from 4 articles",
+  "content": {
+    "prime_minister_role": {
+      "article": 32,
+      "definition": "Chief Executive - implements parliamentary decisions",
+      "powers": [
+        "Execute all autonomous operations (0-99% band)",
+        "Implement parliamentary decisions",
+        "Coordinate with IAS Intelligence",
+        "Update memory-bank schemas"
+      ],
+      "responsibilities": [
+        "Ensure constitutional compliance",
+        "Coordinate tri-branch operations",
+        "Report to Parliament via progress.json"
+      ]
+    },
+    "ias_intelligence": {
+      "article": 33,
+      "definition": "Indian Administrative Service - neutral expert analysis",
+      "role": "Maintains 8-schema memory-bank, provides data-driven insights",
+      "schemas_maintained": [
+        "activeContext.json",
+        "scratchpad.json",
+        "kanban.json",
+        "mistakes.json",
+        "systemPatterns.json",
+        "progress.json",
+        "roadmap.json",
+        "memory.json"
+      ],
+      "neutrality": "Non-partisan, fact-based analysis only"
+    },
+    "ministerial_execution": {
+      "article": 34,
+      "process": [
+        "1. Receive decision from Parliament or autonomous trigger",
+        "2. Consult IAS for implementation strategy",
+        "3. Execute via workflows/*.json",
+        "4. Update memory-bank schemas",
+        "5. Report to Chief Justice for validation"
+      ]
+    },
+    "executive_accountability": {
+      "article": 35,
+      "reporting": "All actions logged in progress.json (RL central ledger)",
+      "oversight": "Chief Justice validates, Opposition audits",
+      "penalties": "Constitutional violations: -50 penalty, HALT"
+    }
+  },
+  "triggers": ["execute", "implement", "minister", "ias", "action", "delivery"],
+  "semantic_index": {
+    "execution": ["article-32", "article-34"],
+    "intelligence": ["article-33"],
+    "accountability": ["article-35"]
+  }
+}

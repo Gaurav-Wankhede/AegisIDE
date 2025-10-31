@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "project_info": {
+    "name": "PLACEHOLDER_PROJECT_NAME",
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH"
+  },
+  "error_patterns": [],
+  "prevention_rules": [],
+  "context7_sources": {
+    "verified_fixes": [],
+    "trust_scores": {}
+  },
+  "predictive_analytics": {
+    "high_risk_areas": [],
+    "common_error_types": []
+  },
+  "instant_lint_tracking": {
+    "active_lints": [],
+    "resolved_lints": []
+  },
+  "anti_hallucination_metrics": {
+    "source_verification_count": 0,
+    "hallucination_prevention_count": 0,
+    "context7_consultations": 0
+  },
+  "metadata": {
+    "total_errors": 0,
+    "recurring_errors": 0,
+    "prevention_success_rate": 0
+  },
+  "error_log": [],
+  "mcp_auto_update": {
+    "enabled": true,
+    "update_on_error": true,
+    "research_workflow_trigger": true
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP"
+}

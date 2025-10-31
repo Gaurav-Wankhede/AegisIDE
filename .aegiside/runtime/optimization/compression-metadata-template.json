@@ -1,0 +1,49 @@
+{
+  "schema_version": "2.0.0",
+  "description": "Template for adding compression metadata to all .aegiside JSON files",
+  "usage": "Add this metadata block to every JSON file in .aegiside/",
+  "template": {
+    "compression_metadata": {
+      "original_tokens": 0,
+      "compressed_tokens": 0,
+      "compression_ratio": 0.0,
+      "method": "llmlingua-2",
+      "preserve_keywords": [],
+      "preserve_structure": true,
+      "last_compressed": null,
+      "compression_enabled": true
+    },
+    "priority": "medium",
+    "load_frequency": "on_demand",
+    "ace_role": null,
+    "token_budget": 0
+  },
+  "priority_values": {
+    "critical": "Always loaded, never compressed",
+    "high": "Loaded on startup, light compression",
+    "medium": "Loaded on demand, moderate compression",
+    "low": "Lazy loaded, heavy compression"
+  },
+  "load_frequency_values": {
+    "always": "Loaded every session",
+    "on_startup": "Loaded at initialization",
+    "on_demand": "Loaded when referenced",
+    "lazy": "Loaded only when explicitly requested"
+  },
+  "ace_role_values": {
+    "generator": "Creates new context",
+    "reflector": "Evaluates performance",
+    "curator": "Maintains knowledge",
+    "null": "No ACE role"
+  },
+  "compression": {
+    "enabled": true,
+    "method": "llmlingua-2",
+    "target_files": [
+      "knowledge/governance/constitution/**/*.json"
+    ],
+    "estimated_savings": "6000 tokens (60% reduction)",
+    "preserve_structure": true
+  },
+  "last_updated": "2025-10-30T21:22:00+05:30"
+}

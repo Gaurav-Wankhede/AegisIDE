@@ -1,0 +1,254 @@
+{
+  "schema_version": "2.0.0",
+  "suite_type": "semantic_merge",
+  "ace_role": "reflector",
+  "ace_metadata": {
+    "evaluates": [
+      "Error resolution success",
+      "Timeout recovery success",
+      "Query fallback success",
+      "Fix quality",
+      "Circuit breaker state",
+      "Memory availability",
+      "Learning from mistakes"
+    ],
+    "outputs_to": [
+      "runtime/memory/history/mistakes.json",
+      "runtime/memory/active/activeContext.json",
+      "runtime/memory/active/scratchpad.json",
+      "knowledge/support/reflection/success-patterns.json"
+    ],
+    "quality_threshold": 0.85,
+    "merged_workflows": [
+      "fix.json",
+      "timeout-handler.json",
+      "fallback-chain.json"
+    ]
+  },
+  "token_budget": {
+    "input": 950,
+    "output": 2550,
+    "total": 3500,
+    "note": "Combined budget from 3 workflows (1600+900+1000)"
+  },
+  "compression": {
+    "enabled": true,
+    "method": "targeted_analysis",
+    "preserve_metrics": true
+  },
+  "workflow_name": "error-recovery-suite",
+  "description": "Comprehensive error recovery: HALT-FIX-VALIDATE loop, timeout handling with circuit breaker, 5-level fallback chain",
+  "version": "2.0.0",
+  "trigger": {
+    "condition": {
+      "event": "error_or_timeout_or_not_found"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "suite_section": "timeout_detection",
+      "source": "timeout-handler.json",
+      "steps": [
+        {
+          "step": 1,
+          "action": "detect_timeout",
+          "description": "Detect if query exceeded timeout threshold",
+          "timeout_thresholds": {
+            "activeContext": 5000,
+            "scratchpad": 3000,
+            "kanban": 3000,
+            "mistakes": 2000,
+            "default": 1000
+          },
+          "implementation": "Compare query_start_time + threshold vs current_time"
+        },
+        {
+          "step": 2,
+          "action": "increment_timeout_counter",
+          "description": "Track timeout count in scratchpad.timeout_tracking",
+          "fields_to_update": {
+            "timeout_count": "increment by 1",
+            "last_timeout": "current timestamp",
+            "total_timeout_duration_ms": "add query duration"
+          },
+          "implementation": "@mcp:json-jq update scratchpad.timeout_tracking"
+        },
+        {
+          "step": 3,
+          "action": "check_circuit_breaker",
+          "description": "If 3+ timeouts in 5 minutes, open circuit breaker",
+          "circuit_breaker_rules": {
+            "open_threshold": 3,
+            "time_window_minutes": 5,
+            "action_if_open": "Use cached_confidence and skip to fallback"
+          },
+          "implementation": "Count timeouts in last 5 minutes"
+        }
+      ]
+    },
+    {
+      "suite_section": "fallback_chain",
+      "source": "fallback-chain.json",
+      "steps": [
+        {
+          "step": 4,
+          "action": "try_activeContext",
+          "description": "Level 1: Try activeContext.json (confidence ≥0.8)",
+          "timeout": "5s",
+          "condition": "confidence ≥0.8",
+          "implementation": "@mcp:json-jq query runtime/memory/active/activeContext.json",
+          "on_success": "Return result and stop",
+          "on_timeout": "Move to level 2, penalty -20",
+          "on_not_found": "Move to level 2"
+        },
+        {
+          "step": 5,
+          "action": "try_scratchpad",
+          "description": "Level 2: Try scratchpad.json (recent context)",
+          "timeout": "3s",
+          "condition": "If level 1 timeout OR not found",
+          "implementation": "@mcp:json-jq query runtime/memory/active/scratchpad.json",
+          "on_success": "Return result and stop",
+          "on_timeout": "Move to level 3, penalty -15",
+          "on_not_found": "Move to level 3"
+        },
+        {
+          "step": 6,
+          "action": "try_kanban",
+          "description": "Level 3: Try kanban.json (active tasks)",
+          "timeout": "3s",
+          "condition": "If level 2 timeout OR not found",
+          "implementation": "@mcp:json-jq query runtime/memory/active/kanban.json",
+          "on_success": "Return result and stop",
+          "on_timeout": "Move to level 4, penalty -10",
+          "on_not_found": "Move to level 4"
+        },
+        {
+          "step": 7,
+          "action": "try_mistakes",
+          "description": "Level 4: Try mistakes.json (avoid past errors)",
+          "timeout": "2s",
+          "condition": "If level 3 timeout OR not found",
+          "implementation": "@mcp:json-jq query runtime/memory/history/mistakes.json",
+          "on_success": "Return result and stop",
+          "on_timeout": "Move to level 5, penalty -5",
+          "on_not_found": "Move to level 5"
+        },
+        {
+          "step": 8,
+          "action": "use_default",
+          "description": "Level 5: Use default confidence (0.5) + research_flag",
+          "timeout": "immediate",
+          "condition": "If all levels fail",
+          "implementation": "Set confidence = 0.5, research_flag = true"
+        },
+        {
+          "step": 9,
+          "action": "update_fallback_state",
+          "description": "Update fallback level in scratchpad.timeout_tracking",
+          "implementation": "@mcp:json-jq update scratchpad.timeout_tracking",
+          "fields": {
+            "fallback_level": "1-5 (which level was used)",
+            "cached_confidence": "confidence value used",
+            "total_timeout_duration_ms": "sum of all timeouts"
+          }
+        },
+        {
+          "step": 10,
+          "action": "apply_fallback_penalties",
+          "description": "Apply cumulative penalties for timeouts",
+          "implementation": "Sum penalties from each timeout: -20, -15, -10, -5",
+          "store_in": "runtime/memory/history/progress.json"
+        }
+      ]
+    },
+    {
+      "suite_section": "error_fix",
+      "source": "fix.json",
+      "steps": [
+        {
+          "step": 11,
+          "action": "display",
+          "message": "→ FIX: HALT-FIX-VALIDATE loop activated"
+        },
+        {
+          "step": 12,
+          "action": "query_last_error",
+          "tool": "@mcp:json-jq",
+          "query": ".error_log[0]",
+          "file": "runtime/memory/history/mistakes.json",
+          "store_as": "last_error"
+        },
+        {
+          "step": 13,
+          "action": "research_solution",
+          "tool": "@mcp:context7",
+          "query": "{last_error}",
+          "description": "Fetch official documentation for error resolution"
+        },
+        {
+          "step": 14,
+          "action": "display",
+          "message": "→ Apply fix based on official documentation"
+        },
+        {
+          "step": 15,
+          "action": "validate_fix",
+          "workflow": "validation-suite.json"
+        },
+        {
+          "step": 16,
+          "action": "display",
+          "message": "✅ Fix applied and validated"
+        }
+      ]
+    },
+    {
+      "suite_section": "finalization",
+      "steps": [
+        {
+          "step": 17,
+          "action": "log_recovery_events",
+          "description": "Log all recovery events to activeContext.event_tracking",
+          "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+          "event_data": {
+            "type": "error_recovery_complete",
+            "timeout_detected": "boolean",
+            "fallback_level": "1-5 or null",
+            "fix_applied": "boolean",
+            "validation_passed": "boolean",
+            "total_penalty": "sum of all penalties"
+          }
+        },
+        {
+          "step": 18,
+          "action": "apply_confidence_penalty",
+          "description": "Reduce confidence by 20% if using cached/fallback data",
+          "penalty": {
+            "amount": -0.2,
+            "reason": "Error recovery - using fallback mechanisms",
+            "applies_to": "activeContext.confidence_calculation.final_confidence"
+          },
+          "implementation": "@mcp:json-jq update activeContext.confidence_calculation"
+        }
+      ]
+    }
+  ],
+  "error_handling": {
+    "if_all_fallbacks_fail": "Use default confidence (0.5) and proceed with research_flag=true",
+    "if_circuit_breaker_open": "Halt execution and alert user",
+    "if_fix_fails": "Log error and retry on next cycle",
+    "if_no_cached_confidence": "Use default confidence (0.5)"
+  },
+  "constitutional_compliance": {
+    "articles": [
+      "Article 5 (Zero-Tolerance Validation)",
+      "Article 6 (Error Recovery)",
+      "Article 14 (Atomic Updates)",
+      "Article 23 (Context7 Priority)"
+    ],
+    "mcps_used": ["@mcp:json-jq", "@mcp:context7", "@mcp:sequential-thinking"],
+    "autonomy_band": "0-99%"
+  }
+}

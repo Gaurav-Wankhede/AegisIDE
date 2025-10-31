@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T13:15:00+05:30",
+  "description": "Causality-aware entropy for high-impact action prioritization (ACE-RL ICML 2024)",
+  "research_source": "https://proceedings.mlr.press/v235/ji24b.html - ACE: Off-Policy Actor-Critic",
+  "causality_tracking": {
+    "enabled": true,
+    "evaluation_frequency": "every_action",
+    "entropy_calculation_method": "causality_aware"
+  },
+  "action_dimensions": {
+    "primitive_behaviors": [
+      "tool_selection",
+      "file_operation",
+      "mcp_invocation",
+      "memory_update",
+      "workflow_execution"
+    ],
+    "significance_scores": {
+      "tool_selection": 0.0,
+      "file_operation": 0.0,
+      "mcp_invocation": 0.0,
+      "memory_update": 0.0,
+      "workflow_execution": 0.0
+    }
+  },
+  "causality_metrics": {
+    "action_reward_correlation": {},
+    "entropy_threshold": 0.7,
+    "high_impact_actions": [],
+    "low_impact_actions": [],
+    "exploration_priority": []
+  },
+  "entropy_calculation": {
+    "formula": "causality_aware_entropy = sum(p_i * log(p_i) * causal_impact_i)",
+    "causal_impact_weight": 0.8,
+    "base_entropy_weight": 0.2,
+    "update_frequency": "per_action"
+  },
+  "dormancy_detection": {
+    "enabled": true,
+    "gradient_dormancy_threshold": 0.1,
+    "check_frequency": "every_50_iterations",
+    "dormant_dimensions": [],
+    "reset_trigger": "dormancy_detected",
+    "reset_count": 0,
+    "reset_strategy": "targeted_exploration_boost"
+  },
+  "prioritization_strategy": {
+    "method": "entropy_weighted_sampling",
+    "focus_on_high_impact": true,
+    "exploration_bonus": 0.2,
+    "efficiency_gain_target": "30-50%"
+  },
+  "performance_metrics": {
+    "actions_evaluated": 0,
+    "high_impact_identified": 0,
+    "dormancy_resets_triggered": 0,
+    "efficiency_gain": 0.0,
+    "exploration_diversity": 0.0
+  },
+  "integration": {
+    "triad_tracker": ".aegiside/ace-framework/triad-tracker.json",
+    "penalty_tracker": ".aegiside/workflows/penalty-tracker.json",
+    "progress_ledger": ".aegiside/runtime/memory/progress.json"
+  }
+}

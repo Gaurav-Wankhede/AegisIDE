@@ -1,0 +1,48 @@
+{
+  "schema_version": "3.0.0",
+  "description": "Tier-2 ACE Domain Router - Routes to Generator/Reflector/Curator workflows",
+  "last_updated": "2025-10-30T13:46:00+05:30",
+  "domain": "ace_framework",
+  "workflow_routing": {
+    "generator_workflows": {
+      "description": "Create new context and documentation",
+      "files": [
+        "runtime/ace/generator/research.json",
+        "runtime/ace/generator/bootstrap-enhanced.json",
+        "runtime/ace/generator/auto-init.json",
+        "runtime/ace/generator/intent-detector.json",
+        "runtime/ace/generator/runtime-documentation.json"
+      ],
+      "triggers": ["research", "generate", "create", "document", "init", "bootstrap"]
+    },
+    "reflector_workflows": {
+      "description": "Evaluate performance and compliance",
+      "suites": {
+        "validation": "runtime/ace/reflector/validation-suite.json",
+        "error_recovery": "runtime/ace/reflector/error-recovery-suite.json"
+      },
+      "individual": [
+        "runtime/ace/reflector/confidence-scorer.json",
+        "runtime/ace/reflector/penalty-tracker.json"
+      ],
+      "triggers": ["validate", "evaluate", "score", "penalty", "error", "fix", "recover"]
+    },
+    "curator_workflows": {
+      "description": "Maintain knowledge and state",
+      "suites": {
+        "state_management": "runtime/ace/curator/state-suite.json"
+      },
+      "individual": [
+        "runtime/ace/curator/github-sync.json",
+        "runtime/ace/curator/atomic-rollback.json",
+        "runtime/ace/curator/petition-router.json"
+      ],
+      "triggers": ["continue", "update", "sync", "maintain", "rollback", "petition"]
+    }
+  },
+  "ace_components": {
+    "triad_tracker": "runtime/ace/triad-tracker.json",
+    "self_evolution": "runtime/ace/self-evolution-loop.json",
+    "causality_tracker": "runtime/ace/causality-tracker.json"
+  }
+}

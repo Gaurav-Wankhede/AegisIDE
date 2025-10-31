@@ -1,0 +1,50 @@
+{
+  "schema_version": "3.0.0",
+  "description": "Adaptive Context Loading Orchestrator - Manages progressive disclosure",
+  "last_updated": "2025-10-30T13:46:00+05:30",
+  "loading_strategy": "progressive_disclosure",
+  "priority_levels": {
+    "critical": {
+      "load_immediately": true,
+      "max_tokens": 3000,
+      "files": [
+        "core/main-router.json",
+        "runtime/memory/active/kanban.json",
+        "runtime/memory/active/activeContext.json"
+      ]
+    },
+    "high": {
+      "load_on_session_start": true,
+      "max_tokens": 5000,
+      "files": [
+        "runtime/ace/triad-tracker.json",
+        "runtime/optimization/token-budget.json"
+      ]
+    },
+    "medium": {
+      "load_on_demand": true,
+      "max_tokens": 10000,
+      "domains": ["ace_queries", "governance_queries"]
+    },
+    "low": {
+      "load_on_explicit_request": true,
+      "max_tokens": 15000,
+      "domains": ["architecture_queries"]
+    }
+  },
+  "adaptive_rules": {
+    "hot_path_promotion": "Promote frequently accessed files to higher priority",
+    "cold_path_demotion": "Demote rarely accessed files to lower priority",
+    "cache_duration": {
+      "critical": "session_lifetime",
+      "high": "1_hour",
+      "medium": "30_minutes",
+      "low": "5_minutes"
+    }
+  },
+  "token_monitoring": {
+    "alert_threshold": 0.85,
+    "compression_threshold": 0.90,
+    "emergency_purge_threshold": 0.95
+  }
+}

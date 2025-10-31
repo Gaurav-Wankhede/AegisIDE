@@ -1,0 +1,119 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "curator",
+  "ace_metadata": {
+    "maintains": [
+      "Framework version sync",
+      "GitHub repository state",
+      "Cache invalidation"
+    ],
+    "outputs_to": [
+      ".cache/version-manifest.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 350,
+    "output": 900,
+    "total": 1250
+  },
+  "compression": {
+    "enabled": true,
+    "method": "state_compression",
+    "preserve_critical_state": true
+  },
+  "workflow_id": "github_sync",
+  "name": "GitHub Autonomous Sync",
+  "description": "Autonomous GitHub synchronization with conditional requests, SHA tracking, and cache invalidation",
+  "version": "1.0.0",
+  "triggers": {
+    "initialization": {
+      "nlu_patterns": ["initialize framework", "setup aegiside", "start project"],
+      "action": "check_updates_then_init"
+    },
+    "confidence_low": {
+      "condition": "confidence < 0.8",
+      "nlu_patterns": ["how do I", "what is the pattern for", "show me example"],
+      "action": "fetch_latest_docs_for_topic"
+    },
+    "periodic": {
+      "condition": "every 300 seconds",
+      "action": "background_version_check"
+    },
+    "manual": {
+      "nlu_patterns": ["update framework", "sync from github", "refresh aegiside"],
+      "action": "force_full_sync"
+    },
+    "workflow_start": {
+      "condition": "before_executing_workflow",
+      "action": "verify_framework_current"
+    }
+  },
+  "steps": [
+    {
+      "step": 0,
+      "name": "Rate Limit Check",
+      "action": "check_rate_limit",
+      "command": "bash .aegiside/workflows/scripts/rate-limit-check.sh",
+      "on_failure": "use_cached_version",
+      "blocking": false
+    },
+    {
+      "step": 1,
+      "name": "Conditional Version Check",
+      "action": "check_version",
+      "command": "curl -sI -H 'If-Modified-Since: $(cat .aegiside/.cache/last-modified.txt 2>/dev/null || echo \"\")' https://api.github.com/repos/Gaurav-Wankhede/AegisIDE/commits/main",
+      "success": "Parse HTTP status (304 = up-to-date, 200 = updates available)",
+      "failure": "Use cached version"
+    },
+    {
+      "step": 2,
+      "name": "Selective Sync",
+      "condition": "HTTP 200 OR force_sync",
+      "action": "selective_file_sync",
+      "command": "bash .aegiside/workflows/scripts/selective-sync.sh",
+      "on_success": "invalidate_cache_and_reload"
+    },
+    {
+      "step": 3,
+      "name": "Cache Invalidation",
+      "condition": "files_updated",
+      "action": "event_driven_invalidation",
+      "commands": [
+        "jq '.invalidation_events += [{timestamp: now | todateiso8601, action: \"reload_validators\", status: \"pending\"}]' .aegiside/.cache/version-manifest.json | sponge .aegiside/.cache/version-manifest.json"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "Reload Components",
+      "condition": "validators_changed OR workflows_changed",
+      "action": "reload_affected_components",
+      "commands": [
+        "test -f .aegiside/enforcement/shell/hooks/reload-validators.sh && bash .aegiside/enforcement/shell/hooks/reload-validators.sh || echo 'No reload needed'"
+      ]
+    }
+  ],
+  "error_handling": {
+    "rate_limit_exceeded": {
+      "action": "use_cached_version",
+      "log_level": "info",
+      "message": "Using cached framework (rate limit preservation)"
+    },
+    "network_unavailable": {
+      "action": "use_cached_version",
+      "log_level": "warning",
+      "message": "Network unavailable, using cached framework"
+    },
+    "github_api_error": {
+      "action": "retry_with_exponential_backoff",
+      "max_retries": 3,
+      "base_delay": 2
+    }
+  },
+  "success_metrics": {
+    "files_synced": "count",
+    "sync_duration": "milliseconds",
+    "cache_hit_rate": "percentage",
+    "rate_limit_preserved": "boolean"
+  }
+}

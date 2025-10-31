@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "project_info": {
+    "name": "PLACEHOLDER_PROJECT_NAME",
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH",
+    "ide_type": "PLACEHOLDER_IDE"
+  },
+  "rl_ledger": [],
+  "rl_totals": {
+    "total_score": 0,
+    "rewards": 0,
+    "penalties": 0,
+    "net_score": 0
+  },
+  "rl_architecture": {
+    "algorithm": "PPO+GAE",
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "kl_coef": 0.005,
+    "value_network_branches": {
+      "task_success": 0.3,
+      "validation": 0.25,
+      "pattern_reuse": 0.2,
+      "mcp": 0.15,
+      "innovation": 0.1
+    }
+  },
+  "rl_runtime_controls": {
+    "reference_policy": {
+      "policy_snapshot": null,
+      "last_updated": "PLACEHOLDER_TIMESTAMP",
+      "kl_divergence": 0
+    },
+    "exploit_explore_ratio": {
+      "exploitation": 0.7,
+      "exploration": 0.3
+    }
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP"
+}

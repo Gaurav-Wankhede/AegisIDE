@@ -1,0 +1,101 @@
+# AegisIDE - Local state files (per-project, never commit)
+src/.aegiside/memory-bank/memory/*.json
+!src/.aegiside/memory-bank/memory/RL_SCORING_EXAMPLE.json
+
+# IDE specific files
+.vscode/
+.idea/
+.cursor/
+.windsurf/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+*.egg-info/
+.installed.cfg
+*.egg
+.pytest_cache/
+.coverage
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+.gradle/
+
+# Logs
+*.log
+# OS files
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# MCP server logs
+mcp-server-*.log
+.clinerules/byterover-rules.md
+.kilocode/rules/byterover-rules.md
+.roo/rules/byterover-rules.md
+.windsurf/rules/byterover-rules.md
+.cursor/rules/byterover-rules.mdc
+.kiro/steering/byterover-rules.md
+.qoder/rules/byterover-rules.md
+.augment/rules/byterover-rules.md
+.aegiside/.cache/
+.augment/rules/byterover-rules.md.aegiside/.cache/
+
+# Git internal files - NEVER track these
+.git/objects/**
+.git/index
+.git/logs/**

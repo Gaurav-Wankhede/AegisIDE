@@ -1,0 +1,31 @@
+{
+  "schema_version": "3.0.0",
+  "pattern": "hierarchical",
+  "description": "Tier-1 Main Router - Routes queries to specialized domain routers",
+  "last_updated": "2025-10-30T13:46:00+05:30",
+  "tier_1_domains": {
+    "ace_queries": {
+      "router": "runtime/ace/ace-router.json",
+      "description": "ACE framework workflows, self-evolution, causality tracking",
+      "triggers": ["workflow", "generator", "reflector", "curator", "ace", "self-evolution", "causality"],
+      "priority": "high"
+    },
+    "governance_queries": {
+      "router": "knowledge/governance/governance-router.json",
+      "description": "Constitutional articles, enforcement validators, policy queries",
+      "triggers": ["article", "constitution", "enforcement", "validator", "rights", "duties", "legal"],
+      "priority": "critical"
+    },
+    "architecture_queries": {
+      "router": "knowledge/architecture/architecture-router.json",
+      "description": "System architecture, codemap, relationships",
+      "triggers": ["architecture", "subgraph", "codemap", "relation", "diagram"],
+      "priority": "medium"
+    }
+  },
+  "routing_logic": {
+    "method": "semantic_matching",
+    "fallback": "load_all_routers",
+    "confidence_threshold": 0.7
+  }
+}

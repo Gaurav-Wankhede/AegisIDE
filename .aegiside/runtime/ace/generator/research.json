@@ -1,0 +1,102 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "generator",
+  "ace_metadata": {
+    "generates": [
+      "New context from @mcp:context7",
+      "New context from @mcp:exa",
+      "Documentation patterns for systemPatterns.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 500,
+    "output": 2000,
+    "total": 2500
+  },
+  "compression": {
+    "enabled": true,
+    "method": "progressive_disclosure",
+    "preserve_code_blocks": true
+  },
+  "workflow_name": "research",
+  "description": "Auto-research best practices from skills.json + official docs",
+  "version": "1.0.0",
+  "trigger": {
+    "conditions": [
+      {
+        "event": "error_detected",
+        "tool": "@mcp:json-jq",
+        "query": ".error_log | length",
+        "file": ".aegiside/runtime/memory/mistakes.json",
+        "greater_than": 0
+      },
+      {
+        "event": "new_library_detected",
+        "description": "Auto-trigger when importing unknown library"
+      }
+    ],
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "display",
+      "message": "→ RESEARCH: Auto-triggering documentation lookup"
+    },
+    {
+      "step": 2,
+      "action": "query_skills",
+      "tool": "@mcp:json-jq",
+      "query": ".skill_domains[] | select(.triggers[] | test($query; \"i\")) | .documentation_sources",
+      "file": ".aegiside/routers/skills.json",
+      "description": "Match error/library to skill domain via semantic triggers"
+    },
+    {
+      "step": 3,
+      "action": "fetch_official_docs",
+      "tool": "@mcp:context7",
+      "query": "{matched_skill_domain}",
+      "priority": "highest",
+      "description": "Fetch official documentation (Article 23 priority)"
+    },
+    {
+      "step": 4,
+      "action": "fetch_code_examples",
+      "tool": "@mcp:exa",
+      "query": "{matched_skill_domain} best practices",
+      "description": "Real-world code examples from Exa"
+    },
+    {
+      "step": 5,
+      "action": "fetch_supplementary",
+      "tool": "@mcp:fetch",
+      "urls": "{skill_documentation_sources}",
+      "description": "Fetch from skills.json documentation links"
+    },
+    {
+      "step": 6,
+      "action": "store_pattern",
+      "tool": "run_command",
+      "command": "jq '.patterns += [{pattern_id: $id, source: \"research\", confidence: 0.9, documentation: $docs}]' .aegiside/runtime/memory/systemPatterns.json | sponge .aegiside/runtime/memory/systemPatterns.json",
+      "safe_to_auto_run": true,
+      "rl_reward": 20,
+      "description": "Store learned pattern for reuse"
+    },
+    {
+      "step": 7,
+      "action": "display",
+      "message": "✅ Research complete - pattern stored for reuse"
+    }
+  ],
+  "constitutional_compliance": {
+    "articles": [
+      "Article 17 (Apply Learned Patterns)",
+      "Article 23 (Context7 Priority)",
+      "Article 25 (Continuous Learning)"
+    ],
+    "mcps_used": ["@mcp:json-jq", "@mcp:context7", "@mcp:exa", "@mcp:fetch"],
+    "autonomy_band": "0-99%",
+    "skills_integration": true
+  }
+}

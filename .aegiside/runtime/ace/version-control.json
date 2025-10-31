@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:50:00+05:30",
+  "current_versions": {
+    "generator": "v1.0-baseline",
+    "reflector": "v1.0-baseline",
+    "curator": "v1.0-baseline"
+  },
+  "version_history": {
+    "generator": [
+      {
+        "version": "v1.0-baseline",
+        "deployed": "2025-10-30T21:50:00+05:30",
+        "quality_score": null,
+        "status": "active",
+        "rollback_candidate": false
+      }
+    ],
+    "reflector": [],
+    "curator": []
+  },
+  "rollback_policy": {
+    "enabled": true,
+    "test_iterations": 10,
+    "quality_threshold": 0.90,
+    "auto_approve_threshold": 1.10,
+    "human_review_required": false
+  },
+  "a_b_testing": {
+    "enabled": false,
+    "traffic_split": {},
+    "duration": "24_hours",
+    "decision_metric": "quality_score"
+  }
+}

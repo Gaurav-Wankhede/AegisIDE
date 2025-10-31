@@ -1,0 +1,261 @@
+{
+  "schema_version": "2.0.0",
+  "suite_type": "semantic_merge",
+  "ace_role": "reflector",
+  "ace_metadata": {
+    "evaluates": [
+      "Constitutional compliance",
+      "Constitutional violations",
+      "MCP chain completeness",
+      "Code quality metrics",
+      "Tool policy compliance",
+      "File operation violations",
+      "Tool usage compliance",
+      "Sequential thinking execution"
+    ],
+    "outputs_to": [
+      "runtime/memory/history/mistakes.json",
+      "runtime/memory/history/progress.json",
+      "knowledge/support/reflection/success-patterns.json"
+    ],
+    "quality_threshold": 0.95,
+    "merged_workflows": [
+      "validate.json",
+      "violation-detector.json",
+      "mcp-chain-validator.json"
+    ]
+  },
+  "token_budget": {
+    "input": 950,
+    "output": 2700,
+    "total": 3650,
+    "note": "Combined budget from 3 workflows (1300+1250+1100)"
+  },
+  "compression": {
+    "enabled": true,
+    "method": "targeted_analysis",
+    "preserve_metrics": true
+  },
+  "workflow_name": "validation-suite",
+  "description": "Comprehensive validation suite: schema validation, violation detection, MCP chain validation",
+  "version": "2.0.0",
+  "trigger": {
+    "condition": {
+      "event": "pre_commit_or_task_complete"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "suite_section": "schema_validation",
+      "source": "validate.json",
+      "steps": [
+        {
+          "step": 1,
+          "action": "display",
+          "message": "→ VALIDATE: Running zero-tolerance checks"
+        },
+        {
+          "step": 2,
+          "action": "validate_schemas",
+          "schemas": ["activeContext", "scratchpad", "kanban", "mistakes", "systemPatterns", "progress", "roadmap", "memory"],
+          "base_path": ".aegiside/runtime/memory/",
+          "tool": "@mcp:json-jq",
+          "halt_on_error": true
+        },
+        {
+          "step": 3,
+          "action": "display",
+          "message": "✅ VALIDATION PASSED: All schemas valid"
+        }
+      ]
+    },
+    {
+      "suite_section": "violation_detection",
+      "source": "violation-detector.json",
+      "steps": [
+        {
+          "step": 4,
+          "action": "detect_local_file_access",
+          "description": "Violation: Local .aegiside/ file access (-1000 penalty)",
+          "pattern": "File path contains '.aegiside/'",
+          "detection_method": "Regex match: /\\.aegiside\\//",
+          "implementation": "Check all file operations for .aegiside/ in path",
+          "penalty": -1000
+        },
+        {
+          "step": 5,
+          "action": "detect_backup_file_access",
+          "description": "Violation: Backup file access (-500 penalty)",
+          "pattern": "Filename matches '_backup' or '.bak'",
+          "detection_method": "Regex match: /(_backup|\\.bak)$/",
+          "implementation": "Check all file operations for backup patterns",
+          "penalty": -500
+        },
+        {
+          "step": 6,
+          "action": "detect_assume_without_research",
+          "description": "Violation: Assume without research (-100 penalty)",
+          "pattern": "confidence <0.8 AND no @mcp:context7 call",
+          "detection_method": "Semantic analysis of MCP chain",
+          "implementation": "Check activeContext.confidence_calculation.final_confidence AND activeContext.mcp_chain_execution.research_executed",
+          "penalty": -100
+        },
+        {
+          "step": 7,
+          "action": "detect_create_without_request",
+          "description": "Violation: File creation without explicit request (-100 penalty)",
+          "pattern": "File creation without 'create' keyword",
+          "detection_method": "Intent parsing for CREATE verb",
+          "implementation": "Check activeContext.file_operation_intent.last_intent_type != 'CREATE' AND file_created == true",
+          "penalty": -100
+        },
+        {
+          "step": 8,
+          "action": "detect_skip_memory_query",
+          "description": "Violation: Skip memory query (-25 penalty)",
+          "pattern": "Direct action without memory check",
+          "detection_method": "Trace MCP chain execution",
+          "implementation": "Check activeContext.mcp_chain_execution.memory_query_executed == false",
+          "penalty": -25
+        },
+        {
+          "step": 9,
+          "action": "detect_wrong_tool_for_json",
+          "description": "Violation: Read() used on JSON instead of json-jq (-30 penalty)",
+          "pattern": "Read() used on JSON instead of json-jq",
+          "detection_method": "Tool usage pattern matching",
+          "implementation": "Check if Read() called on .json files instead of @mcp:json-jq",
+          "penalty": -30
+        },
+        {
+          "step": 10,
+          "action": "detect_bypass_tunnel",
+          "description": "Violation: Direct API call instead of @mcp (-20 penalty)",
+          "pattern": "Direct API call instead of @mcp",
+          "detection_method": "MCP chain validation",
+          "implementation": "Check if direct API calls made without @mcp wrapper",
+          "penalty": -20
+        },
+        {
+          "step": 11,
+          "action": "apply_violation_penalties",
+          "description": "Apply detected violation penalties to RL score",
+          "implementation": "For each violation detected: add penalty entry to progress.json.reinforcement_learning array",
+          "entry_format": {
+            "tx_id": "unique violation ID",
+            "timestamp": "current timestamp",
+            "category": "violation_type",
+            "penalty": "penalty amount",
+            "source_file": "file where violation detected",
+            "description": "violation description"
+          }
+        }
+      ]
+    },
+    {
+      "suite_section": "mcp_chain_validation",
+      "source": "mcp-chain-validator.json",
+      "steps": [
+        {
+          "step": 12,
+          "action": "check_sequential_thinking_executed",
+          "description": "Verify @mcp:sequential-thinking was called with ≥3 steps",
+          "validation": "Check activeContext.mcp_chain_execution.sequential_thinking_executed == true",
+          "requirement": "≥3 reasoning steps",
+          "penalty_if_skipped": -15,
+          "implementation": "Query activeContext for sequential-thinking execution flag"
+        },
+        {
+          "step": 13,
+          "action": "check_memory_query_executed",
+          "description": "Verify memory query was executed (activeContext.json check)",
+          "validation": "Check activeContext.mcp_chain_execution.memory_query_executed == true",
+          "requirement": "Query activeContext.json with confidence ≥0.8",
+          "penalty_if_skipped": -25,
+          "implementation": "Query activeContext for memory_query execution flag"
+        },
+        {
+          "step": 14,
+          "action": "check_research_executed",
+          "description": "Verify research was executed if confidence <0.8",
+          "validation": "If confidence <0.8: check activeContext.mcp_chain_execution.research_executed == true",
+          "requirement": "@mcp:context7 or @mcp:exa if confidence <0.8",
+          "penalty_if_skipped": -30,
+          "implementation": "Check confidence level AND research_executed flag"
+        },
+        {
+          "step": 15,
+          "action": "check_pattern_stored",
+          "description": "Verify pattern was stored in runtime/memory",
+          "validation": "Check activeContext.mcp_chain_execution.pattern_stored == true",
+          "requirement": "Store pattern in memory.json or systemPatterns.json",
+          "penalty_if_skipped": -20,
+          "implementation": "Query runtime/memory for new pattern entries"
+        },
+        {
+          "step": 16,
+          "action": "validate_all_steps_complete",
+          "description": "Verify all 4 steps are complete",
+          "validation": "Check activeContext.mcp_chain_execution.all_steps_complete == true",
+          "implementation": "Logical AND of all 4 step checks",
+          "store_in": "activeContext.mcp_chain_execution.all_steps_complete"
+        },
+        {
+          "step": 17,
+          "action": "apply_chain_penalties",
+          "description": "Apply MCP chain penalties to progress.json RL score",
+          "implementation": "Add penalty entry to progress.json.reinforcement_learning array",
+          "entry_format": {
+            "tx_id": "mcp_chain_violation_{timestamp}",
+            "timestamp": "current timestamp",
+            "category": "mcp_chain_incomplete",
+            "penalty": "calculated total penalty",
+            "source_file": "validation-suite",
+            "description": "MCP chain incomplete - missing steps"
+          }
+        }
+      ]
+    },
+    {
+      "suite_section": "finalization",
+      "steps": [
+        {
+          "step": 18,
+          "action": "update_total_rl_score",
+          "description": "Update total_rl_score in progress.json with all penalties",
+          "implementation": "@mcp:json-jq update progress.json.metrics.total_rl_score",
+          "store_in": "runtime/memory/history/progress.json"
+        },
+        {
+          "step": 19,
+          "action": "log_validation_events",
+          "description": "Log all validation events to activeContext.event_tracking",
+          "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+          "event_data": {
+            "type": "validation_suite_complete",
+            "violations_detected": "array of violations",
+            "mcp_chain_status": "complete/incomplete",
+            "total_penalty": "sum of all penalties",
+            "new_rl_score": "updated total_rl_score"
+          }
+        }
+      ]
+    }
+  ],
+  "error_handling": {
+    "if_schema_validation_fails": "HALT - zero tolerance",
+    "if_violations_detected": "Apply cumulative penalties, continue",
+    "if_mcp_chain_incomplete": "Apply chain penalties, log warning",
+    "if_all_checks_pass": "Log success, no penalties"
+  },
+  "constitutional_compliance": {
+    "articles": [
+      "Article 5 (Zero-Tolerance Validation)",
+      "Article 6 (Error Recovery)",
+      "Article 14 (Atomic Updates)"
+    ],
+    "mcps_used": ["@mcp:json-jq", "@mcp:sequential-thinking"],
+    "autonomy_band": "0-99%"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "RL Article Selection Tracking Extension",
+  "description": "Tracks constitutional article selection effectiveness for RL optimization",
+  "type": "object",
+  "properties": {
+    "article_selection_history": {
+      "type": "array",
+      "description": "Historical record of article selections and their outcomes",
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "user_request", "articles_loaded", "outcome"],
+        "properties": {
+          "timestamp": {"type": "string", "format": "date-time"},
+          "user_request": {"type": "string", "maxLength": 500},
+          "articles_loaded": {"type": "array", "items": {"type": "string"}},
+          "articles_applied": {"type": "array", "items": {"type": "string"}},
+          "articles_unused": {"type": "array", "items": {"type": "string"}},
+          "outcome": {"type": "string", "enum": ["success", "partial", "failure"]},
+          "rl_reward": {"type": "integer"},
+          "selection_accuracy": {"type": "number", "minimum": 0, "maximum": 1},
+          "token_cost": {"type": "integer"},
+          "semantic_match_score": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "article_effectiveness": {
+      "type": "object",
+      "description": "Per-article effectiveness metrics",
+      "patternProperties": {
+        "^article-\\d+$": {
+          "type": "object",
+          "properties": {
+            "invocations": {"type": "integer", "minimum": 0},
+            "successful_applications": {"type": "integer", "minimum": 0},
+            "false_positives": {"type": "integer", "minimum": 0},
+            "effectiveness": {"type": "number", "minimum": 0, "maximum": 1},
+            "avg_token_cost": {"type": "number"},
+            "rl_net_contribution": {"type": "integer"},
+            "confidence_score": {"type": "number", "minimum": 0, "maximum": 1},
+            "last_updated": {"type": "string", "format": "date-time"}
+          }
+        }
+      }
+    },
+    "trigger_sensitivity": {
+      "type": "object",
+      "description": "Dynamic trigger thresholds adjusted by RL feedback",
+      "properties": {
+        "autonomy": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7},
+        "validation": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.8},
+        "mcp_usage": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.75},
+        "memory": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.7},
+        "governance": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.6},
+        "quality": {"type": "number", "minimum": 0, "maximum": 1, "default": 0.75}
+      }
+    },
+    "metadata_injection_stats": {
+      "type": "object",
+      "properties": {
+        "total_sessions": {"type": "integer"},
+        "avg_articles_per_session": {"type": "number"},
+        "token_savings_vs_full_load": {"type": "number"},
+        "catalog_load_time_ms": {"type": "integer"}
+      }
+    }
+  }
+}

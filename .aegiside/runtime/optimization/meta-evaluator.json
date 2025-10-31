@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:50:00+05:30",
+  "meta_optimizer": {
+    "enabled": false,
+    "monitors": ["generator", "reflector", "curator"],
+    "metrics": {
+      "context_quality": {
+        "current": null,
+        "baseline": 0.85,
+        "threshold": 0.75,
+        "trend": "unknown",
+        "alert": false
+      },
+      "success_rate": {
+        "last_10_iterations": null,
+        "baseline": 0.85,
+        "threshold": 0.70,
+        "alert": false
+      }
+    },
+    "interventions": [
+      {
+        "trigger": "success_rate < 0.70",
+        "action": "rollback_generator",
+        "target_version": "v1.0-baseline"
+      },
+      {
+        "trigger": "quality_declining_3_iterations",
+        "action": "pause_curator_updates"
+      }
+    ],
+    "self_improvement": {
+      "enabled": false,
+      "learning_rate": "adaptive",
+      "human_grounding_frequency": "every_100_iterations"
+    }
+  }
+}

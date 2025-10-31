@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T13:15:00+05:30",
+  "description": "Democratic legitimacy via stakeholder feedback (Springer Constitutional AI 2025)",
+  "research_source": "https://link.springer.com/article/10.1007/s44206-025-00204-8 - Constitutional AI",
+  "mini_publics": {
+    "enabled": false,
+    "description": "Democratic validation mechanism for policy changes (future feature)",
+    "validation_required_for": [
+      "constitutional_amendments",
+      "policy_updates",
+      "enforcement_rule_changes",
+      "token_budget_modifications"
+    ],
+    "stakeholder_groups": [
+      "developers",
+      "users",
+      "auditors",
+      "community_representatives"
+    ],
+    "consensus_threshold": 0.75,
+    "voting_mechanism": "preference_aggregation"
+  },
+  "democratic_principles": {
+    "transparency": "All policy changes must be publicly visible",
+    "participation": "Stakeholders can propose amendments",
+    "deliberation": "Changes require discussion period",
+    "accountability": "Decisions are logged and auditable"
+  },
+  "feedback_loop": {
+    "review_frequency": "quarterly",
+    "last_review": null,
+    "next_review": null,
+    "open_proposals": [],
+    "approved_changes": [],
+    "rejected_changes": []
+  },
+  "integration_with_constitution": {
+    "article_43": {
+      "name": "Democratic Oversight",
+      "description": "Mini-publics validate constitutional changes",
+      "branch": "constitutional_bodies",
+      "enforcement_level": "advisory"
+    }
+  },
+  "future_implementation": {
+    "phase": "planned",
+    "requirements": [
+      "Stakeholder identification system",
+      "Voting platform integration",
+      "Proposal submission mechanism",
+      "Deliberation forum"
+    ],
+    "benefits": [
+      "Prevents authoritarian drift",
+      "Ensures ethical alignment",
+      "Builds community trust",
+      "Democratic legitimacy"
+    ]
+  },
+  "current_alternative": {
+    "method": "developer_review",
+    "process": "Changes reviewed via git pull requests",
+    "transparency": "GitHub commit history + CHANGELOG.md"
+  }
+}

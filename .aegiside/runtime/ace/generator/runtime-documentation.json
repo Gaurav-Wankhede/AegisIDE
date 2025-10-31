@@ -1,0 +1,190 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "generator",
+  "ace_metadata": {
+    "generates": [
+      "Audit trail logs",
+      "Execution documentation",
+      "Decision transparency"
+    ],
+    "outputs_to": [
+      "runtime/memory/progress.json",
+      "runtime/memory/scratchpad.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 350,
+    "output": 850,
+    "total": 1200
+  },
+  "compression": {
+    "enabled": true,
+    "method": "progressive_disclosure",
+    "preserve_code_blocks": false
+  },
+  "workflow_name": "runtime-documentation",
+  "description": "PHASE 3 FIX #4: Add runtime documentation - Logging + audit trail",
+  "version": "1.0.0",
+  "purpose": "Provide runtime transparency with comprehensive logging and audit trail",
+  "trigger": {
+    "condition": {
+      "event": "task_execution_or_decision_made"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "log_execution_decision",
+      "description": "Log every execution decision with reasoning",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "execution_decision",
+        "decision": "Execute/Halt/Research",
+        "confidence": "0-1",
+        "execution_band": "Critical/High/Medium/Low/Critical Low",
+        "reasoning": "Why this decision was made",
+        "timestamp": "current timestamp"
+      }
+    },
+    {
+      "step": 2,
+      "action": "log_confidence_calculation",
+      "description": "Log confidence calculation with all factors",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "confidence_calculation",
+        "keyword_match_score": "0-1",
+        "semantic_similarity_score": "0-1",
+        "memory_hit_score": "0-1",
+        "historical_accuracy_score": "0-1",
+        "final_confidence": "0-1",
+        "formula": "confidence = (KM×0.4) + (SS×0.3) + (MH×0.2) + (HA×0.1)"
+      }
+    },
+    {
+      "step": 3,
+      "action": "log_mcp_chain_execution",
+      "description": "Log MCP chain execution with step details",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "mcp_chain_execution",
+        "step1_sequential_thinking": "completed/skipped",
+        "step2_memory_query": "completed/skipped",
+        "step3_research": "completed/skipped",
+        "step4_pattern_storage": "completed/skipped",
+        "all_steps_complete": "boolean",
+        "penalties_applied": "if any"
+      }
+    },
+    {
+      "step": 4,
+      "action": "log_violations_detected",
+      "description": "Log all violations detected",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "violations_detected",
+        "violation_types": ["array of violation types"],
+        "total_penalty": "sum of penalties",
+        "violation_details": "detailed description of each violation"
+      }
+    },
+    {
+      "step": 5,
+      "action": "log_file_operations",
+      "description": "Log all file operations with intent",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "file_operation",
+        "operation": "CREATE/UPDATE/ANALYZE",
+        "file_path": "target file",
+        "intent_detected": "UPDATE/CREATE/ANALYZE",
+        "intent_confidence": "0-1",
+        "action_taken": "what was done"
+      }
+    },
+    {
+      "step": 6,
+      "action": "create_audit_trail",
+      "description": "Create comprehensive audit trail entry",
+      "implementation": "@mcp:json-jq update scratchpad.activity_log (TOP-APPEND)",
+      "audit_entry": {
+        "timestamp": "current timestamp",
+        "action": "Plain English description",
+        "workflow": "Which workflow executed",
+        "files_affected": ["array of files"],
+        "outcome": "success/failed/partial",
+        "rl_impact": "penalty or reward",
+        "user_visible": true
+      }
+    },
+    {
+      "step": 7,
+      "action": "log_rl_scoring",
+      "description": "Log RL scoring decisions",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "log_data": {
+        "type": "rl_scoring",
+        "previous_score": "old RL score",
+        "penalties_applied": "array of penalties",
+        "rewards_earned": "array of rewards",
+        "new_score": "updated RL score",
+        "gae_advantage": "GAE calculation",
+        "kl_divergence": "KL penalty"
+      }
+    },
+    {
+      "step": 8,
+      "action": "generate_execution_summary",
+      "description": "Generate human-readable execution summary",
+      "implementation": "Format all logs into readable summary",
+      "summary_content": {
+        "task": "What was executed",
+        "decision": "Execute/Halt/Research",
+        "confidence": "Confidence level",
+        "reasoning": "Why this decision",
+        "mcp_chain": "Which steps executed",
+        "violations": "Any violations detected",
+        "penalties": "Penalties applied",
+        "rl_impact": "Score change",
+        "files_affected": "What files changed"
+      }
+    },
+    {
+      "step": 9,
+      "action": "maintain_audit_history",
+      "description": "Maintain rolling audit history (max 100 entries)",
+      "implementation": "Keep TOP-APPEND arrays with maxItems: 100",
+      "storage": "activeContext.event_tracking and scratchpad.activity_log"
+    }
+  ],
+  "error_handling": {
+    "if_logging_fails": "Continue execution, log error separately",
+    "if_audit_trail_full": "Remove oldest entries and add new ones",
+    "if_event_tracking_timeout": "Skip logging and continue"
+  },
+  "transparency_features": {
+    "real_time_logging": "All decisions logged immediately",
+    "audit_trail": "Complete history of all actions",
+    "decision_explanations": "Why each decision was made",
+    "penalty_tracking": "All penalties with reasons",
+    "rl_scoring_visible": "All RL calculations transparent",
+    "file_operation_tracking": "All file changes logged"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Error Recovery)"],
+    "mcps_used": ["@mcp:json-jq"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Verify all execution decisions logged",
+    "test_case_2": "Verify confidence calculation logged",
+    "test_case_3": "Verify MCP chain execution logged",
+    "test_case_4": "Verify violations logged",
+    "test_case_5": "Verify file operations logged",
+    "test_case_6": "Verify audit trail created",
+    "test_case_7": "Verify execution summary generated",
+    "test_case_8": "Verify audit history maintained (max 100)"
+  }
+}

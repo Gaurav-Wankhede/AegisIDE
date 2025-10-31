@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-28T15:27:47+05:30",
+  "session": {
+    "session_id": "PLACEHOLDER_SESSION_ID",
+    "ide_type": "PLACEHOLDER_IDE",
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH",
+    "project_name": "PLACEHOLDER_PROJECT_NAME",
+    "operation_counter": 0,
+    "autonomy_level": 99,
+    "status": "initialized",
+    "timestamp": "PLACEHOLDER_TIMESTAMP"
+  },
+  "current_task": {
+    "task_id": null,
+    "workflow": null,
+    "phase": "initialization",
+    "status": "pending"
+  },
+  "mcp_integration": {
+    "active_mcps": [
+      "json-jq",
+      "context7",
+      "fetch",
+      "git",
+      "sequential-thinking",
+      "exa"
+    ],
+    "session_mcp_rewards": 0,
+    "complete_chains": 0,
+    "last_mcp_call": null
+  },
+  "approval_gate": {
+    "status": "none",
+    "requires_approval": false,
+    "chief_justice_approved": false,
+    "shadow_cabinet_approved": false
+  },
+  "user_controls": {
+    "pause_requested": false,
+    "stop_current_task": false,
+    "skip_to_next": false
+  },
+  "user_feedback": {
+    "rating": null,
+    "sentiment": null,
+    "suggestions": []
+  },
+  "mcp_fallback_chain": {
+    "context7": [
+      "fetch",
+      "exa",
+      "memory_patterns"
+    ],
+    "filesystem": [
+      "halt"
+    ],
+    "memory": [
+      "filesystem",
+      "halt"
+    ]
+  },
+  "mcp_rate_limits": {
+    "context7": {
+      "calls": 0,
+      "limit": 100,
+      "reset_at": null
+    },
+    "exa": {
+      "calls": 0,
+      "limit": 50,
+      "reset_at": null
+    },
+    "fetch": {
+      "calls": 0,
+      "limit": 200,
+      "reset_at": null
+    }
+  },
+  "mcp_performance_metrics": {
+    "context7": {
+      "avg_latency_ms": 0,
+      "success_rate": 100
+    },
+    "filesystem": {
+      "avg_latency_ms": 0,
+      "success_rate": 100
+    },
+    "memory": {
+      "avg_latency_ms": 0,
+      "success_rate": 100
+    }
+  },
+  "HALT_ACTIVE": false,
+  "nlu": {
+    "last": {
+      "intent": null,
+      "confidence": 0,
+      "selected_workflow": null,
+      "matched_pattern": null,
+      "risk": "low",
+      "timestamp": null
+    },
+    "logs": []
+  },
+  "current_phase": "framework_tested_v3.1_production_ready",
+  "recent_learnings": [
+    "Framework tested (9 tests, 8 pass)",
+    "Hallucination prevention works (research triggered)",
+    "Amnesia prevention works (memory persists)",
+    "Dynamic context engineering confirmed",
+    "Free tier needs 10 steps, <0.5 threshold",
+    "Gaps fixed: memory-bank init, confidence penalty, audit trail"
+  ],
+  "model_info": {
+    "detected": true,
+    "name": "Claude Sonnet 4.5",
+    "tier": "premium",
+    "has_thinking": false
+  },
+  "test_results": {
+    "total_tests": 9,
+    "passed": 8,
+    "failed": 1,
+    "success_rate": 0.89
+  },
+  "production_status": "ready",
+  "metrics": {
+    "rl_source_ref": "progress.json",
+    "tasks_completed": 0,
+    "tasks_pending": 0,
+    "constitutional_compliance": 100,
+    "session_readiness": 1.0,
+    "emd_compliance": "compliant"
+  },
+  "event_tracking": [],
+  "constitutional_flow": {
+    "last_body": "executive",
+    "last_transition": "2025-10-28T15:46:22+05:30",
+    "sequence": [
+      "executive"
+    ]
+  }
+}

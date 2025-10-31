@@ -1,0 +1,81 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 1600,
+    "compressed_tokens": 800,
+    "compression_ratio": 0.5,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["bodies", "opposition", "oversight", "audit", "independent"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:57:00+05:30"
+  },
+  "priority": "medium",
+  "load_frequency": "lazy",
+  "ace_role": "reflector",
+  "token_budget": 800,
+  "part": "IX-Constitutional-Bodies",
+  "articles_consolidated": [39, 40, 41, 42],
+  "description": "Independent oversight and administrative services - consolidated from 4 articles",
+  "content": {
+    "opposition_role": {
+      "article": 39,
+      "definition": "Independent quality auditor - challenges suboptimal decisions",
+      "powers": [
+        "Audit all operations for quality",
+        "Challenge decisions via petition-router.json",
+        "Propose alternative approaches",
+        "Track quality metrics"
+      ],
+      "independence": "Reports directly to Parliament, not Executive"
+    },
+    "rl_system": {
+      "article": 40,
+      "definition": "Reinforcement Learning System - autonomous learning engine",
+      "mechanism": "PPO+GAE algorithm",
+      "rewards": {
+        "good_decision": "+5 to +10",
+        "pattern_stored": "+20",
+        "pattern_reused": "+20",
+        "mcp_chain_used": "+10 per chain"
+      },
+      "penalties": {
+        "minor_violation": "-5 to -10",
+        "memory_not_updated": "-10",
+        "pattern_ignored": "-20",
+        "constitutional_violation": "-50"
+      },
+      "central_ledger": "progress.json"
+    },
+    "mcp_governance": {
+      "article": 41,
+      "definition": "MCP Protocol Enforcement Body",
+      "mandate": "All operations must use MCPs - no direct file access",
+      "required_mcps": [
+        "@mcp:sequential-thinking",
+        "@mcp:json-jq",
+        "@mcp:git",
+        "@mcp:context7",
+        "@mcp:exa",
+        "@mcp:fetch"
+      ],
+      "violation": "Constitutional violation, -50 penalty, HALT"
+    },
+    "audit_commission": {
+      "article": 42,
+      "definition": "Independent audit body - reviews system performance",
+      "audits": [
+        "Constitutional compliance audits",
+        "Quality metrics reviews",
+        "RL system performance",
+        "Memory-bank integrity checks"
+      ],
+      "reports_to": "Parliament and Chief Justice"
+    }
+  },
+  "triggers": ["opposition", "oversight", "audit", "bodies", "rl system", "independent"],
+  "semantic_index": {
+    "oversight": ["article-39", "article-42"],
+    "learning": ["article-40"],
+    "enforcement": ["article-41"]
+  }
+}

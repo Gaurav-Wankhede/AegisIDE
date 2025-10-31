@@ -1,0 +1,76 @@
+{
+  "schema_version": "2.0.0",
+  "last_updated": "2025-10-30T12:53:00+05:30",
+  "description": "Constitution semantic index - routes to appropriate article based on query",
+  "compression_metadata": {
+    "strategy": "progressive_disclosure",
+    "load_critical_always": true,
+    "load_others_on_demand": true
+  },
+  "structure": {
+    "core": {
+      "priority": "critical",
+      "load_timing": "always",
+      "token_budget": 4350,
+      "files": [
+        "core/preamble.json",
+        "core/fundamental-rights.json",
+        "core/fundamental-duties.json"
+      ]
+    },
+    "operational": {
+      "priority": "high",
+      "load_timing": "on_startup",
+      "token_budget": 3000,
+      "files": [
+        "operational/parliament.json",
+        "operational/executive.json",
+        "operational/judiciary.json"
+      ]
+    },
+    "specialized": {
+      "priority": "medium",
+      "load_timing": "on_demand",
+      "token_budget": 2000,
+      "files": [
+        "specialized/dpsp.json",
+        "specialized/constitutional-bodies.json"
+      ]
+    }
+  },
+  "semantic_routing": {
+    "governance_queries": {
+      "triggers": ["parliament", "consensus", "voting", "legislative"],
+      "route_to": "operational/parliament.json"
+    },
+    "execution_queries": {
+      "triggers": ["execute", "implement", "minister", "ias", "action"],
+      "route_to": "operational/executive.json"
+    },
+    "validation_queries": {
+      "triggers": ["validate", "constitutional", "judiciary", "chief justice", "review"],
+      "route_to": "operational/judiciary.json"
+    },
+    "rights_queries": {
+      "triggers": ["rights", "autonomy", "guaranteed", "protected"],
+      "route_to": "core/fundamental-rights.json"
+    },
+    "duties_queries": {
+      "triggers": ["duties", "obligations", "mandatory", "must", "violation"],
+      "route_to": "core/fundamental-duties.json"
+    },
+    "preamble_queries": {
+      "triggers": ["framework", "overview", "structure", "preamble", "sovereignty"],
+      "route_to": "core/preamble.json"
+    }
+  },
+  "token_optimization": {
+    "total_articles": 42,
+    "consolidated_core": 3,
+    "consolidated_operational": 3,
+    "consolidated_specialized": 2,
+    "original_tokens": 37000,
+    "optimized_tokens": 20200,
+    "savings": "45%"
+  }
+}

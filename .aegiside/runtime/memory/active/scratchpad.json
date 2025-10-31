@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:22:00+05:30",
+  "priority_queue": [
+    {
+      "id": "initial-setup",
+      "title": "Initialize AegisIDE Framework",
+      "description": "Set up constitutional framework and memory bank for PLACEHOLDER_PROJECT_NAME",
+      "priority": "high",
+      "estimated_effort": "15min",
+      "dependencies": [],
+      "tags": [
+        "setup",
+        "constitutional",
+        "initialization"
+      ],
+      "created_at": "PLACEHOLDER_TIMESTAMP",
+      "assigned_to": "system"
+    },
+    {
+      "id": "token-optimization",
+      "title": "Token Optimization - 4 Strategies Implemented",
+      "description": "1. Progressive schema loading (1.5K tokens) 2. ACE lazy loading (2K tokens) 3. Constitution compression (6K tokens) 4. Helper consolidation (800 tokens). Total savings: 10.3K tokens",
+      "priority": "high",
+      "estimated_effort": "completed",
+      "dependencies": [],
+      "tags": [
+        "optimization",
+        "token-budget",
+        "performance"
+      ],
+      "created_at": "2025-10-30T21:22:00+05:30",
+      "assigned_to": "system",
+      "status": "implemented"
+    },
+    {
+      "id": "helper-consolidation",
+      "title": "Helper Files Consolidation Review",
+      "description": "Analyze 9 helper files (70KB total) for consolidation: 1. Merge cascade-workflow + windsurf-cascade-execution-model 2. Merge common-mistakes + tool-usage-patterns 3. Archive critical-bug (specific issue) 4. Archive mcp-elimination (outdated) 5. Keep: constitutional-governance, error-recovery, schema-evolution. Target: 5 core helpers, 800 token savings",
+      "priority": "medium",
+      "estimated_effort": "2h",
+      "dependencies": [],
+      "tags": [
+        "consolidation",
+        "optimization",
+        "schema-helpers"
+      ],
+      "created_at": "2025-10-30T21:22:00+05:30",
+      "assigned_to": "manual-review",
+      "status": "pending"
+    }
+  ],
+  "next_task_id": 4,
+  "metadata": {
+    "total_tasks": 3,
+    "high_priority": 1,
+    "medium_priority": 1,
+    "low_priority": 0
+  },
+  "auto_generated": {
+    "enabled": true,
+    "last_generation": null,
+    "sources": [
+      "roadmap",
+      "kanban",
+      "mistakes"
+    ],
+    "generation_rules": {
+      "max_items": 10,
+      "priority_distribution": {
+        "high": 3,
+        "medium": 5,
+        "low": 2
+      }
+    }
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP",
+  "metrics": {
+    "total_tasks": 1,
+    "high_priority": 1,
+    "medium_priority": 0,
+    "low_priority": 0
+  },
+  "top_append_metadata": {
+    "always_prepend": true,
+    "max_items": 50,
+    "auto_prune": true
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "schema_version": "2.0.0",
+  "suite_type": "semantic_merge",
+  "ace_role": "curator",
+  "ace_metadata": {
+    "maintains": [
+      "Active context continuity",
+      "Memory bank state",
+      "Task workflow state",
+      "Task queue state",
+      "8-schema consistency",
+      "Priority ordering",
+      "Execution sequence",
+      "Progress tracking"
+    ],
+    "outputs_to": [
+      "runtime/memory/active/activeContext.json",
+      "runtime/memory/active/scratchpad.json",
+      "runtime/memory/active/kanban.json",
+      "runtime/memory/history/progress.json",
+      "runtime/memory/history/systemPatterns.json",
+      "runtime/memory/history/mistakes.json",
+      "runtime/memory/history/roadmap.json",
+      "runtime/memory/history/memory.json"
+    ],
+    "quality_threshold": 0.90,
+    "merged_workflows": [
+      "continue.json",
+      "update.json",
+      "next.json"
+    ]
+  },
+  "token_budget": {
+    "input": 1050,
+    "output": 2400,
+    "total": 3450,
+    "note": "Combined budget from 3 workflows (1200+1400+850)"
+  },
+  "compression": {
+    "enabled": true,
+    "method": "state_compression",
+    "preserve_critical_state": true
+  },
+  "workflow_name": "state-suite",
+  "description": "Comprehensive state management: session recovery, atomic 8-schema updates, next task loading",
+  "version": "2.0.0",
+  "trigger": {
+    "condition": {
+      "event": "session_interrupted_or_task_completed_or_queue_not_empty"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "suite_section": "session_recovery",
+      "source": "continue.json",
+      "trigger_condition": "session.interrupted == true",
+      "steps": [
+        {
+          "step": 1,
+          "action": "display",
+          "message": "→ CONTINUE: Recovering session"
+        },
+        {
+          "step": 2,
+          "action": "query_interrupted_task",
+          "tool": "@mcp:json-jq",
+          "query": ".current_task",
+          "file": "runtime/memory/active/activeContext.json",
+          "store_as": "interrupted_task"
+        },
+        {
+          "step": 3,
+          "action": "clear_interrupted_flag",
+          "tool": "@mcp:json-jq",
+          "update": {
+            "session.interrupted": false,
+            "session.recovered_at": "now"
+          },
+          "file": "runtime/memory/active/activeContext.json"
+        },
+        {
+          "step": 4,
+          "action": "display",
+          "message": "✅ Session recovered - resuming: {interrupted_task}"
+        }
+      ]
+    },
+    {
+      "suite_section": "atomic_update",
+      "source": "update.json",
+      "trigger_condition": "task_completed",
+      "steps": [
+        {
+          "step": 5,
+          "action": "display",
+          "message": "→ UPDATE: Atomic 8-schema sync starting"
+        },
+        {
+          "step": 6,
+          "action": "atomic_update_all_schemas",
+          "description": "Update all 8 schemas in single transaction",
+          "schemas": [
+            {
+              "file": "runtime/memory/active/activeContext.json",
+              "updates": {
+                "last_activity": "now",
+                "current_task": "completed"
+              }
+            },
+            {
+              "file": "runtime/memory/active/scratchpad.json",
+              "updates": {
+                "priority_queue": "shift_first"
+              }
+            },
+            {
+              "file": "runtime/memory/active/kanban.json",
+              "updates": {
+                "columns.in_progress": "move_to_done"
+              }
+            },
+            {
+              "file": "runtime/memory/history/progress.json",
+              "updates": {
+                "total_rl_score": "increment",
+                "transactions": "prepend_current"
+              }
+            },
+            {
+              "file": "runtime/memory/history/systemPatterns.json",
+              "updates": {
+                "patterns": "append_if_success"
+              }
+            },
+            {
+              "file": "runtime/memory/history/mistakes.json",
+              "updates": {
+                "error_log": "append_if_error"
+              }
+            },
+            {
+              "file": "runtime/memory/history/roadmap.json",
+              "updates": {
+                "milestone_progress": "recalculate"
+              }
+            },
+            {
+              "file": "runtime/memory/history/memory.json",
+              "updates": {
+                "entities": "append_observations"
+              }
+            }
+          ],
+          "tool": "@mcp:json-jq",
+          "atomic": true,
+          "rollback_on_failure": true
+        },
+        {
+          "step": 7,
+          "action": "validate_schemas",
+          "workflow": "validation-suite.json",
+          "description": "Validate all schemas after update"
+        },
+        {
+          "step": 8,
+          "action": "commit_changes",
+          "tool": "@mcp:git",
+          "message": "chore: Atomic 8-schema update (Article 14 compliance)",
+          "files": ["runtime/memory/*.json"]
+        },
+        {
+          "step": 9,
+          "action": "display",
+          "message": "✅ Atomic update complete - 8/8 schemas synchronized"
+        }
+      ]
+    },
+    {
+      "suite_section": "next_task_loading",
+      "source": "next.json",
+      "trigger_condition": "priority_queue.length > 0",
+      "steps": [
+        {
+          "step": 10,
+          "action": "query_next_task",
+          "tool": "@mcp:json-jq",
+          "query": ".priority_queue[0]",
+          "file": "runtime/memory/active/scratchpad.json",
+          "store_as": "next_task"
+        },
+        {
+          "step": 11,
+          "action": "display",
+          "message": "→ NEXT: Loading task - {next_task}"
+        },
+        {
+          "step": 12,
+          "action": "update_active_context",
+          "tool": "@mcp:json-jq",
+          "update": {
+            "current_task": "{next_task}",
+            "last_activity": "now"
+          },
+          "file": "runtime/memory/active/activeContext.json"
+        },
+        {
+          "step": 13,
+          "action": "display",
+          "message": "✅ Task loaded - execute autonomously (0-99% band)"
+        }
+      ]
+    }
+  ],
+  "error_handling": {
+    "if_session_recovery_fails": "Log error and proceed with current state",
+    "if_atomic_update_fails": "Rollback all changes and retry",
+    "if_validation_fails": "Rollback all changes and HALT",
+    "if_no_next_task": "Update activeContext to idle state"
+  },
+  "constitutional_compliance": {
+    "articles": [
+      "Article 6 (Continuous Operations)",
+      "Article 14 (8-Schema Update Duty)"
+    ],
+    "mcps_used": ["@mcp:json-jq", "@mcp:git"],
+    "autonomy_band": "0-99%",
+    "atomic_transaction": true
+  }
+}

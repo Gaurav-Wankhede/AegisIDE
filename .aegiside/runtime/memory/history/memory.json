@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "PLACEHOLDER_TIMESTAMP",
+  "entities": [],
+  "relations": [],
+  "patterns": {
+    "high_confidence": [],
+    "proven_solutions": [],
+    "reusable_components": []
+  },
+  "metadata": {
+    "total_entities": 0,
+    "total_relations": 0,
+    "last_query": null,
+    "workspace_path": "PLACEHOLDER_WORKSPACE_PATH"
+  },
+  "auto_learning": {
+    "enabled": true,
+    "confidence_threshold": 0.8,
+    "pattern_extraction": true,
+    "cross_project_sharing": true
+  },
+  "timestamp": "PLACEHOLDER_TIMESTAMP"
+}

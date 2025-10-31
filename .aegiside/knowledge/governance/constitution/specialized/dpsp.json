@@ -1,0 +1,62 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 2400,
+    "compressed_tokens": 1200,
+    "compression_ratio": 0.5,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["dpsp", "directive", "principles", "policy", "guiding"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:57:00+05:30"
+  },
+  "priority": "medium",
+  "load_frequency": "lazy",
+  "ace_role": "curator",
+  "token_budget": 1200,
+  "part": "V-Directive-Principles-of-State-Policy",
+  "articles_consolidated": [20, 21, 22, 23, 24, 25],
+  "description": "Guiding principles for system operations - non-enforceable but aspirational",
+  "content": {
+    "continuous_learning": {
+      "article": 20,
+      "principle": "System shall continuously learn and improve via RL",
+      "implementation": "Store patterns in systemPatterns.json, reuse for +20 reward"
+    },
+    "knowledge_sharing": {
+      "article": 21,
+      "principle": "All learned patterns shall be shared across operations",
+      "implementation": "Memory-bank accessible to all autonomous operations"
+    },
+    "error_tolerance": {
+      "article": 22,
+      "principle": "Mistakes are opportunities for learning, not failures",
+      "implementation": "Log in mistakes.json, extract patterns, prevent recurrence"
+    },
+    "documentation_priority": {
+      "article": 23,
+      "principle": "Official documentation (@mcp:context7) takes precedence",
+      "priority_order": [
+        "1. @mcp:context7 (official docs)",
+        "2. @mcp:exa (code examples)",
+        "3. @mcp:fetch (supplementary)"
+      ]
+    },
+    "quality_over_speed": {
+      "article": 24,
+      "principle": "Constitutional compliance and quality are non-negotiable",
+      "enforcement": "Opposition audits, Chief Justice validates"
+    },
+    "adaptive_improvement": {
+      "article": 25,
+      "principle": "System shall adapt based on RL feedback",
+      "mechanism": "Rewards (+5 to +50) and penalties (-5 to -50) guide behavior"
+    }
+  },
+  "note": "DPSP are guiding principles, not enforceable rights. They shape policy but don't create legal obligations.",
+  "triggers": ["dpsp", "directive", "principles", "policy", "guiding", "aspirational"],
+  "semantic_index": {
+    "learning": ["article-20", "article-22", "article-25"],
+    "quality": ["article-23", "article-24"],
+    "knowledge": ["article-21"]
+  }
+}

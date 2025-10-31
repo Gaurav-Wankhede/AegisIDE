@@ -1,0 +1,159 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:22:00+05:30",
+  "description": "ACE Framework token budgeting - 15% system, 40% history, 30% input, 15% reserve",
+  "total_capacity": 200000,
+  "ace_budget": {
+    "system_rules": {
+      "allocation_percent": 15,
+      "max_tokens": 30000,
+      "current_usage": 0,
+      "sources": [
+        "constitution/**/*.json",
+        "enforcement/*.json",
+        "routers/context-router.json"
+      ],
+      "compression": {
+        "enabled": true,
+        "method": "llmlingua-2",
+        "ratio": 0.75,
+        "preserve_keywords": [
+          "critical",
+          "mandatory",
+          "violation",
+          "penalty"
+        ],
+        "preserve_structure": true
+      },
+      "optimization": {
+        "strategy": "schema_over_instances",
+        "description": "Store patterns not full articles",
+        "estimated_savings": "60%"
+      }
+    },
+    "conversation_history": {
+      "allocation_percent": 40,
+      "max_tokens": 80000,
+      "current_usage": 0,
+      "sources": [
+        "memory-bank/scratchpad.json",
+        "memory-bank/progress.json",
+        "memory-bank/activeContext.json"
+      ],
+      "retention": {
+        "method": "progressive_summarization",
+        "window_size": 10,
+        "summarize_after": 5,
+        "archive_after": 20
+      },
+      "optimization": {
+        "strategy": "delta_compression",
+        "description": "Store changes not full state",
+        "estimated_savings": "45%"
+      }
+    },
+    "user_input": {
+      "allocation_percent": 30,
+      "max_tokens": 60000,
+      "current_usage": 0,
+      "preprocessing": {
+        "expand_abbreviations": true,
+        "add_context_hints": true,
+        "resolve_references": true
+      }
+    },
+    "reserve": {
+      "allocation_percent": 15,
+      "max_tokens": 30000,
+      "current_usage": 0,
+      "purpose": "Overflow protection, tool outputs, dynamic context"
+    }
+  },
+  "compression_strategies": {
+    "constitution": {
+      "method": "semantic_chunking",
+      "load_strategy": "progressive_disclosure",
+      "priority_levels": {
+        "critical": [
+          "preamble",
+          "fundamental-rights"
+        ],
+        "high": [
+          "fundamental-duties",
+          "enforcement"
+        ],
+        "medium": [
+          "parliament",
+          "executive",
+          "judiciary"
+        ],
+        "low": [
+          "dpsp",
+          "constitutional-bodies"
+        ]
+      }
+    },
+    "memory_bank": {
+      "method": "incremental_updates",
+      "full_snapshot_frequency": "daily",
+      "delta_frequency": "per_operation"
+    },
+    "routers": {
+      "method": "semantic_hashing",
+      "deduplicate_triggers": true,
+      "cache_frequent_routes": true
+    }
+  },
+  "monitoring": {
+    "enabled": true,
+    "alert_threshold": 0.85,
+    "auto_compress_threshold": 0.90,
+    "emergency_purge_threshold": 0.95
+  },
+  "dormancy_detection": {
+    "enabled": true,
+    "description": "Gradient dormancy detection from ACE-RL paper (ICML 2024)",
+    "check_frequency": "every_50_iterations",
+    "dormancy_threshold": 0.1,
+    "monitored_dimensions": [
+      "workflow_usage",
+      "tool_selection",
+      "memory_updates",
+      "pattern_generation"
+    ],
+    "reset_strategy": "targeted_exploration_boost",
+    "reset_count": 0,
+    "last_check": null
+  },
+  "causality_integration": {
+    "enabled": true,
+    "causality_tracker": "ace-framework/causality-tracker.json",
+    "action_prioritization": "entropy_weighted",
+    "high_impact_focus": true
+  },
+  "system_rules": {
+    "optimization": {
+      "load_strategy": "progressive",
+      "schemas_on_demand": true,
+      "estimated_savings": "1500 tokens from lazy schema loading"
+    }
+  },
+  "conversation_history": {
+    "ace_loading": {
+      "strategy": "lazy",
+      "load_on_demand": true,
+      "configs_per_phase": {
+        "generate": [
+          "generator/*.json"
+        ],
+        "reflect": [
+          "reflector/*.json"
+        ],
+        "curate": [
+          "curator/triad-tracker.json"
+        ]
+      },
+      "estimated_savings": "2000 tokens"
+    }
+  }
+}

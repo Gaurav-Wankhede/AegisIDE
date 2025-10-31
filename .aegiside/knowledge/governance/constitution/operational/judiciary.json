@@ -1,0 +1,78 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 1200,
+    "compressed_tokens": 720,
+    "compression_ratio": 0.6,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["judiciary", "chief justice", "constitutional", "validation", "halt"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:57:00+05:30"
+  },
+  "priority": "high",
+  "load_frequency": "on_demand",
+  "ace_role": "reflector",
+  "token_budget": 720,
+  "part": "VIII-The-Judiciary",
+  "articles_consolidated": [36, 37, 38],
+  "description": "Judicial review and constitutional enforcement - consolidated from 3 articles",
+  "content": {
+    "chief_justice_powers": {
+      "article": 36,
+      "definition": "Supreme Constitutional Authority - validates all operations",
+      "powers": [
+        "HALT unconstitutional operations immediately",
+        "Validate strategic decisions before execution",
+        "Review appeals via petition-router.json",
+        "Interpret constitutional provisions"
+      ],
+      "supremacy": "Constitution is supreme law - Chief Justice enforces"
+    },
+    "judicial_review": {
+      "article": 37,
+      "scope": "All operations subject to constitutional review",
+      "process": [
+        "1. Operation proposed",
+        "2. Chief Justice validates against constitution",
+        "3. If compliant: Approve",
+        "4. If violation: HALT + penalty -50",
+        "5. Record in mistakes.json for learning"
+      ],
+      "enforcement": "HALT command stops execution immediately"
+    },
+    "appeal_mechanism": {
+      "article": 38,
+      "right_to_appeal": "All operations can petition for review",
+      "process": [
+        "Submit appeal via petition-router.json",
+        "Chief Justice reviews constitutional basis",
+        "Decision: Uphold, Overturn, or Modify",
+        "Record in progress.json"
+      ],
+      "opposition_role": "Can challenge decisions on constitutional grounds"
+    }
+  },
+  "enforcement_actions": {
+    "halt": {
+      "trigger": "Constitutional violation detected",
+      "action": "Immediate stop of operation",
+      "penalty": -50,
+      "log": "mistakes.json"
+    },
+    "validate": {
+      "trigger": "Strategic decision (99.5-100%)",
+      "action": "Review before execution",
+      "reward": "+10 if compliant"
+    },
+    "appeal": {
+      "trigger": "Petition submitted",
+      "action": "Constitutional review",
+      "outcome": "Uphold/Overturn/Modify"
+    }
+  },
+  "triggers": ["validate", "constitutional", "judiciary", "chief justice", "review", "halt", "appeal"],
+  "semantic_index": {
+    "validation": ["article-36", "article-37"],
+    "appeals": ["article-38"]
+  }
+}

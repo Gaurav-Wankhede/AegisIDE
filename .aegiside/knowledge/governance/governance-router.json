@@ -1,0 +1,57 @@
+{
+  "schema_version": "3.0.0",
+  "description": "Tier-2 Governance Domain Router - Routes to Constitution and Enforcement",
+  "last_updated": "2025-10-30T13:46:00+05:30",
+  "domain": "governance",
+  "constitutional_flow": {
+    "index": "knowledge/governance/constitution/index.json",
+    "core_articles": {
+      "preamble": "knowledge/governance/constitution/core/preamble.json",
+      "fundamental_rights": "knowledge/governance/constitution/core/fundamental-rights.json",
+      "fundamental_duties": "knowledge/governance/constitution/core/fundamental-duties.json"
+    },
+    "operational": {
+      "parliament": "knowledge/governance/constitution/operational/parliament.json",
+      "executive": "knowledge/governance/constitution/operational/executive.json",
+      "judiciary": "knowledge/governance/constitution/operational/judiciary.json"
+    },
+    "specialized": {
+      "dpsp": "knowledge/governance/constitution/specialized/dpsp.json",
+      "constitutional_bodies": "knowledge/governance/constitution/specialized/constitutional-bodies.json"
+    },
+    "governance": {
+      "mini_publics": "knowledge/governance/constitution/governance/mini-publics.json"
+    }
+  },
+  "enforcement_validators": {
+    "shell_validators": "knowledge/governance/enforcement/shell/validators/",
+    "count": 18,
+    "validators": [
+      "audit-trail-verifier.sh",
+      "confidence-auto-scorer.sh",
+      "constitutional-flow.sh",
+      "cross-schema-validator.sh",
+      "error-recovery.sh",
+      "file-operation-guard.sh",
+      "git-commit-validator.sh",
+      "harmful-command-validator.sh",
+      "intent-auto-detector.sh",
+      "json-tool-enforcement.sh",
+      "mcp-chain-validator.sh",
+      "mcp-tool-enforcer.sh",
+      "memory-leak-detector.sh",
+      "output-validator.sh",
+      "response-size-limiter.sh",
+      "safe-command-auto-approver.sh",
+      "schema-validator.sh",
+      "timeout-enforcer.sh"
+    ]
+  },
+  "query_routing": {
+    "article_lookup": "Search constitutional_flow by article number or keyword",
+    "rights_query": "Route to fundamental_rights",
+    "duties_query": "Route to fundamental_duties",
+    "validator_query": "Route to enforcement_validators",
+    "legal_petition": "Route to operational/judiciary"
+  }
+}

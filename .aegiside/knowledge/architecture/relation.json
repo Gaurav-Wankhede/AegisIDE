@@ -1,0 +1,351 @@
+{
+  "schema_version": "4.0.0",
+  "last_updated": "2025-10-30T14:27:00+05:30",
+  "description": "Graph-based relationship map with 3-tier hierarchical structure - Core (500) → Runtime (1-3K) → Knowledge (0-5K)",
+  "graph_structure": {
+    "entities": "104 total files across 3 tiers: core (2), runtime (47), knowledge (50), schemas (19)",
+    "relations": [
+      "references",
+      "queries",
+      "contains",
+      "validates",
+      "routes_to",
+      "enforces"
+    ]
+  },
+  "tier_structure": {
+    "tier_1_core": {
+      "tokens": 500,
+      "loading": "always",
+      "access": "jq (no @mcp)",
+      "mutability": "static",
+      "folders": ["core"],
+      "total_files": 2,
+      "purpose": "Entry point, domain routing"
+    },
+    "tier_2_domain_routers": {
+      "tokens": "800-1200",
+      "loading": "on-demand",
+      "access": "jq (no @mcp)",
+      "mutability": "static",
+      "folders": ["runtime/ace", "knowledge/governance", "knowledge/architecture"],
+      "total_files": 3,
+      "purpose": "Domain-specific routing"
+    },
+    "tier_3_runtime": {
+      "tokens": "1-3K",
+      "loading": "task-specific",
+      "access": "jq for ace/, @mcp:json-jq for memory/",
+      "mutability": "mixed (workflows static, memory dynamic)",
+      "folders": ["runtime/ace", "runtime/memory", "runtime/optimization"],
+      "total_files": 47,
+      "purpose": "Execution workflows, memory state, optimization"
+    },
+    "tier_3_knowledge": {
+      "tokens": "0-5K",
+      "loading": "reference",
+      "access": "jq on-demand only",
+      "mutability": "static",
+      "folders": ["knowledge/governance", "knowledge/architecture", "knowledge/support"],
+      "total_files": 50,
+      "purpose": "Governance rules, architecture docs, support tools"
+    }
+  },
+  "entities": {
+    "global_rules.md": {
+      "type": "reference_layer",
+      "purpose": "System prompt - enforcement rules and routing patterns",
+      "file_count": 1,
+      "location": "~/.codeium/windsurf/memories/",
+      "storage_location": "local",
+      "access_pattern": "read by IDE",
+      "mutability": "static",
+      "sections": [
+        "file_routing",
+        "github_first",
+        "memory_bank",
+        "mcp_chain",
+        "self_verification",
+        "anti_amnesia"
+      ]
+    },
+    "main-router.json": {
+      "type": "tier_1_core",
+      "purpose": "Entry point - routes to 3 domain routers",
+      "schema_version": "3.0.0",
+      "domains": 3,
+      "tokens": 500,
+      "location": "core/",
+      "tier": 1,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "context-orchestrator.json": {
+      "type": "tier_1_core",
+      "purpose": "Adaptive loading logic, priority bands",
+      "location": "core/",
+      "tier": 1,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "ace-router.json": {
+      "type": "tier_2_domain",
+      "purpose": "Routes to ACE framework workflows",
+      "location": "runtime/ace/",
+      "tier": 2,
+      "maps_to": ["generator", "reflector", "curator"],
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "governance-router.json": {
+      "type": "tier_2_domain",
+      "purpose": "Routes to constitutional flow and enforcement",
+      "location": "knowledge/governance/",
+      "tier": 2,
+      "maps_to": ["constitution", "enforcement"],
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "architecture-router.json": {
+      "type": "tier_2_domain",
+      "purpose": "Routes to architecture documentation",
+      "location": "knowledge/architecture/",
+      "tier": 2,
+      "maps_to": ["architecture.mmd", "codemap.json", "relation.json"],
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "architecture.json": {
+      "type": "metadata",
+      "purpose": "Component counts and overview",
+      "version": "3.1.0",
+      "location": ".aegiside/architecture/",
+      "storage_location": "github",
+      "access_pattern": "curl from GitHub",
+      "mutability": "static"
+    },
+    "architecture.mmd": {
+      "type": "visualization",
+      "purpose": "Mermaid diagram with 3-tier hierarchical structure",
+      "version": "4.0",
+      "location": "knowledge/architecture/",
+      "tier": 3,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "relation.json": {
+      "type": "graph_map",
+      "purpose": "This file - relationship documentation with tier structure",
+      "version": "4.0.0",
+      "location": "knowledge/architecture/",
+      "tier": 3,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "codemap.json": {
+      "type": "flow_documentation",
+      "purpose": "Flow traces with tier-aware routing",
+      "version": "4.0.0",
+      "traces": 8,
+      "features": [
+        "tier per file",
+        "access_pattern",
+        "mutability",
+        "hierarchical routing"
+      ],
+      "prevents": "Token overflow via progressive disclosure",
+      "location": "knowledge/architecture/",
+      "tier": 3,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "constitution_folder": {
+      "type": "governance",
+      "files": 11,
+      "structure": "4 subdirectories (core, operational, specialized, governance)",
+      "constitutional_flow": "Legislature (26-31) → Executive (32-35) → Judiciary (36-38) → Bodies (39-42)",
+      "metadata_location": "knowledge/governance/governance-router.json",
+      "lazy_loaded": true,
+      "location": "knowledge/governance/constitution/",
+      "tier": 3,
+      "access_pattern": "jq on-demand",
+      "mutability": "static"
+    },
+    "memory_folder": {
+      "type": "runtime_state",
+      "total_files": 27,
+      "structure": {
+        "active": ["activeContext", "scratchpad", "kanban"],
+        "history": ["progress", "mistakes", "systemPatterns", "roadmap", "memory"],
+        "schemas": "19 validators + helpers"
+      },
+      "location": "runtime/memory/",
+      "tier": 3,
+      "access_pattern": "@mcp:json-jq ONLY",
+      "mutability": "dynamic (active/ and history/), static (schemas/)",
+      "source_constraint": "MUST use @mcp:json-jq, NEVER jq or read_file",
+      "purpose": "Per-project state, changes every iteration"
+    },
+    "ace_framework_folder": {
+      "type": "execution_workflows",
+      "total_files": 13,
+      "structure": {
+        "generator": 5,
+        "reflector": 4,
+        "curator": 4
+      },
+      "semantic_suites": [
+        "validation-suite (merged 3)",
+        "error-recovery-suite (merged 3)",
+        "state-suite (merged 3)"
+      ],
+      "location": "runtime/ace/",
+      "tier": 3,
+      "access_pattern": "jq",
+      "mutability": "static"
+    },
+    "schemas_folder": {
+      "type": "validators",
+      "files": 19,
+      "validators": 10,
+      "helpers": 9,
+      "location": "runtime/memory/schemas/",
+      "tier": 3,
+      "access_pattern": "@mcp:json-jq",
+      "mutability": "static"
+    },
+    "enforcement_folder": {
+      "type": "enforcement",
+      "files": 27,
+      "structure": {
+        "validators": 18,
+        "hooks": 4,
+        "transactions": 2
+      },
+      "enforcement_engine": "enforcement-engine.json",
+      "readme": "README.md",
+      "location": "knowledge/governance/enforcement/",
+      "tier": 3,
+      "access_pattern": "jq on-demand",
+      "mutability": "static"
+    }
+  },
+  "relations": {
+    "global_rules_queries_main_router": {
+      "from": "global_rules.md",
+      "to": "main-router.json",
+      "type": "queries",
+      "count": 3,
+      "patterns": [
+        "jq '.tier_1_domains' core/main-router.json",
+        "Load Tier-1 FIRST before any operation",
+        "Check which domain: ace_queries | governance_queries | architecture_queries"
+      ]
+    },
+    "main_router_routes_to_domain_routers": {
+      "from": "main-router.json",
+      "to": ["ace-router.json", "governance-router.json", "architecture-router.json"],
+      "type": "routes_to",
+      "tier_1_to_tier_2": true,
+      "mapping": {
+        "ace_queries": "runtime/ace/ace-router.json",
+        "governance_queries": "knowledge/governance/governance-router.json",
+        "architecture_queries": "knowledge/architecture/architecture-router.json"
+      }
+    },
+    "ace_router_routes_to_workflows": {
+      "from": "ace-router.json",
+      "to": "ace_framework_folder",
+      "type": "routes_to",
+      "tier_2_to_tier_3": true,
+      "mapping": {
+        "generator": "runtime/ace/generator/*.json",
+        "reflector": "runtime/ace/reflector/*.json (semantic suites)",
+        "curator": "runtime/ace/curator/*.json"
+      }
+    },
+    "governance_router_routes_to_constitution": {
+      "from": "governance-router.json",
+      "to": "constitution_folder",
+      "type": "routes_to",
+      "tier_2_to_tier_3": true,
+      "mapping": "knowledge/governance/constitution/*/*.json"
+    },
+    "governance_router_routes_to_enforcement": {
+      "from": "governance-router.json",
+      "to": "enforcement_folder",
+      "type": "routes_to",
+      "tier_2_to_tier_3": true,
+      "mapping": "knowledge/governance/enforcement/shell/*"
+    },
+    "architecture_router_routes_to_docs": {
+      "from": "architecture-router.json",
+      "to": ["architecture.mmd", "codemap.json", "relation.json"],
+      "type": "routes_to",
+      "tier_2_to_tier_3": true,
+      "mapping": "knowledge/architecture/*.{mmd,json}"
+    },
+    "architecture_json_references_mmd": {
+      "from": "architecture.json",
+      "to": "architecture.mmd",
+      "type": "references",
+      "property": "mermaid_diagram"
+    },
+    "codemap_documents_all_flows": {
+      "from": "codemap.json",
+      "to": [
+        "architecture.mmd",
+        "main-router.json",
+        "ace-router.json",
+        "governance-router.json",
+        "memory_folder",
+        "ace_framework_folder"
+      ],
+      "type": "documents",
+      "traces": 8,
+      "provides": [
+        "tier information",
+        "hierarchical paths",
+        "routing patterns",
+        "token measurements"
+      ]
+    },
+    "schemas_validate_memory": {
+      "from": "schemas_folder",
+      "to": "memory_folder",
+      "type": "validates",
+      "validators": 10,
+      "helpers": 9,
+      "location": "runtime/memory/schemas/"
+    },
+    "mcp_enforcement_enforces_tier_routing": {
+      "from": "main-router.json",
+      "to": "global_rules.md",
+      "type": "enforces",
+      "tier_aware_penalties": {
+        "skip_tier_1": -30,
+        "use_read_on_core": -25,
+        "skip_sequential_thinking": -15,
+        "wrong_mcp_for_memory": -50,
+        "tier_jumping": -30
+      }
+    }
+  },
+  "tier_routing_chain": {
+    "step1": "AI reads global_rules.md (reference layer)",
+    "step2": "Load Tier-1: jq '.tier_1_domains' core/main-router.json",
+    "step3": "Route to Tier-2 domain router based on query type",
+    "step4": "Load Tier-3 target from domain router mapping",
+    "step5": "Use correct tool: jq for core/knowledge, @mcp:json-jq for runtime/memory/",
+    "step6": "Store learnings in runtime/memory/history/systemPatterns.json",
+    "penalty_if_violated": "Tier jumping = -30 RL, Wrong tool = -50 RL, Hallucination = -50 RL"
+  },
+  "query_patterns": {
+    "tier_1_check": "jq '.tier_1_domains' core/main-router.json",
+    "tier_2_routing": "jq domain-router based on query type",
+    "architecture_awareness": "jq '.' knowledge/architecture/relation.json",
+    "file_relationships": "jq '.relations' knowledge/architecture/relation.json",
+    "entity_metadata": "jq '.entities.{FILE}' knowledge/architecture/relation.json",
+    "memory_access": "@mcp:json-jq runtime/memory/{active|history|schemas}/"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "curator",
+  "ace_metadata": {
+    "maintains": [
+      "Transactional integrity",
+      "Schema consistency",
+      "Rollback state"
+    ],
+    "outputs_to": [
+      "runtime/memory/*.json"
+    ],
+    "quality_threshold": 0.95
+  },
+  "token_budget": {
+    "input": 300,
+    "output": 600,
+    "total": 900
+  },
+  "compression": {
+    "enabled": true,
+    "method": "state_compression",
+    "preserve_critical_state": true
+  },
+  "workflow_name": "atomic-rollback",
+  "description": "PHASE 2 FIX #2: Implement atomic rollback logic - Transaction semantics for 8 schemas",
+  "version": "1.0.0",
+  "purpose": "Detect failures and rollback ALL 8 schemas atomically (ALL or NONE)",
+  "trigger": {
+    "condition": {
+      "event": "schema_update_failure_detected"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "detect_partial_update",
+      "description": "Detect if any schema update failed (partial state)",
+      "detection_methods": [
+        "Schema validation failed",
+        "Write operation returned error",
+        "Timeout during update",
+        "Inconsistent state detected"
+      ],
+      "implementation": "Monitor all 8 schema write operations"
+    },
+    {
+      "step": 2,
+      "action": "stop_all_operations",
+      "description": "Immediately stop all ongoing operations",
+      "implementation": "Set halt_flag = true in activeContext",
+      "store_in": "activeContext.halt_flag"
+    },
+    {
+      "step": 3,
+      "action": "identify_affected_schemas",
+      "description": "Identify which schemas were affected by failed update",
+      "schemas": [
+        "activeContext",
+        "scratchpad",
+        "kanban",
+        "mistakes",
+        "systemPatterns",
+        "progress",
+        "roadmap",
+        "memory"
+      ],
+      "implementation": "Check which schemas have pending updates"
+    },
+    {
+      "step": 4,
+      "action": "restore_from_backup",
+      "description": "Restore ALL 8 schemas to previous known-good state",
+      "implementation": "Use git checkout to restore .aegiside/runtime/memory/ directory",
+      "command": "git checkout .aegiside/runtime/memory/ 2>/dev/null",
+      "all_or_none": "Restore ALL 8 schemas together or NONE"
+    },
+    {
+      "step": 5,
+      "action": "verify_restoration",
+      "description": "Verify all 8 schemas restored successfully",
+      "verification": [
+        "Check activeContext.json exists and valid",
+        "Check scratchpad.json exists and valid",
+        "Check kanban.json exists and valid",
+        "Check mistakes.json exists and valid",
+        "Check systemPatterns.json exists and valid",
+        "Check progress.json exists and valid",
+        "Check roadmap.json exists and valid",
+        "Check memory.json exists and valid"
+      ],
+      "implementation": "Validate each schema against JSON schema"
+    },
+    {
+      "step": 6,
+      "action": "log_rollback_event",
+      "description": "Log rollback to activeContext.event_tracking",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "event_data": {
+        "type": "atomic_rollback_executed",
+        "rollback_timestamp": "current timestamp",
+        "reason": "schema update failure detected",
+        "schemas_affected": "all 8 schemas",
+        "restoration_method": "git checkout",
+        "status": "success or failure"
+      }
+    },
+    {
+      "step": 7,
+      "action": "update_rollback_state",
+      "description": "Update rollback state in progress.json",
+      "implementation": "@mcp:json-jq update progress.json",
+      "fields": {
+        "rollback_timestamp": "current timestamp",
+        "rollback_reason": "schema update failure",
+        "schemas_rolled_back": 8,
+        "state": "rolled_back"
+      }
+    },
+    {
+      "step": 8,
+      "action": "apply_rollback_penalty",
+      "description": "Apply penalty for rollback event",
+      "penalty": -50,
+      "reason": "Atomic rollback executed - data consistency recovered",
+      "implementation": "Add penalty entry to progress.json.reinforcement_learning"
+    },
+    {
+      "step": 9,
+      "action": "alert_user",
+      "description": "Alert user about rollback with detailed context",
+      "alert_content": {
+        "message": "Atomic rollback executed - system recovered from failure",
+        "reason": "Schema update failure detected",
+        "schemas_affected": "All 8 runtime/memory schemas",
+        "action_taken": "Restored to previous known-good state",
+        "penalty_applied": -50,
+        "recommendation": "Review error logs and retry operation"
+      },
+      "implementation": "Log to activeContext.event_tracking with high priority"
+    },
+    {
+      "step": 10,
+      "action": "clear_halt_flag",
+      "description": "Clear halt flag to resume operations",
+      "implementation": "Set halt_flag = false in activeContext",
+      "store_in": "activeContext.halt_flag"
+    }
+  ],
+  "failure_scenarios": [
+    {
+      "scenario": "Atomic Sync Fails",
+      "detection": "Partial schema update detected",
+      "action": "Stop immediately and restore all 8 schemas",
+      "recovery": "Git checkout to previous state"
+    },
+    {
+      "scenario": "Memory Query Timeout",
+      "detection": ">5s no response",
+      "action": "Timeout handler triggers fallback",
+      "recovery": "Use cached confidence, continue with caution"
+    },
+    {
+      "scenario": "Violation Detected",
+      "detection": "confidence <0.8 + violation pattern",
+      "action": "Log violation and apply penalty",
+      "recovery": "Revert action and continue"
+    },
+    {
+      "scenario": "File Not Found",
+      "detection": "Target file missing",
+      "action": "Halt execution",
+      "recovery": "Restore from git"
+    },
+    {
+      "scenario": "Permission Denied",
+      "detection": "MCP tool returns 403",
+      "action": "Request escalation",
+      "recovery": "Route to Constitutional Judiciary"
+    }
+  ],
+  "atomic_principle": {
+    "rule": "ALL 8 schemas updated together or NONE",
+    "enforcement": "No partial updates allowed",
+    "consistency": "Either all succeed or all rollback",
+    "schemas_involved": [
+      "activeContext",
+      "scratchpad",
+      "kanban",
+      "mistakes",
+      "systemPatterns",
+      "progress",
+      "roadmap",
+      "memory"
+    ]
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Error Recovery)", "Article 14 (Atomic Updates)"],
+    "mcps_used": ["@mcp:json-jq", "git"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Simulate partial update failure → Verify all 8 schemas rolled back",
+    "test_case_2": "Verify git checkout restores all schemas",
+    "test_case_3": "Verify rollback penalty applied (-50)",
+    "test_case_4": "Verify user alert generated",
+    "test_case_5": "Verify halt flag cleared after rollback"
+  }
+}

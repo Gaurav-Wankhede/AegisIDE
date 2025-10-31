@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:22:00+05:30",
+  "description": "Dynamic context window management - real-time token tracking and optimization",
+  "window_capacity": {
+    "total_tokens": 200000,
+    "current_usage": 0,
+    "usage_percent": 0.0,
+    "reserved": {
+      "system": 30000,
+      "history": 80000,
+      "input": 60000,
+      "reserve": 30000
+    },
+    "available": 200000
+  },
+  "compression_triggers": {
+    "usage_threshold_warning": 0.75,
+    "usage_threshold_compress": 0.85,
+    "usage_threshold_emergency": 0.95,
+    "actions": {
+      "at_75_percent": [
+        "Alert user of high usage",
+        "Prepare compression candidates"
+      ],
+      "at_85_percent": [
+        "Compress old history",
+        "Summarize systemPatterns",
+        "Archive completed tasks"
+      ],
+      "at_95_percent": [
+        "Emergency compression",
+        "Archive to disk",
+        "Load critical context only"
+      ]
+    }
+  },
+  "overflow_strategy": {
+    "priority_1_preserve": [
+      "Critical governance rules (constitution/01-preamble)",
+      "Active context (memory-bank/activeContext.json)",
+      "Current user input"
+    ],
+    "priority_2_compress": [
+      "Historical progress",
+      "System patterns",
+      "Completed workflows"
+    ],
+    "priority_3_archive": [
+      "Old mistakes",
+      "Inactive constitution articles",
+      "Rarely accessed workflows"
+    ],
+    "priority_4_purge": [
+      "Duplicate entries",
+      "Temporary calculations",
+      "Debug information"
+    ]
+  },
+  "real_time_monitoring": {
+    "enabled": true,
+    "sampling_frequency": "per_operation",
+    "alert_threshold": 0.90,
+    "auto_optimize": true,
+    "log_usage_history": true
+  },
+  "optimization_history": [
+    {
+      "timestamp": "2025-10-30T12:50:00+05:30",
+      "trigger": "initialization",
+      "action": "set_baseline",
+      "tokens_freed": 0,
+      "new_usage": 0
+    }
+  ],
+  "monitoring": {
+    "enabled": true,
+    "track_actual_usage": true,
+    "alert_threshold": 0.85,
+    "optimization_triggers": [
+      "usage > 85%",
+      "session_duration > 2h",
+      "memory_files > 10KB"
+    ]
+  }
+}

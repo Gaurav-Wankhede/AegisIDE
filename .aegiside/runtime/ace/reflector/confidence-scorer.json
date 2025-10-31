@@ -1,0 +1,155 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "reflector",
+  "ace_metadata": {
+    "evaluates": [
+      "Decision confidence",
+      "Feature completeness",
+      "Execution readiness"
+    ],
+    "outputs_to": [
+      "reflection/success-patterns.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 250,
+    "output": 500,
+    "total": 750
+  },
+  "compression": {
+    "enabled": true,
+    "method": "targeted_analysis",
+    "preserve_metrics": true
+  },
+  "workflow_name": "confidence-scorer",
+  "description": "CRITICAL FIX #2: Implement confidence scoring calculation engine",
+  "version": "1.0.0",
+  "purpose": "Calculate real-time confidence using 4-factor weighted formula",
+  "trigger": {
+    "condition": {
+      "event": "task_execution_decision_needed"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "extract_intent_features",
+      "description": "Extract NLU features from user query",
+      "features": {
+        "verb": "Extract main verb (update, create, analyze, etc.)",
+        "keywords": "Extract all keywords",
+        "entities": "Extract entities (files, functions, etc.)",
+        "intent_type": "Classify as UPDATE/CREATE/ANALYZE"
+      },
+      "implementation": "NLU analysis of user query"
+    },
+    {
+      "step": 2,
+      "action": "calculate_keyword_match_score",
+      "description": "Score: 0.4 weight - Exact verb matching",
+      "scoring": {
+        "exact_match": 1.0,
+        "partial_match": 0.7,
+        "fuzzy_match": 0.4,
+        "no_match": 0.0
+      },
+      "implementation": "Match verb against known verbs (update, create, fix, etc.)",
+      "store_in": "activeContext.confidence_calculation.keyword_match_score"
+    },
+    {
+      "step": 3,
+      "action": "calculate_semantic_similarity_score",
+      "description": "Score: 0.3 weight - Semantic similarity to past intents",
+      "scoring": {
+        "high_similarity": 1.0,
+        "medium_similarity": 0.6,
+        "low_similarity": 0.3,
+        "no_similarity": 0.0
+      },
+      "implementation": "Cosine similarity to past intents in systemPatterns.json",
+      "store_in": "activeContext.confidence_calculation.semantic_similarity_score"
+    },
+    {
+      "step": 4,
+      "action": "calculate_memory_hit_score",
+      "description": "Score: 0.2 weight - Memory context availability",
+      "scoring": {
+        "found_in_activeContext": 1.0,
+        "found_in_kanban_roadmap": 0.7,
+        "found_in_mistakes": 0.3,
+        "not_found": 0.0
+      },
+      "implementation": "Query runtime/memory schemas for matching context",
+      "store_in": "activeContext.confidence_calculation.memory_hit_score"
+    },
+    {
+      "step": 5,
+      "action": "calculate_historical_accuracy_score",
+      "description": "Score: 0.1 weight - Past success rate for similar tasks",
+      "scoring": {
+        "past_success": 1.0,
+        "mixed_results": 0.5,
+        "past_failure": 0.0
+      },
+      "implementation": "Check progress.json success_rate for similar tasks",
+      "store_in": "activeContext.confidence_calculation.historical_accuracy_score"
+    },
+    {
+      "step": 6,
+      "action": "apply_formula",
+      "description": "Calculate final confidence using weighted formula",
+      "formula": "confidence = (keyword_match × 0.4) + (semantic_similarity × 0.3) + (memory_hit × 0.2) + (historical_accuracy × 0.1)",
+      "implementation": "Multiply scores by weights and sum",
+      "store_in": "activeContext.confidence_calculation.final_confidence"
+    },
+    {
+      "step": 7,
+      "action": "route_to_execution_band",
+      "description": "Route to appropriate execution band based on confidence",
+      "bands": {
+        "90_to_99": {"action": "Execute immediately", "permission": "NOT required"},
+        "70_to_89": {"action": "Execute + log decision", "permission": "NOT required"},
+        "50_to_69": {"action": "Query memory + execute", "permission": "NOT required"},
+        "30_to_49": {"action": "Query memory + research", "permission": "REQUEST confirmation"},
+        "0_to_29": {"action": "Research + halt", "permission": "ALWAYS request permission"}
+      },
+      "implementation": "Compare final_confidence to band thresholds",
+      "store_in": "activeContext.confidence_calculation.execution_band"
+    },
+    {
+      "step": 8,
+      "action": "log_confidence_calculation",
+      "description": "Log all factors and final confidence to activeContext",
+      "fields": {
+        "keyword_match_score": "0-1",
+        "semantic_similarity_score": "0-1",
+        "memory_hit_score": "0-1",
+        "historical_accuracy_score": "0-1",
+        "final_confidence": "0-1",
+        "execution_band": "Critical/High/Medium/Low/Critical Low",
+        "calculated_at": "timestamp"
+      },
+      "implementation": "@mcp:json-jq update activeContext.confidence_calculation"
+    }
+  ],
+  "error_handling": {
+    "if_no_memory_hit": "Use default memory_hit_score of 0.5",
+    "if_no_historical_data": "Use default historical_accuracy_score of 0.5",
+    "if_calculation_fails": "Use default confidence of 0.5 and set research_flag=true"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Autonomous Execution)", "Article 14 (Atomic Updates)"],
+    "mcps_used": ["@mcp:json-jq", "sequential-thinking"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Exact verb match (update) → keyword_match_score = 1.0",
+    "test_case_2": "High semantic similarity → semantic_similarity_score = 1.0",
+    "test_case_3": "Memory hit in activeContext → memory_hit_score = 1.0",
+    "test_case_4": "Past success → historical_accuracy_score = 1.0",
+    "test_case_5": "All perfect scores → final_confidence = 1.0 → Critical band",
+    "test_case_6": "All zero scores → final_confidence = 0.0 → Critical Low band"
+  }
+}

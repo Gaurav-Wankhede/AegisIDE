@@ -1,0 +1,160 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "generator",
+  "ace_metadata": {
+    "generates": [
+      "Semantic intent classification",
+      "NLU feature extraction",
+      "Operation routing"
+    ],
+    "outputs_to": [
+      "runtime/memory/activeContext.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 400,
+    "output": 800,
+    "total": 1200
+  },
+  "compression": {
+    "enabled": true,
+    "method": "progressive_disclosure",
+    "preserve_code_blocks": false
+  },
+  "workflow_name": "intent-detector",
+  "description": "PHASE 3 FIX #1: Implement intent detection - UPDATE/CREATE/ANALYZE parsing",
+  "version": "1.0.0",
+  "purpose": "Detect file operation intent and enforce UPDATE/CREATE/ANALYZE semantics",
+  "trigger": {
+    "condition": {
+      "event": "user_query_received"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "extract_main_verb",
+      "description": "Extract main verb from user query",
+      "verb_patterns": {
+        "UPDATE": ["update", "refine", "add to", "modify", "change", "enhance", "edit", "fix"],
+        "CREATE": ["create", "generate file", "write new", "make a file", "save as", "new", "write", "generate"],
+        "ANALYZE": ["compare", "analyze", "explain", "show", "tell me", "what's", "how", "why", "describe"]
+      },
+      "implementation": "NLU verb extraction from query",
+      "store_in": "activeContext.file_operation_intent.verb_extracted"
+    },
+    {
+      "step": 2,
+      "action": "classify_intent_type",
+      "description": "Classify intent into UPDATE/CREATE/ANALYZE",
+      "classification_logic": {
+        "UPDATE": "Modify existing file - verb in UPDATE list",
+        "CREATE": "Create new file - verb in CREATE list",
+        "ANALYZE": "Analyze/explain - verb in ANALYZE list"
+      },
+      "implementation": "Match extracted verb to intent categories",
+      "store_in": "activeContext.file_operation_intent.last_intent_type"
+    },
+    {
+      "step": 3,
+      "action": "calculate_intent_confidence",
+      "description": "Calculate confidence in intent detection",
+      "scoring": {
+        "exact_verb_match": 1.0,
+        "partial_verb_match": 0.7,
+        "semantic_match": 0.5,
+        "no_match": 0.0
+      },
+      "implementation": "Score based on verb matching quality",
+      "store_in": "activeContext.file_operation_intent.confidence"
+    },
+    {
+      "step": 4,
+      "action": "validate_intent_against_action",
+      "description": "Validate that intent matches actual action",
+      "validation_rules": {
+        "UPDATE": "File must exist, action must be modify/edit",
+        "CREATE": "File must NOT exist, action must be create/write",
+        "ANALYZE": "No file operation, action must be response only"
+      },
+      "implementation": "Check if intended action matches detected intent"
+    },
+    {
+      "step": 5,
+      "action": "detect_intent_violations",
+      "description": "Detect if action violates detected intent",
+      "violations": {
+        "UPDATE_but_file_created": "File created when UPDATE intent detected",
+        "CREATE_but_file_modified": "File modified when CREATE intent detected",
+        "ANALYZE_but_file_created": "File created when ANALYZE intent detected"
+      },
+      "implementation": "Compare intended action with detected intent"
+    },
+    {
+      "step": 6,
+      "action": "apply_intent_penalty",
+      "description": "Apply penalty if intent violated",
+      "penalty": -100,
+      "reason": "File operation semantics violated",
+      "implementation": "Add penalty to progress.json.reinforcement_learning if violation detected"
+    },
+    {
+      "step": 7,
+      "action": "route_to_execution_handler",
+      "description": "Route to appropriate handler based on intent",
+      "routing": {
+        "UPDATE": "Route to file update handler",
+        "CREATE": "Route to file creation handler",
+        "ANALYZE": "Route to response generation handler"
+      },
+      "implementation": "Call appropriate workflow based on intent"
+    },
+    {
+      "step": 8,
+      "action": "log_intent_detection",
+      "description": "Log intent detection to activeContext",
+      "implementation": "@mcp:json-jq update activeContext.file_operation_intent",
+      "fields": {
+        "last_intent_type": "UPDATE/CREATE/ANALYZE",
+        "verb_extracted": "extracted verb",
+        "confidence": "0-1",
+        "timestamp": "current timestamp"
+      }
+    },
+    {
+      "step": 9,
+      "action": "store_intent_pattern",
+      "description": "Store intent pattern in systemPatterns for future learning",
+      "implementation": "@mcp:json-jq update systemPatterns.json",
+      "pattern_data": {
+        "query": "user query",
+        "extracted_verb": "verb",
+        "intent_type": "UPDATE/CREATE/ANALYZE",
+        "confidence": "score",
+        "outcome": "success/violation"
+      }
+    }
+  ],
+  "error_handling": {
+    "if_no_verb_found": "Default to ANALYZE (response only)",
+    "if_ambiguous_intent": "Use highest confidence match",
+    "if_intent_confidence_low": "Request clarification from user"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Error Recovery)"],
+    "mcps_used": ["@mcp:json-jq", "sequential-thinking"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Query 'Update the README' → Extract 'update' → Intent = UPDATE",
+    "test_case_2": "Query 'Create a new file' → Extract 'create' → Intent = CREATE",
+    "test_case_3": "Query 'Analyze the code' → Extract 'analyze' → Intent = ANALYZE",
+    "test_case_4": "Query 'Modify the schema' → Extract 'modify' → Intent = UPDATE",
+    "test_case_5": "Query 'What is this?' → Extract 'what' → Intent = ANALYZE",
+    "test_case_6": "UPDATE intent but file created → Apply -100 penalty",
+    "test_case_7": "CREATE intent but file modified → Apply -100 penalty",
+    "test_case_8": "ANALYZE intent but file created → Apply -100 penalty"
+  }
+}

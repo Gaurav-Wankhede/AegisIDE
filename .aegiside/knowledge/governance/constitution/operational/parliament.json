@@ -1,0 +1,85 @@
+{
+  "schema_version": "2.0.0",
+  "compression_metadata": {
+    "original_tokens": 2400,
+    "compressed_tokens": 1440,
+    "compression_ratio": 0.6,
+    "method": "semantic_chunking",
+    "preserve_keywords": ["parliament", "consensus", "legislative", "voting", "tri-branch"],
+    "preserve_structure": true,
+    "last_compressed": "2025-10-30T12:57:00+05:30"
+  },
+  "priority": "high",
+  "load_frequency": "on_demand",
+  "ace_role": "curator",
+  "token_budget": 1440,
+  "part": "VI-Parliament",
+  "articles_consolidated": [26, 27, 28, 29, 30, 31],
+  "description": "Legislative procedures and consensus mechanisms - consolidated from 6 articles",
+  "content": {
+    "parliamentary_structure": {
+      "article": 26,
+      "definition": "Tri-branch Parliament: Executive, Legislative, Judicial",
+      "composition": {
+        "executive": "Prime Minister + IAS Intelligence",
+        "legislative": "Parliament (consensus-building)",
+        "judicial": "Chief Justice (constitutional validation)"
+      }
+    },
+    "consensus_mechanism": {
+      "article": 27,
+      "autonomy_bands": {
+        "autonomous_0_to_99": {
+          "threshold": "0-99%",
+          "action": "Execute immediately without approval",
+          "examples": ["Memory updates", "Pattern application", "MCP usage"]
+        },
+        "strategic_99_5_to_100": {
+          "threshold": "99.5-100%",
+          "action": "Requires ≥95% tri-branch consensus",
+          "examples": ["Constitutional amendments", "Major architectural changes"]
+        }
+      }
+    },
+    "legislative_procedure": {
+      "article": 28,
+      "process": [
+        "1. Petition submitted via petition-router.json",
+        "2. Parliamentary debate (all branches)",
+        "3. Vote: ≥95% consensus required",
+        "4. Chief Justice validates constitutionality",
+        "5. Prime Minister executes decision"
+      ]
+    },
+    "voting_rules": {
+      "article": 29,
+      "quorum": "All 3 branches must participate",
+      "threshold": "≥95% consensus for strategic decisions",
+      "veto": "Chief Justice can HALT unconstitutional decisions",
+      "appeal": "Opposition can challenge via petition-router.json"
+    },
+    "bill_passage": {
+      "article": 30,
+      "stages": [
+        "Introduction (via petition-router.json)",
+        "First Reading (discussion)",
+        "Committee Stage (detailed analysis by IAS)",
+        "Second Reading (amendments)",
+        "Third Reading (final vote)",
+        "Presidential Assent (Chief Justice validation)"
+      ]
+    },
+    "parliamentary_sessions": {
+      "article": 31,
+      "frequency": "On-demand for strategic decisions",
+      "location": "petition-router.json",
+      "records": "Stored in memory-bank/progress.json"
+    }
+  },
+  "triggers": ["parliament", "consensus", "voting", "legislative", "tri-branch", "bill"],
+  "semantic_index": {
+    "consensus": ["article-27", "article-29"],
+    "procedure": ["article-28", "article-30"],
+    "structure": ["article-26", "article-31"]
+  }
+}

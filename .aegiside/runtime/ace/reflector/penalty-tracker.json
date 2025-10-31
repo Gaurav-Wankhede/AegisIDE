@@ -1,0 +1,160 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "reflector",
+  "ace_metadata": {
+    "evaluates": [
+      "Penalty patterns",
+      "Violation trends",
+      "RL score impact"
+    ],
+    "outputs_to": [
+      "enforcement/penalty-tracker.json",
+      "runtime/memory/mistakes.json"
+    ],
+    "quality_threshold": 0.85
+  },
+  "token_budget": {
+    "input": 300,
+    "output": 800,
+    "total": 1100
+  },
+  "compression": {
+    "enabled": true,
+    "method": "targeted_analysis",
+    "preserve_metrics": true
+  },
+  "workflow_name": "penalty-tracker",
+  "description": "PHASE 4 FIX #1: Implement penalty tracking - Apply penalties to RL score",
+  "version": "1.0.0",
+  "purpose": "Track and apply all penalties to RL score with transparent logging",
+  "trigger": {
+    "condition": {
+      "event": "penalty_detected_or_violation_logged"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "collect_all_penalties",
+      "description": "Collect all penalties from various sources",
+      "sources": [
+        "violation_detection_protocol",
+        "timeout_handler",
+        "confidence_scorer",
+        "mcp_chain_validator",
+        "atomic_rollback",
+        "intent_detector",
+        "fallback_chain"
+      ],
+      "implementation": "Query progress.json.reinforcement_learning array"
+    },
+    {
+      "step": 2,
+      "action": "calculate_total_penalty",
+      "description": "Calculate total penalty amount",
+      "implementation": "Sum all penalty values from reinforcement_learning array",
+      "store_in": "penalty_calculation.total_penalty"
+    },
+    {
+      "step": 3,
+      "action": "categorize_penalties",
+      "description": "Categorize penalties by type",
+      "categories": {
+        "violation_penalties": "From violation_detection_protocol",
+        "timeout_penalties": "From timeout_handler",
+        "confidence_penalties": "From confidence_scorer",
+        "chain_penalties": "From mcp_chain_validator",
+        "rollback_penalties": "From atomic_rollback",
+        "intent_penalties": "From intent_detector",
+        "fallback_penalties": "From fallback_chain"
+      },
+      "implementation": "Group penalties by source"
+    },
+    {
+      "step": 4,
+      "action": "apply_penalties_to_rl_score",
+      "description": "Apply total penalty to progress.json.metrics.total_rl_score",
+      "implementation": "@mcp:json-jq update progress.json.metrics.total_rl_score",
+      "calculation": "new_score = old_score + total_penalty",
+      "store_in": "progress.json.metrics.total_rl_score"
+    },
+    {
+      "step": 5,
+      "action": "create_penalty_entry",
+      "description": "Create comprehensive penalty entry in reinforcement_learning array",
+      "implementation": "@mcp:json-jq update progress.json.reinforcement_learning (TOP-APPEND)",
+      "entry_format": {
+        "tx_id": "penalty_summary_{timestamp}",
+        "timestamp": "current timestamp",
+        "category": "penalty_summary",
+        "penalty": "total_penalty",
+        "source_file": "penalty-tracker",
+        "description": "Penalty summary: {violation_count} violations, {timeout_count} timeouts, etc.",
+        "penalty_breakdown": {
+          "violations": "sum of violation penalties",
+          "timeouts": "sum of timeout penalties",
+          "confidence": "sum of confidence penalties",
+          "chain": "sum of chain penalties",
+          "rollback": "sum of rollback penalties",
+          "intent": "sum of intent penalties",
+          "fallback": "sum of fallback penalties"
+        }
+      }
+    },
+    {
+      "step": 6,
+      "action": "update_metrics",
+      "description": "Update progress.json metrics",
+      "implementation": "@mcp:json-jq update progress.json.metrics",
+      "fields": {
+        "total_rl_score": "updated score",
+        "total_penalties_applied": "count of penalty entries",
+        "last_penalty_timestamp": "current timestamp"
+      }
+    },
+    {
+      "step": 7,
+      "action": "log_penalty_tracking",
+      "description": "Log penalty tracking to activeContext",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "event_data": {
+        "type": "penalty_tracking_summary",
+        "total_penalty": "amount",
+        "penalty_count": "number of penalties",
+        "new_rl_score": "updated score",
+        "penalty_breakdown": "categorized penalties"
+      }
+    },
+    {
+      "step": 8,
+      "action": "generate_penalty_report",
+      "description": "Generate transparent penalty report",
+      "report_content": {
+        "summary": "Total penalties applied: {amount}",
+        "breakdown": "Violations: {count}, Timeouts: {count}, etc.",
+        "new_score": "Updated RL score",
+        "timestamp": "current timestamp"
+      },
+      "implementation": "Format report for user visibility"
+    }
+  ],
+  "error_handling": {
+    "if_no_penalties": "Log zero penalties and continue",
+    "if_rl_score_goes_negative": "Allow negative scores (no floor)",
+    "if_penalty_application_fails": "Log error and retry on next cycle"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 6 (Error Recovery)"],
+    "mcps_used": ["@mcp:json-jq"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Single violation → Apply -1000 penalty",
+    "test_case_2": "Multiple violations → Apply cumulative penalties",
+    "test_case_3": "Timeout + violation → Apply both penalties",
+    "test_case_4": "Verify penalty entry created in reinforcement_learning",
+    "test_case_5": "Verify RL score updated correctly",
+    "test_case_6": "Verify penalty report generated"
+  }
+}

@@ -1,0 +1,302 @@
+{
+  "enforcement_engine": {
+    "version": "1.0.0",
+    "description": "AI-PROOF ENFORCEMENT ENGINE - Forces AI to follow strict rules",
+    "purpose": "Make rule violations IMPOSSIBLE, not just penalized",
+    "enforcement_type": "HARD_CONSTRAINTS",
+    
+    "pre_execution_checks": {
+      "description": "MANDATORY checks BEFORE any AI action",
+      "enforcement": "AI CANNOT proceed without passing ALL checks",
+      
+      "check_1_bootstrap_loaded": {
+        "rule": "Architecture awareness MUST be loaded",
+        "verification": "Query activeContext.session_context.architecture_loaded == true",
+        "if_false": "HALT execution, force bootstrap workflow",
+        "penalty": "Cannot execute ANY task without bootstrap"
+      },
+      
+      "check_2_confidence_calculated": {
+        "rule": "Confidence MUST be calculated for every task",
+        "verification": "Query activeContext.confidence_calculation.final_confidence exists",
+        "if_false": "HALT execution, force confidence-scorer workflow",
+        "penalty": "Cannot execute without confidence score"
+      },
+      
+      "check_3_memory_queried": {
+        "rule": "Memory MUST be queried before claiming knowledge",
+        "verification": "Query activeContext.mcp_chain_execution.memory_query_executed == true",
+        "if_false": "HALT execution, force memory query",
+        "penalty": "Cannot proceed without memory check"
+      },
+      
+      "check_4_intent_detected": {
+        "rule": "File operation intent MUST be detected",
+        "verification": "Query activeContext.file_operation_intent.last_intent_type in [UPDATE, CREATE, ANALYZE]",
+        "if_false": "HALT execution, force intent-detector workflow",
+        "penalty": "Cannot perform file operations without intent"
+      },
+      
+      "check_5_mcp_chain_started": {
+        "rule": "MCP chain MUST be initiated",
+        "verification": "Query activeContext.mcp_chain_execution.sequential_thinking_executed == true",
+        "if_false": "HALT execution, force @mcp:sequential-thinking",
+        "penalty": "Cannot execute without sequential thinking"
+      }
+    },
+    
+    "runtime_enforcement": {
+      "description": "CONTINUOUS monitoring during AI execution",
+      "enforcement": "AI actions are BLOCKED if rules violated",
+      
+      "rule_1_file_access_blocking": {
+        "rule": "NEVER access local .aegiside/ files",
+        "detection": "Monitor all file read/write operations",
+        "pattern": "File path contains '.aegiside/'",
+        "action_if_violated": "BLOCK file operation immediately",
+        "alternative": "Force GitHub curl instead",
+        "penalty": -1000,
+        "enforcement_method": "File system hook - operation rejected"
+      },
+      
+      "rule_2_json_tool_enforcement": {
+        "rule": "ONLY @mcp:json-jq for JSON files",
+        "detection": "Monitor tool usage on .json files",
+        "pattern": "Read() or edit() called on .json file",
+        "action_if_violated": "BLOCK operation, force @mcp:json-jq",
+        "penalty": -30,
+        "enforcement_method": "Tool selection hook - wrong tool rejected"
+      },
+      
+      "rule_3_intent_validation": {
+        "rule": "File operations MUST match detected intent",
+        "detection": "Monitor file creation/modification",
+        "validation": {
+          "if_intent_UPDATE": "BLOCK file creation, only allow modification",
+          "if_intent_CREATE": "BLOCK file modification, only allow creation",
+          "if_intent_ANALYZE": "BLOCK all file operations, only allow chat response"
+        },
+        "action_if_violated": "BLOCK operation immediately",
+        "penalty": -100,
+        "enforcement_method": "File operation hook - mismatched intent rejected"
+      },
+      
+      "rule_4_confidence_threshold": {
+        "rule": "Research REQUIRED if confidence <0.8",
+        "detection": "Monitor confidence score before execution",
+        "validation": "If confidence <0.8 AND research_executed == false",
+        "action_if_violated": "HALT execution, force @mcp:context7 or @mcp:exa",
+        "penalty": -100,
+        "enforcement_method": "Execution gate - low confidence blocks action"
+      },
+      
+      "rule_5_atomic_sync": {
+        "rule": "ALL 8 schemas updated together or NONE",
+        "detection": "Monitor schema write operations",
+        "validation": "Count schema updates, must be 0 or 8",
+        "action_if_violated": "ROLLBACK all partial updates immediately",
+        "penalty": -50,
+        "enforcement_method": "Transaction wrapper - partial updates auto-rollback"
+      },
+      
+      "rule_6_mcp_chain_completion": {
+        "rule": "All 4 MCP steps MUST complete",
+        "detection": "Monitor MCP chain execution",
+        "validation": "sequential_thinking AND memory_query AND (research if needed) AND pattern_stored",
+        "action_if_violated": "BLOCK task completion, force missing steps",
+        "penalty": "Cumulative (-15, -25, -30, -20)",
+        "enforcement_method": "Task completion gate - incomplete chain blocks finish"
+      }
+    },
+    
+    "post_execution_validation": {
+      "description": "MANDATORY validation AFTER AI action",
+      "enforcement": "AI output is REJECTED if validation fails",
+      
+      "validation_1_schema_compliance": {
+        "rule": "All schema updates MUST be valid JSON",
+        "verification": "Validate against JSON schema",
+        "if_invalid": "REJECT update, ROLLBACK to previous state",
+        "penalty": -50,
+        "enforcement_method": "Schema validator - invalid JSON rejected"
+      },
+      
+      "validation_2_violation_logging": {
+        "rule": "All violations MUST be logged",
+        "verification": "Check progress.json.reinforcement_learning for new entries",
+        "if_missing": "FORCE violation logging before proceeding",
+        "penalty": "Cannot proceed without logging",
+        "enforcement_method": "Logging gate - unlogged violations block next action"
+      },
+      
+      "validation_3_audit_trail": {
+        "rule": "All actions MUST be logged to audit trail",
+        "verification": "Check activeContext.event_tracking for new entry",
+        "if_missing": "FORCE audit logging before proceeding",
+        "penalty": "Cannot proceed without audit trail",
+        "enforcement_method": "Audit gate - unlogged actions block next action"
+      }
+    },
+    
+    "enforcement_mechanisms": {
+      "description": "HOW rules are enforced at system level",
+      
+      "mechanism_1_file_system_hooks": {
+        "type": "File operation interceptor",
+        "implementation": "Intercept all file read/write operations",
+        "enforcement": [
+          "Check file path against .aegiside/ pattern → BLOCK if match",
+          "Check file extension against .json → Force @mcp:json-jq",
+          "Check intent against operation → BLOCK if mismatch"
+        ],
+        "result": "File operations physically blocked before execution"
+      },
+      
+      "mechanism_2_tool_selection_hooks": {
+        "type": "Tool usage validator",
+        "implementation": "Intercept all tool calls",
+        "enforcement": [
+          "Check tool against file type → REJECT wrong tool",
+          "Check MCP chain status → REJECT if chain incomplete",
+          "Check confidence score → REJECT if too low without research"
+        ],
+        "result": "Wrong tool usage physically blocked"
+      },
+      
+      "mechanism_3_execution_gates": {
+        "type": "Pre-execution validators",
+        "implementation": "Gate every AI action",
+        "enforcement": [
+          "Bootstrap gate → No action without bootstrap",
+          "Confidence gate → No action without confidence calculation",
+          "Memory gate → No action without memory query",
+          "Intent gate → No file operation without intent detection"
+        ],
+        "result": "AI cannot execute without passing all gates"
+      },
+      
+      "mechanism_4_transaction_wrappers": {
+        "type": "Atomic operation enforcer",
+        "implementation": "Wrap all schema updates in transactions",
+        "enforcement": [
+          "Begin transaction → Track all schema updates",
+          "Validate count → Must be 0 or 8",
+          "Commit or rollback → ALL or NONE"
+        ],
+        "result": "Partial updates physically impossible"
+      },
+      
+      "mechanism_5_output_validators": {
+        "type": "Post-execution validators",
+        "implementation": "Validate all AI outputs",
+        "enforcement": [
+          "Schema validation → Reject invalid JSON",
+          "Logging validation → Reject unlogged actions",
+          "Audit validation → Reject unaudited actions"
+        ],
+        "result": "Invalid outputs physically rejected"
+      }
+    },
+    
+    "reward_structure": {
+      "description": "PPO+GAE reward system for positive reinforcement - Based on Schulman et al. (2017) PPO and Schulman et al. (2016) GAE",
+      "note": "Rewards are domain-specific and normalized through GAE advantage estimation",
+      
+      "base_rewards": {
+        "task_completion": 10,
+        "pattern_reuse": 20,
+        "quality_improvement": 30,
+        "innovation": 50
+      },
+      
+      "ppo_formula": {
+        "objective": "L^CLIP(θ) = E[min(r_t(θ)A_t, clip(r_t(θ), 1-ε, 1+ε)A_t)]",
+        "probability_ratio": "r_t(θ) = π_θ(a_t|s_t) / π_θ_old(a_t|s_t)",
+        "clip_ratio": "ε = 0.2",
+        "total_loss": "policy_loss + 0.5 × value_loss - 0.01 × entropy_bonus + KL_penalty"
+      },
+      
+      "gae_formula": {
+        "td_error": "δ_t = r_t + γV(s_{t+1}) - V(s_t)",
+        "advantage": "A_t = δ_t + γλA_{t+1} (recursive backward pass)",
+        "full_form": "A_t^GAE(γ,λ) = Σ_{k=0}^∞ (γλ)^k × δ_{t+k}",
+        "gamma": 0.99,
+        "lambda": 0.95,
+        "returns": "returns_t = A_t + V_t"
+      },
+      
+      "reward_application": {
+        "method": "Automatic reward application",
+        "trigger": "Successful task completion → Reward calculated immediately",
+        "computation": "1. Calculate TD errors → 2. Compute GAE advantages (backward) → 3. Calculate returns → 4. Update policy via clipped objective",
+        "storage": "progress.json.reinforcement_learning array (TOP-APPEND)",
+        "update": "progress.json.metrics.total_rl_score updated atomically"
+      }
+    },
+    
+    "penalty_enforcement": {
+      "description": "HOW penalties are applied and enforced",
+      
+      "penalty_ranges": {
+        "minor": "-15 to -30 (skipped steps, wrong tools)",
+        "moderate": "-50 to -100 (intent mismatch, confidence violations)",
+        "critical": "-500 to -1000 (file access violations, bypass attempts)"
+      },
+      
+      "penalty_application": {
+        "method": "Automatic penalty application",
+        "trigger": "Violation detected → Penalty applied immediately",
+        "storage": "progress.json.reinforcement_learning array (TOP-APPEND)",
+        "update": "progress.json.metrics.total_rl_score updated atomically"
+      },
+      
+      "penalty_consequences": {
+        "negative_score_threshold": -1000,
+        "action_if_exceeded": "HALT all AI operations, require manual reset",
+        "warning_threshold": -500,
+        "action_if_warning": "Alert user, request confirmation for all actions",
+        "enforcement": "AI physically blocked from executing if score too low"
+      }
+    },
+    
+    "ai_cannot_bypass": {
+      "description": "Mechanisms that AI CANNOT bypass",
+      
+      "bypass_prevention_1": {
+        "rule": "AI cannot modify enforcement rules",
+        "protection": "enforcement-engine.json is READ-ONLY for AI",
+        "verification": "File permissions enforce read-only access",
+        "penalty_if_attempted": "Immediate -1000 penalty + HALT"
+      },
+      
+      "bypass_prevention_2": {
+        "rule": "AI cannot disable hooks",
+        "protection": "Hooks run at system level, not AI level",
+        "verification": "Hooks cannot be disabled by AI code",
+        "penalty_if_attempted": "Immediate -1000 penalty + HALT"
+      },
+      
+      "bypass_prevention_3": {
+        "rule": "AI cannot skip gates",
+        "protection": "Gates are mandatory system checks",
+        "verification": "No execution path bypasses gates",
+        "penalty_if_attempted": "Immediate -1000 penalty + HALT"
+      },
+      
+      "bypass_prevention_4": {
+        "rule": "AI cannot fake compliance",
+        "protection": "All checks verify actual state, not AI claims",
+        "verification": "Checks query actual files, not AI responses",
+        "penalty_if_attempted": "Immediate -1000 penalty + HALT"
+      }
+    },
+    
+    "integration_with_architecture": {
+      "architecture_mmd": "Enforcement engine integrates with 7-step flow",
+      "context_router": "All routing decisions pass through enforcement checks",
+      "global_rules": "Enforcement engine implements all rules from global_rules.md",
+      "workflows": "All workflows execute within enforcement constraints",
+      "schemas": "All schema updates validated by enforcement engine"
+    }
+  }
+}

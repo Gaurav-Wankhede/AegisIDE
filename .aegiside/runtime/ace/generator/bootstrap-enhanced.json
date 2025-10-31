@@ -1,0 +1,130 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "generator",
+  "ace_metadata": {
+    "generates": [
+      "System initialization state",
+      "Architecture awareness",
+      "Schema initialization"
+    ],
+    "outputs_to": [
+      "runtime/memory/*.json"
+    ],
+    "quality_threshold": 0.90
+  },
+  "token_budget": {
+    "input": 400,
+    "output": 1500,
+    "total": 1900
+  },
+  "compression": {
+    "enabled": true,
+    "method": "progressive_disclosure",
+    "preserve_code_blocks": true
+  },
+  "workflow_name": "bootstrap-enhanced",
+  "description": "PHASE 3 FIX #3: Complete bootstrap protocol - 5 full steps + architecture loading",
+  "version": "2.0.0",
+  "purpose": "Enhanced bootstrap: Initialize schemas AND load live architecture awareness",
+  "trigger": {
+    "condition": {
+      "event": "session_startup"
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "initialize_8_schemas",
+      "description": "Initialize all 8 runtime/memory schemas",
+      "schemas": [
+        "activeContext",
+        "scratchpad",
+        "kanban",
+        "mistakes",
+        "systemPatterns",
+        "progress",
+        "roadmap",
+        "memory"
+      ],
+      "implementation": "Create or load all 8 schemas",
+      "base_path": ".aegiside/runtime/memory/",
+      "template": {"schema_version": "1.0.0", "timestamp": "{{now}}"}
+    },
+    {
+      "step": 2,
+      "action": "query_confidence_bands",
+      "description": "Query confidence bands from context-router.json",
+      "implementation": "@mcp:json-jq query '.confidence_scoring_implementation.execution_bands'",
+      "timeout": "2s",
+      "fallback": "Use default bands",
+      "store_in": "activeContext.rl_runtime"
+    },
+    {
+      "step": 3,
+      "action": "load_architecture_awareness",
+      "description": "Load architecture.mmd to understand actual flow",
+      "implementation": "@mcp:json-jq query '.components' from architecture.json",
+      "timeout": "1s",
+      "fallback": "Skip visualization",
+      "store_in": "activeContext.session_context"
+    },
+    {
+      "step": 4,
+      "action": "activate_all_protocols",
+      "description": "Activate all 9 protocols from context-router.json",
+      "protocols": [
+        "bootstrap_protocol",
+        "memory_query_fallback_protocol",
+        "confidence_scoring_implementation",
+        "violation_detection_protocol",
+        "mcp_chain_enforcement_protocol",
+        "file_operation_semantics_enforcement",
+        "atomic_rollback_execution_protocol",
+        "constitutional_flow_enforcement"
+      ],
+      "implementation": "Query all protocols and mark as active",
+      "store_in": "activeContext.mcp_integration_state"
+    },
+    {
+      "step": 5,
+      "action": "calculate_initial_confidence",
+      "description": "Calculate initial confidence score",
+      "implementation": "Call confidence-scorer workflow",
+      "timeout": "1s",
+      "fallback": "Default confidence 0.5",
+      "store_in": "activeContext.confidence_calculation"
+    },
+    {
+      "step": 6,
+      "action": "log_bootstrap_complete",
+      "description": "Log bootstrap completion to activeContext",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "event_data": {
+        "type": "bootstrap_complete",
+        "schemas_initialized": 8,
+        "protocols_activated": 8,
+        "initial_confidence": "0-1",
+        "timestamp": "current timestamp"
+      }
+    }
+  ],
+  "error_handling": {
+    "if_schema_init_fails": "Restore from git and retry",
+    "if_protocol_query_fails": "Use cached protocols",
+    "if_architecture_load_fails": "Continue without visualization"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 14 (Atomic Updates)"],
+    "mcps_used": ["@mcp:json-jq"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "All 8 schemas initialized",
+    "test_case_2": "Confidence bands loaded",
+    "test_case_3": "Architecture awareness loaded",
+    "test_case_4": "All 8 protocols activated",
+    "test_case_5": "Initial confidence calculated",
+    "test_case_6": "Bootstrap event logged"
+  }
+}

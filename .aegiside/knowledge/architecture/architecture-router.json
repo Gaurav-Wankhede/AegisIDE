@@ -1,0 +1,33 @@
+{
+  "schema_version": "3.0.0",
+  "description": "Tier-2 Architecture Domain Router - Routes to system architecture files",
+  "last_updated": "2025-10-30T13:46:00+05:30",
+  "domain": "architecture",
+  "architecture_files": {
+    "diagram": {
+      "file": "knowledge/architecture/architecture.mmd",
+      "description": "Mermaid diagram with system subgraphs",
+      "triggers": ["subgraph", "diagram", "visualization", "flow"]
+    },
+    "architecture_config": {
+      "file": "knowledge/architecture/architecture.json",
+      "description": "Architecture configuration and metadata",
+      "triggers": ["config", "metadata", "structure"]
+    },
+    "codemap": {
+      "file": "knowledge/architecture/codemap.json",
+      "description": "Code organization and file mapping",
+      "triggers": ["codemap", "files", "organization", "structure"]
+    },
+    "relations": {
+      "file": "knowledge/architecture/relation.json",
+      "description": "Component relationships and dependencies",
+      "triggers": ["relation", "dependency", "connection", "link"]
+    }
+  },
+  "query_routing": {
+    "subgraph_query": "grep -n 'subgraph' architecture.mmd",
+    "structure_query": "Load codemap.json",
+    "dependency_query": "Load relation.json"
+  }
+}

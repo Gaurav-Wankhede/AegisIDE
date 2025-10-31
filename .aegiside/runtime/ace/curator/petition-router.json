@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.0.0",
+  "ace_role": "curator",
+  "ace_metadata": {
+    "maintains": [
+      "Constitutional routing",
+      "Article mapping",
+      "Branch coordination"
+    ],
+    "outputs_to": [
+      "runtime/memory/progress.json"
+    ],
+    "quality_threshold": 0.90
+  },
+  "token_budget": {
+    "input": 400,
+    "output": 1000,
+    "total": 1400
+  },
+  "compression": {
+    "enabled": true,
+    "method": "state_compression",
+    "preserve_critical_state": true
+  },
+  "workflow_name": "petition-router",
+  "description": "PHASE 2 FIX #4: Implement constitutional routing - Legal petition routing",
+  "version": "1.0.0",
+  "purpose": "Route legal queries through constitutional flow (Legislature→Executive→Judiciary→Bodies)",
+  "trigger": {
+    "condition": {
+      "keywords": ["article", "petition", "rights", "constitution", "legal"]
+    },
+    "auto_execute": true
+  },
+  "steps": [
+    {
+      "step": 1,
+      "action": "detect_legal_keywords",
+      "description": "NLU detects legal keywords in user query",
+      "keywords": [
+        "article",
+        "petition",
+        "rights",
+        "constitution",
+        "legal",
+        "violation",
+        "amendment",
+        "clause"
+      ],
+      "implementation": "NLU keyword matching on user query"
+    },
+    {
+      "step": 2,
+      "action": "extract_article_number",
+      "description": "Extract article number or rights category from query",
+      "extraction_patterns": [
+        "Article {N}",
+        "Article {N}-{M}",
+        "Articles {N} to {M}",
+        "Fundamental Rights",
+        "Fundamental Duties",
+        "DPSP"
+      ],
+      "implementation": "Regex extraction from user query",
+      "store_in": "activeContext.current_execution.article_number"
+    },
+    {
+      "step": 3,
+      "action": "query_article_metadata",
+      "description": "Query article_metadata from context-router.json",
+      "implementation": "@mcp:json-jq query '.constitutional_flow_enforcement.article_metadata'",
+      "metadata_fields": {
+        "article_number": "N",
+        "title": "Article title",
+        "part": "Which part (1-9)",
+        "category": "Legislature/Executive/Judiciary/Bodies",
+        "file_path": "Path to article JSON"
+      }
+    },
+    {
+      "step": 4,
+      "action": "route_to_part",
+      "description": "Route to correct constitutional part based on article",
+      "routing_logic": {
+        "Legislature": "Articles 26-31 (Parliament)",
+        "Executive": "Articles 32-35 (President/Council)",
+        "Judiciary": "Articles 36-38 (Supreme Court/High Courts)",
+        "Bodies": "Articles 39-42 (Constitutional Bodies)"
+      },
+      "implementation": "Match article number to part range"
+    },
+    {
+      "step": 5,
+      "action": "load_article_file",
+      "description": "Load specific article JSON file",
+      "implementation": "@mcp:json-jq query specific article file from constitution/ folder",
+      "file_path_pattern": ".aegiside/constitution/{part}/{article_file}.json"
+    },
+    {
+      "step": 6,
+      "action": "extract_article_content",
+      "description": "Extract article content, text, and related articles",
+      "fields": {
+        "article_number": "N",
+        "title": "Article title",
+        "text": "Full article text",
+        "summary": "Brief summary",
+        "related_articles": "Array of related article numbers",
+        "amendments": "List of amendments if any"
+      },
+      "implementation": "@mcp:json-jq extract fields from article JSON"
+    },
+    {
+      "step": 7,
+      "action": "apply_citation_format",
+      "description": "Format response with proper citation",
+      "citation_format": "Article {N} of the Constitution of India",
+      "response_template": {
+        "citation": "Article {N} of the Constitution of India",
+        "title": "Article title",
+        "content": "Full article text",
+        "summary": "Brief explanation",
+        "related_articles": "Links to related articles",
+        "amendments": "Amendment history if applicable"
+      },
+      "implementation": "Format response according to template"
+    },
+    {
+      "step": 8,
+      "action": "verify_constitutional_compliance",
+      "description": "Verify response meets constitutional compliance (≥80%)",
+      "compliance_checks": [
+        "Citation format correct",
+        "Article content accurate",
+        "Related articles linked",
+        "Amendment history included",
+        "Response follows constitutional flow"
+      ],
+      "threshold": 0.8,
+      "implementation": "Validate response against compliance criteria"
+    },
+    {
+      "step": 9,
+      "action": "log_petition_routing",
+      "description": "Log petition routing to activeContext",
+      "implementation": "@mcp:json-jq update activeContext.event_tracking (TOP-APPEND)",
+      "event_data": {
+        "type": "constitutional_petition_routed",
+        "article_number": "N",
+        "part": "Legislature/Executive/Judiciary/Bodies",
+        "compliance_score": "0-1",
+        "citation_format": "Article {N} of the Constitution of India"
+      }
+    },
+    {
+      "step": 10,
+      "action": "return_response",
+      "description": "Return formatted response with citation",
+      "implementation": "Return article content with proper formatting and citation"
+    }
+  ],
+  "constitutional_flow": {
+    "Legislature": {
+      "articles": "26-31",
+      "description": "Parliament - Lawmaking body",
+      "folder": ".aegiside/constitution/06-parliament/"
+    },
+    "Executive": {
+      "articles": "32-35",
+      "description": "President/Council - Implementation body",
+      "folder": ".aegiside/constitution/07-executive/"
+    },
+    "Judiciary": {
+      "articles": "36-38",
+      "description": "Supreme Court/High Courts - Justice body",
+      "folder": ".aegiside/constitution/08-judiciary/"
+    },
+    "Bodies": {
+      "articles": "39-42",
+      "description": "Constitutional Bodies - Oversight bodies",
+      "folder": ".aegiside/constitution/09-constitutional-bodies/"
+    }
+  },
+  "error_handling": {
+    "if_article_not_found": "Return 'Article not found' with search suggestions",
+    "if_metadata_missing": "Use fallback article routing based on number",
+    "if_file_not_found": "Return error and suggest related articles"
+  },
+  "constitutional_compliance": {
+    "articles": ["Article 32 (Right to Constitutional Remedies)"],
+    "mcps_used": ["@mcp:json-jq"],
+    "autonomy_band": "0-99%"
+  },
+  "testing": {
+    "test_case_1": "Query 'Article 32' → Route to Judiciary → Return with citation",
+    "test_case_2": "Query 'Fundamental Rights' → Extract articles 4-12 → Return all",
+    "test_case_3": "Query 'Parliament' → Route to Legislature → Return articles 26-31",
+    "test_case_4": "Query invalid article → Return 'not found' with suggestions",
+    "test_case_5": "Verify citation format: 'Article {N} of the Constitution of India'"
+  }
+}

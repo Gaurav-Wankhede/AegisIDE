@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "last_updated": "2025-10-30T21:50:00+05:30",
+  "dashboard_config": {
+    "refresh_rate": "1min",
+    "retention_days": 30,
+    "alert_channels": ["scratchpad", "progress"]
+  },
+  "current_snapshot": {
+    "timestamp": null,
+    "overall_health": 0.0,
+    "components": {
+      "generator": {
+        "status": "unknown",
+        "score": 0.0,
+        "trend": "baseline",
+        "last_5_scores": []
+      },
+      "reflector": {
+        "status": "unknown",
+        "score": 0.0,
+        "trend": "baseline"
+      },
+      "curator": {
+        "status": "unknown",
+        "score": 0.0,
+        "trend": "baseline"
+      }
+    }
+  },
+  "quality_evolution": {
+    "week_1": null,
+    "week_2": null,
+    "week_3": null,
+    "week_4": null
+  },
+  "alerts": []
+}
