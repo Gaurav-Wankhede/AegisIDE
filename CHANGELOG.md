@@ -2,6 +2,23 @@
 
 *[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
+**RULE:** Keep entries concise - focus on WHAT changed, not metrics/process. One-line summaries preferred.
+
+---
+
+## [4.1.0] - 2025-11-01
+
+### Added: Context Orchestration & Progressive Disclosure
+
+- CONTEXT ORCHESTRATION: 4-tier progressive disclosure (CRITICAL/HIGH/MEDIUM/LOW)
+- Role definition: Constitutional AI Researcher for IDE AIs
+- 11 schema files + static (81 GitHub) vs dynamic (8 local) segregation
+- Iterative enforcement: "EACH iteration/response" emphasis
+- JSON tools: `jq` (EDIT) vs `@mcp:json-jq` (READ)
+- Compressed: 6332→4995 chars (23% ↓), 86 lines
+
+---
+
 ## [4.0.1] - 2025-11-01
 
 ### Fixed: JSON-Only Framework Enforcement

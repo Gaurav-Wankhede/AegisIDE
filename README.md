@@ -3,7 +3,7 @@
 > Constitutional AI framework - autonomous development with persistent memory
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE.md)
-[![Version](https://img.shields.io/badge/version-4.0.0-blue.svg)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-4.1.0-blue.svg)](CHANGELOG.md)
 [![3-Tier Architecture](https://img.shields.io/badge/Architecture-3--Tier-orange)](CHANGELOG.md#400---2025-10-30)
 [![91% Token Savings](https://img.shields.io/badge/Token_Savings-91%25-success)](.aegiside/knowledge/architecture/codemap.json)
 [![6 MCPs](https://img.shields.io/badge/MCPs-6%20Core-success)](src/mcp_servers.json)

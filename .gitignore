@@ -2,6 +2,11 @@
 src/.aegiside/memory-bank/memory/*.json
 !src/.aegiside/memory-bank/memory/RL_SCORING_EXAMPLE.json
 
+# Runtime memory - USER-GENERATED DATA (NEVER commit)
+.aegiside/runtime/memory/active/
+.aegiside/runtime/memory/history/
+!.aegiside/runtime/memory/schemas/
+
 # IDE specific files
 .vscode/
 .idea/
