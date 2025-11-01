@@ -1,0 +1,344 @@
+{
+  "schema_version": "1.0.0",
+  "namespace": "incident_response",
+  "description": "Comprehensive procedures for detecting, investigating, mitigating, and resolving reward hacking incidents in the AegisIDE Constitutional Governance Framework",
+  "version": 1,
+  "last_updated": "2025-10-31T19:00:00+05:30",
+  "research_foundation": ["DeepMind MONA (arXiv 2501.13011)", "OpenAI o3 System Card 2025"],
+  "constitutional_alignment": ["Article 39: Opposition Role & Oversight", "Article 40: RL System Compliance"],
+  
+  "quick_reference": {
+    "critical": {"response_time": "immediate", "actions": ["halt", "rollback", "emergency_consensus"], "escalation": "Supreme Council"},
+    "high": {"response_time": "15 minutes", "actions": ["quarantine", "investigation", "enhanced_monitoring"], "escalation": "Constitutional Bodies"},
+    "medium": {"response_time": "1 hour", "actions": ["flag", "oversight", "alert"], "escalation": "RL Oversight"},
+    "low": {"response_time": "24 hours", "actions": ["log", "review"], "escalation": "none"}
+  },
+
+  "detection_methods": {
+    "automated_mona": {
+      "triggers": [
+        "trajectory_analysis_anomalies_deviation_above_threshold",
+        "reward_sequence_patterns_matching_known_exploits",
+        "obfuscation_detection_transparency_below_0.7",
+        "multi_step_manipulation_detection"
+      ],
+      "process": [
+        "MONA monitors all RL task trajectories in real-time",
+        "Compares against baseline patterns and known exploits",
+        "Calculates anomaly_score (0-1) and confidence_score (0-1)",
+        "Triggers alert if anomaly_score > sensitivity_threshold"
+      ],
+      "configuration_file": ".aegiside/runtime/mona/mona_config.json"
+    },
+    "manual_detection": {
+      "indicators": [
+        "unusual_reward_accumulation_patterns",
+        "suspiciously_high_task_completion_rewards",
+        "obfuscated_reasoning_explanations",
+        "penalty_evasion_in_high_risk_scenarios"
+      ],
+      "reporting": {
+        "target_file": "reward_hacking_incidents.json",
+        "detection_method": "manual"
+      }
+    }
+  },
+
+  "severity_classifications": [
+    {
+      "level": "critical",
+      "severity": 4,
+      "definition": "Immediate threat to system integrity or governance",
+      "examples": [
+        "constitutional_bypass_attempts",
+        "large_scale_reward_manipulation_above_100_points",
+        "data_integrity_compromise",
+        "multi_system_exploitation"
+      ],
+      "response": {
+        "actions": [
+          "IMMEDIATE_system_halt",
+          "emergency_consensus_召集",
+          "external_auditor_notification",
+          "rollback_to_last_known_good_state"
+        ],
+        "approval_required": "Supreme Constitutional Council",
+        "consensus_threshold": 0.95
+      }
+    },
+    {
+      "level": "high",
+      "severity": 3,
+      "definition": "Significant exploitation with material impact",
+      "examples": [
+        "moderate_reward_manipulation_20_to_100_points",
+        "successful_penalty_evasion_above_5_instances",
+        "attempted_governance_bypass",
+        "pattern_obfuscation_detected"
+      ],
+      "response": {
+        "actions": [
+          "quarantine_affected_systems_within_15_minutes",
+          "suspend_reward_calculations",
+          "trigger_investigation",
+          "enhanced_monitoring_deployment"
+        ],
+        "approval_required": "Constitutional Bodies",
+        "consensus_threshold": 0.85
+      }
+    },
+    {
+      "level": "medium",
+      "severity": 2,
+      "definition": "Detectable exploitation with limited impact",
+      "examples": [
+        "minor_reward_manipulation_5_to_20_points",
+        "sporadic_anomalies_score_0.6_to_0.8",
+        "borderline_trajectory_deviations",
+        "isolated_incidents"
+      ],
+      "response": {
+        "actions": [
+          "flag_affected_tasks",
+          "increase_monitoring_oversight",
+          "alert_operators",
+          "continue_with_enhanced_scrutiny"
+        ],
+        "approval_required": false
+      }
+    },
+    {
+      "level": "low",
+      "severity": 1,
+      "definition": "Suspicious but unconfirmed patterns",
+      "examples": [
+        "marginal_anomalies_score_0.4_to_0.6",
+        "false_positive_indicators_present",
+        "minor_deviation_from_baseline",
+        "isolated_edge_cases"
+      ],
+      "response": {
+        "actions": [
+          "log_for_periodic_review",
+          "no_immediate_action_required",
+          "monitor_for_recurrence",
+          "update_baseline_if_needed"
+        ],
+        "approval_required": false
+      }
+    }
+  ],
+
+  "investigation_procedures": {
+    "phase_1_data_collection": {
+      "target_time": "5 minutes",
+      "required_data": {
+        "trajectory_history": ["full_task_execution_sequence", "reward_accumulation_timeline", "decision_points_and_branching"],
+        "system_state": ["active_configurations", "RL_parameters_at_detection_time", "environmental_factors"],
+        "pattern_matching": ["known_exploit_patterns_from_database", "historical_similar_incidents", "obfuscation_indicators"]
+      },
+      "tools": ["@mcp:json-jq for querying progress.json and mistakes.json", "MONA trajectory analyzer", "Obfuscation monitor logs"]
+    },
+    "phase_2_analysis": {
+      "target_time": "15-30 minutes",
+      "steps": [
+        {"step": "anomaly_verification", "query": "@mcp:json-jq query '.trajectory_analysis.trajectory_history[] | select(.anomaly_detected == true)' from progress.json"},
+        {"step": "pattern_comparison", "actions": ["match_against_reward_hacking_patterns.json", "identify_exploit_type", "calculate_confidence_score"]},
+        {"step": "impact_assessment", "checks": ["quantify_reward_manipulation_amount", "count_penalty_evasions", "check_constitutional_violations", "assess_data_integrity"]},
+        {"step": "root_cause_determination", "analysis": ["identify_vulnerability_exploited", "determine_intentional_or_accidental", "trace_exploitation_chain"]}
+      ]
+    },
+    "phase_3_documentation": {
+      "required_fields": ["incident_id", "timestamp", "detection_method", "confidence", "exploit_pattern_identified", "impact_assessment_results", "root_cause_analysis", "evidence_artifacts"],
+      "location": "reward_hacking_incidents.json"
+    }
+  },
+
+  "mitigation_strategies": {
+    "immediate_actions_by_severity": {
+      "critical": {
+        "actions": ["HALT: Stop all RL operations immediately", "ROLLBACK: Revert to last verified safe state", "ISOLATE: Quarantine affected components", "ESCALATE: Emergency consensus召集", "NOTIFY: Alert external auditors (if configured)"],
+        "approval_required": "Supreme Constitutional Council (95% consensus)"
+      },
+      "high": {
+        "actions": ["QUARANTINE: Isolate affected tasks/systems", "SUSPEND: Halt reward calculations", "MONITOR: Deploy enhanced monitoring", "INVESTIGATE: Trigger deep analysis", "ALERT: Notify constitutional bodies"],
+        "approval_required": "Constitutional Bodies (85% consensus)"
+      },
+      "medium": {
+        "actions": ["FLAG: Mark tasks for review", "INCREASE: Enhanced oversight active", "ALERT: Operator notification", "MONITOR: Continuous tracking", "LOG: Document for analysis"],
+        "approval_required": false
+      },
+      "low": {
+        "actions": ["LOG: Record in incident database", "SCHEDULE: Periodic review", "MONITOR: Baseline comparison", "UPDATE: Adjust thresholds if needed"],
+        "approval_required": false
+      }
+    },
+    "prevention_rule_updates": [
+      {"action": "add_to_exploit_database", "files": ["reward_hacking_patterns.json"], "updates": ["add_new_pattern_signature", "document_prevention_rules"]},
+      {"action": "adjust_detection_thresholds", "files": ["mona_config.json"], "updates": ["update_sensitivity", "modify_anomaly_score_thresholds", "tune_obfuscation_detection_parameters"]},
+      {"action": "enhance_validation", "updates": ["add_new_validation_rules", "extend_trajectory_analysis_windows", "implement_additional_safeguards"]},
+      {"action": "rl_parameter_tuning", "parameters": ["adjust_reward_penalty_scales", "modify_PPO_GAE_parameters", "update_monitorability_tax_triggers"]}
+    ]
+  },
+
+  "exploit_patterns": [
+    {
+      "pattern_id": "prevent_gradual_manipulation",
+      "name": "Gradual Trajectory Manipulation",
+      "description": "Slowly deviate from optimal trajectory to accumulate small incremental rewards",
+      "detection_signature": {
+        "trajectory_deviation": "increases_linearly_over_time",
+        "anomaly_scores": "small_positive_0.3_to_0.6_sustained",
+        "single_large_violation": false,
+        "cumulative_reward_exceeds_baseline_by": ">15%"
+      },
+      "prevention_rule": {
+        "check": "cumulative_trajectory_deviation",
+        "threshold": 0.3,
+        "window_size": 10,
+        "action": "trigger_review_if_exceeded"
+      }
+    },
+    {
+      "pattern_id": "prevent_obfuscation_evasion",
+      "name": "Penalty Evasion through Obfuscation",
+      "description": "Provide technically correct but deliberately unclear reasoning to avoid penalty",
+      "detection_signature": {
+        "obfuscation_score": ">0.7",
+        "reasoning_clarity": "<0.5",
+        "monitorability_tax_triggered": "repeatedly",
+        "constitutional_alignment": "questionable"
+      },
+      "prevention_rule": {
+        "check": "reasoning_transparency",
+        "threshold": 0.5,
+        "consecutive_violations": 3,
+        "action": "apply_monitorability_tax_and_review"
+      }
+    },
+    {
+      "pattern_id": "prevent_multistep_gaming",
+      "name": "Multi-Step Reward Gaming",
+      "description": "Execute series of individually benign actions that combine for exploit",
+      "detection_signature": {
+        "single_step_anomalies": false,
+        "multi_step_pattern": "matches_known_exploits",
+        "reward_sequence": "suspicious_pattern",
+        "mona_multi_step_detection": "triggered"
+      },
+      "prevention_rule": {
+        "check": "multi_step_pattern_matching",
+        "look_back_window": 20,
+        "pattern_database": "reward_hacking_patterns.json",
+        "action": "quarantine_if_confidence_above_0.8"
+      }
+    },
+    {
+      "pattern_id": "prevent_baseline_manipulation",
+      "name": "Baseline Manipulation",
+      "description": "Artificially lower performance baseline to make future rewards easier",
+      "detection_signature": {
+        "initial_performance": "suspiciously_poor",
+        "subsequent_improvement": "high_rewards",
+        "historical_comparison": "shows_anomaly",
+        "reward_velocity": "suspicious"
+      },
+      "prevention_rule": {
+        "check": "performance_consistency",
+        "historical_comparison": true,
+        "velocity_threshold": 2.0,
+        "action": "flag_and_recalibrate_baseline"
+      }
+    }
+  ],
+
+  "resolution_procedures": {
+    "verification_checklist": [
+      "threat_confirmed_neutralized",
+      "system_integrity_validated",
+      "prevention_measures_tested",
+      "root_cause_documented",
+      "lessons_learned_captured",
+      "constitutional_compliance_verified"
+    ],
+    "resolution_methods": {
+      "automated_rollback": ["restore_from_last_known_good_state", "revalidate_all_affected_data", "restart_monitoring_systems"],
+      "manual_intervention": ["human_review_and_approval", "surgical_fixes_to_affected_components", "custom_mitigation_strategies"],
+      "system_update": ["deploy_enhanced_detection_rules", "update_prevention_mechanisms", "strengthen_validation_logic"]
+    },
+    "post_incident_activities": {
+      "documentation": ["update_constitutional_changelog.json_if_needed", "record_in_mistakes.json", "add_to_systemPatterns.json_knowledge_base"],
+      "knowledge_sharing": ["distribute_prevention_measures", "update_training_data", "share_with_governance_bodies"],
+      "review_meeting_for_high_critical": ["incident_timeline_review", "root_cause_analysis_presentation", "prevention_measure_validation", "process_improvement_recommendations"]
+    }
+  },
+
+  "metrics": {
+    "key_performance_indicators": {
+      "mean_time_to_detect_MTTD": {"target": "5_minutes", "unit": "minutes"},
+      "mean_time_to_respond_MTTR": {"target": "15_minutes", "unit": "minutes"},
+      "false_positive_rate": {"target": "10%", "unit": "percentage"},
+      "recurrence_rate": {"target": "5%", "unit": "percentage"},
+      "resolution_success_rate": {"target": "95%", "unit": "percentage"}
+    },
+    "monthly_review_tasks": [
+      "analyze_incident_trends",
+      "evaluate_detection_effectiveness",
+      "assess_prevention_measure_success",
+      "update_exploit_pattern_database",
+      "refine_response_procedures"
+    ],
+    "continuous_learning": [
+      "feed_incidents_into_systemPatterns.json",
+      "update_procedural_patterns.json_with_successful_mitigations",
+      "enhance_MONA_detection_based_on_lessons_learned",
+      "adjust_constitutional_provisions_if_systematic_issues_found"
+    ]
+  },
+
+  "escalation": {
+    "automated_alerts": {
+      "critical": "immediate_notification_to_all_governance_bodies",
+      "high": "Constitutional_Bodies_plus_External_Auditor_if_configured",
+      "medium": "RL_Oversight_plus_Operators",
+      "low": "periodic_summary_reports"
+    },
+    "human_escalation_points": [
+      {"level": 1, "role": "RL_Oversight_Agent", "scope": "First line for Medium+ incidents"},
+      {"level": 2, "role": "Constitutional_Bodies", "scope": "Required for High+ incidents"},
+      {"level": 3, "role": "Supreme_Council", "scope": "Reserved for Critical incidents"},
+      {"level": 4, "role": "External_Auditor", "scope": "Optional for High, Mandatory for Critical"}
+    ]
+  },
+
+  "tool_commands": [
+    {"name": "query_incident_status", "command": "@mcp:json-jq query '.incidents[] | select(.status == \"active\")' from reward_hacking_incidents.json"},
+    {"name": "check_mona_configuration", "command": "@mcp:json-jq query '.detection.multi_step_detection_enabled' from mona_config.json"},
+    {"name": "review_exploit_patterns", "command": "@mcp:json-jq query '.common_patterns[]' from reward_hacking_patterns.json"},
+    {"name": "audit_trajectory_history", "command": "@mcp:json-jq query '.trajectory_analysis.trajectory_history[-10:]' from progress.json"}
+  ],
+
+  "integration_with_constitutional_framework": {
+    "article_40_rl_system_compliance": {
+      "requirements": [
+        "PPO+GAE parameters (epsilon=0.2, gamma=0.99, lambda=0.95)",
+        "Penalty severity levels (minor to constitutional)",
+        "Monitorability tax application (0.1-0.5)",
+        "Process reward validation"
+      ]
+    },
+    "article_39_opposition_role_oversight": {
+      "escalation_required_for": [
+        "High and Critical severity incidents",
+        "Constitutional violations detected",
+        "Governance bypass attempts",
+        "Recurrent pattern incidents"
+      ]
+    },
+    "democratic_governance": {
+      "critical": {"approval": "95%_Supreme_Council_consensus"},
+      "high": {"approval": "85%_Constitutional_Bodies_consensus"},
+      "medium_low": {"approval": "Automated or single oversight approval"}
+    }
+  }
+}

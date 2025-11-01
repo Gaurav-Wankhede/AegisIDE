@@ -2,6 +2,17 @@
 
 *[Keep a Changelog](https://keepachangelog.com) • [Semantic Versioning](https://semver.org)*
 
+## [4.0.1] - 2025-11-01
+
+### Fixed: JSON-Only Framework Enforcement
+
+- Converted runtime/incidents/incident_response_guide.md → .json (MISP taxonomy schema)
+- Strengthened MD-BAN rule: exception for README.md and Changelog.md only
+- system-prompt.md: Updated L63 to enforce ALL config=JSON (5994/6000 chars)
+- Framework now 100% JSON-compliant (except documented exceptions)
+
+---
+
 ## [4.0.0] - 2025-10-30
 
 ### Breaking: 3-Tier Hierarchical Architecture
